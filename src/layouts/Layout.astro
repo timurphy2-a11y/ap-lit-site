@@ -14,9 +14,44 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-[#faf9f7] text-[#1a1a1a] font-sans antialiased">
+    <header class="border-b border-stone-200 bg-white/80 backdrop-blur-sm sticky top-0 z-40">
+      <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="/" class="font-serif text-sm font-bold tracking-wide text-stone-800 hover:text-stone-600 transition-colors">
+          AP Literature
+        </a>
+        <nav class="flex items-center gap-6 text-sm text-stone-500">
+          <a href="/timeline" class="hover:text-stone-800 transition-colors">Timeline</a>
+          <a href="/people" class="hover:text-stone-800 transition-colors">People</a>
+        </nav>
+      </div>
+    </header>
     <slot />
   </body>
 </html>
+
+<style is:global>
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+  .font-serif {
+    font-family: 'Libre Baskerville', Georgia, serif;
+  }
+</style>
