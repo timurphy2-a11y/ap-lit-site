@@ -23,19 +23,23 @@ hero_painting:
   medium: "Oil on canvas"
   dimensions: "height: 38.5 in; width: 29.1 in"
   location: "Hamburger Kunsthalle"
+  image: "/images/paintings/04-romanticism/friedrich-wanderer.jpeg"
 gallery_paintings:
   - title: "Liberty Leading the People"
     artist: "Eugène Delacroix"
     date: 1830
     threads: [figure-space, brushwork-surface]
+    image: "/images/paintings/04-romanticism/delacroix-liberty.jpg"
   - title: "The Slave Ship"
     artist: "J.M.W. Turner"
     date: 1840
     threads: [light-shadow, brushwork-surface, figure-space]
+    image: "/images/paintings/04-romanticism/turner-slave-ship.jpg"
   - title: "The Raft of the Medusa"
     artist: "Théodore Géricault"
     date: 1819
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/04-romanticism/gericault-raft-of-medusa.jpg"
 compare_back: "enlightenment"
 compare_forward: "modernism"
 ---

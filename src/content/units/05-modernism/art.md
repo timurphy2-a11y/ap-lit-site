@@ -23,19 +23,23 @@ hero_painting:
   medium: "Oil on canvas"
   dimensions: "height: 96 in; width: 92 in"
   location: "MoMA, New York"
+  image: "/images/paintings/05-modernism/picasso-demoiselles.jpg"
 gallery_paintings:
   - title: "Composition VII"
     artist: "Wassily Kandinsky"
     date: 1913
     threads: [brushwork-surface, light-shadow]
+    image: "/images/paintings/05-modernism/kandinsky-composition-vii.jpg"
   - title: "The Dance"
     artist: "Henri Matisse"
     date: 1910
     threads: [figure-space, brushwork-surface]
+    image: "/images/paintings/05-modernism/matisse-the-dance.jpg"
   - title: "A Bar at the Folies-Bergère"
     artist: "Édouard Manet"
     date: 1882
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/05-modernism/manet-bar-at-folies-bergere.jpg"
 compare_back: "romanticism"
 compare_forward: null
 ---

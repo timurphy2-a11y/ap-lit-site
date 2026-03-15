@@ -153,6 +153,27 @@ const tabs = [
 
     <!-- Visual Art -->
     <div id="panel-art" role="tabpanel" class="tab-panel hidden">
+
+      {/* Hero painting — full width above the prose */}
+      {art.data.hero_painting?.image && (
+        <figure class="mb-10">
+          <div class="bg-stone-100 rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px;">
+            <img
+              src={art.data.hero_painting.image}
+              alt={art.data.hero_painting.title}
+              class="w-full h-full object-contain"
+              style="max-height: 520px;"
+            />
+          </div>
+          <figcaption class="mt-2 text-center text-xs text-stone-400">
+            <span class="font-serif italic">{art.data.hero_painting.title}</span>
+            {' — '}{art.data.hero_painting.artist}, {art.data.hero_painting.date}
+            {art.data.hero_painting.medium && <span> · {art.data.hero_painting.medium}</span>}
+            {art.data.hero_painting.location && <span> · {art.data.hero_painting.location}</span>}
+          </figcaption>
+        </figure>
+      )}
+
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
         <div class="prose prose-stone prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed prose-strong:text-stone-800 max-w-none">
@@ -172,30 +193,29 @@ const tabs = [
             </div>
           </div>
 
-          {art.data.hero_painting && (
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Featured Work</h3>
-              <div class="border border-stone-200 rounded-lg p-3 bg-white">
-                <p class="text-sm font-serif italic font-bold text-stone-800 leading-snug">{art.data.hero_painting.title}</p>
-                <p class="text-xs text-stone-500 mt-1">{art.data.hero_painting.artist} · {art.data.hero_painting.date}</p>
-                {art.data.hero_painting.location && (
-                  <p class="text-xs text-stone-400 mt-0.5">{art.data.hero_painting.location}</p>
-                )}
-              </div>
-            </div>
-          )}
-
           {art.data.gallery_paintings && art.data.gallery_paintings.length > 0 && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Gallery Works</h3>
-              <ul class="space-y-2">
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Gallery</h3>
+              <div class="space-y-4">
                 {art.data.gallery_paintings.map((p) => (
-                  <li class="border-l-2 border-stone-200 pl-3">
-                    <p class="text-sm font-serif italic text-stone-800 leading-snug">{p.title}</p>
-                    <p class="text-xs text-stone-500">{p.artist} · {p.date}</p>
-                  </li>
+                  <figure>
+                    {p.image && (
+                      <div class="bg-stone-100 rounded-lg overflow-hidden mb-1.5">
+                        <img
+                          src={p.image}
+                          alt={p.title}
+                          class="w-full object-contain"
+                          style="max-height: 180px;"
+                        />
+                      </div>
+                    )}
+                    <figcaption>
+                      <p class="text-xs font-serif italic text-stone-700 leading-snug">{p.title}</p>
+                      <p class="text-xs text-stone-400">{p.artist} · {p.date}</p>
+                    </figcaption>
+                  </figure>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
         </aside>

@@ -61,12 +61,14 @@ const units = defineCollection({
       medium: z.string().optional(),
       dimensions: z.string().optional(),
       location: z.string().optional(),
+      image: z.string().optional(),
     }).optional(),
     gallery_paintings: z.array(z.object({
       title: z.string(),
       artist: z.string(),
       date: z.union([z.number(), z.string()]),
       threads: z.array(z.string()),
+      image: z.string().optional(),
     })).optional(),
 
     // Navigation

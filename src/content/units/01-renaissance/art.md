@@ -23,19 +23,23 @@ hero_painting:
   medium: "Fresco"
   dimensions: "height: 9 ft 2 in; width: 18 ft 8 in"
   location: "Sistine Chapel, Vatican"
+  image: "/images/paintings/01-renaissance/michelangelo-creation-of-adam.jpg"
 gallery_paintings:
   - title: "The Alba Madonna"
     artist: "Raphael"
     date: 1510
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/01-renaissance/raphael-alba-madonna.jpg"
   - title: "The Last Supper"
     artist: "Leonardo da Vinci"
     date: 1498
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/01-renaissance/leonardo-last-supper.jpg"
   - title: "The School of Athens"
     artist: "Raphael"
     date: 1511
     threads: [figure-space]
+    image: "/images/paintings/01-renaissance/raphael-school-of-athens.jpg"
 compare_back: "medieval"
 compare_forward: "baroque"
 ---

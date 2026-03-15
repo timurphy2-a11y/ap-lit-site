@@ -23,19 +23,23 @@ hero_painting:
   medium: "Oil on canvas"
   dimensions: "height: 31.8 in; width: 25.2 in"
   location: "The Wallace Collection, London"
+  image: "/images/paintings/03-enlightenment/fragonard-the-swing.jpg"
 gallery_paintings:
   - title: "The Secret Message"
     artist: "François Boucher"
     date: 1767
     threads: [figure-space, brushwork-surface]
+    image: "/images/paintings/03-enlightenment/boucher-secret-message.jpg"
   - title: "The Pilgrimage to Cythera"
     artist: "Jean-Antoine Watteau"
     date: 1717
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/03-enlightenment/watteau-pilgrimage-to-cythera.jpg"
   - title: "Young Girl Reading"
     artist: "Jean-Honoré Fragonard"
     date: 1770
     threads: [light-shadow, brushwork-surface]
+    image: "/images/paintings/03-enlightenment/fragonard-young-girl-reading.jpg"
 compare_back: "baroque"
 compare_forward: "romanticism"
 ---

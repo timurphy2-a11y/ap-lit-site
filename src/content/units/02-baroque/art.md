@@ -23,19 +23,23 @@ hero_painting:
   medium: "Oil on canvas"
   dimensions: "height: 55.5 in; width: 72.2 in"
   location: "National Gallery, London"
+  image: "/images/paintings/02-baroque/caravaggio-supper-at-emmaus.jpg"
 gallery_paintings:
   - title: "The Calling of Saint Matthew"
     artist: "Caravaggio"
     date: 1600
     threads: [light-shadow, figure-space]
+    image: "/images/paintings/02-baroque/caravaggio-calling-of-matthew.jpg"
   - title: "Las Meninas"
     artist: "Diego Velázquez"
     date: 1656
     threads: [figure-space, brushwork-surface]
+    image: "/images/paintings/02-baroque/velazquez-las-meninas.jpg"
   - title: "Self-Portrait"
     artist: "Rembrandt van Rijn"
     date: 1659
     threads: [brushwork-surface, light-shadow]
+    image: "/images/paintings/02-baroque/rembrandt-self-portrait-1659.jpg"
 compare_back: "renaissance"
 compare_forward: "enlightenment"
 ---

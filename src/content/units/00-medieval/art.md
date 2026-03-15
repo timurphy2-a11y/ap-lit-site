@@ -23,19 +23,23 @@ hero_painting:
   medium: "Tempera on wood panel"
   dimensions: "height: 265 cm (104.3 in); width: 305 cm (10 ft)"
   location: "Uffizi, Florence"
+  image: "/images/paintings/00-medieval/martini-annunciation.jpg"
 gallery_paintings:
   - title: "The Wilton Diptych (Left Panel)"
     artist: "Anonymous"
     date: 1395
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/00-medieval/wilton-diptych-left.jpg"
   - title: "The Wilton Diptych (Right Panel)"
     artist: "Anonymous"
     date: 1395
     threads: [figure-space, light-shadow]
+    image: "/images/paintings/00-medieval/wilton-diptych-right.jpg"
   - title: "The Maestà"
     artist: "Duccio"
     date: 1311
     threads: [figure-space, brushwork-surface]
+    image: "/images/paintings/00-medieval/duccio-maesta.jpg"
 compare_back: null
 compare_forward: "renaissance"
 ---
