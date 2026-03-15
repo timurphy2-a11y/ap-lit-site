@@ -22,17 +22,20 @@ featured_listening:
   date: 1787
   duration: "6 minutes"
   listen_for: "A textbook sonata form: the bright, confident opening theme, the contrasting second theme (more lyrical), the development section (which fragments and recombines), and the satisfying return of the opening. Balanced, witty, elegant."
+  youtube_id: "UhPBT0dA_oA"
 gallery_listening:
   - title: "Piano Concerto No. 21 in C Major, K. 467, second movement (Andante)"
     composer: "Wolfgang Amadeus Mozart"
     date: 1785
     duration: "7 minutes (or first 3 minutes for the main theme)"
     threads: [consonance-dissonance, texture-voices]
+    youtube_id: "5Y4Fkxg7WcA"
   - title: "Symphony No. 94 ('Surprise'), second movement (Andante)"
     composer: "Joseph Haydn"
     date: 1791
     duration: "6 minutes"
     threads: [structure-freedom]
+    youtube_id: "lLjwkamp3lI"
 compare_back: "baroque"
 compare_forward: "romanticism"
 ---

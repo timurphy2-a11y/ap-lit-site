@@ -22,17 +22,20 @@ featured_listening:
   date: 1808
   duration: "7 minutes"
   listen_for: "The famous four-note opening (da-da-da-DUM) is Classical sonata form being pushed to its limits by Romantic emotional force. Listen for how those four notes are developed, transformed, and built into a movement of enormous power — a single idea pursued with obsessive intensity."
+  youtube_id: "7eOaIiHB58U"
 gallery_listening:
   - title: "Prelude to Tristan und Isolde"
     composer: "Richard Wagner"
     date: 1859
     duration: "First 4–5 minutes"
     threads: [consonance-dissonance]
+    youtube_id: "IaZZVRd_WeU"
   - title: "La Mer: 'From Dawn to Noon on the Sea' (first movement)"
     composer: "Claude Debussy"
     date: 1905
     duration: "First 4 minutes for the dawn"
     threads: [texture-voices, consonance-dissonance]
+    youtube_id: "IoENgt1h4_A"
 compare_back: "enlightenment"
 compare_forward: "modernism"
 ---

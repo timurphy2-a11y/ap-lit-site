@@ -22,17 +22,20 @@ featured_listening:
     date: 1913
     duration: "Listen from about 3:00 to 6:00 for the pounding section"
     listen_for: "The famous pounding chords with their irregular, unpredictable accents. The rhythm is jagged and visceral — compare the balanced phrases of Mozart to this and the rupture is immediately audible. Its 1913 premiere caused a riot."
+    youtube_id: "dcwB67IoefA"
   - title: "Black, Brown and Beige: 'Black' section"
     composer: "Duke Ellington"
     date: 1943
     duration: "First 5–6 minutes"
     listen_for: "How jazz texture works: soloists emerge from the ensemble, improvise, and return. The connection to Ellison's narrative method is direct — the narrator's voice riffs, improvises, circles back, and breaks into different registers just as a jazz soloist does."
+    youtube_id: "8HZ4jiiOQmc"
 gallery_listening:
   - title: "Pierrot Lunaire, No. 8: 'Nacht' (Night)"
     composer: "Arnold Schoenberg"
     date: 1912
     duration: "2 minutes"
     threads: [consonance-dissonance, texture-voices]
+    youtube_id: "1gafF5sbnB0"
 compare_back: "romanticism"
 compare_forward: null
 ---

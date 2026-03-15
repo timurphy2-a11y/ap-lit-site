@@ -22,17 +22,20 @@ featured_listening:
   date: "Medieval"
   duration: "3–4 minutes"
   listen_for: "The single unaccompanied melodic line, the absence of rhythm in the modern sense, and the way the melody shapes itself around the Latin words. The hymn addresses the Virgin Mary as 'Star of the Sea.'"
+  youtube_id: "sdJ55DPsWhI"
 gallery_listening:
   - title: "Dies Irae"
     composer: "Anonymous (Gregorian chant)"
     date: "13th century"
     duration: "2–3 minutes (opening verses)"
     threads: [texture-voices, structure-freedom]
+    youtube_id: "h3FED3omlDA"
   - title: "Viderunt Omnes"
     composer: "Pérotin"
     date: "c. 1198"
     duration: "3–4 minutes (opening)"
     threads: [texture-voices, consonance-dissonance]
+    youtube_id: "Q2JvIyStzNA"
 compare_back: null
 compare_forward: "renaissance"
 ---

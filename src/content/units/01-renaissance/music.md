@@ -22,17 +22,20 @@ featured_listening:
   date: "c. 1580s"
   duration: "4 minutes"
   listen_for: "How each voice enters separately with the same melody (imitation), then all four voices overlap and interweave. The effect is serene, balanced, and luminous — the purest example of Renaissance polyphony."
+  youtube_id: "0yd5EE0hAB8"
 gallery_listening:
   - title: "Ave Maria...virgo serena"
     composer: "Josquin des Prez"
     date: "c. 1485"
     duration: "5 minutes (or first 2 minutes for the opening imitation)"
     threads: [texture-voices, structure-freedom]
+    youtube_id: "s-pVbpV4yuk"
   - title: "Spem in Alium"
     composer: "Thomas Tallis"
     date: "c. 1570"
     duration: "First 3 minutes for the gradual buildup"
     threads: [texture-voices]
+    youtube_id: "CkL1hdL40i0"
 compare_back: "medieval"
 compare_forward: "baroque"
 ---

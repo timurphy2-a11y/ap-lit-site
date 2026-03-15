@@ -22,17 +22,20 @@ featured_listening:
   date: "c. 1704"
   duration: "First 3–4 minutes (toccata and opening of fugue)"
   listen_for: "The famous opening is the toccata — free, dramatic, improvisatory. Then the fugue begins: a single theme introduced alone, then taken up by additional voices in increasingly complex combinations. The shift from expressive freedom to intellectual structure is the Baroque in miniature."
+  youtube_id: "HL0drraRHJ0"
 gallery_listening:
   - title: "Messiah: 'Hallelujah Chorus'"
     composer: "George Frideric Handel"
     date: 1741
     duration: "4 minutes"
     threads: [texture-voices, consonance-dissonance]
+    youtube_id: "usfiAsWR4qU"
   - title: "The Four Seasons: 'Winter,' first movement"
     composer: "Antonio Vivaldi"
     date: 1725
     duration: "3.5 minutes"
     threads: [texture-voices]
+    youtube_id: "tJAQI7PVofQ"
 compare_back: "renaissance"
 compare_forward: "enlightenment"
 ---

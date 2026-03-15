@@ -1,0 +1,47 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { id, title = '' } = Astro.props;
+const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+---
+
+<div class="yt-embed rounded-lg overflow-hidden" data-yt-id={id} data-yt-title={title}>
+  <button
+    class="relative w-full aspect-video bg-stone-900 block group cursor-pointer"
+    aria-label={`Play ${title}`}
+  >
+    <img
+      src={thumbnail}
+      alt={title}
+      class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+    />
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-red-500 transition-colors">
+        <svg viewBox="0 0 24 24" fill="white" class="w-5 h-5 ml-0.5">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </div>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLDivElement>('.yt-embed').forEach((container) => {
+    const btn = container.querySelector('button');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const id = container.dataset.ytId!;
+      const title = container.dataset.ytTitle ?? '';
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+      iframe.title = title;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.className = 'w-full aspect-video';
+      container.replaceChildren(iframe);
+    });
+  });
+</script>

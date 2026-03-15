@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 
 // ── Static paths for all six units ──────────────────────────────────────────
 
@@ -251,15 +252,20 @@ const tabs = [
                 ? music.data.featured_listening
                 : [music.data.featured_listening]
               ).map((item) => (
-                <div class="border border-stone-200 rounded-lg p-3 bg-white mb-2">
-                  <p class="text-sm font-serif italic font-bold text-stone-800 leading-snug">{item.title}</p>
-                  <p class="text-xs text-stone-500 mt-1">{item.composer} · {item.date}</p>
-                  {item.duration && <p class="text-xs text-stone-400 mt-0.5">{item.duration}</p>}
-                  {item.listen_for && (
-                    <p class="text-xs text-stone-600 mt-2 leading-relaxed border-t border-stone-100 pt-2">
-                      {item.listen_for}
-                    </p>
+                <div class="border border-stone-200 rounded-lg overflow-hidden bg-white mb-2">
+                  {item.youtube_id && (
+                    <YouTubeEmbed id={item.youtube_id} title={item.title} />
                   )}
+                  <div class="p-3">
+                    <p class="text-sm font-serif italic font-bold text-stone-800 leading-snug">{item.title}</p>
+                    <p class="text-xs text-stone-500 mt-1">{item.composer} · {item.date}</p>
+                    {item.duration && <p class="text-xs text-stone-400 mt-0.5">{item.duration}</p>}
+                    {item.listen_for && (
+                      <p class="text-xs text-stone-600 mt-2 leading-relaxed border-t border-stone-100 pt-2">
+                        {item.listen_for}
+                      </p>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -268,14 +274,19 @@ const tabs = [
           {music.data.gallery_listening && music.data.gallery_listening.length > 0 && (
             <div>
               <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Also Listen</h3>
-              <ul class="space-y-2">
+              <div class="space-y-3">
                 {music.data.gallery_listening.map((item) => (
-                  <li class="border-l-2 border-stone-200 pl-3">
-                    <p class="text-sm font-serif italic text-stone-800 leading-snug">{item.title}</p>
-                    <p class="text-xs text-stone-500">{item.composer} · {item.date}</p>
-                  </li>
+                  <div class="border border-stone-200 rounded-lg overflow-hidden bg-white">
+                    {item.youtube_id && (
+                      <YouTubeEmbed id={item.youtube_id} title={item.title} />
+                    )}
+                    <div class="px-3 py-2">
+                      <p class="text-sm font-serif italic text-stone-800 leading-snug">{item.title}</p>
+                      <p class="text-xs text-stone-500">{item.composer} · {item.date}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
         </aside>
