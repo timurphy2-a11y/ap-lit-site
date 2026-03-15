@@ -1,0 +1,95 @@
+---
+unit: "04-romanticism"
+period: "Romanticism"
+dates: "c. 1789–1880"
+core_text: "Moby-Dick"
+author: "Melville"
+domain: art
+title: "Seeing Through Paint: Romanticism"
+threads:
+  - id: figure-space
+    label: "Figure & Space"
+    period_summary: "The human figure shrinks against an immensity that dwarfs and swallows — nature is no longer a backdrop but the subject, and it is ungovernable."
+  - id: light-shadow
+    label: "Light & Shadow"
+    period_summary: "Light becomes atmospheric, emotional, and turbulent — Turner dissolves solid forms into storms of color, and the distinction between sky and sea can vanish entirely."
+  - id: brushwork-surface
+    label: "Brushwork & Surface"
+    period_summary: "Brushwork becomes visibly energetic — paint does not merely depict a storm but behaves like one, embodying emotion rather than illustrating it."
+hero_painting:
+  title: "Wanderer above the Sea of Fog"
+  artist: "Caspar David Friedrich"
+  date: 1818
+  medium: "Oil on canvas"
+  dimensions: "height: 38.5 in; width: 29.1 in"
+  location: "Hamburger Kunsthalle"
+gallery_paintings:
+  - title: "Liberty Leading the People"
+    artist: "Eugène Delacroix"
+    date: 1830
+    threads: [figure-space, brushwork-surface]
+  - title: "The Slave Ship"
+    artist: "J.M.W. Turner"
+    date: 1840
+    threads: [light-shadow, brushwork-surface, figure-space]
+  - title: "The Raft of the Medusa"
+    artist: "Théodore Géricault"
+    date: 1819
+    threads: [figure-space, light-shadow]
+compare_back: "enlightenment"
+compare_forward: "modernism"
+---
+
+## Introduction
+
+Romanticism explodes the Rococo's drawing room. Where the eighteenth century valued reason, social order, and elegant restraint, the Romantics pursued the raw, the wild, and the overwhelming. They were drawn to what the philosopher Edmund Burke called **the sublime** — the experience of something so vast, powerful, or terrifying that it exceeds the mind's ability to comprehend it. If you want to understand Melville's ocean, start here.
+
+The visual art of Romanticism and the fiction of Melville share a common obsession: the encounter between a solitary human consciousness and forces — natural, metaphysical, existential — that refuse to be mastered, measured, or fully understood.
+
+## Figure & Space
+
+*How is the human figure placed within the pictorial space?*
+
+The relationship between figure and space reverses. In Friedrich's *Wanderer above the Sea of Fog*, a solitary figure stands with his back to us, gazing out over a vast, mist-shrouded landscape. The human being is tiny against an immensity that dwarfs and swallows. Nature is no longer a backdrop or a garden; it is the subject, and it is ungovernable. Compositions open up into panoramic skies, churning seas, and mountain ranges that push the human figure to the edge — or eliminate it entirely.
+
+### Connection to *Moby-Dick*
+
+Think of Ishmael clinging to Queequeg's coffin in an indifferent ocean. Melville's novel is built on this Romantic reversal of scale: the human figure — whether Ishmael at the masthead, Ahab on the quarterdeck, or Pip lost in the open sea — is perpetually dwarfed by a natural world that exceeds comprehension. The ocean in *Moby-Dick* functions exactly as landscape does in Friedrich or Turner: it is not a setting but a force, not a background but the primary reality against which human meaning is tested and found inadequate. Ahab's monomaniacal pursuit of the white whale is the Romantic quest for meaning in a universe that may have none.
+
+The connection extends to Melville's shorter works as well. In "Bartleby, the Scrivener," the overwhelming space is inverted — it becomes the dead wall that Bartleby stares at, the claustrophobic office that shrinks the human figure rather than dwarfing it against nature. And in *Benito Cereno*, the becalmed ship floating on an opaque sea is itself a Romantic composition: a human scene set against a natural world that conceals its meaning.
+
+## Light & Shadow
+
+*How does the painting use light — its source, quality, and emotional effect?*
+
+Romantic light is atmospheric, emotional, and often turbulent. Turner's paintings dissolve solid objects into storms of golden, fiery, or stormy light. Sunsets blaze, storms darken, and the distinction between sky and sea, solid and void, can become almost impossible to discern. Light is no longer rational (Renaissance) or dramatic (Baroque) but **elemental** — an expression of natural forces that exceed human control. Where Baroque chiaroscuro created a theater of divine drama, Romantic light creates an arena of natural power.
+
+### Connection to *Moby-Dick*
+
+Melville's prose handles light the way Turner handles paint. Consider the chapter "The Whiteness of the Whale," in which the color white — the presence of all light — becomes a source of metaphysical terror rather than illumination. Or the descriptions of the sea at different times of day, where water and sky fuse into a single luminous or threatening field. Melville, like Turner, dissolves the boundaries between solid objects and the elemental forces that surround them. The whale itself appears and disappears in conditions of light and obscurity that make it seem more like a natural phenomenon — a storm, a wave, a shaft of light through water — than a creature.
+
+## Brushwork & Surface
+
+*What is the physical character of the paint itself?*
+
+For many Romantic painters, brushwork becomes visibly energetic. Turner, in his later work, dissolves the painted surface into swirling, almost abstract fields of color that anticipate Impressionism and even abstraction. Delacroix used bold, rapid strokes that convey urgency and passion. The smooth, controlled surface of neoclassical painting gives way to visible physical energy. The paint does not merely depict a storm; it *behaves* like one. This expressiveness of surface — the idea that paint can embody emotion, not just illustrate it — is a Romantic innovation with enormous consequences for the future of art.
+
+### Connection to *Moby-Dick*
+
+Melville's prose style is the literary equivalent of Turner's late brushwork. His sentences do not politely describe the ocean; they *enact* it — surging, accumulating, crashing across the page in long, rhythmically complex periods that seem to move with the energy of the phenomena they describe. The famous cetology chapters, the rhetorical set pieces, the passages of visionary intensity are all examples of a prose surface that insists on its own energy and physicality. You do not read *through* Melville's language transparently; you experience it as a force. This is precisely the Romantic principle that paint should not just represent but *embody* — that the medium is part of the meaning.
+
+## What to Notice
+
+In Friedrich's *Wanderer* above, notice the scale relationship: the human figure is solid and present but dwarfed by the mist, rock, and sky that surround him. His back is turned to us — we see what he sees, but we also see him seeing it, and the gap between his smallness and nature's immensity is the painting's subject.
+
+In the gallery below, Turner's *Slave Ship* is the most extreme example of Romantic light and brushwork: solid forms dissolve into swirling color, and the boundary between sea and sky nearly vanishes. Géricault's *Raft of the Medusa* dramatizes human figures caught in a desperate composition of diagonal energy — bodies piled, reaching, collapsing — against an indifferent ocean. Delacroix's *Liberty Leading the People* shows Romantic energy applied to political subject matter, with bold, rapid brushwork conveying the chaos and passion of revolution.
+
+In all of these paintings, notice the feeling of the sublime: beauty mixed with terror, awe mixed with helplessness.
+
+## Looking Back
+
+Place Friedrich's *Wanderer* next to Fragonard's *The Swing* and the eighteenth-century world vanishes. The intimate garden, the flirtatious social scene, the pastel palette, the decorative charm — all of it is swept away by fog, rock, and an immensity that makes the solitary human figure look fragile and exposed. The Enlightenment's social world has given way to the Romantic's natural one; the drawing room has become the mountaintop. This is the visual equivalent of the shift from Austen's precisely calibrated social comedy to Melville's oceanic confrontation with the sublime.
+
+## Looking Forward
+
+Modernism will take the Romantic dissolution of form — visible in Turner's late work — and push it to its logical conclusion. Where Turner dissolved objects into light and atmosphere while still holding onto some vestige of recognizable subject matter, the Modernists will abandon recognizable representation altogether. Where the Romantic painter stood in awe before nature, the Modern painter will turn inward, making the canvas itself — the flat surface, the physical paint, the act of making — the subject. The solitary figure gazing at an incomprehensible world will become the fragmented figure who *is* that incomprehensibility. The shift from Melville to Ellison — from the sublime to the invisible — has its visual counterpart in the shift from Turner to Picasso.

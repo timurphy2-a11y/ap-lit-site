@@ -1,0 +1,91 @@
+---
+unit: "01-renaissance"
+period: "Renaissance & Reformation"
+dates: "c. 1400–1700"
+core_text: "Hamlet"
+author: "Shakespeare"
+domain: art
+title: "Seeing Through Paint: Renaissance & Reformation"
+threads:
+  - id: figure-space
+    label: "Figure & Space"
+    period_summary: "Linear perspective creates measurable, rational space — the viewer looks through a window into a navigable world where human figures stand on solid ground."
+  - id: light-shadow
+    label: "Light & Shadow"
+    period_summary: "Light becomes naturalistic — it comes from a specific direction, casts real shadows, and reveals form through sfumato and tonal modeling."
+  - id: brushwork-surface
+    label: "Brushwork & Surface"
+    period_summary: "Oil painting enables invisible, controlled brushwork — the surface disappears into seamless illusion, declaring that the rational mind can reproduce reality."
+hero_painting:
+  title: "The Creation of Adam"
+  artist: "Michelangelo Buonarroti"
+  date: 1511
+  medium: "Fresco"
+  dimensions: "height: 9 ft 2 in; width: 18 ft 8 in"
+  location: "Sistine Chapel, Vatican"
+gallery_paintings:
+  - title: "The Alba Madonna"
+    artist: "Raphael"
+    date: 1510
+    threads: [figure-space, light-shadow]
+  - title: "The Last Supper"
+    artist: "Leonardo da Vinci"
+    date: 1498
+    threads: [figure-space, light-shadow]
+  - title: "The School of Athens"
+    artist: "Raphael"
+    date: 1511
+    threads: [figure-space]
+compare_back: "medieval"
+compare_forward: "baroque"
+---
+
+## Introduction
+
+The Renaissance represents one of the most dramatic shifts in the history of European art. Painters developed techniques to make paintings look like windows onto the real, physical world — and this was not just a technical achievement but a philosophical revolution. To paint a measurable space with individual human beings standing in it was to declare that the physical world, and the individual's experience of it, mattered.
+
+This is the visual art of Hamlet's intellectual world: the world of the soliloquies, of a mind that insists on examining itself and its surroundings with relentless rational attention. Where medieval painting served the certainties of faith, Renaissance painting serves the inquiries of humanism.
+
+## Figure & Space
+
+*How is the human figure placed within the pictorial space?*
+
+The great invention of the Renaissance was **linear perspective** — a mathematical system for creating the illusion of depth on a flat surface. Parallel lines converge at a vanishing point on the horizon, and figures diminish in size as they recede. For the first time, the viewer is positioned at a specific point in space, looking into the painting as if through a window. The human figure now stands on solid ground in a rational, navigable world. This is the visual equivalent of humanism: the individual has a place, a body, a point of view.
+
+### Connection to *Hamlet*
+
+Hamlet is Shakespeare's most Renaissance character — a Wittenberg student who insists on seeing for himself, testing claims against evidence, and locating himself precisely within the world he inhabits. The play's intense interiority — those soliloquies in which Hamlet examines his own thoughts and motives — is the literary equivalent of perspective: a single consciousness positioned at a specific point, looking outward and trying to make sense of what it sees. But notice the tension: Hamlet inherits a medieval world of duty, honor, and ghostly commands, while possessing a Renaissance mind that questions everything. He is caught between the gold-ground certainty of his father's world and the perspectival complexity of his own.
+
+## Light & Shadow
+
+*How does the painting use light — its source, quality, and emotional effect?*
+
+Light becomes naturalistic — it comes from a specific direction and casts real shadows. Leonardo da Vinci developed **sfumato**, a technique of softly blending tones to create an atmospheric haze that gives figures a mysterious, living quality. Light now reveals form: it curves around a cheek, catches an eye, models the folds of drapery. The world has become something you can see and measure, rather than something you receive on faith.
+
+### Connection to *Hamlet*
+
+Renaissance light is the light of rational inquiry — it illuminates by falling on things from a particular angle, revealing their three-dimensional reality. Hamlet, too, wants to illuminate: "I know not 'seems,'" he insists, demanding that appearances yield to truth. But Shakespeare complicates this. In the play, the things most worth seeing — Claudius's guilt, Gertrude's complicity, Hamlet's own motives — remain stubbornly resistant to clear illumination. The play is full of scenes of watching and being watched (the play-within-the-play, the eavesdropping scenes), as if the Renaissance confidence that light reveals truth is being tested and found insufficient.
+
+## Brushwork & Surface
+
+*What is the physical character of the paint itself?*
+
+Renaissance painters developed **oil painting**, which allowed far greater subtlety than tempera. Oils could be blended smoothly, layered in translucent glazes, and worked over long periods. The brushwork is controlled and largely invisible — the goal is to create a seamless illusion. The painting should look like the world, not like paint. This invisibility of technique is itself a statement: the individual mind can comprehend and reproduce reality through rational skill.
+
+### Connection to *Hamlet*
+
+The smooth, invisible surface of Renaissance painting — the surface that asks you to forget it is a surface and look *through* it to the world beyond — connects to one of the play's central preoccupations: the relationship between surface and depth, appearance and reality. Hamlet distrusts surfaces ("Seems, madam? Nay, it is. I know not 'seems'"), yet the play itself is a brilliantly crafted surface — Shakespeare's language — through which we look to see a world. The Renaissance painter's ambition to make a perfectly transparent window onto reality mirrors the dramatist's ambition to make speech sound like thought. Both are acts of extraordinary artifice in the service of apparent naturalness.
+
+## What to Notice
+
+In the Michelangelo *Creation of Adam* above, notice how the human figure occupies a physically convincing space — Adam's body has weight, volume, and anatomical reality that would be unthinkable in medieval painting. The gap between the two reaching fingers dramatizes the Renaissance idea that the human being and the divine are separate beings in a measurable space, reaching toward each other across a distance you can feel.
+
+In Raphael's *School of Athens* below, find the vanishing point at the center of the composition and notice how every architectural line converges there, pulling your eye into a deep, rationally organized space. In Leonardo's *Last Supper*, notice how light falls consistently from the left, casting shadows that confirm the solidity of every surface. The brushwork throughout is controlled and invisible — you see a world, not paint.
+
+## Looking Back
+
+Compare the *Creation of Adam* to Simone Martini's *Annunciation* and the revolution is visible instantly. The gold ground is gone, replaced by sky and earth. The figures are no longer floating symbols arranged by spiritual rank; they are anatomically real bodies with muscles, weight, and physical presence. Light falls from a specific direction. The medieval world of divine certainty has given way to a human world of rational inquiry — which is exactly the intellectual journey *Hamlet* dramatizes.
+
+## Looking Forward
+
+The Baroque will take Renaissance rationality and shatter its calm. Where the Renaissance placed figures in balanced, harmonious spaces bathed in even light, Baroque painters will plunge their canvases into dramatic darkness pierced by violent shafts of illumination. Where Renaissance composition is stable and centered, Baroque composition will be dynamic, diagonal, and emotionally turbulent. The confidence that the rational mind can comprehend and reproduce reality will give way to a sense that the world is a theater of forces larger than any individual — the world of Milton's *Paradise Lost*.

@@ -1,0 +1,90 @@
+---
+unit: "05-modernism"
+period: "Modernism"
+dates: "c. 1900–1950"
+core_text: "Invisible Man"
+author: "Ellison"
+domain: music
+title: "Hearing Through Form: Modernism"
+threads:
+  - id: texture-voices
+    label: "Texture & Voices"
+    period_summary: "Textures are fragmented, layered, and juxtaposed — Stravinsky stacks colliding rhythms while jazz improvisation creates fluid, unpredictable interplay between soloist and ensemble."
+  - id: consonance-dissonance
+    label: "Consonance & Dissonance"
+    period_summary: "Schoenberg abolishes the distinction between consonance and dissonance entirely — there is no home key, no hierarchy, no resolution. Music sounds permanently unanchored."
+  - id: structure-freedom
+    label: "Structure & Freedom"
+    period_summary: "Inherited forms are radically reinvented or abandoned — while jazz develops its own formal innovations, using the blues progression as a framework for essentially unlimited improvisation."
+featured_listening:
+  - title: "The Rite of Spring: 'Augurs of Spring'"
+    composer: "Igor Stravinsky"
+    date: 1913
+    duration: "Listen from about 3:00 to 6:00 for the pounding section"
+    listen_for: "The famous pounding chords with their irregular, unpredictable accents. The rhythm is jagged and visceral — compare the balanced phrases of Mozart to this and the rupture is immediately audible. Its 1913 premiere caused a riot."
+  - title: "Black, Brown and Beige: 'Black' section"
+    composer: "Duke Ellington"
+    date: 1943
+    duration: "First 5–6 minutes"
+    listen_for: "How jazz texture works: soloists emerge from the ensemble, improvise, and return. The connection to Ellison's narrative method is direct — the narrator's voice riffs, improvises, circles back, and breaks into different registers just as a jazz soloist does."
+gallery_listening:
+  - title: "Pierrot Lunaire, No. 8: 'Nacht' (Night)"
+    composer: "Arnold Schoenberg"
+    date: 1912
+    duration: "2 minutes"
+    threads: [consonance-dissonance, texture-voices]
+compare_back: "romanticism"
+compare_forward: null
+---
+
+## Introduction
+
+Musical modernism, like its counterparts in painting and literature, is defined by rupture. The tonal system that had organized Western music for centuries — the system of major and minor keys, of tension and resolution, of consonance and dissonance — is dismantled, questioned, or abandoned. Just as Cubism shattered the coherent picture plane and Ellison fragmented the unified narrative voice, composers like Schoenberg, Stravinsky, and Cage broke apart the fundamental assumptions about what music could be.
+
+At the same time, African American musical traditions — jazz, blues, and their descendants — were transforming American music with their own formal innovations, which directly influenced Ellison's literary method. This unit features two works because Modernism cannot be represented by a single tradition. The European avant-garde and the African American musical tradition are both essential to understanding *Invisible Man* — and to understanding the twentieth century.
+
+## Texture & Voices
+
+*How many voices are active, and how do they relate to each other?*
+
+Modernist composers fragment, layer, and juxtapose textures in ways that would have been unthinkable in earlier eras. Stravinsky stacks different rhythmic patterns on top of each other, creating a sense of collision rather than harmony. Schoenberg strips the orchestra down to small, unusual combinations — a flute, a bass clarinet, a piano, a reciting voice — that sound deliberately strange and exposed. In jazz, improvisation creates a texture where individual voices emerge from and return to the ensemble in fluid, unpredictable ways.
+
+### Connection to *Invisible Man*
+
+Ellison explicitly modeled *Invisible Man* on jazz: the narrator's voice riffs, improvises, circles back, and breaks into different registers — sermon, speech, blues lyric, philosophical meditation — just as a jazz soloist moves through different modes of expression within a single performance. The novel's texture is not unified and smooth (like Austen's homophonic clarity) but layered, shifting, and sometimes deliberately dissonant — voices and registers colliding rather than blending. The Brotherhood rally, the Liberty Paints factory, the Harlem riot, the underground epilogue — each section has a different sonic texture, and the shifts between them are part of the novel's meaning.
+
+## Consonance & Dissonance
+
+*How does the music handle tension and resolution?*
+
+Schoenberg's **twelve-tone method** abolished the distinction between consonance and dissonance entirely. In the tonal system, certain notes are "home" and others create tension that pulls toward home. Schoenberg declared that all twelve notes of the chromatic scale are equal — there is no home, no hierarchy, no resolution. The effect is music that sounds permanently unanchored, floating in a space where tension never resolves because there is no stable ground to resolve to.
+
+Stravinsky took a different path, using familiar harmonies but combining them in harsh, unexpected ways — like seeing a familiar face distorted in a funhouse mirror. The *Rite of Spring*'s pounding chords are built from simple triads, but stacked and accented in ways that make them feel violent and disorienting.
+
+### Connection to *Invisible Man*
+
+The abolition of a tonal "home" is the sonic equivalent of the narrator's condition: an identity with no fixed center, existing in a world that refuses to see him clearly. Every institution he encounters offers a different "key" — a different system of meaning that promises to organize his experience — and every one turns out to be false or partial. The college promises order through accommodation; the Brotherhood promises order through ideology; Ras promises order through racial solidarity. None of these resolutions holds. The narrator ends underground, in a space with no stable tonal center, where the only honest response to the world's dissonance is to acknowledge it rather than pretend it resolves.
+
+## Structure & Freedom
+
+*How does the music relate to inherited formal structures?*
+
+Inherited forms are either radically reinvented or abandoned. Stravinsky's *Rite of Spring* replaces the balanced phrases and predictable rhythms of Classical and Romantic music with jagged, irregular patterns that feel almost physically violent. Cage's *4′33″* (four minutes and thirty-three seconds of silence) asks the most fundamental question possible about musical form: if the performer plays nothing, is it still music?
+
+Meanwhile, jazz develops its own formal innovations: the **blues progression** (a 12-bar harmonic pattern) provides a framework within which improvisation is essentially unlimited. The structure is minimal but firm; the freedom within it is vast.
+
+### Connection to *Invisible Man*
+
+Ellison understood this principle deeply, and it shapes the architecture of *Invisible Man*. The novel has a clear narrative structure (a young man's journey from the South to the North, from innocence to experience, from visibility to invisibility to a tentative re-emergence), but within that structure, the improvisatory freedom is extraordinary — surrealist dream sequences, naturalistic street scenes, political satire, philosophical meditation, all coexisting in a single work. This is the blues-progression principle applied to fiction: a firm underlying pattern that enables, rather than constrains, creative freedom. The narrator's final affirmation — his decision to emerge from underground — is not a resolution in the Classical sense (a satisfying return to the home key) but something more provisional and more honest: an improvised response to an unresolved situation.
+
+## What to Listen For
+
+In Stravinsky's *Rite of Spring* above, listen for the pounding chords in the "Augurs of Spring" section and notice their irregular accents — the downbeats fall in unpredictable places, making the rhythm feel jagged and physically startling. Compare this to the balanced, symmetrical phrases of Mozart and the rupture is immediately audible. This is the sound of inherited structure being shattered.
+
+In Ellington's *Black, Brown and Beige*, listen for how jazz texture works at the level of the ensemble: individual soloists emerge from the collective, improvise, and return. The relationship between soloist and ensemble is fluid and democratic in a way that neither Classical homophony nor Baroque counterpoint achieves — and it is this texture, more than any European formal innovation, that Ellison drew on as a model for his narrator's voice.
+
+In Schoenberg's *Pierrot Lunaire* below, the vocalist's **Sprechstimme** (a technique between speaking and singing) makes language itself sound fragmented and uncanny. There is no tonal center, no resolution. The feeling is of floating in darkness — the sonic equivalent of the narrator's underground room before the lights come on.
+
+## Looking Back
+
+The full arc of the course is audible from here. Medieval monophony — a single voice, no harmony, no tension — gave way to Renaissance polyphony's balanced interplay of equal voices. Baroque music charged that polyphony with dramatic contrast. Classical music refined contrast into elegant architecture. Romanticism stretched that architecture to the breaking point. And Modernism breaks it apart entirely — the tonal system, the balanced phrases, the unified texture, the promise of resolution — revealing that every previous musical language was itself a set of conventions, not a description of nature. Jazz, emerging from a different tradition entirely, offers an alternative model: structure and freedom held in a productive, improvisatory tension. Ellison's *Invisible Man* draws on both the European rupture and the African American innovation, creating a novel that is itself a new kind of music.

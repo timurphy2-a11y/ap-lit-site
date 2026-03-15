@@ -1,0 +1,86 @@
+---
+unit: "01-renaissance"
+period: "Renaissance & Reformation"
+dates: "c. 1400–1700"
+core_text: "Hamlet"
+author: "Shakespeare"
+domain: music
+title: "Hearing Through Form: Renaissance & Reformation"
+threads:
+  - id: texture-voices
+    label: "Texture & Voices"
+    period_summary: "Polyphony — multiple independent melodic lines woven into a seamless, balanced whole where no single voice dominates."
+  - id: consonance-dissonance
+    label: "Consonance & Dissonance"
+    period_summary: "Dissonance is permitted but strictly controlled — always prepared, brief, and resolved, creating a world where conflict is acknowledged but order is always restored."
+  - id: structure-freedom
+    label: "Structure & Freedom"
+    period_summary: "Strict contrapuntal rules govern how melodies move in relation to each other — extraordinary ingenuity expressed within inherited constraints."
+featured_listening:
+  title: "Sicut Cervus"
+  composer: "Giovanni Pierluigi da Palestrina"
+  date: "c. 1580s"
+  duration: "4 minutes"
+  listen_for: "How each voice enters separately with the same melody (imitation), then all four voices overlap and interweave. The effect is serene, balanced, and luminous — the purest example of Renaissance polyphony."
+gallery_listening:
+  - title: "Ave Maria...virgo serena"
+    composer: "Josquin des Prez"
+    date: "c. 1485"
+    duration: "5 minutes (or first 2 minutes for the opening imitation)"
+    threads: [texture-voices, structure-freedom]
+  - title: "Spem in Alium"
+    composer: "Thomas Tallis"
+    date: "c. 1570"
+    duration: "First 3 minutes for the gradual buildup"
+    threads: [texture-voices]
+compare_back: "medieval"
+compare_forward: "baroque"
+---
+
+## Introduction
+
+Renaissance music is the sonic equivalent of Renaissance perspective painting: ordered, balanced, and governed by rational rules that produce a feeling of serene harmony. Where medieval music was predominantly monophonic — a single melodic line, as in Gregorian chant — Renaissance composers developed polyphony into a high art, weaving multiple independent vocal lines into a seamless, interlocking whole. The result is music that sounds both complex and effortlessly beautiful, much as Renaissance painting looks both detailed and harmonious.
+
+## Texture & Voices
+
+*How many voices are active, and how do they relate to each other?*
+
+The defining texture of Renaissance music is **polyphony** — multiple independent melodic lines sounding simultaneously. In a four-voice motet, each voice (soprano, alto, tenor, bass) has its own melody, and these melodies are carefully designed to fit together harmonically while remaining distinct. No single voice dominates; all are equal participants in a shared musical fabric. This is the sonic equivalent of Renaissance perspective: individual figures, each with their own identity, coexisting in a rationally ordered space. It also mirrors the humanist ideal of balanced discourse — multiple voices, each contributing, none overwhelming.
+
+### Connection to *Hamlet*
+
+The play inherits this Renaissance ideal of balanced, rational discourse — the humanist conviction that truth emerges from the interplay of multiple perspectives. Hamlet himself is a master of dialogue, debate, and rhetorical self-examination. But the play's content strains against the polyphonic ideal: Hamlet's voice increasingly dominates, the other characters become instruments of his obsession or targets of his contempt, and the balanced interplay of perspectives gives way to a single consciousness in crisis. Renaissance polyphony assumes that multiple voices can coexist in harmony; *Hamlet* asks what happens when one voice begins to overwhelm all the others.
+
+## Consonance & Dissonance
+
+*How does the music handle tension and resolution?*
+
+Renaissance composers treated dissonance with great care. It was permitted, even valued for its expressive potential, but only under strict conditions: it had to be prepared (approached smoothly), brief, and resolved promptly to a consonance. The effect is music where moments of tension exist but are always contained and resolved — a world where conflict is acknowledged but order is always restored.
+
+### Connection to *Hamlet*
+
+Notice the parallel: the play inherits a Renaissance ideal of rational order, but its content — madness, murder, existential doubt — pushes against that ideal in ways that anticipate the Baroque. Hamlet's dissonances (his antic disposition, his cruelty to Ophelia, his philosophical despair) are far more extreme and far less neatly resolved than the polyphonic rules would allow. The play is written in the formal language of Renaissance drama — five acts, verse, balanced scenes — but the emotional content strains that form almost to breaking. Shakespeare is writing at the moment when Renaissance consonance is about to give way to Baroque extremity.
+
+## Structure & Freedom
+
+*How does the music relate to inherited formal structures?*
+
+Renaissance music is governed by strict contrapuntal rules — the rules of counterpoint dictate how melodies can move in relation to each other. These rules are not arbitrary; they codify what the ear perceives as harmonious. Within these constraints, composers demonstrated extraordinary ingenuity, creating music of great variety and expression without ever breaking the fundamental rules. The structure is both the discipline and the beauty, much as a sonnet's fourteen-line constraint is both a limitation and a source of power.
+
+### Connection to *Hamlet*
+
+Shakespeare's own relationship to inherited structure mirrors this perfectly. *Hamlet* is written in iambic pentameter — a strict metrical framework — but Shakespeare's genius lies in the extraordinary variety and expressiveness he achieves within that framework. The verse bends, stretches, enjambs, and shifts register without ever fully abandoning its formal scaffolding. This is exactly what the great Renaissance composers do: demonstrate mastery by working brilliantly within inherited constraints rather than overthrowing them.
+
+## What to Listen For
+
+In Palestrina's *Sicut Cervus* above, try to follow a single voice as it enters with the melody, then listen for how the other voices take up the same melody in turn — this technique is called **imitation**, and it is the signature sound of Renaissance polyphony. Notice the overall sense of balance and serenity: moments of tension exist but always resolve smoothly. No single voice dominates; all are equal participants.
+
+In Josquin's *Ave Maria* below, listen for the voices entering one at a time in clear imitation, then shifting between different combinations — duets, trios, full choir. Tallis's *Spem in Alium* takes polyphony to its monumental extreme: forty independent voices build gradually from a single line into an overwhelming, luminous wall of sound. The sheer density shows how polyphony can scale from intimate conversation to something approaching the sublime.
+
+## Looking Back
+
+The shift from medieval monophony to Renaissance polyphony is one of the most dramatic transformations in the history of Western music. Where the *Ave Maris Stella* offered a single, unaccompanied line, Palestrina offers four independent melodies woven into a seamless fabric. The musical world has gone from flat to three-dimensional, from monologue to conversation — exactly as the visual world went from gold-ground icons to perspectival space.
+
+## Looking Forward
+
+The Baroque will take Renaissance polyphony and charge it with dramatic intensity. The balanced, serene interplay of equal voices will give way to the dramatic contrasts of the concerto (solo against ensemble) and the intellectual rigor of the fugue (a single theme pursued through increasingly complex transformations). Where Renaissance music resolves its tensions smoothly and promptly, Baroque music will exploit those tensions for emotional and dramatic effect — the musical equivalent of the shift from Renaissance perspective to Baroque chiaroscuro.

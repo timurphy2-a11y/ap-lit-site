@@ -1,0 +1,86 @@
+---
+unit: "03-enlightenment"
+period: "The Enlightenment"
+dates: "c. 1700–1800"
+core_text: "Pride and Prejudice"
+author: "Austen"
+domain: music
+title: "Hearing Through Form: The Enlightenment"
+threads:
+  - id: texture-voices
+    label: "Texture & Voices"
+    period_summary: "Homophony — a single clear melody with supporting accompaniment, like a protagonist's consciousness with other characters arranged around her."
+  - id: consonance-dissonance
+    label: "Consonance & Dissonance"
+    period_summary: "Dissonance serves structure — moments of tension create departure and anticipation, always resolved satisfyingly within the architecture of the whole."
+  - id: structure-freedom
+    label: "Structure & Freedom"
+    period_summary: "Sonata form — exposition, development, recapitulation — creates expectations and then fulfills them with wit and elegance, much as Austen's plots do."
+featured_listening:
+  title: "Eine kleine Nachtmusik, K. 525, first movement"
+  composer: "Wolfgang Amadeus Mozart"
+  date: 1787
+  duration: "6 minutes"
+  listen_for: "A textbook sonata form: the bright, confident opening theme, the contrasting second theme (more lyrical), the development section (which fragments and recombines), and the satisfying return of the opening. Balanced, witty, elegant."
+gallery_listening:
+  - title: "Piano Concerto No. 21 in C Major, K. 467, second movement (Andante)"
+    composer: "Wolfgang Amadeus Mozart"
+    date: 1785
+    duration: "7 minutes (or first 3 minutes for the main theme)"
+    threads: [consonance-dissonance, texture-voices]
+  - title: "Symphony No. 94 ('Surprise'), second movement (Andante)"
+    composer: "Joseph Haydn"
+    date: 1791
+    duration: "6 minutes"
+    threads: [structure-freedom]
+compare_back: "baroque"
+compare_forward: "romanticism"
+---
+
+## Introduction
+
+The Classical period in music values the same qualities Austen values in prose: clarity, proportion, balance, wit, and the elegant management of feeling within rational structures. Where Baroque music piled on ornamentation and dramatic contrast, Classical music strips back to clean lines and transparent textures. The dominant form is the sonata, which organizes musical ideas into a balanced, almost architectural structure — statement, development, recapitulation — much as an Austen novel moves through introduction, complication, and resolution with exquisite formal control.
+
+## Texture & Voices
+
+*How many voices are active, and how do they relate to each other?*
+
+Classical music overwhelmingly favors **homophony** — a single clear melody supported by an accompaniment. The dense polyphony of the Renaissance and the elaborate counterpoint of the Baroque give way to a texture in which one voice leads and the others support. This is the musical equivalent of the shift from the Baroque's multiple competing dramatic forces to the Classical era's focus on a single, clearly articulated narrative line.
+
+### Connection to *Pride and Prejudice*
+
+Think of how Austen's novels center on a single protagonist's consciousness, with other characters arranged around her — a clear figure-ground relationship. Elizabeth Bennet's perspective organizes the novel the way a Classical melody organizes a musical movement: other voices (Darcy, Jane, Mr. Bennet, Wickham) contribute, respond, and complicate, but the primary line of consciousness is always Elizabeth's. The texture is transparent — you always know who is speaking and where you stand — just as Classical music always lets you hear the melody clearly above its accompaniment.
+
+## Consonance & Dissonance
+
+*How does the music handle tension and resolution?*
+
+Classical music uses dissonance with precision and restraint. Moments of harmonic tension serve a structural purpose: they create the sense of departure in the development section of a sonata, building anticipation for the satisfying return to the home key in the recapitulation. Dissonance is a dramatic tool, but it is always in service of a larger architecture of resolution. The emotional range is real — Mozart can be heartbreaking — but feeling is always shaped by form, never allowed to overwhelm it.
+
+### Connection to *Pride and Prejudice*
+
+This is exactly Austen's method: genuine depth of feeling expressed through perfect formal control. The novel's central dissonance — Elizabeth's prejudice and Darcy's pride — creates real tension, real misunderstanding, real pain. But the novel's architecture ensures that this tension resolves: the misperceptions are corrected, the characters grow, and the resolution (their marriage) feels both surprising and inevitable. Austen, like Mozart, achieves the most difficult of artistic feats: making formal satisfaction feel like emotional truth.
+
+## Structure & Freedom
+
+*How does the music relate to inherited formal structures?*
+
+The Classical period's great achievement is **sonata form**, which organizes a movement into three sections: the **exposition** (which presents two contrasting themes in two different keys), the **development** (which fragments, combines, and transforms those themes in unstable harmonic territory), and the **recapitulation** (which restates both themes in the home key, resolving the tension). This is a brilliantly satisfying structure because it creates expectations and then fulfills them — or, in the hands of a master like Haydn or Mozart, wittily subverts them.
+
+### Connection to *Pride and Prejudice*
+
+The parallel to Austen is direct: her novels set up social and romantic expectations with great clarity, complicate them through misunderstanding and misdirection (the development), and then resolve them in ways that are both surprising and deeply satisfying (the recapitulation). The Haydn "Surprise" Symphony — which sets up a gentle, predictable melody and then punctuates it with a sudden loud chord — demonstrates Classical wit in its purest form: the composer playing with the listener's expectations within a formal framework. Austen does exactly this, at the level of the sentence, the scene, and the novel's entire plot.
+
+## What to Listen For
+
+In Mozart's *Eine kleine Nachtmusik* above, listen for the bright, confident opening theme and then the shift to a more lyrical second theme — these two contrasting ideas are the "exposition." The development section fragments and recombines them, creating harmonic instability, before the recapitulation brings back the opening material in a satisfying return. The balanced, symmetrical phrases — musical sentences that come in even, proportional groups — are the sonic equivalent of Austen's precisely balanced prose.
+
+In Mozart's Piano Concerto No. 21 below, the second movement shows how Classical music handles deep emotion within restrained formal structures — the melody is achingly beautiful but never excessive, feeling shaped by form. Haydn's "Surprise" Symphony demonstrates Classical wit: a gentle, predictable melody punctuated by a sudden fortissimo chord. It is a joke — but a formally sophisticated one, playing with exactly the kind of social expectations that Austen's comedy depends on.
+
+## Looking Back
+
+The contrast with Baroque music is one of emotional temperature. Bach's dense polyphony and Handel's dramatic contrasts have given way to Mozart's transparent textures and balanced phrases. Where the Baroque filled every space with ornamental energy, Classical music values the space between notes — the rest, the pause, the elegant gesture. It is the same shift you hear in moving from Milton's massive periodic sentences to Austen's clean, precise prose. Both are brilliant; they are brilliant in opposite ways.
+
+## Looking Forward
+
+Romanticism will take Classical form and stretch it to the breaking point. Beethoven's symphonies are roughly twice the length of Mozart's. Orchestras will double in size. Dissonances will grow more extreme and take longer to resolve. The balanced phrases and elegant proportions of Classical music will give way to the overwhelming, the turbulent, and the sublime. It is, in musical terms, the shift from Austen's drawing room to Melville's ocean — from a world where feeling is shaped by form to a world where feeling threatens to shatter form entirely.
