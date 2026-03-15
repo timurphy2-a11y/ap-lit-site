@@ -1,17 +1,120 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
 
+// One philosophy entry per unit, sorted by ID (00 → 05)
+const entries = (await getCollection('units', ({ id }) => id.endsWith('/philosophy')))
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+// Per-unit accent colors
+const UNIT_STYLES: Record<string, { border: string; badge: string; number: string }> = {
+  '00-medieval':      { border: 'border-stone-200',  badge: 'bg-stone-100 text-stone-600',   number: 'text-stone-400'   },
+  '01-renaissance':   { border: 'border-amber-200',  badge: 'bg-amber-100 text-amber-800',   number: 'text-amber-600'   },
+  '02-baroque':       { border: 'border-red-200',    badge: 'bg-red-100 text-red-800',       number: 'text-red-600'     },
+  '03-enlightenment': { border: 'border-sky-200',    badge: 'bg-sky-100 text-sky-800',       number: 'text-sky-600'     },
+  '04-romanticism':   { border: 'border-violet-200', badge: 'bg-violet-100 text-violet-800', number: 'text-violet-600'  },
+  '05-modernism':     { border: 'border-zinc-300',   badge: 'bg-zinc-100 text-zinc-700',     number: 'text-zinc-500'    },
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="AP Literature — Historical & Aesthetic Background">
+
+  <!-- ── Hero ───────────────────────────────────────────────────────── -->
+  <section class="bg-white border-b border-stone-200">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+      <p class="text-xs font-semibold tracking-widest uppercase text-amber-700 mb-3">
+        AP Literature
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-4">
+        Historical &amp; Aesthetic<br />Background Materials
+      </h1>
+      <p class="text-stone-500 text-lg leading-relaxed max-w-2xl">
+        Six units of philosophical, visual, and musical context for the major works
+        of this course — from the medieval foundations that all later periods react
+        against, through Modernism's crisis of certainty.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Unit cards ─────────────────────────────────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <h2 class="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-6">
+      The Six Units
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {entries.map((entry) => {
+        const unitId = entry.id.replace('/philosophy', '');
+        const unitNum = unitId.slice(0, 2);
+        const style = UNIT_STYLES[unitId] ?? UNIT_STYLES['05-modernism'];
+        const { period, dates, core_text, author } = entry.data;
+
+        return (
+          <a
+            href={`/units/${unitId}`}
+            class:list={[
+              'group block rounded-xl border bg-white p-5 hover:shadow-md transition-shadow',
+              style.border,
+            ]}
+          >
+            <p class:list={['text-2xl font-serif font-bold mb-3 tabular-nums', style.number]}>
+              {unitNum}
+            </p>
+            <h3 class="font-serif text-base font-bold text-stone-900 leading-snug mb-1">
+              {period}
+            </h3>
+            <p class="text-xs text-stone-400 mb-3">{dates}</p>
+            {core_text ? (
+              <span class:list={['inline-block text-xs font-medium px-2 py-0.5 rounded', style.badge]}>
+                <em>{core_text}</em>
+                {author ? ` — ${author}` : ''}
+              </span>
+            ) : (
+              <span class="inline-block text-xs text-stone-400 italic">Foundation unit</span>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- ── Shared resources ───────────────────────────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <h2 class="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-6">
+      Shared Resources
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+      <a
+        href="/timeline"
+        class="group block rounded-xl border border-stone-200 bg-white p-5 hover:shadow-md transition-shadow"
+      >
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-stone-900 flex items-center justify-center text-amber-400 text-sm font-bold">
+            →
+          </div>
+          <h3 class="font-serif font-bold text-stone-900">Historical Timeline</h3>
+        </div>
+        <p class="text-sm text-stone-500 leading-relaxed">
+          Political and cultural landmarks from 1590 to 1955, with all five core texts placed in their historical context.
+        </p>
+      </a>
+
+      <a
+        href="/people"
+        class="group block rounded-xl border border-stone-200 bg-white p-5 hover:shadow-md transition-shadow"
+      >
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-stone-900 flex items-center justify-center text-amber-400 text-sm font-bold">
+            P
+          </div>
+          <h3 class="font-serif font-bold text-stone-900">Biographical Index</h3>
+        </div>
+        <p class="text-sm text-stone-500 leading-relaxed">
+          Forty-plus writers, philosophers, artists, and composers referenced across all six units, with biographical sketches and course significance.
+        </p>
+      </a>
+
+    </div>
+  </section>
+
+</Layout>
