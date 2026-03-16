@@ -3,7 +3,7 @@ import { getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 
-// ── Static paths for all six units ──────────────────────────────────────────
+// ── Static paths ─────────────────────────────────────────────────────────────
 
 export async function getStaticPaths() {
   const UNIT_IDS = [
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
   }));
 }
 
-// ── Load content for this unit ───────────────────────────────────────────────
+// ── Load content ─────────────────────────────────────────────────────────────
 
 const { unit } = Astro.params;
 const { prevUnit, nextUnit } = Astro.props;
@@ -41,10 +41,27 @@ const [
   { Content: MusicContent },
 ] = await Promise.all([render(philosophy), render(art), render(music)]);
 
-// ── Derive display metadata ──────────────────────────────────────────────────
+// ── Accent colors ─────────────────────────────────────────────────────────────
 
 const meta = philosophy.data;
-const unitNumber = unit.slice(0, 2); // '00', '01', …
+const unitNumber = unit.slice(0, 2);
+
+const UNIT_ACCENTS: Record<string, string> = {
+  '00-medieval':      '#a08c6a',
+  '01-renaissance':   '#d4a820',
+  '02-baroque':       '#c07828',
+  '03-enlightenment': '#d8c870',
+  '04-romanticism':   '#b06040',
+  '05-modernism':     '#909070',
+};
+const accent = UNIT_ACCENTS[unit] ?? '#d4a820';
+
+// Pre-compute inline style strings
+const accentText  = `color: ${accent};`;
+const threadCard  = `background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 25%, transparent);`;
+const badgeStyle  = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
+const activeTab   = `border-color: ${accent}; color: ${accent};`;
+const inactiveTab = `border-color: transparent; color: #6e5e48;`;
 
 // Prev / next labels
 const prevLabel = prevUnit
@@ -63,45 +80,42 @@ const tabs = [
 
 <Layout title={`${meta.period} — AP Literature`}>
 
-  <!-- ── Unit header ─────────────────────────────────────────────────── -->
-  <div class="bg-white border-b border-stone-200">
+  <!-- ── Unit header ─────────────────────────────────────────────── -->
+  <div class="border-b border-[#3d2e1a]">
     <div class="max-w-5xl mx-auto px-6 py-10">
-      <p class="text-xs font-semibold tracking-widest uppercase text-amber-700 mb-2">
+      <p class="text-xs font-semibold tracking-widest uppercase mb-2" style={accentText}>
         Unit {unitNumber}
       </p>
-      <h1 class="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-1">
+      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] mb-1">
         {meta.period}
       </h1>
-      <p class="text-stone-500 text-sm mb-4">{meta.dates}</p>
+      <p class="text-[#a09070] text-sm mb-4">{meta.dates}</p>
 
       {meta.core_text ? (
-        <div class="inline-flex items-baseline gap-2 bg-amber-50 border border-amber-200 rounded px-3 py-1.5">
-          <span class="text-xs font-semibold uppercase tracking-wider text-amber-700">Core Text</span>
-          <span class="font-serif italic text-stone-800">{meta.core_text}</span>
-          {meta.author && <span class="text-stone-500 text-sm">— {meta.author}</span>}
+        <div class="inline-flex items-baseline gap-2 rounded px-3 py-1.5" style={badgeStyle}>
+          <span class="text-xs font-semibold uppercase tracking-wider opacity-60">Core Text</span>
+          <span class="font-serif italic text-[#f2e8d5]">{meta.core_text}</span>
+          {meta.author && <span class="text-[#a09070] text-sm">— {meta.author}</span>}
         </div>
       ) : (
-        <p class="text-sm italic text-stone-400">{meta.note}</p>
+        <p class="text-sm italic text-[#6e5e48]">{meta.note}</p>
       )}
     </div>
   </div>
 
-  <!-- ── Tab navigation ──────────────────────────────────────────────── -->
-  <div class="bg-white border-b border-stone-200 sticky top-[49px] z-30">
+  <!-- ── Tab navigation ──────────────────────────────────────────── -->
+  <div class="border-b border-[#3d2e1a] sticky top-[49px] z-30" style="background-color: #1a140c;">
     <div class="max-w-5xl mx-auto px-6">
       <nav class="flex gap-1" role="tablist" aria-label="Unit domains">
         {tabs.map((tab, i) => (
           <button
             role="tab"
             data-tab={tab.id}
+            data-accent={accent}
             aria-controls={`panel-${tab.id}`}
             aria-selected={i === 0 ? 'true' : 'false'}
-            class:list={[
-              'tab-btn px-5 py-3.5 text-sm font-medium border-b-2 transition-colors -mb-px',
-              i === 0
-                ? 'border-amber-600 text-amber-700'
-                : 'border-transparent text-stone-500 hover:text-stone-800 hover:border-stone-300',
-            ]}
+            class="tab-btn px-5 py-3.5 text-sm font-medium border-b-2 transition-colors -mb-px"
+            style={i === 0 ? activeTab : inactiveTab}
           >
             {tab.label}
           </button>
@@ -110,25 +124,25 @@ const tabs = [
     </div>
   </div>
 
-  <!-- ── Tab panels ──────────────────────────────────────────────────── -->
+  <!-- ── Tab panels ──────────────────────────────────────────────── -->
   <main class="max-w-5xl mx-auto px-6 py-10">
 
     <!-- Philosophy -->
     <div id="panel-philosophy" role="tabpanel" class="tab-panel">
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-headings:font-serif prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed prose-strong:text-stone-800 max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none">
           <PhilosophyContent />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {philosophy.data.threads.map((t) => (
-                <div class="bg-amber-50 border border-amber-100 rounded-lg p-3">
-                  <p class="text-xs font-semibold text-amber-800 mb-1">{t.label}</p>
-                  <p class="text-xs text-stone-600 leading-relaxed">{t.period_summary}</p>
+                <div class="border rounded-lg p-3" style={threadCard}>
+                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
+                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                 </div>
               ))}
             </div>
@@ -136,12 +150,12 @@ const tabs = [
 
           {philosophy.data.readings && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Readings</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Readings</h3>
               <ul class="space-y-2">
                 {philosophy.data.readings.map((r) => (
-                  <li class="border-l-2 border-stone-200 pl-3">
-                    <p class="text-sm font-medium text-stone-800 leading-snug">{r.title}</p>
-                    <p class="text-xs text-stone-500">{r.author}{r.date ? ` · ${r.date}` : ''}</p>
+                  <li class="border-l-2 border-[#3d2e1a] pl-3">
+                    <p class="text-sm font-medium text-[#f2e8d5] leading-snug">{r.title}</p>
+                    <p class="text-xs text-[#a09070]">{r.author}{r.date ? ` · ${r.date}` : ''}</p>
                   </li>
                 ))}
               </ul>
@@ -155,10 +169,9 @@ const tabs = [
     <!-- Visual Art -->
     <div id="panel-art" role="tabpanel" class="tab-panel hidden">
 
-      {/* Hero painting — full width above the prose */}
       {art.data.hero_painting?.image && (
         <figure class="mb-10">
-          <div class="bg-stone-100 rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px;">
+          <div class="rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px; background-color: #0e0b06;">
             <img
               src={art.data.hero_painting.image}
               alt={art.data.hero_painting.title}
@@ -166,7 +179,7 @@ const tabs = [
               style="max-height: 520px;"
             />
           </div>
-          <figcaption class="mt-2 text-center text-xs text-stone-400">
+          <figcaption class="mt-2 text-center text-xs text-[#6e5e48]">
             <span class="font-serif italic">{art.data.hero_painting.title}</span>
             {' — '}{art.data.hero_painting.artist}, {art.data.hero_painting.date}
             {art.data.hero_painting.medium && <span> · {art.data.hero_painting.medium}</span>}
@@ -177,18 +190,18 @@ const tabs = [
 
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed prose-strong:text-stone-800 max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none">
           <ArtContent />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {art.data.threads.map((t) => (
-                <div class="bg-amber-50 border border-amber-100 rounded-lg p-3">
-                  <p class="text-xs font-semibold text-amber-800 mb-1">{t.label}</p>
-                  <p class="text-xs text-stone-600 leading-relaxed">{t.period_summary}</p>
+                <div class="border rounded-lg p-3" style={threadCard}>
+                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
+                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                 </div>
               ))}
             </div>
@@ -196,12 +209,12 @@ const tabs = [
 
           {art.data.gallery_paintings && art.data.gallery_paintings.length > 0 && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Gallery</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Gallery</h3>
               <div class="space-y-4">
                 {art.data.gallery_paintings.map((p) => (
                   <figure>
                     {p.image && (
-                      <div class="bg-stone-100 rounded-lg overflow-hidden mb-1.5">
+                      <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06;">
                         <img
                           src={p.image}
                           alt={p.title}
@@ -211,8 +224,8 @@ const tabs = [
                       </div>
                     )}
                     <figcaption>
-                      <p class="text-xs font-serif italic text-stone-700 leading-snug">{p.title}</p>
-                      <p class="text-xs text-stone-400">{p.artist} · {p.date}</p>
+                      <p class="text-xs font-serif italic text-[#a09070] leading-snug">{p.title}</p>
+                      <p class="text-xs text-[#6e5e48]">{p.artist} · {p.date}</p>
                     </figcaption>
                   </figure>
                 ))}
@@ -228,18 +241,18 @@ const tabs = [
     <div id="panel-music" role="tabpanel" class="tab-panel hidden">
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed prose-strong:text-stone-800 max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none">
           <MusicContent />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {music.data.threads.map((t) => (
-                <div class="bg-amber-50 border border-amber-100 rounded-lg p-3">
-                  <p class="text-xs font-semibold text-amber-800 mb-1">{t.label}</p>
-                  <p class="text-xs text-stone-600 leading-relaxed">{t.period_summary}</p>
+                <div class="border rounded-lg p-3" style={threadCard}>
+                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
+                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                 </div>
               ))}
             </div>
@@ -247,21 +260,21 @@ const tabs = [
 
           {music.data.featured_listening && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Featured Listening</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Featured Listening</h3>
               {(Array.isArray(music.data.featured_listening)
                 ? music.data.featured_listening
                 : [music.data.featured_listening]
               ).map((item) => (
-                <div class="border border-stone-200 rounded-lg overflow-hidden bg-white mb-2">
+                <div class="border border-[#3d2e1a] rounded-lg overflow-hidden mb-2" style="background-color: #231a0f;">
                   {item.youtube_id && (
                     <YouTubeEmbed id={item.youtube_id} title={item.title} />
                   )}
                   <div class="p-3">
-                    <p class="text-sm font-serif italic font-bold text-stone-800 leading-snug">{item.title}</p>
-                    <p class="text-xs text-stone-500 mt-1">{item.composer} · {item.date}</p>
-                    {item.duration && <p class="text-xs text-stone-400 mt-0.5">{item.duration}</p>}
+                    <p class="text-sm font-serif italic font-bold text-[#f2e8d5] leading-snug">{item.title}</p>
+                    <p class="text-xs text-[#a09070] mt-1">{item.composer} · {item.date}</p>
+                    {item.duration && <p class="text-xs text-[#6e5e48] mt-0.5">{item.duration}</p>}
                     {item.listen_for && (
-                      <p class="text-xs text-stone-600 mt-2 leading-relaxed border-t border-stone-100 pt-2">
+                      <p class="text-xs text-[#a09070] mt-2 leading-relaxed border-t border-[#3d2e1a] pt-2">
                         {item.listen_for}
                       </p>
                     )}
@@ -273,16 +286,16 @@ const tabs = [
 
           {music.data.gallery_listening && music.data.gallery_listening.length > 0 && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-3">Also Listen</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Also Listen</h3>
               <div class="space-y-3">
                 {music.data.gallery_listening.map((item) => (
-                  <div class="border border-stone-200 rounded-lg overflow-hidden bg-white">
+                  <div class="border border-[#3d2e1a] rounded-lg overflow-hidden" style="background-color: #231a0f;">
                     {item.youtube_id && (
                       <YouTubeEmbed id={item.youtube_id} title={item.title} />
                     )}
                     <div class="px-3 py-2">
-                      <p class="text-sm font-serif italic text-stone-800 leading-snug">{item.title}</p>
-                      <p class="text-xs text-stone-500">{item.composer} · {item.date}</p>
+                      <p class="text-sm font-serif italic text-[#a09070] leading-snug">{item.title}</p>
+                      <p class="text-xs text-[#6e5e48]">{item.composer} · {item.date}</p>
                     </div>
                   </div>
                 ))}
@@ -296,14 +309,14 @@ const tabs = [
 
   </main>
 
-  <!-- ── Unit navigation footer ──────────────────────────────────────── -->
-  <footer class="border-t border-stone-200 bg-white mt-4">
+  <!-- ── Unit navigation footer ──────────────────────────────────── -->
+  <footer class="border-t border-[#3d2e1a] mt-4">
     <div class="max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
 
       {prevUnit ? (
         <a
           href={`/units/${prevUnit}`}
-          class="inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors group"
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
         >
           <span class="group-hover:-translate-x-1 transition-transform">←</span>
           {prevLabel}
@@ -312,12 +325,12 @@ const tabs = [
         <div />
       )}
 
-      <span class="text-sm text-stone-400">Unit {unitNumber}</span>
+      <span class="text-sm text-[#6e5e48]">Unit {unitNumber}</span>
 
       {nextUnit ? (
         <a
           href={`/units/${nextUnit}`}
-          class="inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors group"
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
         >
           {nextLabel}
           <span class="group-hover:translate-x-1 transition-transform">→</span>
@@ -334,6 +347,7 @@ const tabs = [
 <script>
   const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
   const panels = document.querySelectorAll<HTMLDivElement>('.tab-panel');
+  const accent = (document.querySelector<HTMLButtonElement>('.tab-btn') as HTMLButtonElement)?.dataset.accent ?? '#d4a820';
 
   tabs.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -346,10 +360,8 @@ const tabs = [
       tabs.forEach((t) => {
         const active = t.dataset.tab === target;
         t.setAttribute('aria-selected', active ? 'true' : 'false');
-        t.classList.toggle('border-amber-600', active);
-        t.classList.toggle('text-amber-700', active);
-        t.classList.toggle('border-transparent', !active);
-        t.classList.toggle('text-stone-500', !active);
+        t.style.borderColor = active ? accent : 'transparent';
+        t.style.color       = active ? accent : '#6e5e48';
       });
     });
   });
