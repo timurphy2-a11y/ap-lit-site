@@ -1,0 +1,305 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeCompare(b.id));
+
+const UNIT_ACCENTS: Record<string, string> = {
+  '00-medieval':      '#5b82c8',
+  '01-renaissance':   '#e8a820',
+  '02-baroque':       '#c04050',
+  '03-enlightenment': '#48a0e0',
+  '04-romanticism':   '#9b58b8',
+  '05-modernism':     '#3aa87a',
+};
+
+const DOMAIN_LABELS = {
+  philosophy: 'Philosophy',
+  art: 'Visual Art',
+  music: 'Music',
+};
+
+const domainOrder = ['philosophy', 'art', 'music'] as const;
+
+function getPrimaryMusic(entry: typeof allEntries[0]) {
+  const fl = entry.data.featured_listening;
+  if (!fl) return null;
+  return Array.isArray(fl) ? fl[0] : fl;
+}
+---
+
+<Layout title="Threads Across Time — AP Literature">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="border-b border-[#3d2e1a]">
+    <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+      <p class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-3">Cross-Era Comparison</p>
+      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] leading-tight mb-4">
+        Threads Across Time
+      </h1>
+      <p class="text-[#a09070] text-base leading-relaxed max-w-2xl">
+        Three persistent questions run through all six periods of this course — about what it means to be human, what we can know, and how the individual relates to authority. Select a domain and a thread to trace how the answer changes from the Medieval foundations through Modernism's crisis of certainty.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Domain tabs ───────────────────────────────────────────────────────── -->
+  <div class="sticky top-[53px] z-30 bg-[#1a140c]/95 backdrop-blur-sm border-b border-[#3d2e1a]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex gap-1 py-2" role="tablist" aria-label="Select domain">
+        {domainOrder.map((domain) => (
+          <button
+            class="domain-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors text-[#a09070] hover:text-[#f2e8d5]"
+            data-domain={domain}
+            role="tab"
+            aria-selected="false"
+          >
+            {DOMAIN_LABELS[domain]}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Domain sections ───────────────────────────────────────────────────── -->
+  {domainOrder.map((domain) => {
+    const entries = allEntries.filter(e => e.data.domain === domain);
+    const threads = entries[0]?.data.threads ?? [];
+
+    return (
+      <div class="domain-section hidden" data-domain={domain} role="tabpanel">
+
+        <!-- Thread selector -->
+        <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
+          <p class="text-xs font-semibold tracking-widest uppercase text-[#6e5e48] mb-3">Select a thread</p>
+          <div class="flex flex-wrap gap-2" role="tablist">
+            {threads.map((thread) => (
+              <button
+                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5]"
+                data-domain={domain}
+                data-thread={thread.id}
+                role="tab"
+                aria-selected="false"
+              >
+                {thread.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- One comparison view per thread -->
+        {threads.map((thread, ti) => (
+          <div
+            class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
+            data-domain={domain}
+            data-thread={thread.id}
+          >
+            <div class="max-w-5xl mx-auto px-6 pb-16">
+
+              <!-- Thread header -->
+              <div class="mb-6 pt-2">
+                <h2 class="font-serif text-xl font-bold text-[#f2e8d5]">{thread.label}</h2>
+                <p class="text-sm text-[#6e5e48] mt-1">
+                  {domain === 'philosophy' && 'How this philosophical question is answered in each period'}
+                  {domain === 'art' && 'How painters approach this visual problem in each period'}
+                  {domain === 'music' && 'How composers handle this musical dimension in each period'}
+                </p>
+              </div>
+
+              <!-- Period cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {entries.map((entry) => {
+                  const unitId = entry.data.unit;
+                  const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
+                  const num = unitId.slice(0, 2);
+                  const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                  const heroPainting = domain === 'art' ? entry.data.hero_painting : null;
+                  const music = domain === 'music' ? getPrimaryMusic(entry) : null;
+
+                  return (
+                    <div
+                      class="rounded-xl border overflow-hidden flex flex-col"
+                      style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}
+                    >
+                      {/* Art: hero painting thumbnail */}
+                      {heroPainting?.image && (
+                        <a href={`/units/${unitId}`} class="block overflow-hidden shrink-0">
+                          <img
+                            src={heroPainting.image}
+                            alt={`${heroPainting.title} by ${heroPainting.artist}`}
+                            class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        </a>
+                      )}
+
+                      <div class="p-4 flex flex-col gap-3 flex-1">
+                        {/* Period identifier */}
+                        <div class="flex items-start gap-2">
+                          <span
+                            class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5"
+                            style={`color: ${accent};`}
+                          >{num}</span>
+                          <div class="min-w-0">
+                            <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
+                            <p class="text-xs text-[#6e5e48]">{entry.data.dates}</p>
+                          </div>
+                        </div>
+
+                        {/* Thread period summary */}
+                        {periodThread && (
+                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">
+                            {periodThread.period_summary}
+                          </p>
+                        )}
+
+                        {/* Music: piece info + inline player */}
+                        {music && (
+                          <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
+                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug mb-0.5">
+                              <em>{music.title}</em>
+                            </p>
+                            <p class="text-xs text-[#6e5e48] mb-2">{music.composer}</p>
+                            {music.youtube_id && (
+                              <>
+                                <button
+                                  class="listen-btn text-xs px-3 py-1 rounded-lg font-medium transition-colors"
+                                  data-youtube-id={music.youtube_id}
+                                  style={`color: ${accent}; background-color: color-mix(in srgb, ${accent} 14%, #1a140c); border: 1px solid color-mix(in srgb, ${accent} 28%, transparent);`}
+                                >
+                                  ▶ Listen
+                                </button>
+                                <div class="youtube-embed hidden mt-3 rounded-lg overflow-hidden" style="aspect-ratio: 16/9;">
+                                  <iframe
+                                    data-src={`https://www.youtube.com/embed/${music.youtube_id}?autoplay=1`}
+                                    class="w-full h-full border-0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                  ></iframe>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Art: painting credit */}
+                        {heroPainting && (
+                          <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
+                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug">
+                              <em>{heroPainting.title}</em>
+                            </p>
+                            <p class="text-xs text-[#6e5e48]">{heroPainting.artist}</p>
+                          </div>
+                        )}
+
+                        {/* Link to unit */}
+                        <a
+                          href={`/units/${unitId}`}
+                          class="text-xs transition-colors self-start"
+                          style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}
+                        >
+                          Full {entry.data.period} unit →
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  })}
+
+</Layout>
+
+<script>
+  // ── Domain tabs ────────────────────────────────────────────────────────────
+  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.domain-tab');
+  const domainSections = document.querySelectorAll<HTMLElement>('.domain-section');
+
+  function activateDomain(targetDomain: string) {
+    domainTabs.forEach((tab) => {
+      const isActive = tab.dataset.domain === targetDomain;
+      tab.setAttribute('aria-selected', String(isActive));
+      if (isActive) {
+        tab.classList.add('bg-[#3d2e1a]', 'text-[#f2e8d5]');
+        tab.classList.remove('text-[#a09070]');
+      } else {
+        tab.classList.remove('bg-[#3d2e1a]', 'text-[#f2e8d5]');
+        tab.classList.add('text-[#a09070]');
+      }
+    });
+    domainSections.forEach((sec) => {
+      sec.classList.toggle('hidden', sec.dataset.domain !== targetDomain);
+    });
+  }
+
+  domainTabs.forEach((tab) => {
+    tab.addEventListener('click', () => activateDomain(tab.dataset.domain!));
+  });
+
+  // ── Thread buttons ─────────────────────────────────────────────────────────
+  function activateThread(targetDomain: string, targetThread: string) {
+    document.querySelectorAll<HTMLButtonElement>(`.thread-btn[data-domain="${targetDomain}"]`).forEach((btn) => {
+      const isActive = btn.dataset.thread === targetThread;
+      btn.setAttribute('aria-selected', String(isActive));
+      if (isActive) {
+        btn.classList.add('bg-[#3d2e1a]', 'border-[#5a4830]', 'text-[#f2e8d5]');
+        btn.classList.remove('text-[#a09070]', 'border-[#3d2e1a]');
+      } else {
+        btn.classList.remove('bg-[#3d2e1a]', 'border-[#5a4830]', 'text-[#f2e8d5]');
+        btn.classList.add('text-[#a09070]', 'border-[#3d2e1a]');
+      }
+    });
+    document.querySelectorAll<HTMLElement>(`.thread-comparison[data-domain="${targetDomain}"]`).forEach((el) => {
+      el.classList.toggle('hidden', el.dataset.thread !== targetThread);
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.thread-btn').forEach((btn) => {
+    btn.addEventListener('click', () => activateThread(btn.dataset.domain!, btn.dataset.thread!));
+  });
+
+  // ── Listen / stop buttons (music) ─────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.listen-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const embedDiv = btn.nextElementSibling as HTMLElement | null;
+      if (!embedDiv) return;
+      const isHidden = embedDiv.classList.contains('hidden');
+      const iframe = embedDiv.querySelector('iframe');
+      if (!iframe) return;
+      if (isHidden) {
+        // Load and show
+        const dataSrc = iframe.getAttribute('data-src');
+        if (dataSrc) {
+          iframe.setAttribute('src', dataSrc);
+          iframe.removeAttribute('data-src');
+        }
+        embedDiv.classList.remove('hidden');
+        btn.textContent = '■ Stop';
+      } else {
+        // Pause and hide by removing src
+        const currentSrc = iframe.getAttribute('src');
+        if (currentSrc) {
+          iframe.setAttribute('data-src', currentSrc);
+          iframe.removeAttribute('src');
+        }
+        embedDiv.classList.add('hidden');
+        btn.textContent = '▶ Listen';
+      }
+    });
+  });
+
+  // ── Initialize: activate first domain + first thread per domain ────────────
+  // Set initial thread button states
+  (['philosophy', 'art', 'music'] as const).forEach((domain) => {
+    const firstBtn = document.querySelector<HTMLButtonElement>(`.thread-btn[data-domain="${domain}"]`);
+    if (firstBtn) activateThread(domain, firstBtn.dataset.thread!);
+  });
+
+  // Show philosophy by default
+  activateDomain('philosophy');
+</script>
