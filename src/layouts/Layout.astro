@@ -1,11 +1,13 @@
 ---
 import '../styles/global.css';
+import { PEOPLE } from '../components/BiographyPanel.jsx';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+const peopleJson = JSON.stringify(PEOPLE);
 ---
 
 <!doctype html>
@@ -44,6 +46,65 @@ const { title } = Astro.props;
       </div>
     </header>
     <slot />
+
+    <!-- Bio modal -->
+    <div
+      id="bio-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      <!-- backdrop -->
+      <div id="bio-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+      <!-- panel -->
+      <div class="relative z-10 w-full max-w-md rounded-2xl border border-[#3d2e1a] bg-[#231a0f] p-6 shadow-2xl">
+        <button
+          id="bio-close"
+          class="absolute right-4 top-4 text-[#6e5e48] hover:text-[#f2e8d5] transition-colors text-xl leading-none"
+          aria-label="Close"
+        >×</button>
+        <p id="bio-field" class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-1"></p>
+        <h2 id="bio-name" class="font-serif text-xl font-bold text-[#f2e8d5] mb-1"></h2>
+        <p id="bio-dates" class="text-xs text-[#6e5e48] mb-4"></p>
+        <p id="bio-bio" class="text-sm text-[#a09070] leading-relaxed mb-3"></p>
+        <p id="bio-significance" class="text-sm text-[#c8b890] leading-relaxed italic"></p>
+      </div>
+    </div>
+
+    <script define:vars={{ peopleJson }}>
+      const PEOPLE = JSON.parse(peopleJson);
+      const modal   = document.getElementById('bio-modal');
+      const backdrop = document.getElementById('bio-backdrop');
+      const closeBtn = document.getElementById('bio-close');
+
+      function openModal(id) {
+        const person = PEOPLE.find((p) => p.id === id);
+        if (!person || !modal) return;
+        document.getElementById('bio-field').textContent       = person.field ?? '';
+        document.getElementById('bio-name').textContent        = person.name;
+        document.getElementById('bio-dates').textContent       = person.dates ?? '';
+        document.getElementById('bio-bio').textContent         = person.bio ?? '';
+        document.getElementById('bio-significance').textContent = person.significance ?? '';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.bio-link-btn');
+        if (btn) openModal(btn.dataset.bioId);
+      });
+
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', closeModal);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
   </body>
 </html>
 

@@ -8,7 +8,7 @@ const threadSchema = z.object({
 });
 
 const units = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/units' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/units' }),
   schema: z.object({
     unit: z.string(),
     period: z.string(),
