@@ -6,12 +6,12 @@ const entries = (await getCollection('units', ({ id }) => id.endsWith('/philosop
   .sort((a, b) => a.id.localeCompare(b.id));
 
 const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#a08c6a',
-  '01-renaissance':   '#d4a820',
-  '02-baroque':       '#c07828',
-  '03-enlightenment': '#d8c870',
-  '04-romanticism':   '#b06040',
-  '05-modernism':     '#909070',
+  '00-medieval':      '#5b82c8',  // lapis lazuli
+  '01-renaissance':   '#e8a820',  // gilded gold
+  '02-baroque':       '#c04050',  // deep crimson
+  '03-enlightenment': '#48a0e0',  // sapphire
+  '04-romanticism':   '#9b58b8',  // amethyst
+  '05-modernism':     '#3aa87a',  // jade
 };
 ---
 

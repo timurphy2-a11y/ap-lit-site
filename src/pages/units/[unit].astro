@@ -47,20 +47,22 @@ const meta = philosophy.data;
 const unitNumber = unit.slice(0, 2);
 
 const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#a08c6a',
-  '01-renaissance':   '#d4a820',
-  '02-baroque':       '#c07828',
-  '03-enlightenment': '#d8c870',
-  '04-romanticism':   '#b06040',
-  '05-modernism':     '#909070',
+  '00-medieval':      '#5b82c8',  // lapis lazuli
+  '01-renaissance':   '#e8a820',  // gilded gold
+  '02-baroque':       '#c04050',  // deep crimson
+  '03-enlightenment': '#48a0e0',  // sapphire
+  '04-romanticism':   '#9b58b8',  // amethyst
+  '05-modernism':     '#3aa87a',  // jade
 };
-const accent = UNIT_ACCENTS[unit] ?? '#d4a820';
+const accent = UNIT_ACCENTS[unit] ?? '#e8a820';
+
+// Three thread slot colors — indexed by position, consistent across all units
+const THREAD_COLORS = ['#e09438', '#c84068', '#48a888'];
 
 // Pre-compute inline style strings
 const accentText  = `color: ${accent};`;
-const threadCard  = `background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 25%, transparent);`;
 const badgeStyle  = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
-const activeTab   = `border-color: ${accent}; color: ${accent};`;
+const activeTab   = `border-color: ${accent}; color: ${accent}; background-color: color-mix(in srgb, ${accent} 8%, #1a140c);`;
 const inactiveTab = `border-color: transparent; color: #6e5e48;`;
 
 // Prev / next labels
@@ -139,12 +141,15 @@ const tabs = [
           <div>
             <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
-              {philosophy.data.threads.map((t) => (
-                <div class="border rounded-lg p-3" style={threadCard}>
-                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
-                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
-                </div>
-              ))}
+              {philosophy.data.threads.map((t, i) => {
+                const tc = THREAD_COLORS[i % THREAD_COLORS.length];
+                return (
+                  <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 8%, #1a140c); border-color: color-mix(in srgb, ${tc} 30%, transparent);`}>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -198,12 +203,15 @@ const tabs = [
           <div>
             <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
-              {art.data.threads.map((t) => (
-                <div class="border rounded-lg p-3" style={threadCard}>
-                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
-                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
-                </div>
-              ))}
+              {art.data.threads.map((t, i) => {
+                const tc = THREAD_COLORS[i % THREAD_COLORS.length];
+                return (
+                  <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 8%, #1a140c); border-color: color-mix(in srgb, ${tc} 30%, transparent);`}>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -249,12 +257,15 @@ const tabs = [
           <div>
             <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
-              {music.data.threads.map((t) => (
-                <div class="border rounded-lg p-3" style={threadCard}>
-                  <p class="text-xs font-semibold mb-1" style={accentText}>{t.label}</p>
-                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
-                </div>
-              ))}
+              {music.data.threads.map((t, i) => {
+                const tc = THREAD_COLORS[i % THREAD_COLORS.length];
+                return (
+                  <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 8%, #1a140c); border-color: color-mix(in srgb, ${tc} 30%, transparent);`}>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
