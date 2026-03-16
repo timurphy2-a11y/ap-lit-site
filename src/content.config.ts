@@ -36,6 +36,7 @@ const units = defineCollection({
         date: z.union([z.number(), z.string()]),
         duration: z.string(),
         listen_for: z.string(),
+        youtube_id: z.string().optional(),
       }),
       z.array(z.object({
         title: z.string(),
@@ -43,6 +44,7 @@ const units = defineCollection({
         date: z.union([z.number(), z.string()]),
         duration: z.string(),
         listen_for: z.string(),
+        youtube_id: z.string().optional(),
       })),
     ]).optional(),
     gallery_listening: z.array(z.object({
@@ -51,6 +53,7 @@ const units = defineCollection({
       date: z.union([z.number(), z.string()]),
       duration: z.string(),
       threads: z.array(z.string()),
+      youtube_id: z.string().optional(),
     })).optional(),
 
     // Art
