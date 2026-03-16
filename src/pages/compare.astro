@@ -7,9 +7,9 @@ const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeComp
 const UNIT_ACCENTS: Record<string, string> = {
   '00-medieval':      '#5b82c8',
   '01-renaissance':   '#e8a820',
-  '02-baroque':       '#c04050',
+  '02-baroque':       '#dc5f6c',
   '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#9b58b8',
+  '04-romanticism':   '#b978d2',
   '05-modernism':     '#3aa87a',
 };
 
@@ -71,7 +71,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
 
         <!-- Thread selector -->
         <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
-          <p class="text-xs font-semibold tracking-widest uppercase text-[#6e5e48] mb-3">Select a thread</p>
+          <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
           <div class="flex flex-wrap gap-2" role="tablist">
             {threads.map((thread) => (
               <button
@@ -99,7 +99,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
               <!-- Thread header -->
               <div class="mb-6 pt-2">
                 <h2 class="font-serif text-xl font-bold text-[#f2e8d5]">{thread.label}</h2>
-                <p class="text-sm text-[#6e5e48] mt-1">
+                <p class="text-sm text-[#a5967d] mt-1">
                   {domain === 'philosophy' && 'How this philosophical question is answered in each period'}
                   {domain === 'art' && 'How painters approach this visual problem in each period'}
                   {domain === 'music' && 'How composers handle this musical dimension in each period'}
@@ -142,7 +142,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
                           >{num}</span>
                           <div class="min-w-0">
                             <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                            <p class="text-xs text-[#6e5e48]">{entry.data.dates}</p>
+                            <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
                           </div>
                         </div>
 
@@ -159,7 +159,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
                             <p class="text-xs font-medium text-[#f2e8d5] leading-snug mb-0.5">
                               <em>{music.title}</em>
                             </p>
-                            <p class="text-xs text-[#6e5e48] mb-2">{music.composer}</p>
+                            <p class="text-xs text-[#a5967d] mb-2">{music.composer}</p>
                             {music.youtube_id && (
                               <>
                                 <button
@@ -188,7 +188,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
                             <p class="text-xs font-medium text-[#f2e8d5] leading-snug">
                               <em>{heroPainting.title}</em>
                             </p>
-                            <p class="text-xs text-[#6e5e48]">{heroPainting.artist}</p>
+                            <p class="text-xs text-[#a5967d]">{heroPainting.artist}</p>
                           </div>
                         )}
 

@@ -1,2 +1,23 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/* ── Prose enhancements ─────────────────────────────────────────────────── */
+
+/* Subtle top border before each H2 (thread sections), skipping the first */
+.prose h2:not(:first-child) {
+  border-top: 1px solid rgba(180, 165, 140, 0.12);
+  padding-top: 2.5rem;
+  margin-top: 0 !important;
+}
+
+/* Drop cap: introduction paragraph (first p in the prose block) */
+.prose > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3em;
+  line-height: 0.82;
+  padding-right: 6px;
+  padding-top: 5px;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 700;
+  color: var(--prose-drop-cap-color, #e8a820);
+}

@@ -8,9 +8,9 @@ const entries = (await getCollection('units', ({ id }) => id.endsWith('/philosop
 const UNIT_ACCENTS: Record<string, string> = {
   '00-medieval':      '#5b82c8',  // lapis lazuli
   '01-renaissance':   '#e8a820',  // gilded gold
-  '02-baroque':       '#c04050',  // deep crimson
+  '02-baroque':       '#dc5f6c',  // deep crimson
   '03-enlightenment': '#48a0e0',  // sapphire
-  '04-romanticism':   '#9b58b8',  // amethyst
+  '04-romanticism':   '#b978d2',  // amethyst
   '05-modernism':     '#3aa87a',  // jade
 };
 ---
@@ -36,7 +36,7 @@ const UNIT_ACCENTS: Record<string, string> = {
 
   <!-- ── Unit cards ─────────────────────────────────────────────────── -->
   <section class="max-w-5xl mx-auto px-6 py-12">
-    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#6e5e48] mb-6">
+    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-6">
       The Six Units
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -68,7 +68,7 @@ const UNIT_ACCENTS: Record<string, string> = {
                 {author ? ` — ${author}` : ''}
               </span>
             ) : (
-              <span class="inline-block text-xs text-[#6e5e48] italic">Foundation unit</span>
+              <span class="inline-block text-xs text-[#a5967d] italic">Foundation unit</span>
             )}
           </a>
         );
@@ -78,7 +78,7 @@ const UNIT_ACCENTS: Record<string, string> = {
 
   <!-- ── Shared resources ───────────────────────────────────────────── -->
   <section class="max-w-5xl mx-auto px-6 pb-16">
-    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#6e5e48] mb-6">
+    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-6">
       Shared Resources
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

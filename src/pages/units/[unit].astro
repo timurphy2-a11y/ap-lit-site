@@ -50,9 +50,9 @@ const unitNumber = unit.slice(0, 2);
 const UNIT_ACCENTS: Record<string, string> = {
   '00-medieval':      '#5b82c8',  // lapis lazuli
   '01-renaissance':   '#e8a820',  // gilded gold
-  '02-baroque':       '#c04050',  // deep crimson
+  '02-baroque':       '#dc5f6c',  // deep crimson
   '03-enlightenment': '#48a0e0',  // sapphire
-  '04-romanticism':   '#9b58b8',  // amethyst
+  '04-romanticism':   '#b978d2',  // amethyst
   '05-modernism':     '#3aa87a',  // jade
 };
 const accent = UNIT_ACCENTS[unit] ?? '#e8a820';
@@ -64,7 +64,7 @@ const THREAD_COLORS = ['#e09438', '#c84068', '#48a888'];
 const accentText  = `color: ${accent};`;
 const badgeStyle  = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
 const activeTab   = `border-color: ${accent}; color: ${accent}; background-color: color-mix(in srgb, ${accent} 8%, #1a140c);`;
-const inactiveTab = `border-color: transparent; color: #6e5e48;`;
+const inactiveTab = `border-color: transparent; color: #a5967d;`;
 
 // Prev / next labels
 const prevLabel = prevUnit
@@ -101,7 +101,7 @@ const tabs = [
           {meta.author && <span class="text-[#a09070] text-sm">— {meta.author}</span>}
         </div>
       ) : (
-        <p class="text-sm italic text-[#6e5e48]">{meta.note}</p>
+        <p class="text-sm italic text-[#a5967d]">{meta.note}</p>
       )}
     </div>
   </div>
@@ -134,19 +134,19 @@ const tabs = [
     <div id="panel-philosophy" role="tabpanel" class="tab-panel">
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none" style={`--prose-drop-cap-color: ${accent};`}>
           <PhilosophyContent components={{ BioLink }} />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {philosophy.data.threads.map((t, i) => {
                 const tc = THREAD_COLORS[i % THREAD_COLORS.length];
                 return (
                   <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 18%, #1a140c); border-color: color-mix(in srgb, ${tc} 55%, transparent);`}>
-                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][i % 3]} {t.label}</p>
                     <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                   </div>
                 );
@@ -156,7 +156,7 @@ const tabs = [
 
           {philosophy.data.readings && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Readings</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Readings</h3>
               <ul class="space-y-2">
                 {philosophy.data.readings.map((r) => (
                   <li class="border-l-2 border-[#3d2e1a] pl-3">
@@ -177,38 +177,41 @@ const tabs = [
 
       {art.data.hero_painting?.image && (
         <figure class="mb-10">
-          <div class="rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px; background-color: #0e0b06;">
+          <div class="rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px; background-color: #0e0b06; padding: 6px; border: 1px solid rgba(180,165,140,0.25);">
             <img
               src={art.data.hero_painting.image}
               alt={art.data.hero_painting.title}
-              class="w-full h-full object-contain"
-              style="max-height: 520px;"
+              class="w-full h-full object-contain rounded-lg"
+              style="max-height: 508px;"
             />
           </div>
-          <figcaption class="mt-2 text-center text-xs text-[#6e5e48]">
-            <span class="font-serif italic">{art.data.hero_painting.title}</span>
-            {' — '}{art.data.hero_painting.artist}, {art.data.hero_painting.date}
-            {art.data.hero_painting.medium && <span> · {art.data.hero_painting.medium}</span>}
-            {art.data.hero_painting.location && <span> · {art.data.hero_painting.location}</span>}
+          <figcaption class="mt-3 text-center">
+            <p class="font-serif italic text-sm text-[#f2e8d5]">{art.data.hero_painting.title}</p>
+            <p class="text-xs text-[#a09070] mt-0.5">{art.data.hero_painting.artist}</p>
+            <p class="text-xs text-[#a5967d] mt-0.5">
+              {art.data.hero_painting.date}
+              {art.data.hero_painting.medium && <span> · {art.data.hero_painting.medium}</span>}
+              {art.data.hero_painting.location && <span> · {art.data.hero_painting.location}</span>}
+            </p>
           </figcaption>
         </figure>
       )}
 
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none" style={`--prose-drop-cap-color: ${accent};`}>
           <ArtContent components={{ BioLink }} />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {art.data.threads.map((t, i) => {
                 const tc = THREAD_COLORS[i % THREAD_COLORS.length];
                 return (
                   <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 18%, #1a140c); border-color: color-mix(in srgb, ${tc} 55%, transparent);`}>
-                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][i % 3]} {t.label}</p>
                     <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                   </div>
                 );
@@ -218,23 +221,23 @@ const tabs = [
 
           {art.data.gallery_paintings && art.data.gallery_paintings.length > 0 && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Gallery</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Gallery</h3>
               <div class="space-y-4">
                 {art.data.gallery_paintings.map((p) => (
-                  <figure>
+                  <figure class="group">
                     {p.image && (
-                      <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06;">
+                      <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06; padding: 4px; border: 1px solid rgba(180,165,140,0.2);">
                         <img
                           src={p.image}
                           alt={p.title}
-                          class="w-full object-contain"
-                          style="max-height: 180px;"
+                          class="w-full object-contain rounded transition-transform duration-300 group-hover:scale-[1.02]"
+                          style="max-height: 176px;"
                         />
                       </div>
                     )}
-                    <figcaption>
-                      <p class="text-xs font-serif italic text-[#a09070] leading-snug">{p.title}</p>
-                      <p class="text-xs text-[#6e5e48]">{p.artist} · {p.date}</p>
+                    <figcaption class="mt-1">
+                      <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{p.title}</p>
+                      <p class="text-xs text-[#a5967d]">{p.artist} · {p.date}</p>
                     </figcaption>
                   </figure>
                 ))}
@@ -250,19 +253,19 @@ const tabs = [
     <div id="panel-music" role="tabpanel" class="tab-panel hidden">
       <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
 
-        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none">
+        <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-p:leading-relaxed max-w-none" style={`--prose-drop-cap-color: ${accent};`}>
           <MusicContent components={{ BioLink }} />
         </div>
 
         <aside class="mt-10 lg:mt-0 space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Analytical Threads</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Analytical Threads</h3>
             <div class="space-y-3">
               {music.data.threads.map((t, i) => {
                 const tc = THREAD_COLORS[i % THREAD_COLORS.length];
                 return (
                   <div class="border rounded-lg p-3" style={`background-color: color-mix(in srgb, ${tc} 18%, #1a140c); border-color: color-mix(in srgb, ${tc} 55%, transparent);`}>
-                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                    <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][i % 3]} {t.label}</p>
                     <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                   </div>
                 );
@@ -272,7 +275,7 @@ const tabs = [
 
           {music.data.featured_listening && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Featured Listening</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Featured Listening</h3>
               {(Array.isArray(music.data.featured_listening)
                 ? music.data.featured_listening
                 : [music.data.featured_listening]
@@ -284,7 +287,7 @@ const tabs = [
                   <div class="p-3">
                     <p class="text-sm font-serif italic font-bold text-[#f2e8d5] leading-snug">{item.title}</p>
                     <p class="text-xs text-[#a09070] mt-1">{item.composer} · {item.date}</p>
-                    {item.duration && <p class="text-xs text-[#6e5e48] mt-0.5">{item.duration}</p>}
+                    {item.duration && <p class="text-xs text-[#a5967d] mt-0.5">{item.duration}</p>}
                     {item.listen_for && (
                       <p class="text-xs text-[#a09070] mt-2 leading-relaxed border-t border-[#3d2e1a] pt-2">
                         {item.listen_for}
@@ -298,7 +301,7 @@ const tabs = [
 
           {music.data.gallery_listening && music.data.gallery_listening.length > 0 && (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Also Listen</h3>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Also Listen</h3>
               <div class="space-y-3">
                 {music.data.gallery_listening.map((item) => (
                   <div class="border border-[#3d2e1a] rounded-lg overflow-hidden" style="background-color: #231a0f;">
@@ -307,7 +310,7 @@ const tabs = [
                     )}
                     <div class="px-3 py-2">
                       <p class="text-sm font-serif italic text-[#a09070] leading-snug">{item.title}</p>
-                      <p class="text-xs text-[#6e5e48]">{item.composer} · {item.date}</p>
+                      <p class="text-xs text-[#a5967d]">{item.composer} · {item.date}</p>
                     </div>
                   </div>
                 ))}
@@ -337,7 +340,7 @@ const tabs = [
         <div />
       )}
 
-      <span class="text-sm text-[#6e5e48]">Unit {unitNumber}</span>
+      <span class="text-sm text-[#a5967d]">Unit {unitNumber}</span>
 
       {nextUnit ? (
         <a
@@ -373,7 +376,7 @@ const tabs = [
         const active = t.dataset.tab === target;
         t.setAttribute('aria-selected', active ? 'true' : 'false');
         t.style.borderColor = active ? accent : 'transparent';
-        t.style.color       = active ? accent : '#6e5e48';
+        t.style.color       = active ? accent : '#a5967d';
       });
     });
   });

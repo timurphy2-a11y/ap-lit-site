@@ -15,9 +15,9 @@ const UNIT_IDS = [
 const UNIT_ACCENTS: Record<string, string> = {
   '00-medieval':      '#5b82c8',
   '01-renaissance':   '#e8a820',
-  '02-baroque':       '#c04050',
+  '02-baroque':       '#dc5f6c',
   '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#9b58b8',
+  '04-romanticism':   '#b978d2',
   '05-modernism':     '#3aa87a',
 };
 
@@ -100,7 +100,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
               >{num}</span>
               <div>
                 <h2 class="font-serif text-2xl font-bold text-[#f2e8d5]">{entry.data.period}</h2>
-                <p class="text-sm text-[#6e5e48]">{entry.data.dates}</p>
+                <p class="text-sm text-[#a5967d]">{entry.data.dates}</p>
               </div>
             </div>
             {entry.data.core_text && (
@@ -119,21 +119,24 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
             <figure class="mb-8">
               <div
                 class="rounded-xl overflow-hidden flex items-center justify-center"
-                style="max-height: 540px; background-color: #0e0b06;"
+                style="max-height: 540px; background-color: #0e0b06; padding: 6px; border: 1px solid rgba(180,165,140,0.25);"
               >
                 <img
                   src={hero.image}
                   alt={hero.title}
-                  class="w-full h-full object-contain"
-                  style="max-height: 540px;"
+                  class="w-full h-full object-contain rounded-lg"
+                  style="max-height: 528px;"
                   loading="lazy"
                 />
               </div>
-              <figcaption class="mt-2 text-center text-xs text-[#6e5e48]">
-                <span class="font-serif italic">{hero.title}</span>
-                {' — '}{hero.artist}, {hero.date}
-                {hero.medium && <span> · {hero.medium}</span>}
-                {hero.location && <span> · {hero.location}</span>}
+              <figcaption class="mt-3 text-center">
+                <p class="font-serif italic text-sm text-[#f2e8d5]">{hero.title}</p>
+                <p class="text-xs text-[#a09070] mt-0.5">{hero.artist}</p>
+                <p class="text-xs text-[#a5967d] mt-0.5">
+                  {hero.date}
+                  {hero.medium && <span> · {hero.medium}</span>}
+                  {hero.location && <span> · {hero.location}</span>}
+                </p>
               </figcaption>
             </figure>
           )}
@@ -142,7 +145,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
           <div class="lg:grid lg:grid-cols-[1fr_260px] lg:gap-12 pb-10">
 
             <!-- Main prose -->
-            <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none">
+            <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none" style={`--prose-drop-cap-color: ${accent};`}>
               <Content components={{ BioLink }} />
             </div>
 
@@ -151,7 +154,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
 
               <!-- Thread summaries -->
               <div>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Threads</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Threads</h3>
                 <div class="space-y-2">
                   {entry.data.threads.map((t, ti) => {
                     const tc = THREAD_COLORS[ti % THREAD_COLORS.length];
@@ -160,7 +163,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
                         class="border rounded-lg p-3"
                         style={`background-color: color-mix(in srgb, ${tc} 14%, #1a140c); border-color: color-mix(in srgb, ${tc} 45%, transparent);`}
                       >
-                        <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{t.label}</p>
+                        <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][ti % 3]} {t.label}</p>
                         <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                       </div>
                     );
@@ -171,24 +174,24 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
               <!-- Gallery paintings -->
               {gallery.length > 0 && (
                 <div>
-                  <h3 class="text-xs font-semibold uppercase tracking-widest text-[#6e5e48] mb-3">Gallery</h3>
+                  <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Gallery</h3>
                   <div class="space-y-4">
                     {gallery.map((p) => (
-                      <figure>
+                      <figure class="group">
                         {p.image && (
-                          <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06;">
+                          <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06; padding: 4px; border: 1px solid rgba(180,165,140,0.2);">
                             <img
                               src={p.image}
                               alt={p.title}
-                              class="w-full object-contain"
-                              style="max-height: 180px;"
+                              class="w-full object-contain rounded transition-transform duration-300 group-hover:scale-[1.02]"
+                              style="max-height: 176px;"
                               loading="lazy"
                             />
                           </div>
                         )}
-                        <figcaption>
-                          <p class="text-xs font-serif italic text-[#a09070] leading-snug">{p.title}</p>
-                          <p class="text-xs text-[#6e5e48]">{p.artist} · {p.date}</p>
+                        <figcaption class="mt-1">
+                          <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{p.title}</p>
+                          <p class="text-xs text-[#a5967d]">{p.artist} · {p.date}</p>
                         </figcaption>
                       </figure>
                     ))}
