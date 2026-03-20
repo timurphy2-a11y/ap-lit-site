@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import ThreadIcon from '../components/ThreadIcon.astro';
 
 const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeCompare(b.id));
 
@@ -75,12 +76,13 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
           <div class="flex flex-wrap gap-2" role="tablist">
             {threads.map((thread) => (
               <button
-                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5]"
+                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
                 data-domain={domain}
                 data-thread={thread.id}
                 role="tab"
                 aria-selected="false"
               >
+                <ThreadIcon thread={thread.id} size={16} />
                 {thread.label}
               </button>
             ))}
@@ -98,7 +100,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
 
               <!-- Thread header -->
               <div class="mb-6 pt-2">
-                <h2 class="font-serif text-xl font-bold text-[#f2e8d5]">{thread.label}</h2>
+                <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
                 <p class="text-sm text-[#a5967d] mt-1">
                   {domain === 'philosophy' && 'How this philosophical question is answered in each period'}
                   {domain === 'art' && 'How painters approach this visual problem in each period'}

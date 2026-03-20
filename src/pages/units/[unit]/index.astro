@@ -1,0 +1,337 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import ThreadIcon from '../../../components/ThreadIcon.astro';
+import { HUB_DATA } from '../../../data/hub-introductions';
+import { HUB_EVENTS } from '../../../data/timeline-events';
+import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
+
+// ── Static paths ─────────────────────────────────────────────────────────────
+
+export async function getStaticPaths() {
+  const ids = [
+    '00-medieval',
+    '01-renaissance',
+    '02-baroque',
+    '03-enlightenment',
+    '04-romanticism',
+    '05-modernism',
+  ] as const;
+
+  return ids.map((id, index) => ({
+    params: { unit: id },
+    props: {
+      prevUnit: index > 0 ? ids[index - 1] : null,
+      nextUnit: index < ids.length - 1 ? ids[index + 1] : null,
+    },
+  }));
+}
+
+// ── Load content ─────────────────────────────────────────────────────────────
+
+const { unit } = Astro.params;
+const { prevUnit, nextUnit } = Astro.props;
+
+const [philosophy, art, music] = await Promise.all([
+  getEntry('units', `${unit}/philosophy`),
+  getEntry('units', `${unit}/art`),
+  getEntry('units', `${unit}/music`),
+]);
+
+const meta = philosophy.data;
+const unitNumber = unit.slice(0, 2);
+const hubData = HUB_DATA[unit];
+const moment = HISTORICAL_MOMENTS[unit];
+const timelineEvents = HUB_EVENTS[unit] ?? [];
+
+// ── Accent colors ─────────────────────────────────────────────────────────────
+
+const UNIT_ACCENTS: Record<string, string> = {
+  '00-medieval':      '#5b82c8',
+  '01-renaissance':   '#e8a820',
+  '02-baroque':       '#dc5f6c',
+  '03-enlightenment': '#48a0e0',
+  '04-romanticism':   '#b978d2',
+  '05-modernism':     '#3aa87a',
+};
+const accent = UNIT_ACCENTS[unit] ?? '#e8a820';
+const badgeStyle = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
+const accentText = `color: ${accent};`;
+const accentMuted = `color: color-mix(in srgb, ${accent} 70%, #6b5a3e);`;
+const hmBg = `color-mix(in srgb, ${accent} 8%, #1a140c)`;
+const hmBorder = `color-mix(in srgb, ${accent} 35%, transparent)`;
+const hmBorderHover = `color-mix(in srgb, ${accent} 55%, transparent)`;
+const hmEyebrow = `color-mix(in srgb, ${accent} 70%, transparent)`;
+const hmArrow = `color-mix(in srgb, ${accent} 60%, transparent)`;
+
+// ── Prev / next labels ────────────────────────────────────────────────────────
+
+const prevLabel = prevUnit
+  ? (await getEntry('units', `${prevUnit}/philosophy`))?.data.period
+  : null;
+const nextLabel = nextUnit
+  ? (await getEntry('units', `${nextUnit}/philosophy`))?.data.period
+  : null;
+
+// ── Domain cards ──────────────────────────────────────────────────────────────
+
+const domains = [
+  { id: 'philosophy', label: 'Philosophy', entry: philosophy },
+  { id: 'art',        label: 'Painting',   entry: art        },
+  { id: 'music',      label: 'Music',      entry: music      },
+];
+
+// ── Timeline ──────────────────────────────────────────────────────────────────
+
+const n = timelineEvents.length;
+function evtPct(i: number) {
+  return 10 + (i / (n - 1)) * 80;
+}
+
+// ── Historical Moment — convert *text* to <em>text</em> ──────────────────────
+
+function mdItalics(text: string) {
+  return text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+}
+
+// Pass moment data to client for modal
+const momentJson = JSON.stringify({
+  title: hubData.historicalMomentTitle,
+  subtitle: moment.subtitle,
+  paragraphs: moment.paragraphs,
+});
+---
+
+<Layout title={`${meta.period} — AP Literature`}>
+
+  <div style={`--accent-dim: color-mix(in srgb, ${accent} 40%, #3d2e1a); --hm-bg-hover: color-mix(in srgb, ${accent} 13%, #1a140c); --hm-border-hover: ${hmBorderHover};`}>
+
+  <!-- ── Unit header ─────────────────────────────────────────────── -->
+  <div class="border-b border-[#3d2e1a]">
+    <div class="max-w-3xl mx-auto px-6 py-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-2" style={accentMuted}>
+        Unit {unitNumber}
+      </p>
+      <h1 class="font-serif text-[2rem] font-medium leading-tight mb-2" style={accentText}>
+        {meta.period}
+      </h1>
+      <p class="text-[13px] text-[#a09070] mb-4">
+        {meta.dates}
+        {meta.core_text
+          ? <span> · <span class="italic">{meta.core_text}</span> · {meta.author}</span>
+          : null}
+      </p>
+      {meta.core_text ? (
+        <div class="inline-flex items-baseline gap-2 rounded px-3 py-1.5" style={badgeStyle}>
+          <span class="text-xs font-semibold uppercase tracking-wider opacity-60">Core Text</span>
+          <span class="font-serif italic text-[#f2e8d5]">{meta.core_text}</span>
+          {meta.author && <span class="text-[#a09070] text-sm">— {meta.author}</span>}
+        </div>
+      ) : (
+        <p class="text-sm italic text-[#a5967d]">{meta.note ?? 'Foundation unit'}</p>
+      )}
+    </div>
+  </div>
+
+  <main class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- ── Epigraphs ──────────────────────────────────────────────── -->
+    <div class="space-y-5">
+      {hubData.epigraphs.map((epigraph) => (
+        <blockquote class="border-l-2 border-[#3d2e1a] pl-4">
+          <p class="font-serif italic text-[13px] text-[#a09070] leading-[1.6] mb-1.5">
+            &ldquo;{epigraph.quote}&rdquo;
+          </p>
+          <footer class="text-[11px] text-[#6b5a3e]">— {epigraph.attribution}</footer>
+        </blockquote>
+      ))}
+    </div>
+
+    <!-- ── Introduction paragraph ────────────────────────────────── -->
+    <p class="font-serif text-[15px] text-[#f2e8d5] leading-[1.75]">
+      {hubData.intro}
+    </p>
+
+    <!-- ── Domain navigation cards ───────────────────────────────── -->
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+      {domains.map(({ id, label, entry }) => (
+        <a
+          href={`/units/${unit}/${id}`}
+          class="domain-card block border rounded-lg p-4"
+          style="border-width: 0.5px; border-color: #3d2e1a; background-color: #231a0f; text-decoration: none; cursor: pointer;"
+        >
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3" style={accentMuted}>
+            {label}
+          </p>
+          <ul class="space-y-2">
+            {entry.data.threads.map((t) => (
+              <li class="flex items-center gap-2">
+                <ThreadIcon thread={t.id} size={16} />
+                <span class="text-[12px] text-[#a09070]">{t.label}</span>
+              </li>
+            ))}
+          </ul>
+        </a>
+      ))}
+    </div>
+
+    <!-- ── Historical Moment band ─────────────────────────────────── -->
+    <button
+      id="hm-trigger"
+      class="hm-band w-full text-left flex items-center justify-between rounded-md px-5 py-3.5"
+      style={`border-width: 0.5px; border-style: solid; border-color: ${hmBorder}; background-color: ${hmBg}; cursor: pointer;`}
+    >
+      <div style="display: flex; flex-direction: column; gap: 3px;">
+        <span class="text-[10px] font-semibold tracking-[0.1em] uppercase" style={`color: ${hmEyebrow};`}>
+          Historical Moment
+        </span>
+        <span class="font-serif italic text-[16px] text-[#f2e8d5]">
+          {hubData.historicalMomentTitle}
+        </span>
+      </div>
+      <span class="text-[18px]" style={`color: ${hmArrow};`}>→</span>
+    </button>
+
+    <!-- ── Timeline strip ─────────────────────────────────────────── -->
+    <div class="border-t border-[#3d2e1a] pt-6">
+      <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#6b5a3e] mb-6">
+        Timeline · {timelineEvents[0]?.year}–{timelineEvents[n - 1]?.year}
+      </p>
+
+      <div class="overflow-x-auto">
+        <div class="relative" style="min-width: 480px; height: 76px;">
+
+          <!-- Baseline rule -->
+          <div style="position: absolute; top: 3px; left: 8%; right: 8%; height: 1px; background-color: #3d2e1a;" />
+
+          <!-- Dots -->
+          {timelineEvents.map((evt, i) => (
+            <div style={`position: absolute; left: ${evtPct(i)}%; top: 0; width: 7px; height: 7px; border-radius: 50%; transform: translateX(-50%); background-color: color-mix(in srgb, ${accent} 60%, #4a3a28);`} />
+          ))}
+
+          <!-- Labels -->
+          {timelineEvents.map((evt, i) => (
+            <div style={`position: absolute; left: ${evtPct(i)}%; top: 14px; width: 84px; transform: translateX(-50%); text-align: center;`}>
+              <p style="font-size: 10px; line-height: 1; margin-bottom: 3px; color: #6b5a3e;">{evt.year}</p>
+              <p style="font-size: 10px; line-height: 1.3; color: #4a3a28;">{evt.title}</p>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Unit navigation footer ──────────────────────────────────── -->
+  <footer class="border-t border-[#3d2e1a] mt-4">
+    <div class="max-w-3xl mx-auto px-6 py-6 flex justify-between items-center">
+
+      {prevUnit ? (
+        <a
+          href={`/units/${prevUnit}`}
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
+        >
+          <span class="group-hover:-translate-x-1 transition-transform">←</span>
+          {prevLabel}
+        </a>
+      ) : <div />}
+
+      <span class="text-sm text-[#a5967d]">Unit {unitNumber}</span>
+
+      {nextUnit ? (
+        <a
+          href={`/units/${nextUnit}`}
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
+        >
+          {nextLabel}
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      ) : <div />}
+
+    </div>
+  </footer>
+
+  </div><!-- end accent wrapper -->
+
+  <!-- ── Historical Moment modal ─────────────────────────────────── -->
+  <div
+    id="hm-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div id="hm-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div class="relative z-10 w-full max-w-2xl rounded-xl border border-[#3d2e1a] bg-[#1e1610] shadow-2xl flex flex-col" style="max-height: 85vh;">
+
+      <!-- Modal header -->
+      <div class="flex items-start justify-between px-8 pt-7 pb-4 border-b border-[#3d2e1a] flex-shrink-0">
+        <div>
+          <p class="text-[10px] font-semibold tracking-[0.12em] uppercase mb-1.5" style="color: rgba(180,140,70,0.7);">Historical Moment</p>
+          <h2 id="hm-title" class="font-serif italic text-xl font-medium text-[#f2e8d5] leading-tight"></h2>
+          <p id="hm-subtitle" class="text-[12px] text-[#6b5a3e] mt-1"></p>
+        </div>
+        <button
+          id="hm-close"
+          class="ml-6 mt-0.5 flex-shrink-0 text-[#a5967d] hover:text-[#f2e8d5] transition-colors text-xl leading-none"
+          aria-label="Close"
+        >×</button>
+      </div>
+
+      <!-- Modal body — scrollable -->
+      <div id="hm-body" class="overflow-y-auto px-8 py-6 space-y-4 text-[14px] text-[#a09070] leading-[1.75] font-serif">
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  .domain-card:hover {
+    border-color: var(--accent-dim) !important;
+  }
+  .hm-band:hover {
+    background-color: var(--hm-bg-hover) !important;
+    border-color: var(--hm-border-hover) !important;
+  }
+</style>
+
+<script define:vars={{ momentJson }}>
+  const moment = JSON.parse(momentJson);
+  const modal    = document.getElementById('hm-modal');
+  const backdrop = document.getElementById('hm-backdrop');
+  const closeBtn = document.getElementById('hm-close');
+  const trigger  = document.getElementById('hm-trigger');
+  const titleEl  = document.getElementById('hm-title');
+  const subtitleEl = document.getElementById('hm-subtitle');
+  const bodyEl   = document.getElementById('hm-body');
+
+  function mdItalics(text) {
+    return text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  }
+
+  function openModal() {
+    titleEl.textContent = moment.title;
+    subtitleEl.textContent = moment.subtitle;
+    bodyEl.innerHTML = moment.paragraphs
+      .map(p => `<p>${mdItalics(p)}</p>`)
+      .join('');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  trigger?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

@@ -2,6 +2,7 @@
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BioLink from '../components/BioLink.astro';
+import ThreadIcon from '../components/ThreadIcon.astro';
 
 const UNIT_IDS = [
   '00-medieval',
@@ -163,7 +164,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
                         class="border rounded-lg p-3"
                         style={`background-color: color-mix(in srgb, ${tc} 14%, #1a140c); border-color: color-mix(in srgb, ${tc} 45%, transparent);`}
                       >
-                        <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][ti % 3]} {t.label}</p>
+                        <p class="text-xs font-semibold mb-1 flex items-center gap-1.5" style={`color: ${tc};`}><ThreadIcon thread={t.id} size={16} />{t.label}</p>
                         <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                       </div>
                     );
