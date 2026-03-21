@@ -3,6 +3,7 @@ import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BioLink from '../components/BioLink.astro';
 import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+import ThreadIcon from '../components/ThreadIcon.astro';
 
 const UNIT_IDS = [
   '00-medieval',
@@ -172,7 +173,7 @@ function getFeaturedItems(entry: typeof entries[0]) {
                         class="border rounded-lg p-3"
                         style={`background-color: color-mix(in srgb, ${tc} 14%, #1a140c); border-color: color-mix(in srgb, ${tc} 45%, transparent);`}
                       >
-                        <p class="text-xs font-semibold mb-1" style={`color: ${tc};`}>{['●', '◆', '■'][ti % 3]} {t.label}</p>
+                        <p class="text-xs font-semibold mb-1 flex items-center gap-1.5" style={`color: ${tc};`}><ThreadIcon thread={t.id} size={16} />{t.label}</p>
                         <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
                       </div>
                     );
@@ -229,7 +230,10 @@ function getFeaturedItems(entry: typeof entries[0]) {
   <footer class="border-t border-[#3d2e1a] mt-8">
     <div class="max-w-5xl mx-auto px-6 py-8 flex flex-wrap gap-4 justify-between items-center">
       <a href="/seeing-through-paint" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">← Seeing Through Paint</a>
-      <a href="/" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Home →</a>
+      <div class="flex gap-6">
+        <a href="/sculpting-through-time" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Sculpting Through Time</a>
+        <a href="/" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Home →</a>
+      </div>
     </div>
   </footer>
 

@@ -66,9 +66,14 @@ const peopleJson = JSON.stringify(PEOPLE);
           class="absolute right-4 top-4 text-[#a5967d] hover:text-[#f2e8d5] transition-colors text-xl leading-none"
           aria-label="Close"
         >×</button>
-        <p id="bio-field" class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-1"></p>
-        <h2 id="bio-name" class="font-serif text-xl font-bold text-[#f2e8d5] mb-1"></h2>
-        <p id="bio-dates" class="text-xs text-[#a5967d] mb-4"></p>
+        <div class="flex items-start gap-4 mb-4">
+          <img id="bio-portrait" src="" alt="" class="rounded w-[72px] h-[72px] object-cover flex-shrink-0 hidden" style="border: 1px solid #3d2e1a;" />
+          <div class="flex-1 min-w-0">
+            <p id="bio-field" class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-1"></p>
+            <h2 id="bio-name" class="font-serif text-xl font-bold text-[#f2e8d5] mb-1"></h2>
+            <p id="bio-dates" class="text-xs text-[#a5967d]"></p>
+          </div>
+        </div>
         <p id="bio-bio" class="text-sm text-[#a09070] leading-relaxed mb-3"></p>
         <p id="bio-significance" class="text-sm text-[#c8b890] leading-relaxed italic"></p>
       </div>
@@ -83,11 +88,19 @@ const peopleJson = JSON.stringify(PEOPLE);
       function openModal(id) {
         const person = PEOPLE.find((p) => p.id === id);
         if (!person || !modal) return;
-        document.getElementById('bio-field').textContent       = person.field ?? '';
-        document.getElementById('bio-name').textContent        = person.name;
-        document.getElementById('bio-dates').textContent       = person.dates ?? '';
-        document.getElementById('bio-bio').textContent         = person.bio ?? '';
+        document.getElementById('bio-field').textContent        = person.field ?? '';
+        document.getElementById('bio-name').textContent         = person.name;
+        document.getElementById('bio-dates').textContent        = person.dates ?? '';
+        document.getElementById('bio-bio').textContent          = person.bio ?? '';
         document.getElementById('bio-significance').textContent = person.significance ?? '';
+        const portrait = document.getElementById('bio-portrait');
+        if (person.portrait) {
+          portrait.src = person.portrait;
+          portrait.alt = person.name;
+          portrait.classList.remove('hidden');
+        } else {
+          portrait.classList.add('hidden');
+        }
         modal.classList.remove('hidden');
         modal.classList.add('flex');
       }

@@ -13,7 +13,7 @@ const units = defineCollection({
     unit: z.string(),
     period: z.string(),
     dates: z.string(),
-    domain: z.enum(['philosophy', 'art', 'music']),
+    domain: z.enum(['philosophy', 'art', 'music', 'sculpture']),
     core_text: z.string().nullable().optional(),
     author: z.string().nullable().optional(),
     note: z.string().optional(),
@@ -67,6 +67,24 @@ const units = defineCollection({
       image: z.string().optional(),
     }).optional(),
     gallery_paintings: z.array(z.object({
+      title: z.string(),
+      artist: z.string(),
+      date: z.union([z.number(), z.string()]),
+      threads: z.array(z.string()),
+      image: z.string().optional(),
+    })).optional(),
+
+    // Sculpture
+    hero_sculpture: z.object({
+      title: z.string(),
+      artist: z.string(),
+      date: z.union([z.number(), z.string()]),
+      medium: z.string().optional(),
+      dimensions: z.string().optional(),
+      location: z.string().optional(),
+      image: z.string().optional(),
+    }).optional(),
+    gallery_sculptures: z.array(z.object({
       title: z.string(),
       artist: z.string(),
       date: z.union([z.number(), z.string()]),
