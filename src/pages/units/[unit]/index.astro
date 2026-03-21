@@ -32,10 +32,11 @@ export async function getStaticPaths() {
 const { unit } = Astro.params;
 const { prevUnit, nextUnit } = Astro.props;
 
-const [philosophy, art, music] = await Promise.all([
+const [philosophy, art, music, sculpture] = await Promise.all([
   getEntry('units', `${unit}/philosophy`),
   getEntry('units', `${unit}/art`),
   getEntry('units', `${unit}/music`),
+  getEntry('units', `${unit}/sculpture`),
 ]);
 
 const meta = philosophy.data;
@@ -75,11 +76,29 @@ const nextLabel = nextUnit
 
 // ── Domain cards ──────────────────────────────────────────────────────────────
 
-const domains = [
-  { id: 'philosophy', label: 'Philosophy', entry: philosophy },
-  { id: 'art',        label: 'Painting',   entry: art        },
-  { id: 'music',      label: 'Music',      entry: music      },
-];
+// Painting icon SVG content (canvas, color #C9973A)
+const paintingIconSvg = `<svg width="36" height="36" viewBox="-18 -20 36 40" aria-hidden="true" style="color:#C9973A;">
+  <rect x="-14" y="-16" width="28" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="4"/>
+  <rect x="-12" y="-14" width="24" height="26" rx="2" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+  <rect x="-11" y="-13" width="22" height="11" fill="currentColor" opacity="0.08"/>
+  <rect x="-11" y="-2" width="22" height="13" fill="currentColor" opacity="0.18"/>
+  <line x1="-11" y1="-2" x2="11" y2="-2" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M-4,0 Q0,-5 4,-2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="-4" y1="-16" x2="-8" y2="-20" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="4" y1="-16" x2="8" y2="-20" stroke="currentColor" stroke-width="1.2"/>
+</svg>`;
+
+// Sculpture icon SVG content (column, color #B5714A)
+const sculptureIconSvg = `<svg width="36" height="36" viewBox="-10 -20 20 40" aria-hidden="true" style="color:#B5714A;">
+  <path d="M-5,-13 L-4,10 L4,10 L5,-13 Z" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="-1.5" y1="-12" x2="-1.5" y2="9" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+  <line x1="0" y1="-12" x2="0" y2="9" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+  <line x1="1.5" y1="-12" x2="1.5" y2="9" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+  <rect x="-6" y="-17" width="12" height="4" rx="0.5" fill="currentColor" opacity="0.85"/>
+  <rect x="-8" y="-20" width="16" height="3" rx="0.5" fill="currentColor" opacity="0.6"/>
+  <rect x="-5" y="10" width="10" height="3" rx="0.5" fill="currentColor" opacity="0.7"/>
+  <rect x="-7" y="13" width="14" height="3" rx="0.5" fill="currentColor" opacity="0.5"/>
+</svg>`;
 
 // ── Timeline ──────────────────────────────────────────────────────────────────
 
@@ -154,25 +173,103 @@ const momentJson = JSON.stringify({
 
     <!-- ── Domain navigation cards ───────────────────────────────── -->
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
-      {domains.map(({ id, label, entry }) => (
-        <a
-          href={`/units/${unit}/${id}`}
-          class="domain-card block border rounded-lg p-4"
-          style="border-width: 0.5px; border-color: #3d2e1a; background-color: #231a0f; text-decoration: none; cursor: pointer;"
-        >
-          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3" style={accentMuted}>
-            {label}
-          </p>
-          <ul class="space-y-2">
-            {entry.data.threads.map((t) => (
-              <li class="flex items-center gap-2">
-                <ThreadIcon thread={t.id} size={16} />
-                <span class="text-[12px] text-[#a09070]">{t.label}</span>
-              </li>
-            ))}
-          </ul>
-        </a>
-      ))}
+
+      <!-- Philosophy card -->
+      <a
+        href={`/units/${unit}/philosophy`}
+        class="domain-card block border rounded-lg p-4"
+        style="border-width: 0.5px; border-color: #3d2e1a; background-color: #231a0f; text-decoration: none; cursor: pointer;"
+      >
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3" style={accentMuted}>
+          Philosophy
+        </p>
+        <ul class="space-y-2">
+          {philosophy.data.threads.map((t) => (
+            <li class="flex items-center gap-2">
+              <ThreadIcon thread={t.id} size={16} />
+              <span class="text-[12px] text-[#a09070]">{t.label}</span>
+            </li>
+          ))}
+        </ul>
+      </a>
+
+      <!-- Visual Art split card -->
+      <div
+        class="domain-card border rounded-lg overflow-hidden"
+        style="border-width: 0.5px; border-color: #3d2e1a; background-color: #231a0f;"
+      >
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase px-4 pt-4 pb-2" style={accentMuted}>
+          Visual Art
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; height: calc(100% - 36px);">
+
+          <!-- Painting half -->
+          <a
+            href={`/units/${unit}/art`}
+            class="visual-art-sub block p-3 pr-2"
+            style="text-decoration: none; cursor: pointer;"
+          >
+            <div class="flex flex-col items-center gap-2 mb-2">
+              <Fragment set:html={paintingIconSvg} />
+              <span class="text-[11px] font-semibold tracking-[0.08em] uppercase" style="color: #C9973A;">Painting</span>
+            </div>
+            <ul class="space-y-1.5">
+              {art.data.threads.map((t) => (
+                <li class="flex items-center gap-1.5">
+                  <ThreadIcon thread={t.id} size={13} />
+                  <span class="text-[10px] text-[#a09070] leading-tight">{t.label}</span>
+                </li>
+              ))}
+            </ul>
+          </a>
+
+          <!-- Divider -->
+          <div style="position: relative;">
+            <div style="position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background-color: #3d2e1a;" />
+          </div>
+
+          <!-- Sculpture half -->
+          <a
+            href={`/units/${unit}/sculpture`}
+            class="visual-art-sub block p-3 pl-2"
+            style="text-decoration: none; cursor: pointer;"
+          >
+            <div class="flex flex-col items-center gap-2 mb-2">
+              <Fragment set:html={sculptureIconSvg} />
+              <span class="text-[11px] font-semibold tracking-[0.08em] uppercase" style="color: #B5714A;">Sculpture</span>
+            </div>
+            <ul class="space-y-1.5">
+              {sculpture.data.threads.map((t) => (
+                <li class="flex items-center gap-1.5">
+                  <ThreadIcon thread={t.id} size={13} />
+                  <span class="text-[10px] text-[#a09070] leading-tight">{t.label}</span>
+                </li>
+              ))}
+            </ul>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Music card -->
+      <a
+        href={`/units/${unit}/music`}
+        class="domain-card block border rounded-lg p-4"
+        style="border-width: 0.5px; border-color: #3d2e1a; background-color: #231a0f; text-decoration: none; cursor: pointer;"
+      >
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3" style={accentMuted}>
+          Music
+        </p>
+        <ul class="space-y-2">
+          {music.data.threads.map((t) => (
+            <li class="flex items-center gap-2">
+              <ThreadIcon thread={t.id} size={16} />
+              <span class="text-[12px] text-[#a09070]">{t.label}</span>
+            </li>
+          ))}
+        </ul>
+      </a>
+
     </div>
 
     <!-- ── Historical Moment band ─────────────────────────────────── -->
@@ -290,6 +387,9 @@ const momentJson = JSON.stringify({
 <style>
   .domain-card:hover {
     border-color: var(--accent-dim) !important;
+  }
+  .visual-art-sub:hover {
+    background-color: rgba(255,255,255,0.03);
   }
   .hm-band:hover {
     background-color: var(--hm-bg-hover) !important;
