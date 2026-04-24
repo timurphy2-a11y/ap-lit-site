@@ -17,7 +17,7 @@ const UNIT_IDS = [
   '05-modernism',
 ] as const;
 
-const DOMAINS = ['philosophy', 'art', 'music'] as const;
+const DOMAINS = ['philosophy', 'art', 'music', 'sculpture'] as const;
 
 export async function getStaticPaths() {
   const ids = [
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
     '05-modernism',
   ] as const;
 
-  const domains = ['philosophy', 'art', 'music'] as const;
+  const domains = ['philosophy', 'art', 'music', 'sculpture'] as const;
 
   const paths = [];
   for (let i = 0; i < ids.length; i++) {
@@ -74,7 +74,11 @@ const UNIT_ACCENTS: Record<string, string> = {
 };
 const accent = UNIT_ACCENTS[unit] ?? '#e8a820';
 
+// Sculpture uses a terracotta accent for gallery captions
+const SCULPTURE_ACCENT = '#B5714A';
+
 const THREAD_COLORS = ['#e09438', '#c84068', '#48a888'];
+const SCULPTURE_THREAD_COLORS = ['#B5714A', '#9E5E38', '#C8845A'];
 
 const accentText  = `color: ${accent};`;
 const badgeStyle  = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
@@ -95,15 +99,18 @@ const nextLabel = nextUnit
 const DOMAIN_LABELS: Record<string, string> = {
   philosophy: 'Philosophy',
   art:        'Painting',
+  sculpture:  'Sculpture',
   music:      'Music',
 };
 
 const activeTabs = [
   { id: 'philosophy', label: 'Philosophy' },
   { id: 'art',        label: 'Painting'   },
+  { id: 'sculpture',  label: 'Sculpture'  },
   { id: 'music',      label: 'Music'      },
 ];
 
+const threadColors = domain === 'sculpture' ? SCULPTURE_THREAD_COLORS : THREAD_COLORS;
 
 const currentLabel = DOMAIN_LABELS[domain] ?? domain;
 ---
@@ -178,10 +185,33 @@ const currentLabel = DOMAIN_LABELS[domain] ?? domain;
         <figcaption class="mt-3 text-center">
           <p class="font-serif italic text-sm text-[#f2e8d5]">{entry.data.hero_painting.title}</p>
           <p class="text-xs text-[#a09070] mt-0.5">{entry.data.hero_painting.artist}</p>
-          <p class="text-xs text-[#a5967d] mt-0.5">
+          <p class="text-xs mt-0.5" style="color: #C9973A;">
             {entry.data.hero_painting.date}
             {entry.data.hero_painting.medium && <span> · {entry.data.hero_painting.medium}</span>}
             {entry.data.hero_painting.location && <span> · {entry.data.hero_painting.location}</span>}
+          </p>
+        </figcaption>
+      </figure>
+    )}
+
+    {/* ── Sculpture: hero sculpture ── */}
+    {domain === 'sculpture' && entry.data.hero_sculpture?.image && (
+      <figure class="mb-10">
+        <div class="rounded-xl overflow-hidden flex items-center justify-center" style={`max-height: 520px; background-color: #0e0b06; padding: 6px; border: 1px solid rgba(181,113,74,0.3);`}>
+          <img
+            src={entry.data.hero_sculpture.image}
+            alt={entry.data.hero_sculpture.title}
+            class="w-full h-full object-contain rounded-lg"
+            style="max-height: 508px;"
+          />
+        </div>
+        <figcaption class="mt-3 text-center">
+          <p class="font-serif italic text-sm text-[#f2e8d5]">{entry.data.hero_sculpture.title}</p>
+          <p class="text-xs text-[#a09070] mt-0.5">{entry.data.hero_sculpture.artist}</p>
+          <p class="text-xs mt-0.5" style={`color: ${SCULPTURE_ACCENT};`}>
+            {entry.data.hero_sculpture.date}
+            {entry.data.hero_sculpture.medium && <span> · {entry.data.hero_sculpture.medium}</span>}
+            {entry.data.hero_sculpture.location && <span> · {entry.data.hero_sculpture.location}</span>}
           </p>
         </figcaption>
       </figure>
@@ -207,7 +237,7 @@ const currentLabel = DOMAIN_LABELS[domain] ?? domain;
           </h3>
           <div class="space-y-3">
             {entry.data.threads.map((t, i) => {
-              const tc = THREAD_COLORS[i % THREAD_COLORS.length];
+              const tc = threadColors[i % threadColors.length];
               return (
                 <div
                   class="border rounded-lg p-3"
@@ -259,7 +289,34 @@ const currentLabel = DOMAIN_LABELS[domain] ?? domain;
                   )}
                   <figcaption class="mt-1">
                     <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{p.title}</p>
-                    <p class="text-xs text-[#a5967d]">{p.artist} · {p.date}</p>
+                    <p class="text-xs" style="color: #C9973A;">{p.artist} · {p.date}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Sculpture: gallery ── */}
+        {domain === 'sculpture' && entry.data.gallery_sculptures && entry.data.gallery_sculptures.length > 0 && (
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Gallery</h3>
+            <div class="space-y-4">
+              {entry.data.gallery_sculptures.map((s) => (
+                <figure class="group">
+                  {s.image && (
+                    <div class="rounded-lg overflow-hidden mb-1.5" style={`background-color: #0e0b06; padding: 4px; border: 1px solid rgba(181,113,74,0.25);`}>
+                      <img
+                        src={s.image}
+                        alt={s.title}
+                        class="w-full object-contain rounded transition-transform duration-300 group-hover:scale-[1.02]"
+                        style="max-height: 176px;"
+                      />
+                    </div>
+                  )}
+                  <figcaption class="mt-1">
+                    <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{s.title}</p>
+                    <p class="text-xs" style={`color: ${SCULPTURE_ACCENT};`}>{s.artist} · {s.date}</p>
                   </figcaption>
                 </figure>
               ))}

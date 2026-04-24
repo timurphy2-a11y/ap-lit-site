@@ -22,11 +22,19 @@ const DOMAIN_LABELS = {
 
 const domainOrder = ['philosophy', 'art', 'music'] as const;
 
+const SCULPTURE_ACCENT = '#B5714A';
+
 function getPrimaryMusic(entry: typeof allEntries[0]) {
   const fl = entry.data.featured_listening;
   if (!fl) return null;
   return Array.isArray(fl) ? fl[0] : fl;
 }
+
+// Separate painting and sculpture entries for Visual Art
+const artEntries = allEntries.filter(e => e.data.domain === 'art');
+const sculptureEntries = allEntries.filter(e => e.data.domain === 'sculpture');
+const artThreads = artEntries[0]?.data.threads ?? [];
+const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
 ---
 
 <Layout title="Threads Across Time — AP Literature">
@@ -62,22 +70,19 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
     </div>
   </div>
 
-  <!-- ── Domain sections ───────────────────────────────────────────────────── -->
-  {domainOrder.map((domain) => {
-    const entries = allEntries.filter(e => e.data.domain === domain);
+  <!-- ── Philosophy section ────────────────────────────────────────────────── -->
+  {(() => {
+    const entries = allEntries.filter(e => e.data.domain === 'philosophy');
     const threads = entries[0]?.data.threads ?? [];
-
     return (
-      <div class="domain-section hidden" data-domain={domain} role="tabpanel">
-
-        <!-- Thread selector -->
+      <div class="domain-section hidden" data-domain="philosophy" role="tabpanel">
         <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
           <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
           <div class="flex flex-wrap gap-2" role="tablist">
             {threads.map((thread) => (
               <button
                 class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
-                data-domain={domain}
+                data-domain="philosophy"
                 data-thread={thread.id}
                 role="tab"
                 aria-selected="false"
@@ -88,79 +93,287 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
             ))}
           </div>
         </div>
-
-        <!-- One comparison view per thread -->
         {threads.map((thread, ti) => (
           <div
             class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
-            data-domain={domain}
+            data-domain="philosophy"
             data-thread={thread.id}
           >
             <div class="max-w-5xl mx-auto px-6 pb-16">
-
-              <!-- Thread header -->
               <div class="mb-6 pt-2">
                 <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
-                <p class="text-sm text-[#a5967d] mt-1">
-                  {domain === 'philosophy' && 'How this philosophical question is answered in each period'}
-                  {domain === 'art' && 'How painters approach this visual problem in each period'}
-                  {domain === 'music' && 'How composers handle this musical dimension in each period'}
-                </p>
+                <p class="text-sm text-[#a5967d] mt-1">How this philosophical question is answered in each period</p>
               </div>
-
-              <!-- Period cards -->
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {entries.map((entry) => {
                   const unitId = entry.data.unit;
                   const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
                   const num = unitId.slice(0, 2);
                   const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                  const heroPainting = domain === 'art' ? entry.data.hero_painting : null;
-                  const music = domain === 'music' ? getPrimaryMusic(entry) : null;
-
                   return (
-                    <div
-                      class="rounded-xl border overflow-hidden flex flex-col"
-                      style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}
-                    >
-                      {/* Art: hero painting thumbnail */}
-                      {heroPainting?.image && (
-                        <a href={`/units/${unitId}`} class="block overflow-hidden shrink-0">
-                          <img
-                            src={heroPainting.image}
-                            alt={`${heroPainting.title} by ${heroPainting.artist}`}
-                            class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500"
-                            loading="lazy"
-                          />
-                        </a>
-                      )}
-
+                    <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
                       <div class="p-4 flex flex-col gap-3 flex-1">
-                        {/* Period identifier */}
                         <div class="flex items-start gap-2">
-                          <span
-                            class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5"
-                            style={`color: ${accent};`}
-                          >{num}</span>
+                          <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
                           <div class="min-w-0">
                             <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
                             <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
                           </div>
                         </div>
-
-                        {/* Thread period summary */}
                         {periodThread && (
-                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">
-                            {periodThread.period_summary}
-                          </p>
+                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
                         )}
+                        <a href={`/units/${unitId}`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
+                          Full {entry.data.period} unit →
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  })()}
 
-                        {/* Music: piece info + inline player */}
+  <!-- ── Visual Art section (Painting + Sculpture sub-toggle) ─────────────── -->
+  <div class="domain-section hidden" data-domain="art" role="tabpanel">
+
+    <!-- Sub-domain toggle -->
+    <div class="max-w-5xl mx-auto px-6 pt-8 pb-2">
+      <div class="flex gap-2 mb-6">
+        <button
+          class="visual-art-sub-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border"
+          data-sub="painting"
+          style="border-color: #C9973A; color: #C9973A; background-color: color-mix(in srgb, #C9973A 10%, #1a140c);"
+          aria-selected="true"
+        >
+          Painting
+        </button>
+        <button
+          class="visual-art-sub-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border"
+          data-sub="sculpture"
+          style="border-color: #3d2e1a; color: #a09070;"
+          aria-selected="false"
+        >
+          Sculpture
+        </button>
+      </div>
+
+      <!-- Painting thread selector -->
+      <div class="visual-art-sub-panel" data-sub="painting">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
+        <div class="flex flex-wrap gap-2" role="tablist">
+          {artThreads.map((thread) => (
+            <button
+              class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
+              data-domain="art"
+              data-thread={thread.id}
+              role="tab"
+              aria-selected="false"
+            >
+              <ThreadIcon thread={thread.id} size={16} />
+              {thread.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Sculpture thread selector -->
+      <div class="visual-art-sub-panel hidden" data-sub="sculpture">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
+        <div class="flex flex-wrap gap-2" role="tablist">
+          {sculptureThreads.map((thread) => (
+            <button
+              class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
+              data-domain="sculpture"
+              data-thread={thread.id}
+              role="tab"
+              aria-selected="false"
+            >
+              <ThreadIcon thread={thread.id} size={16} />
+              {thread.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Painting thread comparisons -->
+    <div class="visual-art-sub-panel" data-sub="painting">
+      {artThreads.map((thread, ti) => (
+        <div
+          class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
+          data-domain="art"
+          data-thread={thread.id}
+        >
+          <div class="max-w-5xl mx-auto px-6 pb-16">
+            <div class="mb-6 pt-2">
+              <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
+              <p class="text-sm text-[#a5967d] mt-1">How painters approach this visual problem in each period</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {artEntries.map((entry) => {
+                const unitId = entry.data.unit;
+                const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
+                const num = unitId.slice(0, 2);
+                const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                const heroPainting = entry.data.hero_painting;
+                return (
+                  <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
+                    {heroPainting?.image && (
+                      <a href={`/units/${unitId}/art`} class="block overflow-hidden shrink-0">
+                        <img src={heroPainting.image} alt={`${heroPainting.title} by ${heroPainting.artist}`} class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      </a>
+                    )}
+                    <div class="p-4 flex flex-col gap-3 flex-1">
+                      <div class="flex items-start gap-2">
+                        <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
+                        <div class="min-w-0">
+                          <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
+                          <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
+                        </div>
+                      </div>
+                      {periodThread && (
+                        <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
+                      )}
+                      {heroPainting && (
+                        <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
+                          <p class="text-xs font-medium text-[#f2e8d5] leading-snug"><em>{heroPainting.title}</em></p>
+                          <p class="text-xs text-[#a5967d]">{heroPainting.artist}</p>
+                        </div>
+                      )}
+                      <a href={`/units/${unitId}/art`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
+                        Full {entry.data.period} unit →
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Sculpture thread comparisons -->
+    <div class="visual-art-sub-panel hidden" data-sub="sculpture">
+      {sculptureThreads.map((thread, ti) => (
+        <div
+          class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
+          data-domain="sculpture"
+          data-thread={thread.id}
+        >
+          <div class="max-w-5xl mx-auto px-6 pb-16">
+            <div class="mb-6 pt-2">
+              <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
+              <p class="text-sm text-[#a5967d] mt-1">How sculptors approach this three-dimensional problem in each period</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sculptureEntries.map((entry) => {
+                const unitId = entry.data.unit;
+                const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
+                const num = unitId.slice(0, 2);
+                const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                const heroSculpture = entry.data.hero_sculpture;
+                return (
+                  <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
+                    {heroSculpture?.image && (
+                      <a href={`/units/${unitId}/sculpture`} class="block overflow-hidden shrink-0">
+                        <img src={heroSculpture.image} alt={`${heroSculpture.title} by ${heroSculpture.artist}`} class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      </a>
+                    )}
+                    <div class="p-4 flex flex-col gap-3 flex-1">
+                      <div class="flex items-start gap-2">
+                        <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
+                        <div class="min-w-0">
+                          <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
+                          <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
+                        </div>
+                      </div>
+                      {periodThread && (
+                        <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
+                      )}
+                      {heroSculpture && (
+                        <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
+                          <p class="text-xs font-medium text-[#f2e8d5] leading-snug"><em>{heroSculpture.title}</em></p>
+                          <p class="text-xs mt-0.5" style={`color: ${SCULPTURE_ACCENT};`}>{heroSculpture.artist}</p>
+                        </div>
+                      )}
+                      <a href={`/units/${unitId}/sculpture`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
+                        Full {entry.data.period} unit →
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <!-- ── Music section ─────────────────────────────────────────────────────── -->
+  {(() => {
+    const entries = allEntries.filter(e => e.data.domain === 'music');
+    const threads = entries[0]?.data.threads ?? [];
+    return (
+      <div class="domain-section hidden" data-domain="music" role="tabpanel">
+        <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
+          <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
+          <div class="flex flex-wrap gap-2" role="tablist">
+            {threads.map((thread) => (
+              <button
+                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
+                data-domain="music"
+                data-thread={thread.id}
+                role="tab"
+                aria-selected="false"
+              >
+                <ThreadIcon thread={thread.id} size={16} />
+                {thread.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        {threads.map((thread, ti) => (
+          <div
+            class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
+            data-domain="music"
+            data-thread={thread.id}
+          >
+            <div class="max-w-5xl mx-auto px-6 pb-16">
+              <div class="mb-6 pt-2">
+                <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
+                <p class="text-sm text-[#a5967d] mt-1">How composers handle this musical dimension in each period</p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {entries.map((entry) => {
+                  const unitId = entry.data.unit;
+                  const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
+                  const num = unitId.slice(0, 2);
+                  const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                  const music = getPrimaryMusic(entry);
+                  return (
+                    <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
+                      <div class="p-4 flex flex-col gap-3 flex-1">
+                        <div class="flex items-start gap-2">
+                          <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
+                          <div class="min-w-0">
+                            <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
+                            <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
+                          </div>
+                        </div>
+                        {periodThread && (
+                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
+                        )}
                         {music && (
                           <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug mb-0.5">
-                              <em>{music.title}</em>
-                            </p>
+                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug mb-0.5"><em>{music.title}</em></p>
                             <p class="text-xs text-[#a5967d] mb-2">{music.composer}</p>
                             {music.youtube_id && (
                               <>
@@ -183,23 +396,7 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
                             )}
                           </div>
                         )}
-
-                        {/* Art: painting credit */}
-                        {heroPainting && (
-                          <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug">
-                              <em>{heroPainting.title}</em>
-                            </p>
-                            <p class="text-xs text-[#a5967d]">{heroPainting.artist}</p>
-                          </div>
-                        )}
-
-                        {/* Link to unit */}
-                        <a
-                          href={`/units/${unitId}`}
-                          class="text-xs transition-colors self-start"
-                          style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}
-                        >
+                        <a href={`/units/${unitId}/music`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
                           Full {entry.data.period} unit →
                         </a>
                       </div>
@@ -207,13 +404,12 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
                   );
                 })}
               </div>
-
             </div>
           </div>
         ))}
       </div>
     );
-  })}
+  })()}
 
 </Layout>
 
@@ -241,6 +437,44 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
 
   domainTabs.forEach((tab) => {
     tab.addEventListener('click', () => activateDomain(tab.dataset.domain!));
+  });
+
+  // ── Visual Art sub-toggle (Painting / Sculpture) ───────────────────────────
+  const subTabs = document.querySelectorAll<HTMLButtonElement>('.visual-art-sub-tab');
+  const subPanels = document.querySelectorAll<HTMLElement>('.visual-art-sub-panel');
+
+  function activateVisualArtSub(targetSub: string) {
+    subTabs.forEach((tab) => {
+      const isActive = tab.dataset.sub === targetSub;
+      tab.setAttribute('aria-selected', String(isActive));
+      if (isActive) {
+        if (targetSub === 'painting') {
+          tab.style.borderColor = '#C9973A';
+          tab.style.color = '#C9973A';
+          tab.style.backgroundColor = 'color-mix(in srgb, #C9973A 10%, #1a140c)';
+        } else {
+          tab.style.borderColor = '#B5714A';
+          tab.style.color = '#B5714A';
+          tab.style.backgroundColor = 'color-mix(in srgb, #B5714A 10%, #1a140c)';
+        }
+      } else {
+        tab.style.borderColor = '#3d2e1a';
+        tab.style.color = '#a09070';
+        tab.style.backgroundColor = '';
+      }
+    });
+    subPanels.forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.sub !== targetSub);
+    });
+
+    // Initialize first thread for the activated sub-domain
+    const subDomain = targetSub === 'painting' ? 'art' : 'sculpture';
+    const firstBtn = document.querySelector<HTMLButtonElement>(`.thread-btn[data-domain="${subDomain}"]`);
+    if (firstBtn) activateThread(subDomain, firstBtn.dataset.thread!);
+  }
+
+  subTabs.forEach((tab) => {
+    tab.addEventListener('click', () => activateVisualArtSub(tab.dataset.sub!));
   });
 
   // ── Thread buttons ─────────────────────────────────────────────────────────
@@ -274,7 +508,6 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
       const iframe = embedDiv.querySelector('iframe');
       if (!iframe) return;
       if (isHidden) {
-        // Load and show
         const dataSrc = iframe.getAttribute('data-src');
         if (dataSrc) {
           iframe.setAttribute('src', dataSrc);
@@ -283,7 +516,6 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
         embedDiv.classList.remove('hidden');
         btn.textContent = '■ Stop';
       } else {
-        // Pause and hide by removing src
         const currentSrc = iframe.getAttribute('src');
         if (currentSrc) {
           iframe.setAttribute('data-src', currentSrc);
@@ -295,9 +527,9 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
     });
   });
 
-  // ── Initialize: activate first domain + first thread per domain ────────────
-  // Set initial thread button states
-  (['philosophy', 'art', 'music'] as const).forEach((domain) => {
+  // ── Initialize ────────────────────────────────────────────────────────────
+  // Initialize thread button states for all domains
+  (['philosophy', 'art', 'music', 'sculpture'] as const).forEach((domain) => {
     const firstBtn = document.querySelector<HTMLButtonElement>(`.thread-btn[data-domain="${domain}"]`);
     if (firstBtn) activateThread(domain, firstBtn.dataset.thread!);
   });

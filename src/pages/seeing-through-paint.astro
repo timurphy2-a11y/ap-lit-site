@@ -225,9 +225,10 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   <footer class="border-t border-[#3d2e1a] mt-8">
     <div class="max-w-5xl mx-auto px-6 py-8 flex flex-wrap gap-4 justify-between items-center">
       <a href="/" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">← Home</a>
-      <a href="/hearing-through-form" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">
-        Hearing Through Form →
-      </a>
+      <div class="flex gap-6">
+        <a href="/hearing-through-form" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Hearing Through Form</a>
+        <a href="/sculpting-through-time" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Sculpting Through Time</a>
+      </div>
     </div>
   </footer>
 
