@@ -22,6 +22,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "An English scholar who traveled extensively through France, Sicily, and the Arab world, Adelard translated key Arabic and Greek scientific texts into Latin, transmitting Euclid's Elements and Ptolemy's astronomical tables to medieval Europe. His Natural Questions, written as a dialogue with his nephew, applied rational inquiry to questions about the natural world — why the earth doesn't fall, why the sea is salty.",
     significance: "Adelard represents the overlooked empirical strain within medieval thought. His insistence on 'reason' over 'authority' in natural inquiry anticipates the Renaissance scientific revolution by three centuries — complicating any simple narrative that reason only arrived with Galileo.",
+    portrait: "/images/portraits/portrait-adelard.jpg",
   },
   {
     id: "aquinas",
@@ -153,6 +154,7 @@ const PEOPLE = [
     units: ["02-baroque"],
     bio: "Daughter of a Venetian court musician and mistress to Queen Elizabeth's Lord Chamberlain, Lanyer published Salve Deus Rex Judaeorum in 1611 — the first book of original poetry published by a woman in England. Her poem includes 'Eve's Apology in Defense of Women,' which reinterprets the Fall to argue that Adam bore greater moral responsibility than Eve.",
     significance: "Lanyer challenges the foundational narrative that has justified women's subordination for over a millennium. Her 'Eve's Apology' asks: who controls the interpretation of the stories that shape our culture? And what happens when a woman claims the authority to reread those stories? The question is directly relevant to Paradise Lost and to every subsequent period's engagement with inherited authority.",
+    portrait: "/images/portraits/portrait-lanyer.jpg",
   },
   // ── ENLIGHTENMENT ─────────────────────────────────────────────────────────
   {
@@ -366,6 +368,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "The founder of the Sienese school of painting, Duccio created the Maestà altarpiece for Siena Cathedral — a monumental two-sided work depicting the Virgin enthroned and scenes from the Passion. When it was completed in 1311, the city processed it through the streets in celebration. Working in tempera and gold leaf, he began to soften the rigid Byzantine style with hints of human emotion and spatial depth.",
     significance: "Duccio represents the medieval painting tradition at its most refined: gold backgrounds signifying the divine realm, hierarchical scale, stylized figures whose holiness is expressed through formal convention rather than naturalistic illusion. Understanding this tradition makes the Renaissance revolution in perspective and realism comprehensible — not as progress from error but as a fundamental shift in what painting is for.",
+    portrait: "/images/portraits/portrait-duccio.jpg",
   },
   {
     id: "martini",
@@ -375,6 +378,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "A Sienese painter who worked at the papal court in Avignon and was a friend of the poet Petrarch, Martini created some of the most refined and courtly images of the late medieval period. His Annunciation altarpiece (1333) achieves an extraordinary elegance within the gold-ground tradition — the angel Gabriel and the Virgin rendered with a delicacy that borders on the Gothic. Petrarch famously asked him to paint a portrait of Laura.",
     significance: "Martini's Annunciation illustrates the defining characteristics of medieval visual theology: gold ground as sacred space, the event happening outside ordinary time and place, figures whose gestures and expressions communicate spiritual states rather than psychological realism. The contrast with Renaissance portraiture — which puts specific individuals in specific spaces — is the visual history of the period shift in one comparison.",
+    portrait: "/images/portraits/portrait-martini-simone.jpg",
   },
   {
     id: "perotinus",
@@ -384,6 +388,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "A composer associated with the Notre Dame school in Paris — the first major center of written polyphonic music — Pérotin expanded the two-voice organum of his predecessor Léonin into three and four simultaneous voices. Almost nothing is known of his life; his name appears in a single 13th-century treatise. His surviving works include Viderunt omnes and Sederunt principes, massive four-voice works that were revolutionary in their time.",
     significance: "Pérotin represents the birth of Western harmony: the moment when a single chant melody becomes the foundation for multiple independent voices moving simultaneously. His slow-moving tenor (the original chant) supporting faster, interweaving upper voices establishes the basic texture of Western polyphony — the template that Palestrina will refine and Bach will push to its ultimate complexity.",
+    portrait: "/images/portraits/portrait-perotinus.jpg",
   },
   {
     id: "leonardo",
@@ -423,6 +428,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "The most celebrated composer of the Renaissance, Josquin worked at courts and churches across Italy and France — including the Sistine Chapel choir — before retiring to his native Low Countries. Luther praised him as 'master of the notes'; his contemporaries regarded him as the first composer whose personal style was unmistakably his own. More spurious works were attributed to him than to any other composer of the era.",
     significance: "Josquin represents the height of Renaissance polyphony in the secular mode: multiple independent voices of equal importance, weaving together in patterns of extraordinary contrapuntal sophistication while maintaining a clarity and expressiveness that the earlier, more rigid style had not achieved. His Ave Maria demonstrates the same principles as Palestrina — voices in balanced, rational harmony — but with greater expressive freedom.",
+    portrait: "/images/portraits/portrait-josquin.jpg",
   },
   {
     id: "tallis",
@@ -432,6 +438,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "An English composer who survived the entire English Reformation — serving Henry VIII, Edward VI, Mary I, and Elizabeth I in turn, navigating the shift from Catholic to Protestant worship with remarkable diplomatic skill. His Spem in Alium (c. 1570) is a motet for 40 independent voices arranged in eight choirs of five voices each — the most technically complex choral work of the Renaissance.",
     significance: "Tallis demonstrates that Renaissance polyphony reached its apex not in Rome but in England, and that the Reformation did not simply destroy the Catholic musical tradition but transformed it. His ability to compose in both Catholic and Protestant styles illustrates the period's central tension between institutional authority and individual conscience — the same tension that Luther dramatized in theology and Shakespeare in drama.",
+    portrait: "/images/portraits/portrait-tallis-thomas.jpg",
   },
   {
     id: "velazquez",
@@ -451,6 +458,7 @@ const PEOPLE = [
     units: ["02-baroque"],
     bio: "A Venetian priest known as 'the Red Priest' for his red hair, Vivaldi spent most of his career as music director at the Ospedale della Pietà — an orphanage for illegitimate or abandoned girls, whose musical ensemble became the finest in Venice. He composed over 500 concertos, including The Four Seasons, 46 operas, and sacred music in abundance. He died in poverty in Vienna, largely forgotten.",
     significance: "Vivaldi's concertos are the Baroque's democratic form: a solo voice in dialogue with the ensemble, asserting individual expression within a collective structure. The ritornello form — a recurring theme for the full orchestra, with solo episodes between — is the Baroque's answer to the individual-authority question in music: the group provides structure, the soloist provides variety and freedom, neither destroys the other.",
+    portrait: "/images/portraits/portrait-vivaldi-antonio.jpg",
   },
   {
     id: "watteau",
@@ -480,6 +488,7 @@ const PEOPLE = [
     units: ["03-enlightenment"],
     bio: "The premier painter of the French Rococo and court painter to Louis XV, Boucher produced paintings, tapestries, porcelain designs, and theater sets in prodigious quantities. A favorite of Madame de Pompadour, he painted mythological scenes, pastoral idylls, and portraits with an ornamental elegance that became the defining image of Ancien Régime French culture. Diderot criticized him savagely; posterity has been kinder.",
     significance: "Boucher's work represents the Enlightenment aristocratic ideal — decorative, pleasurable, technically brilliant, and deliberately untroubled by the period's deeper questions. His mythological paintings translate classical subjects into the language of contemporary French court life, normalizing privilege and beauty as natural conditions. The contrast with Wollstonecraft's critique of women's ornamental education is the period's central political tension made visual.",
+    portrait: "/images/portraits/portrait-boucher-francois.jpg",
   },
   {
     id: "haydn",
@@ -519,6 +528,7 @@ const PEOPLE = [
     units: ["04-romanticism"],
     bio: "A French painter who died at 32 from complications of a riding accident, Géricault lived intensely and briefly. His Raft of the Medusa (1818–19) — a monumental painting depicting survivors of a real shipwreck, adrift and dying on a makeshift raft — caused a scandal at the Salon for its refusal of heroic convention and its unflinching depiction of suffering, desperation, and death. He interviewed survivors and studied corpses to get the details right.",
     significance: "The Raft of the Medusa brought contemporary political scandal into the monumental scale previously reserved for classical history painting. Géricault refused to aestheticize suffering — the bodies on the raft are dying, not posing — and this insistence on truth over beauty is the Romantic artist's political act. The connection to Melville's ocean, where bodies actually disappear beneath the waves, is direct.",
+    portrait: "/images/portraits/portrait-gericault-theodore.jpg",
   },
   {
     id: "debussy",
@@ -528,6 +538,7 @@ const PEOPLE = [
     units: ["04-romanticism"],
     bio: "A French composer who rejected the German Romantic tradition dominated by Wagner and developed an alternative musical language drawing on pentatonic scales, non-functional harmonies, and the Indonesian gamelan music he heard at the 1889 Paris Exhibition. His Prélude à l'après-midi d'un faune (1894) and La Mer (1905) created a style known as Impressionism — though Debussy disliked the term.",
     significance: "Debussy represents the transition from Romantic to Modern: he dissolves the clear harmonic progressions and goal-directed melodies of the Romantic tradition into textures of color and atmosphere. His music doesn't develop in the direction of resolution — it floats. This suspension of harmonic direction is the musical equivalent of the Romantic fascination with states of feeling that resist analysis — the beginning of the dissolution that Schoenberg will complete.",
+    portrait: "/images/portraits/portrait-debussy-claude.jpg",
   },
   {
     id: "manet",
@@ -700,6 +711,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "Gislebertus carved the extraordinary sculptural program of the Cathedral of Saint-Lazare in Autun, Burgundy, including the famous Last Judgment tympanum above the west portal. Almost nothing is known of his life; his identity survives only because he inscribed his name — \"Gislebertus hoc fecit\" — directly beneath the feet of the Christ figure, an act of unusual self-assertion for a medieval craftsman.",
     significance: "His tympanum at Autun is the course's primary example of medieval sculpture's theological program — the body as spiritual sign, hieratic scale, and the total environment of the cathedral portal. His signature also anchors the Material & Making discussion of anonymity versus authorship.",
+    portrait: "/images/portraits/portrait-gislebertus.jpg",
   },
   {
     id: "donatello",
