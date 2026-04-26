@@ -1,169 +1,525 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
 
-const entries = (await getCollection('units', ({ id }) => id.endsWith('/philosophy')))
+const artEntries = (await getCollection('units', ({ id }) => id.endsWith('/art')))
   .sort((a, b) => a.id.localeCompare(b.id));
 
-const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#5b82c8',  // lapis lazuli
-  '01-renaissance':   '#e8a820',  // gilded gold
-  '02-baroque':       '#dc5f6c',  // deep crimson
-  '03-enlightenment': '#48a0e0',  // sapphire
-  '04-romanticism':   '#b978d2',  // amethyst
-  '05-modernism':     '#3aa87a',  // jade
+const ACCENT: Record<string, string> = {
+  '00-medieval':      '#C9A24B',
+  '01-renaissance':   '#B54B3A',
+  '02-baroque':       '#D4A24C',
+  '03-enlightenment': '#6B8CA3',
+  '04-romanticism':   '#3E5B6E',
+  '05-modernism':     '#A03828',
 };
 ---
 
-<Layout title="AP Literature — Historical & Aesthetic Background">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>AP Literature — Historical &amp; Aesthetic Background</title>
+</head>
+<body>
 
-  <!-- ── Hero ───────────────────────────────────────────────────────── -->
-  <section class="border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-      <p class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-3">
-        AP Literature
-      </p>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#f2e8d5] leading-tight mb-4">
-        Historical &amp; Aesthetic<br />Background Materials
-      </h1>
-      <p class="text-[#a09070] text-lg leading-relaxed max-w-2xl">
-        Six units of philosophical, visual, and musical context for the major works
-        of this course — from the medieval foundations that all later periods react
-        against, through Modernism's crisis of certainty.
-      </p>
-    </div>
-  </section>
+<!-- ── Top nav ── -->
+<div class="topbar">
+  <a href="/" class="brand">AP Literature</a>
+  <nav class="nav">
+    <a href="/timeline">Timeline</a>
+    <a href="/people">People</a>
+    <a href="/compare">Compare</a>
+    <a href="/seeing-through-paint">Painting</a>
+    <a href="/sculpting-through-time">Sculpture</a>
+    <a href="/hearing-through-form">Music</a>
+  </nav>
+</div>
 
-  <!-- ── Unit cards ─────────────────────────────────────────────────── -->
-  <section class="max-w-5xl mx-auto px-6 py-12">
-    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-6">
-      The Six Units
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {entries.map((entry) => {
-        const unitId = entry.id.replace('/philosophy', '');
-        const unitNum = unitId.slice(0, 2);
-        const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-        const { period, dates, core_text, author } = entry.data;
+<!-- ── Hero ── -->
+<section class="hero">
+  <div>
+    <h1>Historical &amp; Aesthetic<br>Background Materials</h1>
+  </div>
+  <div>
+    <p class="thesis">
+      Six units of philosophical, visual, and musical context — from the medieval
+      foundations that all later periods react against, through Modernism's crisis
+      of certainty.
+    </p>
+  </div>
+</section>
 
-        return (
-          <a
-            href={`/units/${unitId}`}
-            class="group block rounded-xl border p-5 transition hover:brightness-110"
-            style={`background-color: color-mix(in srgb, ${accent} 10%, #1a140c); border-color: color-mix(in srgb, ${accent} 35%, transparent);`}
-          >
-            <p class="text-2xl font-serif font-bold mb-3 tabular-nums" style={`color: ${accent};`}>
-              {unitNum}
-            </p>
-            <h3 class="font-serif text-base font-bold text-[#f2e8d5] leading-snug mb-1">
-              {period}
-            </h3>
-            <p class="text-xs text-[#a09070] mb-3">{dates}</p>
-            {core_text ? (
-              <span
-                class="inline-block text-xs font-medium px-2 py-0.5 rounded"
-                style={`background-color: color-mix(in srgb, ${accent} 18%, #1a140c); color: ${accent};`}
-              >
-                <em>{core_text}</em>
-                {author ? ` — ${author}` : ''}
-              </span>
-            ) : (
-              <span class="inline-block text-xs text-[#a5967d] italic">Foundation unit</span>
-            )}
-          </a>
-        );
-      })}
-    </div>
-  </section>
+<!-- ── Section label ── -->
+<div class="section-label">
+  <span class="n">§ I</span>
+  <span>The Six Units</span>
+  <span class="rule-line"></span>
+  <span>1000 – 1950</span>
+</div>
 
-  <!-- ── Shared resources ───────────────────────────────────────────── -->
-  <section class="max-w-5xl mx-auto px-6 pb-16">
-    <h2 class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-6">
-      Shared Resources
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-      <a
-        href="/timeline"
-        class="group block rounded-xl border border-[#3d2e1a] p-5 transition hover:border-[#5a4830]"
-        style="background-color: #231a0f;"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-amber-400" style="background-color: #2e2212;">
-            →
-          </div>
-          <h3 class="font-serif font-bold text-[#f2e8d5]">Historical Timeline</h3>
+<!-- ── Gallery wall ── -->
+<div class="gallery">
+  {artEntries.map((entry) => {
+    const unitId = entry.id.replace('/art', '');
+    const num    = unitId.slice(0, 2);
+    const accent = ACCENT[unitId] ?? '#C9A24B';
+    const { period, dates, core_text, author, hero_painting } = entry.data;
+    return (
+      <a class="tile" href={`/units/${unitId}`} style={`--acc: ${accent};`}>
+        <span class="swatch" aria-hidden="true"></span>
+        <div class="plate">
+          <img
+            src={hero_painting.image}
+            alt={`${hero_painting.title} — ${hero_painting.artist}`}
+            loading="lazy"
+          />
+          <div class="img-caption">[ {hero_painting.artist} · {hero_painting.title} · {hero_painting.date} ]</div>
         </div>
-        <p class="text-sm text-[#a09070] leading-relaxed">
-          Political and cultural landmarks from 1590 to 1955, with all five core texts placed in their historical context.
-        </p>
-      </a>
-
-      <a
-        href="/people"
-        class="group block rounded-xl border border-[#3d2e1a] p-5 transition hover:border-[#5a4830]"
-        style="background-color: #231a0f;"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-amber-400" style="background-color: #2e2212;">
-            P
+        <div class="tile-body">
+          <div class="tag-row">
+            <span class="num">{num}</span>
+            <span>{dates}</span>
           </div>
-          <h3 class="font-serif font-bold text-[#f2e8d5]">Biographical Index</h3>
-        </div>
-        <p class="text-sm text-[#a09070] leading-relaxed">
-          Sixty-plus writers, philosophers, artists, and composers referenced across all six units, with biographical sketches and course significance.
-        </p>
-      </a>
-
-      <a
-        href="/compare"
-        class="group block rounded-xl border border-[#3d2e1a] p-5 transition hover:border-[#5a4830]"
-        style="background-color: #231a0f;"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-amber-400" style="background-color: #2e2212;">
-            ⇄
+          <h3>{period}</h3>
+          <div class="anchor">
+            {core_text
+              ? <><em>{core_text}</em><span class="byline">{author}</span></>
+              : <><em>Foundation unit</em><span class="byline">No single anchor text</span></>
+            }
           </div>
-          <h3 class="font-serif font-bold text-[#f2e8d5]">Threads Across Time</h3>
         </div>
-        <p class="text-sm text-[#a09070] leading-relaxed">
-          Trace each analytical thread — in philosophy, visual art, and music — across all six periods side by side, with painting thumbnails and inline listening.
-        </p>
       </a>
+    );
+  })}
+</div>
 
-      <a
-        href="/seeing-through-paint"
-        class="group block rounded-xl border border-[#3d2e1a] p-5 transition hover:border-[#5a4830]"
-        style="background-color: #231a0f;"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-amber-400" style="background-color: #2e2212;">
-            ◈
-          </div>
-          <h3 class="font-serif font-bold text-[#f2e8d5]">Seeing Through Paint</h3>
-        </div>
-        <p class="text-sm text-[#a09070] leading-relaxed">
-          The complete cross-period visual art guide — from medieval gold-ground to Modernist fragmentation — with paintings and full analysis for every period.
-        </p>
-      </a>
+<!-- ── Resources ── -->
+<section class="resources">
+  <div class="section-label" style="padding-top:0">
+    <span class="n">§ II</span>
+    <span>Cross-Cutting Guides</span>
+    <span class="rule-line"></span>
+    <span>Read across, not down</span>
+  </div>
+  <div class="res-grid">
 
-      <a
-        href="/hearing-through-form"
-        class="group block rounded-xl border border-[#3d2e1a] p-5 transition hover:border-[#5a4830]"
-        style="background-color: #231a0f;"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-amber-400" style="background-color: #2e2212;">
-            ♩
-          </div>
-          <h3 class="font-serif font-bold text-[#f2e8d5]">Hearing Through Form</h3>
-        </div>
-        <p class="text-sm text-[#a09070] leading-relaxed">
-          The complete cross-period music guide — from plainchant monophony to Modernist atonality — with embedded listening and full analysis for every period.
-        </p>
-      </a>
+    <a class="res" href="/timeline">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="20" x2="36" y2="20"/>
+          <line x1="8"  y1="14" x2="8"  y2="26"/>
+          <line x1="16" y1="16" x2="16" y2="24"/>
+          <line x1="24" y1="16" x2="24" y2="24"/>
+          <line x1="32" y1="14" x2="32" y2="26"/>
+        </svg>
+      </div>
+      <div class="kind">Timeline</div>
+      <h4>Historical Timeline</h4>
+      <p>Political and cultural landmarks from 1000 to 1950, with all five core texts placed in context.</p>
+    </a>
 
-    </div>
-  </section>
+    <a class="res" href="/people">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="20" cy="15" r="5"/>
+          <path d="M8 32 C 8 24, 32 24, 32 32"/>
+        </svg>
+      </div>
+      <div class="kind">Index</div>
+      <h4>Biographical Index</h4>
+      <p>Sixty-plus writers, philosophers, artists, and composers across all six units.</p>
+    </a>
 
-</Layout>
+    <a class="res" href="/compare">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 10 C 14 20, 26 20, 34 10"/>
+          <path d="M6 20 C 14 30, 26 10, 34 20"/>
+          <path d="M6 30 C 14 20, 26 20, 34 30"/>
+        </svg>
+      </div>
+      <div class="kind">Method</div>
+      <h4>Threads Across Time</h4>
+      <p>Trace each analytical thread — philosophy, art, music — across all six periods side by side.</p>
+    </a>
+
+    <a class="res" href="/seeing-through-paint">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
+          <circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="kind">Visual Art</div>
+      <h4>Seeing Through Paint</h4>
+      <p>Medieval gold-ground to Modernist fragmentation — the full cross-period visual guide.</p>
+    </a>
+
+    <a class="res" href="/hearing-through-form">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 24 A 14 14 0 0 1 34 24"/>
+          <circle cx="20" cy="24" r="2" fill="currentColor" stroke="none"/>
+          <line x1="6" y1="32" x2="34" y2="32"/>
+        </svg>
+      </div>
+      <div class="kind">Music</div>
+      <h4>Hearing Through Form</h4>
+      <p>Plainchant monophony to Modernist atonality, with embedded listening for every period.</p>
+    </a>
+
+    <a class="res" href="/sculpting-through-time">
+      <div class="sigil">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z"/>
+          <path d="M6 14 L20 22 L34 14"/>
+          <line x1="20" y1="22" x2="20" y2="36"/>
+        </svg>
+      </div>
+      <div class="kind">Sculpture</div>
+      <h4>Sculpting Through Time</h4>
+      <p>Cathedral portals to Modernist abstraction — three analytical threads across six periods.</p>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
+  <div>A course site in six units</div>
+</footer>
+
+</body>
+</html>
+
+<style is:global>
+  /* ── Design tokens ─────────────────────────────────────────── */
+  :root {
+    --bg:           #141110;
+    --bg-raised:    #1b1714;
+    --bg-sunken:    #0d0b0a;
+    --ink:          #E8DFD0;
+    --ink-mute:     #B8AE9D;
+    --ink-soft:     #9A8F7E;
+    --rule:         #3A332C;
+    --rule-strong:  #5A4F44;
+
+    --font-display: 'Spectral', 'Source Serif Pro', Georgia, serif;
+    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+    --gutter: clamp(24px, 4vw, 72px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 0 var(--gutter);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Top nav ─────────────────────────────────────────────── */
+  .topbar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 28px 0 22px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .nav { display: flex; gap: 28px; }
+  .nav a:hover { color: var(--ink); }
+
+  /* ── Hero ───────────────────────────────────────────────── */
+  .hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero > div + div { margin-top: 28px; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 6.5vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .hero .thesis {
+    max-width: 48ch;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .hero { padding: 56px 0 48px; }
+  }
+
+  /* ── Section label ──────────────────────────────────────── */
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 72px 0 28px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-label .n {
+    font-family: var(--font-mono);
+    color: var(--ink-mute);
+  }
+  .rule-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    display: block;
+  }
+
+  /* ── Gallery wall ───────────────────────────────────────── */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 680px)  { .gallery { grid-template-columns: 1fr; } }
+
+  .tile {
+    background: var(--bg-raised);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+    transition: background 200ms ease;
+    overflow: hidden;
+  }
+  .tile:hover { background: #221d19; }
+
+  .tile .swatch {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--acc);
+    z-index: 2;
+  }
+
+  .tile .plate {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .tile .plate img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 400ms ease, filter 400ms ease;
+  }
+  .tile:hover .plate img {
+    transform: scale(1.02);
+    filter: saturate(1.08);
+  }
+  .tile .plate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,16,0) 40%, rgba(20,17,16,0.55) 100%);
+    pointer-events: none;
+  }
+  .tile .img-caption {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: rgba(232,223,208,0.82);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .tile .tile-body {
+    padding: 26px 28px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+  .tile .tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .tile .num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 38px;
+    color: var(--acc);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .tile h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 2px 0 0;
+    color: var(--ink);
+  }
+  .tile .anchor {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--ink-mute);
+  }
+  .tile .anchor em { font-style: italic; color: var(--ink); }
+  .tile .anchor .byline {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  /* ── Resources ──────────────────────────────────────────── */
+  .resources {
+    margin-top: 72px;
+    padding: 0 0 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .res-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .res-grid { grid-template-columns: 1fr; } }
+
+  .res {
+    background: var(--bg);
+    padding: 24px 24px 26px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 18px;
+    row-gap: 4px;
+    transition: background 160ms ease;
+  }
+  .res:hover { background: var(--bg-raised); }
+  .res:hover .sigil { border-color: var(--ink-mute); }
+  .res:hover .sigil svg { color: var(--ink); }
+
+  .res .sigil {
+    grid-row: 1 / 4;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--rule-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 200ms ease;
+    background: var(--bg-sunken);
+    flex-shrink: 0;
+  }
+  .res .sigil svg {
+    width: 32px;
+    height: 32px;
+    color: var(--ink-mute);
+    transition: color 200ms ease;
+  }
+
+  .res .kind {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    align-self: start;
+  }
+  .res h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin: 2px 0 0;
+    color: var(--ink);
+  }
+  .res p {
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    margin: 4px 0 0;
+    max-width: 42ch;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  footer {
+    margin-top: 96px;
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  footer .colophon {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+  }
+</style>
