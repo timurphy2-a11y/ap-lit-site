@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 
 const ERAS = [
-  { id: "renaissance", label: "Renaissance & Reformation", range: [1590, 1660], color: "#8B4513" },
-  { id: "enlightenment", label: "Civil War & Enlightenment", range: [1640, 1720], color: "#2E5A4C" },
-  { id: "revolution", label: "Revolution & Romanticism", range: [1750, 1840], color: "#7B2D3B" },
-  { id: "victorian", label: "Industrial Age & Realism", range: [1840, 1900], color: "#3D4F6A" },
-  { id: "modern", label: "World Wars & Modernism", range: [1900, 1955], color: "#4A3728" },
+  { id: "renaissance", label: "Renaissance & Reformation", range: [1590, 1660], color: "#C9A24B" },
+  { id: "enlightenment", label: "Civil War & Enlightenment", range: [1640, 1720], color: "#6B8CA3" },
+  { id: "revolution", label: "Revolution & Romanticism", range: [1750, 1840], color: "#8B7355" },
+  { id: "victorian", label: "Industrial Age & Realism", range: [1840, 1900], color: "#5A7A6A" },
+  { id: "modern", label: "World Wars & Modernism", range: [1900, 1955], color: "#A03828" },
 ];
 
 const TEXTS = [
@@ -127,13 +127,14 @@ function getEraForYear(year) {
   return ERAS[0];
 }
 
-function EventCard({ event, isText, onClose }) {
+function EventCard({ event, isText, eraColor, onClose }) {
   return (
     <div
       style={{
         position: "fixed",
-        top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.6)",
+        inset: 0,
+        background: "rgba(0,0,0,0.72)",
+        backdropFilter: "blur(4px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -145,35 +146,65 @@ function EventCard({ event, isText, onClose }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          backgroundColor: isText ? "#2C1810" : "#1a1a1a",
-          border: isText ? "2px solid #8B6914" : "1px solid #444",
-          borderRadius: "8px",
+          background: "var(--bg-raised)",
+          border: "1px solid var(--rule-strong)",
           padding: "32px",
           maxWidth: "520px",
           width: "100%",
-          color: "#e8e0d4",
-          fontFamily: "'Libre Baskerville', 'Georgia', serif",
           position: "relative",
-          boxShadow: isText ? "0 0 40px rgba(139,105,20,0.3)" : "0 8px 32px rgba(0,0,0,0.5)",
+          boxShadow: "0 24px 64px rgba(0,0,0,.6)",
         }}
       >
         <button
           onClick={onClose}
           style={{
-            position: "absolute", top: "12px", right: "16px",
-            background: "none", border: "none", color: "#888",
-            fontSize: "20px", cursor: "pointer", padding: "4px",
+            position: "absolute", top: "14px", right: "16px",
+            background: "none", border: "none",
+            color: "var(--ink-soft)",
+            fontSize: "22px", lineHeight: 1, cursor: "pointer", padding: "2px 6px",
           }}
         >
           ✕
         </button>
-        <div style={{ fontSize: "13px", color: isText ? "#C4A24E" : "#888", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'DM Sans', sans-serif" }}>
-          {isText ? `AP Literature Text · ${event.year}` : `${event.type === "political" ? "Political / Military" : "Intellectual / Cultural"} · ${event.year}`}
+
+        {/* Left accent swatch */}
+        <div style={{
+          position: "absolute", left: 0, top: 0, bottom: 0,
+          width: "4px",
+          background: eraColor || "var(--acc)",
+        }} />
+
+        <div style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "10.5px",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: eraColor || "var(--acc)",
+          marginBottom: "10px",
+        }}>
+          {isText
+            ? `AP Literature Text · ${event.year}`
+            : `${event.type === "political" ? "Political · Military" : "Intellectual · Cultural"} · ${event.year}`}
         </div>
-        <h2 style={{ fontSize: "22px", margin: "0 0 16px 0", color: isText ? "#E8D48B" : "#fff", lineHeight: 1.3 }}>
-          {isText ? `${event.title} — ${event.author}` : event.title}
+
+        <h2 style={{
+          fontFamily: "var(--font-display)",
+          fontWeight: 400,
+          fontSize: "22px",
+          lineHeight: 1.2,
+          color: "var(--ink)",
+          margin: "0 0 16px",
+        }}>
+          {isText ? <><em>{event.title}</em> — {event.author}</> : event.title}
         </h2>
-        <p style={{ fontSize: "15px", lineHeight: 1.75, color: "#ccc", margin: 0 }}>
+
+        <p style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "15px",
+          lineHeight: 1.75,
+          color: "var(--ink-mute)",
+          margin: 0,
+        }}>
           {isText ? event.note : event.desc}
         </p>
       </div>
@@ -213,64 +244,45 @@ export default function APLitTimeline() {
   }, [activeEra, filterType]);
 
   const activeEraData = ERAS.find((e) => e.id === activeEra);
+  const selectedEraColor = selectedEvent
+    ? (ERAS.find((e) => e.id === selectedEvent.era)?.color || "var(--acc)")
+    : "var(--acc)";
+
+  // shared tab button style factory
+  const tabStyle = (active, activeColor) => ({
+    fontFamily: "var(--font-mono)",
+    fontSize: "11px",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    padding: "5px 14px",
+    background: active ? "var(--bg-raised)" : "none",
+    border: active
+      ? `1px solid ${activeColor || "var(--rule-strong)"}`
+      : "1px solid transparent",
+    color: active ? "var(--ink)" : "var(--ink-soft)",
+    cursor: "pointer",
+    transition: "color 150ms, background 150ms, border-color 150ms",
+  });
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#0f0f0f",
-      color: "#e8e0d4",
-      fontFamily: "'DM Sans', sans-serif",
-    }}>
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-      {/* Header */}
+    <div>
+      {/* Era filter tabs */}
       <div style={{
-        padding: "48px 24px 24px",
-        textAlign: "center",
-        borderBottom: "1px solid #222",
+        borderBottom: "1px solid var(--rule)",
+        background: "var(--bg)",
+        padding: "0 var(--gutter)",
       }}>
-        <h1 style={{
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-          fontSize: "clamp(24px, 4vw, 36px)",
-          fontWeight: 400,
-          margin: "0 0 8px 0",
-          letterSpacing: "0.5px",
-          color: "#e8e0d4",
-        }}>
-          European History &amp; AP Literature
-        </h1>
-        <p style={{
-          fontSize: "14px",
-          color: "#777",
-          margin: "0 0 28px 0",
-          fontStyle: "italic",
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-        }}>
-          1590 – 1955 · Political, intellectual, and literary landmarks
-        </p>
-
-        {/* Era navigation */}
         <div style={{
+          maxWidth: "860px",
+          margin: "0 auto",
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "8px",
-          marginBottom: "16px",
+          gap: "2px",
+          padding: "12px 0",
         }}>
           <button
             onClick={() => setActiveEra(null)}
-            style={{
-              padding: "8px 16px",
-              borderRadius: "4px",
-              border: activeEra === null ? "1px solid #C4A24E" : "1px solid #333",
-              backgroundColor: activeEra === null ? "rgba(196,162,78,0.15)" : "transparent",
-              color: activeEra === null ? "#E8D48B" : "#999",
-              cursor: "pointer",
-              fontSize: "13px",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 500,
-              transition: "all 0.2s",
-            }}
+            style={tabStyle(activeEra === null, "var(--rule-strong)")}
           >
             All Eras
           </button>
@@ -278,70 +290,60 @@ export default function APLitTimeline() {
             <button
               key={era.id}
               onClick={() => setActiveEra(era.id)}
-              style={{
-                padding: "8px 16px",
-                borderRadius: "4px",
-                border: activeEra === era.id ? `1px solid ${era.color}` : "1px solid #333",
-                backgroundColor: activeEra === era.id ? `${era.color}22` : "transparent",
-                color: activeEra === era.id ? "#e8e0d4" : "#999",
-                cursor: "pointer",
-                fontSize: "13px",
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 500,
-                transition: "all 0.2s",
-              }}
+              style={tabStyle(activeEra === era.id, era.color)}
             >
               {era.label}
             </button>
           ))}
         </div>
+      </div>
 
-        {/* Filter buttons */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "6px" }}>
+      {/* Type filter + era range strip */}
+      <div style={{
+        borderBottom: "1px solid var(--rule)",
+        background: activeEraData ? `${activeEraData.color}11` : "var(--bg-sunken)",
+        padding: "8px var(--gutter)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "8px",
+      }}>
+        <div style={{ display: "flex", gap: "2px" }}>
           {[
             { key: "all", label: "All Events" },
-            { key: "political", label: "Political / Military" },
-            { key: "cultural", label: "Intellectual / Cultural" },
+            { key: "political", label: "Political · Military" },
+            { key: "cultural", label: "Intellectual · Cultural" },
           ].map((f) => (
             <button
               key={f.key}
               onClick={() => setFilterType(f.key)}
-              style={{
-                padding: "5px 12px",
-                borderRadius: "3px",
-                border: "none",
-                backgroundColor: filterType === f.key ? "#333" : "transparent",
-                color: filterType === f.key ? "#e8e0d4" : "#666",
-                cursor: "pointer",
-                fontSize: "12px",
-                fontFamily: "'DM Sans', sans-serif",
-                transition: "all 0.2s",
-              }}
+              style={tabStyle(filterType === f.key, "var(--rule-strong)")}
             >
               {f.label}
             </button>
           ))}
         </div>
-      </div>
-
-      {/* Era description */}
-      {activeEraData && (
-        <div style={{
-          textAlign: "center",
-          padding: "16px 24px",
-          borderBottom: "1px solid #1a1a1a",
-          backgroundColor: `${activeEraData.color}11`,
-        }}>
-          <span style={{ fontSize: "13px", color: "#888" }}>
+        {activeEraData && (
+          <span style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "11px",
+            letterSpacing: "0.1em",
+            color: "var(--ink-soft)",
+          }}>
             {activeEraData.range[0]} – {activeEraData.range[1]}
           </span>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Timeline */}
-      <div ref={scrollRef} style={{ padding: "32px 24px 80px", maxWidth: "760px", margin: "0 auto" }}>
+      <div ref={scrollRef} style={{
+        padding: "32px var(--gutter) 96px",
+        maxWidth: "860px",
+        margin: "0 auto",
+      }}>
         {allItems.map((item, i) => {
-          const showYearMarker = i === 0 || Math.abs(item.year - allItems[i - 1].year) >= 1;
+          const showYear = i === 0 || item.year !== allItems[i - 1].year;
           const era = ERAS.find((e) => e.id === item.era) || ERAS[0];
 
           if (item.isText) {
@@ -353,25 +355,24 @@ export default function APLitTimeline() {
                   flexShrink: 0,
                   textAlign: "right",
                   paddingTop: "14px",
-                  fontFamily: "'Libre Baskerville', Georgia, serif",
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  color: "#C4A24E",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  color: era.color,
                 }}>
-                  {showYearMarker ? item.year : ""}
+                  {showYear ? item.year : ""}
                 </div>
 
-                {/* Line */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: "20px", paddingTop: "14px" }}>
+                {/* Dot + line */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: "20px", paddingTop: "16px" }}>
                   <div style={{
-                    width: "14px", height: "14px",
+                    width: "12px", height: "12px",
                     borderRadius: "50%",
-                    backgroundColor: "#C4A24E",
-                    border: "3px solid #2C1810",
-                    boxShadow: "0 0 12px rgba(196,162,78,0.4)",
+                    background: era.color,
+                    border: "2px solid var(--bg)",
                     flexShrink: 0,
                   }} />
-                  <div style={{ width: "2px", flex: 1, backgroundColor: "#2a2a2a", minHeight: "20px" }} />
+                  <div style={{ width: "1px", flex: 1, background: "var(--rule)", minHeight: "20px" }} />
                 </div>
 
                 {/* Card */}
@@ -379,59 +380,87 @@ export default function APLitTimeline() {
                   onClick={() => { setSelectedEvent(item); setSelectedIsText(true); }}
                   style={{
                     flex: 1,
-                    padding: "16px 20px",
-                    borderRadius: "6px",
-                    backgroundColor: "#2C1810",
-                    border: "1px solid rgba(196,162,78,0.3)",
+                    position: "relative",
+                    padding: "14px 18px 14px 22px",
+                    background: "var(--bg-raised)",
+                    border: "1px solid var(--rule)",
                     cursor: "pointer",
-                    transition: "all 0.2s",
+                    transition: "background 150ms, border-color 150ms",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(196,162,78,0.6)";
-                    e.currentTarget.style.transform = "translateX(4px)";
+                    e.currentTarget.style.background = "#221d19";
+                    e.currentTarget.style.borderColor = "var(--rule-strong)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(196,162,78,0.3)";
-                    e.currentTarget.style.transform = "translateX(0)";
+                    e.currentTarget.style.background = "var(--bg-raised)";
+                    e.currentTarget.style.borderColor = "var(--rule)";
                   }}
                 >
-                  <div style={{ fontSize: "11px", color: "#C4A24E", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "4px" }}>
+                  {/* Left accent swatch */}
+                  <div style={{
+                    position: "absolute", left: 0, top: 0, bottom: 0,
+                    width: "4px",
+                    background: era.color,
+                  }} />
+
+                  <div style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10.5px",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: era.color,
+                    marginBottom: "6px",
+                  }}>
                     AP Literature Text
                   </div>
-                  <div style={{ fontFamily: "'Libre Baskerville', Georgia, serif", fontSize: "17px", fontWeight: 700, color: "#E8D48B" }}>
-                    <em>{item.title}</em> — {item.author}
+                  <div style={{
+                    fontFamily: "var(--font-display)",
+                    fontStyle: "italic",
+                    fontSize: "17px",
+                    color: "var(--ink)",
+                    lineHeight: 1.25,
+                  }}>
+                    {item.title}{" "}
+                    <span style={{ fontStyle: "normal", color: "var(--ink-mute)" }}>— {item.author}</span>
                   </div>
-                  <div style={{ fontSize: "12px", color: "#999", marginTop: "6px" }}>Click to read historical context</div>
+                  <div style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "11px",
+                    letterSpacing: "0.06em",
+                    color: "var(--ink-soft)",
+                    marginTop: "6px",
+                  }}>
+                    Click to read historical context
+                  </div>
                 </div>
               </div>
             );
           }
 
           return (
-            <div key={`evt-${item.title}-${item.year}`} style={{ display: "flex", gap: "20px", marginBottom: "16px", alignItems: "flex-start" }}>
+            <div key={`evt-${item.title}-${item.year}`} style={{ display: "flex", gap: "20px", marginBottom: "14px", alignItems: "flex-start" }}>
               {/* Year */}
               <div style={{
                 width: "52px",
                 flexShrink: 0,
                 textAlign: "right",
                 paddingTop: "10px",
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "14px",
-                fontWeight: 500,
-                color: showYearMarker ? "#777" : "transparent",
+                fontFamily: "var(--font-mono)",
+                fontSize: "12px",
+                color: showYear ? "var(--ink-soft)" : "transparent",
               }}>
                 {item.year}
               </div>
 
-              {/* Line */}
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: "20px", paddingTop: "12px" }}>
+              {/* Dot + line */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: "20px", paddingTop: "13px" }}>
                 <div style={{
-                  width: "8px", height: "8px",
+                  width: "7px", height: "7px",
                   borderRadius: "50%",
-                  backgroundColor: item.type === "political" ? "#6B7B8D" : "#8B7355",
+                  background: item.type === "political" ? "var(--ink-soft)" : "var(--ink-mute)",
                   flexShrink: 0,
                 }} />
-                <div style={{ width: "1px", flex: 1, backgroundColor: "#222", minHeight: "12px" }} />
+                <div style={{ width: "1px", flex: 1, background: "var(--rule)", minHeight: "10px" }} />
               </div>
 
               {/* Card */}
@@ -439,44 +468,36 @@ export default function APLitTimeline() {
                 onClick={() => { setSelectedEvent(item); setSelectedIsText(false); }}
                 style={{
                   flex: 1,
-                  padding: "10px 16px",
-                  borderRadius: "4px",
-                  backgroundColor: "#161616",
-                  border: "1px solid #222",
+                  padding: "9px 14px",
+                  background: "var(--bg-raised)",
+                  border: "1px solid var(--rule)",
                   cursor: "pointer",
-                  transition: "all 0.2s",
+                  transition: "background 150ms, border-color 150ms",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#444";
-                  e.currentTarget.style.transform = "translateX(4px)";
+                  e.currentTarget.style.background = "#221d19";
+                  e.currentTarget.style.borderColor = "var(--rule-strong)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#222";
-                  e.currentTarget.style.transform = "translateX(0)";
+                  e.currentTarget.style.background = "var(--bg-raised)";
+                  e.currentTarget.style.borderColor = "var(--rule)";
                 }}
               >
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <span style={{
-                    fontSize: "9px",
-                    padding: "2px 6px",
-                    borderRadius: "2px",
-                    backgroundColor: item.type === "political" ? "rgba(107,123,141,0.2)" : "rgba(139,115,85,0.2)",
-                    color: item.type === "political" ? "#8B9BAD" : "#A89070",
-                    letterSpacing: "1px",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "9.5px",
+                    letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    fontWeight: 600,
+                    color: "var(--ink-soft)",
                     flexShrink: 0,
                   }}>
                     {item.type === "political" ? "POL" : "CUL"}
                   </span>
                   <span style={{
-                    fontFamily: "'Libre Baskerville', Georgia, serif",
+                    fontFamily: "var(--font-display)",
                     fontSize: "14px",
-                    color: "#ccc",
+                    color: "var(--ink-mute)",
                   }}>
                     {item.title}
                   </span>
@@ -490,29 +511,27 @@ export default function APLitTimeline() {
       {/* Legend */}
       <div style={{
         position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: "rgba(15,15,15,0.95)",
-        borderTop: "1px solid #222",
-        padding: "10px 24px",
+        bottom: 0, left: 0, right: 0,
+        background: "var(--bg)",
+        borderTop: "1px solid var(--rule)",
+        padding: "10px var(--gutter)",
         display: "flex",
         justifyContent: "center",
-        gap: "24px",
-        fontSize: "12px",
+        alignItems: "center",
+        gap: "28px",
         backdropFilter: "blur(8px)",
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#C4A24E", border: "2px solid #2C1810" }} />
-          <span style={{ color: "#999" }}>AP Lit Text</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "var(--acc)", border: "2px solid var(--bg)" }} />
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "10.5px", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>AP Lit Text</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#6B7B8D" }} />
-          <span style={{ color: "#999" }}>Political / Military</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "var(--ink-soft)" }} />
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "10.5px", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>Political · Military</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#8B7355" }} />
-          <span style={{ color: "#999" }}>Intellectual / Cultural</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "var(--ink-mute)" }} />
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "10.5px", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>Intellectual · Cultural</span>
         </div>
       </div>
 
@@ -520,6 +539,7 @@ export default function APLitTimeline() {
         <EventCard
           event={selectedEvent}
           isText={selectedIsText}
+          eraColor={selectedEraColor}
           onClose={() => setSelectedEvent(null)}
         />
       )}
