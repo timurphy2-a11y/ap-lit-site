@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  artist: string;
+  date: string | number;
+  image?: string;
+  medium?: string;
+  location?: string;
+  [key: string]: unknown; // absorb extra frontmatter fields (e.g. threads)
+}
+
+const { title, artist, date, image, medium, location } = Astro.props;
+
+const metaParts = [date, medium, location].filter(Boolean);
+const metaText = metaParts.join('\n');
+---
+
+<figure class="plate">
+  <div class="img">
+    {image && <img src={image} alt={title} loading="lazy" />}
+    <div class="stamp">{artist}</div>
+  </div>
+  <figcaption class="caption">
+    <div>
+      <div class="title">{title}</div>
+      <div class="byline">{artist}</div>
+    </div>
+    <div class="meta">{metaText}</div>
+  </figcaption>
+</figure>

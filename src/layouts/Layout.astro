@@ -18,70 +18,55 @@ const peopleJson = JSON.stringify(PEOPLE);
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
-  <body class="bg-[#1a140c] text-[#f2e8d5] font-sans antialiased">
-    <header class="border-b border-[#3d2e1a] bg-[#1a140c]/90 backdrop-blur-sm sticky top-0 z-40">
-      <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-        <a href="/" class="font-serif text-sm font-bold tracking-wide text-[#f2e8d5] hover:text-amber-300 transition-colors">
-          AP Literature
-        </a>
-        <nav class="flex items-center gap-6 text-sm text-[#a09070]">
-          <a href="/timeline" class="hover:text-[#f2e8d5] transition-colors">Timeline</a>
-          <a href="/people" class="hover:text-[#f2e8d5] transition-colors">People</a>
-          <a href="/compare" class="hover:text-[#f2e8d5] transition-colors">Compare</a>
-          <a href="/seeing-through-paint" class="hover:text-[#f2e8d5] transition-colors">Art</a>
-          <a href="/hearing-through-form" class="hover:text-[#f2e8d5] transition-colors">Music</a>
-        </nav>
-      </div>
-    </header>
+  <body>
+    <div class="topbar">
+      <a href="/" class="brand">AP Literature</a>
+      <nav class="nav">
+        <a href="/timeline">Timeline</a>
+        <a href="/people">People</a>
+        <a href="/compare">Compare</a>
+        <a href="/seeing-through-paint">Painting</a>
+        <a href="/sculpting-through-time">Sculpture</a>
+        <a href="/hearing-through-form">Music</a>
+      </nav>
+    </div>
+
     <slot />
 
     <!-- Bio modal -->
     <div
       id="bio-modal"
-      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+      class="bio-modal"
       role="dialog"
       aria-modal="true"
     >
-      <!-- backdrop -->
-      <div id="bio-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <!-- panel -->
-      <div class="relative z-10 w-full max-w-md rounded-2xl border border-[#3d2e1a] bg-[#231a0f] p-6 shadow-2xl">
-        <button
-          id="bio-close"
-          class="absolute right-4 top-4 text-[#a5967d] hover:text-[#f2e8d5] transition-colors text-xl leading-none"
-          aria-label="Close"
-        >×</button>
-        <div class="flex items-start gap-4 mb-4">
-          <img id="bio-portrait" src="" alt="" class="rounded w-[72px] h-[72px] object-cover flex-shrink-0 hidden" style="border: 1px solid #3d2e1a;" />
-          <div class="flex-1 min-w-0">
-            <p id="bio-field" class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-1"></p>
-            <h2 id="bio-name" class="font-serif text-xl font-bold text-[#f2e8d5] mb-1"></h2>
-            <p id="bio-dates" class="text-xs text-[#a5967d]"></p>
+      <div id="bio-backdrop" class="bio-backdrop"></div>
+      <div class="bio-panel">
+        <button id="bio-close" class="bio-close" aria-label="Close">×</button>
+        <div class="bio-header">
+          <img id="bio-portrait" src="" alt="" class="bio-portrait hidden" />
+          <div class="bio-meta">
+            <p id="bio-field" class="bio-field"></p>
+            <h2 id="bio-name" class="bio-name"></h2>
+            <p id="bio-dates" class="bio-dates"></p>
           </div>
         </div>
-        <p id="bio-bio" class="text-sm text-[#a09070] leading-relaxed mb-3"></p>
-        <p id="bio-significance" class="text-sm text-[#c8b890] leading-relaxed italic"></p>
+        <p id="bio-bio" class="bio-body"></p>
+        <p id="bio-significance" class="bio-sig"></p>
       </div>
     </div>
 
     <script define:vars={{ peopleJson }}>
       const PEOPLE = JSON.parse(peopleJson);
-      const modal   = document.getElementById('bio-modal');
+      const modal    = document.getElementById('bio-modal');
       const backdrop = document.getElementById('bio-backdrop');
       const closeBtn = document.getElementById('bio-close');
 
@@ -102,12 +87,12 @@ const peopleJson = JSON.stringify(PEOPLE);
           portrait.classList.add('hidden');
         }
         modal.classList.remove('hidden');
-        modal.classList.add('flex');
+        modal.classList.add('open');
       }
 
       function closeModal() {
         modal.classList.add('hidden');
-        modal.classList.remove('flex');
+        modal.classList.remove('open');
       }
 
       document.addEventListener('click', (e) => {
@@ -125,10 +110,173 @@ const peopleJson = JSON.stringify(PEOPLE);
 </html>
 
 <style is:global>
-  body {
-    font-family: 'DM Sans', system-ui, sans-serif;
+  /* ── Design tokens ───────────────────────────────────────────────── */
+  :root {
+    --bg:          #141110;
+    --bg-raised:   #1b1714;
+    --bg-sunken:   #0d0b0a;
+    --ink:         #E8DFD0;
+    --ink-mute:    #B8AE9D;
+    --ink-soft:    #9A8F7E;
+    --rule:        #3A332C;
+    --rule-strong: #5A4F44;
+    --acc:         #C9A24B;
+
+    --font-display: 'Spectral', 'Source Serif Pro', Georgia, serif;
+    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+    --gutter: clamp(20px, 4vw, 64px);
+    --col:    min(860px, 100%);
   }
-  .font-serif {
-    font-family: 'Libre Baskerville', Georgia, serif;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Top nav ─────────────────────────────────────────────────────── */
+  .topbar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px var(--gutter) 18px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--bg);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav { display: flex; gap: 24px; flex-shrink: 0; }
+  .nav a:hover { color: var(--ink); transition: color 150ms ease; }
+
+  /* ── Bio modal ───────────────────────────────────────────────────── */
+  .bio-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .bio-modal.open { display: flex; }
+
+  .bio-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  .bio-panel {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-raised);
+    padding: 28px;
+    box-shadow: 0 24px 64px rgba(0,0,0,.6);
+  }
+
+  .bio-close {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+  }
+  .bio-close:hover { color: var(--ink); }
+
+  .bio-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .bio-portrait {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+  }
+  .bio-portrait.hidden { display: none; }
+
+  .bio-field {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 4px;
+  }
+
+  .bio-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .bio-dates {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  .bio-body {
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    margin-bottom: 14px;
+  }
+
+  .bio-sig {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
   }
 </style>

@@ -4,6 +4,8 @@ import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
+import Plate from '../../../components/Plate.astro';
+import MusicPlate from '../../../components/MusicPlate.astro';
 
 // ── Static paths ──────────────────────────────────────────────────────────────
 
@@ -68,7 +70,7 @@ const ACCENTS: Record<string, {
   music: string;
   subThreads: [string, string, string];
 }> = {
-  '00-medieval':      { philosophy: '#C9A24B', art: '#C47A5A', sculpture: '#B5714A', music: '#A89553', subThreads: ['#C9A24B', '#A89553', '#C47A5A'] },
+  '00-medieval':      { philosophy: '#C9A24B', art: '#C47A5A', sculpture: '#8A9A7B', music: '#A89553', subThreads: ['#C9A24B', '#A89553', '#C47A5A'] },
   '01-renaissance':   { philosophy: '#B54B3A', art: '#A8663A', sculpture: '#96583A', music: '#966B3A', subThreads: ['#B54B3A', '#966B3A', '#A8663A'] },
   '02-baroque':       { philosophy: '#D4A24C', art: '#C47A5A', sculpture: '#B5714A', music: '#B09040', subThreads: ['#D4A24C', '#B09040', '#C47A5A'] },
   '03-enlightenment': { philosophy: '#6B8CA3', art: '#7A8F88', sculpture: '#6A8A78', music: '#6B8A98', subThreads: ['#6B8CA3', '#6B8A98', '#7A8F88'] },
@@ -80,7 +82,7 @@ const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
 
-// ── Prev/next labels ──────────────────────────────────────────────────────────
+// ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
 const prevLabel = prevUnit
   ? (await getEntry('units', `${prevUnit}/philosophy`))?.data.period
@@ -123,6 +125,15 @@ const DOMAIN_TITLES: Record<string, string> = {
 
 const currentLabel = DOMAIN_LABELS[domain] ?? domain;
 const threadLabel  = DOMAIN_THREAD_LABEL[domain] ?? domain;
+
+// ── Within-unit thread navigation ─────────────────────────────────────────────
+
+const DOMAIN_ORDER = ['philosophy', 'art', 'sculpture', 'music'] as const;
+const domainIdx   = DOMAIN_ORDER.indexOf(domain as typeof DOMAIN_ORDER[number]);
+const prevDomain  = domainIdx > 0 ? DOMAIN_ORDER[domainIdx - 1] : null;
+const nextDomain  = domainIdx < DOMAIN_ORDER.length - 1 ? DOMAIN_ORDER[domainIdx + 1] : null;
+const prevDomainLabel = prevDomain ? (DOMAIN_LABELS[prevDomain] ?? prevDomain) : null;
+const nextDomainLabel = nextDomain ? (DOMAIN_LABELS[nextDomain] ?? nextDomain) : null;
 const domainTitle  = DOMAIN_TITLES[domain] ?? domain;
 const pageTitle    = `${meta.period}: ${currentLabel} — AP Literature`;
 const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
@@ -232,28 +243,73 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 <!-- ── Hero image (art / sculpture) ── -->
 {(() => {
   const d = entry.data as any;
-  if (domain === 'art' && d.hero_painting?.image) {
+  if (domain === 'art' && d.hero_painting) {
     const p = d.hero_painting;
+    const metaLines = [p.date, p.medium, p.location].filter(Boolean).join('\n');
     return (
-      <figure class="hero-fig">
-        <div class="hero-plate"><img src={p.image} alt={p.title} class="hero-img" /></div>
-        <figcaption class="hero-cap">
-          <span class="hero-title">{p.title}</span>
-          <span class="hero-artist">{p.artist}</span>
-          <span class="hero-meta">{p.date}{p.medium ? ` · ${p.medium}` : ''}{p.location ? ` · ${p.location}` : ''}</span>
+      <figure class="hero-plate">
+        <div class="img">
+          {p.image && <img src={p.image} alt={p.title} class="hero-img-full" />}
+          <div class="stamp">{p.artist}</div>
+        </div>
+        <figcaption class="caption">
+          <div>
+            <div class="title">{p.title}</div>
+            <div class="byline">{p.artist}</div>
+          </div>
+          <div class="meta">{metaLines}</div>
         </figcaption>
       </figure>
     );
   }
-  if (domain === 'sculpture' && d.hero_sculpture?.image) {
+  if (domain === 'sculpture' && d.hero_sculpture) {
     const s = d.hero_sculpture;
+    const metaLines = [s.date, s.medium, s.location].filter(Boolean).join('\n');
     return (
-      <figure class="hero-fig">
-        <div class="hero-plate"><img src={s.image} alt={s.title} class="hero-img" /></div>
-        <figcaption class="hero-cap">
-          <span class="hero-title">{s.title}</span>
-          <span class="hero-artist">{s.artist}</span>
-          <span class="hero-meta">{s.date}{s.medium ? ` · ${s.medium}` : ''}{s.location ? ` · ${s.location}` : ''}</span>
+      <figure class="hero-plate">
+        <div class="img">
+          {s.image && <img src={s.image} alt={s.title} class="hero-img-full" />}
+          <div class="stamp">{s.artist}</div>
+        </div>
+        <figcaption class="caption">
+          <div>
+            <div class="title">{s.title}</div>
+            <div class="byline">{s.artist}</div>
+          </div>
+          <div class="meta">{metaLines}</div>
+        </figcaption>
+      </figure>
+    );
+  }
+  if (domain === 'music' && d.featured_listening) {
+    const fl = d.featured_listening;
+    const item = Array.isArray(fl) ? fl[0] : fl;
+    const metaLines = [item.date, item.duration].filter(Boolean).join('\n');
+    const ytUrl = item.youtube_id ? `https://www.youtube.com/watch?v=${item.youtube_id}` : null;
+    return (
+      <figure class="hero-plate music">
+        <a
+          class="img"
+          href={ytUrl ?? '#'}
+          target={ytUrl ? '_blank' : undefined}
+          rel={ytUrl ? 'noopener noreferrer' : undefined}
+          aria-label={`Play ${item.title}`}
+        >
+          <div class="staff" aria-hidden="true">
+            <div class="line" style="top:38%"></div>
+            <div class="line" style="top:48%"></div>
+            <div class="line" style="top:58%"></div>
+            <div class="line" style="top:68%"></div>
+          </div>
+          <div class="stamp">[ LISTENING 01 · HERO ]</div>
+          <div class="play" aria-hidden="true"></div>
+        </a>
+        <figcaption class="caption">
+          <div>
+            <div class="title">{item.title}</div>
+            <div class="byline">{item.composer} · via YouTube</div>
+          </div>
+          <div class="meta">{metaLines}</div>
         </figcaption>
       </figure>
     );
@@ -265,7 +321,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 <div class="layout">
 
   <article class="prose">
-    <Content components={{ BioLink, PullQuote }} />
+    <Content components={{ BioLink, PullQuote, Plate, MusicPlate }} />
   </article>
 
   <!-- ── Sidebar ── -->
@@ -313,76 +369,51 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
       if (domain === 'art' && d.gallery_paintings?.length) {
         return (
           <div class="card">
-            <h4>Gallery</h4>
-            <div class="gallery">
+            <h4>Works Discussed</h4>
+            <ul class="works">
               {d.gallery_paintings.map((p: any) => (
-                <figure class="gallery-fig">
-                  {p.image && <div class="gallery-plate"><img src={p.image} alt={p.title} class="gallery-img" /></div>}
-                  <figcaption>
-                    <span class="r-title">{p.title}</span>
-                    <span class="r-by" style={`color: ${threadAcc};`}>{p.artist} · {p.date}</span>
-                  </figcaption>
-                </figure>
+                <li>
+                  <div class="t">{p.title}</div>
+                  <div class="by">{p.artist}{p.date ? ` · ${p.date}` : ''}</div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         );
       }
       if (domain === 'sculpture' && d.gallery_sculptures?.length) {
         return (
           <div class="card">
-            <h4>Gallery</h4>
-            <div class="gallery">
+            <h4>Works Discussed</h4>
+            <ul class="works">
               {d.gallery_sculptures.map((s: any) => (
-                <figure class="gallery-fig">
-                  {s.image && <div class="gallery-plate"><img src={s.image} alt={s.title} class="gallery-img" /></div>}
-                  <figcaption>
-                    <span class="r-title">{s.title}</span>
-                    <span class="r-by" style={`color: ${threadAcc};`}>{s.artist} · {s.date}</span>
-                  </figcaption>
-                </figure>
+                <li>
+                  <div class="t">{s.title}</div>
+                  <div class="by">{s.artist}{s.date ? ` · ${s.date}` : ''}</div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         );
       }
       if (domain === 'music') {
-        const featured = d.featured_listening ? (Array.isArray(d.featured_listening) ? d.featured_listening : [d.featured_listening]) : [];
-        const gallery  = d.gallery_listening ?? [];
+        const featured = d.featured_listening
+          ? (Array.isArray(d.featured_listening) ? d.featured_listening : [d.featured_listening])
+          : [];
+        const gallery = d.gallery_listening ?? [];
+        const allPieces = [...featured, ...gallery];
+        if (allPieces.length === 0) return null;
         return (
-          <div class="music-sidebar">
-            {featured.length > 0 && (
-              <div class="card">
-                <h4>Featured Listening</h4>
-                {featured.map((item: any) => (
-                  <div class="music-item">
-                    {item.youtube_id && <YouTubeEmbed id={item.youtube_id} title={item.title} />}
-                    <div class="music-meta">
-                      <div class="music-title">{item.title}</div>
-                      <div class="r-by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
-                      {item.duration && <div class="r-by">{item.duration}</div>}
-                      {item.listen_for && <div class="music-listen">{item.listen_for}</div>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {gallery.length > 0 && (
-              <div class="card">
-                <h4>Also Listen</h4>
-                <div class="gallery-music">
-                  {gallery.map((item: any) => (
-                    <div class="music-item">
-                      {item.youtube_id && <YouTubeEmbed id={item.youtube_id} title={item.title} />}
-                      <div class="music-meta">
-                        <div class="r-title" style="font-style: italic;">{item.title}</div>
-                        <div class="r-by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+          <div class="card">
+            <h4>Featured Listening</h4>
+            <ul class="works">
+              {allPieces.map((item: any) => (
+                <li>
+                  <div class="t">{item.title}</div>
+                  <div class="by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
+                </li>
+              ))}
+            </ul>
           </div>
         );
       }
@@ -394,13 +425,25 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 
 <!-- ── Pager ── -->
 <nav class="pager">
-  <a class="pager-prev" href={`/units/${unit}`}>
-    <span class="pager-lbl">Back</span>
-    <span class="pager-title">Unit {unitNumber} Overview</span>
-  </a>
-  {nextUnit ? (
-    <a class="pager-next" href={`/units/${nextUnit}/${domain}`}>
-      <span class="pager-lbl">Unit {nextUnitNumber} · {currentLabel}</span>
+  {prevDomain ? (
+    <a class="pager-prev" href={`/units/${unit}/${prevDomain}`}>
+      <span class="pager-lbl">Previous thread</span>
+      <span class="pager-title">{prevDomainLabel}</span>
+    </a>
+  ) : (
+    <a class="pager-prev" href={`/units/${unit}`}>
+      <span class="pager-lbl">Back</span>
+      <span class="pager-title">Unit {unitNumber} Overview</span>
+    </a>
+  )}
+  {nextDomain ? (
+    <a class="pager-next" href={`/units/${unit}/${nextDomain}`}>
+      <span class="pager-lbl">Next thread</span>
+      <span class="pager-title">{nextDomainLabel}</span>
+    </a>
+  ) : nextUnit ? (
+    <a class="pager-next" href={`/units/${nextUnit}`}>
+      <span class="pager-lbl">Next unit</span>
       <span class="pager-title">{nextLabel}</span>
     </a>
   ) : (
@@ -613,49 +656,214 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .page-head h1 em { font-style: italic; color: var(--ink-mute); }
 
-  /* ── Hero image ── */
-  .hero-fig {
-    margin: 32px 0 0;
+  /* ── Hero plate (art / sculpture) ── */
+  figure.hero-plate {
+    margin: 40px 0 48px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
     padding: 0;
   }
-  .hero-plate {
-    background: var(--bg-sunken);
-    border: 1px solid var(--rule);
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-height: 520px;
+  figure.hero-plate .img {
+    display: block;
+    aspect-ratio: 21 / 9;
+    position: relative;
     overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 14px, rgba(255,255,255,0.05) 14px 28px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 34%, #141110), color-mix(in oklab, var(--thread-acc) 10%, #141110));
   }
-  .hero-img {
+  figure.hero-plate .img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+    pointer-events: none;
+  }
+  .hero-img-full {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    max-height: 508px;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
   }
-  .hero-cap {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin-top: 12px;
-    text-align: center;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink);
-  }
-  .hero-artist {
-    font-family: var(--font-ui);
-    font-size: 12px;
-    color: var(--ink-soft);
-  }
-  .hero-meta {
+  figure.hero-plate .stamp {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--thread-acc);
+    letter-spacing: 0.04em;
+    color: rgba(232,223,208,.85);
+    z-index: 2;
+  }
+  figure.hero-plate .caption {
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    border-top: 1px solid var(--rule);
+  }
+  figure.hero-plate .caption .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  figure.hero-plate .caption .byline {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  figure.hero-plate .caption .meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  /* ── In-prose image plate ── */
+  .plate {
+    margin: 32px 0 28px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+  }
+  .plate .img {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 12px, rgba(255,255,255,.04) 12px 24px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 32%, #141110), color-mix(in oklab, var(--thread-acc) 8%, #141110));
+  }
+  .plate .img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+  }
+  .plate .img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .plate .img .stamp {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
     letter-spacing: 0.06em;
+    color: rgba(232,223,208,.82);
+    z-index: 2;
+  }
+  .plate .caption {
+    padding: 18px 22px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: start;
+    border-top: 1px solid var(--rule);
+  }
+  .plate .caption .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .plate .caption .byline {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .plate .caption .meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  /* ── Music hero plate: plain gradient (no crosshatch), staff lines, play button ── */
+  figure.hero-plate.music .img {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--thread-acc) 30%, #141110),
+      color-mix(in oklab, var(--thread-acc) 10%, #141110)
+    );
+  }
+  figure.hero-plate .staff { position: absolute; inset: 0; }
+  figure.hero-plate .staff .line {
+    position: absolute;
+    left: 6%; right: 6%;
+    height: 1px;
+    background: rgba(232,223,208,.32);
+  }
+  figure.hero-plate .play {
+    position: absolute; right: 22px; bottom: 18px; z-index: 2;
+    width: 56px; height: 56px;
+    border: 1px solid rgba(232,223,208,.6);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(20,17,16,.35);
+    backdrop-filter: blur(3px);
+  }
+  figure.hero-plate .play::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 14px solid rgba(232,223,208,.9);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 3px;
+  }
+
+  /* ── Music inline plate (MusicPlate component) ── */
+  .music-plate .img {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--thread-acc) 28%, #141110),
+      color-mix(in oklab, var(--thread-acc) 8%, #141110)
+    );
+  }
+  .music-plate .img .staff { position: absolute; inset: 0; }
+  .music-plate .img .staff .line {
+    position: absolute;
+    left: 8%; right: 8%;
+    height: 1px;
+    background: rgba(232,223,208,.28);
+  }
+  .plate .play {
+    position: absolute; right: 18px; bottom: 14px; z-index: 2;
+    width: 44px; height: 44px;
+    border: 1px solid rgba(232,223,208,.55);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(20,17,16,.35);
+    backdrop-filter: blur(3px);
+  }
+  .plate .play::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 10px solid rgba(232,223,208,.85);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    margin-left: 2px;
   }
 
   /* ── Two-column layout ── */
@@ -748,16 +956,48 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     max-width: 52ch;
   }
 
-  /* h3 (Connection to Hamlet, etc.) */
+  /* h3 (Connection to X) — top half of callout card */
   .prose h3 {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-ui);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--thread-acc);
     font-weight: 400;
-    margin: 36px 0 14px;
+    margin: 36px 0 0;
+    padding: 16px 22px 0;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-bottom: 0;
+    position: relative;
   }
+  .prose h3::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: -1px; bottom: 0;
+    width: 3px;
+    background: var(--thread-acc);
+  }
+  /* h3 + p — bottom half of callout card */
+  .prose h3 + p {
+    margin: 0 0 22px;
+    padding: 10px 22px 18px;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-top: 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    position: relative;
+  }
+  .prose h3 + p::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: 0; bottom: -1px;
+    width: 3px;
+    background: var(--thread-acc);
+  }
+  .prose h3 + p em { color: var(--ink); font-style: italic; }
 
   /* Blockquote */
   .prose blockquote {
@@ -851,53 +1091,58 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
   .threads-list li {
-    padding: 14px 16px;
-    border: 1px solid var(--rule);
-    background: var(--bg-sunken);
+    padding: 16px 18px 18px;
+    border: 1px solid color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 55%, #3A332C);
+    background: color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 9%, #0d0b0a);
+    border-radius: 6px;
     display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 14px;
+    grid-template-columns: 28px 1fr;
+    gap: 10px 12px;
     align-items: start;
-    position: relative;
     transition: border-color 160ms ease, background 160ms ease;
-  }
-  .threads-list li::before {
-    content: '';
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    bottom: -1px;
-    width: 3px;
-    background: var(--sub-acc, var(--thread-acc));
   }
   .threads-list li:hover {
     border-color: var(--sub-acc, var(--thread-acc));
-    background: var(--bg-raised);
+    background: color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 15%, #0d0b0a);
   }
   .sig-xs {
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg);
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1px;
+  }
+  .sig-xs svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--sub-acc, var(--thread-acc));
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
   .tt {
-    font-family: var(--font-display);
-    font-size: 15px;
-    color: var(--ink);
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--sub-acc, var(--thread-acc));
     line-height: 1.2;
-    margin-bottom: 4px;
+    letter-spacing: 0.005em;
+    align-self: center;
   }
   .gloss {
+    grid-column: 1 / -1;
     font-family: var(--font-display);
-    font-size: 13.5px;
-    line-height: 1.4;
-    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    margin-top: 4px;
   }
 
   /* Readings list */
@@ -929,24 +1174,32 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     text-transform: uppercase;
   }
 
-  /* Gallery (art / sculpture) */
-  .gallery { display: flex; flex-direction: column; gap: 18px; }
-  .gallery-fig { margin: 0; }
-  .gallery-plate {
-    background: var(--bg-sunken);
-    border: 1px solid var(--rule);
-    padding: 4px;
-    overflow: hidden;
-    margin-bottom: 6px;
+  /* Works Discussed (art / sculpture) */
+  .works {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-  .gallery-img {
-    width: 100%;
-    max-height: 176px;
-    object-fit: contain;
-    display: block;
-    transition: transform 300ms ease;
+  .works li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
   }
-  .gallery-fig:hover .gallery-img { transform: scale(1.02); }
+  .works li:last-child { border-bottom: 0; }
+  .works .t {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .works .by {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
 
   /* Music items */
   .music-item {
