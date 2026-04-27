@@ -838,14 +838,35 @@ const PEOPLE = [
 // ─── INDEX BY ID ─────────────────────────────────────────────────────────────
 const PEOPLE_INDEX = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
 
-// ─── UNIT COLOR MAP ──────────────────────────────────────────────────────────
+// ─── UNIT ACCENT COLORS ───────────────────────────────────────────────────────
 const UNIT_COLORS = {
-  "00-medieval":     { bg: "#1a1510", accent: "#8B7355", text: "#C4A878" },
-  "01-renaissance":  { bg: "#0f1a10", accent: "#4A7A4A", text: "#7AB87A" },
-  "02-baroque":      { bg: "#1a0f0f", accent: "#8B3A3A", text: "#C47A7A" },
-  "03-enlightenment":{ bg: "#0f1520", accent: "#3A5A8B", text: "#7AAAC4" },
-  "04-romanticism":  { bg: "#1a0f1a", accent: "#7A3A8B", text: "#B47AC4" },
-  "05-modernism":    { bg: "#0f0f0f", accent: "#4A4A4A", text: "#AAAAAA" },
+  "00-medieval":      "#C9A24B",
+  "01-renaissance":   "#B54B3A",
+  "02-baroque":       "#D4A24C",
+  "03-enlightenment": "#6B8CA3",
+  "04-romanticism":   "#3E5B6E",
+  "05-modernism":     "#A03828",
+};
+
+const UNIT_ORDER = [
+  "00-medieval", "01-renaissance", "02-baroque",
+  "03-enlightenment", "04-romanticism", "05-modernism",
+];
+const UNIT_LABELS = {
+  "00-medieval":      "The High Middle Ages",
+  "01-renaissance":   "Renaissance & Reformation",
+  "02-baroque":       "The Baroque",
+  "03-enlightenment": "The Enlightenment",
+  "04-romanticism":   "Romanticism",
+  "05-modernism":     "Modernism",
+};
+const UNIT_TEXTS = {
+  "00-medieval":      "Foundation",
+  "01-renaissance":   "Hamlet",
+  "02-baroque":       "Paradise Lost",
+  "03-enlightenment": "Pride and Prejudice",
+  "04-romanticism":   "Moby-Dick",
+  "05-modernism":     "Invisible Man",
 };
 
 // ─── BIOGRAPHY PANEL ─────────────────────────────────────────────────────────
@@ -859,8 +880,7 @@ function BiographyPanel({ personId, onClose }) {
 
   if (!person) return null;
 
-  const primaryUnit = person.units[0];
-  const colors = UNIT_COLORS[primaryUnit] || UNIT_COLORS["05-modernism"];
+  const accent = UNIT_COLORS[person.units[0]] || "var(--acc)";
 
   return (
     <div
@@ -868,13 +888,12 @@ function BiographyPanel({ personId, onClose }) {
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0,0,0,0.75)",
+        background: "rgba(0,0,0,0.72)",
         backdropFilter: "blur(4px)",
         zIndex: 1000,
         display: "flex",
-        alignItems: "center",
+        alignItems: "stretch",
         justifyContent: "flex-end",
-        padding: "0",
       }}
     >
       <div
@@ -882,27 +901,25 @@ function BiographyPanel({ personId, onClose }) {
         style={{
           width: "min(480px, 100vw)",
           height: "100vh",
-          backgroundColor: "#111",
-          borderLeft: `1px solid ${colors.accent}44`,
+          background: "var(--bg-raised)",
+          borderLeft: "1px solid var(--rule-strong)",
           display: "flex",
           flexDirection: "column",
-          fontFamily: "'Libre Baskerville', Georgia, serif",
           overflowY: "auto",
           animation: "slideIn 0.25s ease-out",
         }}
       >
-        {/* Top accent bar */}
-        <div style={{ height: "3px", backgroundColor: colors.accent, flexShrink: 0 }} />
+        {/* Top accent strip */}
+        <div style={{ height: "4px", background: accent, flexShrink: 0 }} />
 
         {/* Header */}
         <div style={{
-          padding: "32px 32px 24px",
-          borderBottom: `1px solid ${colors.accent}33`,
+          padding: "28px 28px 20px",
+          borderBottom: "1px solid var(--rule)",
           flexShrink: 0,
-          backgroundColor: colors.bg,
         }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", flex: 1, paddingRight: "16px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", flex: 1, paddingRight: "12px" }}>
               {person.portrait && (
                 <img
                   src={person.portrait}
@@ -910,40 +927,38 @@ function BiographyPanel({ personId, onClose }) {
                   style={{
                     width: "72px",
                     height: "72px",
-                    borderRadius: "4px",
                     objectFit: "cover",
                     flexShrink: 0,
-                    border: `1px solid ${colors.accent}44`,
-                    filter: "grayscale(20%)",
+                    border: "1px solid var(--rule)",
                   }}
                 />
               )}
               <div style={{ flex: 1 }}>
                 <div style={{
-                  fontSize: "11px",
-                  color: colors.text,
-                  letterSpacing: "2px",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10.5px",
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  fontFamily: "'DM Sans', sans-serif",
+                  color: accent,
                   marginBottom: "8px",
-                  fontWeight: 500,
                 }}>
                   {person.field}
                 </div>
                 <h2 style={{
-                  fontSize: "clamp(20px, 3vw, 26px)",
-                  fontWeight: 700,
-                  color: "#F0EAE0",
-                  margin: "0 0 6px 0",
-                  lineHeight: 1.2,
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 400,
+                  fontSize: "22px",
+                  lineHeight: 1.15,
+                  color: "var(--ink)",
+                  margin: "0 0 6px",
                 }}>
                   {person.name}
                 </h2>
                 <div style={{
-                  fontSize: "14px",
-                  color: "#888",
-                  fontStyle: "italic",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  color: "var(--ink-soft)",
+                  letterSpacing: "0.06em",
                 }}>
                   {person.dates}
                 </div>
@@ -953,106 +968,78 @@ function BiographyPanel({ personId, onClose }) {
               onClick={onClose}
               style={{
                 background: "none",
-                border: `1px solid ${colors.accent}44`,
-                color: "#888",
+                border: "none",
+                color: "var(--ink-soft)",
                 cursor: "pointer",
-                fontSize: "18px",
-                padding: "6px 10px",
-                borderRadius: "3px",
+                fontSize: "22px",
                 lineHeight: 1,
-                transition: "all 0.15s",
+                padding: "2px 6px",
                 flexShrink: 0,
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = colors.accent;
-                e.currentTarget.style.color = colors.text;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = `${colors.accent}44`;
-                e.currentTarget.style.color = "#888";
-              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--ink)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--ink-soft)"; }}
             >
               ✕
             </button>
           </div>
 
           {/* Unit tags */}
-          <div style={{ display: "flex", gap: "6px", marginTop: "14px", flexWrap: "wrap" }}>
-            {person.units.map((u) => {
-              const c = UNIT_COLORS[u] || UNIT_COLORS["05-modernism"];
-              const labels = {
-                "00-medieval": "Medieval",
-                "01-renaissance": "Renaissance",
-                "02-baroque": "Baroque",
-                "03-enlightenment": "Enlightenment",
-                "04-romanticism": "Romanticism",
-                "05-modernism": "Modernism",
-              };
-              return (
-                <span key={u} style={{
-                  fontSize: "10px",
-                  padding: "3px 8px",
-                  borderRadius: "2px",
-                  backgroundColor: `${c.accent}22`,
-                  border: `1px solid ${c.accent}55`,
-                  color: c.text,
-                  letterSpacing: "1px",
-                  textTransform: "uppercase",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontWeight: 600,
-                }}>
-                  Unit {u.slice(0, 2).replace("0", "").padStart(2, "0")} · {labels[u]}
-                </span>
-              );
-            })}
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+            {person.units.map((u) => (
+              <span key={u} style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "9.5px",
+                padding: "3px 8px",
+                border: `1px solid ${UNIT_COLORS[u] || "var(--rule)"}55`,
+                color: UNIT_COLORS[u] || "var(--ink-soft)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}>
+                {UNIT_LABELS[u]}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Body */}
-        <div style={{ padding: "28px 32px", flex: 1 }}>
-          {/* Bio */}
-          <div style={{ marginBottom: "28px" }}>
-            <div style={{
-              fontSize: "10px",
-              color: colors.text,
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
-              marginBottom: "12px",
-            }}>
-              Life & Work
-            </div>
-            <p style={{
-              fontSize: "15px",
-              lineHeight: 1.8,
-              color: "#C8C0B4",
-              margin: 0,
-            }}>
-              {person.bio}
-            </p>
+        <div style={{ padding: "24px 28px", flex: 1 }}>
+          <div style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "10px",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "var(--ink-soft)",
+            marginBottom: "12px",
+          }}>
+            Life & Work
           </div>
+          <p style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "15px",
+            lineHeight: 1.8,
+            color: "var(--ink-mute)",
+            margin: "0 0 28px",
+          }}>
+            {person.bio}
+          </p>
 
-          {/* Divider */}
-          <div style={{ height: "1px", backgroundColor: `${colors.accent}33`, marginBottom: "28px" }} />
-
-          {/* Significance */}
-          <div>
+          <div style={{ borderTop: "1px solid var(--rule)", paddingTop: "24px" }}>
             <div style={{
+              fontFamily: "var(--font-mono)",
               fontSize: "10px",
-              color: colors.text,
-              letterSpacing: "2px",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
+              color: "var(--ink-soft)",
               marginBottom: "12px",
             }}>
               Significance for This Course
             </div>
             <p style={{
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               fontSize: "15px",
               lineHeight: 1.8,
-              color: "#C8C0B4",
+              color: "var(--ink-mute)",
               margin: 0,
             }}>
               {person.significance}
@@ -1062,21 +1049,22 @@ function BiographyPanel({ personId, onClose }) {
 
         {/* Footer */}
         <div style={{
-          padding: "16px 32px",
-          borderTop: `1px solid ${colors.accent}22`,
-          fontSize: "12px",
-          color: "#555",
-          fontFamily: "'DM Sans', sans-serif",
+          padding: "12px 28px",
+          borderTop: "1px solid var(--rule)",
+          fontFamily: "var(--font-mono)",
+          fontSize: "11px",
+          color: "var(--ink-soft)",
+          letterSpacing: "0.06em",
           flexShrink: 0,
         }}>
-          Press <kbd style={{ background: "#222", border: "1px solid #444", borderRadius: "3px", padding: "1px 5px", fontSize: "11px" }}>Esc</kbd> to close
+          Press Esc to close
         </div>
       </div>
 
       <style>{`
         @keyframes slideIn {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
+          from { transform: translateX(100%); }
+          to { transform: translateX(0); }
         }
       `}</style>
     </div>
@@ -1084,13 +1072,10 @@ function BiographyPanel({ personId, onClose }) {
 }
 
 // ─── BIO LINK ─────────────────────────────────────────────────────────────────
-// Usage: <BioLink id="galileo">Galileo</BioLink>
 export function BioLink({ id, children, onOpen }) {
   const person = PEOPLE_INDEX[id];
   if (!person) return <span>{children}</span>;
-
-  const primaryUnit = person.units[0];
-  const colors = UNIT_COLORS[primaryUnit] || UNIT_COLORS["05-modernism"];
+  const accent = UNIT_COLORS[person.units[0]] || "var(--acc)";
 
   return (
     <button
@@ -1102,20 +1087,20 @@ export function BioLink({ id, children, onOpen }) {
         cursor: "pointer",
         fontFamily: "inherit",
         fontSize: "inherit",
-        color: colors.text,
+        color: accent,
         textDecoration: "underline",
         textDecorationStyle: "dotted",
-        textDecorationColor: `${colors.accent}88`,
+        textDecorationColor: `${accent}88`,
         textUnderlineOffset: "3px",
-        transition: "color 0.15s, text-decoration-color 0.15s",
+        transition: "color 150ms, text-decoration-color 150ms",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.color = "#F0EAE0";
-        e.currentTarget.style.textDecorationColor = colors.accent;
+        e.currentTarget.style.color = "var(--ink)";
+        e.currentTarget.style.textDecorationColor = accent;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = colors.text;
-        e.currentTarget.style.textDecorationColor = `${colors.accent}88`;
+        e.currentTarget.style.color = accent;
+        e.currentTarget.style.textDecorationColor = `${accent}88`;
       }}
     >
       {children}
@@ -1123,29 +1108,105 @@ export function BioLink({ id, children, onOpen }) {
   );
 }
 
-// ─── DEMO APP ─────────────────────────────────────────────────────────────────
-// Groups people by period for browsable demo
-const UNIT_ORDER = [
-  "00-medieval", "01-renaissance", "02-baroque",
-  "03-enlightenment", "04-romanticism", "05-modernism",
-];
-const UNIT_LABELS = {
-  "00-medieval": "The High Middle Ages",
-  "01-renaissance": "Renaissance & Reformation",
-  "02-baroque": "The Baroque",
-  "03-enlightenment": "The Enlightenment",
-  "04-romanticism": "Romanticism",
-  "05-modernism": "Modernism",
-};
-const UNIT_TEXTS = {
-  "00-medieval": "Foundation",
-  "01-renaissance": "Hamlet",
-  "02-baroque": "Paradise Lost",
-  "03-enlightenment": "Pride and Prejudice",
-  "04-romanticism": "Moby-Dick",
-  "05-modernism": "Invisible Man",
-};
+// ─── PERSON CARD ─────────────────────────────────────────────────────────────
+function PersonCard({ person, onClick }) {
+  const accent = UNIT_COLORS[person.units[0]] || "var(--acc)";
+  const [hovered, setHovered] = useState(false);
 
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: "relative",
+        background: hovered ? "#221d19" : "var(--bg-raised)",
+        border: hovered ? "1px solid var(--rule-strong)" : "1px solid var(--rule)",
+        padding: "12px 14px 12px 22px",
+        cursor: "pointer",
+        textAlign: "left",
+        transition: "background 150ms, border-color 150ms",
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        width: "100%",
+      }}
+    >
+      {/* Left accent swatch */}
+      <div style={{
+        position: "absolute", left: 0, top: 0, bottom: 0,
+        width: "4px",
+        background: accent,
+      }} />
+
+      {/* Portrait */}
+      {person.portrait ? (
+        <img
+          src={person.portrait}
+          alt={person.name}
+          style={{
+            width: "40px",
+            height: "40px",
+            objectFit: "cover",
+            flexShrink: 0,
+            border: "1px solid var(--rule)",
+          }}
+        />
+      ) : (
+        <div style={{
+          width: "40px",
+          height: "40px",
+          flexShrink: 0,
+          background: "var(--bg-sunken)",
+          border: "1px solid var(--rule)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "var(--font-mono)",
+          fontSize: "12px",
+          color: "var(--ink-soft)",
+          letterSpacing: "0.04em",
+        }}>
+          {person.name.split(' ').filter(w => w[0] === w[0]?.toUpperCase()).slice(-2).map(w => w[0]).join('')}
+        </div>
+      )}
+
+      {/* Info */}
+      <div style={{ minWidth: 0 }}>
+        <div style={{
+          fontFamily: "var(--font-display)",
+          fontWeight: 400,
+          fontSize: "15px",
+          color: "var(--ink)",
+          marginBottom: "3px",
+          lineHeight: 1.2,
+        }}>
+          {person.name}
+        </div>
+        <div style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "10.5px",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--ink-soft)",
+        }}>
+          {person.field}
+        </div>
+        <div style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "10.5px",
+          color: "var(--ink-soft)",
+          marginTop: "2px",
+          opacity: 0.75,
+        }}>
+          {person.dates}
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ─── MAIN PAGE COMPONENT ──────────────────────────────────────────────────────
 function groupByPrimaryUnit(people) {
   const groups = {};
   UNIT_ORDER.forEach((u) => { groups[u] = []; });
@@ -1159,6 +1220,7 @@ function groupByPrimaryUnit(people) {
 export default function BiographyDemo() {
   const [activePerson, setActivePerson] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeUnit, setActiveUnit] = useState(null);
 
   const groups = groupByPrimaryUnit(PEOPLE);
 
@@ -1167,48 +1229,58 @@ export default function BiographyDemo() {
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.field.toLowerCase().includes(searchQuery.toLowerCase()) ||
         UNIT_LABELS[p.units[0]].toLowerCase().includes(searchQuery.toLowerCase())
-      )
+      ).filter((p) => !activeUnit || p.units[0] === activeUnit)
     : null;
 
+  const tabStyle = (active, activeColor) => ({
+    fontFamily: "var(--font-mono)",
+    fontSize: "11px",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    padding: "5px 14px",
+    background: active ? "var(--bg-raised)" : "none",
+    border: active
+      ? `1px solid ${activeColor || "var(--rule-strong)"}`
+      : "1px solid transparent",
+    color: active ? "var(--ink)" : "var(--ink-soft)",
+    cursor: "pointer",
+    transition: "color 150ms, background 150ms, border-color 150ms",
+  });
+
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#0a0a0a",
-      color: "#e8e0d4",
-      fontFamily: "'DM Sans', sans-serif",
-    }}>
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-      {/* Header */}
+    <div>
+      {/* Period filter tabs */}
       <div style={{
-        borderBottom: "1px solid #1e1e1e",
-        padding: "48px 40px 32px",
-        maxWidth: "900px",
-        margin: "0 auto",
+        borderBottom: "1px solid var(--rule)",
+        background: "var(--bg)",
+        padding: "0 var(--gutter)",
       }}>
-        <p style={{ fontSize: "11px", color: "#555", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 12px", fontWeight: 600 }}>
-          AP Literature · Background Materials
-        </p>
-        <h1 style={{
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-          fontSize: "clamp(26px, 4vw, 38px)",
-          fontWeight: 700,
-          margin: "0 0 10px",
-          color: "#F0EAE0",
-          letterSpacing: "-0.5px",
+        <div style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "2px",
+          padding: "12px 0",
         }}>
-          Biographical Index
-        </h1>
-        <p style={{ fontSize: "15px", color: "#666", margin: "0 0 28px", lineHeight: 1.6, maxWidth: "540px" }}>
-          Writers, philosophers, artists, and composers across the course — click any name to open a biographical sketch.
-        </p>
+          <button onClick={() => setActiveUnit(null)} style={tabStyle(!activeUnit, "var(--rule-strong)")}>
+            All Periods
+          </button>
+          {UNIT_ORDER.map((u) => (
+            <button key={u} onClick={() => setActiveUnit(u)} style={tabStyle(activeUnit === u, UNIT_COLORS[u])}>
+              {UNIT_LABELS[u]}
+            </button>
+          ))}
+        </div>
+      </div>
 
-        {/* Search */}
-        <div style={{ position: "relative", maxWidth: "360px" }}>
-          <span style={{
-            position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
-            color: "#555", fontSize: "14px", pointerEvents: "none",
-          }}>⌕</span>
+      {/* Search bar */}
+      <div style={{
+        background: "var(--bg-sunken)",
+        borderBottom: "1px solid var(--rule)",
+        padding: "10px var(--gutter)",
+      }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <input
             type="text"
             placeholder="Search by name, field, or period…"
@@ -1216,172 +1288,88 @@ export default function BiographyDemo() {
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: "100%",
-              padding: "10px 14px 10px 34px",
-              backgroundColor: "#141414",
-              border: "1px solid #2a2a2a",
-              borderRadius: "4px",
-              color: "#e8e0d4",
+              maxWidth: "400px",
+              padding: "8px 14px",
+              background: "var(--bg-sunken)",
+              border: "1px solid var(--rule)",
+              color: "var(--ink)",
+              fontFamily: "var(--font-ui)",
               fontSize: "14px",
-              fontFamily: "'DM Sans', sans-serif",
               outline: "none",
-              boxSizing: "border-box",
             }}
           />
         </div>
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px 80px" }}>
-
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 var(--gutter) 80px" }}>
         {filteredPeople ? (
-          // Search results
           <div>
-            <div style={{ padding: "24px 0 16px", fontSize: "13px", color: "#555" }}>
+            <div style={{
+              padding: "24px 0 16px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
+              color: "var(--ink-soft)",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}>
               {filteredPeople.length} result{filteredPeople.length !== 1 ? "s" : ""}
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "8px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "8px" }}>
               {filteredPeople.map((p) => (
                 <PersonCard key={p.id} person={p} onClick={() => setActivePerson(p.id)} />
               ))}
             </div>
           </div>
         ) : (
-          // Grouped by unit
-          UNIT_ORDER.map((unitId) => {
-            const people = groups[unitId];
-            if (!people.length) return null;
-            const colors = UNIT_COLORS[unitId];
-            return (
-              <div key={unitId} style={{ paddingTop: "48px" }}>
-                {/* Unit header */}
-                <div style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: "12px",
-                  marginBottom: "20px",
-                  paddingBottom: "12px",
-                  borderBottom: `1px solid ${colors.accent}33`,
-                }}>
-                  <h2 style={{
-                    fontFamily: "'Libre Baskerville', Georgia, serif",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    color: colors.text,
-                    margin: 0,
+          UNIT_ORDER
+            .filter((u) => !activeUnit || u === activeUnit)
+            .map((unitId) => {
+              const people = groups[unitId];
+              if (!people.length) return null;
+              const accent = UNIT_COLORS[unitId];
+              return (
+                <div key={unitId} style={{ paddingTop: "48px" }}>
+                  {/* Section label */}
+                  <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    marginBottom: "20px",
+                    paddingBottom: "14px",
+                    borderBottom: "1px solid var(--rule)",
                   }}>
-                    {UNIT_LABELS[unitId]}
-                  </h2>
-                  <span style={{ fontSize: "13px", color: "#555", fontStyle: "italic" }}>
-                    {UNIT_TEXTS[unitId]}
-                  </span>
-                </div>
+                    <div style={{ width: "3px", height: "14px", background: accent, flexShrink: 0 }} />
+                    <span style={{
+                      fontFamily: "var(--font-ui)",
+                      fontSize: "11px",
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "var(--ink-soft)",
+                    }}>
+                      {UNIT_LABELS[unitId]}
+                    </span>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--ink-soft)", opacity: 0.5 }}>·</span>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontStyle: "italic", color: "var(--ink-soft)" }}>
+                      {UNIT_TEXTS[unitId]}
+                    </span>
+                  </div>
 
-                {/* Person cards */}
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-                  gap: "8px",
-                }}>
-                  {people.map((p) => (
-                    <PersonCard key={p.id} person={p} onClick={() => setActivePerson(p.id)} />
-                  ))}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "8px" }}>
+                    {people.map((p) => (
+                      <PersonCard key={p.id} person={p} onClick={() => setActivePerson(p.id)} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })
+              );
+            })
         )}
       </div>
 
-      {/* Biography panel */}
       {activePerson && (
-        <BiographyPanel
-          personId={activePerson}
-          onClose={() => setActivePerson(null)}
-        />
+        <BiographyPanel personId={activePerson} onClose={() => setActivePerson(null)} />
       )}
     </div>
-  );
-}
-
-function PersonCard({ person, onClick }) {
-  const colors = UNIT_COLORS[person.units[0]] || UNIT_COLORS["05-modernism"];
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? colors.bg : "#111",
-        border: hovered ? `1px solid ${colors.accent}88` : "1px solid #1e1e1e",
-        borderRadius: "4px",
-        padding: "14px 16px",
-        cursor: "pointer",
-        textAlign: "left",
-        transition: "all 0.18s",
-        transform: hovered ? "translateY(-1px)" : "none",
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-      }}
-    >
-      {person.portrait ? (
-        <img
-          src={person.portrait}
-          alt={person.name}
-          style={{
-            width: "40px",
-            height: "40px",
-            borderRadius: "3px",
-            objectFit: "cover",
-            flexShrink: 0,
-            filter: "grayscale(30%)",
-            opacity: hovered ? 1 : 0.75,
-            transition: "opacity 0.18s",
-          }}
-        />
-      ) : (
-        <div style={{
-          width: "40px",
-          height: "40px",
-          borderRadius: "3px",
-          flexShrink: 0,
-          backgroundColor: `${colors.accent}22`,
-          border: `1px solid ${colors.accent}44`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "13px",
-          fontWeight: 600,
-          color: colors.text,
-          fontFamily: "'DM Sans', sans-serif",
-          letterSpacing: "0.02em",
-          opacity: hovered ? 1 : 0.7,
-          transition: "opacity 0.18s",
-        }}>
-          {person.name.split(' ').filter(w => w[0] === w[0]?.toUpperCase()).slice(-2).map(w => w[0]).join('')}
-        </div>
-      )}
-      <div>
-        <div style={{
-          fontSize: "15px",
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-          color: hovered ? colors.text : "#D4CCC0",
-          marginBottom: "3px",
-          transition: "color 0.18s",
-        }}>
-          {person.name}
-        </div>
-        <div style={{
-          fontSize: "12px",
-          color: "#555",
-          fontFamily: "'DM Sans', sans-serif",
-        }}>
-          {person.dates} · {person.field}
-        </div>
-      </div>
-    </button>
   );
 }
 
