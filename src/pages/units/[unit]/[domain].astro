@@ -1,12 +1,13 @@
 ---
 import { getEntry, render } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
+import Plate from '../../../components/Plate.astro';
+import MusicPlate from '../../../components/MusicPlate.astro';
 
-// ── Static paths ─────────────────────────────────────────────────────────────
+// ── Static paths ──────────────────────────────────────────────────────────────
 
 const UNIT_IDS = [
   '00-medieval',
@@ -28,9 +29,7 @@ export async function getStaticPaths() {
     '04-romanticism',
     '05-modernism',
   ] as const;
-
   const domains = ['philosophy', 'art', 'music', 'sculpture'] as const;
-
   const paths = [];
   for (let i = 0; i < ids.length; i++) {
     for (const domain of domains) {
@@ -46,12 +45,11 @@ export async function getStaticPaths() {
   return paths;
 }
 
-// ── Load content ─────────────────────────────────────────────────────────────
+// ── Load content ──────────────────────────────────────────────────────────────
 
 const { unit, domain } = Astro.params;
 const { prevUnit, nextUnit } = Astro.props;
 
-// Always load philosophy for the unit header metadata
 const philosophy = await getEntry('units', `${unit}/philosophy`);
 const entry = domain === 'philosophy'
   ? philosophy
@@ -61,31 +59,30 @@ const { Content } = await render(entry);
 
 const meta = philosophy.data;
 const unitNumber = unit.slice(0, 2);
+const nextUnitNumber = nextUnit ? nextUnit.slice(0, 2) : null;
 
 // ── Accent colors ─────────────────────────────────────────────────────────────
 
-const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#5b82c8',
-  '01-renaissance':   '#e8a820',
-  '02-baroque':       '#dc5f6c',
-  '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#b978d2',
-  '05-modernism':     '#3aa87a',
+const ACCENTS: Record<string, {
+  philosophy: string;
+  art: string;
+  sculpture: string;
+  music: string;
+  subThreads: [string, string, string];
+}> = {
+  '00-medieval':      { philosophy: '#C9A24B', art: '#C47A5A', sculpture: '#8A9A7B', music: '#A89553', subThreads: ['#C9A24B', '#A89553', '#C47A5A'] },
+  '01-renaissance':   { philosophy: '#B54B3A', art: '#A8663A', sculpture: '#96583A', music: '#966B3A', subThreads: ['#B54B3A', '#966B3A', '#A8663A'] },
+  '02-baroque':       { philosophy: '#D4A24C', art: '#C47A5A', sculpture: '#B5714A', music: '#B09040', subThreads: ['#D4A24C', '#B09040', '#C47A5A'] },
+  '03-enlightenment': { philosophy: '#6B8CA3', art: '#7A8F88', sculpture: '#6A8A78', music: '#6B8A98', subThreads: ['#6B8CA3', '#6B8A98', '#7A8F88'] },
+  '04-romanticism':   { philosophy: '#3E5B6E', art: '#4A6B5E', sculpture: '#3E6055', music: '#3E526B', subThreads: ['#3E5B6E', '#3E526B', '#4A6B5E'] },
+  '05-modernism':     { philosophy: '#A03828', art: '#8A4A38', sculpture: '#7A4030', music: '#8A5028', subThreads: ['#A03828', '#8A5028', '#8A4A38'] },
 };
-const accent = UNIT_ACCENTS[unit] ?? '#e8a820';
 
-// Sculpture uses a terracotta accent for gallery captions
-const SCULPTURE_ACCENT = '#B5714A';
+const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
+const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
+const subThreadColors = colors.subThreads;
 
-const THREAD_COLORS = ['#e09438', '#c84068', '#48a888'];
-const SCULPTURE_THREAD_COLORS = ['#B5714A', '#9E5E38', '#C8845A'];
-
-const accentText  = `color: ${accent};`;
-const badgeStyle  = `background-color: color-mix(in srgb, ${accent} 15%, #1a140c); color: ${accent};`;
-const activeTab   = `border-color: ${accent}; color: ${accent}; background-color: color-mix(in srgb, ${accent} 8%, #1a140c);`;
-const inactiveTab = `border-color: transparent; color: #a5967d;`;
-
-// ── Prev / next labels ────────────────────────────────────────────────────────
+// ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
 const prevLabel = prevUnit
   ? (await getEntry('units', `${prevUnit}/philosophy`))?.data.period
@@ -94,7 +91,7 @@ const nextLabel = nextUnit
   ? (await getEntry('units', `${nextUnit}/philosophy`))?.data.period
   : null;
 
-// ── Domain tab config ─────────────────────────────────────────────────────────
+// ── Domain display config ─────────────────────────────────────────────────────
 
 const DOMAIN_LABELS: Record<string, string> = {
   philosophy: 'Philosophy',
@@ -103,315 +100,1185 @@ const DOMAIN_LABELS: Record<string, string> = {
   music:      'Music',
 };
 
-const activeTabs = [
-  { id: 'philosophy', label: 'Philosophy' },
-  { id: 'art',        label: 'Painting'   },
-  { id: 'sculpture',  label: 'Sculpture'  },
-  { id: 'music',      label: 'Music'      },
-];
+const DOMAIN_THREAD_LABEL: Record<string, string> = {
+  philosophy: 'Thread I · Philosophy',
+  art:        'Thread II · Painting',
+  sculpture:  'Thread III · Sculpture',
+  music:      'Thread IV · Music',
+};
 
-const threadColors = domain === 'sculpture' ? SCULPTURE_THREAD_COLORS : THREAD_COLORS;
+// ── Domain sigil SVG content (injected via set:html to avoid multi-conditional parser issues) ──
+const DOMAIN_SIGIL_SVG: Record<string, string> = {
+  philosophy: `<circle cx="20" cy="20" r="14" fill="none"/><circle cx="20" cy="20" r="8" fill="none"/><circle cx="20" cy="20" r="1.8" fill="currentColor" stroke="none"/>`,
+  art:        `<rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)" fill="none"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/>`,
+  sculpture:  `<path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z" fill="none"/><path d="M6 14 L20 22 L34 14" fill="none"/><line x1="20" y1="22" x2="20" y2="36"/>`,
+  music:      `<path d="M6 24 A14 14 0 0 1 34 24" fill="none"/><circle cx="20" cy="24" r="2" fill="currentColor" stroke="none"/><line x1="6" y1="32" x2="34" y2="32"/>`,
+};
+const sigilSvg = DOMAIN_SIGIL_SVG[domain] ?? DOMAIN_SIGIL_SVG.philosophy;
+
+const DOMAIN_TITLES: Record<string, string> = {
+  philosophy: 'Philosophical Context',
+  art:        'Visual Art',
+  sculpture:  'Sculpture',
+  music:      'Musical Context',
+};
 
 const currentLabel = DOMAIN_LABELS[domain] ?? domain;
+const threadLabel  = DOMAIN_THREAD_LABEL[domain] ?? domain;
+
+// ── Within-unit thread navigation ─────────────────────────────────────────────
+
+const DOMAIN_ORDER = ['philosophy', 'art', 'sculpture', 'music'] as const;
+const domainIdx   = DOMAIN_ORDER.indexOf(domain as typeof DOMAIN_ORDER[number]);
+const prevDomain  = domainIdx > 0 ? DOMAIN_ORDER[domainIdx - 1] : null;
+const nextDomain  = domainIdx < DOMAIN_ORDER.length - 1 ? DOMAIN_ORDER[domainIdx + 1] : null;
+const prevDomainLabel = prevDomain ? (DOMAIN_LABELS[prevDomain] ?? prevDomain) : null;
+const nextDomainLabel = nextDomain ? (DOMAIN_LABELS[nextDomain] ?? nextDomain) : null;
+const domainTitle  = DOMAIN_TITLES[domain] ?? domain;
+const pageTitle    = `${meta.period}: ${currentLabel} — AP Literature`;
+const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 ---
 
-<Layout title={`${meta.period}: ${currentLabel} — AP Literature`}>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>{pageTitle}</title>
+</head>
+<body style={`--thread-acc: ${threadAcc};`}>
 
-  <!-- ── Unit header ─────────────────────────────────────────────── -->
-  <div class="border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6 py-8">
+<!-- ── Top nav ── -->
+<div class="topbar">
+  <a href="/" class="brand">AP Literature</a>
+  <nav class="nav">
+    <a href="/timeline">Timeline</a>
+    <a href="/people">People</a>
+    <a href="/compare">Compare</a>
+    <a href="/seeing-through-paint">Painting</a>
+    <a href="/sculpting-through-time">Sculpture</a>
+    <a href="/hearing-through-form">Music</a>
+  </nav>
+</div>
 
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-xs text-[#a09070] mb-4">
-        <a href={`/units/${unit}`} class="hover:text-[#f2e8d5] transition-colors">
-          {meta.period}
-        </a>
-        <span class="text-[#4a3a28]">›</span>
-        <span style={accentText}>{currentLabel}</span>
-      </nav>
+<!-- ── Breadcrumb ── -->
+<div class="crumb">
+  <a href="/">Home</a>
+  <span class="sep">/</span>
+  <a href={`/units/${unit}`}>{crumbUnit}</a>
+  <span class="sep">/</span>
+  <span class="here">{currentLabel}</span>
+</div>
 
-      <p class="text-xs font-semibold tracking-widest uppercase mb-2" style={accentText}>
-        Unit {unitNumber}
-      </p>
-      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] mb-1">
-        {meta.period}
-      </h1>
-      <p class="text-[#a09070] text-sm mb-4">{meta.dates}</p>
-
-      {meta.core_text ? (
-        <div class="inline-flex items-baseline gap-2 rounded px-3 py-1.5" style={badgeStyle}>
-          <span class="text-xs font-semibold uppercase tracking-wider opacity-60">Core Text</span>
-          <span class="font-serif italic text-[#f2e8d5]">{meta.core_text}</span>
-          {meta.author && <span class="text-[#a09070] text-sm">— {meta.author}</span>}
-        </div>
-      ) : (
-        <p class="text-sm italic text-[#a5967d]">{meta.note}</p>
-      )}
-    </div>
+<!-- ── Unit strip ── -->
+<section class="unit-strip">
+  <div class="num">{unitNumber}</div>
+  <div class="title-block">
+    <div class="meta">Unit · {meta.core_text ? 'Anchor text' : 'Foundation'}</div>
+    <h2>{meta.period}</h2>
   </div>
+  <div class="dates">{meta.dates}</div>
+</section>
 
-  <!-- ── Sibling tab navigation ───────────────────────────────────── -->
-  <div class="border-b border-[#3d2e1a] sticky top-[49px] z-30" style="background-color: #1a140c;">
-    <div class="max-w-5xl mx-auto px-6">
-      <nav class="flex gap-1 flex-wrap" aria-label="Unit domains">
-        {activeTabs.map((tab) => (
-          <a
-            href={`/units/${unit}/${tab.id}`}
-            class="px-5 py-3.5 text-sm font-medium border-b-2 transition-colors -mb-px"
-            style={domain === tab.id ? activeTab : inactiveTab}
-            aria-current={domain === tab.id ? 'page' : undefined}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </nav>
-    </div>
+<!-- ── Thread tabs ── -->
+<nav class="tabs" aria-label="Analytical threads">
+  <a class={`tab${domain === 'philosophy' ? ' active' : ''}`} href={`/units/${unit}/philosophy`} aria-current={domain === 'philosophy' ? 'page' : undefined}>
+    <span class="mini" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="20" cy="20" r="14" />
+        <circle cx="20" cy="20" r="8" />
+        <circle cx="20" cy="20" r="1.8" style="fill:currentColor;stroke:none;" />
+      </svg>
+    </span>
+    <span>Philosophy</span>
+  </a>
+  <a class={`tab${domain === 'art' ? ' active' : ''}`} href={`/units/${unit}/art`} aria-current={domain === 'art' ? 'page' : undefined}>
+    <span class="mini" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)" />
+        <circle cx="20" cy="20" r="1.5" style="fill:currentColor;stroke:none;" />
+      </svg>
+    </span>
+    <span>Painting</span>
+  </a>
+  <a class={`tab${domain === 'sculpture' ? ' active' : ''}`} href={`/units/${unit}/sculpture`} aria-current={domain === 'sculpture' ? 'page' : undefined}>
+    <span class="mini" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z" />
+        <path d="M6 14 L20 22 L34 14" />
+        <line x1="20" y1="22" x2="20" y2="36" />
+      </svg>
+    </span>
+    <span>Sculpture</span>
+  </a>
+  <a class={`tab${domain === 'music' ? ' active' : ''}`} href={`/units/${unit}/music`} aria-current={domain === 'music' ? 'page' : undefined}>
+    <span class="mini" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 24 A14 14 0 0 1 34 24" />
+        <circle cx="20" cy="24" r="2" style="fill:currentColor;stroke:none;" />
+        <line x1="6" y1="32" x2="34" y2="32" />
+      </svg>
+    </span>
+    <span>Music</span>
+  </a>
+</nav>
+
+<!-- ── Page head ── -->
+<section class="page-head">
+  <div class="sigil-lg" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" set:html={sigilSvg} />
   </div>
+  <div>
+    <div class="page-lbl">{threadLabel}</div>
+    <h1>{domainTitle}: <em>{meta.period}</em></h1>
+  </div>
+</section>
 
-  <!-- ── Domain content ───────────────────────────────────────────── -->
-  <main class="max-w-5xl mx-auto px-6 py-10">
-
-    {/* ── Art: hero painting ── */}
-    {domain === 'art' && entry.data.hero_painting?.image && (
-      <figure class="mb-10">
-        <div class="rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 520px; background-color: #0e0b06; padding: 6px; border: 1px solid rgba(180,165,140,0.25);">
-          <img
-            src={entry.data.hero_painting.image}
-            alt={entry.data.hero_painting.title}
-            class="w-full h-full object-contain rounded-lg"
-            style="max-height: 508px;"
-          />
+<!-- ── Hero image (art / sculpture) ── -->
+{(() => {
+  const d = entry.data as any;
+  if (domain === 'art' && d.hero_painting) {
+    const p = d.hero_painting;
+    const metaLines = [p.date, p.medium, p.location].filter(Boolean).join('\n');
+    return (
+      <figure class="hero-plate">
+        <div class="img">
+          {p.image && <img src={p.image} alt={p.title} class="hero-img-full" />}
+          <div class="stamp">{p.artist}</div>
         </div>
-        <figcaption class="mt-3 text-center">
-          <p class="font-serif italic text-sm text-[#f2e8d5]">{entry.data.hero_painting.title}</p>
-          <p class="text-xs text-[#a09070] mt-0.5">{entry.data.hero_painting.artist}</p>
-          <p class="text-xs mt-0.5" style="color: #C9973A;">
-            {entry.data.hero_painting.date}
-            {entry.data.hero_painting.medium && <span> · {entry.data.hero_painting.medium}</span>}
-            {entry.data.hero_painting.location && <span> · {entry.data.hero_painting.location}</span>}
-          </p>
-        </figcaption>
-      </figure>
-    )}
-
-    {/* ── Sculpture: hero sculpture ── */}
-    {domain === 'sculpture' && entry.data.hero_sculpture?.image && (
-      <figure class="mb-10">
-        <div class="rounded-xl overflow-hidden flex items-center justify-center" style={`max-height: 520px; background-color: #0e0b06; padding: 6px; border: 1px solid rgba(181,113,74,0.3);`}>
-          <img
-            src={entry.data.hero_sculpture.image}
-            alt={entry.data.hero_sculpture.title}
-            class="w-full h-full object-contain rounded-lg"
-            style="max-height: 508px;"
-          />
-        </div>
-        <figcaption class="mt-3 text-center">
-          <p class="font-serif italic text-sm text-[#f2e8d5]">{entry.data.hero_sculpture.title}</p>
-          <p class="text-xs text-[#a09070] mt-0.5">{entry.data.hero_sculpture.artist}</p>
-          <p class="text-xs mt-0.5" style={`color: ${SCULPTURE_ACCENT};`}>
-            {entry.data.hero_sculpture.date}
-            {entry.data.hero_sculpture.medium && <span> · {entry.data.hero_sculpture.medium}</span>}
-            {entry.data.hero_sculpture.location && <span> · {entry.data.hero_sculpture.location}</span>}
-          </p>
-        </figcaption>
-      </figure>
-    )}
-
-    <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
-
-      <!-- Main prose -->
-      <div
-        class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none"
-        style={`--prose-drop-cap-color: ${accent};`}
-      >
-        <Content components={{ BioLink, PullQuote }} />
-      </div>
-
-      <!-- Sidebar -->
-      <aside class="mt-10 lg:mt-0 space-y-6">
-
-        <!-- Analytical Threads -->
-        <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">
-            Analytical Threads
-          </h3>
-          <div class="space-y-3">
-            {entry.data.threads.map((t, i) => {
-              const tc = threadColors[i % threadColors.length];
-              return (
-                <div
-                  class="border rounded-lg p-3"
-                  style={`background-color: color-mix(in srgb, ${tc} 18%, #1a140c); border-color: color-mix(in srgb, ${tc} 55%, transparent);`}
-                >
-                  <p class="text-xs font-semibold mb-1 flex items-center gap-1.5" style={`color: ${tc};`}>
-                    <ThreadIcon thread={t.id} size={16} />{t.label}
-                  </p>
-                  <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ── Philosophy: readings ── */}
-        {domain === 'philosophy' && entry.data.readings && (
+        <figcaption class="caption">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Readings</h3>
-            <ul class="space-y-2">
-              {entry.data.readings.map((r) => (
-                <li class="border-l-2 border-[#3d2e1a] pl-3">
-                  <p class="text-sm font-medium text-[#f2e8d5] leading-snug">{r.title}</p>
-                  <p class="text-xs text-[#a09070]">
-                    {r.author}{r.date ? ` · ${r.date}` : ''}
-                  </p>
+            <div class="title">{p.title}</div>
+            <div class="byline">{p.artist}</div>
+          </div>
+          <div class="meta">{metaLines}</div>
+        </figcaption>
+      </figure>
+    );
+  }
+  if (domain === 'sculpture' && d.hero_sculpture) {
+    const s = d.hero_sculpture;
+    const metaLines = [s.date, s.medium, s.location].filter(Boolean).join('\n');
+    return (
+      <figure class="hero-plate">
+        <div class="img">
+          {s.image && <img src={s.image} alt={s.title} class="hero-img-full" />}
+          <div class="stamp">{s.artist}</div>
+        </div>
+        <figcaption class="caption">
+          <div>
+            <div class="title">{s.title}</div>
+            <div class="byline">{s.artist}</div>
+          </div>
+          <div class="meta">{metaLines}</div>
+        </figcaption>
+      </figure>
+    );
+  }
+  if (domain === 'music' && d.featured_listening) {
+    const fl = d.featured_listening;
+    const item = Array.isArray(fl) ? fl[0] : fl;
+    const metaLines = [item.date, item.duration].filter(Boolean).join('\n');
+    const ytUrl = item.youtube_id ? `https://www.youtube.com/watch?v=${item.youtube_id}` : null;
+    return (
+      <figure class="hero-plate music">
+        <a
+          class="img"
+          href={ytUrl ?? '#'}
+          target={ytUrl ? '_blank' : undefined}
+          rel={ytUrl ? 'noopener noreferrer' : undefined}
+          aria-label={`Play ${item.title}`}
+        >
+          <div class="staff" aria-hidden="true">
+            <div class="line" style="top:38%"></div>
+            <div class="line" style="top:48%"></div>
+            <div class="line" style="top:58%"></div>
+            <div class="line" style="top:68%"></div>
+          </div>
+          <div class="stamp">[ LISTENING 01 · HERO ]</div>
+          <div class="play" aria-hidden="true"></div>
+        </a>
+        <figcaption class="caption">
+          <div>
+            <div class="title">{item.title}</div>
+            <div class="byline">{item.composer} · via YouTube</div>
+          </div>
+          <div class="meta">{metaLines}</div>
+        </figcaption>
+      </figure>
+    );
+  }
+  return null;
+})()}
+
+<!-- ── Two-column layout ── -->
+<div class="layout">
+
+  <article class="prose">
+    <Content components={{ BioLink, PullQuote, Plate, MusicPlate }} />
+  </article>
+
+  <!-- ── Sidebar ── -->
+  <aside>
+
+    <!-- Analytical Threads -->
+    <div class="card">
+      <h4>Analytical Threads</h4>
+      <ul class="threads-list">
+        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
+          const subAcc = subThreadColors[i % subThreadColors.length];
+          return (
+            <li style={`--sub-acc: ${subAcc};`}>
+              <span class="sig-xs">
+                <ThreadIcon thread={t.id} size={20} />
+              </span>
+              <div>
+                <div class="tt">{t.label}</div>
+                <div class="gloss">{t.period_summary}</div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    {/* ── Domain-specific sidebar card ── */}
+    {(() => {
+      const d = entry.data as any;
+      if (domain === 'philosophy' && d.readings) {
+        return (
+          <div class="card">
+            <h4>Readings</h4>
+            <ul class="readings">
+              {d.readings.map((r: any) => (
+                <li>
+                  <div class="r-title">{r.title}</div>
+                  <div class="r-by">{r.author}{r.date ? ` · ${r.date}` : ''}</div>
                 </li>
               ))}
             </ul>
           </div>
-        )}
-
-        {/* ── Art: gallery ── */}
-        {domain === 'art' && entry.data.gallery_paintings && entry.data.gallery_paintings.length > 0 && (
-          <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Gallery</h3>
-            <div class="space-y-4">
-              {entry.data.gallery_paintings.map((p) => (
-                <figure class="group">
-                  {p.image && (
-                    <div class="rounded-lg overflow-hidden mb-1.5" style="background-color: #0e0b06; padding: 4px; border: 1px solid rgba(180,165,140,0.2);">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        class="w-full object-contain rounded transition-transform duration-300 group-hover:scale-[1.02]"
-                        style="max-height: 176px;"
-                      />
-                    </div>
-                  )}
-                  <figcaption class="mt-1">
-                    <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{p.title}</p>
-                    <p class="text-xs" style="color: #C9973A;">{p.artist} · {p.date}</p>
-                  </figcaption>
-                </figure>
+        );
+      }
+      if (domain === 'art' && d.gallery_paintings?.length) {
+        return (
+          <div class="card">
+            <h4>Works Discussed</h4>
+            <ul class="works">
+              {d.gallery_paintings.map((p: any) => (
+                <li>
+                  <div class="t">{p.title}</div>
+                  <div class="by">{p.artist}{p.date ? ` · ${p.date}` : ''}</div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
-
-        {/* ── Sculpture: gallery ── */}
-        {domain === 'sculpture' && entry.data.gallery_sculptures && entry.data.gallery_sculptures.length > 0 && (
-          <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Gallery</h3>
-            <div class="space-y-4">
-              {entry.data.gallery_sculptures.map((s) => (
-                <figure class="group">
-                  {s.image && (
-                    <div class="rounded-lg overflow-hidden mb-1.5" style={`background-color: #0e0b06; padding: 4px; border: 1px solid rgba(181,113,74,0.25);`}>
-                      <img
-                        src={s.image}
-                        alt={s.title}
-                        class="w-full object-contain rounded transition-transform duration-300 group-hover:scale-[1.02]"
-                        style="max-height: 176px;"
-                      />
-                    </div>
-                  )}
-                  <figcaption class="mt-1">
-                    <p class="text-xs font-serif italic text-[#f2e8d5] leading-snug">{s.title}</p>
-                    <p class="text-xs" style={`color: ${SCULPTURE_ACCENT};`}>{s.artist} · {s.date}</p>
-                  </figcaption>
-                </figure>
+        );
+      }
+      if (domain === 'sculpture' && d.gallery_sculptures?.length) {
+        return (
+          <div class="card">
+            <h4>Works Discussed</h4>
+            <ul class="works">
+              {d.gallery_sculptures.map((s: any) => (
+                <li>
+                  <div class="t">{s.title}</div>
+                  <div class="by">{s.artist}{s.date ? ` · ${s.date}` : ''}</div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
-
-        {/* ── Music: featured listening ── */}
-        {domain === 'music' && entry.data.featured_listening && (
-          <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">
-              Featured Listening
-            </h3>
-            {(Array.isArray(entry.data.featured_listening)
-              ? entry.data.featured_listening
-              : [entry.data.featured_listening]
-            ).map((item) => (
-              <div class="border border-[#3d2e1a] rounded-lg overflow-hidden mb-2" style="background-color: #231a0f;">
-                {item.youtube_id && (
-                  <YouTubeEmbed id={item.youtube_id} title={item.title} />
-                )}
-                <div class="p-3">
-                  <p class="text-sm font-serif italic font-bold text-[#f2e8d5] leading-snug">{item.title}</p>
-                  <p class="text-xs text-[#a09070] mt-1">{item.composer} · {item.date}</p>
-                  {item.duration && <p class="text-xs text-[#a5967d] mt-0.5">{item.duration}</p>}
-                  {item.listen_for && (
-                    <p class="text-xs text-[#a09070] mt-2 leading-relaxed border-t border-[#3d2e1a] pt-2">
-                      {item.listen_for}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ── Music: gallery listening ── */}
-        {domain === 'music' && entry.data.gallery_listening && entry.data.gallery_listening.length > 0 && (
-          <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">
-              Also Listen
-            </h3>
-            <div class="space-y-3">
-              {entry.data.gallery_listening.map((item) => (
-                <div class="border border-[#3d2e1a] rounded-lg overflow-hidden" style="background-color: #231a0f;">
-                  {item.youtube_id && (
-                    <YouTubeEmbed id={item.youtube_id} title={item.title} />
-                  )}
-                  <div class="px-3 py-2">
-                    <p class="text-sm font-serif italic text-[#a09070] leading-snug">{item.title}</p>
-                    <p class="text-xs text-[#a5967d]">{item.composer} · {item.date}</p>
-                  </div>
-                </div>
+        );
+      }
+      if (domain === 'music') {
+        const featured = d.featured_listening
+          ? (Array.isArray(d.featured_listening) ? d.featured_listening : [d.featured_listening])
+          : [];
+        const gallery = d.gallery_listening ?? [];
+        const allPieces = [...featured, ...gallery];
+        if (allPieces.length === 0) return null;
+        return (
+          <div class="card">
+            <h4>Featured Listening</h4>
+            <ul class="works">
+              {allPieces.map((item: any) => (
+                <li>
+                  <div class="t">{item.title}</div>
+                  <div class="by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
+        );
+      }
+      return null;
+    })()}
 
-      </aside>
-    </div>
-  </main>
+  </aside>
+</div>
 
-  <!-- ── Unit navigation footer ──────────────────────────────────── -->
-  <footer class="border-t border-[#3d2e1a] mt-4">
-    <div class="max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
+<!-- ── Pager ── -->
+<nav class="pager">
+  {prevDomain ? (
+    <a class="pager-prev" href={`/units/${unit}/${prevDomain}`}>
+      <span class="pager-lbl">Previous thread</span>
+      <span class="pager-title">{prevDomainLabel}</span>
+    </a>
+  ) : (
+    <a class="pager-prev" href={`/units/${unit}`}>
+      <span class="pager-lbl">Back</span>
+      <span class="pager-title">Unit {unitNumber} Overview</span>
+    </a>
+  )}
+  {nextDomain ? (
+    <a class="pager-next" href={`/units/${unit}/${nextDomain}`}>
+      <span class="pager-lbl">Next thread</span>
+      <span class="pager-title">{nextDomainLabel}</span>
+    </a>
+  ) : nextUnit ? (
+    <a class="pager-next" href={`/units/${nextUnit}`}>
+      <span class="pager-lbl">Next unit</span>
+      <span class="pager-title">{nextLabel}</span>
+    </a>
+  ) : (
+    <div />
+  )}
+</nav>
 
-      {prevUnit ? (
-        <a
-          href={`/units/${prevUnit}/${domain}`}
-          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
-        >
-          <span class="group-hover:-translate-x-1 transition-transform">←</span>
-          {prevLabel} {currentLabel}
-        </a>
-      ) : (
-        <div />
-      )}
+<footer>
+  <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
+  <div>Unit {unitNumber} / {currentLabel}</div>
+</footer>
 
-      <a href={`/units/${unit}`} class="text-sm text-[#a5967d] hover:text-[#f2e8d5] transition-colors">
-        Unit {unitNumber} Overview
-      </a>
+</body>
+</html>
 
-      {nextUnit ? (
-        <a
-          href={`/units/${nextUnit}/${domain}`}
-          class="inline-flex items-center gap-2 text-sm font-medium text-[#a09070] hover:text-[#f2e8d5] transition-colors group"
-        >
-          {nextLabel} {currentLabel}
-          <span class="group-hover:translate-x-1 transition-transform">→</span>
-        </a>
-      ) : (
-        <div />
-      )}
+<style is:global>
+  :root {
+    --bg: #141110;
+    --bg-raised: #1b1714;
+    --bg-sunken: #0d0b0a;
+    --ink: #E8DFD0;
+    --ink-mute: #B8AE9D;
+    --ink-soft: #9A8F7E;
+    --rule: #3A332C;
+    --rule-strong: #5A4F44;
 
-    </div>
-  </footer>
+    --font-display: 'Spectral', Georgia, serif;
+    --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-</Layout>
+    --gutter: clamp(24px, 4vw, 72px);
+    --measure: 62ch;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 0 var(--gutter);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 28px 0 22px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  .nav { display: flex; gap: 28px; flex-wrap: wrap; }
+  .nav a:hover { color: var(--ink); }
+
+  /* ── Breadcrumb ── */
+  .crumb {
+    padding: 20px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .crumb a:hover { color: var(--ink); }
+  .crumb .sep { color: var(--rule-strong); }
+  .crumb .here { color: var(--ink-mute); }
+
+  /* ── Unit strip ── */
+  .unit-strip {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-strip .num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 0.85;
+    color: var(--thread-acc);
+    letter-spacing: -0.03em;
+  }
+  .unit-strip .title-block .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .unit-strip .title-block h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .unit-strip .dates {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+
+  /* ── Thread tabs ── */
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 32px 0 0;
+  }
+  @media (max-width: 700px) { .tabs { grid-template-columns: repeat(2, 1fr); } }
+  .tab {
+    background: var(--bg);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--ink-mute);
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .tab:hover { background: var(--bg-raised); color: var(--ink); }
+  .mini { width: 20px; height: 20px; flex: 0 0 20px; }
+  .mini svg { width: 100%; height: 100%; }
+  .tab.active {
+    background: var(--bg-raised);
+    color: var(--thread-acc);
+    box-shadow: inset 0 -2px 0 var(--thread-acc);
+  }
+
+  /* ── Page head ── */
+  .page-head {
+    padding: 80px 0 48px;
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 32px;
+    align-items: start;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 720px) {
+    .page-head { grid-template-columns: 1fr; gap: 18px; padding: 48px 0 32px; }
+  }
+  .sigil-lg {
+    width: 88px;
+    height: 88px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-sunken);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .sigil-lg svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--thread-acc);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .page-lbl {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--thread-acc);
+    margin-bottom: 10px;
+  }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  .page-head h1 em { font-style: italic; color: var(--ink-mute); }
+
+  /* ── Hero plate (art / sculpture) ── */
+  figure.hero-plate {
+    margin: 40px 0 48px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    padding: 0;
+  }
+  figure.hero-plate .img {
+    display: block;
+    aspect-ratio: 21 / 9;
+    position: relative;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 14px, rgba(255,255,255,0.05) 14px 28px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 34%, #141110), color-mix(in oklab, var(--thread-acc) 10%, #141110));
+  }
+  figure.hero-plate .img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+    pointer-events: none;
+  }
+  .hero-img-full {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  figure.hero-plate .stamp {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(232,223,208,.85);
+    z-index: 2;
+  }
+  figure.hero-plate .caption {
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    border-top: 1px solid var(--rule);
+  }
+  figure.hero-plate .caption .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  figure.hero-plate .caption .byline {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  figure.hero-plate .caption .meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  /* ── In-prose image plate ── */
+  .plate {
+    margin: 32px 0 28px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+  }
+  .plate .img {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 12px, rgba(255,255,255,.04) 12px 24px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 32%, #141110), color-mix(in oklab, var(--thread-acc) 8%, #141110));
+  }
+  .plate .img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+  }
+  .plate .img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .plate .img .stamp {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: rgba(232,223,208,.82);
+    z-index: 2;
+  }
+  .plate .caption {
+    padding: 18px 22px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: start;
+    border-top: 1px solid var(--rule);
+  }
+  .plate .caption .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .plate .caption .byline {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .plate .caption .meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  /* ── Music hero plate: plain gradient (no crosshatch), staff lines, play button ── */
+  figure.hero-plate.music .img {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--thread-acc) 30%, #141110),
+      color-mix(in oklab, var(--thread-acc) 10%, #141110)
+    );
+  }
+  figure.hero-plate .staff { position: absolute; inset: 0; }
+  figure.hero-plate .staff .line {
+    position: absolute;
+    left: 6%; right: 6%;
+    height: 1px;
+    background: rgba(232,223,208,.32);
+  }
+  figure.hero-plate .play {
+    position: absolute; right: 22px; bottom: 18px; z-index: 2;
+    width: 56px; height: 56px;
+    border: 1px solid rgba(232,223,208,.6);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(20,17,16,.35);
+    backdrop-filter: blur(3px);
+  }
+  figure.hero-plate .play::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 14px solid rgba(232,223,208,.9);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 3px;
+  }
+
+  /* ── Music inline plate (MusicPlate component) ── */
+  .music-plate .img {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--thread-acc) 28%, #141110),
+      color-mix(in oklab, var(--thread-acc) 8%, #141110)
+    );
+  }
+  .music-plate .img .staff { position: absolute; inset: 0; }
+  .music-plate .img .staff .line {
+    position: absolute;
+    left: 8%; right: 8%;
+    height: 1px;
+    background: rgba(232,223,208,.28);
+  }
+  .plate .play {
+    position: absolute; right: 18px; bottom: 14px; z-index: 2;
+    width: 44px; height: 44px;
+    border: 1px solid rgba(232,223,208,.55);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(20,17,16,.35);
+    backdrop-filter: blur(3px);
+  }
+  .plate .play::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 10px solid rgba(232,223,208,.85);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    margin-left: 2px;
+  }
+
+  /* ── Two-column layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 72px;
+    padding: 48px 0 32px;
+  }
+  @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; gap: 48px; } }
+
+  /* ── Prose: base ── */
+  .prose {
+    max-width: var(--measure);
+    font-size: 18.5px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    text-wrap: pretty;
+  }
+  .prose em { font-style: italic; color: var(--ink); }
+  .prose strong { color: var(--ink); font-weight: 500; letter-spacing: 0.01em; }
+  .prose a { color: var(--ink-mute); border-bottom: 1px solid var(--rule); transition: color 120ms, border-color 120ms; }
+  .prose a:hover { color: var(--ink); border-color: var(--thread-acc); }
+  .prose p { margin: 0 0 22px; }
+
+  /* Drop cap on first paragraph */
+  .prose p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 78px;
+    line-height: 0.85;
+    color: var(--thread-acc);
+    padding: 8px 14px 0 0;
+    letter-spacing: -0.02em;
+  }
+
+  /* Hide MDX h1 and Introduction h2 */
+  .prose h1 { display: none; }
+  .prose h2:first-of-type { display: none; }
+
+  /* Sub-thread heading sections */
+  .prose h2:not(:first-of-type):not(:last-of-type) {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 56px 0 0;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+    counter-increment: sub-thread;
+  }
+  .prose h2:not(:first-of-type):not(:last-of-type)::before {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    content: '0' counter(sub-thread) ' — Sub-thread';
+    font-weight: 400;
+  }
+  .prose { counter-reset: sub-thread; }
+
+  /* Arc (last h2): Looking Forward */
+  .prose h2:last-of-type {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 56px 0 24px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Sub-question: italic-only paragraph immediately after h2 */
+  .prose h2 + p:has(> em:only-child) {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--thread-acc);
+    margin: 0 0 28px;
+    max-width: 52ch;
+  }
+
+  /* h3 (Connection to X) — top half of callout card */
+  .prose h3 {
+    font-family: var(--font-ui);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--thread-acc);
+    font-weight: 400;
+    margin: 36px 0 0;
+    padding: 16px 22px 0;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-bottom: 0;
+    position: relative;
+  }
+  .prose h3::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: -1px; bottom: 0;
+    width: 3px;
+    background: var(--thread-acc);
+  }
+  /* h3 + p — bottom half of callout card */
+  .prose h3 + p {
+    margin: 0 0 22px;
+    padding: 10px 22px 18px;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-top: 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    position: relative;
+  }
+  .prose h3 + p::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: 0; bottom: -1px;
+    width: 3px;
+    background: var(--thread-acc);
+  }
+  .prose h3 + p em { color: var(--ink); font-style: italic; }
+
+  /* Blockquote */
+  .prose blockquote {
+    margin: 28px 0;
+    padding: 2px 0 2px 28px;
+    border-left: 2px solid var(--thread-acc);
+    font-style: italic;
+    font-size: 19.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .prose blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-ui);
+    font-style: normal;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* "Looking forward:" callout paragraphs */
+  .prose p:has(> strong:first-child) {
+    position: relative;
+    margin: 36px 0 8px;
+    padding: 22px 26px 24px;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+  }
+  .prose p:has(> strong:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    bottom: -1px;
+    width: 3px;
+    background: var(--thread-acc);
+  }
+  .prose p:has(> strong:first-child) > strong:first-child {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--thread-acc);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .prose p:has(> strong:first-child) em { color: var(--ink); font-style: italic; }
+
+  /* PullQuote component wrapper */
+  .prose .pull-quote {
+    margin: 28px 0;
+  }
+
+  /* ── Sidebar ── */
+  aside {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  @media (max-width: 1100px) { aside { position: static; } }
+
+  .card {
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    padding: 22px 22px 20px;
+  }
+  .card h4 {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Analytical Threads list */
+  .threads-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .threads-list li {
+    padding: 16px 18px 18px;
+    border: 1px solid color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 55%, #3A332C);
+    background: color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 9%, #0d0b0a);
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 10px 12px;
+    align-items: start;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .threads-list li:hover {
+    border-color: var(--sub-acc, var(--thread-acc));
+    background: color-mix(in oklab, var(--sub-acc, var(--thread-acc)) 15%, #0d0b0a);
+  }
+  .sig-xs {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .sig-xs svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--sub-acc, var(--thread-acc));
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .tt {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--sub-acc, var(--thread-acc));
+    line-height: 1.2;
+    letter-spacing: 0.005em;
+    align-self: center;
+  }
+  .gloss {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  /* Readings list */
+  .readings {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .readings li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .readings li:last-child { border-bottom: 0; }
+  .r-title {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .r-by {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  /* Works Discussed (art / sculpture) */
+  .works {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .works li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .works li:last-child { border-bottom: 0; }
+  .works .t {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .works .by {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  /* Music items */
+  .music-item {
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: var(--bg-sunken);
+  }
+  .music-item:last-child { margin-bottom: 0; }
+  .music-meta { padding: 10px 12px 12px; }
+  .music-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 3px;
+  }
+  .music-listen {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+  .gallery-music { display: flex; flex-direction: column; gap: 0; }
+
+  /* ── Pager ── */
+  .pager {
+    margin-top: 64px;
+    padding: 28px 0 56px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .pager-prev,
+  .pager-next {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: var(--font-display);
+  }
+  .pager-next { text-align: right; }
+  .pager-lbl {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .pager-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .pager-prev .pager-title::before { content: '← '; color: var(--thread-acc); }
+  .pager-next .pager-title::after  { content: ' →'; color: var(--thread-acc); }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+  }
+  .colophon {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+  }
+</style>

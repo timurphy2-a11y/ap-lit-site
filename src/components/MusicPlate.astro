@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  composer: string;
+  date?: string | number;
+  duration?: string;
+  youtube_id?: string;
+  note?: string;
+  [key: string]: unknown;
+}
+
+const { title, composer, date, duration, youtube_id, note } = Astro.props;
+const metaText = note ?? [date, duration].filter(Boolean).join('\n');
+const youtubeUrl = youtube_id ? `https://www.youtube.com/watch?v=${youtube_id}` : null;
+---
+
+<figure class="plate music-plate">
+  <a
+    class="img"
+    href={youtubeUrl ?? '#'}
+    target={youtubeUrl ? '_blank' : undefined}
+    rel={youtubeUrl ? 'noopener noreferrer' : undefined}
+    aria-label={`Play ${title}`}
+  >
+    <div class="staff" aria-hidden="true">
+      <div class="line" style="top:34%"></div>
+      <div class="line" style="top:44%"></div>
+      <div class="line" style="top:54%"></div>
+      <div class="line" style="top:64%"></div>
+    </div>
+    <div class="stamp">{composer}</div>
+    <div class="play" aria-hidden="true"></div>
+  </a>
+  <figcaption class="caption">
+    <div>
+      <div class="title">{title}</div>
+      <div class="byline">{composer}</div>
+    </div>
+    <div class="meta">{metaText}</div>
+  </figcaption>
+</figure>
