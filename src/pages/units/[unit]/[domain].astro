@@ -923,21 +923,8 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     color: var(--ink);
     margin: 56px 0 0;
     padding-top: 48px;
-    padding-left: 76px;
     border-top: 1px solid var(--rule);
     counter-increment: sub-thread;
-    position: relative;
-  }
-  /* Sigil box to the left of each sub-thread heading */
-  .prose h2:not(:first-of-type):not(:last-of-type)::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 48px;
-    width: 56px;
-    height: 56px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg-sunken);
   }
   .prose h2:not(:first-of-type):not(:last-of-type)::before {
     display: block;
