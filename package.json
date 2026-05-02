@@ -8,10 +8,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "postbuild": "node -e \"const fs=require('fs');const p='dist/server/wrangler.json';const c=JSON.parse(fs.readFileSync(p));c.kv_namespaces?.forEach(kv=>{if(kv.binding==='SESSION')kv.id='6dea7e1c6d7b423889d3f47f8a642521';});fs.writeFileSync(p,JSON.stringify(c));\"",
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.3.0",
     "@astrojs/mdx": "^5.0.0",
     "@astrojs/netlify": "^7.0.2",
     "@astrojs/react": "^5.0.0",
@@ -23,5 +27,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.87.0"
   }
 }

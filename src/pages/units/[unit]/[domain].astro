@@ -7,6 +7,7 @@ import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
 import MusicPlate from '../../../components/MusicPlate.astro';
 import { THREAD_ICONS } from '../../../components/threadIcons';
+import { PEOPLE } from '../../../components/BiographyPanel.jsx';
 
 // ── Static paths ──────────────────────────────────────────────────────────────
 
@@ -145,6 +146,7 @@ const nextDomainLabel = nextDomain ? (DOMAIN_LABELS[nextDomain] ?? nextDomain) :
 const domainTitle  = DOMAIN_TITLES[domain] ?? domain;
 const pageTitle    = `${meta.period}: ${currentLabel} — AP Literature`;
 const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
+const peopleJson   = JSON.stringify(PEOPLE);
 ---
 
 <!doctype html>
@@ -291,35 +293,13 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   if (domain === 'music' && d.featured_listening) {
     const fl = d.featured_listening;
-    const item = Array.isArray(fl) ? fl[0] : fl;
-    const metaLines = [item.date, item.duration].filter(Boolean).join('\n');
-    const ytUrl = item.youtube_id ? `https://www.youtube.com/watch?v=${item.youtube_id}` : null;
+    const items = Array.isArray(fl) ? fl : [fl];
     return (
-      <figure class="hero-plate music">
-        <a
-          class="img"
-          href={ytUrl ?? '#'}
-          target={ytUrl ? '_blank' : undefined}
-          rel={ytUrl ? 'noopener noreferrer' : undefined}
-          aria-label={`Play ${item.title}`}
-        >
-          <div class="staff" aria-hidden="true">
-            <div class="line" style="top:38%"></div>
-            <div class="line" style="top:48%"></div>
-            <div class="line" style="top:58%"></div>
-            <div class="line" style="top:68%"></div>
-          </div>
-          <div class="stamp">[ LISTENING 01 · HERO ]</div>
-          <div class="play" aria-hidden="true"></div>
-        </a>
-        <figcaption class="caption">
-          <div>
-            <div class="title">{item.title}</div>
-            <div class="byline">{item.composer} · via YouTube</div>
-          </div>
-          <div class="meta">{metaLines}</div>
-        </figcaption>
-      </figure>
+      <div class="featured-embeds">
+        {items.map((item: any) => (
+          <YouTubeEmbed id={item.youtube_id} title={item.title} composer={item.composer} />
+        ))}
+      </div>
     );
   }
   return null;
@@ -329,7 +309,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 <div class="layout">
 
   <article class="prose">
-    <Content components={{ BioLink, PullQuote, Plate, MusicPlate }} />
+    <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed }} />
   </article>
 
   <!-- ── Sidebar ── -->
@@ -378,11 +358,16 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
         return (
           <div class="card">
             <h4>Works Discussed</h4>
-            <ul class="works">
+            <ul class="gallery-list">
               {d.gallery_paintings.map((p: any) => (
                 <li>
-                  <div class="t">{p.title}</div>
-                  <div class="by">{p.artist}{p.date ? ` · ${p.date}` : ''}</div>
+                  {p.image && (
+                    <div class="gallery-img-wrap">
+                      <img class="gallery-img" src={p.image} alt={p.title} loading="lazy" />
+                    </div>
+                  )}
+                  <div class="gallery-title">{p.title}</div>
+                  <div class="gallery-by">{p.artist}{p.date ? ` · ${p.date}` : ''}</div>
                 </li>
               ))}
             </ul>
@@ -393,11 +378,16 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
         return (
           <div class="card">
             <h4>Works Discussed</h4>
-            <ul class="works">
+            <ul class="gallery-list">
               {d.gallery_sculptures.map((s: any) => (
                 <li>
-                  <div class="t">{s.title}</div>
-                  <div class="by">{s.artist}{s.date ? ` · ${s.date}` : ''}</div>
+                  {s.image && (
+                    <div class="gallery-img-wrap">
+                      <img class="gallery-img" src={s.image} alt={s.title} loading="lazy" />
+                    </div>
+                  )}
+                  <div class="gallery-title">{s.title}</div>
+                  <div class="gallery-by">{s.artist}{s.date ? ` · ${s.date}` : ''}</div>
                 </li>
               ))}
             </ul>
@@ -414,13 +404,38 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
         return (
           <div class="card">
             <h4>Featured Listening</h4>
-            <ul class="works">
-              {allPieces.map((item: any) => (
-                <li>
-                  <div class="t">{item.title}</div>
-                  <div class="by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
-                </li>
-              ))}
+            <ul class="gallery-list">
+              {allPieces.map((item: any) => {
+                const ytUrl = item.youtube_id
+                  ? `https://www.youtube.com/watch?v=${item.youtube_id}`
+                  : null;
+                return (
+                  <li>
+                    {ytUrl ? (
+                      <a class="gallery-music-wrap" href={ytUrl} target="_blank" rel="noopener noreferrer" aria-label={`Play ${item.title} on YouTube`}>
+                        <div class="gallery-music-bg" aria-hidden="true">
+                          <div class="gallery-music-lines">
+                            <div class="gml"></div><div class="gml"></div>
+                            <div class="gml"></div><div class="gml"></div>
+                          </div>
+                          <div class="gallery-play" aria-hidden="true"></div>
+                        </div>
+                      </a>
+                    ) : (
+                      <div class="gallery-music-wrap no-link">
+                        <div class="gallery-music-bg" aria-hidden="true">
+                          <div class="gallery-music-lines">
+                            <div class="gml"></div><div class="gml"></div>
+                            <div class="gml"></div><div class="gml"></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <div class="gallery-title">{item.title}</div>
+                    <div class="gallery-by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         );
@@ -463,6 +478,67 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
   <div>Unit {unitNumber} / {currentLabel}</div>
 </footer>
+
+<!-- ── Bio modal ── -->
+<div id="bio-modal" class="bio-modal" role="dialog" aria-modal="true">
+  <div id="bio-backdrop" class="bio-backdrop"></div>
+  <div class="bio-panel">
+    <button id="bio-close" class="bio-close" aria-label="Close">×</button>
+    <div class="bio-header">
+      <img id="bio-portrait" src="" alt="" class="bio-portrait hidden" />
+      <div class="bio-meta">
+        <p id="bio-field" class="bio-field"></p>
+        <h2 id="bio-name" class="bio-name"></h2>
+        <p id="bio-dates" class="bio-dates"></p>
+      </div>
+    </div>
+    <p id="bio-bio" class="bio-body"></p>
+    <p id="bio-significance" class="bio-sig"></p>
+  </div>
+</div>
+
+<script define:vars={{ peopleJson }}>
+  const PEOPLE = JSON.parse(peopleJson);
+  const modal    = document.getElementById('bio-modal');
+  const backdrop = document.getElementById('bio-backdrop');
+  const closeBtn = document.getElementById('bio-close');
+
+  function openModal(id) {
+    const person = PEOPLE.find((p) => p.id === id);
+    if (!person || !modal) return;
+    document.getElementById('bio-field').textContent        = person.field ?? '';
+    document.getElementById('bio-name').textContent         = person.name;
+    document.getElementById('bio-dates').textContent        = person.dates ?? '';
+    document.getElementById('bio-bio').textContent          = person.bio ?? '';
+    document.getElementById('bio-significance').textContent = person.significance ?? '';
+    const portrait = document.getElementById('bio-portrait');
+    if (person.portrait) {
+      portrait.src = person.portrait;
+      portrait.alt = person.name;
+      portrait.classList.remove('hidden');
+    } else {
+      portrait.classList.add('hidden');
+    }
+    modal.classList.remove('hidden');
+    modal.classList.add('open');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('open');
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.bio-link-btn');
+    if (btn) openModal(btn.dataset.bioId);
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 
 <script define:vars={{ threadSigils }}>
   document.addEventListener('DOMContentLoaded', () => {
@@ -548,7 +624,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
     font-family: var(--font-ui);
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-mute);
@@ -569,7 +645,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   .crumb {
     padding: 20px 0 0;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -601,7 +677,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .unit-strip .title-block .meta {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -618,7 +694,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .unit-strip .dates {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--ink-soft);
   }
@@ -687,7 +763,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .page-lbl {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--thread-acc);
@@ -714,7 +790,6 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   figure.hero-plate .img {
     display: block;
-    aspect-ratio: 21 / 9;
     position: relative;
     overflow: hidden;
     background:
@@ -729,18 +804,17 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     pointer-events: none;
   }
   .hero-img-full {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-height: 640px;
+    object-fit: contain;
   }
   figure.hero-plate .stamp {
     position: absolute;
     left: 18px;
     bottom: 14px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.04em;
     color: rgba(232,223,208,.85);
     z-index: 2;
@@ -762,7 +836,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   figure.hero-plate .caption .byline {
     font-family: var(--font-ui);
-    font-size: 13px;
+    font-size: 11.5px;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
     margin-top: 4px;
@@ -770,7 +844,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   figure.hero-plate .caption .meta {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
     text-align: right;
@@ -810,7 +884,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     left: 14px;
     bottom: 12px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.06em;
     color: rgba(232,223,208,.82);
     z-index: 2;
@@ -832,7 +906,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .plate .caption .byline {
     font-family: var(--font-ui);
-    font-size: 13px;
+    font-size: 11.5px;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
     margin-top: 4px;
@@ -840,7 +914,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .plate .caption .meta {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
     text-align: right;
@@ -913,6 +987,15 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     margin-left: 2px;
+  }
+
+  /* ── Featured music embeds (hero zone for music pages) ── */
+  .featured-embeds {
+    margin: 40px 0 0;
+  }
+  .featured-embeds .yt-embed {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   /* ── Two-column layout ── */
@@ -1002,7 +1085,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     grid-row: 1;
     display: block;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -1043,7 +1126,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   /* h3 (Connection to X) — top half of callout card */
   .prose h3 {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--thread-acc);
@@ -1098,7 +1181,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     margin-top: 12px;
     font-family: var(--font-ui);
     font-style: normal;
-    font-size: 13px;
+    font-size: 11.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -1127,7 +1210,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   .prose p:has(> strong:first-child) > strong:first-child {
     display: block;
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--thread-acc);
@@ -1159,7 +1242,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .card h4 {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -1221,7 +1304,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   }
   .gloss {
     font-family: var(--font-display);
-    font-size: 14.5px;
+    font-size: 13.5px;
     line-height: 1.4;
     color: var(--ink-soft);
   }
@@ -1248,34 +1331,102 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   .r-by {
     display: block;
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
     margin-top: 3px;
     text-transform: uppercase;
   }
 
-  /* Works Discussed (art / sculpture) */
-  .works {
+  /* Gallery list (art / sculpture / music) */
+  .gallery-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .works li {
-    padding: 12px 0;
+  .gallery-list li {
+    padding: 14px 0;
     border-bottom: 1px solid var(--rule);
   }
-  .works li:last-child { border-bottom: 0; }
-  .works .t {
+  .gallery-list li:last-child { border-bottom: 0; }
+
+  /* Image thumbnail */
+  .gallery-img-wrap {
+    background: var(--bg-sunken);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .gallery-img {
+    display: block;
+    width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+  }
+
+  /* Music play card */
+  .gallery-music-wrap {
+    display: block;
+    position: relative;
+    aspect-ratio: 16 / 7;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--thread-acc) 28%, #141110),
+      color-mix(in oklab, var(--thread-acc) 8%, #141110)
+    );
+    text-decoration: none;
+    transition: opacity 150ms;
+  }
+  .gallery-music-wrap:hover { opacity: 0.85; }
+  .gallery-music-wrap.no-link { cursor: default; }
+  .gallery-music-bg { position: absolute; inset: 0; }
+  .gallery-music-lines { position: absolute; inset: 0; }
+  .gml {
+    position: absolute;
+    left: 8%; right: 8%;
+    height: 1px;
+    background: rgba(232,223,208,.22);
+  }
+  .gml:nth-child(1) { top: 30%; }
+  .gml:nth-child(2) { top: 44%; }
+  .gml:nth-child(3) { top: 58%; }
+  .gml:nth-child(4) { top: 72%; }
+  .gallery-play {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(232,223,208,.55);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20,17,16,.35);
+  }
+  .gallery-play::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 9px solid rgba(232,223,208,.85);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    margin-left: 2px;
+  }
+
+  .gallery-title {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 15px;
+    font-size: 13.5px;
     color: var(--ink);
-    line-height: 1.25;
+    line-height: 1.3;
   }
-  .works .by {
+  .gallery-by {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
     margin-top: 3px;
@@ -1295,14 +1446,14 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--ink);
     line-height: 1.25;
     margin-bottom: 3px;
   }
   .music-listen {
     font-family: var(--font-display);
-    font-size: 14px;
+    font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.4;
     margin-top: 8px;
@@ -1330,7 +1481,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   .pager-next { text-align: right; }
   .pager-lbl {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -1349,7 +1500,7 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
     padding: 40px 0 56px;
     border-top: 1px solid var(--rule);
     font-family: var(--font-ui);
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
     display: flex;
@@ -1358,8 +1509,126 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
   .colophon {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--ink-mute);
     letter-spacing: 0;
   }
+
+  /* ── Bio modal ── */
+  .bio-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .bio-modal.open { display: flex; }
+
+  .bio-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  .bio-panel {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-raised);
+    padding: 28px;
+    box-shadow: 0 24px 64px rgba(0,0,0,.6);
+  }
+
+  .bio-close {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+  }
+  .bio-close:hover { color: var(--ink); }
+
+  .bio-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .bio-portrait {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+  }
+  .bio-portrait.hidden { display: none; }
+
+  .bio-field {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--thread-acc, #C9A24B);
+    margin-bottom: 4px;
+  }
+
+  .bio-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .bio-dates {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  .bio-body {
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    margin-bottom: 14px;
+  }
+
+  .bio-sig {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* BioLink button */
+  .bio-link-btn {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--thread-acc, #C9A24B);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .bio-link-btn:hover { color: color-mix(in oklab, var(--thread-acc, #C9A24B) 70%, white); }
 </style>
