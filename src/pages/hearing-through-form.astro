@@ -2,16 +2,12 @@
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BioLink from '../components/BioLink.astro';
-import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+import MusicPlate from '../components/MusicPlate.astro';
 import ThreadIcon from '../components/ThreadIcon.astro';
 
 const UNIT_IDS = [
-  '00-medieval',
-  '01-renaissance',
-  '02-baroque',
-  '03-enlightenment',
-  '04-romanticism',
-  '05-modernism',
+  '00-medieval', '01-renaissance', '02-baroque',
+  '03-enlightenment', '04-romanticism', '05-modernism',
 ] as const;
 
 const UNIT_ACCENTS: Record<string, string> = {
@@ -23,18 +19,12 @@ const UNIT_ACCENTS: Record<string, string> = {
   '05-modernism':     '#3aa87a',
 };
 
-const THREAD_COLORS = ['#e09438', '#c84068', '#48a888'];
-
 const NAV_LABELS: Record<string, string> = {
-  '00-medieval':      'Medieval',
-  '01-renaissance':   'Renaissance',
-  '02-baroque':       'Baroque',
-  '03-enlightenment': 'Enlightenment',
-  '04-romanticism':   'Romanticism',
-  '05-modernism':     'Modernism',
+  '00-medieval': 'Medieval', '01-renaissance': 'Renaissance',
+  '02-baroque': 'Baroque',   '03-enlightenment': 'Enlightenment',
+  '04-romanticism': 'Romanticism', '05-modernism': 'Modernism',
 };
 
-// Load all music entries in parallel
 const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/music`)));
 const rendered = await Promise.all(entries.map((e) => render(e)));
 
@@ -47,223 +37,211 @@ function getFeaturedItems(entry: typeof entries[0]) {
 
 <Layout title="Hearing Through Form — AP Literature">
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
-      <p class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-3">Shared Resource · Music</p>
-      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] leading-tight mb-4">
-        Hearing Through Form
-      </h1>
-      <p class="text-[#a09070] text-base leading-relaxed max-w-2xl">
-        A complete guide to the music of each period, from the single unaccompanied line of medieval plainchant through Modernism's dismantling of tonality. Three threads — Texture &amp; Voices, Consonance &amp; Dissonance, and Structure &amp; Freedom — run continuously through all six periods. Follow them from start to finish, or jump to any period below.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Sticky period nav ─────────────────────────────────────────────────── -->
-  <div class="sticky top-[53px] z-30 bg-[#1a140c]/95 backdrop-blur-sm border-b border-[#3d2e1a] overflow-x-auto">
-    <div class="max-w-5xl mx-auto px-6">
-      <nav class="flex gap-1 py-2 min-w-max" aria-label="Jump to period">
-        {UNIT_IDS.map((id) => {
-          const accent = UNIT_ACCENTS[id];
-          const anchor = id.slice(3); // e.g. "medieval"
-          return (
-            <a
-              href={`#${anchor}`}
-              class="period-nav-link px-3 py-1.5 rounded-lg text-xs font-medium transition-colors text-[#a09070] hover:text-[#f2e8d5] whitespace-nowrap"
-              data-anchor={anchor}
-              style={`--accent: ${accent};`}
-            >
-              {NAV_LABELS[id]}
-            </a>
-          );
-        })}
-      </nav>
-    </div>
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="g-hero">
+  <div class="g-wrap">
+    <p class="g-label">§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Music</p>
+    <h1 class="g-title">Hearing Through Form</h1>
+    <p class="g-thesis">
+      A complete guide to the music of each period, from the single unaccompanied line of medieval
+      plainchant through Modernism's dismantling of tonality. Three threads — Texture &amp; Voices,
+      Consonance &amp; Dissonance, and Structure &amp; Freedom — run continuously through all six
+      periods. Follow them from start to finish, or jump to any period below.
+    </p>
   </div>
+</section>
 
-  <!-- ── Period sections ───────────────────────────────────────────────────── -->
-  <main class="max-w-5xl mx-auto px-6">
-    {entries.map((entry, i) => {
-      const { Content } = rendered[i];
-      const unitId = entry.data.unit;
-      const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-      const num = unitId.slice(0, 2);
-      const anchor = unitId.slice(3); // e.g. "medieval"
-      const featured = getFeaturedItems(entry);
-      const gallery = entry.data.gallery_listening ?? [];
-      const isLast = i === entries.length - 1;
+<!-- ── Sticky period nav ─────────────────────────────────────────────────── -->
+<div class="g-nav-bar">
+  <div class="g-wrap">
+    <nav class="g-nav" aria-label="Jump to period">
+      {UNIT_IDS.map((id) => (
+        <a
+          href={`#${id.slice(3)}`}
+          class="g-nav-link period-nav-link"
+          data-anchor={id.slice(3)}
+          style={`--accent: ${UNIT_ACCENTS[id]};`}
+        >{NAV_LABELS[id]}</a>
+      ))}
+    </nav>
+  </div>
+</div>
 
-      return (
-        <>
-          <!-- Period header -->
-          <div
-            id={anchor}
-            class="pt-14 pb-6 scroll-mt-24"
-          >
-            <div class="flex items-baseline gap-3 mb-1">
-              <span
-                class="font-serif text-3xl font-bold tabular-nums"
-                style={`color: ${accent};`}
-              >{num}</span>
-              <div>
-                <h2 class="font-serif text-2xl font-bold text-[#f2e8d5]">{entry.data.period}</h2>
-                <p class="text-sm text-[#a5967d]">{entry.data.dates}</p>
-              </div>
+<!-- ── Period sections ───────────────────────────────────────────────────── -->
+<main class="g-wrap">
+  {entries.map((entry, i) => {
+    const { Content } = rendered[i];
+    const unitId = entry.data.unit;
+    const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+    const num = unitId.slice(0, 2);
+    const anchor = unitId.slice(3);
+    const featured = getFeaturedItems(entry);
+    const gallery = entry.data.gallery_listening ?? [];
+    const isLast = i === entries.length - 1;
+
+    return (
+      <>
+        <div id={anchor} class="g-period-head">
+          <div class="g-period-eyebrow" style={`--u-acc: ${accent}`}>
+            <span class="g-period-num">{num}</span>
+            <div>
+              <h2 class="g-period-name">{entry.data.period}</h2>
+              <span class="g-period-dates">{entry.data.dates}</span>
             </div>
-            {entry.data.core_text && (
-              <span
-                class="inline-block mt-2 text-xs font-medium px-2.5 py-1 rounded"
-                style={`background-color: color-mix(in srgb, ${accent} 14%, #1a140c); color: ${accent};`}
-              >
-                Core text: <em>{entry.data.core_text}</em>
-                {entry.data.author ? ` — ${entry.data.author}` : ''}
-              </span>
-            )}
           </div>
-
-          <!-- Prose + sidebar -->
-          <div class="lg:grid lg:grid-cols-[1fr_260px] lg:gap-12 pb-10">
-
-            <!-- Main prose -->
-            <div class="prose prose-stone prose-invert prose-headings:font-serif prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-3 prose-h3:text-base prose-p:leading-relaxed max-w-none" style={`--prose-drop-cap-color: ${accent};`}>
-              <Content components={{ BioLink }} />
+          {entry.data.core_text && (
+            <div class="g-core-tag" style={`--u-acc: ${accent}`}>
+              Core text: <em>{entry.data.core_text}</em>
+              {entry.data.author ? ` — ${entry.data.author}` : ''}
             </div>
-
-            <!-- Sidebar -->
-            <aside class="mt-10 lg:mt-0 space-y-6">
-
-              <!-- Featured listening -->
-              {featured.length > 0 && (
-                <div>
-                  <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Featured Listening</h3>
-                  <div class="space-y-3">
-                    {featured.map((item) => (
-                      <div
-                        class="border border-[#3d2e1a] rounded-xl overflow-hidden"
-                        style="background-color: #231a0f;"
-                      >
-                        {item.youtube_id && (
-                          <YouTubeEmbed id={item.youtube_id} title={item.title} />
-                        )}
-                        <div class="p-3">
-                          <p class="text-sm font-serif italic font-bold text-[#f2e8d5] leading-snug">{item.title}</p>
-                          <p class="text-xs text-[#a09070] mt-1">{item.composer} · {item.date}</p>
-                          {item.duration && <p class="text-xs text-[#a5967d] mt-0.5">{item.duration}</p>}
-                          {item.listen_for && (
-                            <p class="text-xs text-[#a09070] mt-2 leading-relaxed border-t border-[#3d2e1a] pt-2">
-                              {item.listen_for}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <!-- Thread summaries -->
-              <div>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Threads</h3>
-                <div class="space-y-2">
-                  {entry.data.threads.map((t, ti) => {
-                    const tc = THREAD_COLORS[ti % THREAD_COLORS.length];
-                    return (
-                      <div
-                        class="border rounded-lg p-3"
-                        style={`background-color: color-mix(in srgb, ${tc} 14%, #1a140c); border-color: color-mix(in srgb, ${tc} 45%, transparent);`}
-                      >
-                        <p class="text-xs font-semibold mb-1 flex items-center gap-1.5" style={`color: ${tc};`}><ThreadIcon thread={t.id} size={16} />{t.label}</p>
-                        <p class="text-xs text-[#a09070] leading-relaxed">{t.period_summary}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <!-- Gallery listening -->
-              {gallery.length > 0 && (
-                <div>
-                  <h3 class="text-xs font-semibold uppercase tracking-widest text-[#a5967d] mb-3">Also Listen</h3>
-                  <div class="space-y-3">
-                    {gallery.map((item) => (
-                      <div
-                        class="border border-[#3d2e1a] rounded-xl overflow-hidden"
-                        style="background-color: #231a0f;"
-                      >
-                        {item.youtube_id && (
-                          <YouTubeEmbed id={item.youtube_id} title={item.title} />
-                        )}
-                        <div class="px-3 py-2">
-                          <p class="text-sm font-serif italic text-[#a09070] leading-snug">{item.title}</p>
-                          <p class="text-xs text-[#a5967d]">{item.composer} · {item.date}</p>
-                          {item.duration && <p class="text-xs text-[#a5967d]">{item.duration}</p>}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <!-- Link to full unit -->
-              <a
-                href={`/units/${unitId}`}
-                class="block text-xs text-center py-2 px-3 rounded-lg border transition-colors hover:brightness-125"
-                style={`color: ${accent}; border-color: color-mix(in srgb, ${accent} 30%, transparent); background-color: color-mix(in srgb, ${accent} 8%, #1a140c);`}
-              >
-                Full {entry.data.period} unit →
-              </a>
-
-            </aside>
-          </div>
-
-          <!-- Divider between periods -->
-          {!isLast && (
-            <hr class="border-0 border-t border-[#3d2e1a] my-2" />
           )}
-        </>
-      );
-    })}
-  </main>
+        </div>
 
-  <!-- ── Footer ────────────────────────────────────────────────────────────── -->
-  <footer class="border-t border-[#3d2e1a] mt-8">
-    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-wrap gap-4 justify-between items-center">
-      <a href="/seeing-through-paint" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">← Seeing Through Paint</a>
-      <div class="flex gap-6">
-        <a href="/sculpting-through-time" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Sculpting Through Time</a>
-        <a href="/" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">Home →</a>
+        <div class="g-body">
+          <div
+            class="prose prose-invert max-w-none"
+            style={`--prose-drop-cap-color: ${accent};`}
+          >
+            <Content components={{ BioLink, MusicPlate }} />
+          </div>
+
+          <aside class="g-sidebar">
+            {(featured.length > 0 || gallery.length > 0) && (
+              <div class="card">
+                <h4>Featured Listening</h4>
+                <ul class="works">
+                  {[...featured, ...gallery].map((item) => (
+                    <li>
+                      <div class="t">{item.title}</div>
+                      <div class="by">{item.composer}{item.date ? ` · ${item.date}` : ''}</div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div class="card">
+              <h4>Analytical Threads</h4>
+              <ul class="threads-list">
+                {entry.data.threads.map((t) => (
+                  <li style={`--sub-acc: ${accent}`}>
+                    <ThreadIcon thread={t.id} size={20} />
+                    <div>
+                      <div class="tn">{t.label}</div>
+                      <div class="ts">{t.period_summary}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={`/units/${unitId}`}
+              class="g-unit-link"
+              style={`--u-acc: ${accent}`}
+            >Full {entry.data.period} unit →</a>
+          </aside>
+        </div>
+
+        {!isLast && <hr class="g-divider" />}
+      </>
+    );
+  })}
+</main>
+
+<!-- ── Footer ────────────────────────────────────────────────────────────── -->
+<footer class="g-footer">
+  <div class="g-wrap">
+    <div class="g-footer-inner">
+      <a href="/seeing-through-paint">← Seeing Through Paint</a>
+      <div class="g-footer-links">
+        <a href="/sculpting-through-time">Sculpting Through Time</a>
+        <a href="/">Home →</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 </Layout>
 
+<style>
+  .g-wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
+  .g-label { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 28px; }
+  .g-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(40px, 6vw, 80px); line-height: 0.98; letter-spacing: -0.02em; margin: 0 0 28px; color: var(--ink); }
+  .g-thesis { max-width: 58ch; font-family: var(--font-display); font-size: 17px; line-height: 1.65; color: var(--ink-mute); margin: 0; }
+
+  /* ── Sticky nav ───────────────────────────────────────────────── */
+  .g-nav-bar { position: sticky; top: 57px; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--rule); overflow-x: auto; }
+  .g-nav { display: flex; gap: 2px; padding: 8px 0; white-space: nowrap; }
+  .g-nav-link { font-family: var(--font-ui); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; color: var(--ink-soft); border: 1px solid transparent; transition: color 150ms, background 150ms, border-color 150ms; }
+  .g-nav-link:hover { color: var(--ink); }
+  .g-nav-link.active { color: var(--accent); border-color: color-mix(in oklab, var(--accent) 40%, transparent); background: color-mix(in oklab, var(--accent) 8%, transparent); }
+
+  /* ── Period header ────────────────────────────────────────────── */
+  .g-period-head { padding: 56px 0 20px; scroll-margin-top: 110px; }
+  .g-period-eyebrow { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; }
+  .g-period-num { font-family: var(--font-display); font-weight: 300; font-size: 44px; line-height: 1; color: var(--u-acc); flex-shrink: 0; }
+  .g-period-name { font-family: var(--font-display); font-weight: 400; font-size: 26px; color: var(--ink); line-height: 1.1; margin: 0; }
+  .g-period-dates { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); margin-top: 4px; }
+  .g-core-tag { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; padding: 4px 12px; border: 1px solid color-mix(in oklab, var(--u-acc) 35%, transparent); background: color-mix(in oklab, var(--u-acc) 10%, transparent); color: var(--u-acc); margin-top: 8px; }
+
+  /* ── Prose + sidebar layout ───────────────────────────────────── */
+  .g-body { display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
+  @media (min-width: 900px) { .g-body { grid-template-columns: 1fr 240px; gap: 56px; } }
+
+  /* ── Sidebar ──────────────────────────────────────────────────── */
+  .g-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .card { border: 1px solid var(--rule); background: var(--bg-raised); }
+  .card h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding: 12px 16px 10px; border-bottom: 1px solid var(--rule); margin: 0; }
+
+  .works { list-style: none; padding: 0; margin: 0; }
+  .works li { padding: 10px 16px; border-bottom: 1px solid var(--rule); }
+  .works li:last-child { border-bottom: none; }
+  .works .t { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink); line-height: 1.3; }
+  .works .by { font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); margin-top: 2px; }
+
+  .threads-list { list-style: none; padding: 0; margin: 0; }
+  .threads-list li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--rule); align-items: start; }
+  .threads-list li:last-child { border-bottom: none; }
+  .threads-list .tn { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--sub-acc, var(--ink)); margin-bottom: 3px; }
+  .threads-list .ts { font-family: var(--font-display); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+
+  .g-unit-link { display: block; font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 16px; border: 1px solid var(--rule); color: var(--u-acc, var(--ink-soft)); text-align: center; transition: background 150ms, border-color 150ms; }
+  .g-unit-link:hover { background: color-mix(in oklab, var(--u-acc, var(--acc)) 10%, transparent); border-color: color-mix(in oklab, var(--u-acc, var(--acc)) 35%, transparent); }
+
+  /* ── Divider / footer ─────────────────────────────────────────── */
+  .g-divider { border: none; border-top: 1px solid var(--rule); margin: 8px 0; }
+  .g-footer { margin-top: 48px; border-top: 1px solid var(--rule); }
+  .g-footer-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 24px 0; }
+  .g-footer-links { display: flex; gap: 24px; }
+  .g-footer a, .g-footer-links a { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); transition: color 150ms; }
+  .g-footer a:hover, .g-footer-links a:hover { color: var(--ink); }
+
+  /* ── Prose overrides ─────────────────────────────────────────── */
+  .prose { --tw-prose-body: var(--ink-mute); --tw-prose-headings: var(--ink); --tw-prose-bold: var(--ink); --tw-prose-hr: var(--rule); }
+</style>
+
 <script>
-  // Highlight active period in the sticky nav based on scroll position
   const navLinks = document.querySelectorAll<HTMLAnchorElement>('.period-nav-link');
-  const sections = document.querySelectorAll<HTMLElement>('[id]');
+  const sectionIds = ['medieval','renaissance','baroque','enlightenment','romanticism','modernism'];
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach((link) => {
-            const isActive = link.dataset.anchor === id;
-            if (isActive) {
-              link.style.backgroundColor = `color-mix(in srgb, var(--accent) 18%, #1a140c)`;
-              link.style.color = `var(--accent)`;
-            } else {
-              link.style.backgroundColor = '';
-              link.style.color = '';
-            }
-          });
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          navLinks.forEach((link) => link.classList.toggle('active', link.dataset.anchor === id));
         }
       });
     },
     { rootMargin: '-20% 0px -70% 0px' }
   );
 
-  sections.forEach((sec) => observer.observe(sec));
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
 </script>

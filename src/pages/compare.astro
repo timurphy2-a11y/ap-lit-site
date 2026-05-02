@@ -30,7 +30,6 @@ function getPrimaryMusic(entry: typeof allEntries[0]) {
   return Array.isArray(fl) ? fl[0] : fl;
 }
 
-// Separate painting and sculpture entries for Visual Art
 const artEntries = allEntries.filter(e => e.data.domain === 'art');
 const sculptureEntries = allEntries.filter(e => e.data.domain === 'sculpture');
 const artThreads = artEntries[0]?.data.threads ?? [];
@@ -39,166 +38,161 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
 
 <Layout title="Threads Across Time — AP Literature">
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
-      <p class="text-xs font-semibold tracking-widest uppercase text-amber-600 mb-3">Cross-Era Comparison</p>
-      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] leading-tight mb-4">
-        Threads Across Time
-      </h1>
-      <p class="text-[#a09070] text-base leading-relaxed max-w-2xl">
-        Three persistent questions run through all six periods of this course — about what it means to be human, what we can know, and how the individual relates to authority. Select a domain and a thread to trace how the answer changes from the Medieval foundations through Modernism's crisis of certainty.
-      </p>
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+<section class="cmp-hero">
+  <div class="cmp-wrap">
+    <div class="section-label">
+      <span class="n">§ IV</span>
+      <span>Cross-Era Comparison</span>
+      <span class="rule-line"></span>
     </div>
-  </section>
+    <h1 class="cmp-title">Threads Across Time</h1>
+    <p class="cmp-thesis">
+      Three persistent questions run through all six periods of this course — about what it means
+      to be human, what we can know, and how the individual relates to authority. Select a domain
+      and a thread to trace how the answer changes from the Medieval foundations through
+      Modernism's crisis of certainty.
+    </p>
+  </div>
+</section>
 
-  <!-- ── Domain tabs ───────────────────────────────────────────────────────── -->
-  <div class="sticky top-[53px] z-30 bg-[#1a140c]/95 backdrop-blur-sm border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex gap-1 py-2" role="tablist" aria-label="Select domain">
-        {domainOrder.map((domain) => (
-          <button
-            class="domain-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors text-[#a09070] hover:text-[#f2e8d5]"
-            data-domain={domain}
-            role="tab"
-            aria-selected="false"
-          >
-            {DOMAIN_LABELS[domain]}
-          </button>
-        ))}
-      </div>
+<!-- ── Domain tabs ───────────────────────────────────────────────────────── -->
+<div class="cmp-tabs-bar">
+  <div class="cmp-wrap">
+    <div class="cmp-tabs" role="tablist" aria-label="Select domain">
+      {domainOrder.map((domain) => (
+        <button
+          class="cmp-tab"
+          data-domain={domain}
+          role="tab"
+          aria-selected="false"
+        >
+          {DOMAIN_LABELS[domain]}
+        </button>
+      ))}
     </div>
   </div>
+</div>
 
-  <!-- ── Philosophy section ────────────────────────────────────────────────── -->
-  {(() => {
-    const entries = allEntries.filter(e => e.data.domain === 'philosophy');
-    const threads = entries[0]?.data.threads ?? [];
-    return (
-      <div class="domain-section hidden" data-domain="philosophy" role="tabpanel">
-        <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
-          <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
-          <div class="flex flex-wrap gap-2" role="tablist">
-            {threads.map((thread) => (
-              <button
-                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
-                data-domain="philosophy"
-                data-thread={thread.id}
-                role="tab"
-                aria-selected="false"
-              >
-                <ThreadIcon thread={thread.id} size={16} />
-                {thread.label}
-              </button>
-            ))}
-          </div>
+<!-- ── Philosophy ────────────────────────────────────────────────────────── -->
+{(() => {
+  const entries = allEntries.filter(e => e.data.domain === 'philosophy');
+  const threads = entries[0]?.data.threads ?? [];
+  return (
+    <div class="domain-section hidden" data-domain="philosophy" role="tabpanel">
+      <div class="cmp-wrap">
+
+        <div class="cmp-thread-row" role="tablist">
+          {threads.map((thread) => (
+            <button
+              class="cmp-thread-btn"
+              data-domain="philosophy"
+              data-thread={thread.id}
+              role="tab"
+              aria-selected="false"
+            >
+              <ThreadIcon thread={thread.id} size={20} />
+              {thread.label}
+            </button>
+          ))}
         </div>
+
         {threads.map((thread, ti) => (
           <div
             class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
             data-domain="philosophy"
             data-thread={thread.id}
           >
-            <div class="max-w-5xl mx-auto px-6 pb-16">
-              <div class="mb-6 pt-2">
-                <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
-                <p class="text-sm text-[#a5967d] mt-1">How this philosophical question is answered in each period</p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {entries.map((entry) => {
-                  const unitId = entry.data.unit;
-                  const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-                  const num = unitId.slice(0, 2);
-                  const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                  return (
-                    <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
-                      <div class="p-4 flex flex-col gap-3 flex-1">
-                        <div class="flex items-start gap-2">
-                          <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
-                          <div class="min-w-0">
-                            <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                            <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
-                          </div>
+            <div class="cmp-thread-head">
+              <h2 class="cmp-thread-title">
+                <ThreadIcon thread={thread.id} size={20} />
+                {thread.label}
+              </h2>
+              <p class="cmp-thread-sub">How this philosophical question is answered in each period</p>
+            </div>
+            <div class="cmp-grid">
+              {entries.map((entry) => {
+                const unitId = entry.data.unit;
+                const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+                const num = unitId.slice(0, 2);
+                const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                return (
+                  <article class="cmp-card" style={`--u-acc: ${accent}`}>
+                    <div class="cmp-card-swatch"></div>
+                    <div class="cmp-card-body">
+                      <div class="cmp-card-eyebrow">
+                        <span class="cmp-card-num">{num}</span>
+                        <div>
+                          <div class="cmp-card-period-name">{entry.data.period}</div>
+                          <span class="cmp-card-dates">{entry.data.dates}</span>
                         </div>
-                        {periodThread && (
-                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
-                        )}
-                        <a href={`/units/${unitId}`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
-                          Full {entry.data.period} unit →
-                        </a>
                       </div>
+                      {periodThread && (
+                        <p class="cmp-card-summary">{periodThread.period_summary}</p>
+                      )}
+                      <a href={`/units/${unitId}`} class="cmp-card-link">
+                        Full {entry.data.period} unit →
+                      </a>
                     </div>
-                  );
-                })}
-              </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         ))}
+
       </div>
-    );
-  })()}
+    </div>
+  );
+})()}
 
-  <!-- ── Visual Art section (Painting + Sculpture sub-toggle) ─────────────── -->
-  <div class="domain-section hidden" data-domain="art" role="tabpanel">
+<!-- ── Visual Art (Painting + Sculpture) ─────────────────────────────────── -->
+<div class="domain-section hidden" data-domain="art" role="tabpanel">
+  <div class="cmp-wrap">
 
-    <!-- Sub-domain toggle -->
-    <div class="max-w-5xl mx-auto px-6 pt-8 pb-2">
-      <div class="flex gap-2 mb-6">
+    <div class="cmp-sub-tabs">
+      <button
+        class="cmp-sub-tab"
+        data-sub="painting"
+        aria-selected="true"
+      >Painting</button>
+      <button
+        class="cmp-sub-tab"
+        data-sub="sculpture"
+        aria-selected="false"
+      >Sculpture</button>
+    </div>
+
+    <!-- Painting thread selector -->
+    <div class="visual-art-sub-panel cmp-thread-row" data-sub="painting" role="tablist">
+      {artThreads.map((thread) => (
         <button
-          class="visual-art-sub-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border"
-          data-sub="painting"
-          style="border-color: #C9973A; color: #C9973A; background-color: color-mix(in srgb, #C9973A 10%, #1a140c);"
-          aria-selected="true"
-        >
-          Painting
-        </button>
-        <button
-          class="visual-art-sub-tab px-4 py-1.5 rounded-lg text-sm font-medium transition-colors border"
-          data-sub="sculpture"
-          style="border-color: #3d2e1a; color: #a09070;"
+          class="cmp-thread-btn"
+          data-domain="art"
+          data-thread={thread.id}
+          role="tab"
           aria-selected="false"
         >
-          Sculpture
+          <ThreadIcon thread={thread.id} size={20} />
+          {thread.label}
         </button>
-      </div>
+      ))}
+    </div>
 
-      <!-- Painting thread selector -->
-      <div class="visual-art-sub-panel" data-sub="painting">
-        <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
-        <div class="flex flex-wrap gap-2" role="tablist">
-          {artThreads.map((thread) => (
-            <button
-              class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
-              data-domain="art"
-              data-thread={thread.id}
-              role="tab"
-              aria-selected="false"
-            >
-              <ThreadIcon thread={thread.id} size={16} />
-              {thread.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <!-- Sculpture thread selector -->
-      <div class="visual-art-sub-panel hidden" data-sub="sculpture">
-        <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
-        <div class="flex flex-wrap gap-2" role="tablist">
-          {sculptureThreads.map((thread) => (
-            <button
-              class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
-              data-domain="sculpture"
-              data-thread={thread.id}
-              role="tab"
-              aria-selected="false"
-            >
-              <ThreadIcon thread={thread.id} size={16} />
-              {thread.label}
-            </button>
-          ))}
-        </div>
-      </div>
+    <!-- Sculpture thread selector -->
+    <div class="visual-art-sub-panel cmp-thread-row hidden" data-sub="sculpture" role="tablist">
+      {sculptureThreads.map((thread) => (
+        <button
+          class="cmp-thread-btn"
+          data-domain="sculpture"
+          data-thread={thread.id}
+          role="tab"
+          aria-selected="false"
+        >
+          <ThreadIcon thread={thread.id} size={20} />
+          {thread.label}
+        </button>
+      ))}
     </div>
 
     <!-- Painting thread comparisons -->
@@ -209,50 +203,56 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
           data-domain="art"
           data-thread={thread.id}
         >
-          <div class="max-w-5xl mx-auto px-6 pb-16">
-            <div class="mb-6 pt-2">
-              <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
-              <p class="text-sm text-[#a5967d] mt-1">How painters approach this visual problem in each period</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {artEntries.map((entry) => {
-                const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-                const num = unitId.slice(0, 2);
-                const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                const heroPainting = entry.data.hero_painting;
-                return (
-                  <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
-                    {heroPainting?.image && (
-                      <a href={`/units/${unitId}/art`} class="block overflow-hidden shrink-0">
-                        <img src={heroPainting.image} alt={`${heroPainting.title} by ${heroPainting.artist}`} class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
-                      </a>
-                    )}
-                    <div class="p-4 flex flex-col gap-3 flex-1">
-                      <div class="flex items-start gap-2">
-                        <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
-                        <div class="min-w-0">
-                          <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                          <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
-                        </div>
+          <div class="cmp-thread-head">
+            <h2 class="cmp-thread-title">
+              <ThreadIcon thread={thread.id} size={20} />
+              {thread.label}
+            </h2>
+            <p class="cmp-thread-sub">How painters approach this visual problem in each period</p>
+          </div>
+          <div class="cmp-grid">
+            {artEntries.map((entry) => {
+              const unitId = entry.data.unit;
+              const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+              const num = unitId.slice(0, 2);
+              const periodThread = entry.data.threads.find(t => t.id === thread.id);
+              const heroPainting = entry.data.hero_painting;
+              return (
+                <article class="cmp-card" style={`--u-acc: ${accent}`}>
+                  <div class="cmp-card-swatch"></div>
+                  {heroPainting?.image && (
+                    <a href={`/units/${unitId}/art`} class="cmp-card-img-wrap">
+                      <img
+                        src={heroPainting.image}
+                        alt={`${heroPainting.title} by ${heroPainting.artist}`}
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="cmp-card-body">
+                    <div class="cmp-card-eyebrow">
+                      <span class="cmp-card-num">{num}</span>
+                      <div>
+                        <div class="cmp-card-period-name">{entry.data.period}</div>
+                        <span class="cmp-card-dates">{entry.data.dates}</span>
                       </div>
-                      {periodThread && (
-                        <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
-                      )}
-                      {heroPainting && (
-                        <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                          <p class="text-xs font-medium text-[#f2e8d5] leading-snug"><em>{heroPainting.title}</em></p>
-                          <p class="text-xs text-[#a5967d]">{heroPainting.artist}</p>
-                        </div>
-                      )}
-                      <a href={`/units/${unitId}/art`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
-                        Full {entry.data.period} unit →
-                      </a>
                     </div>
+                    {periodThread && (
+                      <p class="cmp-card-summary">{periodThread.period_summary}</p>
+                    )}
+                    {heroPainting && (
+                      <div class="cmp-card-work">
+                        <em>{heroPainting.title}</em>
+                        <span class="cmp-card-work-by">{heroPainting.artist}</span>
+                      </div>
+                    )}
+                    <a href={`/units/${unitId}/art`} class="cmp-card-link">
+                      Full {entry.data.period} unit →
+                    </a>
                   </div>
-                );
-              })}
-            </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       ))}
@@ -266,169 +266,490 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
           data-domain="sculpture"
           data-thread={thread.id}
         >
-          <div class="max-w-5xl mx-auto px-6 pb-16">
-            <div class="mb-6 pt-2">
-              <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
-              <p class="text-sm text-[#a5967d] mt-1">How sculptors approach this three-dimensional problem in each period</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sculptureEntries.map((entry) => {
-                const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-                const num = unitId.slice(0, 2);
-                const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                const heroSculpture = entry.data.hero_sculpture;
-                return (
-                  <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
-                    {heroSculpture?.image && (
-                      <a href={`/units/${unitId}/sculpture`} class="block overflow-hidden shrink-0">
-                        <img src={heroSculpture.image} alt={`${heroSculpture.title} by ${heroSculpture.artist}`} class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
-                      </a>
-                    )}
-                    <div class="p-4 flex flex-col gap-3 flex-1">
-                      <div class="flex items-start gap-2">
-                        <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
-                        <div class="min-w-0">
-                          <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                          <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
-                        </div>
+          <div class="cmp-thread-head">
+            <h2 class="cmp-thread-title">
+              <ThreadIcon thread={thread.id} size={20} />
+              {thread.label}
+            </h2>
+            <p class="cmp-thread-sub">How sculptors approach this three-dimensional problem in each period</p>
+          </div>
+          <div class="cmp-grid">
+            {sculptureEntries.map((entry) => {
+              const unitId = entry.data.unit;
+              const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+              const num = unitId.slice(0, 2);
+              const periodThread = entry.data.threads.find(t => t.id === thread.id);
+              const heroSculpture = entry.data.hero_sculpture;
+              return (
+                <article class="cmp-card" style={`--u-acc: ${accent}`}>
+                  <div class="cmp-card-swatch"></div>
+                  {heroSculpture?.image && (
+                    <a href={`/units/${unitId}/sculpture`} class="cmp-card-img-wrap">
+                      <img
+                        src={heroSculpture.image}
+                        alt={`${heroSculpture.title} by ${heroSculpture.artist}`}
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="cmp-card-body">
+                    <div class="cmp-card-eyebrow">
+                      <span class="cmp-card-num">{num}</span>
+                      <div>
+                        <div class="cmp-card-period-name">{entry.data.period}</div>
+                        <span class="cmp-card-dates">{entry.data.dates}</span>
                       </div>
-                      {periodThread && (
-                        <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
-                      )}
-                      {heroSculpture && (
-                        <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                          <p class="text-xs font-medium text-[#f2e8d5] leading-snug"><em>{heroSculpture.title}</em></p>
-                          <p class="text-xs mt-0.5" style={`color: ${SCULPTURE_ACCENT};`}>{heroSculpture.artist}</p>
-                        </div>
-                      )}
-                      <a href={`/units/${unitId}/sculpture`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
-                        Full {entry.data.period} unit →
-                      </a>
                     </div>
+                    {periodThread && (
+                      <p class="cmp-card-summary">{periodThread.period_summary}</p>
+                    )}
+                    {heroSculpture && (
+                      <div class="cmp-card-work">
+                        <em>{heroSculpture.title}</em>
+                        <span class="cmp-card-work-by" style={`color: ${SCULPTURE_ACCENT}`}>{heroSculpture.artist}</span>
+                      </div>
+                    )}
+                    <a href={`/units/${unitId}/sculpture`} class="cmp-card-link">
+                      Full {entry.data.period} unit →
+                    </a>
                   </div>
-                );
-              })}
-            </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       ))}
     </div>
 
   </div>
+</div>
 
-  <!-- ── Music section ─────────────────────────────────────────────────────── -->
-  {(() => {
-    const entries = allEntries.filter(e => e.data.domain === 'music');
-    const threads = entries[0]?.data.threads ?? [];
-    return (
-      <div class="domain-section hidden" data-domain="music" role="tabpanel">
-        <div class="max-w-5xl mx-auto px-6 pt-8 pb-4">
-          <p class="text-xs font-semibold tracking-widest uppercase text-[#a5967d] mb-3">Select a thread</p>
-          <div class="flex flex-wrap gap-2" role="tablist">
-            {threads.map((thread) => (
-              <button
-                class="thread-btn border text-sm font-medium transition-colors px-4 py-2 rounded-xl bg-transparent border-[#3d2e1a] text-[#a09070] hover:text-[#f2e8d5] inline-flex items-center gap-2"
-                data-domain="music"
-                data-thread={thread.id}
-                role="tab"
-                aria-selected="false"
-              >
-                <ThreadIcon thread={thread.id} size={16} />
-                {thread.label}
-              </button>
-            ))}
-          </div>
+<!-- ── Music ─────────────────────────────────────────────────────────────── -->
+{(() => {
+  const entries = allEntries.filter(e => e.data.domain === 'music');
+  const threads = entries[0]?.data.threads ?? [];
+  return (
+    <div class="domain-section hidden" data-domain="music" role="tabpanel">
+      <div class="cmp-wrap">
+
+        <div class="cmp-thread-row" role="tablist">
+          {threads.map((thread) => (
+            <button
+              class="cmp-thread-btn"
+              data-domain="music"
+              data-thread={thread.id}
+              role="tab"
+              aria-selected="false"
+            >
+              <ThreadIcon thread={thread.id} size={20} />
+              {thread.label}
+            </button>
+          ))}
         </div>
+
         {threads.map((thread, ti) => (
           <div
             class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
             data-domain="music"
             data-thread={thread.id}
           >
-            <div class="max-w-5xl mx-auto px-6 pb-16">
-              <div class="mb-6 pt-2">
-                <h2 class="font-serif text-xl font-bold text-[#f2e8d5] flex items-center gap-2"><ThreadIcon thread={thread.id} size={20} />{thread.label}</h2>
-                <p class="text-sm text-[#a5967d] mt-1">How composers handle this musical dimension in each period</p>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {entries.map((entry) => {
-                  const unitId = entry.data.unit;
-                  const accent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-                  const num = unitId.slice(0, 2);
-                  const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                  const music = getPrimaryMusic(entry);
-                  return (
-                    <div class="rounded-xl border overflow-hidden flex flex-col" style={`background-color: color-mix(in srgb, ${accent} 8%, #1a140c); border-color: color-mix(in srgb, ${accent} 30%, transparent);`}>
-                      <div class="p-4 flex flex-col gap-3 flex-1">
-                        <div class="flex items-start gap-2">
-                          <span class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5" style={`color: ${accent};`}>{num}</span>
-                          <div class="min-w-0">
-                            <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                            <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
-                          </div>
+            <div class="cmp-thread-head">
+              <h2 class="cmp-thread-title">
+                <ThreadIcon thread={thread.id} size={20} />
+                {thread.label}
+              </h2>
+              <p class="cmp-thread-sub">How composers handle this musical dimension in each period</p>
+            </div>
+            <div class="cmp-grid">
+              {entries.map((entry) => {
+                const unitId = entry.data.unit;
+                const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+                const num = unitId.slice(0, 2);
+                const periodThread = entry.data.threads.find(t => t.id === thread.id);
+                const music = getPrimaryMusic(entry);
+                return (
+                  <article class="cmp-card" style={`--u-acc: ${accent}`}>
+                    <div class="cmp-card-swatch"></div>
+                    <div class="cmp-card-body">
+                      <div class="cmp-card-eyebrow">
+                        <span class="cmp-card-num">{num}</span>
+                        <div>
+                          <div class="cmp-card-period-name">{entry.data.period}</div>
+                          <span class="cmp-card-dates">{entry.data.dates}</span>
                         </div>
-                        {periodThread && (
-                          <p class="text-sm text-[#c8b890] leading-relaxed flex-1">{periodThread.period_summary}</p>
-                        )}
-                        {music && (
-                          <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                            <p class="text-xs font-medium text-[#f2e8d5] leading-snug mb-0.5"><em>{music.title}</em></p>
-                            <p class="text-xs text-[#a5967d] mb-2">{music.composer}</p>
-                            {music.youtube_id && (
-                              <>
-                                <button
-                                  class="listen-btn text-xs px-3 py-1 rounded-lg font-medium transition-colors"
-                                  data-youtube-id={music.youtube_id}
-                                  style={`color: ${accent}; background-color: color-mix(in srgb, ${accent} 14%, #1a140c); border: 1px solid color-mix(in srgb, ${accent} 28%, transparent);`}
-                                >
-                                  ▶ Listen
-                                </button>
-                                <div class="youtube-embed hidden mt-3 rounded-lg overflow-hidden" style="aspect-ratio: 16/9;">
-                                  <iframe
-                                    data-src={`https://www.youtube.com/embed/${music.youtube_id}?autoplay=1`}
-                                    class="w-full h-full border-0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                  ></iframe>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        )}
-                        <a href={`/units/${unitId}/music`} class="text-xs transition-colors self-start" style={`color: color-mix(in srgb, ${accent} 70%, #a09070);`}>
-                          Full {entry.data.period} unit →
-                        </a>
                       </div>
+                      {periodThread && (
+                        <p class="cmp-card-summary">{periodThread.period_summary}</p>
+                      )}
+                      {music && (
+                        <div class="cmp-card-work">
+                          <em>{music.title}</em>
+                          <span class="cmp-card-work-by">{music.composer}</span>
+                          {music.youtube_id && (
+                            <>
+                              <button
+                                class="cmp-listen-btn"
+                                data-youtube-id={music.youtube_id}
+                                style={`--btn-acc: ${accent}`}
+                              >
+                                ▶ Listen
+                              </button>
+                              <div class="youtube-embed hidden" style="margin-top: 10px; aspect-ratio: 16/9; overflow: hidden;">
+                                <iframe
+                                  data-src={`https://www.youtube.com/embed/${music.youtube_id}?autoplay=1`}
+                                  class="w-full h-full border-0"
+                                  style="width:100%;height:100%;border:0;"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowfullscreen
+                                ></iframe>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      )}
+                      <a href={`/units/${unitId}/music`} class="cmp-card-link">
+                        Full {entry.data.period} unit →
+                      </a>
                     </div>
-                  );
-                })}
-              </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         ))}
+
       </div>
-    );
-  })()}
+    </div>
+  );
+})()}
 
 </Layout>
 
+<style>
+  /* ── Layout ──────────────────────────────────────────────────── */
+  .cmp-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 64px);
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
+  .cmp-hero {
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding-bottom: 32px;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-label .n {
+    font-family: var(--font-mono);
+    color: var(--ink-mute);
+  }
+  .rule-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    display: block;
+  }
+
+  .cmp-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+
+  .cmp-thesis {
+    max-width: 58ch;
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+
+  /* ── Domain tab bar ──────────────────────────────────────────── */
+  .cmp-tabs-bar {
+    position: sticky;
+    top: 57px;
+    z-index: 30;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cmp-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 8px 0;
+  }
+
+  .cmp-tab {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    background: none;
+    border: 1px solid transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 150ms, border-color 150ms, background 150ms;
+  }
+  .cmp-tab[aria-selected="true"] {
+    color: var(--ink);
+    border-color: var(--rule-strong);
+    background: var(--bg-raised);
+  }
+  .cmp-tab:hover:not([aria-selected="true"]) { color: var(--ink-mute); }
+
+  /* ── Thread selector row ─────────────────────────────────────── */
+  .cmp-thread-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 32px 0 24px;
+  }
+
+  .cmp-thread-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    padding: 8px 18px;
+    border: 1px solid var(--rule);
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 150ms;
+  }
+  .cmp-thread-btn[aria-selected="true"] {
+    background: var(--bg-raised);
+    border-color: var(--rule-strong);
+    color: var(--ink);
+  }
+  .cmp-thread-btn:hover:not([aria-selected="true"]) { color: var(--ink-mute); }
+
+  /* ── Thread section heading ──────────────────────────────────── */
+  .cmp-thread-head {
+    padding: 4px 0 20px;
+  }
+  .cmp-thread-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .cmp-thread-sub {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* ── Sub-toggle (Painting / Sculpture) ──────────────────────── */
+  .cmp-sub-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 28px 0 4px;
+  }
+  .cmp-sub-tab {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 150ms;
+  }
+  .cmp-sub-tab[aria-selected="true"] {
+    background: var(--bg-raised);
+    border-color: var(--rule-strong);
+    color: var(--ink);
+  }
+
+  /* ── Card grid ───────────────────────────────────────────────── */
+  .cmp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 64px;
+  }
+  @media (max-width: 900px) { .cmp-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .cmp-grid { grid-template-columns: 1fr; } }
+
+  /* ── Card ────────────────────────────────────────────────────── */
+  .cmp-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-raised);
+    overflow: hidden;
+    transition: background 200ms;
+  }
+  .cmp-card:hover { background: #201c18; }
+
+  .cmp-card-swatch {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--u-acc);
+    z-index: 1;
+  }
+
+  .cmp-card-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    display: block;
+  }
+  .cmp-card-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 400ms ease;
+  }
+  .cmp-card:hover .cmp-card-img-wrap img { transform: scale(1.02); }
+  .cmp-card-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20,17,16,.5) 100%);
+    pointer-events: none;
+  }
+
+  .cmp-card-body {
+    padding: 20px 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .cmp-card-eyebrow {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .cmp-card-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--u-acc);
+    flex-shrink: 0;
+  }
+
+  .cmp-card-period-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .cmp-card-dates {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+
+  .cmp-card-summary {
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    flex: 1;
+  }
+
+  .cmp-card-work {
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .cmp-card-work em { color: var(--ink); font-style: italic; }
+
+  .cmp-card-work-by {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .cmp-card-link {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    transition: color 150ms;
+    margin-top: auto;
+  }
+  .cmp-card-link:hover { color: var(--ink); }
+
+  /* ── Music listen button ─────────────────────────────────────── */
+  .cmp-listen-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    background: none;
+    border: 1px solid var(--rule-strong);
+    color: var(--btn-acc, var(--ink-soft));
+    cursor: pointer;
+    transition: all 150ms;
+  }
+  .cmp-listen-btn:hover {
+    border-color: var(--btn-acc, var(--ink));
+    background: color-mix(in oklab, var(--btn-acc, var(--ink-soft)) 10%, transparent);
+  }
+
+  /* ── Utilities ───────────────────────────────────────────────── */
+  .hidden { display: none !important; }
+</style>
+
 <script>
-  // ── Domain tabs ────────────────────────────────────────────────────────────
-  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.domain-tab');
+  // ── Domain tabs ──────────────────────────────────────────────────────────
+  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.cmp-tab');
   const domainSections = document.querySelectorAll<HTMLElement>('.domain-section');
 
   function activateDomain(targetDomain: string) {
     domainTabs.forEach((tab) => {
-      const isActive = tab.dataset.domain === targetDomain;
-      tab.setAttribute('aria-selected', String(isActive));
-      if (isActive) {
-        tab.classList.add('bg-[#3d2e1a]', 'text-[#f2e8d5]');
-        tab.classList.remove('text-[#a09070]');
-      } else {
-        tab.classList.remove('bg-[#3d2e1a]', 'text-[#f2e8d5]');
-        tab.classList.add('text-[#a09070]');
-      }
+      tab.setAttribute('aria-selected', String(tab.dataset.domain === targetDomain));
     });
     domainSections.forEach((sec) => {
       sec.classList.toggle('hidden', sec.dataset.domain !== targetDomain);
@@ -439,37 +760,19 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
     tab.addEventListener('click', () => activateDomain(tab.dataset.domain!));
   });
 
-  // ── Visual Art sub-toggle (Painting / Sculpture) ───────────────────────────
-  const subTabs = document.querySelectorAll<HTMLButtonElement>('.visual-art-sub-tab');
+  // ── Visual Art sub-toggle ─────────────────────────────────────────────────
+  const subTabs = document.querySelectorAll<HTMLButtonElement>('.cmp-sub-tab');
   const subPanels = document.querySelectorAll<HTMLElement>('.visual-art-sub-panel');
 
   function activateVisualArtSub(targetSub: string) {
     subTabs.forEach((tab) => {
-      const isActive = tab.dataset.sub === targetSub;
-      tab.setAttribute('aria-selected', String(isActive));
-      if (isActive) {
-        if (targetSub === 'painting') {
-          tab.style.borderColor = '#C9973A';
-          tab.style.color = '#C9973A';
-          tab.style.backgroundColor = 'color-mix(in srgb, #C9973A 10%, #1a140c)';
-        } else {
-          tab.style.borderColor = '#B5714A';
-          tab.style.color = '#B5714A';
-          tab.style.backgroundColor = 'color-mix(in srgb, #B5714A 10%, #1a140c)';
-        }
-      } else {
-        tab.style.borderColor = '#3d2e1a';
-        tab.style.color = '#a09070';
-        tab.style.backgroundColor = '';
-      }
+      tab.setAttribute('aria-selected', String(tab.dataset.sub === targetSub));
     });
     subPanels.forEach((panel) => {
       panel.classList.toggle('hidden', panel.dataset.sub !== targetSub);
     });
-
-    // Initialize first thread for the activated sub-domain
     const subDomain = targetSub === 'painting' ? 'art' : 'sculpture';
-    const firstBtn = document.querySelector<HTMLButtonElement>(`.thread-btn[data-domain="${subDomain}"]`);
+    const firstBtn = document.querySelector<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${subDomain}"]`);
     if (firstBtn) activateThread(subDomain, firstBtn.dataset.thread!);
   }
 
@@ -477,30 +780,22 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
     tab.addEventListener('click', () => activateVisualArtSub(tab.dataset.sub!));
   });
 
-  // ── Thread buttons ─────────────────────────────────────────────────────────
+  // ── Thread buttons ────────────────────────────────────────────────────────
   function activateThread(targetDomain: string, targetThread: string) {
-    document.querySelectorAll<HTMLButtonElement>(`.thread-btn[data-domain="${targetDomain}"]`).forEach((btn) => {
-      const isActive = btn.dataset.thread === targetThread;
-      btn.setAttribute('aria-selected', String(isActive));
-      if (isActive) {
-        btn.classList.add('bg-[#3d2e1a]', 'border-[#5a4830]', 'text-[#f2e8d5]');
-        btn.classList.remove('text-[#a09070]', 'border-[#3d2e1a]');
-      } else {
-        btn.classList.remove('bg-[#3d2e1a]', 'border-[#5a4830]', 'text-[#f2e8d5]');
-        btn.classList.add('text-[#a09070]', 'border-[#3d2e1a]');
-      }
+    document.querySelectorAll<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${targetDomain}"]`).forEach((btn) => {
+      btn.setAttribute('aria-selected', String(btn.dataset.thread === targetThread));
     });
     document.querySelectorAll<HTMLElement>(`.thread-comparison[data-domain="${targetDomain}"]`).forEach((el) => {
       el.classList.toggle('hidden', el.dataset.thread !== targetThread);
     });
   }
 
-  document.querySelectorAll<HTMLButtonElement>('.thread-btn').forEach((btn) => {
+  document.querySelectorAll<HTMLButtonElement>('.cmp-thread-btn').forEach((btn) => {
     btn.addEventListener('click', () => activateThread(btn.dataset.domain!, btn.dataset.thread!));
   });
 
-  // ── Listen / stop buttons (music) ─────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.listen-btn').forEach((btn) => {
+  // ── Listen / stop buttons ─────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.cmp-listen-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const embedDiv = btn.nextElementSibling as HTMLElement | null;
       if (!embedDiv) return;
@@ -509,31 +804,23 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
       if (!iframe) return;
       if (isHidden) {
         const dataSrc = iframe.getAttribute('data-src');
-        if (dataSrc) {
-          iframe.setAttribute('src', dataSrc);
-          iframe.removeAttribute('data-src');
-        }
+        if (dataSrc) { iframe.setAttribute('src', dataSrc); iframe.removeAttribute('data-src'); }
         embedDiv.classList.remove('hidden');
         btn.textContent = '■ Stop';
       } else {
         const currentSrc = iframe.getAttribute('src');
-        if (currentSrc) {
-          iframe.setAttribute('data-src', currentSrc);
-          iframe.removeAttribute('src');
-        }
+        if (currentSrc) { iframe.setAttribute('data-src', currentSrc); iframe.removeAttribute('src'); }
         embedDiv.classList.add('hidden');
         btn.textContent = '▶ Listen';
       }
     });
   });
 
-  // ── Initialize ────────────────────────────────────────────────────────────
-  // Initialize thread button states for all domains
+  // ── Initialise ────────────────────────────────────────────────────────────
   (['philosophy', 'art', 'music', 'sculpture'] as const).forEach((domain) => {
-    const firstBtn = document.querySelector<HTMLButtonElement>(`.thread-btn[data-domain="${domain}"]`);
+    const firstBtn = document.querySelector<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${domain}"]`);
     if (firstBtn) activateThread(domain, firstBtn.dataset.thread!);
   });
-
-  // Show philosophy by default
   activateDomain('philosophy');
+  activateVisualArtSub('painting');
 </script>

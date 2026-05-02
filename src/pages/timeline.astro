@@ -4,5 +4,52 @@ import APLitTimeline from '../components/APLitTimeline.jsx';
 ---
 
 <Layout title="Historical Timeline — AP Literature">
-  <APLitTimeline client:load />
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="g-hero">
+  <div class="g-wrap">
+    <p class="g-label">§ V &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Historical Context</p>
+    <h1 class="g-title">Historical Timeline</h1>
+    <p class="g-thesis">
+      Political upheaval, intellectual revolution, and literary landmark — placed in sequence
+      from the Reformation to the Cold War. Filter by era or event type, then click any entry
+      to read how it shapes the works on your syllabus.
+    </p>
+  </div>
+</section>
+
+<APLitTimeline client:load />
+
 </Layout>
+
+<style>
+  .g-wrap { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
+  .g-label {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .g-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+  .g-thesis {
+    max-width: 58ch;
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+</style>

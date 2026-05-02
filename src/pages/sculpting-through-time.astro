@@ -1,16 +1,11 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import BioLink from '../components/BioLink.astro';
 import ThreadIcon from '../components/ThreadIcon.astro';
 
 const UNIT_IDS = [
-  '00-medieval',
-  '01-renaissance',
-  '02-baroque',
-  '03-enlightenment',
-  '04-romanticism',
-  '05-modernism',
+  '00-medieval', '01-renaissance', '02-baroque',
+  '03-enlightenment', '04-romanticism', '05-modernism',
 ] as const;
 
 const UNIT_ACCENTS: Record<string, string> = {
@@ -22,234 +17,311 @@ const UNIT_ACCENTS: Record<string, string> = {
   '05-modernism':     '#3aa87a',
 };
 
-const NAV_LABELS: Record<string, string> = {
-  '00-medieval':      'Medieval',
-  '01-renaissance':   'Renaissance',
-  '02-baroque':       'Baroque',
-  '03-enlightenment': 'Enlightenment',
-  '04-romanticism':   'Romanticism',
-  '05-modernism':     'Modernism',
-};
-
 const SCULPTURE_ACCENT = '#B5714A';
 const THREAD_COLORS = ['#B5714A', '#9E5E38', '#C8845A'];
 
 const THREADS = [
-  { id: 'body-volume',    label: 'Body & Volume',    question: 'How does the sculpture render the human body in three dimensions — idealized, naturalistic, fragmented, abstracted?' },
-  { id: 'material-making', label: 'Material & Making', question: 'What does the choice of material say about the work\'s ambitions and its culture?' },
-  { id: 'space-setting',  label: 'Space & Setting',   question: 'Where does the sculpture live, and how does placement shape meaning?' },
+  { id: 'body-volume',     label: 'Body & Volume',
+    question: 'How does the sculpture render the human body in three dimensions — idealized, naturalistic, fragmented, abstracted?',
+    arc: "The story this thread tells is the story of the function of the human body. In the medieval period, it is an imperfect vehicle for spiritual meaning — not an end in itself but a legible sign within a theological program. In the Renaissance, it becomes the primary subject, recovered from antiquity and celebrated for its own dignity, beauty, and capacity. The Baroque subjects it to overwhelming forces; the Enlightenment disciplines it back into rational legibility. Romanticism loads it with grief and passion, pressing it to its limits. Modernism asks, finally, whether the body is even necessary — and discovers that stripping it away is itself a statement about human function and value." },
+  { id: 'material-making', label: 'Material & Making',
+    question: "What does the choice of material say about the work's ambitions and its culture?",
+    arc: "The story this thread tells is the story of the maker's relationship to their medium and, by extension, to their culture's understanding of what art is and who makes it. The medieval craftsman disappears into communal labor in service of God. The Renaissance sculptor signs his name and claims individual genius. The Baroque sculptor pushes marble to illusionistic extremes as a form of theological persuasion. The Enlightenment recovers classical ideals in polished stone. Romanticism introduces the productive accident and the unfinished surface. Modernism abandons traditional materials altogether in favor of welded steel, glass, found objects, ultimately asking whether the category of sculptural material has or needs any boundaries." },
+  { id: 'space-setting',   label: 'Space & Setting',
+    question: 'Where does the sculpture live, and how does placement shape meaning?',
+    arc: "The story this thread tells is perhaps the most legible arc of the three: the long history of the pedestal. Medieval sculpture is embedded in architecture — inseparable from the building, located within the cosmos the building models. The Renaissance liberates the figure onto the pedestal and into the piazza. The Baroque colonizes entire environments — chapels, fountains, public squares. The Enlightenment distributes sculpture into salons and civic spaces as portable intellectual argument. Romanticism brings the pedestal down to ground level. Modernism removes it entirely — and in doing so, asks what it means for a sculpture to exist in the world at all." },
 ];
 
-// Load all sculpture entries in parallel
 const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/sculpture`)));
 ---
 
 <Layout title="Sculpting Through Time — AP Literature">
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="border-b border-[#3d2e1a]">
-    <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
-      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style={`color: ${SCULPTURE_ACCENT};`}>Shared Resource · Sculpture</p>
-      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#f2e8d5] leading-tight mb-4">
-        Sculpting Through Time
-      </h1>
-      <p class="text-[#a09070] text-base leading-relaxed max-w-2xl">
-        A complete guide to the sculpture of each period, from the medieval cathedral portal to the Modernist studio. Three threads — Body &amp; Volume, Material &amp; Making, and Space &amp; Setting — run continuously through all six periods. Follow them from start to finish, or jump to any thread below.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Sticky thread nav ─────────────────────────────────────────────────── -->
-  <div class="sticky top-[53px] z-30 bg-[#1a140c]/95 backdrop-blur-sm border-b border-[#3d2e1a] overflow-x-auto">
-    <div class="max-w-5xl mx-auto px-6">
-      <nav class="flex gap-1 py-2 min-w-max" aria-label="Jump to thread">
-        {THREADS.map((thread, ti) => {
-          const tc = THREAD_COLORS[ti % THREAD_COLORS.length];
-          return (
-            <a
-              href={`#${thread.id}`}
-              class="thread-nav-link px-3 py-1.5 rounded-lg text-xs font-medium transition-colors text-[#a09070] hover:text-[#f2e8d5] whitespace-nowrap inline-flex items-center gap-1.5"
-              data-anchor={thread.id}
-              style={`--tc: ${tc};`}
-            >
-              <ThreadIcon thread={thread.id} size={14} />
-              {thread.label}
-            </a>
-          );
-        })}
-      </nav>
-    </div>
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="g-hero">
+  <div class="g-wrap">
+    <p class="g-label" style={`--acc-local: ${SCULPTURE_ACCENT}`}>§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Sculpture</p>
+    <h1 class="g-title">Sculpting Through Time</h1>
+    <p class="g-thesis">
+      A complete guide to the sculpture of each period, from the medieval cathedral portal to the
+      Modernist studio. Three threads — Body &amp; Volume, Material &amp; Making, and Space &amp;
+      Setting — run continuously through all six periods. Follow them from start to finish, or jump
+      to any thread below.
+    </p>
   </div>
+</section>
 
-  <!-- ── Introduction ──────────────────────────────────────────────────────── -->
-  <section class="max-w-5xl mx-auto px-6 py-10">
-    <div class="prose prose-stone prose-invert prose-headings:font-serif max-w-none">
-      <p class="text-[15px] text-[#f2e8d5] leading-[1.75] font-serif">
-        Sculpture is the art form that most directly confronts the human body's relationship to matter, space, and time. Unlike painting, which creates an illusion on a flat surface, sculpture occupies the world the viewer occupies — it has weight, volume, and physical presence. The choices sculptors make about how to render the body, what to make it from, and where to place it are never merely aesthetic. They are arguments about what human beings are, what they can create, and what their place in the world is.
-      </p>
-      <p class="text-[15px] text-[#a09070] leading-[1.75] font-serif mt-4">
-        This guide traces three analytical threads across six historical periods, from the medieval cathedral to the Modernist studio. Reading each thread as a continuous arc — rather than encountering the periods one by one — makes visible something that individual unit pages cannot: the story of how Western culture has understood the human figure in three dimensions over time.
-      </p>
-    </div>
-  </section>
+<!-- ── Sticky thread nav ─────────────────────────────────────────────────── -->
+<div class="g-nav-bar">
+  <div class="g-wrap">
+    <nav class="g-nav" aria-label="Jump to thread">
+      {THREADS.map((thread, ti) => (
+        <a
+          href={`#${thread.id}`}
+          class="g-nav-link thread-nav-link"
+          data-anchor={thread.id}
+          style={`--accent: ${THREAD_COLORS[ti]};`}
+        >
+          <ThreadIcon thread={thread.id} size={20} />
+          {thread.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
 
-  <!-- ── Thread sections ───────────────────────────────────────────────────── -->
-  <main class="max-w-5xl mx-auto px-6">
-    {THREADS.map((thread, ti) => {
-      const tc = THREAD_COLORS[ti % THREAD_COLORS.length];
-      const isLast = ti === THREADS.length - 1;
+<!-- ── Introduction ──────────────────────────────────────────────────────── -->
+<div class="g-wrap">
+  <div class="g-intro">
+    <p>
+      Sculpture is the art form that most directly confronts the human body's relationship to matter,
+      space, and time. Unlike painting, which creates an illusion on a flat surface, sculpture occupies
+      the world the viewer occupies — it has weight, volume, and physical presence. The choices sculptors
+      make about how to render the body, what to make it from, and where to place it are never merely
+      aesthetic. They are arguments about what human beings are, what they can create, and what their
+      place in the world is.
+    </p>
+    <p>
+      This guide traces three analytical threads across six historical periods, from the medieval
+      cathedral to the Modernist studio. Reading each thread as a continuous arc — rather than
+      encountering the periods one by one — makes visible something that individual unit pages cannot:
+      the story of how Western culture has understood the human figure in three dimensions over time.
+    </p>
+  </div>
+</div>
 
-      return (
-        <>
-          <!-- Thread header -->
-          <div
-            id={thread.id}
-            class="pt-14 pb-6 scroll-mt-24"
-          >
-            <div class="flex items-center gap-3 mb-2">
-              <ThreadIcon thread={thread.id} size={28} />
-              <h2 class="font-serif text-2xl font-bold text-[#f2e8d5]">{thread.label}</h2>
-            </div>
-            <p class="text-sm italic text-[#a5967d] ml-10">{thread.question}</p>
+<!-- ── Thread sections ───────────────────────────────────────────────────── -->
+<main class="g-wrap">
+  {THREADS.map((thread, ti) => {
+    const tc = THREAD_COLORS[ti];
+    const isLast = ti === THREADS.length - 1;
+
+    return (
+      <>
+        <div id={thread.id} class="g-thread-head">
+          <div class="g-thread-eyebrow">
+            <ThreadIcon thread={thread.id} size={26} />
+            <h2 class="g-thread-name">{thread.label}</h2>
           </div>
+          <p class="g-thread-question">{thread.question}</p>
+        </div>
 
-          <!-- Thread arc summary -->
-          <div
-            class="mb-8 rounded-lg p-4 border"
-            style={`background-color: color-mix(in srgb, ${tc} 8%, #1a140c); border-color: color-mix(in srgb, ${tc} 25%, transparent);`}
-          >
-            {thread.id === 'body-volume' && (
-              <p class="text-sm text-[#c8b890] leading-relaxed font-serif">
-                <strong style={`color: ${tc};`}>The story this thread tells</strong> is the story of the function of the human body. In the medieval period, it is an imperfect vehicle for spiritual meaning — not an end in itself but a legible sign within a theological program. In the Renaissance, it becomes the primary subject, recovered from antiquity and celebrated for its own dignity, beauty, and capacity. The Baroque subjects it to overwhelming forces; the Enlightenment disciplines it back into rational legibility. Romanticism loads it with grief and passion, pressing it to its limits. Modernism asks, finally, whether the body is even necessary — and discovers that stripping it away is itself a statement about human function and value.
-              </p>
-            )}
-            {thread.id === 'material-making' && (
-              <p class="text-sm text-[#c8b890] leading-relaxed font-serif">
-                <strong style={`color: ${tc};`}>The story this thread tells</strong> is the story of the maker's relationship to their medium and, by extension, to their culture's understanding of what art is and who makes it. The medieval craftsman disappears into communal labor in service of God. The Renaissance sculptor signs his name and claims individual genius. The Baroque sculptor pushes marble to illusionistic extremes as a form of theological persuasion. The Enlightenment recovers classical ideals in polished stone. Romanticism introduces the productive accident and the unfinished surface. Modernism abandons traditional materials altogether in favor of welded steel, glass, found objects, ultimately asking whether the category of sculptural material has or needs any boundaries.
-              </p>
-            )}
-            {thread.id === 'space-setting' && (
-              <p class="text-sm text-[#c8b890] leading-relaxed font-serif">
-                <strong style={`color: ${tc};`}>The story this thread tells</strong> is perhaps the most legible arc of the three: the long history of the pedestal. Medieval sculpture is embedded in architecture — inseparable from the building, located within the cosmos the building models. The Renaissance liberates the figure onto the pedestal and into the piazza. The Baroque colonizes entire environments — chapels, fountains, public squares. The Enlightenment distributes sculpture into salons and civic spaces as portable intellectual argument. Romanticism brings the pedestal down to ground level. Modernism removes it entirely — and in doing so, asks what it means for a sculpture to exist in the world at all.
-              </p>
-            )}
-          </div>
+        <div class="g-arc-block" style={`--tc: ${tc}`}>
+          <span class="g-arc-kicker">The story this thread tells</span>
+          {' '}{thread.arc.replace('The story this thread tells', '').trimStart()}
+        </div>
 
-          <!-- Period cards for this thread -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-10">
-            {entries.map((entry) => {
-              const unitId = entry.data.unit;
-              const uAccent = UNIT_ACCENTS[unitId] ?? '#d4a820';
-              const num = unitId.slice(0, 2);
-              const periodThread = entry.data.threads.find(t => t.id === thread.id);
-              const hero = entry.data.hero_sculpture;
+        <div class="g-card-grid">
+          {entries.map((entry) => {
+            const unitId = entry.data.unit;
+            const uAccent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+            const num = unitId.slice(0, 2);
+            const periodThread = entry.data.threads.find(t => t.id === thread.id);
+            const hero = entry.data.hero_sculpture;
 
-              return (
-                <div
-                  class="rounded-xl border overflow-hidden flex flex-col"
-                  style={`background-color: color-mix(in srgb, ${uAccent} 8%, #1a140c); border-color: color-mix(in srgb, ${uAccent} 30%, transparent);`}
-                >
-                  {hero?.image && (
-                    <a href={`/units/${unitId}/sculpture`} class="block overflow-hidden shrink-0">
-                      <img
-                        src={hero.image}
-                        alt={`${hero.title} by ${hero.artist}`}
-                        class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </a>
-                  )}
-
-                  <div class="p-4 flex flex-col gap-3 flex-1">
-                    <div class="flex items-start gap-2">
-                      <span
-                        class="font-serif text-xl font-bold tabular-nums shrink-0 leading-none mt-0.5"
-                        style={`color: ${uAccent};`}
-                      >{num}</span>
-                      <div class="min-w-0">
-                        <h3 class="font-serif text-sm font-bold text-[#f2e8d5] leading-snug">{entry.data.period}</h3>
-                        <p class="text-xs text-[#a5967d]">{entry.data.dates}</p>
-                      </div>
+            return (
+              <article class="g-scard" style={`--u-acc: ${uAccent}`}>
+                <div class="g-scard-swatch"></div>
+                {hero?.image && (
+                  <a href={`/units/${unitId}/sculpture`} class="g-scard-img-wrap">
+                    <img src={hero.image} alt={`${hero.title} by ${hero.artist}`} loading="lazy" />
+                  </a>
+                )}
+                <div class="g-scard-body">
+                  <div class="g-scard-eyebrow">
+                    <span class="g-scard-num">{num}</span>
+                    <div>
+                      <div class="g-scard-period">{entry.data.period}</div>
+                      <span class="g-scard-dates">{entry.data.dates}</span>
                     </div>
-
-                    {periodThread && (
-                      <p class="text-sm text-[#c8b890] leading-relaxed flex-1">
-                        {periodThread.period_summary}
-                      </p>
-                    )}
-
-                    {hero && (
-                      <div class="mt-auto pt-3 border-t border-[#3d2e1a]">
-                        <p class="text-xs font-medium text-[#f2e8d5] leading-snug">
-                          <em>{hero.title}</em>
-                        </p>
-                        <p class="text-xs mt-0.5" style={`color: ${SCULPTURE_ACCENT};`}>{hero.artist}</p>
-                      </div>
-                    )}
-
-                    <a
-                      href={`/units/${unitId}/sculpture`}
-                      class="text-xs transition-colors self-start"
-                      style={`color: color-mix(in srgb, ${uAccent} 70%, #a09070);`}
-                    >
-                      Full {entry.data.period} unit →
-                    </a>
                   </div>
+                  {periodThread && <p class="g-scard-summary">{periodThread.period_summary}</p>}
+                  {hero && (
+                    <div class="g-scard-work">
+                      <em>{hero.title}</em>
+                      <span class="g-scard-artist">{hero.artist}</span>
+                    </div>
+                  )}
+                  <a href={`/units/${unitId}/sculpture`} class="g-scard-link">
+                    Full {entry.data.period} unit →
+                  </a>
                 </div>
-              );
-            })}
-          </div>
+              </article>
+            );
+          })}
+        </div>
 
-          {!isLast && (
-            <hr class="border-0 border-t border-[#3d2e1a] my-2" />
-          )}
-        </>
-      );
-    })}
-  </main>
+        {!isLast && <hr class="g-divider" />}
+      </>
+    );
+  })}
+</main>
 
-  <!-- ── Footer ────────────────────────────────────────────────────────────── -->
-  <footer class="border-t border-[#3d2e1a] mt-8">
-    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-wrap gap-4 justify-between items-center">
-      <a href="/" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">← Home</a>
-      <div class="flex gap-6">
-        <a href="/seeing-through-paint" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">
-          Seeing Through Paint
-        </a>
-        <a href="/hearing-through-form" class="text-sm text-[#a09070] hover:text-[#f2e8d5] transition-colors">
-          Hearing Through Form
-        </a>
+<!-- ── Footer ────────────────────────────────────────────────────────────── -->
+<footer class="g-footer">
+  <div class="g-wrap">
+    <div class="g-footer-inner">
+      <a href="/">← Home</a>
+      <div class="g-footer-links">
+        <a href="/seeing-through-paint">Seeing Through Paint</a>
+        <a href="/hearing-through-form">Hearing Through Form</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 </Layout>
 
+<style>
+  .g-wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
+  .g-label {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .g-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+  .g-thesis {
+    max-width: 58ch;
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+    margin: 0;
+  }
+
+  /* ── Sticky nav ───────────────────────────────────────────────── */
+  .g-nav-bar { position: sticky; top: 57px; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--rule); overflow-x: auto; }
+  .g-nav { display: flex; gap: 2px; padding: 8px 0; white-space: nowrap; align-items: center; }
+  .g-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    color: var(--ink-soft);
+    border: 1px solid transparent;
+    transition: color 150ms, background 150ms, border-color 150ms;
+    white-space: nowrap;
+  }
+  .g-nav-link:hover { color: var(--ink); }
+  .g-nav-link.active {
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+    background: color-mix(in oklab, var(--accent) 8%, transparent);
+  }
+
+  /* ── Intro ────────────────────────────────────────────────────── */
+  .g-intro {
+    max-width: 72ch;
+    padding: 48px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .g-intro p {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-mute);
+  }
+  .g-intro p:first-child { color: var(--ink); }
+
+  /* ── Thread heading ───────────────────────────────────────────── */
+  .g-thread-head { padding: 40px 0 16px; scroll-margin-top: 110px; }
+  .g-thread-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .g-thread-name { font-family: var(--font-display); font-weight: 400; font-size: 32px; color: var(--ink); margin: 0; }
+  .g-thread-question { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-soft); margin: 0; padding-left: 46px; }
+
+  /* ── Arc block ────────────────────────────────────────────────── */
+  .g-arc-block {
+    margin: 16px 0 28px;
+    padding: 18px 22px;
+    border: 1px solid color-mix(in oklab, var(--tc) 30%, transparent);
+    background: color-mix(in oklab, var(--tc) 7%, transparent);
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+  }
+  .g-arc-kicker { font-weight: 600; color: var(--tc); }
+
+  /* ── Card grid ────────────────────────────────────────────────── */
+  .g-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+  @media (max-width: 900px) { .g-card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .g-card-grid { grid-template-columns: 1fr; } }
+
+  /* ── Sculpture card ───────────────────────────────────────────── */
+  .g-scard { position: relative; display: flex; flex-direction: column; background: var(--bg-raised); overflow: hidden; transition: background 200ms; }
+  .g-scard:hover { background: #201c18; }
+  .g-scard-swatch { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--u-acc); z-index: 1; }
+  .g-scard-img-wrap { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .g-scard-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 400ms ease; }
+  .g-scard:hover .g-scard-img-wrap img { transform: scale(1.02); }
+  .g-scard-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(20,17,16,.5) 100%); pointer-events: none; }
+  .g-scard-body { padding: 20px 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .g-scard-eyebrow { display: flex; align-items: baseline; gap: 12px; }
+  .g-scard-num { font-family: var(--font-display); font-weight: 300; font-size: 40px; line-height: 1; color: var(--u-acc); flex-shrink: 0; }
+  .g-scard-period { font-family: var(--font-display); font-weight: 400; font-size: 19px; color: var(--ink); line-height: 1.2; }
+  .g-scard-dates { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); margin-top: 3px; }
+  .g-scard-summary { font-family: var(--font-display); font-size: 15px; line-height: 1.65; color: var(--ink-mute); flex: 1; }
+  .g-scard-work { padding-top: 12px; border-top: 1px solid var(--rule); font-family: var(--font-display); font-size: 14px; color: var(--ink-mute); }
+  .g-scard-work em { color: var(--ink); font-style: italic; }
+  .g-scard-artist { display: block; font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+  .g-scard-link { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft); transition: color 150ms; margin-top: auto; }
+  .g-scard-link:hover { color: var(--ink); }
+
+  /* ── Divider / footer ─────────────────────────────────────────── */
+  .g-divider { border: none; border-top: 1px solid var(--rule); margin: 8px 0; }
+  .g-footer { margin-top: 48px; border-top: 1px solid var(--rule); }
+  .g-footer-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 24px 0; }
+  .g-footer-links { display: flex; gap: 24px; }
+  .g-footer a, .g-footer-links a { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); transition: color 150ms; }
+  .g-footer a:hover, .g-footer-links a:hover { color: var(--ink); }
+</style>
+
 <script>
-  // Highlight active thread in the sticky nav based on scroll position
   const navLinks = document.querySelectorAll<HTMLAnchorElement>('.thread-nav-link');
-  const sections = document.querySelectorAll<HTMLElement>('[id]');
+  const sectionIds = ['body-volume', 'material-making', 'space-setting'];
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach((link) => {
-            const isActive = link.dataset.anchor === id;
-            if (isActive) {
-              link.style.backgroundColor = `color-mix(in srgb, var(--tc) 18%, #1a140c)`;
-              link.style.color = `var(--tc)`;
-            } else {
-              link.style.backgroundColor = '';
-              link.style.color = '';
-            }
-          });
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          navLinks.forEach((link) => link.classList.toggle('active', link.dataset.anchor === id));
         }
       });
     },
     { rootMargin: '-20% 0px -70% 0px' }
   );
 
-  sections.forEach((sec) => observer.observe(sec));
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
 </script>
