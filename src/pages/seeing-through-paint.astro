@@ -118,7 +118,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
               <ul class="threads-list">
                 {entry.data.threads.map((t) => (
                   <li style={`--sub-acc: ${accent}`}>
-                    <ThreadIcon thread={t.id} size={16} />
+                    <ThreadIcon thread={t.id} size={20} />
                     <div>
                       <div class="tn">{t.label}</div>
                       <div class="ts">{t.period_summary}</div>
@@ -179,7 +179,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
   .g-label {
     font-family: var(--font-ui);
-    font-size: 11.5px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -215,7 +215,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .g-nav { display: flex; gap: 2px; padding: 8px 0; white-space: nowrap; }
   .g-nav-link {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -253,7 +253,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .g-period-dates {
     display: block;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.06em;
     color: var(--ink-soft);
     margin-top: 4px;
@@ -261,7 +261,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .g-core-tag {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     padding: 4px 12px;
     border: 1px solid color-mix(in oklab, var(--u-acc) 35%, transparent);
@@ -288,9 +288,9 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
     border-top: 1px solid var(--rule);
     text-align: center;
   }
-  .g-hero-caption-title { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink); }
-  .g-hero-caption-by { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 4px; }
-  .g-hero-caption-meta { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-soft); margin-top: 4px; }
+  .g-hero-caption-title { font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--ink); }
+  .g-hero-caption-by { font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 4px; }
+  .g-hero-caption-meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
 
   /* ── Prose + sidebar ──────────────────────────────────────────── */
   .g-body { display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
@@ -302,7 +302,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .card { border: 1px solid var(--rule); background: var(--bg-raised); }
   .card h4 {
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -321,20 +321,20 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
     align-items: start;
   }
   .threads-list li:last-child { border-bottom: none; }
-  .threads-list .tn { font-family: var(--font-ui); font-size: 12px; font-weight: 500; color: var(--sub-acc, var(--ink)); margin-bottom: 3px; }
-  .threads-list .ts { font-family: var(--font-display); font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  .threads-list .tn { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--sub-acc, var(--ink)); margin-bottom: 3px; }
+  .threads-list .ts { font-family: var(--font-display); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
 
   .g-gallery { list-style: none; padding: 0; margin: 0; }
   .g-gallery li { padding: 10px 16px; border-bottom: 1px solid var(--rule); }
   .g-gallery li:last-child { border-bottom: none; }
   .g-gallery-img { display: block; width: 100%; max-height: 140px; object-fit: contain; background: var(--bg-sunken); margin-bottom: 8px; }
-  .g-gallery-title { font-family: var(--font-display); font-style: italic; font-size: 12.5px; color: var(--ink); line-height: 1.3; }
-  .g-gallery-by { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
+  .g-gallery-title { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink); line-height: 1.3; }
+  .g-gallery-by { font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
 
   .g-unit-link {
     display: block;
     font-family: var(--font-ui);
-    font-size: 11.5px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 10px 16px;
@@ -355,7 +355,7 @@ const rendered = await Promise.all(entries.map((e) => render(e)));
   .g-footer-links { display: flex; gap: 24px; }
   .g-footer a, .g-footer-links a {
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-soft);
