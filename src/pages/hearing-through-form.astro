@@ -76,7 +76,7 @@ function getFeatured(entry: typeof entries[0]) {
           data-anchor={thread.id}
           style={`--accent: ${THREAD_COLORS[ti]};`}
         >
-          <ThreadIcon thread={thread.id} size={24} />
+          <ThreadIcon thread={thread.id} size={24} color={THREAD_COLORS[ti]} />
           {thread.label}
         </a>
       ))}
@@ -113,7 +113,7 @@ function getFeatured(entry: typeof entries[0]) {
       <>
         <div id={thread.id} class="g-thread-head">
           <div class="g-thread-eyebrow">
-            <ThreadIcon thread={thread.id} size={34} />
+            <ThreadIcon thread={thread.id} size={34} color={tc} />
             <h2 class="g-thread-name">{thread.label}</h2>
           </div>
           <p class="g-thread-question">{thread.question}</p>
