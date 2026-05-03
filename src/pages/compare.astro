@@ -6,12 +6,12 @@ import ThreadIcon from '../components/ThreadIcon.astro';
 const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeCompare(b.id));
 
 const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#5b82c8',
-  '01-renaissance':   '#e8a820',
-  '02-baroque':       '#dc5f6c',
-  '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#b978d2',
-  '05-modernism':     '#3aa87a',
+  '00-medieval':      '#3f6cc8',
+  '01-renaissance':   '#c98a18',
+  '02-baroque':       '#c64254',
+  '03-enlightenment': '#2a9bb0',
+  '04-romanticism':   '#b8438c',
+  '05-modernism':     '#2d9560',
 };
 
 const DOMAIN_LABELS = {
@@ -22,7 +22,7 @@ const DOMAIN_LABELS = {
 
 const domainOrder = ['philosophy', 'art', 'music'] as const;
 
-const SCULPTURE_ACCENT = '#B5714A';
+const SCULPTURE_ACCENT = '#7B6B5B';
 
 function getPrimaryMusic(entry: typeof allEntries[0]) {
   const fl = entry.data.featured_listening;
@@ -113,7 +113,7 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
             <div class="cmp-grid">
               {entries.map((entry) => {
                 const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+                const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
                 const num = unitId.slice(0, 2);
                 const periodThread = entry.data.threads.find(t => t.id === thread.id);
                 return (
@@ -213,7 +213,7 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
           <div class="cmp-grid">
             {artEntries.map((entry) => {
               const unitId = entry.data.unit;
-              const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+              const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
               const num = unitId.slice(0, 2);
               const periodThread = entry.data.threads.find(t => t.id === thread.id);
               const heroPainting = entry.data.hero_painting;
@@ -276,7 +276,7 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
           <div class="cmp-grid">
             {sculptureEntries.map((entry) => {
               const unitId = entry.data.unit;
-              const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+              const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
               const num = unitId.slice(0, 2);
               const periodThread = entry.data.threads.find(t => t.id === thread.id);
               const heroSculpture = entry.data.hero_sculpture;
@@ -363,7 +363,7 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
             <div class="cmp-grid">
               {entries.map((entry) => {
                 const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+                const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
                 const num = unitId.slice(0, 2);
                 const periodThread = entry.data.threads.find(t => t.id === thread.id);
                 const music = getPrimaryMusic(entry);
@@ -609,7 +609,7 @@ const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
     overflow: hidden;
     transition: background 200ms;
   }
-  .cmp-card:hover { background: #201c18; }
+  .cmp-card:hover { background: #E0D5BD; }
 
   .cmp-card-swatch {
     position: absolute;

@@ -72,12 +72,12 @@ const ACCENTS: Record<string, {
   music: string;
   subThreads: [string, string, string];
 }> = {
-  '00-medieval':      { philosophy: '#C9A24B', art: '#C47A5A', sculpture: '#8A9A7B', music: '#A89553', subThreads: ['#C9A24B', '#A89553', '#C47A5A'] },
-  '01-renaissance':   { philosophy: '#B54B3A', art: '#A8663A', sculpture: '#96583A', music: '#966B3A', subThreads: ['#B54B3A', '#966B3A', '#A8663A'] },
-  '02-baroque':       { philosophy: '#D4A24C', art: '#C47A5A', sculpture: '#B5714A', music: '#B09040', subThreads: ['#D4A24C', '#B09040', '#C47A5A'] },
-  '03-enlightenment': { philosophy: '#6B8CA3', art: '#7A8F88', sculpture: '#6A8A78', music: '#6B8A98', subThreads: ['#6B8CA3', '#6B8A98', '#7A8F88'] },
-  '04-romanticism':   { philosophy: '#3E5B6E', art: '#4A6B5E', sculpture: '#3E6055', music: '#3E526B', subThreads: ['#3E5B6E', '#3E526B', '#4A6B5E'] },
-  '05-modernism':     { philosophy: '#A03828', art: '#8A4A38', sculpture: '#7A4030', music: '#8A5028', subThreads: ['#A03828', '#8A5028', '#8A4A38'] },
+  '00-medieval':      { philosophy: '#3f6cc8', art: '#3f6cc8', sculpture: '#3f6cc8', music: '#3f6cc8', subThreads: ['#3f6cc8', '#3060B0', '#5080D8'] },
+  '01-renaissance':   { philosophy: '#c98a18', art: '#c98a18', sculpture: '#c98a18', music: '#c98a18', subThreads: ['#c98a18', '#A87010', '#E09A20'] },
+  '02-baroque':       { philosophy: '#c64254', art: '#c64254', sculpture: '#c64254', music: '#c64254', subThreads: ['#c64254', '#A43848', '#D85870'] },
+  '03-enlightenment': { philosophy: '#2a9bb0', art: '#2a9bb0', sculpture: '#2a9bb0', music: '#2a9bb0', subThreads: ['#2a9bb0', '#228898', '#3AB0C8'] },
+  '04-romanticism':   { philosophy: '#b8438c', art: '#b8438c', sculpture: '#b8438c', music: '#b8438c', subThreads: ['#b8438c', '#983878', '#CC50A0'] },
+  '05-modernism':     { philosophy: '#2d9560', art: '#2d9560', sculpture: '#2d9560', music: '#2d9560', subThreads: ['#2d9560', '#258050', '#38AA70'] },
 };
 
 const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
@@ -319,12 +319,12 @@ const peopleJson   = JSON.stringify(PEOPLE);
     <div class="card">
       <h4>Analytical Threads</h4>
       <ul class="threads-list">
-        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
-          const subAcc = subThreadColors[i % subThreadColors.length];
+        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }) => {
+          const subAcc = THREAD_ICONS[t.id]?.color ?? threadAcc;
           return (
             <li style={`--sub-acc: ${subAcc};`}>
               <span class="sig-xs">
-                <ThreadIcon thread={t.id} size={20} />
+                <ThreadIcon thread={t.id} size={28} />
               </span>
               <div>
                 <div class="tt">{t.label}</div>
@@ -583,14 +583,14 @@ const peopleJson   = JSON.stringify(PEOPLE);
 
 <style is:global>
   :root {
-    --bg: #141110;
-    --bg-raised: #1b1714;
-    --bg-sunken: #0d0b0a;
-    --ink: #E8DFD0;
-    --ink-mute: #B8AE9D;
-    --ink-soft: #9A8F7E;
-    --rule: #3A332C;
-    --rule-strong: #5A4F44;
+    --bg: #F4EDDF;
+    --bg-raised: #EBE2D0;
+    --bg-sunken: #FAF4E6;
+    --ink: #1B1714;
+    --ink-mute: #4a4138;
+    --ink-soft: #6a6053;
+    --rule: #C9BDA5;
+    --rule-strong: #A89978;
 
     --font-display: 'Spectral', Georgia, serif;
     --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
@@ -793,14 +793,14 @@ const peopleJson   = JSON.stringify(PEOPLE);
     position: relative;
     overflow: hidden;
     background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 14px, rgba(255,255,255,0.05) 14px 28px),
-      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 34%, #141110), color-mix(in oklab, var(--thread-acc) 10%, #141110));
+      repeating-linear-gradient(135deg, rgba(0,0,0,0.018) 0 14px, rgba(0,0,0,0.035) 14px 28px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 34%, #F4EDDF), color-mix(in oklab, var(--thread-acc) 10%, #F4EDDF));
   }
   figure.hero-plate .img::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+    background: linear-gradient(180deg, rgba(244,237,223,0) 55%, rgba(244,237,223,.55) 100%);
     pointer-events: none;
   }
   .hero-img-full {
@@ -816,7 +816,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.04em;
-    color: rgba(232,223,208,.85);
+    color: var(--ink-mute);
     z-index: 2;
   }
   figure.hero-plate .caption {
@@ -863,14 +863,14 @@ const peopleJson   = JSON.stringify(PEOPLE);
     position: relative;
     overflow: hidden;
     background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 12px, rgba(255,255,255,.04) 12px 24px),
-      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 32%, #141110), color-mix(in oklab, var(--thread-acc) 8%, #141110));
+      repeating-linear-gradient(135deg, rgba(0,0,0,0.015) 0 12px, rgba(0,0,0,0.028) 12px 24px),
+      linear-gradient(180deg, color-mix(in oklab, var(--thread-acc) 32%, #F4EDDF), color-mix(in oklab, var(--thread-acc) 8%, #F4EDDF));
   }
   .plate .img::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(20,17,16,0) 55%, rgba(20,17,16,.45) 100%);
+    background: linear-gradient(180deg, rgba(244,237,223,0) 55%, rgba(244,237,223,.55) 100%);
   }
   .plate .img img {
     position: absolute;
@@ -926,8 +926,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
   figure.hero-plate.music .img {
     background: linear-gradient(
       180deg,
-      color-mix(in oklab, var(--thread-acc) 30%, #141110),
-      color-mix(in oklab, var(--thread-acc) 10%, #141110)
+      color-mix(in oklab, var(--thread-acc) 30%, #F4EDDF),
+      color-mix(in oklab, var(--thread-acc) 10%, #F4EDDF)
     );
   }
   figure.hero-plate .staff { position: absolute; inset: 0; }
@@ -935,21 +935,21 @@ const peopleJson   = JSON.stringify(PEOPLE);
     position: absolute;
     left: 6%; right: 6%;
     height: 1px;
-    background: rgba(232,223,208,.32);
+    background: rgba(27,23,20,.2);
   }
   figure.hero-plate .play {
     position: absolute; right: 22px; bottom: 18px; z-index: 2;
     width: 56px; height: 56px;
-    border: 1px solid rgba(232,223,208,.6);
+    border: 1px solid rgba(27,23,20,.4);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(20,17,16,.35);
+    background: rgba(244,237,223,.7);
     backdrop-filter: blur(3px);
   }
   figure.hero-plate .play::before {
     content: '';
     width: 0; height: 0;
-    border-left: 14px solid rgba(232,223,208,.9);
+    border-left: 14px solid rgba(27,23,20,.8);
     border-top: 9px solid transparent;
     border-bottom: 9px solid transparent;
     margin-left: 3px;
@@ -960,8 +960,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
     aspect-ratio: 16 / 9;
     background: linear-gradient(
       180deg,
-      color-mix(in oklab, var(--thread-acc) 28%, #141110),
-      color-mix(in oklab, var(--thread-acc) 8%, #141110)
+      color-mix(in oklab, var(--thread-acc) 28%, #F4EDDF),
+      color-mix(in oklab, var(--thread-acc) 8%, #F4EDDF)
     );
   }
   .music-plate .img .staff { position: absolute; inset: 0; }
@@ -969,21 +969,21 @@ const peopleJson   = JSON.stringify(PEOPLE);
     position: absolute;
     left: 8%; right: 8%;
     height: 1px;
-    background: rgba(232,223,208,.28);
+    background: rgba(27,23,20,.18);
   }
   .plate .play {
     position: absolute; right: 18px; bottom: 14px; z-index: 2;
     width: 44px; height: 44px;
-    border: 1px solid rgba(232,223,208,.55);
+    border: 1px solid rgba(27,23,20,.35);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(20,17,16,.35);
+    background: rgba(244,237,223,.7);
     backdrop-filter: blur(3px);
   }
   .plate .play::before {
     content: '';
     width: 0; height: 0;
-    border-left: 10px solid rgba(232,223,208,.85);
+    border-left: 10px solid rgba(27,23,20,.75);
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     margin-left: 2px;
@@ -1265,7 +1265,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
     border: 1px solid var(--rule);
     background: var(--bg-sunken);
     display: grid;
-    grid-template-columns: 36px 1fr;
+    grid-template-columns: 44px 1fr;
     gap: 14px;
     align-items: start;
     position: relative;
@@ -1283,22 +1283,22 @@ const peopleJson   = JSON.stringify(PEOPLE);
     background: var(--bg-raised);
   }
   .sig-xs {
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg);
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--sub-acc, var(--rule-strong));
+    background: color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 10%, var(--bg));
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .sig-xs svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
   .tt {
     font-family: var(--font-display);
     font-size: 15px;
-    color: var(--ink);
+    color: var(--sub-acc, var(--ink));
     line-height: 1.2;
     margin-bottom: 4px;
   }
@@ -1375,8 +1375,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
     overflow: hidden;
     background: linear-gradient(
       160deg,
-      color-mix(in oklab, var(--thread-acc) 28%, #141110),
-      color-mix(in oklab, var(--thread-acc) 8%, #141110)
+      color-mix(in oklab, var(--thread-acc) 28%, #F4EDDF),
+      color-mix(in oklab, var(--thread-acc) 8%, #F4EDDF)
     );
     text-decoration: none;
     transition: opacity 150ms;
@@ -1389,7 +1389,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
     position: absolute;
     left: 8%; right: 8%;
     height: 1px;
-    background: rgba(232,223,208,.22);
+    background: rgba(27,23,20,.15);
   }
   .gml:nth-child(1) { top: 30%; }
   .gml:nth-child(2) { top: 44%; }
@@ -1401,17 +1401,17 @@ const peopleJson   = JSON.stringify(PEOPLE);
     bottom: 12px;
     width: 36px;
     height: 36px;
-    border: 1px solid rgba(232,223,208,.55);
+    border: 1px solid rgba(27,23,20,.35);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(20,17,16,.35);
+    background: rgba(244,237,223,.7);
   }
   .gallery-play::before {
     content: '';
     width: 0; height: 0;
-    border-left: 9px solid rgba(232,223,208,.85);
+    border-left: 9px solid rgba(27,23,20,.75);
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
     margin-left: 2px;

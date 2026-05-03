@@ -112,15 +112,43 @@ const peopleJson = JSON.stringify(PEOPLE);
 <style is:global>
   /* ── Design tokens ───────────────────────────────────────────────── */
   :root {
-    --bg:          #141110;
-    --bg-raised:   #1b1714;
-    --bg-sunken:   #0d0b0a;
-    --ink:         #E8DFD0;
-    --ink-mute:    #B8AE9D;
-    --ink-soft:    #9A8F7E;
-    --rule:        #3A332C;
-    --rule-strong: #5A4F44;
-    --acc:         #C9A24B;
+    /* Surfaces (warm cream paper) */
+    --bg:          #F4EDDF;
+    --bg-raised:   #EBE2D0;
+    --bg-sunken:   #FAF4E6;
+
+    /* Ink (warm dark brown) */
+    --ink:         #1B1714;
+    --ink-mute:    #4a4138;
+    --ink-soft:    #6a6053;
+
+    /* Rules / borders */
+    --rule:        #C9BDA5;
+    --rule-strong: #A89978;
+
+    /* Default accent (gold leaf, darkened for paper) */
+    --acc:         #A07820;
+
+    /* Per-period accents — "Separated" */
+    --acc-medieval:       #3f6cc8;
+    --acc-renaissance:    #c98a18;
+    --acc-baroque:        #c64254;
+    --acc-enlightenment:  #2a9bb0;
+    --acc-romanticism:    #b8438c;
+    --acc-modernism:      #2d9560;
+
+    /* Dark-mode tokens kept for reference only */
+    --bg-dark:           #141110;
+    --bg-dark-raised:    #1b1714;
+    --bg-dark-sunken:    #0d0b0a;
+    --ink-dark:          #E8DFD0;
+    --rule-dark:         #3A332C;
+    --acc-medieval-dark:      #5b82c8;
+    --acc-renaissance-dark:   #e8a820;
+    --acc-baroque-dark:       #dc5f6c;
+    --acc-enlightenment-dark: #48a0e0;
+    --acc-romanticism-dark:   #b978d2;
+    --acc-modernism-dark:     #3aa87a;
 
     --font-display: 'Spectral', 'Source Serif Pro', Georgia, serif;
     --font-ui:      'IBM Plex Sans', system-ui, sans-serif;

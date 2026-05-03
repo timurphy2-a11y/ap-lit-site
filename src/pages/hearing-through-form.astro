@@ -9,16 +9,15 @@ const UNIT_IDS = [
 ] as const;
 
 const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#5b82c8',
-  '01-renaissance':   '#e8a820',
-  '02-baroque':       '#dc5f6c',
-  '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#b978d2',
-  '05-modernism':     '#3aa87a',
+  '00-medieval':      '#3f6cc8',
+  '01-renaissance':   '#c98a18',
+  '02-baroque':       '#c64254',
+  '03-enlightenment': '#2a9bb0',
+  '04-romanticism':   '#b8438c',
+  '05-modernism':     '#2d9560',
 };
 
-const MUSIC_ACCENT = '#8B3A52';
-const THREAD_COLORS = ['#8B3A52', '#6E2E42', '#A84E66'];
+const THREAD_COLORS = ['#3278AA', '#2560A0', '#4090C8'];
 
 const THREADS = [
   {
@@ -55,7 +54,7 @@ function getFeatured(entry: typeof entries[0]) {
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <section class="g-hero">
   <div class="g-wrap">
-    <p class="g-label" style={`--acc-local: ${MUSIC_ACCENT}`}>§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Music</p>
+    <p class="g-label">§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Music</p>
     <h1 class="g-title">Hearing Through Form</h1>
     <p class="g-thesis">
       A complete guide to the music of each period, from the single unaccompanied line of medieval
@@ -128,7 +127,7 @@ function getFeatured(entry: typeof entries[0]) {
         <div class="g-card-grid">
           {entries.map((entry) => {
             const unitId = entry.data.unit;
-            const uAccent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+            const uAccent = UNIT_ACCENTS[unitId] ?? '#A07820';
             const num = unitId.slice(0, 2);
             const periodThread = entry.data.threads.find((t: { id: string }) => t.id === thread.id);
             const featured = getFeatured(entry);
@@ -312,7 +311,7 @@ function getFeatured(entry: typeof entries[0]) {
 
   /* ── Music card ───────────────────────────────────────────────── */
   .g-mcard { position: relative; display: flex; flex-direction: column; background: var(--bg-raised); overflow: hidden; transition: background 200ms; }
-  .g-mcard:hover { background: #201c18; }
+  .g-mcard:hover { background: #E0D5BD; }
   .g-mcard-swatch { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--u-acc); z-index: 1; }
 
   /* ── Inline video ─────────────────────────────────────────────── */

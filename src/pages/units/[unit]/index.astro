@@ -42,12 +42,12 @@ const timelineEvents = HUB_EVENTS[unit] ?? [];
 
 // Per-unit accent color sets
 const ACCENTS: Record<string, { acc: string; philosophy: string; art: string; music: string }> = {
-  '00-medieval':      { acc: '#C9A24B', philosophy: '#C9A24B', art: '#C47A5A', music: '#A89553' },
-  '01-renaissance':   { acc: '#B54B3A', philosophy: '#B54B3A', art: '#A8663A', music: '#966B3A' },
-  '02-baroque':       { acc: '#D4A24C', philosophy: '#D4A24C', art: '#C47A5A', music: '#B09040' },
-  '03-enlightenment': { acc: '#6B8CA3', philosophy: '#6B8CA3', art: '#7A8F88', music: '#6B8A98' },
-  '04-romanticism':   { acc: '#3E5B6E', philosophy: '#3E5B6E', art: '#4A6B5E', music: '#3E526B' },
-  '05-modernism':     { acc: '#A03828', philosophy: '#A03828', art: '#8A4A38', music: '#8A5028' },
+  '00-medieval':      { acc: '#3f6cc8', philosophy: '#3f6cc8', art: '#3f6cc8', music: '#3f6cc8' },
+  '01-renaissance':   { acc: '#c98a18', philosophy: '#c98a18', art: '#c98a18', music: '#c98a18' },
+  '02-baroque':       { acc: '#c64254', philosophy: '#c64254', art: '#c64254', music: '#c64254' },
+  '03-enlightenment': { acc: '#2a9bb0', philosophy: '#2a9bb0', art: '#2a9bb0', music: '#2a9bb0' },
+  '04-romanticism':   { acc: '#b8438c', philosophy: '#b8438c', art: '#b8438c', music: '#b8438c' },
+  '05-modernism':     { acc: '#2d9560', philosophy: '#2d9560', art: '#2d9560', music: '#2d9560' },
 };
 const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 
@@ -330,14 +330,14 @@ const momentJson = JSON.stringify({
 <style is:global>
   /* ── Design tokens ─────────────────────────────────────────── */
   :root {
-    --bg:          #141110;
-    --bg-raised:   #1b1714;
-    --bg-sunken:   #0d0b0a;
-    --ink:         #E8DFD0;
-    --ink-mute:    #B8AE9D;
-    --ink-soft:    #9A8F7E;
-    --rule:        #3A332C;
-    --rule-strong: #5A4F44;
+    --bg:          #F4EDDF;
+    --bg-raised:   #EBE2D0;
+    --bg-sunken:   #FAF4E6;
+    --ink:         #1B1714;
+    --ink-mute:    #4a4138;
+    --ink-soft:    #6a6053;
+    --rule:        #C9BDA5;
+    --rule-strong: #A89978;
 
     --font-display: 'Spectral', Georgia, serif;
     --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
@@ -695,7 +695,7 @@ const momentJson = JSON.stringify({
     text-align: left;
     color: inherit;
   }
-  .moment-bar:hover { background: #221d19; }
+  .moment-bar:hover { background: #E0D5BD; }
   .moment-bar .label {
     font-family: var(--font-ui);
     font-size: 12px;

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytical Threads — Baroque Painting</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:          #F4EDDF;
+    --bg-raised:   #EBE2D0;
+    --bg-sunken:   #FAF4E6;
+    --ink:         #1B1714;
+    --ink-mute:    #4a4138;
+    --ink-soft:    #6a6053;
+    --rule:        #C9BDA5;
+    --rule-strong: #A89978;
+    --acc:         #A07820;
+    --thread-acc:  #c64254; /* baroque coral */
+    --font-display: 'Spectral', Georgia, serif;
+    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:    'IBM Plex Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 48px clamp(20px, 5vw, 80px) 80px;
+  }
+
+  .page-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+  }
+  .page-label span { color: var(--thread-acc); }
+
+  /* Card — exact copy of domain page CSS */
+  .card {
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    padding: 22px 22px 20px;
+    max-width: 400px;
+  }
+  .card h4 {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .threads-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .threads-list li {
+    padding: 14px 16px;
+    border: 1px solid var(--rule);
+    background: var(--bg-sunken);
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+    align-items: start;
+    position: relative;
+    transition: border-color 160ms ease, background 160ms ease;
+    cursor: default;
+  }
+  .threads-list li::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: -1px; bottom: -1px;
+    width: 3px;
+    background: var(--sub-acc, var(--thread-acc));
+  }
+  .threads-list li:hover {
+    border-color: var(--sub-acc, var(--thread-acc));
+    background: var(--bg-raised);
+  }
+  .sig-xs {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--sub-acc, var(--rule-strong));
+    background: color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 10%, var(--bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .tt {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--sub-acc, var(--ink));
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .gloss {
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<p class="page-label">Unit 02 &nbsp;·&nbsp; <span>The Baroque</span> &nbsp;·&nbsp; Painting</p>
+
+<div class="card">
+  <h4>Analytical Threads</h4>
+  <ul class="threads-list">
+
+    <!-- Thread 1: Figure & Space — gold -->
+    <li style="--sub-acc: #D9A842">
+      <div class="sig-xs">
+        <svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true" style="color:#D9A842">
+          <line x1="3" y1="34" x2="37" y2="34" stroke="currentColor"/>
+          <circle cx="17" cy="11" r="3.5" fill="none" stroke="currentColor"/>
+          <path d="M17 14.5 L 17 30 M 17 19 L 13 25 M 17 19 L 21 25 M 17 30 L 14 34 M 17 30 L 20 34" fill="none" stroke="currentColor"/>
+          <circle cx="30" cy="22" r="2" fill="none" stroke="currentColor"/>
+          <path d="M30 24 L 30 31 M 30 26.5 L 28 30 M 30 26.5 L 32 30" fill="none" stroke="currentColor"/>
+          <circle cx="9" cy="9" r=".8" fill="currentColor" stroke="none"/>
+          <circle cx="25" cy="6" r=".8" fill="currentColor" stroke="none"/>
+          <circle cx="9" cy="20" r=".8" fill="currentColor" stroke="none"/>
+          <circle cx="17" cy="6" r="1.3" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <div class="tt">Figure &amp; Space</div>
+        <div class="gloss">Compositions become dynamic and unstable — figures twist, surge, and emerge from deep shadow in spaces that feel vast but unmeasurable.</div>
+      </div>
+    </li>
+
+    <!-- Thread 2: Light & Shadow — pink -->
+    <li style="--sub-acc: #C94C7C">
+      <div class="sig-xs">
+        <svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true" style="color:#C94C7C">
+          <circle cx="20" cy="20" r="6" fill="none" stroke="currentColor"/>
+          <line x1="20" y1="9" x2="20" y2="4" stroke="currentColor"/>
+          <line x1="20" y1="31" x2="20" y2="36" stroke="currentColor"/>
+          <line x1="9" y1="20" x2="4" y2="20" stroke="currentColor"/>
+          <line x1="31" y1="20" x2="36" y2="20" stroke="currentColor"/>
+          <line x1="12.2" y1="12.2" x2="8.7" y2="8.7" stroke="currentColor"/>
+          <line x1="27.8" y1="27.8" x2="31.3" y2="31.3" stroke="currentColor"/>
+          <line x1="27.8" y1="12.2" x2="31.3" y2="8.7" stroke="currentColor"/>
+          <line x1="12.2" y1="27.8" x2="8.7" y2="31.3" stroke="currentColor"/>
+          <line x1="14.3" y1="9.6" x2="12.6" y2="5.0" opacity=".55" stroke="currentColor"/>
+          <line x1="25.7" y1="30.4" x2="27.4" y2="35.0" opacity=".55" stroke="currentColor"/>
+          <line x1="9.6" y1="25.7" x2="5.0" y2="27.4" opacity=".55" stroke="currentColor"/>
+          <line x1="30.4" y1="14.3" x2="35.0" y2="12.6" opacity=".55" stroke="currentColor"/>
+          <circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <div class="tt">Light &amp; Shadow</div>
+        <div class="gloss">Chiaroscuro and tenebrism create extreme contrasts — a single beam of light picks out the crucial action from enveloping darkness.</div>
+      </div>
+    </li>
+
+    <!-- Thread 3: Brushwork & Surface — teal -->
+    <li style="--sub-acc: #4AB39A">
+      <div class="sig-xs">
+        <svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true" style="color:#4AB39A">
+          <rect x="6" y="6" width="28" height="28" fill="none" stroke="currentColor"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="20" cy="12" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="28" cy="12" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="20" cy="20" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="28" cy="20" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="28" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="20" cy="28" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="28" cy="28" r="1" fill="currentColor" stroke="none"/>
+          <rect x="9" y="9" width="22" height="22" stroke-dasharray="1.5 2" opacity=".55" fill="none" stroke="currentColor"/>
+        </svg>
+      </div>
+      <div>
+        <div class="tt">Brushwork &amp; Surface</div>
+        <div class="gloss">The period divides: Vermeer achieves luminous smoothness while Rembrandt builds thick impasto that makes the paint itself a physical presence.</div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+</body>
+</html>

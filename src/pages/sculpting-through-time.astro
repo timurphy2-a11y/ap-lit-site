@@ -9,16 +9,15 @@ const UNIT_IDS = [
 ] as const;
 
 const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#5b82c8',
-  '01-renaissance':   '#e8a820',
-  '02-baroque':       '#dc5f6c',
-  '03-enlightenment': '#48a0e0',
-  '04-romanticism':   '#b978d2',
-  '05-modernism':     '#3aa87a',
+  '00-medieval':      '#3f6cc8',
+  '01-renaissance':   '#c98a18',
+  '02-baroque':       '#c64254',
+  '03-enlightenment': '#2a9bb0',
+  '04-romanticism':   '#b8438c',
+  '05-modernism':     '#2d9560',
 };
 
-const SCULPTURE_ACCENT = '#B5714A';
-const THREAD_COLORS = ['#B5714A', '#9E5E38', '#C8845A'];
+const THREAD_COLORS = ['#7B6B5B', '#5E5248', '#9A8878'];
 
 const THREADS = [
   { id: 'body-volume',     label: 'Body & Volume',
@@ -40,7 +39,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <section class="g-hero">
   <div class="g-wrap">
-    <p class="g-label" style={`--acc-local: ${SCULPTURE_ACCENT}`}>§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Sculpture</p>
+    <p class="g-label">§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Sculpture</p>
     <h1 class="g-title">Sculpting Through Time</h1>
     <p class="g-thesis">
       A complete guide to the sculpture of each period, from the medieval cathedral portal to the
@@ -114,7 +113,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
         <div class="g-card-grid">
           {entries.map((entry) => {
             const unitId = entry.data.unit;
-            const uAccent = UNIT_ACCENTS[unitId] ?? '#C9A24B';
+            const uAccent = UNIT_ACCENTS[unitId] ?? '#A07820';
             const num = unitId.slice(0, 2);
             const periodThread = entry.data.threads.find(t => t.id === thread.id);
             const hero = entry.data.hero_sculpture;
@@ -282,7 +281,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
 
   /* ── Sculpture card ───────────────────────────────────────────── */
   .g-scard { position: relative; display: flex; flex-direction: column; background: var(--bg-raised); overflow: hidden; transition: background 200ms; }
-  .g-scard:hover { background: #201c18; }
+  .g-scard:hover { background: #E0D5BD; }
   .g-scard-swatch { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--u-acc); z-index: 1; }
   .g-scard-img-wrap { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-sunken); }
   .g-scard-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }

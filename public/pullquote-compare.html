@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 3 — PullQuote options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:          #F4EDDF;
+    --bg-raised:   #EBE2D0;
+    --bg-sunken:   #FAF4E6;
+    --ink:         #1B1714;
+    --ink-mute:    #4a4138;
+    --ink-soft:    #6a6053;
+    --rule:        #C9BDA5;
+    --rule-strong: #A89978;
+    --acc:         #A07820;
+    --acc-medieval:       #3f6cc8;
+    --acc-renaissance:    #c98a18;
+    --acc-baroque:        #c64254;
+    --acc-enlightenment:  #2a9bb0;
+    --acc-romanticism:    #b8438c;
+    --acc-modernism:      #2d9560;
+    --font-display: 'Spectral', Georgia, serif;
+    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:    'IBM Plex Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 48px clamp(20px, 5vw, 80px) 80px;
+  }
+  h1 { font-size: 28px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); margin-bottom: 40px; letter-spacing: 0.08em; }
+
+  .section-rule {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute);
+    margin: 52px 0 24px;
+  }
+  .section-rule .mono { font-family: var(--font-mono); }
+  .section-rule .rule-line { flex: 1; height: 1px; background: var(--rule); }
+
+  .note-box {
+    border: 1px solid var(--rule); padding: 18px 22px;
+    font-size: 13.5px; line-height: 1.65; color: var(--ink-mute); margin-bottom: 8px;
+  }
+  .note-box p + p { margin-top: 10px; }
+  code { font-family: var(--font-mono); font-size: 11px; color: var(--ink); background: var(--bg-sunken); border: 1px solid var(--rule); padding: 1px 5px; }
+
+  /* Grid layouts */
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .option { background: var(--bg-raised); display: flex; flex-direction: column; }
+  .option-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--rule); }
+  .option-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+  .option-name { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .option-code { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); line-height: 1.5; }
+  .demo-body { padding: 28px 24px; flex: 1; font-size: 17px; line-height: 1.75; }
+  .verdict { padding: 12px 18px; border-top: 1px solid var(--rule); font-size: 12.5px; line-height: 1.55; color: var(--ink-mute); }
+  .verdict strong { color: var(--ink); font-weight: 500; }
+
+  /* Surrounding prose context */
+  .prose-ctx { color: var(--ink); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose-ctx + .prose-ctx { margin-top: -6px; }
+
+  /* ── Fixed changes (not up for debate) ── */
+  /* border-radius: 0  /  text: var(--ink-mute)  /  attribution: var(--ink-soft) */
+
+  /* ── BORDER OPTIONS ── */
+
+  /* A: var(--thread-acc) — period-contextual */
+  .border-thread blockquote {
+    border-left: 3px solid var(--thread-acc, var(--acc));
+  }
+
+  /* B: var(--acc) — always default gold */
+  .border-acc blockquote {
+    border-left: 3px solid var(--acc);
+  }
+
+  /* C: var(--rule-strong) — neutral hairline */
+  .border-neutral blockquote {
+    border-left: 3px solid var(--rule-strong);
+  }
+
+  /* ── BACKGROUND OPTIONS ── */
+
+  /* i: transparent (no fill) */
+  .bg-none blockquote {
+    background: transparent;
+  }
+
+  /* ii: very subtle thread-acc tint */
+  .bg-tint blockquote {
+    background: color-mix(in oklab, var(--thread-acc, var(--acc)) 6%, var(--bg));
+  }
+
+  /* iii: --bg-sunken (neutral cream mat) */
+  .bg-sunken blockquote {
+    background: var(--bg-sunken);
+  }
+
+  /* ── Shared pull-quote base styles (fixed across all options) ── */
+  blockquote {
+    padding: 0.9rem 1.25rem 0.9rem 1.1rem;
+    margin: 1.5rem 0;
+    border-radius: 0;       /* fixed: was 0 6px 6px 0 */
+  }
+  blockquote p {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: var(--ink-mute); /* fixed: was #f2e8d5 */
+    font-style: italic;
+    margin: 0;
+  }
+  blockquote cite {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    font-style: normal;
+    color: var(--ink-soft);  /* fixed: was #a09070 */
+    margin-top: 0.6rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Issue 3 — PullQuote</h1>
+<p class="subtitle">src/components/PullQuote.astro</p>
+
+<div class="note-box">
+  <p><strong>Fixed regardless of option chosen:</strong> <code>border-radius: 0</code> (design system rule), text color <code>#f2e8d5</code> → <code>var(--ink-mute)</code> (was cream-on-cream), attribution <code>#a09070</code> → <code>var(--ink-soft)</code>, white background shimmer removed. Since PullQuote only appears in domain page MDX, <code>--thread-acc</code> is always in scope.</p>
+  <p><strong>Two decisions left:</strong> (1) what color is the left border? (2) should there be a background fill?</p>
+</div>
+
+<!-- ══ BORDER COLOR ══════════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ I</span>
+  <span>Border color — three options</span>
+  <span class="rule-line"></span>
+</div>
+<p style="font-size:13px;color:var(--ink-mute);margin-bottom:22px">All shown with <code>bg-none</code> (transparent) so the border is the only variable. Period shown: Enlightenment (teal).</p>
+
+<div class="option-grid">
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option A</div>
+      <div class="option-name">Period-contextual — <code>var(--thread-acc)</code></div>
+      <div class="option-code">Same cascade as BioLink — teal on enlightenment, coral on baroque, etc.</div>
+    </div>
+    <div class="demo-body border-thread bg-none" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason, applied systematically, could explain and improve every domain of human life — not just natural philosophy but politics, religion, and art.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers — the enemy of Enlightenment was not tyranny but timidity.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Border hue shifts with the period — consistent with BioLink. Teal on enlightenment pages, coral on baroque, etc. The quote gains a visual relationship to the surrounding section markers and drop-caps.</div>
+  </div>
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option B</div>
+      <div class="option-name">Always gold — <code>var(--acc)</code></div>
+      <div class="option-code">Fixed gold-leaf regardless of period or domain.</div>
+    </div>
+    <div class="demo-body border-acc bg-none" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason, applied systematically, could explain and improve every domain of human life — not just natural philosophy but politics, religion, and art.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers — the enemy of Enlightenment was not tyranny but timidity.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Warm gold throughout — period-neutral. Simpler to reason about; the quote always looks the same regardless of which domain page it's on. Slightly disconnected from the period accent.</div>
+  </div>
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option C</div>
+      <div class="option-name">Neutral rule — <code>var(--rule-strong)</code></div>
+      <div class="option-code">No accent color — same tan as other 1px dividers.</div>
+    </div>
+    <div class="demo-body border-neutral bg-none" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason, applied systematically, could explain and improve every domain of human life — not just natural philosophy but politics, religion, and art.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers — the enemy of Enlightenment was not tyranny but timidity.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Quiet and typographic — the quote is distinguished by indentation and italic only, not by color. Most conservative. The blockquote reads as a structural element rather than an accent.</div>
+  </div>
+
+</div>
+
+<!-- ══ BACKGROUND FILL ══════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ II</span>
+  <span>Background fill — three options (all with Option A border)</span>
+  <span class="rule-line"></span>
+</div>
+<p style="font-size:13px;color:var(--ink-mute);margin-bottom:22px">Border is <code>var(--thread-acc)</code> in all three so the background is the only variable.</p>
+
+<div class="option-grid">
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Background i</div>
+      <div class="option-name">No fill — <code>transparent</code></div>
+      <div class="option-code">Border + indentation only. Lightest possible treatment.</div>
+    </div>
+    <div class="demo-body border-thread bg-none" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason could explain every domain of human life.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> The quote floats in the prose — distinguished only by the border, indentation, and italic. Very quiet.</div>
+  </div>
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Background ii</div>
+      <div class="option-name">Period tint — <code>6% thread-acc into --bg</code></div>
+      <div class="option-code"><code>color-mix(in oklab, var(--thread-acc) 6%, var(--bg))</code></div>
+    </div>
+    <div class="demo-body border-thread bg-tint" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason could explain every domain of human life.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> A whisper of period color in the fill — the tint shifts with the period just like the border. Subtle but present: the quote has its own small atmosphere.</div>
+  </div>
+
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Background iii</div>
+      <div class="option-name">Neutral mat — <code>var(--bg-sunken)</code></div>
+      <div class="option-code">Slightly lighter cream — period-neutral, consistent with image mats.</div>
+    </div>
+    <div class="demo-body border-thread bg-sunken" style="--thread-acc: var(--acc-enlightenment)">
+      <p class="prose-ctx">The Enlightenment's central wager was that reason could explain every domain of human life.</p>
+      <blockquote>
+        <p>Dare to know! Have the courage to use your own understanding.</p>
+        <cite>Immanuel Kant, <em>What is Enlightenment?</em>, 1784</cite>
+      </blockquote>
+      <p class="prose-ctx">Kant's challenge was directed not at rulers but at readers.</p>
+    </div>
+    <div class="verdict"><strong>Result:</strong> The quote sits on a lighter cream mat — same as image figures. Period-neutral fill, accent color only on the border. Clear but not colorful.</div>
+  </div>
+
+</div>
+
+<!-- ══ ALL 6 PERIODS with leading option (A + ii) ═══════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ III</span>
+  <span>Combination check — Option A border + Background ii across all 6 periods</span>
+  <span class="rule-line"></span>
+</div>
+<p style="font-size:13px;color:var(--ink-mute);margin-bottom:22px">The likely strongest combination. Verify the tint and border look good at all six hues.</p>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-bottom:40px">
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-medieval);margin-bottom:14px">00 · Medieval</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-medieval)">
+      <blockquote><p>The eye is the window of the soul; through it the soul contemplates the beauty of the world.</p><cite>Attributed to Leonardo, <em>Notebooks</em></cite></blockquote>
+    </div>
+  </div>
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-renaissance);margin-bottom:14px">01 · Renaissance</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-renaissance)">
+      <blockquote><p>Men are driven by two principal desires: the desire to acquire and the desire for security.</p><cite>Machiavelli, <em>Discourses</em></cite></blockquote>
+    </div>
+  </div>
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-baroque);margin-bottom:14px">02 · Baroque</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-baroque)">
+      <blockquote><p>In the state of nature, the life of man is solitary, poor, nasty, brutish, and short.</p><cite>Hobbes, <em>Leviathan</em>, 1651</cite></blockquote>
+    </div>
+  </div>
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-enlightenment);margin-bottom:14px">03 · Enlightenment</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-enlightenment)">
+      <blockquote><p>Dare to know! Have the courage to use your own understanding.</p><cite>Kant, <em>What is Enlightenment?</em>, 1784</cite></blockquote>
+    </div>
+  </div>
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-romanticism);margin-bottom:14px">04 · Romanticism</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-romanticism)">
+      <blockquote><p>Poets are the unacknowledged legislators of the world.</p><cite>Shelley, <em>A Defence of Poetry</em>, 1821</cite></blockquote>
+    </div>
+  </div>
+
+  <div style="background:var(--bg); padding:24px 22px">
+    <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-modernism);margin-bottom:14px">05 · Modernism</div>
+    <div class="border-thread bg-tint" style="--thread-acc: var(--acc-modernism)">
+      <blockquote><p>God is dead. God remains dead. And we have killed him.</p><cite>Nietzsche, <em>The Gay Science</em>, 1882</cite></blockquote>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

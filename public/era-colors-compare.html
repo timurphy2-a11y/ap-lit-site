@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 5 — Era Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EDDF; --bg-raised: #EBE2D0; --bg-sunken: #FAF4E6;
+    --ink: #1B1714; --ink-mute: #4a4138; --ink-soft: #6a6053;
+    --rule: #C9BDA5; --rule-strong: #A89978; --acc: #A07820;
+    --font-display: 'Spectral', Georgia, serif;
+    --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-display); font-size: 16px; line-height: 1.6; padding: 48px clamp(20px,5vw,80px) 80px; }
+  h1 { font-size: 28px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); margin-bottom: 40px; letter-spacing: 0.08em; }
+  .section-rule { display: flex; align-items: center; gap: 14px; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); margin: 48px 0 24px; }
+  .section-rule .mono { font-family: var(--font-mono); }
+  .section-rule .rule-line { flex: 1; height: 1px; background: var(--rule); }
+  .note-box { border: 1px solid var(--rule); padding: 18px 22px; font-size: 13.5px; line-height: 1.65; color: var(--ink-mute); margin-bottom: 8px; }
+  code { font-family: var(--font-mono); font-size: 11px; color: var(--ink); background: var(--bg-sunken); border: 1px solid var(--rule); padding: 1px 5px; }
+
+  /* Two-column grid */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .col { background: var(--bg-raised); padding: 20px 22px; }
+  .col-label { font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+
+  /* Era row */
+  .era-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .era-swatch { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .era-tab {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 12px; border: 1px solid; cursor: default;
+  }
+  .era-name { font-family: var(--font-ui); font-size: 13px; color: var(--ink-mute); }
+  .era-hex { font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft); margin-left: auto; }
+
+  /* Mini timeline card */
+  .timeline-demo { margin-top: 6px; display: flex; gap: 12px; align-items: flex-start; }
+  .tl-year { width: 40px; font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-align: right; flex-shrink: 0; }
+  .tl-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--bg-raised); flex-shrink: 0; margin-top: 2px; }
+  .tl-card { flex: 1; padding: 10px 14px 10px 18px; background: var(--bg); border: 1px solid var(--rule); position: relative; }
+  .tl-stripe { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .tl-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+  .tl-title { font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--ink); }
+  .tl-author { font-style: normal; color: var(--ink-mute); }
+
+  /* Tab strip demo */
+  .tab-strip { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 20px; }
+  .tab-btn {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid transparent; background: none; cursor: default; color: var(--ink-soft);
+  }
+  .tab-btn.active { background: var(--bg-raised); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<h1>Issue 5 — Era Colors</h1>
+<p class="subtitle">src/components/APLitTimeline.jsx · ERAS[].color</p>
+
+<div class="note-box">
+  <p>The 5 timeline eras don't map to the 6-unit Separated palette — they cover 1590–1955 literary history. Current colors are dark-mode (designed for a near-black surface); some read fine on cream, others are too muddy or low-contrast. Proposed values keep the same hue family per era but adjust for readability and vibrancy on paper.</p>
+</div>
+
+<!-- §I: Swatch comparison -->
+<div class="section-rule">
+  <span class="mono">§ I</span><span>Swatch comparison — current vs. proposed</span><span class="rule-line"></span>
+</div>
+
+<div class="cols">
+  <div class="col">
+    <div class="col-label">Current (dark-mode)</div>
+
+    <div class="era-row">
+      <div class="era-swatch" style="background:#C9A24B"></div>
+      <span class="era-tab" style="color:#C9A24B;border-color:#C9A24B">Renaissance &amp; Reformation</span>
+      <span class="era-hex">#C9A24B</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#6B8CA3"></div>
+      <span class="era-tab" style="color:#6B8CA3;border-color:#6B8CA3">Civil War &amp; Enlightenment</span>
+      <span class="era-hex">#6B8CA3</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#8B7355"></div>
+      <span class="era-tab" style="color:#8B7355;border-color:#8B7355">Revolution &amp; Romanticism</span>
+      <span class="era-hex">#8B7355</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#5A7A6A"></div>
+      <span class="era-tab" style="color:#5A7A6A;border-color:#5A7A6A">Industrial Age &amp; Realism</span>
+      <span class="era-hex">#5A7A6A</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#A03828"></div>
+      <span class="era-tab" style="color:#A03828;border-color:#A03828">World Wars &amp; Modernism</span>
+      <span class="era-hex">#A03828</span>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="col-label">Proposed (paper-mode)</div>
+
+    <div class="era-row">
+      <div class="era-swatch" style="background:#8A6015"></div>
+      <span class="era-tab" style="color:#8A6015;border-color:#8A6015">Renaissance &amp; Reformation</span>
+      <span class="era-hex">#8A6015 — deeper gold</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#3A6A8B"></div>
+      <span class="era-tab" style="color:#3A6A8B;border-color:#3A6A8B">Civil War &amp; Enlightenment</span>
+      <span class="era-hex">#3A6A8B — deeper blue</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#6B4878"></div>
+      <span class="era-tab" style="color:#6B4878;border-color:#6B4878">Revolution &amp; Romanticism</span>
+      <span class="era-hex">#6B4878 — plum/violet</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#38685A"></div>
+      <span class="era-tab" style="color:#38685A;border-color:#38685A">Industrial Age &amp; Realism</span>
+      <span class="era-hex">#38685A — forest teal</span>
+    </div>
+    <div class="era-row">
+      <div class="era-swatch" style="background:#A03828"></div>
+      <span class="era-tab" style="color:#A03828;border-color:#A03828">World Wars &amp; Modernism</span>
+      <span class="era-hex">#A03828 — unchanged ✓</span>
+    </div>
+  </div>
+</div>
+
+<!-- §II: Timeline card demo -->
+<div class="section-rule">
+  <span class="mono">§ II</span><span>Text entry card — two eras shown</span><span class="rule-line"></span>
+</div>
+
+<div class="cols">
+  <div class="col">
+    <div class="col-label">Current</div>
+
+    <!-- Revolution & Romanticism -->
+    <div class="timeline-demo">
+      <div class="tl-year" style="color:#8B7355">1813</div>
+      <div class="tl-dot" style="background:#8B7355"></div>
+      <div class="tl-card">
+        <div class="tl-stripe" style="background:#8B7355"></div>
+        <div class="tl-eyebrow" style="color:#8B7355">AP Literature Text</div>
+        <div class="tl-title"><em>Pride and Prejudice</em> <span class="tl-author">— Austen</span></div>
+      </div>
+    </div>
+    <div style="margin-top:14px"></div>
+    <!-- Civil War -->
+    <div class="timeline-demo">
+      <div class="tl-year" style="color:#6B8CA3">1667</div>
+      <div class="tl-dot" style="background:#6B8CA3"></div>
+      <div class="tl-card">
+        <div class="tl-stripe" style="background:#6B8CA3"></div>
+        <div class="tl-eyebrow" style="color:#6B8CA3">AP Literature Text</div>
+        <div class="tl-title"><em>Paradise Lost</em> <span class="tl-author">— Milton</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="col-label">Proposed</div>
+
+    <!-- Revolution & Romanticism -->
+    <div class="timeline-demo">
+      <div class="tl-year" style="color:#6B4878">1813</div>
+      <div class="tl-dot" style="background:#6B4878"></div>
+      <div class="tl-card">
+        <div class="tl-stripe" style="background:#6B4878"></div>
+        <div class="tl-eyebrow" style="color:#6B4878">AP Literature Text</div>
+        <div class="tl-title"><em>Pride and Prejudice</em> <span class="tl-author">— Austen</span></div>
+      </div>
+    </div>
+    <div style="margin-top:14px"></div>
+    <!-- Civil War -->
+    <div class="timeline-demo">
+      <div class="tl-year" style="color:#3A6A8B">1667</div>
+      <div class="tl-dot" style="background:#3A6A8B"></div>
+      <div class="tl-card">
+        <div class="tl-stripe" style="background:#3A6A8B"></div>
+        <div class="tl-eyebrow" style="color:#3A6A8B">AP Literature Text</div>
+        <div class="tl-title"><em>Paradise Lost</em> <span class="tl-author">— Milton</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §III: Era tab strip -->
+<div class="section-rule">
+  <span class="mono">§ III</span><span>Era filter tab strip — Revolution &amp; Romanticism active</span><span class="rule-line"></span>
+</div>
+
+<div class="cols">
+  <div class="col">
+    <div class="col-label">Current</div>
+    <div class="tab-strip">
+      <div class="tab-btn">All Eras</div>
+      <div class="tab-btn" style="color:#C9A24B">Renaissance &amp; Reformation</div>
+      <div class="tab-btn" style="color:#6B8CA3">Civil War &amp; Enlightenment</div>
+      <div class="tab-btn active" style="border-color:#8B7355">Revolution &amp; Romanticism</div>
+      <div class="tab-btn" style="color:#5A7A6A">Industrial Age &amp; Realism</div>
+      <div class="tab-btn" style="color:#A03828">World Wars &amp; Modernism</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="col-label">Proposed</div>
+    <div class="tab-strip">
+      <div class="tab-btn">All Eras</div>
+      <div class="tab-btn" style="color:#8A6015">Renaissance &amp; Reformation</div>
+      <div class="tab-btn" style="color:#3A6A8B">Civil War &amp; Enlightenment</div>
+      <div class="tab-btn active" style="border-color:#6B4878">Revolution &amp; Romanticism</div>
+      <div class="tab-btn" style="color:#38685A">Industrial Age &amp; Realism</div>
+      <div class="tab-btn" style="color:#A03828">World Wars &amp; Modernism</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
