@@ -84,13 +84,13 @@ const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
 
-const DOMAIN_COLORS: Record<string, string> = {
-  philosophy: '#A85A38',
-  art:        '#c98a18',
-  sculpture:  '#7B6B5B',
-  music:      '#3278AA',
+const DOMAIN_THREAD_COLORS: Record<string, [string, string, string]> = {
+  philosophy: ['#A85A38', '#8A4428', '#C47050'],
+  art:        ['#c98a18', '#a57014', '#e0a028'],
+  sculpture:  ['#7B6B5B', '#5E5248', '#9A8878'],
+  music:      ['#3278AA', '#2560A0', '#4090C8'],
 };
-const domainColor = DOMAIN_COLORS[domain] ?? threadAcc;
+const domainColors = DOMAIN_THREAD_COLORS[domain] ?? DOMAIN_THREAD_COLORS.philosophy;
 
 // ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
@@ -127,9 +127,10 @@ const DOMAIN_SIGIL_SVG: Record<string, string> = {
 const sigilSvg = DOMAIN_SIGIL_SVG[domain] ?? DOMAIN_SIGIL_SVG.philosophy;
 
 const threadSigils = entry.data.threads
-  .map((t: { id: string; label: string }) => {
+  .map((t: { id: string; label: string }, i: number) => {
     const icon = THREAD_ICONS[t.id];
-    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color: domainColor } : null;
+    const color = domainColors[i % domainColors.length];
+    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color } : null;
   })
   .filter(Boolean);
 
@@ -327,8 +328,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
     <div class="card">
       <h4>Analytical Threads</h4>
       <ul class="threads-list">
-        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }) => {
-          const subAcc = domainColor;
+        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
+          const subAcc = domainColors[i % domainColors.length];
           return (
             <li style={`--sub-acc: ${subAcc};`}>
               <span class="sig-xs">
