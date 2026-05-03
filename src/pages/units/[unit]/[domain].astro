@@ -84,6 +84,14 @@ const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
 
+const DOMAIN_COLORS: Record<string, string> = {
+  philosophy: '#A85A38',
+  art:        '#c98a18',
+  sculpture:  '#7B6B5B',
+  music:      '#3278AA',
+};
+const domainColor = DOMAIN_COLORS[domain] ?? threadAcc;
+
 // ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
 const prevLabel = prevUnit
@@ -121,7 +129,7 @@ const sigilSvg = DOMAIN_SIGIL_SVG[domain] ?? DOMAIN_SIGIL_SVG.philosophy;
 const threadSigils = entry.data.threads
   .map((t: { id: string; label: string }) => {
     const icon = THREAD_ICONS[t.id];
-    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color: icon.color } : null;
+    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color: domainColor } : null;
   })
   .filter(Boolean);
 
@@ -320,7 +328,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
       <h4>Analytical Threads</h4>
       <ul class="threads-list">
         {entry.data.threads.map((t: { id: string; label: string; period_summary: string }) => {
-          const subAcc = THREAD_ICONS[t.id]?.color ?? threadAcc;
+          const subAcc = domainColor;
           return (
             <li style={`--sub-acc: ${subAcc};`}>
               <span class="sig-xs">
