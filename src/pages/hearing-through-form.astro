@@ -119,7 +119,7 @@ function getFeatured(entry: typeof entries[0]) {
           <p class="g-thread-question">{thread.question}</p>
         </div>
 
-        <div class="g-arc-block" style={`--tc: ${tc}`}>
+        <div class="g-arc-block" style={`--tc: ${THREAD_COLORS[0]}`}>
           <span class="g-arc-kicker">The story this thread tells</span>
           {' '}{thread.arc.replace('The story this thread tells', '').trimStart()}
         </div>

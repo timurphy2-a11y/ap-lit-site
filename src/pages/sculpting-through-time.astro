@@ -105,7 +105,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
           <p class="g-thread-question">{thread.question}</p>
         </div>
 
-        <div class="g-arc-block" style={`--tc: ${tc}`}>
+        <div class="g-arc-block" style={`--tc: ${THREAD_COLORS[0]}`}>
           <span class="g-arc-kicker">The story this thread tells</span>
           {' '}{thread.arc.replace('The story this thread tells', '').trimStart()}
         </div>
