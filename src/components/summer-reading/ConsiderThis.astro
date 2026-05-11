@@ -1,0 +1,96 @@
+---
+// ConsiderThis.astro
+// Expandable provocation panel on Cultural Message pages.
+// Built on native <details>/<summary> — zero JS, fully accessible.
+// Spec: 07-cultural-message.md
+
+interface Props {
+  label?: string;
+}
+const { label = 'Consider this' } = Astro.props;
+---
+
+<details class="sr-consider-details">
+  <summary class="sr-consider-summary">
+    <span class="sr-consider-label">{label.toUpperCase()}</span>
+    <span class="sr-consider-icon" aria-hidden="true">→</span>
+  </summary>
+  <div class="sr-consider-body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .sr-consider-details {
+    margin-top:  var(--s-5, 1.25rem);
+    max-width:   35rem;
+    border-top:  1px solid var(--color-rule, #C8C0B0);
+  }
+
+  .sr-consider-summary {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    padding:         var(--s-3, 0.75rem) 0;
+    cursor:          pointer;
+    list-style:      none;
+    user-select:     none;
+  }
+
+  /* Remove default marker across browsers */
+  .sr-consider-summary::-webkit-details-marker { display: none; }
+  .sr-consider-summary::marker               { display: none; }
+
+  .sr-consider-label {
+    font-family:    var(--font-mono, monospace);
+    font-size:      var(--t-eyebrow, 0.625rem);
+    letter-spacing: 0.18em;
+    color:          var(--color-ink, #2C2820);
+  }
+
+  .sr-consider-icon {
+    font-family:  var(--font-body, sans-serif);
+    font-size:    0.8125rem;
+    color:        var(--color-muted, #6B6355);
+    transition:   transform var(--dur-base, 240ms) var(--ease-out, ease);
+    display:      inline-block;
+  }
+
+  /* Rotate arrow when open */
+  .sr-consider-details[open] .sr-consider-icon {
+    transform: rotate(90deg);
+  }
+
+  .sr-consider-body {
+    font-family:  var(--font-body, sans-serif);
+    font-size:    var(--t-body-sm, 0.875rem);
+    line-height:  var(--lh-prose, 1.7);
+    color:        var(--color-ink, #2C2820);
+    padding:      var(--s-4, 1rem) 0 var(--s-5, 1.25rem);
+    max-width:    33.75rem;
+
+    /* Animate open/close via grid trick (works without JS) */
+    display:      grid;
+    grid-template-rows: 0fr;
+    overflow:     hidden;
+    transition:   grid-template-rows var(--dur-base, 240ms) var(--ease-out, ease);
+  }
+
+  .sr-consider-details[open] .sr-consider-body {
+    grid-template-rows: 1fr;
+  }
+
+  .sr-consider-body > :global(*) {
+    overflow: hidden;
+  }
+
+  /* The closing direction line */
+  .sr-consider-body > :global(.sr-consider-direction) {
+    font-family:    var(--font-mono, monospace);
+    font-size:      var(--t-tag, 0.5625rem);
+    letter-spacing: 0.12em;
+    color:          var(--color-muted, #6B6355);
+    margin-top:     var(--s-4, 1rem);
+    display:        block;
+  }
+</style>

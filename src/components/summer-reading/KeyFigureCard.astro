@@ -1,0 +1,111 @@
+---
+// KeyFigureCard.astro
+// Right-rail profile card for Key Figures spoke pages.
+// Spec: 04-spoke-page.md
+
+interface Props {
+  name:    string;
+  dates?:  string;
+  body:    string;
+  avatar?: string;
+  accent?: 'pachinko' | 'tfa';
+  eyebrow?: string;
+}
+
+const {
+  name,
+  dates,
+  body,
+  avatar,
+  accent = 'pachinko',
+  eyebrow = 'Key Figure',
+} = Astro.props;
+
+const accentColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-teal)';
+---
+
+<aside class="sr-key-figure-card" style={`border-top-color: ${accentColor};`}>
+  <span class="sr-key-figure-eyebrow">{eyebrow.toUpperCase()}</span>
+
+  {avatar ? (
+    <div class="sr-key-figure-avatar-row">
+      <img
+        src={avatar}
+        alt={name}
+        class="sr-key-figure-avatar"
+        width="48"
+        height="48"
+      />
+      <div>
+        <p class="sr-key-figure-name">{name}</p>
+        {dates && <p class="sr-key-figure-dates">{dates}</p>}
+      </div>
+    </div>
+  ) : (
+    <>
+      <p class="sr-key-figure-name">{name}</p>
+      {dates && <p class="sr-key-figure-dates">{dates}</p>}
+    </>
+  )}
+
+  <p class="sr-key-figure-body">{body}</p>
+</aside>
+
+<style>
+  .sr-key-figure-card {
+    background:    var(--color-card);
+    padding:       var(--s-5) var(--s-6);
+    border-top:    2px solid var(--p-teal);
+    margin-bottom: var(--s-6);
+  }
+
+  .sr-key-figure-eyebrow {
+    display:        block;
+    font-family:    var(--font-mono);
+    font-size:      var(--t-tag);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:          var(--color-muted);
+    margin-bottom:  var(--s-4);
+  }
+
+  .sr-key-figure-avatar-row {
+    display:     flex;
+    align-items: center;
+    gap:         var(--s-3);
+    margin-bottom: var(--s-3);
+  }
+
+  .sr-key-figure-avatar {
+    width:         48px;
+    height:        48px;
+    border-radius: 50%;
+    object-fit:    cover;
+    flex-shrink:   0;
+    background:    var(--color-rule);
+  }
+
+  .sr-key-figure-name {
+    font-family: var(--font-display);
+    font-style:  italic;
+    font-size:   1.125rem;
+    line-height: var(--lh-tight);
+    color:       var(--color-ink);
+    margin:      0 0 var(--s-1);
+  }
+
+  .sr-key-figure-dates {
+    font-family: var(--font-body);
+    font-size:   var(--t-tiny);
+    color:       var(--color-muted);
+    margin:      0 0 var(--s-3);
+  }
+
+  .sr-key-figure-body {
+    font-family: var(--font-body);
+    font-size:   var(--t-meta);
+    line-height: var(--lh-meta);
+    color:       var(--color-ink);
+    margin:      0;
+  }
+</style>

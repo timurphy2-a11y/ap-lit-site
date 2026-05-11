@@ -1,0 +1,23 @@
+---
+// HubSpokeCard.astro
+// Spoke navigation card on novel hub pages. 5 per hub, 5×2 grid.
+// Spec: 02-pachinko-hub.md, 03-tfa-hub.md
+
+interface Props {
+  section:     'pachinko' | 'tfa';
+  number:      number;       // 1–5
+  href:        string;
+  title:       string;
+  teaser:      string;
+}
+
+const { section, number, href, title, teaser } = Astro.props;
+const num = String(number).padStart(2, '0');
+const eyebrowLabel = `Spoke ${num}`;
+---
+
+<a href={href} class={`sr-spoke-card sr-spoke-card--${section}`}>
+  <span class="sr-spoke-card-num">{eyebrowLabel}</span>
+  <span class="sr-spoke-card-title">{title}</span>
+  <span class="sr-spoke-card-teaser">{teaser}</span>
+</a>

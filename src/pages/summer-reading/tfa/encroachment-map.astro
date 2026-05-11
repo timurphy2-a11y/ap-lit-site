@@ -1,0 +1,438 @@
+---
+import ScrollyLayout from '../../../layouts/ScrollyLayout.astro';
+import AkweteBand from '../../../components/summer-reading/AkweteBand.astro';
+import HubScrollyCard from '../../../components/summer-reading/HubScrollyCard.astro';
+---
+<ScrollyLayout title="The World Before — TFA Encroachment Map" section="tfa">
+
+  <a href="#scrolly-landing" class="sr-only">Skip to end of map</a>
+
+  <!-- ── Title bar ─────────────────────────────────────────────────────── -->
+  <div class="scrolly-title-bar scrolly-title-bar--tfa">
+    <span class="scrolly-title-eyebrow">Interactive  ·  Scroll Experience</span>
+    <h1 class="scrolly-title-heading">The Encroachment Map</h1>
+    <p class="scrolly-title-deck">Four chapters. Watch Umuofia's world contract as colonial power moves inland.</p>
+    <div class="scrolly-progress" aria-hidden="true">
+      <div class="scrolly-progress-segment is-active" data-seg="1"></div>
+      <div class="scrolly-progress-segment" data-seg="2"></div>
+      <div class="scrolly-progress-segment" data-seg="3"></div>
+      <div class="scrolly-progress-segment" data-seg="4"></div>
+    </div>
+  </div>
+
+  <div class="scrolly-enc">
+
+    <!-- ── SCROLLING TEXT COLUMN (left) ─────────────────────────────── -->
+    <div class="scrolly-enc-text">
+
+      <!-- ── Chapter 1: Umuofia / Pre-colonial Igboland ────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="1"
+        data-caption="Umuofia — before colonization"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 01  ·  Pre-colonial</span>
+          <h2 class="scrolly-chapter-title">Umuofia and Its World</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="220" fill="#2c2820"/>
+              <!-- Niger River -->
+              <path d="M 80,10 Q 75,60 70,90 Q 65,120 80,145 Q 95,170 85,200 Q 82,210 78,220" fill="none" stroke="#4a7fa8" stroke-width="5" stroke-linecap="round"/>
+              <!-- Igboland territory -->
+              <path d="M 90,60 L 200,55 L 220,100 L 215,160 L 180,200 Q 130,215 100,195 Q 75,175 78,145 Q 72,120 85,90 Z" fill="rgba(180,130,60,0.25)" stroke="#c8903a" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <!-- Village dots -->
+              <circle cx="140" cy="120" r="5" fill="#c8903a" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+              <text x="140" y="113" font-family="monospace" font-size="7" fill="#c8903a" text-anchor="middle">UMUOFIA</text>
+              <circle cx="115" cy="95" r="3" fill="#c8903a" opacity="0.7"/>
+              <circle cx="168" cy="105" r="3" fill="#c8903a" opacity="0.7"/>
+              <circle cx="155" cy="145" r="3" fill="#c8903a" opacity="0.7"/>
+              <circle cx="125" cy="155" r="3" fill="#c8903a" opacity="0.7"/>
+              <text x="220" y="15" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.5)" text-anchor="end">pre-1857</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>Before the missionaries, before the district commissioners, before the warrant chiefs — Umuofia is a sovereign community. It governs itself through a council of elders, age grades, and the egwugwu, men who embody the authority of ancestral spirits.</p>
+            <p>Umuofia is one of nine related villages that form a loose confederation in Igboland. It is "never beaten" in war. Its Oracle at Awka holds authority across the surrounding region. It is not a primitive society awaiting civilization. It is a fully developed alternative to centralized governance — each village a sovereign republic.</p>
+            <p>Achebe begins the novel here, inside a world that works, before any outside force has appeared. This is the structural argument: readers must understand what is being destroyed before they can understand the destruction.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Chapter 2: Missionaries (1857–1900) ──────────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="2"
+        data-caption="Missionaries — 1857–1900"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 02  ·  1857–1900</span>
+          <h2 class="scrolly-chapter-title">The Missionaries Arrive</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="220" fill="#2c2820"/>
+              <path d="M 80,10 Q 75,60 70,90 Q 65,120 80,145 Q 95,170 85,200 Q 82,210 78,220" fill="none" stroke="#4a7fa8" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 90,60 L 200,55 L 220,100 L 215,160 L 180,200 Q 130,215 100,195 Q 75,175 78,145 Q 72,120 85,90 Z" fill="rgba(180,130,60,0.18)" stroke="#c8903a" stroke-width="1" stroke-dasharray="4 3"/>
+              <circle cx="140" cy="120" r="4" fill="#c8903a" opacity="0.6"/>
+              <circle cx="115" cy="95" r="3" fill="#c8903a" opacity="0.5"/>
+              <circle cx="168" cy="105" r="3" fill="#c8903a" opacity="0.5"/>
+              <!-- Mission stations -->
+              <path d="M 84,78 L 80,70 L 88,70 Z" fill="#e8c87a" stroke="none"/>
+              <rect x="80" y="78" width="8" height="6" fill="#e8c87a"/>
+              <text x="96" y="78" font-family="monospace" font-size="7" fill="#e8c87a">Onitsha 1857</text>
+              <path d="M 136,72 L 132,64 L 140,64 Z" fill="#e8c87a" stroke="none"/>
+              <rect x="132" y="72" width="8" height="6" fill="#e8c87a"/>
+              <text x="148" y="74" font-family="monospace" font-size="7" fill="#e8c87a">Awka 1899</text>
+              <text x="220" y="15" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.5)" text-anchor="end">1857–1900</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>In 1857, the Church Missionary Society opens its first permanent base at Onitsha, on the Niger River — the beginning of sustained Christian presence in Igboland. By 1899, a station is established at Awka, deeper inside Igbo territory.</p>
+            <p>The missionaries do not conquer. They offer. And crucially, they offer inclusion to those Igbo society has marginalized: the <em>osu</em>, the outcast class; the mothers of twins, whose children were left in the Evil Forest. The church welcomes people the Igbo system has already excluded.</p>
+            <p>This is how Nwoye converts — not because Christianity defeats Igbo belief, but because the church offers something the culture of masculine achievement his father embodies cannot: a place for someone who cannot meet Okonkwo's demands. Colonialism enters through the fault lines that already existed.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Chapter 3: Administration (1900–1914) ─────────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="3"
+        data-caption="Colonial administration — 1900–1914"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 03  ·  1900–1914</span>
+          <h2 class="scrolly-chapter-title">The Administration Extends</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="220" fill="#2c2820"/>
+              <path d="M 80,10 Q 75,60 70,90 Q 65,120 80,145 Q 95,170 85,200 Q 82,210 78,220" fill="none" stroke="#4a7fa8" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 90,60 L 200,55 L 220,100 L 215,160 L 180,200 Q 130,215 100,195 Q 75,175 78,145 Q 72,120 85,90 Z" fill="rgba(180,130,60,0.12)" stroke="#c8903a" stroke-width="0.8" stroke-dasharray="4 3"/>
+              <!-- Administrative lines -->
+              <line x1="88" y1="55" x2="220" y2="55" stroke="rgba(200,160,100,0.7)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <line x1="88" y1="130" x2="218" y2="130" stroke="rgba(200,160,100,0.7)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <line x1="155" y1="55" x2="155" y2="200" stroke="rgba(200,160,100,0.7)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <!-- District labels -->
+              <text x="118" y="88" font-family="monospace" font-size="6.5" fill="rgba(200,160,100,0.8)" text-anchor="middle">Onitsha</text>
+              <text x="118" y="96" font-family="monospace" font-size="6.5" fill="rgba(200,160,100,0.8)" text-anchor="middle">Province</text>
+              <text x="185" y="88" font-family="monospace" font-size="6.5" fill="rgba(200,160,100,0.8)" text-anchor="middle">Eastern</text>
+              <text x="185" y="96" font-family="monospace" font-size="6.5" fill="rgba(200,160,100,0.8)" text-anchor="middle">Province</text>
+              <text x="140" y="160" font-family="monospace" font-size="6.5" fill="rgba(200,160,100,0.8)" text-anchor="middle">Owerri Province</text>
+              <!-- Native Court marker -->
+              <rect x="133" y="116" width="14" height="10" fill="none" stroke="rgba(200,160,100,0.8)" stroke-width="1"/>
+              <text x="140" y="113" font-family="monospace" font-size="6" fill="rgba(200,160,100,0.8)" text-anchor="middle">Court</text>
+              <text x="220" y="15" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.5)" text-anchor="end">1900–1914</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>In 1900, the British Crown dissolves the Royal Niger Company and assumes direct control. The Protectorate of Southern Nigeria is established. District commissioners replace company agents. The Igbo discover they have been placed inside an administrative grid that does not recognize their governance structures.</p>
+            <p>The British impose the warrant chief system: appointing individuals as "chiefs" regardless of whether those individuals hold any traditional standing in their communities. Because the Igbo are not a centralized political nation — each village a sovereign republic — there are no chiefs to co-opt. The British create them. The system produces resentment and corruption.</p>
+            <p>For Umuofia, this is the political reality that Okonkwo returns to from exile. The village council, the egwugwu courts, the Oracle's judicial authority — all of it operates now in the shadow of British law that claims jurisdiction over everything.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Chapter 4: 1958 / The Year Achebe Writes ──────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="4"
+        data-caption="1958 — the year Achebe writes"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 04  ·  1958</span>
+          <h2 class="scrolly-chapter-title">The Year Achebe Writes</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="220" fill="#2c2820"/>
+              <path d="M 80,10 Q 75,60 70,90 Q 65,120 80,145 Q 95,170 85,200 Q 82,210 78,220" fill="none" stroke="#4a7fa8" stroke-width="5" stroke-linecap="round"/>
+              <!-- Territory now mostly occluded by admin overlay -->
+              <path d="M 90,60 L 200,55 L 220,100 L 215,160 L 180,200 Q 130,215 100,195 Q 75,175 78,145 Q 72,120 85,90 Z" fill="rgba(180,130,60,0.08)" stroke="#c8903a" stroke-width="0.5" stroke-dasharray="4 3"/>
+              <!-- Admin lines darker -->
+              <line x1="88" y1="55" x2="220" y2="55" stroke="rgba(200,160,100,0.5)" stroke-width="1" stroke-dasharray="5 3"/>
+              <line x1="88" y1="130" x2="218" y2="130" stroke="rgba(200,160,100,0.5)" stroke-width="1" stroke-dasharray="5 3"/>
+              <line x1="155" y1="55" x2="155" y2="200" stroke="rgba(200,160,100,0.5)" stroke-width="1" stroke-dasharray="5 3"/>
+              <!-- Railway -->
+              <path d="M 160,200 Q 162,175 165,150 Q 168,125 170,100 Q 172,80 175,60" fill="none" stroke="#aaa" stroke-width="2"/>
+              <path d="M 160,200 Q 162,175 165,150 Q 168,125 170,100 Q 172,80 175,60" fill="none" stroke="#2c2820" stroke-width="0.8" stroke-dasharray="3 4"/>
+              <!-- Port Harcourt -->
+              <circle cx="155" cy="198" r="4" fill="#aaa" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <text x="140" y="210" font-family="monospace" font-size="6" fill="#aaa" text-anchor="middle">Port Harcourt</text>
+              <!-- Achebe note -->
+              <text x="140" y="30" font-family="monospace" font-size="6.5" fill="rgba(240,228,207,0.6)" text-anchor="middle">Things Fall Apart</text>
+              <text x="140" y="39" font-family="monospace" font-size="6.5" fill="rgba(240,228,207,0.6)" text-anchor="middle">published in London</text>
+              <text x="220" y="15" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.5)" text-anchor="end">1958</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>Achebe publishes <em>Things Fall Apart</em> in London in 1958, two years before Nigerian independence. By this date, the full colonial apparatus is in place: British administrative districts, the railway from Port Harcourt to Enugu cutting through Igboland, the Native Courts that have supplanted the egwugwu system.</p>
+            <p>He writes the novel not from inside that apparatus but against it. He has grown up reading British accounts of Africa in which Africa exists as backdrop and Africans exist without interiority. He has been taught, through colonial education, to identify with the white characters in those books. <em>Things Fall Apart</em> is the correction.</p>
+            <p>The novel ends with the District Commissioner walking away from Okonkwo's body, planning his book: <em>The Pacification of the Primitive Tribes of the Lower Niger</em>. "Perhaps not a whole chapter," he reflects, "but a reasonable paragraph." Achebe has just given Okonkwo two hundred pages. The contrast is the argument.</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- .scrolly-enc-text -->
+
+    <!-- ── STICKY MAP PANEL (desktop, right side) ────────────────────── -->
+    <aside class="scrolly-enc-panel" id="enc-panel" aria-hidden="true">
+      <div class="scrolly-enc-map-wrap">
+
+        <svg viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic map of Igboland showing colonial encroachment">
+
+          <!-- ── Base: Land and Sea ──────────────────────────────────── -->
+          <rect width="380" height="480" fill="#1f1c18"/>
+
+          <!-- Gulf of Guinea (southern coast) -->
+          <rect x="0" y="390" width="380" height="90" fill="#2a3f52"/>
+
+          <!-- Coastline suggestion -->
+          <path d="M 0,390 Q 80,380 160,390 Q 240,400 320,385 Q 355,380 380,390" fill="#2a4a38" stroke="none"/>
+
+          <!-- Niger River — main channel -->
+          <path
+            d="M 80,0 Q 78,50 72,95 Q 66,135 70,165 Q 75,190 78,220 Q 82,255 88,280 Q 96,320 105,360 Q 115,380 125,392"
+            fill="none" stroke="#3a6a8a" stroke-width="8" stroke-linecap="round"
+          />
+          <!-- Niger River — delta branches -->
+          <path d="M 125,392 Q 140,410 145,430" fill="none" stroke="#3a6a8a" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 125,392 Q 120,405 105,420 Q 90,435 80,450" fill="none" stroke="#3a6a8a" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 125,392 Q 148,400 160,415 Q 170,428 172,445" fill="none" stroke="#3a6a8a" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- Niger label -->
+          <text x="58" y="185" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#3a6a8a" text-anchor="middle" transform="rotate(-85,58,185)">Niger River</text>
+
+          <!-- ── Igboland territory (base layer, always visible) ──────── -->
+          <path
+            d="M 100,80 L 310,75 L 340,150 L 345,250 L 320,340 L 270,380 Q 200,400 150,385 Q 115,370 105,345 Q 92,310 92,270 Q 82,235 80,200 Q 76,165 82,130 Z"
+            fill="rgba(160,120,60,0.18)" stroke="none"
+          />
+
+          <!-- Igboland territory outline -->
+          <path
+            class="enc-layer" data-chapter="1"
+            d="M 100,80 L 310,75 L 340,150 L 345,250 L 320,340 L 270,380 Q 200,400 150,385 Q 115,370 105,345 Q 92,310 92,270 Q 82,235 80,200 Q 76,165 82,130 Z"
+            fill="rgba(160,120,60,0.15)" stroke="#c8903a" stroke-width="1.5" stroke-dasharray="5 4"
+          />
+
+          <!-- ── Chapter 1 layers: Village community dots ─────────────── -->
+          <g class="enc-layer" data-chapter="1" id="enc-villages">
+            <!-- Umuofia (novel's primary setting) -->
+            <circle cx="195" cy="210" r="7" fill="#c8903a" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+            <text x="195" y="200" font-family="monospace, monospace" font-size="8" fill="#c8903a" text-anchor="middle" letter-spacing="0.04em">UMUOFIA</text>
+
+            <!-- Surrounding villages -->
+            <circle cx="155" cy="175" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="235" cy="182" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="165" cy="245" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="228" cy="248" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="188" cy="270" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="148" cy="302" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="222" cy="308" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="175" cy="135" r="4" fill="#c8903a" opacity="0.65"/>
+            <circle cx="260" cy="195" r="4" fill="#c8903a" opacity="0.65"/>
+
+            <!-- Oracle / Sacred site marker -->
+            <path d="M 258,145 L 262,135 L 266,145 Z" fill="#e8b84a" opacity="0.8"/>
+            <text x="270" y="142" font-family="monospace" font-size="7.5" fill="#e8b84a" opacity="0.8">Oracle at Awka</text>
+
+            <!-- Igboland label -->
+            <text x="230" y="130" font-family="Georgia, serif" font-style="italic" font-size="11" fill="rgba(200,160,80,0.7)" text-anchor="middle">Igboland</text>
+
+            <!-- Pre-colonial caption -->
+            <text x="340" y="25" font-family="monospace" font-size="8" fill="rgba(240,228,207,0.4)" text-anchor="end">before 1857</text>
+          </g>
+
+          <!-- ══════════════════════════════════════════════════════════════
+               CHAPTER 2 LAYERS — Mission stations
+          ══════════════════════════════════════════════════════════════ -->
+          <g class="enc-layer" data-chapter="2" id="enc-missions">
+            <!-- Onitsha CMS station (on the Niger) -->
+            <g transform="translate(97,168)">
+              <line x1="0" y1="-10" x2="0" y2="5" stroke="#e8d47a" stroke-width="1.5"/>
+              <line x1="-6" y1="-5" x2="6" y2="-5" stroke="#e8d47a" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="4" fill="none" stroke="#e8d47a" stroke-width="1.2"/>
+            </g>
+            <text x="115" y="162" font-family="monospace" font-size="8" fill="#e8d47a" opacity="0.9">Onitsha 1857</text>
+
+            <!-- Awka CMS station -->
+            <g transform="translate(258,143)">
+              <line x1="0" y1="-10" x2="0" y2="5" stroke="#e8d47a" stroke-width="1.5"/>
+              <line x1="-6" y1="-5" x2="6" y2="-5" stroke="#e8d47a" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="4" fill="none" stroke="#e8d47a" stroke-width="1.2"/>
+            </g>
+
+            <!-- Mission zone — soft glow around Onitsha -->
+            <circle cx="97" cy="168" r="30" fill="rgba(232,212,122,0.06)" stroke="rgba(232,212,122,0.15)" stroke-width="1"/>
+
+            <!-- Label -->
+            <text x="340" y="25" font-family="monospace" font-size="8" fill="rgba(240,228,207,0.4)" text-anchor="end">1857–1900</text>
+          </g>
+
+          <!-- ══════════════════════════════════════════════════════════════
+               CHAPTER 3 LAYERS — Administrative district lines
+          ══════════════════════════════════════════════════════════════ -->
+          <g class="enc-layer" data-chapter="3" id="enc-admin">
+            <!-- Horizontal district boundary -->
+            <line x1="88" y1="200" x2="348" y2="195" stroke="rgba(180,140,80,0.65)" stroke-width="1.5" stroke-dasharray="8 5"/>
+            <!-- Vertical district boundary -->
+            <line x1="218" y1="75" x2="218" y2="385" stroke="rgba(180,140,80,0.65)" stroke-width="1.5" stroke-dasharray="8 5"/>
+
+            <!-- Onitsha Province label -->
+            <text x="148" y="142" font-family="monospace" font-size="8.5" fill="rgba(180,140,80,0.75)" text-anchor="middle">Onitsha</text>
+            <text x="148" y="152" font-family="monospace" font-size="8.5" fill="rgba(180,140,80,0.75)" text-anchor="middle">Province</text>
+
+            <!-- Eastern Province label -->
+            <text x="285" y="142" font-family="monospace" font-size="8.5" fill="rgba(180,140,80,0.75)" text-anchor="middle">Eastern</text>
+            <text x="285" y="152" font-family="monospace" font-size="8.5" fill="rgba(180,140,80,0.75)" text-anchor="middle">Province</text>
+
+            <!-- Owerri Province label -->
+            <text x="195" y="310" font-family="monospace" font-size="8.5" fill="rgba(180,140,80,0.75)" text-anchor="middle">Owerri Province</text>
+
+            <!-- Native Court marker (near Umuofia) -->
+            <rect x="182" y="224" width="26" height="18" fill="none" stroke="rgba(180,140,80,0.7)" stroke-width="1"/>
+            <text x="195" y="220" font-family="monospace" font-size="7" fill="rgba(180,140,80,0.75)" text-anchor="middle">Native Court</text>
+
+            <!-- District Commissioner post -->
+            <rect x="90" y="158" width="22" height="16" fill="rgba(180,140,80,0.12)" stroke="rgba(180,140,80,0.5)" stroke-width="1"/>
+            <text x="101" y="154" font-family="monospace" font-size="6.5" fill="rgba(180,140,80,0.7)" text-anchor="middle">D.C.</text>
+
+            <text x="340" y="25" font-family="monospace" font-size="8" fill="rgba(240,228,207,0.4)" text-anchor="end">1900–1914</text>
+          </g>
+
+          <!-- ══════════════════════════════════════════════════════════════
+               CHAPTER 4 LAYERS — Railway + full apparatus (1958)
+          ══════════════════════════════════════════════════════════════ -->
+          <g class="enc-layer" data-chapter="4" id="enc-railway">
+            <!-- Railway: Port Harcourt → Enugu (roughly north) -->
+            <path
+              d="M 218,380 L 220,330 L 222,280 L 220,230 L 218,180 L 215,130 L 212,85"
+              fill="none" stroke="rgba(160,160,160,0.7)" stroke-width="3" stroke-linecap="square"
+            />
+            <!-- Railway ties (crosshatch suggestion) -->
+            <path
+              d="M 218,380 L 220,330 L 222,280 L 220,230 L 218,180 L 215,130 L 212,85"
+              fill="none" stroke="#1f1c18" stroke-width="1.5" stroke-dasharray="3 8" stroke-linecap="butt"
+            />
+
+            <!-- Port Harcourt (coast) -->
+            <circle cx="215" cy="383" r="5" fill="rgba(160,160,160,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <text x="235" y="385" font-family="monospace" font-size="7.5" fill="rgba(160,160,160,0.8)">Port Harcourt</text>
+
+            <!-- Enugu (north terminal) -->
+            <circle cx="212" cy="92" r="5" fill="rgba(160,160,160,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <text x="225" y="95" font-family="monospace" font-size="7.5" fill="rgba(160,160,160,0.8)">Enugu</text>
+
+            <!-- Railway label -->
+            <text x="248" y="240" font-family="monospace" font-size="7" fill="rgba(160,160,160,0.55)" text-anchor="middle" transform="rotate(90,248,240)">P.H.–Enugu Railway 1916</text>
+
+            <!-- 1958 label -->
+            <text x="340" y="25" font-family="monospace" font-size="8" fill="rgba(240,228,207,0.55)" text-anchor="end">1958</text>
+            <!-- Achebe note -->
+            <text x="340" y="37" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.4)" text-anchor="end">Things Fall Apart</text>
+            <text x="340" y="47" font-family="monospace" font-size="7" fill="rgba(240,228,207,0.4)" text-anchor="end">published in London</text>
+          </g>
+
+        </svg>
+
+        <div class="scrolly-enc-caption" id="enc-caption">Umuofia — before colonization</div>
+
+      </div>
+    </aside>
+
+  </div><!-- .scrolly-enc -->
+
+  <!-- ── Landing: Where to next ───────────────────────────────────────── -->
+  <div class="scrolly-landing" id="scrolly-landing">
+    <div class="scrolly-landing-band">
+      <AkweteBand width={400} height={20} />
+    </div>
+    <p class="scrolly-landing-eyebrow">You've reached the end of the map</p>
+    <h2 class="scrolly-landing-title">Where to next</h2>
+    <nav class="scrolly-landing-cards" aria-label="Continue reading">
+      <HubScrollyCard
+        href="/summer-reading/tfa/culture"
+        label="Spoke 02"
+        title="Igbo Society and Cosmology"
+      />
+      <HubScrollyCard
+        href="/summer-reading/tfa/history"
+        label="Spoke 03"
+        title="The Colonial Encounter"
+      />
+      <HubScrollyCard
+        href="/summer-reading/tfa"
+        label="Hub"
+        title="Back to Things Fall Apart"
+      />
+    </nav>
+  </div>
+
+  <script>
+    const chapters = Array.from(document.querySelectorAll<HTMLElement>('.scrolly-chapter[data-chapter]'));
+    const layers   = Array.from(document.querySelectorAll<HTMLElement>('.enc-layer[data-chapter]'));
+    const segments = Array.from(document.querySelectorAll<HTMLElement>('.scrolly-progress-segment'));
+    const caption  = document.getElementById('enc-caption');
+
+    let revealedUpTo  = 0;
+    let activeChapter = 0;
+
+    function revealMapUpTo(chNum: number) {
+      if (chNum <= revealedUpTo) return;
+      revealedUpTo = chNum;
+      layers.forEach(layer => {
+        if (parseInt(layer.dataset.chapter ?? '0', 10) <= revealedUpTo)
+          layer.classList.add('is-visible');
+      });
+    }
+
+    function activateChapter(chNum: number, captionText: string) {
+      if (chNum === activeChapter) return;
+      activeChapter = chNum;
+
+      chapters.forEach((el, i) => {
+        const n = i + 1;
+        el.classList.toggle('is-active',   n === chNum);
+        el.classList.toggle('is-inactive', n !== chNum);
+      });
+
+      segments.forEach((seg, i) => {
+        seg.classList.toggle('is-active', i < chNum);
+      });
+
+      if (caption) caption.textContent = captionText;
+    }
+
+    // Initialise: chapter 1 active, map layer 1 visible
+    revealMapUpTo(1);
+    activateChapter(1, 'Umuofia — before colonization');
+
+    // Drop observer below 720px (TFA sticky threshold)
+    if (window.matchMedia('(min-width: 720px)').matches) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el  = entry.target as HTMLElement;
+          const ch  = parseInt(el.dataset.chapter ?? '0', 10);
+          const cap = el.dataset.caption ?? '';
+          revealMapUpTo(ch);
+          activateChapter(ch, cap);
+        });
+      }, { threshold: 0.5 });
+
+      chapters.forEach(ch => obs.observe(ch));
+    }
+  </script>
+
+</ScrollyLayout>

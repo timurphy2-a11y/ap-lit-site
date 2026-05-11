@@ -1,0 +1,76 @@
+---
+// SummerLayout.astro
+// Base layout for all summer-reading pages: shared hub, novel hubs,
+// spoke pages, and cultural-message pages.
+// Does NOT modify any existing layout or global styles.
+
+import '../styles/summer-reading.css';
+import SpokeNav from '../components/summer-reading/SpokeNav.astro';
+
+interface Props {
+  title:   string;
+  section: 'hub' | 'pachinko' | 'tfa' | 'cultural-message';
+  spoke?:  'world' | 'culture' | 'history' | 'figures' | 'novel';
+}
+
+const { title, section, spoke } = Astro.props;
+
+// Top-bar right-side context label
+const sectionLabel: Record<string, string> = {
+  hub:              'Summer Reading',
+  pachinko:         'Pachinko',
+  tfa:              'Things Fall Apart',
+  'cultural-message': 'Cultural Message',
+};
+
+const spokeOrder: Record<string, number> = {
+  world: 1, culture: 2, history: 3, figures: 4, novel: 5,
+};
+
+let contextLabel = sectionLabel[section] ?? 'Summer Reading';
+if (spoke) {
+  const num = String(spokeOrder[spoke] ?? '').padStart(2, '0');
+  contextLabel += `  ·  Spoke ${num} of 05`;
+} else if (section !== 'hub' && section !== 'cultural-message') {
+  contextLabel += '  ·  Hub';
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fraunces (display) + DM Sans (body) + JetBrains Mono (eyebrows/labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="sr-page" data-section={section} data-spoke={spoke ?? ''}>
+
+      <header class="sr-topbar">
+        <a href="/summer-reading" class="sr-topbar-brand">The Living Atlas</a>
+        <span class="sr-topbar-context">{contextLabel}</span>
+      </header>
+
+      {spoke && (
+        <SpokeNav section={section as 'pachinko' | 'tfa'} activeSpoke={spoke} />
+      )}
+
+      <main>
+        <slot />
+      </main>
+
+    </div>
+  </body>
+</html>

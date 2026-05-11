@@ -1,0 +1,75 @@
+---
+import SummerLayout from '../../../layouts/SummerLayout.astro';
+import HubSpokeCard from '../../../components/summer-reading/HubSpokeCard.astro';
+import BilateralBand from '../../../components/summer-reading/BilateralBand.astro';
+import Medallion from '../../../components/summer-reading/Medallion.astro';
+import PronunciationGuide from '../../../components/summer-reading/PronunciationGuide.astro';
+
+const spokes = [
+  { number: 1, slug: 'world',   title: 'The World of the Novel', teaser: 'Yeongdo to Tokyo across eighty years.' },
+  { number: 2, slug: 'culture', title: 'Korean Identity',         teaser: 'What the double life costs across generations.' },
+  { number: 3, slug: 'history', title: 'Japan and the Zainichi',  teaser: 'How colonization made an invisible community.' },
+  { number: 4, slug: 'figures', title: 'Key Figures',             teaser: 'The people whose decisions shaped this world.' },
+  { number: 5, slug: 'novel',   title: 'Connections to the Novel', teaser: 'From historical context to thematic argument.' },
+];
+---
+
+<SummerLayout title="Pachinko — AP Literature Summer Reading" section="pachinko">
+
+  <!-- Title plate — Treatment A (locked) -->
+  <div class="sr-hub-hero sr-hub-hero--pachinko">
+    <!-- Medallion pattern: absolute top-right, overflows -->
+    <div style="position:absolute;top:-10%;right:-8%;pointer-events:none;">
+      <Medallion size={320} fill="var(--p-gold)" opacity={0.16} />
+    </div>
+
+    <span class="sr-hub-hero-eyebrow">The Novel  ·  Min Jin Lee</span>
+    <h1 class="sr-hub-hero-title">Pachinko</h1>
+    <p class="sr-hub-hero-meta">1910 – 1989  ·  Korea &amp; Japan</p>
+  </div>
+
+  <!-- Framing prose -->
+  <div class="sr-hub-prose">
+    <p><em>Pachinko</em> follows four generations of a Korean family living in Japan across eight decades. It begins in 1910 — the year Japan annexed Korea — with Sunja, the daughter of a boarding-house keeper in the port town of Yeongdo, and ends in 1989 in the glass offices of Tokyo's economic bubble.</p>
+    <p>This site provides the historical and cultural context that makes the novel's eighty years legible: the mechanics of Japanese colonization, the legal dispossession of the Zainichi Korean community, the economics of the pachinko industry, and the personal cost of living between two languages, two names, and two countries that each refuse to claim you.</p>
+    <p>The five sections below — and the interactive Migration Map — are designed to be read alongside the novel, in any order.</p>
+  </div>
+
+  <!-- Section divider -->
+  <div class="sr-band-center">
+    <BilateralBand width={400} height={20} />
+  </div>
+
+  <!-- Spoke grid -->
+  <div class="sr-hub-spoke-grid">
+    {spokes.map(s => (
+      <HubSpokeCard
+        section="pachinko"
+        number={s.number}
+        href={`/summer-reading/pachinko/${s.slug}`}
+        title={s.title}
+        teaser={s.teaser}
+      />
+    ))}
+  </div>
+
+  <!-- Scrollytelling entry card -->
+  <a href="/summer-reading/pachinko/migration-map" class="sr-scrolly-entry">
+    <div class="sr-scrolly-entry-copy">
+      <span class="sr-scrolly-entry-eyebrow">Interactive  ·  Scroll Experience</span>
+      <h2 class="sr-scrolly-entry-title">The Migration Map</h2>
+      <p class="sr-scrolly-entry-desc">Three chapters. Follow Sunja's family from Yeongdo to Osaka and back across eighty years.</p>
+    </div>
+    <span class="sr-scrolly-entry-cta">Begin →</span>
+  </a>
+
+  <!-- Pronunciation reference -->
+  <PronunciationGuide section="pachinko" />
+
+  <!-- Footer -->
+  <footer class="sr-hub-footer">
+    <span>The Living Atlas  ·  Summer Reading 2026</span>
+    <a href="/summer-reading">Back to Summer Reading →</a>
+  </footer>
+
+</SummerLayout>

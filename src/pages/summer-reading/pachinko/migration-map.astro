@@ -1,0 +1,316 @@
+---
+import ScrollyLayout from '../../../layouts/ScrollyLayout.astro';
+import BilateralBand from '../../../components/summer-reading/BilateralBand.astro';
+import HubScrollyCard from '../../../components/summer-reading/HubScrollyCard.astro';
+---
+<ScrollyLayout title="The Long Way Home — Pachinko Migration Map" section="pachinko">
+
+  <a href="#scrolly-landing" class="sr-only">Skip to end of map</a>
+
+  <!-- ── Title bar ─────────────────────────────────────────────────────── -->
+  <div class="scrolly-title-bar">
+    <span class="scrolly-title-eyebrow">Interactive  ·  Scroll Experience</span>
+    <h1 class="scrolly-title-heading">The Migration Map</h1>
+    <p class="scrolly-title-deck">Follow Sunja's family from Yeongdo to Tokyo across three generations of displacement.</p>
+    <div class="scrolly-progress" aria-hidden="true">
+      <div class="scrolly-progress-segment is-active" data-seg="1"></div>
+      <div class="scrolly-progress-segment" data-seg="2"></div>
+      <div class="scrolly-progress-segment" data-seg="3"></div>
+    </div>
+  </div>
+
+  <div class="scrolly-mm">
+
+    <!-- ── STICKY MAP PANEL (desktop) ─────────────────────────────────── -->
+    <aside class="scrolly-mm-panel" id="mm-panel" aria-hidden="true">
+      <div class="scrolly-mm-map-wrap">
+
+        <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic map of the Korean-Japan migration route">
+
+          <!-- Sea background -->
+          <rect width="500" height="310" fill="#cde3ef"/>
+
+          <!-- ── Korea peninsula (always visible) ─────────────────────── -->
+          <g id="korea-base">
+            <path
+              d="M 108,42 L 165,48 L 178,85 L 175,130 L 168,175 L 155,210 L 142,228 L 122,224 L 103,198 L 90,155 L 88,105 L 92,70 Z"
+              fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.5" stroke-linejoin="round"
+            />
+            <!-- Korea label -->
+            <text x="132" y="135" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#6b5c44" text-anchor="middle">Korea</text>
+          </g>
+
+          <!-- ── Japan — Kyushu ────────────────────────────────────────── -->
+          <g id="japan-kyushu">
+            <path
+              d="M 288,188 L 310,178 L 332,182 L 345,198 L 342,224 L 325,242 L 302,248 L 284,232 Z"
+              fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.5" stroke-linejoin="round"
+            />
+          </g>
+
+          <!-- ── Japan — Honshu ────────────────────────────────────────── -->
+          <g id="japan-honshu">
+            <path
+              d="M 298,178 L 330,165 L 368,150 L 405,138 L 438,128 L 465,122 L 482,118 L 480,108 L 455,110 L 422,120 L 390,132 L 358,144 L 325,158 L 295,170 Z"
+              fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.5" stroke-linejoin="round"
+            />
+            <!-- Japan label -->
+            <text x="400" y="170" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#6b5c44" text-anchor="middle">Japan</text>
+          </g>
+
+          <!-- ── Shikoku (small) ────────────────────────────────────────── -->
+          <g id="japan-shikoku">
+            <path
+              d="M 338,185 L 360,178 L 380,182 L 388,198 L 372,210 L 345,208 Z"
+              fill="#e8dfd0" stroke="#b8a88a" stroke-width="1" stroke-linejoin="round"
+            />
+          </g>
+
+          <!-- ── Strait label ───────────────────────────────────────────── -->
+          <text x="218" y="200" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#7aa8c0" text-anchor="middle" opacity="0.9">Korea Strait</text>
+
+          <!-- ═══════════════════════════════════════════════════════════════
+               CHAPTER 1 LAYERS — Yeongdo / Busan
+          ═══════════════════════════════════════════════════════════════ -->
+
+          <!-- Busan / Yeongdo marker -->
+          <g class="mm-layer" data-chapter="1" id="layer-busan">
+            <circle cx="152" cy="220" r="6" fill="#2d8a7a" stroke="#fff" stroke-width="1.5"/>
+            <text x="152" y="243" font-family="monospace, monospace" font-size="9" fill="#2d8a7a" text-anchor="middle" letter-spacing="0.05em">BUSAN</text>
+            <text x="152" y="254" font-family="monospace, monospace" font-size="8" fill="#2d8a7a" text-anchor="middle" opacity="0.7">Yeongdo</text>
+          </g>
+
+          <!-- ═══════════════════════════════════════════════════════════════
+               CHAPTER 2 LAYERS — crossing + Osaka / Ikaino
+          ═══════════════════════════════════════════════════════════════ -->
+
+          <!-- Route: Busan → Osaka (dashed arc across the strait) -->
+          <g class="mm-layer" data-chapter="2" id="layer-route-1">
+            <path
+              d="M 152,220 Q 248,168 352,158"
+              fill="none" stroke="#2d8a7a" stroke-width="2" stroke-dasharray="5 4"
+              stroke-linecap="round"
+            />
+            <!-- Arrowhead near Osaka -->
+            <polygon points="348,152 358,158 348,164" fill="#2d8a7a"/>
+          </g>
+
+          <!-- Osaka / Ikaino marker -->
+          <g class="mm-layer" data-chapter="2" id="layer-osaka">
+            <circle cx="352" cy="158" r="6" fill="#2d8a7a" stroke="#fff" stroke-width="1.5"/>
+            <text x="352" y="145" font-family="monospace, monospace" font-size="9" fill="#2d8a7a" text-anchor="middle" letter-spacing="0.05em">OSAKA</text>
+            <text x="352" y="135" font-family="monospace, monospace" font-size="8" fill="#2d8a7a" text-anchor="middle" opacity="0.7">Ikaino</text>
+          </g>
+
+          <!-- ═══════════════════════════════════════════════════════════════
+               CHAPTER 3 LAYERS — Tokyo
+          ═══════════════════════════════════════════════════════════════ -->
+
+          <!-- Route: Osaka → Tokyo (along coast) -->
+          <g class="mm-layer" data-chapter="3" id="layer-route-2">
+            <path
+              d="M 352,158 Q 408,140 452,122"
+              fill="none" stroke="#2d8a7a" stroke-width="2" stroke-dasharray="5 4"
+              stroke-linecap="round"
+            />
+            <polygon points="448,115 458,122 448,128" fill="#2d8a7a"/>
+          </g>
+
+          <!-- Tokyo marker -->
+          <g class="mm-layer" data-chapter="3" id="layer-tokyo">
+            <circle cx="452" cy="122" r="6" fill="#2d8a7a" stroke="#fff" stroke-width="1.5"/>
+            <text x="452" y="109" font-family="monospace, monospace" font-size="9" fill="#2d8a7a" text-anchor="middle" letter-spacing="0.05em">TOKYO</text>
+            <text x="452" y="99" font-family="monospace, monospace" font-size="8" fill="#2d8a7a" text-anchor="middle" opacity="0.7">1989</text>
+          </g>
+
+        </svg>
+
+        <div class="scrolly-mm-caption" id="mm-caption">Yeongdo, Busan — 1910</div>
+
+      </div>
+    </aside>
+
+    <!-- ── SCROLLING TEXT COLUMN ────────────────────────────────────────── -->
+    <div class="scrolly-mm-text">
+
+      <!-- ── Chapter 1: Yeongdo / Korea ──────────────────────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="1"
+        data-caption="Yeongdo, Busan — 1910"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 01  ·  1910–1930s</span>
+          <h2 class="scrolly-chapter-title">Yeongdo, Busan</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="200" fill="#cde3ef"/>
+              <path d="M 60,25 L 105,30 L 115,58 L 112,98 L 106,132 L 96,150 L 80,148 L 65,128 L 55,95 L 54,62 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <text x="84" y="90" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#6b5c44" text-anchor="middle">Korea</text>
+              <circle cx="96" cy="143" r="5" fill="#2d8a7a" stroke="#fff" stroke-width="1.2"/>
+              <text x="96" y="162" font-family="monospace" font-size="8" fill="#2d8a7a" text-anchor="middle">BUSAN</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>The novel opens on a small island. Yeongdo is a fishing community attached to the port city of Busan on Korea's southern coast — the closest point on the peninsula to Japan, across a strait of 200 kilometers.</p>
+            <p>In 1910, Japan formally annexes Korea. The family that runs the boarding house in Yeongdo already lives inside a colonized country. Sunja's poverty, the boardinghouse labor, the texture of daily life — all of it is shaped by a specific historical process: land redistribution, economic extraction, cultural suppression.</p>
+            <p>The novel starts here not because Yeongdo is where the story ends, but because it is where the family comes from. The distance between Yeongdo and Tokyo is the distance the novel travels.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Chapter 2: Osaka / Ikaino ───────────────────────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="2"
+        data-caption="Osaka / Ikaino — 1930s–1950s"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 02  ·  1930s–1952</span>
+          <h2 class="scrolly-chapter-title">Osaka / Ikaino</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="200" fill="#cde3ef"/>
+              <path d="M 45,22 L 88,27 L 98,52 L 95,88 L 90,115 L 82,130 L 68,127 L 55,108 L 46,80 L 45,52 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 165,108 L 180,100 L 198,104 L 208,118 L 205,138 L 190,148 L 170,145 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 172,100 L 195,92 L 222,84 L 248,78 L 265,75 L 264,68 L 240,70 L 215,78 L 188,88 L 170,97 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 82,125 Q 138,96 198,108" fill="none" stroke="#2d8a7a" stroke-width="1.8" stroke-dasharray="4 3"/>
+              <circle cx="82" cy="125" r="4" fill="#2d8a7a" stroke="#fff" stroke-width="1.2"/>
+              <circle cx="198" cy="108" r="4" fill="#2d8a7a" stroke="#fff" stroke-width="1.2"/>
+              <text x="198" y="98" font-family="monospace" font-size="8" fill="#2d8a7a" text-anchor="middle">OSAKA</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>Sunja and Isak cross the Korea Strait in the 1930s, on a ferry route that had been carrying Koreans to Japan since 1905. By the time they cross, the route is one of the busiest maritime corridors in the world: between 80,000 and 150,000 Koreans arrived in Japan each year through the late 1920s and 1930s, with 400,000 crossings recorded in 1930 alone. They arrive in Osaka and make their way to Ikaino — a neighborhood in the Ikuno ward whose name means roughly "a field where pigs are raised." Korean migrants settled there because Japanese landlords refused to rent to Koreans elsewhere.</p>
+            <p>Ikaino becomes the community's center: Korean markets, churches, pachinko parlors, and community organizations. It is where Sunja and Kyunghee sell kimchi from a cart, where Isak ministers and is eventually arrested, where Noa and Mozasu grow up. Not a place chosen, but a place made from what remained.</p>
+            <p>In 1952, the San Francisco Peace Treaty takes effect. Japan formally grants Korean independence — and simultaneously strips Zainichi Koreans of Japanese nationality. People who have lived in Japan for two decades become legally stateless overnight. The city they built their lives in does not belong to them.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Chapter 3: Tokyo / 1989 ──────────────────────────────────── -->
+      <section
+        class="scrolly-chapter"
+        data-chapter="3"
+        data-caption="Tokyo — 1989"
+      >
+        <div class="scrolly-chapter-inner">
+          <span class="scrolly-chapter-eyebrow">Chapter 03  ·  1980s–1989</span>
+          <h2 class="scrolly-chapter-title">Tokyo, 1989</h2>
+
+          <!-- Mobile inline map (static) -->
+          <div class="scrolly-chapter-map-mobile">
+            <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="200" fill="#cde3ef"/>
+              <path d="M 32,18 L 70,22 L 78,45 L 75,78 L 70,105 L 62,118 L 50,116 L 38,98 L 30,72 L 30,44 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 142,105 L 158,96 L 175,100 L 183,115 L 181,135 L 166,145 L 148,142 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 148,96 L 170,88 L 198,80 L 225,72 L 248,67 L 260,62 L 259,55 L 235,57 L 208,65 L 180,74 L 155,84 L 145,93 Z" fill="#e8dfd0" stroke="#b8a88a" stroke-width="1.2"/>
+              <path d="M 62,112 Q 118,90 168,98" fill="none" stroke="#2d8a7a" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <path d="M 168,98 Q 208,82 248,65" fill="none" stroke="#2d8a7a" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <circle cx="62" cy="112" r="3.5" fill="#2d8a7a" stroke="#fff" stroke-width="1"/>
+              <circle cx="168" cy="98" r="3.5" fill="#2d8a7a" stroke="#fff" stroke-width="1"/>
+              <circle cx="248" cy="65" r="4" fill="#2d8a7a" stroke="#fff" stroke-width="1.2"/>
+              <text x="248" y="58" font-family="monospace" font-size="8" fill="#2d8a7a" text-anchor="middle">TOKYO</text>
+            </svg>
+          </div>
+
+          <div class="scrolly-chapter-body">
+            <p>The novel's final sections take place in Tokyo in 1989, at the peak of Japan's bubble economy. Solomon — Mozasu's son, Sunja's grandson — works at a Japanese branch of a British bank. He is trilingual, internationally educated, professionally mobile. He has done everything the system asks.</p>
+            <p>Tokyo is the measure of generational distance. From Yeongdo's boarding house to Ikaino's kimchi carts to a Tokyo skyscraper — three generations of labor, adaptation, and survival. The map of the family's world has grown enormously.</p>
+            <p>And yet the novel's 1989 chapters ask the same question the first generation faced: whether belonging is actually available. Solomon cannot obtain what his father and grandmother could not. The legal category that makes him foreign in the only country he knows has survived every transformation of the map.</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- .scrolly-mm-text -->
+  </div><!-- .scrolly-mm -->
+
+  <!-- ── Landing: Where to next ───────────────────────────────────────── -->
+  <div class="scrolly-landing" id="scrolly-landing">
+    <div class="scrolly-landing-band">
+      <BilateralBand width={400} height={20} />
+    </div>
+    <p class="scrolly-landing-eyebrow">You've reached the end of the map</p>
+    <h2 class="scrolly-landing-title">Where to next</h2>
+    <nav class="scrolly-landing-cards" aria-label="Continue reading">
+      <HubScrollyCard
+        href="/summer-reading/pachinko/culture"
+        label="Spoke 02"
+        title="Korean Identity Under Occupation"
+      />
+      <HubScrollyCard
+        href="/summer-reading/pachinko/history"
+        label="Spoke 03"
+        title="Japan and the Zainichi"
+      />
+      <HubScrollyCard
+        href="/summer-reading/pachinko"
+        label="Hub"
+        title="Back to Pachinko"
+      />
+    </nav>
+  </div>
+
+  <script>
+    const chapters = Array.from(document.querySelectorAll<HTMLElement>('.scrolly-chapter[data-chapter]'));
+    const layers   = Array.from(document.querySelectorAll<HTMLElement>('.mm-layer[data-chapter]'));
+    const segments = Array.from(document.querySelectorAll<HTMLElement>('.scrolly-progress-segment'));
+    const caption  = document.getElementById('mm-caption');
+
+    let revealedUpTo  = 0;
+    let activeChapter = 0;
+
+    function revealMapUpTo(chNum: number) {
+      if (chNum <= revealedUpTo) return;
+      revealedUpTo = chNum;
+      layers.forEach(layer => {
+        if (parseInt(layer.dataset.chapter ?? '0', 10) <= revealedUpTo)
+          layer.classList.add('is-visible');
+      });
+    }
+
+    function activateChapter(chNum: number, captionText: string) {
+      if (chNum === activeChapter) return;
+      activeChapter = chNum;
+
+      chapters.forEach((el, i) => {
+        const n = i + 1;
+        el.classList.toggle('is-active',   n === chNum);
+        el.classList.toggle('is-inactive', n !== chNum);
+      });
+
+      segments.forEach((seg, i) => {
+        seg.classList.toggle('is-active', i < chNum);
+      });
+
+      if (caption) caption.textContent = captionText;
+    }
+
+    // Initialise: chapter 1 active, map layer 1 visible
+    revealMapUpTo(1);
+    activateChapter(1, 'Yeongdo, Busan — 1910');
+
+    // Drop observer on viewports where sticky is off (< 900px)
+    if (window.matchMedia('(min-width: 900px)').matches) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el  = entry.target as HTMLElement;
+          const ch  = parseInt(el.dataset.chapter ?? '0', 10);
+          const cap = el.dataset.caption ?? '';
+          revealMapUpTo(ch);
+          activateChapter(ch, cap);
+        });
+      }, { threshold: 0.5 });
+
+      chapters.forEach(ch => obs.observe(ch));
+    }
+  </script>
+
+</ScrollyLayout>

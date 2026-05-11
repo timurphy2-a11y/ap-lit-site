@@ -1,0 +1,111 @@
+---
+import SummerLayout from '../../../layouts/SummerLayout.astro';
+---
+<SummerLayout title="Cultural Message — AP Literature Summer Reading" section="cultural-message">
+
+  <div class="sr-cm-header">
+    <span class="sr-cm-header-eyebrow">Cultural Message  ·  AP Literature 2026</span>
+    <h1 class="sr-cm-header-title">Two Ways of Reading</h1>
+    <p class="sr-cm-header-deck">Close-reading prompts for both novels, organized around passages that don't immediately announce themselves as thematically central.</p>
+  </div>
+
+  <div class="sr-cm-content">
+
+    <p class="sr-lede">Min Jin Lee published <em>Pachinko</em> in 2017 at least partially to make a community of 600,000 people visible to readers who had never heard of them. Chinua Achebe published <em>Things Fall Apart</em> in 1958 — two years before Nigerian independence — with the explicit goal of demonstrating to Western readers (and African readers who had internalized the dehumanizing values of colonial education) that pre-colonial Igbo civilization possessed philosophical depth, political sophistication, and moral complexity.</p>
+
+    <p>A strong cultural message argument about either of these texts will do three things: it will present a complex argument about the attitude or idea that the author wishes to impart about the culture(s) depicted in the novel, identify specific historical, social, economic, or spiritual elements of the culture(s) in question, and support claims about how the author wants the reader to think or feel about these elements with detailed analysis of patterns of events and/or specific moments in the novel.</p>
+
+    <p>In your test paragraph, you will need to find three specific moments or patterns of events to analyze in support of your overall argument. The passages on the following pages are presented as examples of the kind of distinctive evidence used in strong responses to the cultural message question. They are moments that reward attention precisely because they do not immediately or obviously announce themselves as thematically central.</p>
+
+    <nav class="sr-cm-entry-nav" aria-label="Cultural Message readings">
+      <a href="/summer-reading/cultural-message/pachinko" class="sr-cm-entry-card">
+        <span class="sr-cm-entry-eyebrow">01</span>
+        <span class="sr-cm-entry-title"><em>Pachinko</em></span>
+        <span class="sr-cm-entry-desc">Five moments — from Yangjin and Isak to Hana's diagnosis.</span>
+        <span class="sr-cm-entry-cta">Begin reading →</span>
+      </a>
+      <a href="/summer-reading/cultural-message/tfa" class="sr-cm-entry-card sr-cm-entry-card--tfa">
+        <span class="sr-cm-entry-eyebrow">02</span>
+        <span class="sr-cm-entry-title"><em>Things Fall Apart</em></span>
+        <span class="sr-cm-entry-desc">Five moments — from Unoka's debts to the nicest missionary.</span>
+        <span class="sr-cm-entry-cta">Begin reading →</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="sr-hub-footer">
+    <span>The Living Atlas  ·  Summer Reading 2026</span>
+    <a href="/summer-reading">Back to Summer Reading →</a>
+  </footer>
+
+</SummerLayout>
+
+<style>
+  .sr-cm-entry-nav {
+    display:        grid;
+    grid-template-columns: 1fr 1fr;
+    gap:            var(--s-5);
+    margin-top:     var(--s-10);
+  }
+
+  @media (max-width: 640px) {
+    .sr-cm-entry-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sr-cm-entry-card {
+    display:          flex;
+    flex-direction:   column;
+    gap:              var(--s-2);
+    padding:          var(--s-8) var(--s-6);
+    background:       var(--color-card);
+    border-top:       2px solid var(--p-teal);
+    text-decoration:  none;
+    transition:       transform var(--dur-quick) var(--ease-out),
+                      box-shadow var(--dur-quick) var(--ease-out);
+  }
+
+  .sr-cm-entry-card--tfa {
+    border-top-color: var(--t-terra);
+  }
+
+  .sr-cm-entry-card:hover {
+    transform:    translateY(-2px);
+    box-shadow:   0 4px 16px rgba(44, 40, 32, 0.08);
+  }
+
+  .sr-cm-entry-eyebrow {
+    font-family:    var(--font-mono);
+    font-size:      var(--t-tag);
+    letter-spacing: 0.1em;
+    color:          var(--color-muted);
+  }
+
+  .sr-cm-entry-title {
+    font-family: var(--font-display);
+    font-style:  italic;
+    font-size:   var(--t-h3);
+    line-height: var(--lh-tight);
+    color:       var(--color-ink);
+  }
+
+  .sr-cm-entry-desc {
+    font-family: var(--font-body);
+    font-size:   var(--t-body-sm);
+    line-height: var(--lh-prose);
+    color:       var(--color-muted);
+    flex-grow:   1;
+  }
+
+  .sr-cm-entry-cta {
+    font-family:    var(--font-mono);
+    font-size:      var(--t-eyebrow);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color:          var(--color-ink);
+    margin-top:     var(--s-3);
+  }
+</style>

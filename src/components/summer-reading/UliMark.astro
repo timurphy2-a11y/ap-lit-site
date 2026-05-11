@@ -1,0 +1,58 @@
+---
+// UliMark.astro
+// TFA corner/signature mark — flowing uli-inspired curve.
+// Uli is a traditional Igbo body-art form using flowing S-curves and spirals.
+// aria-hidden (decorative).
+interface Props {
+  size?: number;
+  fill?: string;
+  opacity?: number;
+}
+const { size = 280, fill = 'var(--t-terra)', opacity = 0.18 } = Astro.props;
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 280 280"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-uli-mark"
+  style={`opacity: ${opacity};`}
+>
+  <!--
+    Flowing uli-style curves: a sweeping S-curve with spiral terminals,
+    echoing traditional Igbo body-art motifs.
+  -->
+  <!-- Main S-curve -->
+  <path
+    d="M 240 40
+       C 200 40, 80 80, 80 140
+       C 80 200, 200 220, 160 260"
+    stroke={fill}
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  <!-- Secondary mirrored curve -->
+  <path
+    d="M 200 60
+       C 160 70, 100 100, 110 150
+       C 120 200, 180 210, 170 250"
+    stroke={fill}
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity="0.5"
+  />
+  <!-- Spiral terminal at top -->
+  <path
+    d="M 240 40
+       C 255 30, 265 45, 252 54
+       C 240 62, 232 52, 240 40"
+    stroke={fill}
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+  <!-- Small accent marks -->
+  <circle cx="120" cy="110" r="4" fill={fill} opacity="0.6" />
+  <circle cx="155" cy="175" r="3" fill={fill} opacity="0.4" />
+</svg>

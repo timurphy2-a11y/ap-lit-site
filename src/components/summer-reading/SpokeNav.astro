@@ -1,0 +1,52 @@
+---
+// SpokeNav.astro
+// Sticky five-spoke navigation. Rendered by SummerLayout when spoke prop is set.
+// Active state tracked by the current spoke slug.
+
+interface Props {
+  section:    'pachinko' | 'tfa';
+  activeSpoke: 'world' | 'culture' | 'history' | 'figures' | 'novel';
+}
+
+const { section, activeSpoke } = Astro.props;
+
+const basePath = `/summer-reading/${section}`;
+
+// Display labels differ by novel (matching design screenshot)
+const labels: Record<'pachinko' | 'tfa', Record<string, string>> = {
+  pachinko: {
+    world:   'World',
+    culture: 'Identity',
+    history: 'Zainichi',
+    figures: 'Figures',
+    novel:   'Connections',
+  },
+  tfa: {
+    world:   'World',
+    culture: 'Culture',
+    history: 'History',
+    figures: 'Figures',
+    novel:   'Connections',
+  },
+};
+
+const spokes = ['world', 'culture', 'history', 'figures', 'novel'] as const;
+---
+
+<nav class="sr-spoke-nav" aria-label="Spoke navigation">
+  {spokes.map((slug, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const label = labels[section][slug];
+    const isActive = slug === activeSpoke;
+    return (
+      <a
+        href={`${basePath}/${slug}`}
+        class={`sr-spoke-nav-item${isActive ? ' active' : ''}`}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        <span class="sr-spoke-nav-num">{num}</span>
+        {label}
+      </a>
+    );
+  })}
+</nav>

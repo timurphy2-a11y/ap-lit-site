@@ -1,0 +1,158 @@
+---
+import SummerLayout from '../../../layouts/SummerLayout.astro';
+import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
+import ImageCaption from '../../../components/summer-reading/ImageCaption.astro';
+---
+
+<style>
+  .sr-doc-excerpt {
+    margin: var(--s-8) 0;
+    padding: var(--s-6) var(--s-8);
+    border-left: 3px solid var(--p-teal);
+    background: color-mix(in srgb, var(--p-teal) 6%, transparent);
+    font-family: var(--font-body);
+  }
+  .sr-doc-excerpt ol {
+    margin: 0 0 var(--s-3);
+    padding-left: 1.4em;
+  }
+  .sr-doc-excerpt li {
+    margin-bottom: var(--s-2);
+    font-style: italic;
+  }
+  .sr-doc-excerpt footer {
+    font-size: var(--t-meta);
+    color: var(--color-muted);
+    font-style: normal;
+  }
+</style>
+<SummerLayout
+  title="Korean Identity Under Occupation — Pachinko"
+  section="pachinko"
+  spoke="culture"
+>
+  <div class="sr-spoke-header">
+    <span class="sr-spoke-header-eyebrow">Pachinko  ·  Spoke 02 of 05</span>
+    <h1 class="sr-spoke-header-title">Korean Identity</h1>
+    <p class="sr-spoke-header-deck">What the double life costs across generations — language, names, and the performance of belonging.</p>
+  </div>
+
+  <div class="sr-spoke-content">
+
+    <p class="sr-lede">To be Korean in Japan between 1910 and 1989 was to live a double life — not by choice, but by necessity. At home, one language; in public, another. One name on the family register, another on the workplace form. The inner life conducted in Korean; the external world navigated in Japanese. <em>Pachinko</em> is a novel about what this doubling does to people across generations: what it costs, what it preserves, and what it destroys.</p>
+
+    <h2>What Japan Did to Korean Identity</h2>
+
+    <ImageCaption
+      src="/images/summer-reading/pachinko/p2-main-street-fusan.jpg"
+      alt="Main Street in Fusan (Busan), Korea, 1922, showing a colonial-era street with buildings and pedestrians"
+      figureNumber={1}
+      caption="Main Street, Fusan (Busan), 1922. The colonial-era city Sunja's family inhabited before migration — already remade by Japanese administration, architecture, and economic organization."
+      credit="From The New York Public Library."
+      accent="pachinko"
+    />
+
+    <p>Japan's colonial administration did not simply govern Korea; it attempted to replace Korean identity with Japanese identity, in stages, over thirty-five years.</p>
+
+    <p>The early colonial period (1910s) established the basic structure: Korean-language instruction was restricted, Japanese became the mandatory language of education, and Korean-language publications were controlled or banned. Political organization was suppressed; the March First Movement of 1919, in which two million Koreans demonstrated for independence, was crushed with mass arrests and killings.</p>
+
+    <p>The middle period (1920s) brought modest relaxation — some Korean-language publications permitted, slightly more tolerance for cultural expression — without changing the fundamental terms of colonial subordination.</p>
+
+    <p>The final decade (1930s–1945) reversed even these concessions. The <em>naisen ittai</em> ideology — "Japan and Korea as One Body" — declared that Koreans and Japanese were racially and culturally unified, which meant that Koreans must become Japanese. Korean-language instruction was discontinued entirely. Koreans were required to attend Shinto shrines and perform rituals of loyalty to the Japanese emperor. In 1940, the <strong>sōshi-kaimei</strong> policy required every Korean household to register a Japanese-style family name.</p>
+
+    <p><strong>Sōshi-kaimei</strong> is the policy that runs through <em>Pachinko</em> like a fault line. It was officially described as voluntary. In practice, Koreans who refused lost access to employment, schools, hospitals, and government services. By mid-1940, roughly 80% of Korean households had registered Japanese names, most of them under coercion. Historians describe it as a policy of ethnocide: the systematic destruction of national identity, not by killing people but by forcing them to become Japanese, on paper and in public.</p>
+
+    <ImageCaption
+      src="/images/summer-reading/pachinko/p2-soshi-kaimei-bulletin.jpg"
+      alt="Official Japanese-language bulletin from the Taikyu Court announcing the sōshi-kaimei name-change policy, circa 1940"
+      figureNumber={2}
+      caption="Official bulletin of the Taikyu (Daegu) Court announcing the sōshi-kaimei name-change policy, c. 1940. The document notifies Korean households of their obligation to register Japanese-style family names."
+      credit="Public domain."
+      accent="pachinko"
+    />
+
+    <p>Children's compliance was cultivated from the start. Beginning in 1938, Korean schoolchildren were required to recite the following oath daily — in Japanese:</p>
+
+    <blockquote class="sr-doc-excerpt">
+      <ol>
+        <li>We are subjects of imperial Japan.</li>
+        <li>We will work together to loyally serve the emperor.</li>
+        <li>We will train ourselves with discipline and become strong subjects.</li>
+      </ol>
+      <footer>Oath of Subjects of the Imperial Nation, 1938 (children's version), recited daily in Korean schools under Japanese occupation</footer>
+    </blockquote>
+
+    <p>The policy produced the central daily negotiation of the Zainichi experience: a Korean name at home, a Japanese name in the world. The novel calls the Japanese name a <strong><em>tsūmei</em></strong> — literally "passing name" — and returns to this concept frequently. Every character who uses one is performing a calculation about survival, legibility, and the cost of being known.</p>
+
+    <h2>The Community Japan Built — and Excluded</h2>
+
+    <p>The Zainichi community (the term simply means "residing in Japan") emerged from colonial economic disruption. As land dispossession and agricultural collapse impoverished Korean farmers in the 1920s and 1930s, approximately two million Koreans emigrated to Japan in search of work. Wartime labor conscription pushed more emigration. By 1945, roughly 2 million Koreans were living in Japan. Most eventually repatriated, but about 600,000 remained, unable to return to a divided, devastated peninsula or unwilling to abandon the lives they had built.</p>
+
+    <p>These 600,000 and their descendants are the Zainichi community. The term itself reveals how Japan understood them: not as residents, not as citizens, but as people who happened to be residing in Japan — temporarily, even if that "temporary" condition had stretched across generations.</p>
+
+    <p>Japan's postwar treatment of this community was systematic exclusion enacted by legal procedure. When the San Francisco Peace Treaty took effect in 1952, formalizing Japan's postwar sovereignty, Zainichi Koreans were unilaterally stripped of Japanese nationality without being offered a choice between Japanese and Korean citizenship, as international norms would have required. Overnight, 600,000 people became legally stateless.</p>
+
+    <p>The postwar alien registration system had a direct colonial predecessor. The <strong>Kyōwakai</strong> — the Mutual Assistance Society — was the surveillance apparatus Japan administered inside Japan during the colonial period, operated through the Tokkō (Special Higher Police). Every Korean in Japan was required to carry a Kyōwakai membership booklet containing their photograph, address, and occupation, with the Oath of Subjects of the Imperial Nation printed inside. When the Osaka prefectural government issued the first postwar Registration Certificate in 1946, those forced to obtain one recognized the structure immediately: they called it "the return of the Kyōwakai Membership Card." The names had changed. The principle had not.</p>
+
+    <p>What this meant in practice:</p>
+
+    <ul>
+      <li>Barred from all public-sector employment: government offices, the national railway, the postal service.</li>
+      <li>Excluded from the social welfare systems Japan built for its postwar citizens: medical insurance, pension, child allowance, public housing.</li>
+      <li>Required to carry alien registration cards at all times and produce them on demand.</li>
+      <li>From 1955, required to submit to fingerprinting as a condition of registration.</li>
+    </ul>
+
+    <p>Zainichi Koreans paid taxes equally with Japanese citizens, but they received none of the benefits funded by taxation.</p>
+
+    <p>The discrimination was not only legal. Japanese landlords refused to rent to Koreans; banks refused to lend; employers refused to hire or hired only under the condition that Korean employees use Japanese names and conceal their origin. The Zainichi community was concentrated in specific urban neighborhoods — like Ikaino in Osaka — because housing discrimination made dispersal difficult even for those who could afford better.</p>
+
+    <h2>Names and the Performance of Identity</h2>
+
+    <p>The question of names is where <em>Pachinko</em>'s historical and personal dimensions converge most precisely.</p>
+
+    <p>A Korean name, in this world, is a liability. It marks the bearer as Zainichi, triggering discrimination in hiring, housing, lending, and daily social interaction. The solution most Zainichi adopted was the <em>tsūmei</em>: a Japanese-sounding name used in public settings, alongside the legal Korean name retained on official documents.</p>
+
+    <p>For the novel's first generation — Sunja and Isak, who arrived in Japan as adults — the Korean name is simply who they are. They use it without apology; their lives are lived primarily within the Korean community of Ikaino, where the name carries no penalty.</p>
+
+    <p>For the second generation — Noa and Mozasu, born or raised in Japan — the name is a daily decision. At home, Korean. At school, at work, in public: Japanese. The calculation is not abstract; it is the difference between getting the job and not, between being accepted and being told to leave. Mozasu makes his peace with this negotiation. Noa cannot.</p>
+
+    <p>Noa's relationship to his Korean identity is the novel's most extended study of the impact of this doubling. He excels at a Japanese university, studies English literature, and is succeeding at assimilation by every external measure. He is also destroying himself. The revelation of his biological father's identity does not simply embarrass him; it exposes the Korean self he has been suppressing for years, the self that a Japanese name and a university degree and perfect Japanese pronunciation cannot finally conceal.</p>
+
+    <p>Solomon, the third generation, has a different problem. He has done everything the system ostensibly requires: he is educated abroad, speaks three languages, works for a global bank. He is legible in the world of 1989 Japan's economic prosperity. Yet he is still, when the system requires it, <em>gaijin</em> — foreign. The name question has not disappeared; it has simply taken a new form for a new generation.</p>
+
+    <h2>Remembering Korea from Japan</h2>
+
+    <p>The Zainichi relationship to Korea was as complicated as their relationship to Japan.</p>
+
+    <p>For the first generation — the Issei — Korea was home, and Japan was exile. Sunja's Korea is Yeongdo: the boarding house, the smell of her mother's cooking, the rhythms of a fishing community. After World War II, that world is gone; the Korea she left in the 1930s does not exist in the same form in 1945. After the Korean War divided the peninsula in 1953, the Korea remembered by Sunja effectively ceased to exist.</p>
+
+    <p>For the second generation, Korea was increasingly an abstraction: a language spoken at home, a set of foods and customs, an identity category on a legal document. Noa and Mozasu grew up in Japan. Korea is where their parents came from; it is not a place they know. When Japan stripped Zainichi Koreans of Japanese nationality in 1952, it did not make them Korean; it made them people without a state, assigned to a country neither generation had fully inhabited.</p>
+
+    <p>The Cold War compounded the problem. Korea was divided, and the Zainichi community divided with it. Those who affiliated with South Korea did so through <strong>Mindan</strong> (the Korean Residents Union in Japan), founded in 1946. Those who affiliated with North Korea did so through <strong>Chongryon</strong> (also called Sōren), founded in 1955 and operating as North Korea's <em>de facto</em> representative in Japan. Both organizations provided loans, community services, Korean-language education, and political identity to a community that the Japanese state excluded from its own welfare systems.</p>
+
+    <p>The affiliation was not simply political preference; it had material stakes. In the 1950s and 1960s, North Korea's economy outperformed South Korea's, and Chongryon presented it as a socialist homeland awaiting its diaspora's return. Roughly 90,000 Zainichi Koreans repatriated to North Korea between 1959 and 1984, a decision scholars now recognize as catastrophic for the many who found themselves in harsh conditions and unable to leave.</p>
+
+    <p>For Zainichi Koreans who were politically unaffiliated or who identified with neither the military dictatorship of the South nor the authoritarian socialism of the North, the choice was a false one imposed by geopolitics on people who simply wanted to live their lives. The novel traces the consequences of this imposition through the community organizations Isak serves and the political pressures that shape every character's sense of what Korea means to them.</p>
+
+    <h2>A Community Japan Made Invisible</h2>
+
+    <p>Min Jin Lee spent decades researching <em>Pachinko</em>, conducting hundreds of interviews with Zainichi Koreans across Japan. What she found was a community that most of the world — including most Japanese — did not know existed.</p>
+
+    <p>"Who cares about 600,000 people," she has said, describing the challenge of making the case for this novel's subject. The Zainichi community was large enough to constitute one of Japan's most significant ethnic minority populations, small enough to be invisible to the broader world, and systematically excluded from any opportunity to tell its own story.</p>
+
+    <p>Lee has described the novel explicitly as an act of activism: not simply a story about a family, but an argument that these 600,000 people — and their children, and their children's children — deserve to be seen. "I'm outraged," she has said, drawing explicit connections between the Zainichi experience and the broader experience of Asian minorities in countries that claim not to see race while organizing their societies around the concept.</p>
+
+    <p>Nearly every Zainichi Korean Lee interviewed had some connection to the pachinko industry; it was one of the few businesses in which Koreans could find employment and begin to build economic stability. This paradox — a disreputable industry entered through necessity and converted through labor into a community's economic foundation — is the novel's central symbol of survival under exclusion.</p>
+
+    <p><em>Pachinko</em> does not sentimentalize this community or present its suffering as redemptive. It renders four generations of specific people struggling to survive and prosper under conditions they did not choose. The specificity of lives lived in the boarding house in Yeongdo, the kimchi cart in Ikaino, the pachinko parlor in Osaka, or the bank office in Tokyo is itself the argument: these people are not a demographic or a historical footnote.</p>
+
+  </div>
+
+  <SpokePagination
+    section="pachinko"
+    prev={{ slug: 'world', title: 'The World of the Novel', number: 1 }}
+    next={{ slug: 'history', title: 'Japan and the Zainichi', number: 3 }}
+  />
+
+</SummerLayout>

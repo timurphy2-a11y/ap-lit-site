@@ -1,0 +1,75 @@
+---
+import SummerLayout from '../../../layouts/SummerLayout.astro';
+import HubSpokeCard from '../../../components/summer-reading/HubSpokeCard.astro';
+import AkweteBand from '../../../components/summer-reading/AkweteBand.astro';
+import UliMark from '../../../components/summer-reading/UliMark.astro';
+import PronunciationGuide from '../../../components/summer-reading/PronunciationGuide.astro';
+
+const spokes = [
+  { number: 1, slug: 'world',   title: 'The World of the Novel', teaser: 'Umuofia in the decade before everything changed.' },
+  { number: 2, slug: 'culture', title: 'Igbo Culture',            teaser: 'The governance, cosmology, and social order Achebe renders.' },
+  { number: 3, slug: 'history', title: 'The Colonial Encounter',  teaser: 'How Britain took Nigeria — and what it cost.' },
+  { number: 4, slug: 'figures', title: 'Key Figures',             teaser: 'The people whose decisions shaped this historical moment.' },
+  { number: 5, slug: 'novel',   title: 'Connections to the Novel', teaser: 'From historical context to the argument the novel makes.' },
+];
+---
+
+<SummerLayout title="Things Fall Apart — AP Literature Summer Reading" section="tfa">
+
+  <!-- Title plate — umber bar -->
+  <div class="sr-hub-hero sr-hub-hero--tfa" style="position:relative;overflow:hidden;">
+    <!-- UliMark: signature mark bottom-right -->
+    <div style="position:absolute;bottom:-10%;right:-5%;pointer-events:none;">
+      <UliMark size={200} fill="var(--t-terra)" opacity={0.5} />
+    </div>
+
+    <span class="sr-hub-hero-eyebrow">The Novel  ·  Chinua Achebe</span>
+    <h1 class="sr-hub-hero-title">Things Fall Apart</h1>
+    <p class="sr-hub-hero-meta">1958  ·  Igboland, Nigeria</p>
+  </div>
+
+  <!-- Framing prose -->
+  <div class="sr-hub-prose">
+    <p>Chinua Achebe published <em>Things Fall Apart</em> in 1958, two years before Nigerian independence, with a precise cultural argument: that pre-colonial Igbo civilization possessed the philosophical depth, political sophistication, and moral complexity that the European literary tradition had denied it.</p>
+    <p>This site provides the historical and cultural context that makes the novel's argument legible: the structures of Igbo governance and cosmology, the mechanics of British colonization and the doctrine of indirect rule, the catastrophic imposition of warrant chiefs, and the specific way the novel uses Okonkwo's personal tragedy to stage a cultural one.</p>
+    <p>The five sections below — and the interactive Encroachment Map — are designed to be read alongside the novel, in any order.</p>
+  </div>
+
+  <!-- Section divider -->
+  <div class="sr-band-center">
+    <AkweteBand width={400} height={20} />
+  </div>
+
+  <!-- Spoke grid -->
+  <div class="sr-hub-spoke-grid">
+    {spokes.map(s => (
+      <HubSpokeCard
+        section="tfa"
+        number={s.number}
+        href={`/summer-reading/tfa/${s.slug}`}
+        title={s.title}
+        teaser={s.teaser}
+      />
+    ))}
+  </div>
+
+  <!-- Scrollytelling entry card -->
+  <a href="/summer-reading/tfa/encroachment-map" class="sr-scrolly-entry">
+    <div class="sr-scrolly-entry-copy">
+      <span class="sr-scrolly-entry-eyebrow">Interactive  ·  Scroll Experience</span>
+      <h2 class="sr-scrolly-entry-title">The Encroachment Map</h2>
+      <p class="sr-scrolly-entry-desc">Four chapters. Watch Umuofia's world contract as colonial power moves inland.</p>
+    </div>
+    <span class="sr-scrolly-entry-cta">Begin →</span>
+  </a>
+
+  <!-- Pronunciation reference -->
+  <PronunciationGuide section="tfa" />
+
+  <!-- Footer -->
+  <footer class="sr-hub-footer">
+    <span>The Living Atlas  ·  Summer Reading 2026</span>
+    <a href="/summer-reading">Back to Summer Reading →</a>
+  </footer>
+
+</SummerLayout>

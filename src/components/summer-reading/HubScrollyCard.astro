@@ -1,0 +1,13 @@
+---
+interface Props {
+  href:  string;
+  label: string;
+  title: string;
+}
+const { href, label, title } = Astro.props;
+---
+
+<a href={href} class="sr-scrolly-next-card">
+  <span class="sr-scrolly-next-label">{label}</span>
+  <span class="sr-scrolly-next-title">{title}</span>
+</a>

@@ -1,0 +1,36 @@
+---
+// SpokePagination.astro
+// Prev / next links at the foot of each spoke page.
+// Spec: 04-spoke-page.md
+
+interface SpokeLink {
+  slug:   string;
+  title:  string;
+  number: number;
+}
+
+interface Props {
+  section:  'pachinko' | 'tfa';
+  prev?:    SpokeLink;
+  next?:    SpokeLink;
+}
+
+const { section, prev, next } = Astro.props;
+const base = `/summer-reading/${section}`;
+---
+
+<nav class="sr-spoke-pagination" aria-label="Spoke pagination">
+  {prev ? (
+    <a href={`${base}/${prev.slug}`} class="sr-pagination-link sr-pagination-link--prev">
+      <span class="sr-pagination-eyebrow">← Spoke {String(prev.number).padStart(2, '0')}</span>
+      <span class="sr-pagination-title">{prev.title}</span>
+    </a>
+  ) : <div />}
+
+  {next ? (
+    <a href={`${base}/${next.slug}`} class="sr-pagination-link sr-pagination-link--next">
+      <span class="sr-pagination-eyebrow">Spoke {String(next.number).padStart(2, '0')} →</span>
+      <span class="sr-pagination-title">{next.title}</span>
+    </a>
+  ) : <div />}
+</nav>

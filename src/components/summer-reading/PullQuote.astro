@@ -1,0 +1,59 @@
+---
+// PullQuote.astro
+// Inset pull-quote in the prose flow. NOT in the right rail.
+// Spec: 04-spoke-page.md
+
+interface Props {
+  quote:       string;
+  attribution: string;
+  accent?:     'pachinko' | 'tfa';
+}
+
+const { quote, attribution, accent = 'pachinko' } = Astro.props;
+const accentColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-teal)';
+---
+
+<blockquote class="sr-pull-quote" style={`border-left-color: ${accentColor};`}>
+  <span class="sr-pull-quote-mark" style={`color: ${accentColor};`}>"</span>
+  <p class="sr-pull-quote-text">{quote}</p>
+  <cite class="sr-pull-quote-attribution">{attribution}</cite>
+</blockquote>
+
+<style>
+  .sr-pull-quote {
+    margin:        var(--s-10) 0;
+    padding:       var(--s-8) 0;
+    border-left:   none;
+    position:      relative;
+  }
+
+  .sr-pull-quote-mark {
+    font-family: var(--font-display);
+    font-style:  italic;
+    font-size:   2rem;
+    line-height: 1;
+    position:    absolute;
+    left:        -1.5rem;
+    top:         var(--s-8);
+    user-select: none;
+    aria-hidden: true;
+  }
+
+  .sr-pull-quote-text {
+    font-family: var(--font-display);
+    font-style:  italic;
+    font-size:   var(--t-pull);
+    line-height: var(--lh-pull);
+    color:       var(--color-ink);
+    margin:      0 0 var(--s-3);
+  }
+
+  .sr-pull-quote-attribution {
+    display:        block;
+    font-style:     normal;
+    font-family:    var(--font-body);
+    font-size:      var(--t-meta);
+    color:          var(--color-muted);
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+// AkweteBand.astro
+// TFA section divider — a row of diamonds in alternating terracotta,
+// forest, and ochre, inspired by Akwete weaving patterns.
+// aria-hidden (decorative).
+interface Props {
+  width?: number;
+  height?: number;
+}
+const { width = 400, height = 20 } = Astro.props;
+
+const colors = ['var(--t-terra)', 'var(--t-forest)', 'var(--t-ochre)'];
+const count = Math.floor(width / 22);
+const startX = (width - count * 22) / 2 + 11;
+---
+<svg
+  width={width}
+  height={height}
+  viewBox={`0 0 ${width} ${height}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-akwete-band"
+>
+  {Array.from({ length: count }, (_, i) => {
+    const cx = startX + i * 22;
+    const cy = height / 2;
+    const color = colors[i % 3];
+    // Diamond: rotated square
+    return (
+      <polygon
+        points={`${cx},${cy - 7} ${cx + 6},${cy} ${cx},${cy + 7} ${cx - 6},${cy}`}
+        fill={color}
+        opacity="0.85"
+      />
+    );
+  })}
+</svg>

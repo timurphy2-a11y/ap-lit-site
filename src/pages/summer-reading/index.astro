@@ -1,0 +1,123 @@
+---
+import SummerLayout from '../../layouts/SummerLayout.astro';
+import Medallion from '../../components/summer-reading/Medallion.astro';
+import UliMark from '../../components/summer-reading/UliMark.astro';
+
+// Pronunciation guide entries — open question: respelling vs. IPA.
+// Using plain English respellings for v1 per the spec.
+const pachinkoNames = [
+  { name: 'Sunja',     respell: '[SOON-jah]',       gloss: 'Protagonist; mother of two' },
+  { name: 'Yeongdo',   respell: '[YUNG-doh]',       gloss: 'Island near Busan, Korea' },
+  { name: 'Isak',      respell: '[EE-sahk]',        gloss: "Sunja's husband; pastor" },
+  { name: 'Mozasu',    respell: '[moh-ZAH-soo]',    gloss: "Sunja's younger son" },
+  { name: 'Zainichi',  respell: '[zai-NEE-chee]',   gloss: 'Korean diaspora in Japan' },
+  { name: 'Ikaino',    respell: '[ee-KAI-noh]',     gloss: 'Korean district in Osaka' },
+];
+
+const tfaNames = [
+  { name: 'Okonkwo',   respell: '[oh-KOHN-kwoh]',    gloss: 'Protagonist; Things Fall Apart' },
+  { name: 'Umuofia',   respell: '[oo-moo-OH-fyah]',  gloss: "Okonkwo's clan village" },
+  { name: 'Ezinma',    respell: '[eh-ZIN-mah]',      gloss: "Okonkwo's favourite daughter" },
+  { name: 'Obierika',  respell: '[oh-bee-EH-ree-kah]', gloss: "Okonkwo's closest friend" },
+  { name: 'Ikemefuna', respell: '[ee-keh-meh-FOO-nah]', gloss: 'Boy placed in Okonkwo\'s care' },
+  { name: 'Chi',       respell: '[chee]',             gloss: 'Personal spirit / destiny' },
+];
+---
+
+<SummerLayout title="The Living Atlas — AP Literature Summer Reading" section="hub">
+
+  <!-- Hero — dual-motif title plate -->
+  <div class="sr-shared-hub-hero">
+    <!-- Left motif: Medallion (Pachinko) -->
+    <div style="position:absolute;top:0;left:0;transform:translate(-30%,-20%);pointer-events:none;">
+      <Medallion size={280} fill="var(--p-gold)" opacity={0.18} />
+    </div>
+    <!-- Right motif: UliMark (TFA) -->
+    <div style="position:absolute;top:0;right:0;transform:translate(30%,-20%);pointer-events:none;">
+      <UliMark size={280} fill="var(--t-terra)" opacity={0.18} />
+    </div>
+
+    <div style="position:relative;z-index:1;max-width:var(--content-prose);">
+      <span class="sr-hub-hero-eyebrow" style="color:var(--color-ink);">Summer Reading  ·  2026</span>
+      <h1 class="sr-hub-hero-title">The Living Atlas</h1>
+      <p class="sr-hub-hero-deck">Two novels. Twelve generations.<br />Two continents and a century.</p>
+    </div>
+  </div>
+
+  <!-- Framing prose -->
+  <div class="sr-hub-prose">
+    <p>This site pairs <em>Pachinko</em> (Min Jin Lee, 2017) and <em>Things Fall Apart</em> (Chinua Achebe, 1958) — two novels written sixty years apart that each ask what it costs to have your history erased, your name changed, and your civilization dismissed. The contextual sections here are designed to be read alongside the novels, in any order, before or after the reading you're doing for class.</p>
+    <p>The Cultural Message section collects close-reading prompts organized around the passages your test question is likely to draw on. Start there when you're ready to write.</p>
+  </div>
+
+  <!-- Twin novel cards -->
+  <div class="sr-twin-cards">
+    <a href="/summer-reading/pachinko" class="sr-novel-card sr-novel-card--pachinko">
+      <span class="sr-novel-card-eyebrow">The Novel</span>
+      <h2 class="sr-novel-card-title">Pachinko</h2>
+      <p class="sr-novel-card-author">Min Jin Lee</p>
+      <p class="sr-novel-card-deck">Eight decades, three generations, one family across the Korea Strait. 1910 to 1989.</p>
+      <span class="sr-novel-card-cta">Begin reading →</span>
+    </a>
+
+    <a href="/summer-reading/tfa" class="sr-novel-card sr-novel-card--tfa">
+      <span class="sr-novel-card-eyebrow">The Novel</span>
+      <h2 class="sr-novel-card-title">Things Fall Apart</h2>
+      <p class="sr-novel-card-author">Chinua Achebe</p>
+      <p class="sr-novel-card-deck">A village's last decade before the missionaries arrived — and the decades that followed.</p>
+      <span class="sr-novel-card-cta">Begin reading →</span>
+    </a>
+  </div>
+
+  <!-- Pronunciation guide -->
+  <div class="sr-pronunciation" style="margin-inline: var(--gutter-lg);">
+    <span class="sr-pronunciation-eyebrow">How These Names Sound</span>
+    <table class="sr-pronunciation-table">
+      {pachinkoNames.map(({ name, respell, gloss }) => (
+        <tr>
+          <td class="sr-pron-name">{name}</td>
+          <td class="sr-pron-respell">{respell}</td>
+          <td class="sr-pron-gloss">{gloss}</td>
+        </tr>
+      ))}
+    </table>
+    <hr class="sr-pronunciation-divider" />
+    <table class="sr-pronunciation-table">
+      {tfaNames.map(({ name, respell, gloss }) => (
+        <tr>
+          <td class="sr-pron-name">{name}</td>
+          <td class="sr-pron-respell" style="color:var(--t-terra);">{respell}</td>
+          <td class="sr-pron-gloss">{gloss}</td>
+        </tr>
+      ))}
+    </table>
+  </div>
+
+  <!-- Cultural Message entry -->
+  <div style="max-width:var(--content-wide);margin-inline:auto;padding:var(--s-10) var(--gutter-lg);">
+    <p class="sr-cm-header-eyebrow">Cultural Message  ·  Two Readings</p>
+    <h2 style="font-family:var(--font-display);font-style:italic;font-size:var(--t-h2);color:var(--color-ink);margin:0 0 var(--s-3);">What the novels are doing on the page</h2>
+    <p style="font-family:var(--font-body);font-size:var(--t-body-sm);color:var(--color-muted);max-width:35rem;margin:0 0 var(--s-5);">Close-reading prompts organized around passages that reward careful attention — the moments that don't immediately announce themselves as thematically central.</p>
+    <div style="display:flex;gap:var(--s-6);">
+      <a href="/summer-reading/cultural-message/pachinko" style="font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-ink);text-decoration:underline;text-underline-offset:3px;">01 Pachinko</a>
+      <a href="/summer-reading/cultural-message/tfa" style="font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-ink);text-decoration:underline;text-underline-offset:3px;">02 Things Fall Apart</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="sr-hub-footer">
+    <span>The Living Atlas  ·  Summer Reading 2026</span>
+    <a href="/summer-reading">Site map →</a>
+  </footer>
+
+</SummerLayout>
+
+<style>
+  .sr-hub-hero-deck {
+    font-family: var(--font-body);
+    font-size:   1rem;
+    line-height: 1.6;
+    color:       var(--color-muted);
+    margin:      var(--s-4) 0 0;
+  }
+</style>

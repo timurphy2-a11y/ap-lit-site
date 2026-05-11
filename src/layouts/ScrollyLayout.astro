@@ -1,0 +1,55 @@
+---
+// ScrollyLayout.astro
+// Minimal layout for the two scrollytelling pages:
+//   /summer-reading/pachinko/migration-map
+//   /summer-reading/tfa/encroachment-map
+//
+// No standard prose column, no spoke navigation.
+// Full-viewport map area. Chrome is intentionally minimal.
+
+import '../styles/summer-reading.css';
+
+interface Props {
+  title:   string;
+  section: 'pachinko' | 'tfa';
+}
+
+const { title, section } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fraunces (display) + DM Sans (body) + JetBrains Mono (eyebrows/labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="scrolly-page" data-section={section}>
+
+      <header class="sr-topbar--scrolly">
+        <a href={`/summer-reading/${section}`} class="sr-topbar-back">← Back</a>
+        <span class="sr-topbar-scrolly-title">
+          {section === 'pachinko' ? 'Pachinko' : 'Things Fall Apart'}
+        </span>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+    </div>
+  </body>
+</html>

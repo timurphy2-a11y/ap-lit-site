@@ -1,0 +1,92 @@
+---
+interface Entry {
+  name: string;
+  respell: string;
+  gloss: string;
+}
+
+interface Group {
+  label: string;
+  entries: Entry[];
+}
+
+interface Props {
+  section: 'pachinko' | 'tfa';
+}
+
+const { section } = Astro.props;
+
+const data: Record<string, Group[]> = {
+  pachinko: [
+    {
+      label: 'Characters',
+      entries: [
+        { name: 'Sunja',    respell: 'SOON-jah',     gloss: 'Protagonist; daughter of a Yeongdo boarding-house keeper' },
+        { name: 'Isak',     respell: 'EE-sahk',      gloss: 'Presbyterian pastor; marries Sunja' },
+        { name: 'Hansu',    respell: 'HAHN-soo',     gloss: 'Fish broker; Noa\'s biological father' },
+        { name: 'Noa',      respell: 'NOH-ah',       gloss: 'Sunja\'s eldest son; raised as Isak\'s' },
+        { name: 'Mozasu',   respell: 'MOH-zah-soo',  gloss: 'Sunja and Isak\'s son; enters the pachinko industry' },
+        { name: 'Yangjin',  respell: 'YAHNG-jeen',   gloss: 'Sunja\'s mother; runs the boarding house' },
+        { name: 'Yoseb',    respell: 'YOH-sehb',     gloss: 'Isak\'s older brother; factory worker in Osaka' },
+        { name: 'Kyunghee', respell: 'KYOONG-hee',   gloss: 'Yoseb\'s wife; Sunja\'s closest companion in Japan' },
+      ],
+    },
+    {
+      label: 'Places',
+      entries: [
+        { name: 'Yeongdo',  respell: 'YEHNG-doh',    gloss: 'Island district of Busan; where Sunja grows up' },
+        { name: 'Busan',    respell: 'BOO-sahn',      gloss: 'Port city in southern Korea (formerly romanized "Pusan")' },
+        { name: 'Ikaino',   respell: 'ee-KAI-noh',   gloss: 'Osaka neighborhood; center of the Zainichi Korean community' },
+      ],
+    },
+  ],
+  tfa: [
+    {
+      label: 'Characters',
+      entries: [
+        { name: 'Okonkwo',   respell: 'oh-KOHN-kwoh',       gloss: 'Protagonist; Umuofia\'s champion wrestler' },
+        { name: 'Nwoye',     respell: 'NWOH-yeh',           gloss: 'Okonkwo\'s eldest son' },
+        { name: 'Ezinma',    respell: 'eh-ZEEN-mah',        gloss: 'Okonkwo\'s daughter; believed to be an ogbanje child' },
+        { name: 'Chielo',    respell: 'chee-EH-loh',        gloss: 'Priestess of Agbala' },
+        { name: 'Ikemefuna', respell: 'ee-keh-meh-FOO-nah', gloss: 'Boy from Mbaino placed in Okonkwo\'s household' },
+        { name: 'Obierika',  respell: 'oh-bee-EH-ree-kah',  gloss: 'Okonkwo\'s closest friend; voice of reason' },
+        { name: 'Uchendu',   respell: 'oo-CHEHN-doo',       gloss: 'Okonkwo\'s maternal uncle; host during exile' },
+      ],
+    },
+    {
+      label: 'Places & Terms',
+      entries: [
+        { name: 'Umuofia',  respell: 'oo-moo-OH-fee-ah', gloss: 'Okonkwo\'s home; a union of nine villages' },
+        { name: 'Mbanta',   respell: 'mm-BAHN-tah',      gloss: 'Okonkwo\'s mother\'s village; his place of exile' },
+        { name: 'Agbala',   respell: 'ahg-BAH-lah',      gloss: 'The Oracle of the Hills and Caves' },
+        { name: 'ogbanje',  respell: 'ohg-BAH-njeh',     gloss: 'Spirit child believed to die and be reborn repeatedly' },
+        { name: 'chi',      respell: 'chee',             gloss: 'One\'s personal god; spiritual double' },
+        { name: 'obi',      respell: 'OH-bee',           gloss: 'Main living quarters of a compound; also a title of rank' },
+      ],
+    },
+  ],
+};
+
+const groups = data[section];
+---
+
+<div class="sr-pronunciation">
+  <span class="sr-pronunciation-eyebrow">How to say these names</span>
+  {groups.map((group, i) => (
+    <>
+      {i > 0 && <hr class="sr-pronunciation-divider" />}
+      <p class="sr-pron-group-label">{group.label}</p>
+      <table class="sr-pronunciation-table">
+        <tbody>
+          {group.entries.map(entry => (
+            <tr>
+              <td class="sr-pron-name">{entry.name}</td>
+              <td class="sr-pron-respell">{entry.respell}</td>
+              <td class="sr-pron-gloss">{entry.gloss}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+</div>

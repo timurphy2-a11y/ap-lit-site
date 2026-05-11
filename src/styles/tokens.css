@@ -1,0 +1,97 @@
+/* The Living Atlas — Design Tokens
+ * Phase 2 handoff. Imported from summer-reading.css.
+ * All values are oklch-equivalent hex.
+ *
+ * Naming: shared tokens are unprefixed; novel-specific tokens use
+ * --p- (Pachinko) and --t- (TFA) prefixes. Cultural Message pages
+ * use only the shared neutrals + per-moment accents.
+ */
+
+:root {
+  /* ── Neutrals (shared) ── */
+  --color-cream:      #F6F1E8;   /* page ground */
+  --color-card:       #EDE8DC;   /* card / inset surface */
+  --color-warm:       #F0E9D8;   /* deeper warm — passage blockquote ground */
+  --color-ink:        #2C2820;   /* primary text */
+  --color-muted:      #6B6355;   /* secondary text, captions */
+  --color-rule:       #C8C0B0;   /* hairline rules, inactive borders */
+
+  /* ── Pachinko ── */
+  --p-teal:           #2AA8A0;   /* primary accent */
+  --p-orange:         #C4722A;   /* eyebrow / decorative warm */
+  --p-gold:           #D4A840;   /* secondary highlight */
+  --p-coral:          #C4537A;   /* tertiary; reused on Cultural Message "open question" */
+
+  /* Title plate (Treatment A — locked) */
+  --p-title-wash:     rgba(42, 168, 160, 0.08);   /* 8% teal on cream */
+  --p-medallion:      rgba(212, 168, 64, 0.16);   /* gold pattern, 16% */
+
+  /* ── Things Fall Apart ── */
+  --t-terra:          #C4722A;   /* primary accent */
+  --t-forest:         #5A8A32;   /* secondary; mission marker, accents */
+  --t-ochre:          #D4A840;   /* secondary; eyebrows on umber */
+  --t-umber:          #2C1A08;   /* hero/header surface ONLY */
+  --t-cream:          #F0E4CF;   /* light text on umber */
+
+  /* ── Type ── */
+  --font-display:     "Fraunces", ui-serif, Georgia, serif;
+  --font-body:        "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono:        "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* ── Type scale (display — Fraunces italic) ── */
+  --t-hero:           clamp(2.5rem, 1.6rem + 4vw, 4rem);    /* 40–64px hub titles */
+  --t-page-title:     clamp(2rem, 1.4rem + 2.5vw, 2.75rem); /* 32–44px section titles */
+  --t-h2:             1.75rem;   /* 28px subhead */
+  --t-h3:             1.375rem;  /* 22px moment titles, scrolly chapter sub */
+  --t-pull:           1.5rem;    /* 24px spoke pull-quote */
+  --t-passage:        1.125rem;  /* 18px Cultural Message passage */
+
+  /* ── Type scale (body — DM Sans) ── */
+  --t-body:           0.9375rem; /* 15px primary body */
+  --t-body-sm:        0.875rem;  /* 14px provocation, dense body */
+  --t-meta:           0.8125rem; /* 13px narrative context, captions */
+  --t-tiny:           0.75rem;   /* 12px attribution */
+
+  /* ── Type scale (mono — JetBrains Mono) ── */
+  --t-eyebrow:        0.625rem;  /* 10px UPPER 0.18em eyebrows */
+  --t-tag:            0.5625rem; /* 9px novel tag, page-of-page indicator */
+
+  /* ── Line heights ── */
+  --lh-display:       1.05;      /* hero titles */
+  --lh-tight:         1.15;      /* subheads */
+  --lh-pull:          1.45;      /* pull-quote, passage */
+  --lh-prose:         1.7;       /* body prose */
+  --lh-meta:          1.55;      /* secondary text */
+
+  /* ── Spacing scale (8pt grid) ── */
+  --s-1:  0.25rem;   /*  4px */
+  --s-2:  0.5rem;    /*  8px */
+  --s-3:  0.75rem;   /* 12px */
+  --s-4:  1rem;      /* 16px */
+  --s-5:  1.25rem;   /* 20px */
+  --s-6:  1.5rem;    /* 24px */
+  --s-8:  2rem;      /* 32px */
+  --s-10: 2.5rem;    /* 40px */
+  --s-12: 3rem;      /* 48px */
+  --s-16: 4rem;      /* 64px */
+  --s-20: 5rem;      /* 80px */
+
+  /* ── Layout ── */
+  --content-prose:    38rem;     /* 608px — body prose column */
+  --content-wide:     56rem;     /* 896px — hub pages */
+  --content-page:     72rem;     /* 1152px — full page max */
+  --gutter:           1.5rem;    /* 24px on mobile */
+  --gutter-lg:        2rem;      /* 32px on tablet+ */
+
+  /* ── Borders & accents ── */
+  --rule-thin:        1px solid var(--color-rule);
+  --rule-accent-3:    3px solid var(--p-teal);    /* swap per-novel inline */
+
+  /* ── Motion ── */
+  --ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-quick:        160ms;
+  --dur-base:         240ms;
+  --dur-slow:         400ms;
+}
+
+/* No dark mode for this site — the warm cream + ink ground is the brand. */

@@ -1,0 +1,16 @@
+---
+// ScrollyPanel.astro
+// PURPOSE: Sticky map panel for desktop scrollytelling pages.
+//          Stays fixed on the right half of the viewport while text blocks scroll left.
+//          Receives active chapter index via Intersection Observer events and updates
+//          the SVG map state accordingly (route extension, location highlight, date display).
+//          Releases sticky behavior after the final chapter scrolls through.
+//          Props: section ('pachinko' | 'tfa')
+// STATUS: Stub — awaiting SVG map assets and Claude Design specs before implementation.
+// IMPLEMENTATION NOTES (Phase 2):
+//   - position: sticky; height: 100vh
+//   - Desktop only (above md: 768px); hidden on mobile in favor of inline map states
+//   - Pachinko: drives MigrationMap.svg (stroke-dasharray/stroke-dashoffset animation)
+//   - TFA: drives EncroachmentMap.svg (opacity layer transitions)
+---
+<!-- TODO: Implement ScrollyPanel sticky map component -->
