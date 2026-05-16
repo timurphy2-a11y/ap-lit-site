@@ -840,12 +840,12 @@ const PEOPLE_INDEX = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
 
 // ─── UNIT ACCENT COLORS ───────────────────────────────────────────────────────
 const UNIT_COLORS = {
-  "00-medieval":      "#3f6cc8",
-  "01-renaissance":   "#c98a18",
-  "02-baroque":       "#c64254",
-  "03-enlightenment": "#2a9bb0",
-  "04-romanticism":   "#b8438c",
-  "05-modernism":     "#2d9560",
+  "00-medieval":      "#C9A24B",
+  "01-renaissance":   "#B54C3A",
+  "02-baroque":       "#B07028",
+  "03-enlightenment": "#698BA1",
+  "04-romanticism":   "#3D5A6D",
+  "05-modernism":     "#A03828",
 };
 
 const UNIT_ORDER = [
