@@ -6,12 +6,12 @@ const artEntries = (await getCollection('units', ({ id }) => id.endsWith('/art')
   .sort((a, b) => a.id.localeCompare(b.id));
 
 const ACCENT: Record<string, string> = {
-  '00-medieval':      '#C9A24B',
-  '01-renaissance':   '#B54B3A',
-  '02-baroque':       '#D4A24C',
-  '03-enlightenment': '#6B8CA3',
-  '04-romanticism':   '#3E5B6E',
-  '05-modernism':     '#A03828',
+  '00-medieval':      '#3f6cc8',
+  '01-renaissance':   '#c98a18',
+  '02-baroque':       '#c64254',
+  '03-enlightenment': '#2a9bb0',
+  '04-romanticism':   '#b8438c',
+  '05-modernism':     '#2d9560',
 };
 ---
 
@@ -46,7 +46,7 @@ const ACCENT: Record<string, string> = {
     {artEntries.map((entry) => {
       const unitId = entry.id.replace('/art', '');
       const num    = unitId.slice(0, 2);
-      const accent = ACCENT[unitId] ?? '#C9A24B';
+      const accent = ACCENT[unitId] ?? '#A07820';
       const { period, dates, core_text, author } = entry.data;
       return (
         <a class="codex-card" href={`/units/${unitId}`} style={`--acc: ${accent};`}>
@@ -248,7 +248,7 @@ const ACCENT: Record<string, string> = {
     transition: background 160ms ease;
     position: relative;
   }
-  .codex-card:hover { background: #231e1a; }
+  .codex-card:hover { background: #E0D5BD; }
   .codex-card::before {
     content: '';
     position: absolute;

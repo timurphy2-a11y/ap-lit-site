@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 4 — Thread Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:          #F4EDDF;
+    --bg-raised:   #EBE2D0;
+    --bg-sunken:   #FAF4E6;
+    --ink:         #1B1714;
+    --ink-mute:    #4a4138;
+    --ink-soft:    #6a6053;
+    --rule:        #C9BDA5;
+    --rule-strong: #A89978;
+    --acc:         #A07820;
+    --acc-medieval:       #3f6cc8;
+    --acc-renaissance:    #c98a18;
+    --acc-baroque:        #c64254;
+    --acc-enlightenment:  #2a9bb0;
+    --acc-romanticism:    #b8438c;
+    --acc-modernism:      #2d9560;
+    --font-display: 'Spectral', Georgia, serif;
+    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono:    'IBM Plex Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-display); font-size: 16px; line-height: 1.6; padding: 48px clamp(20px,5vw,80px) 80px; }
+  h1 { font-size: 28px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); margin-bottom: 40px; letter-spacing: 0.08em; }
+  .section-rule { display: flex; align-items: center; gap: 14px; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); margin: 52px 0 24px; }
+  .section-rule .mono { font-family: var(--font-mono); }
+  .section-rule .rule-line { flex: 1; height: 1px; background: var(--rule); }
+  .note-box { border: 1px solid var(--rule); padding: 18px 22px; font-size: 13.5px; line-height: 1.65; color: var(--ink-mute); margin-bottom: 8px; }
+  code { font-family: var(--font-mono); font-size: 11px; color: var(--ink); background: var(--bg-sunken); border: 1px solid var(--rule); padding: 1px 5px; }
+
+  /* Option columns */
+  .option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .option { background: var(--bg-raised); }
+  .option-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--rule); }
+  .option-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+  .option-name { font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .option-code { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); line-height: 1.5; }
+  .demo-body { padding: 24px 20px; }
+  .verdict { padding: 12px 18px; border-top: 1px solid var(--rule); font-size: 12.5px; line-height: 1.55; color: var(--ink-mute); }
+  .verdict strong { color: var(--ink); font-weight: 500; }
+
+  /* ── Arc block component (mirrors actual site CSS) ── */
+  .g-arc-block {
+    margin: 0 0 20px;
+    padding: 14px 18px;
+    border: 1px solid color-mix(in oklab, var(--tc) 30%, transparent);
+    background: color-mix(in oklab, var(--tc) 7%, transparent);
+    font-family: var(--font-display);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-mute);
+  }
+  .g-arc-kicker { font-weight: 600; color: var(--tc); }
+
+  /* ── Nav link component (mirrors actual site CSS) ── */
+  .nav-demo { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .g-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-ui); font-size: 12px; font-weight: 500;
+    text-decoration: none;
+    padding: 7px 14px;
+    color: var(--ink-soft);
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    transition: color 150ms, background 150ms, border-color 150ms;
+    white-space: nowrap;
+    border-radius: 2px;
+  }
+  .g-nav-link.active {
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+    background: color-mix(in oklab, var(--accent) 14%, transparent);
+  }
+  .g-nav-link:hover { cursor: pointer; }
+
+  /* ── Domain rows ── */
+  .domain-row { margin-bottom: 20px; }
+  .domain-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+
+  /* ── 3-page grid ── */
+  .page-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .page-col { background: var(--bg-raised); padding: 20px 18px; }
+  .page-col-label { font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+
+  /* Swatch strip */
+  .swatch-row { display: flex; gap: 6px; margin-bottom: 12px; }
+  .swatch { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(0,0,0,.08); }
+  .swatch-label { font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft); line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<h1>Issue 4 — Thread Colors</h1>
+<p class="subtitle">seeing-through-paint / sculpting-through-time / hearing-through-form / compare.astro</p>
+
+<div class="note-box">
+  <p><strong>What's live:</strong> <code>PAINTING_ACCENT</code>, <code>SCULPTURE_ACCENT</code>, <code>MUSIC_ACCENT</code> set <code>--acc-local</code> on the hero label — but no CSS rule ever reads <code>--acc-local</code>. Dead code: remove them. <code>SCULPTURE_ACCENT</code> in compare.astro colors one artist-name span; that gets the same replacement as below.</p>
+  <p style="margin-top:10px"><strong>What's live and needs a decision:</strong> <code>THREAD_COLORS[0..2]</code> drives (1) the arc-block border/tint/kicker and (2) the nav-link active state on each guide page. Currently dark warm-browns that read fine on dark bg but muddy on cream.</p>
+</div>
+
+<!-- ══ THREE OPTIONS ══════════════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ I</span>
+  <span>Three options — shown as arc block + nav active state</span>
+  <span class="rule-line"></span>
+</div>
+
+<div class="option-grid">
+
+  <!-- OPTION A: All default gold -->
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option A</div>
+      <div class="option-name">Default gold everywhere</div>
+      <div class="option-code"><code>var(--acc)</code> = <code>#A07820</code> for all three guide pages, all three threads.</div>
+    </div>
+    <div class="demo-body">
+      <div class="domain-label">Painting · Light &amp; Shadow</div>
+      <div class="g-arc-block" style="--tc: #A07820">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #A07820">Figure &amp; Space</span>
+        <span class="g-nav-link" style="--accent: #A07820">Light &amp; Shadow</span>
+        <span class="g-nav-link" style="--accent: #A07820">Brushwork</span>
+      </div>
+      <div class="domain-label" style="margin-top:16px">Sculpture · same</div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #A07820">Form &amp; Mass</span>
+        <span class="g-nav-link" style="--accent: #A07820">Material</span>
+        <span class="g-nav-link" style="--accent: #A07820">Space</span>
+      </div>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Consistent with the site's default accent; no per-domain color signal. All three guide pages look the same. Simple.</div>
+  </div>
+
+  <!-- OPTION B: Domain-specific mono-hue trios -->
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option B</div>
+      <div class="option-name">Domain-specific hues</div>
+      <div class="option-code">Each guide page has its own base color; 3 threads get light/mid/dark variants. Painting=ochre, Sculpture=slate, Music=blue.</div>
+    </div>
+    <div class="demo-body">
+      <div class="domain-label">Painting · Light &amp; Shadow</div>
+      <div class="g-arc-block" style="--tc: #8B6818">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #9B7820">Figure &amp; Space</span>
+        <span class="g-nav-link active" style="--accent: #8B6818">Light &amp; Shadow</span>
+        <span class="g-nav-link active" style="--accent: #B08828">Brushwork</span>
+      </div>
+      <div class="domain-label" style="margin-top:16px">Sculpture · Material</div>
+      <div class="g-arc-block" style="--tc: #6B5E50">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of what sculptors chose to work in — and how the material's resistance became part of the meaning.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #7B6B5B">Form &amp; Mass</span>
+        <span class="g-nav-link active" style="--accent: #6B5E50">Material</span>
+        <span class="g-nav-link active" style="--accent: #8E7D6C">Space</span>
+      </div>
+      <div class="domain-label" style="margin-top:16px">Music · Harmony</div>
+      <div class="g-arc-block" style="--tc: #2A6B9B">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of how Western music organized sound into systems — and how those systems eventually collapsed under their own complexity.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #3278AA">Harmony</span>
+        <span class="g-nav-link active" style="--accent: #2A6B9B">Rhythm</span>
+        <span class="g-nav-link active" style="--accent: #4088BC">Texture</span>
+      </div>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Each guide page has a distinct feel — warm for painting, cool-neutral for sculpture, blue for music. Gives each medium its own identity without conflicting with the period palette.</div>
+  </div>
+
+  <!-- OPTION C: Borrow 3 period accents -->
+  <div class="option">
+    <div class="option-header">
+      <div class="option-tag">Option C</div>
+      <div class="option-name">Borrow from period palette</div>
+      <div class="option-code">Each guide page borrows 3 of the 6 Separated period accents for its 3 threads. Creates visual rhyme with domain pages.</div>
+    </div>
+    <div class="demo-body">
+      <div class="domain-label">Painting: medieval · renaissance · baroque</div>
+      <div class="g-arc-block" style="--tc: #c98a18">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #3f6cc8">Figure &amp; Space</span>
+        <span class="g-nav-link active" style="--accent: #c98a18">Light &amp; Shadow</span>
+        <span class="g-nav-link active" style="--accent: #c64254">Brushwork</span>
+      </div>
+      <div class="domain-label" style="margin-top:16px">Sculpture: enlightenment · romanticism · modernism</div>
+      <div class="g-arc-block" style="--tc: #b8438c">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of what sculptors chose to work in — and how the material's resistance became part of the meaning.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #2a9bb0">Form &amp; Mass</span>
+        <span class="g-nav-link active" style="--accent: #b8438c">Material</span>
+        <span class="g-nav-link active" style="--accent: #2d9560">Space</span>
+      </div>
+      <div class="domain-label" style="margin-top:16px">Music: medieval · enlightenment · modernism</div>
+      <div class="g-arc-block" style="--tc: #2a9bb0">
+        <span class="g-arc-kicker">The story this thread tells</span> is the story of how Western music organized sound into systems — and how those systems eventually collapsed.
+      </div>
+      <div class="nav-demo">
+        <span class="g-nav-link active" style="--accent: #3f6cc8">Harmony</span>
+        <span class="g-nav-link active" style="--accent: #2a9bb0">Rhythm</span>
+        <span class="g-nav-link active" style="--accent: #2d9560">Texture</span>
+      </div>
+    </div>
+    <div class="verdict"><strong>Result:</strong> Strongest visual connection to the rest of the site. Each thread gets one of the 6 period accent hues — a reader who knows the site recognizes the colors even in a cross-period context. Requires choosing which 3 accents map to which 3 threads.</div>
+  </div>
+
+</div>
+
+<!-- ══ FULL-PAGE LOOK WITH EACH OPTION ═══════════════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ II</span>
+  <span>Full nav bar — seeing-through-paint with each option</span>
+  <span class="rule-line"></span>
+</div>
+
+<p style="font-size:13px;color:var(--ink-mute);margin-bottom:22px">Three threads shown; first thread is active.</p>
+
+<div class="page-grid">
+  <div class="page-col">
+    <div class="page-col-label">Option A — default gold</div>
+    <div class="nav-demo" style="flex-direction:column;gap:4px">
+      <span class="g-nav-link active" style="--accent: #A07820">⊕ Figure &amp; Space</span>
+      <span class="g-nav-link" style="--accent: #A07820">◎ Light &amp; Shadow</span>
+      <span class="g-nav-link" style="--accent: #A07820">⊞ Brushwork &amp; Surface</span>
+    </div>
+  </div>
+  <div class="page-col">
+    <div class="page-col-label">Option B — domain ochre</div>
+    <div class="nav-demo" style="flex-direction:column;gap:4px">
+      <span class="g-nav-link active" style="--accent: #9B7820">⊕ Figure &amp; Space</span>
+      <span class="g-nav-link active" style="--accent: #8B6818">◎ Light &amp; Shadow</span>
+      <span class="g-nav-link active" style="--accent: #B08828">⊞ Brushwork &amp; Surface</span>
+    </div>
+  </div>
+  <div class="page-col">
+    <div class="page-col-label">Option C — period palette</div>
+    <div class="nav-demo" style="flex-direction:column;gap:4px">
+      <span class="g-nav-link active" style="--accent: #3f6cc8">⊕ Figure &amp; Space</span>
+      <span class="g-nav-link active" style="--accent: #c98a18">◎ Light &amp; Shadow</span>
+      <span class="g-nav-link active" style="--accent: #c64254">⊞ Brushwork &amp; Surface</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ARC BLOCK COMPARISON ═══════════════════════════════════════ -->
+<div class="section-rule">
+  <span class="mono">§ III</span>
+  <span>Arc block tint — seeing-through-paint, thread 2 (Light &amp; Shadow)</span>
+  <span class="rule-line"></span>
+</div>
+
+<div class="page-grid">
+  <div class="page-col">
+    <div class="page-col-label">Option A</div>
+    <div class="g-arc-block" style="--tc: #A07820">
+      <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice. For medieval painters, light is not a physical phenomenon at all.
+    </div>
+  </div>
+  <div class="page-col">
+    <div class="page-col-label">Option B — ochre variant</div>
+    <div class="g-arc-block" style="--tc: #8B6818">
+      <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice. For medieval painters, light is not a physical phenomenon at all.
+    </div>
+  </div>
+  <div class="page-col">
+    <div class="page-col-label">Option C — renaissance amber</div>
+    <div class="g-arc-block" style="--tc: #c98a18">
+      <span class="g-arc-kicker">The story this thread tells</span> is the story of what light means — and of the moment painting realized that light is not a given but a choice. For medieval painters, light is not a physical phenomenon at all.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

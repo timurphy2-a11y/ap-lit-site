@@ -4,11 +4,13 @@ import { THREAD_ICONS } from './threadIcons';
 interface Props {
   thread: string;
   size?: number;
+  color?: string;
   class?: string;
 }
 
-const { thread, size = 24, class: className = '' } = Astro.props;
+const { thread, size = 24, color: colorProp, class: className = '' } = Astro.props;
 const icon = THREAD_ICONS[thread];
+const color = colorProp ?? icon?.color;
 ---
 
 {icon ? (
@@ -18,7 +20,7 @@ const icon = THREAD_ICONS[thread];
     viewBox={icon.viewBox}
     aria-hidden="true"
     class={`thread-icon inline-block flex-shrink-0 ${className}`}
-    style={`color: ${icon.color};`}
+    style={`color: ${color};`}
     set:html={icon.content}
   />
 ) : null}

@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 
 const ERAS = [
-  { id: "renaissance", label: "Renaissance & Reformation", range: [1590, 1660], color: "#C9A24B" },
-  { id: "enlightenment", label: "Civil War & Enlightenment", range: [1640, 1720], color: "#6B8CA3" },
-  { id: "revolution", label: "Revolution & Romanticism", range: [1750, 1840], color: "#8B7355" },
-  { id: "victorian", label: "Industrial Age & Realism", range: [1840, 1900], color: "#5A7A6A" },
+  { id: "renaissance", label: "Renaissance & Reformation", range: [1590, 1660], color: "#8A6015" },
+  { id: "enlightenment", label: "Civil War & Enlightenment", range: [1640, 1720], color: "#3A6A8B" },
+  { id: "revolution", label: "Revolution & Romanticism", range: [1750, 1840], color: "#6B4878" },
+  { id: "victorian", label: "Industrial Age & Realism", range: [1840, 1900], color: "#38685A" },
   { id: "modern", label: "World Wars & Modernism", range: [1900, 1955], color: "#A03828" },
 ];
 
@@ -388,7 +388,7 @@ export default function APLitTimeline() {
                     transition: "background 150ms, border-color 150ms",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#221d19";
+                    e.currentTarget.style.background = "#E0D5BD";
                     e.currentTarget.style.borderColor = "var(--rule-strong)";
                   }}
                   onMouseLeave={(e) => {
@@ -475,7 +475,7 @@ export default function APLitTimeline() {
                   transition: "background 150ms, border-color 150ms",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#221d19";
+                  e.currentTarget.style.background = "#E0D5BD";
                   e.currentTarget.style.borderColor = "var(--rule-strong)";
                 }}
                 onMouseLeave={(e) => {

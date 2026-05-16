@@ -840,12 +840,12 @@ const PEOPLE_INDEX = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
 
 // ─── UNIT ACCENT COLORS ───────────────────────────────────────────────────────
 const UNIT_COLORS = {
-  "00-medieval":      "#C9A24B",
-  "01-renaissance":   "#B54B3A",
-  "02-baroque":       "#D4A24C",
-  "03-enlightenment": "#6B8CA3",
-  "04-romanticism":   "#3E5B6E",
-  "05-modernism":     "#A03828",
+  "00-medieval":      "#3f6cc8",
+  "01-renaissance":   "#c98a18",
+  "02-baroque":       "#c64254",
+  "03-enlightenment": "#2a9bb0",
+  "04-romanticism":   "#b8438c",
+  "05-modernism":     "#2d9560",
 };
 
 const UNIT_ORDER = [
@@ -1120,7 +1120,7 @@ function PersonCard({ person, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
-        background: hovered ? "#221d19" : "var(--bg-raised)",
+        background: hovered ? "#E0D5BD" : "var(--bg-raised)",
         border: hovered ? "1px solid var(--rule-strong)" : "1px solid var(--rule)",
         padding: "12px 14px 12px 22px",
         cursor: "pointer",

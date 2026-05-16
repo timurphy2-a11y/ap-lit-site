@@ -19,7 +19,7 @@ const { id } = Astro.props;
     border: none;
     padding: 0;
     font: inherit;
-    color: #e8a820;
+    color: var(--thread-acc, var(--u-acc, var(--acc)));
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 3px;
@@ -27,6 +27,6 @@ const { id } = Astro.props;
     transition: color 0.15s;
   }
   .bio-link-btn:hover {
-    color: #f2cc6e;
+    color: color-mix(in oklab, var(--thread-acc, var(--u-acc, var(--acc))) 70%, var(--ink));
   }
 </style>
