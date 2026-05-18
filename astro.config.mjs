@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { fileURLToPath, URL } from 'node:url';
 
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
@@ -13,7 +14,12 @@ export default defineConfig({
   integrations: [react(), mdx()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      },
+    },
   },
 
   adapter: cloudflare(),

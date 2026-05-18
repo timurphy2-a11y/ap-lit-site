@@ -2,6 +2,7 @@
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
 import ImageCaption from '../../../components/summer-reading/ImageCaption.astro';
+import StatusReveal from '../../../components/summer-reading/StatusReveal.astro';
 ---
 
 <style>
@@ -61,6 +62,82 @@ import ImageCaption from '../../../components/summer-reading/ImageCaption.astro'
     <p>The final decade (1930s–1945) reversed even these concessions. The <em>naisen ittai</em> ideology — "Japan and Korea as One Body" — declared that Koreans and Japanese were racially and culturally unified, which meant that Koreans must become Japanese. Korean-language instruction was discontinued entirely. Koreans were required to attend Shinto shrines and perform rituals of loyalty to the Japanese emperor. In 1940, the <strong>sōshi-kaimei</strong> policy required every Korean household to register a Japanese-style family name.</p>
 
     <p><strong>Sōshi-kaimei</strong> is the policy that runs through <em>Pachinko</em> like a fault line. It was officially described as voluntary. In practice, Koreans who refused lost access to employment, schools, hospitals, and government services. By mid-1940, roughly 80% of Korean households had registered Japanese names, most of them under coercion. Historians describe it as a policy of ethnocide: the systematic destruction of national identity, not by killing people but by forcing them to become Japanese, on paper and in public.</p>
+
+    <p>The assault worked through three specific dimensions of daily life simultaneously — language, names, and religion. Each followed a distinct mechanism. Together they constituted a coordinated erasure of the identity that sustained the community the novel depicts.</p>
+
+    <div class="sr-status-grid" data-status-reveal>
+
+      <div class="sr-status-card">
+        <svg viewBox="0 0 340 54" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;margin-bottom:0.75rem" aria-hidden="true">
+          <rect x="0" y="0" width="340" height="14" fill="#2AA8A0" rx="1"/>
+          <text x="8" y="10" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">LANGUAGE</text>
+          <rect x="0" y="18" width="340" height="14" fill="#2AA8A0" rx="1"/>
+          <text x="8" y="28" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">NAMES</text>
+          <rect x="0" y="36" width="340" height="14" fill="#2AA8A0" rx="1"/>
+          <text x="8" y="46" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">RELIGION</text>
+        </svg>
+        <div class="sr-status-era">Pre-colonial Korea</div>
+        <div class="sr-status-category">Three pillars of identity</div>
+        <div class="sr-status-body">
+          <p>Before Japanese colonial rule, Korean identity was sustained through three interlocking dimensions of daily life: language (Korean spoken, written, taught, published in a full literary tradition), names (Korean family registers and given names, an unbroken chain of ancestral identity), and religion (a diverse tradition including Korean shamanism, Buddhism, Confucian practice, and growing Christianity — practiced freely).</p>
+          <p>Colonial rule moved against each of these in turn, over three decades, until all three were compromised or forced underground.</p>
+        </div>
+      </div>
+
+      <div class="sr-status-card">
+        <svg viewBox="0 0 340 54" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;margin-bottom:0.75rem" aria-hidden="true">
+          <rect x="0" y="0" width="340" height="14" fill="#C4722A" rx="1"/>
+          <text x="8" y="10" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">LANGUAGE — suppressed</text>
+          <rect x="0" y="18" width="340" height="14" fill="#2AA8A0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="28" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">NAMES</text>
+          <rect x="0" y="36" width="340" height="14" fill="#2AA8A0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="46" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">RELIGION</text>
+        </svg>
+        <div class="sr-status-era">1910–1938</div>
+        <div class="sr-status-category">Language — the first pillar</div>
+        <div class="sr-status-body">
+          <p>Japanese became the mandatory language of education from the start of colonial rule. Korean-language instruction was progressively restricted through the 1920s and eliminated from schools entirely in 1938. Children were required to recite the Oath of the Imperial Subjects daily, in Japanese. Korean newspapers were suppressed or placed under Japanese approval requirements.</p>
+          <p>The language you thought in became the language of a colonizer. The language of home became something carried in private, protected by distance from official surveillance.</p>
+        </div>
+      </div>
+
+      <div class="sr-status-card">
+        <svg viewBox="0 0 340 54" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;margin-bottom:0.75rem" aria-hidden="true">
+          <rect x="0" y="0" width="340" height="14" fill="#C8C0B0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="10" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">LANGUAGE — suppressed</text>
+          <rect x="0" y="18" width="340" height="14" fill="#C4722A" rx="1"/>
+          <text x="8" y="28" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">NAMES — transformed</text>
+          <rect x="0" y="36" width="340" height="14" fill="#2AA8A0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="46" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">RELIGION</text>
+        </svg>
+        <div class="sr-status-era">1940</div>
+        <div class="sr-status-category">Names — sōshi-kaimei</div>
+        <div class="sr-status-body">
+          <p>The 1940 <em>sōshi-kaimei</em> policy required every Korean household to register a Japanese-style family name. Those who refused lost access to employment, schools, hospitals, and government services. Within months, roughly 80% of Korean households had complied — most under coercion. The Korean name became a liability; the Japanese <em>tsūmei</em>, a performance of survival.</p>
+          <p>The policy produced the central daily negotiation of the Zainichi experience: one name at home, another in the world. <em>Pachinko</em> returns to this calculation through every generation.</p>
+        </div>
+      </div>
+
+      <div class="sr-status-card">
+        <svg viewBox="0 0 340 54" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;margin-bottom:0.75rem" aria-hidden="true">
+          <rect x="0" y="0" width="340" height="14" fill="#C8C0B0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="10" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">LANGUAGE — suppressed</text>
+          <rect x="0" y="18" width="340" height="14" fill="#C8C0B0" fill-opacity="0.45" rx="1"/>
+          <text x="8" y="28" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#6B6355">NAMES — transformed</text>
+          <rect x="0" y="36" width="340" height="14" fill="#C4722A" rx="1"/>
+          <text x="8" y="46" font-family="monospace" font-size="7.5" letter-spacing="0.1em" fill="#EDE8DC">RELIGION — compelled</text>
+        </svg>
+        <div class="sr-status-era">1938–1945</div>
+        <div class="sr-status-category">Religion — compelled worship</div>
+        <div class="sr-status-body">
+          <p>Shinto shrine attendance was made compulsory, reframed as civic loyalty rather than religious practice. Korean Christians faced an impossible choice: attend the shrine and violate their faith, or refuse and face arrest. Pastors who continued ministering in Korean — and who refused the shrine rituals — were imprisoned. This is the charge that results in Isak's arrest in the novel.</p>
+          <p>The third pillar fell through the bodies of those who refused. The community's most resistant members absorbed the final cost of the colonial demand for total transformation.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <StatusReveal />
 
     <ImageCaption
       src="/images/summer-reading/pachinko/p2-soshi-kaimei-bulletin.jpg"

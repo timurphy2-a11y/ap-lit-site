@@ -1,0 +1,12 @@
+---
+interface Props {
+  label?: string;
+  text: 'pachinko' | 'tfa';
+}
+const { label, text } = Astro.props;
+---
+
+<figure class={`sr-static-infographic sr-static-infographic--${text}`}>
+  <slot />
+  {label && <figcaption class="sr-static-infographic-label">{label}</figcaption>}
+</figure>

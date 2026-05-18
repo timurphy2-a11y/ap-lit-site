@@ -1,0 +1,38 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  opacity?: number;
+}
+const { width = 80, color = 'var(--p-orange)', opacity = 1 } = Astro.props;
+const h = width * 0.4;
+---
+<svg
+  width={width}
+  height={h}
+  viewBox={`0 0 ${width} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-floral-scroll"
+  style={`opacity: ${opacity};`}
+>
+  <!-- Left tendril: spiral curl opening right -->
+  <path
+    d={`M 4 ${h*0.5} C 4 ${h*0.15}, ${width*0.14} ${h*0.05}, ${width*0.18} ${h*0.28} C ${width*0.22} ${h*0.5}, ${width*0.14} ${h*0.62}, ${width*0.10} ${h*0.52} C ${width*0.06} ${h*0.42}, ${width*0.12} ${h*0.35}, ${width*0.16} ${h*0.40}`}
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Right tendril: mirrored spiral curl opening left -->
+  <path
+    d={`M ${width-4} ${h*0.5} C ${width-4} ${h*0.15}, ${width*0.86} ${h*0.05}, ${width*0.82} ${h*0.28} C ${width*0.78} ${h*0.5}, ${width*0.86} ${h*0.62}, ${width*0.90} ${h*0.52} C ${width*0.94} ${h*0.42}, ${width*0.88} ${h*0.35}, ${width*0.84} ${h*0.40}`}
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Center dot -->
+  <circle cx={width*0.5} cy={h*0.5} r="2.5" fill={color} />
+</svg>

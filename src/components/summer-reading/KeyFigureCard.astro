@@ -1,111 +1,211 @@
 ---
-// KeyFigureCard.astro
-// Right-rail profile card for Key Figures spoke pages.
-// Spec: 04-spoke-page.md
-
 interface Props {
-  name:    string;
-  dates?:  string;
-  body:    string;
-  avatar?: string;
-  accent?: 'pachinko' | 'tfa';
+  name:     string;
+  dates?:   string;
   eyebrow?: string;
+  avatar?:  string;
+  accent?:  'pachinko' | 'tfa';
+  summary:  string;
+  id:       string;
 }
 
-const {
-  name,
-  dates,
-  body,
-  avatar,
-  accent = 'pachinko',
-  eyebrow = 'Key Figure',
-} = Astro.props;
-
-const accentColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-teal)';
+const { name, dates, eyebrow = 'Key Figure', avatar, accent = 'pachinko', summary, id } = Astro.props;
 ---
 
-<aside class="sr-key-figure-card" style={`border-top-color: ${accentColor};`}>
-  <span class="sr-key-figure-eyebrow">{eyebrow.toUpperCase()}</span>
+<div class={`sr-kf-card sr-kf-card--${accent}`}>
+  {avatar && (
+    <img src={avatar} alt="" class="sr-kf-portrait" width="120" height="120" aria-hidden="true" />
+  )}
+  <p class="sr-kf-eyebrow">{eyebrow}</p>
+  <p class="sr-kf-name">{name}</p>
+  {dates && <p class="sr-kf-dates">{dates}</p>}
+  <p class="sr-kf-summary" set:html={summary} />
+  <button class="sr-kf-btn" data-open={id}>Read full biography</button>
+</div>
 
-  {avatar ? (
-    <div class="sr-key-figure-avatar-row">
-      <img
-        src={avatar}
-        alt={name}
-        class="sr-key-figure-avatar"
-        width="48"
-        height="48"
-      />
+<dialog class="sr-kf-modal" id={id} aria-label={`Biography: ${name}`}>
+  <div class="sr-kf-modal-inner">
+    <button class="sr-kf-modal-close" data-close aria-label="Close">&#x2715;</button>
+    <div class="sr-kf-modal-header">
+      {avatar && (
+        <img src={avatar} alt="" class="sr-kf-modal-portrait" width="72" height="72" aria-hidden="true" />
+      )}
       <div>
-        <p class="sr-key-figure-name">{name}</p>
-        {dates && <p class="sr-key-figure-dates">{dates}</p>}
+        <p class="sr-kf-eyebrow">{eyebrow}</p>
+        <p class="sr-kf-name">{name}</p>
+        {dates && <p class="sr-kf-dates">{dates}</p>}
       </div>
     </div>
-  ) : (
-    <>
-      <p class="sr-key-figure-name">{name}</p>
-      {dates && <p class="sr-key-figure-dates">{dates}</p>}
-    </>
-  )}
+    <div class="sr-kf-modal-body">
+      <slot />
+    </div>
+  </div>
+</dialog>
 
-  <p class="sr-key-figure-body">{body}</p>
-</aside>
+<script>
+  function initModals() {
+    document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach(btn => {
+      if (btn.dataset.initialized) return;
+      btn.dataset.initialized = 'true';
+      btn.addEventListener('click', () => {
+        const modal = document.getElementById(btn.dataset.open!) as HTMLDialogElement | null;
+        modal?.showModal();
+      });
+    });
+
+    document.querySelectorAll<HTMLDialogElement>('dialog.sr-kf-modal').forEach(modal => {
+      if (modal.dataset.initialized) return;
+      modal.dataset.initialized = 'true';
+      modal.querySelector('[data-close]')?.addEventListener('click', () => modal.close());
+      modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+    });
+  }
+
+  initModals();
+  document.addEventListener('astro:after-swap', initModals);
+</script>
 
 <style>
-  .sr-key-figure-card {
-    background:    var(--color-card);
-    padding:       var(--s-5) var(--s-6);
-    border-top:    2px solid var(--p-teal);
-    margin-bottom: var(--s-6);
+  /* ── Card ─────────────────────────────────────────────────── */
+  .sr-kf-card {
+    background:      var(--color-card);
+    padding:         var(--s-6);
+    border-top:      3px solid var(--p-teal);
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    text-align:      center;
+    gap:             var(--s-2);
+  }
+  .sr-kf-card--tfa { border-top-color: var(--t-terra); }
+
+  .sr-kf-portrait {
+    width:         120px;
+    height:        120px;
+    border-radius: 50%;
+    object-fit:    cover;
+    margin-bottom: var(--s-2);
+    background:    var(--color-rule);
   }
 
-  .sr-key-figure-eyebrow {
-    display:        block;
+  .sr-kf-eyebrow {
     font-family:    var(--font-mono);
     font-size:      var(--t-tag);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color:          var(--color-muted);
-    margin-bottom:  var(--s-4);
+    margin:         0;
   }
 
-  .sr-key-figure-avatar-row {
-    display:     flex;
-    align-items: center;
-    gap:         var(--s-3);
-    margin-bottom: var(--s-3);
+  .sr-kf-name {
+    font-family: var(--font-display);
+    font-style:  italic;
+    font-size:   1.25rem;
+    line-height: var(--lh-tight);
+    color:       var(--color-ink);
+    margin:      0;
   }
 
-  .sr-key-figure-avatar {
-    width:         48px;
-    height:        48px;
+  .sr-kf-dates {
+    font-size: var(--t-tiny);
+    color:     var(--color-muted);
+    margin:    0;
+  }
+
+  .sr-kf-summary {
+    font-size:   var(--t-meta);
+    line-height: var(--lh-body);
+    color:       var(--color-ink);
+    margin:      var(--s-1) 0 0;
+    flex:        1;
+  }
+
+  .sr-kf-btn {
+    margin-top:     var(--s-3);
+    font-family:    var(--font-body);
+    font-size:      var(--t-tag);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color:          var(--p-teal);
+    background:     none;
+    border:         1px solid var(--p-teal);
+    padding:        var(--s-2) var(--s-4);
+    cursor:         pointer;
+    transition:     background 0.15s, color 0.15s;
+  }
+  .sr-kf-card--tfa .sr-kf-btn       { color: var(--t-terra); border-color: var(--t-terra); }
+  .sr-kf-btn:hover                   { background: var(--p-teal); color: #fff; }
+  .sr-kf-card--tfa .sr-kf-btn:hover { background: var(--t-terra); }
+
+  /* ── Modal ────────────────────────────────────────────────── */
+  .sr-kf-modal {
+    border:      none;
+    border-radius: 2px;
+    padding:     0;
+    max-width:   min(720px, 90vw);
+    max-height:  85vh;
+    overflow:    hidden;
+    box-shadow:  0 8px 40px rgba(0, 0, 0, 0.18);
+    position:    relative;
+  }
+
+  .sr-kf-modal::backdrop {
+    background:     rgba(44, 40, 32, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  .sr-kf-modal-inner {
+    display:    flex;
+    flex-direction: column;
+    max-height: 85vh;
+  }
+
+  .sr-kf-modal-header {
+    display:       flex;
+    align-items:   center;
+    gap:           var(--s-4);
+    padding:       var(--s-6) var(--s-7) var(--s-4);
+    border-bottom: 1px solid var(--color-rule);
+    flex-shrink:   0;
+  }
+
+  .sr-kf-modal-portrait {
+    width:         72px;
+    height:        72px;
     border-radius: 50%;
     object-fit:    cover;
     flex-shrink:   0;
     background:    var(--color-rule);
   }
 
-  .sr-key-figure-name {
-    font-family: var(--font-display);
-    font-style:  italic;
-    font-size:   1.125rem;
-    line-height: var(--lh-tight);
-    color:       var(--color-ink);
-    margin:      0 0 var(--s-1);
+  .sr-kf-modal-close {
+    position:   absolute;
+    top:        var(--s-4);
+    right:      var(--s-5);
+    background: none;
+    border:     none;
+    font-size:  1.25rem;
+    color:      var(--color-muted);
+    cursor:     pointer;
+    line-height: 1;
+    padding:    var(--s-1) var(--s-2);
+    z-index:    1;
+  }
+  .sr-kf-modal-close:hover { color: var(--color-ink); }
+
+  .sr-kf-modal-body {
+    padding:    var(--s-6) var(--s-7);
+    overflow-y: auto;
+    flex:       1;
+    font-size:  1rem;
+    line-height: var(--lh-body);
+    color:      var(--color-ink);
   }
 
-  .sr-key-figure-dates {
-    font-family: var(--font-body);
-    font-size:   var(--t-tiny);
-    color:       var(--color-muted);
-    margin:      0 0 var(--s-3);
+  .sr-kf-modal-body :global(p) {
+    margin: 0 0 var(--s-5);
   }
-
-  .sr-key-figure-body {
-    font-family: var(--font-body);
-    font-size:   var(--t-meta);
-    line-height: var(--lh-meta);
-    color:       var(--color-ink);
-    margin:      0;
+  .sr-kf-modal-body :global(p:last-child) {
+    margin-bottom: 0;
   }
 </style>

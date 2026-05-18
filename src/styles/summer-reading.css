@@ -420,6 +420,67 @@
 [data-timeline-reveal] .sr-timeline-entry:nth-child(4) { transition-delay: 0.05s; }
 [data-timeline-reveal] .sr-timeline-entry:nth-child(5) { transition-delay: 0.10s; }
 
+/* ── Status indicator (Zainichi legal status) ──────────────────────────── */
+.sr-status-grid {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--s-3);
+}
+
+.sr-status-card {
+  border-left: 3px solid var(--sr-accent);
+  padding:     var(--s-4) var(--s-5);
+  background:  var(--color-card);
+}
+
+.sr-status-era {
+  font-family:    var(--font-mono);
+  font-size:      var(--t-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color:          var(--sr-accent);
+  margin-bottom:  var(--s-2);
+}
+
+.sr-status-category {
+  font-family: var(--font-display);
+  font-style:  italic;
+  font-size:   var(--t-h3);
+  line-height: var(--lh-tight);
+  color:       var(--color-ink);
+  margin:      0 0 var(--s-3);
+}
+
+.sr-status-body {
+  font-family: var(--font-body);
+  font-size:   var(--t-meta);
+  line-height: var(--lh-meta);
+  color:       var(--color-ink);
+}
+
+.sr-status-body p {
+  margin: 0 0 var(--s-2);
+}
+
+.sr-status-body p:last-child {
+  margin: 0;
+}
+
+[data-status-reveal] .sr-status-card {
+  opacity:    0;
+  transform:  translateY(8px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+[data-status-reveal] .sr-status-card.is-visible {
+  opacity:   1;
+  transform: none;
+}
+
+[data-status-reveal] .sr-status-card:nth-child(2) { transition-delay: 0.05s; }
+[data-status-reveal] .sr-status-card:nth-child(3) { transition-delay: 0.10s; }
+[data-status-reveal] .sr-status-card:nth-child(4) { transition-delay: 0.05s; }
+
 /* ── Figure cards (Key Figures spoke) ──────────────────────────────────── */
 .sr-figure-card {
   padding:       var(--s-10) 0;
@@ -1986,4 +2047,334 @@
   .sr-rd-header { grid-template-columns: 1fr 2rem 1fr; }
   .sr-rd-row    { grid-template-columns: 1fr 2rem 1fr; }
   .sr-rd-igbo, .sr-rd-colonial { padding: var(--s-3); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHASE 2 — PANEL BLOCK SYSTEM
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section tint tokens ─────────────────────────────────────────────── */
+[data-section="pachinko"] {
+  --sr-tint: color-mix(in srgb, var(--p-teal) 10%, var(--color-cream));
+}
+[data-section="tfa"] {
+  --sr-tint: color-mix(in srgb, var(--t-terra) 10%, var(--color-cream));
+}
+
+/* ── SectionOpener ───────────────────────────────────────────────────── */
+.sr-section-opener {
+  padding:          2.5rem 0 2rem;
+  text-align:       center;
+  position:         relative;
+}
+
+.sr-section-opener--bg-tinted {
+  background:       var(--sr-tint);
+  padding-left:     var(--sr-prose-padding, 1.5rem);
+  padding-right:    var(--sr-prose-padding, 1.5rem);
+  margin-left:      calc(-1 * var(--sr-prose-padding, 1.5rem));
+  margin-right:     calc(-1 * var(--sr-prose-padding, 1.5rem));
+  border-radius:    4px;
+}
+
+.sr-section-opener-motif {
+  display:          flex;
+  justify-content:  center;
+  margin-bottom:    0.75rem;
+}
+
+.sr-section-opener-eyebrow {
+  display:          block;
+  font-family:      var(--font-mono);
+  font-size:        0.65rem;
+  letter-spacing:   0.12em;
+  text-transform:   uppercase;
+  color:            var(--sr-accent);
+  margin-bottom:    0.5rem;
+}
+
+.sr-section-opener-heading {
+  font-family:      var(--font-display);
+  font-size:        clamp(1.5rem, 3vw, 2rem);
+  font-weight:      600;
+  line-height:      1.2;
+  color:            var(--color-ink);
+  margin:           0 0 0.5rem;
+}
+
+.sr-section-opener-deck {
+  font-size:        1rem;
+  color:            var(--color-muted, #6B6259);
+  max-width:        52ch;
+  margin:           0 auto;
+  line-height:      1.5;
+}
+
+.sr-section-opener-rule {
+  display:          flex;
+  justify-content:  center;
+  margin-top:       1rem;
+}
+
+/* ── SectionTerminator ───────────────────────────────────────────────── */
+.sr-section-terminator {
+  display:          flex;
+  justify-content:  center;
+  padding:          1.5rem 0;
+}
+
+/* ── ProseBlock ──────────────────────────────────────────────────────── */
+.sr-prose-block {
+  max-width:        68ch;
+  font-size:        1rem;
+  line-height:      1.75;
+  color:            var(--color-ink);
+}
+
+.sr-prose-block--left   { margin-right: auto; }
+.sr-prose-block--center { margin-left: auto; margin-right: auto; text-align: center; }
+.sr-prose-block--right  { margin-left: auto; }
+
+.sr-prose-block--lede > p:first-child {
+  font-size:        1.125rem;
+  font-weight:      400;
+  line-height:      1.65;
+}
+
+.sr-prose-block p { margin: 0 0 1rem; }
+.sr-prose-block p:last-child { margin-bottom: 0; }
+
+.sr-prose-block strong { font-weight: 600; }
+.sr-prose-block em { font-style: italic; }
+
+/* ── ImageBlock ──────────────────────────────────────────────────────── */
+.sr-image-block { margin: 1.5rem 0; }
+.sr-image-block--full { width: 100%; }
+.sr-image-block--prose { max-width: 68ch; }
+.sr-image-block--narrow { max-width: 42ch; margin-left: auto; margin-right: auto; }
+
+/* ── SideBySide ──────────────────────────────────────────────────────── */
+.sr-side-by-side {
+  display:        grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.sr-side-by-side--gap-sm { gap: 1rem; }
+.sr-side-by-side--gap-md { gap: 2rem; }
+.sr-side-by-side--gap-lg { gap: 3rem; }
+
+.sr-side-by-side--align-top    { align-items: start; }
+.sr-side-by-side--align-center { align-items: center; }
+
+@media (max-width: 640px) {
+  .sr-side-by-side { grid-template-columns: 1fr; }
+}
+
+/* ── TermCard ────────────────────────────────────────────────────────── */
+.sr-term-card {
+  background:   var(--color-card);
+  border-radius: 6px;
+  padding:      1.25rem 1.5rem;
+  margin:       1rem 0;
+  border-left:  3px solid var(--sr-accent);
+}
+
+.sr-term-card-header {
+  margin-bottom: 0.5rem;
+  display:       flex;
+  align-items:   baseline;
+  gap:           0.75rem;
+  flex-wrap:     wrap;
+}
+
+.sr-term-card-term {
+  font-family:  var(--font-display);
+  font-size:    1.1rem;
+  font-weight:  600;
+  color:        var(--color-ink);
+}
+
+.sr-term-card-original {
+  font-family:  var(--font-body);
+  font-size:    0.85rem;
+  font-style:   italic;
+  color:        var(--sr-accent);
+}
+
+.sr-term-card-body {
+  font-size:    0.95rem;
+  line-height:  1.65;
+  color:        var(--color-ink);
+}
+
+.sr-term-card-body p { margin: 0 0 0.5rem; }
+.sr-term-card-body p:last-child { margin-bottom: 0; }
+
+/* ── PullQuote (Phase 2 additions) ───────────────────────────────────── */
+.sr-pullquote--pachinko,
+.sr-pullquote--tfa {
+  text-align:     center;
+  border-left:    none;
+  padding:        0;
+}
+
+.sr-pullquote-bracket {
+  display:        flex;
+  justify-content: center;
+  margin:         0.5rem 0;
+}
+
+.sr-pullquote-bracket--bottom {
+  transform:      scaleY(-1);
+}
+
+.sr-pullquote-body {
+  margin:         0.75rem auto;
+  max-width:      52ch;
+}
+
+.sr-pullquote-attribution {
+  font-family:    var(--font-mono);
+  font-size:      0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--sr-accent);
+  margin-top:     0.5rem;
+}
+
+/* ── EndSignature ────────────────────────────────────────────────────── */
+.sr-end-signature {
+  display:        flex;
+  justify-content: center;
+  padding:        2rem 0 1rem;
+}
+
+/* ── SpoilerBanner ───────────────────────────────────────────────────── */
+.sr-spoiler-banner {
+  display:        flex;
+  align-items:    center;
+  gap:            1rem;
+  background:     var(--color-card);
+  border:         1px solid var(--sr-accent);
+  border-radius:  6px;
+  padding:        1rem 1.25rem;
+  margin:         1.5rem 0;
+}
+
+.sr-spoiler-banner-icon {
+  font-family:    var(--font-display);
+  font-size:      1.5rem;
+  font-weight:    700;
+  color:          var(--sr-accent);
+  flex-shrink:    0;
+  line-height:    1;
+}
+
+.sr-spoiler-banner-text {
+  font-size:      0.9rem;
+  line-height:    1.5;
+  margin:         0;
+  color:          var(--color-ink);
+}
+
+/* ── PinCascadeTimeline ──────────────────────────────────────────────── */
+.sr-pin-timeline {
+  position:       relative;
+  margin:         1.5rem 0;
+}
+
+.sr-pin-timeline-rail {
+  position:       absolute;
+  left:           0.5rem;
+  top:            0;
+  bottom:         0;
+  display:        flex;
+  justify-content: center;
+}
+
+.sr-pin-timeline-list {
+  list-style:     none;
+  padding:        0;
+  margin:         0;
+  padding-left:   2.5rem;
+}
+
+.sr-pin-timeline-entry {
+  padding:        0.75rem 0;
+  border-bottom:  1px solid var(--color-rule);
+}
+
+.sr-pin-timeline-entry:last-child { border-bottom: none; }
+
+.sr-pin-timeline-entry--highlight .sr-pin-timeline-year {
+  color:          var(--sr-accent);
+}
+
+.sr-pin-timeline-year {
+  display:        block;
+  font-family:    var(--font-mono);
+  font-size:      0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-muted, #6B6259);
+  margin-bottom:  0.25rem;
+}
+
+.sr-pin-timeline-event {
+  font-size:      0.95rem;
+  line-height:    1.6;
+  margin:         0;
+  color:          var(--color-ink);
+}
+
+.sr-pin-timeline-entry--highlight .sr-pin-timeline-event {
+  font-weight:    500;
+}
+
+/* ── ScrollyMoment ───────────────────────────────────────────────────── */
+.sr-scrolly-moment {
+  margin:         3rem 0;
+  position:       relative;
+}
+
+/* ── StaticInfographic ───────────────────────────────────────────────── */
+.sr-static-infographic {
+  margin:         1.5rem 0;
+  padding:        1.5rem;
+  background:     var(--color-card);
+  border-radius:  6px;
+}
+
+.sr-static-infographic-label {
+  font-family:    var(--font-mono);
+  font-size:      0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--color-muted, #6B6259);
+  text-align:     center;
+  margin-top:     1rem;
+}
+
+/* ── DiagramBlock ────────────────────────────────────────────────────── */
+.sr-diagram-block {
+  margin:         1.5rem 0;
+  text-align:     center;
+}
+
+.sr-diagram-block--full { width: 100%; }
+.sr-diagram-block--prose { max-width: 68ch; margin-left: auto; margin-right: auto; }
+
+.sr-diagram-caption {
+  font-size:      0.85rem;
+  color:          var(--color-muted, #6B6259);
+  font-style:     italic;
+  margin-top:     0.75rem;
+}
+
+/* ── Key Figure Grid ──────────────────────────────────────── */
+.sr-key-figure-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap:                   var(--s-6, 1.5rem);
+  margin:                var(--s-8, 2.5rem) 0;
 }

@@ -1,0 +1,38 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  opacity?: number;
+}
+const { width = 80, color = 'var(--color-ink)', opacity = 0.6 } = Astro.props;
+const h = width * 0.45;
+---
+<svg
+  width={width}
+  height={h}
+  viewBox={`0 0 ${width} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-uli-tendril"
+  style={`opacity: ${opacity};`}
+>
+  <!-- Left spiral: starts from left, curls clockwise inward -->
+  <path
+    d={`M ${width*0.04} ${h*0.85} C ${width*0.04} ${h*0.20}, ${width*0.26} ${h*0.05}, ${width*0.30} ${h*0.40} C ${width*0.33} ${h*0.65}, ${width*0.20} ${h*0.72}, ${width*0.18} ${h*0.58} C ${width*0.16} ${h*0.46}, ${width*0.22} ${h*0.42}, ${width*0.25} ${h*0.50}`}
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  <!-- Right spiral: mirrored, curls counter-clockwise inward -->
+  <path
+    d={`M ${width*0.96} ${h*0.85} C ${width*0.96} ${h*0.20}, ${width*0.74} ${h*0.05}, ${width*0.70} ${h*0.40} C ${width*0.67} ${h*0.65}, ${width*0.80} ${h*0.72}, ${width*0.82} ${h*0.58} C ${width*0.84} ${h*0.46}, ${width*0.78} ${h*0.42}, ${width*0.75} ${h*0.50}`}
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>

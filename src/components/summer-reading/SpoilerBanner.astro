@@ -1,0 +1,13 @@
+---
+interface Props {
+  text: 'pachinko' | 'tfa';
+}
+const { text } = Astro.props;
+---
+
+<div class={`sr-spoiler-banner sr-spoiler-banner--${text}`} role="note">
+  <span class="sr-spoiler-banner-icon">!</span>
+  <p class="sr-spoiler-banner-text">
+    <strong>Spoiler notice.</strong> This section discusses major plot events and the novel's ending. Read the book first.
+  </p>
+</div>

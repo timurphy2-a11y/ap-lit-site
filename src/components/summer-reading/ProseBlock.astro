@@ -1,0 +1,11 @@
+---
+interface Props {
+  align?: 'left' | 'center' | 'right';
+  lede?: boolean;
+}
+const { align = 'left', lede = false } = Astro.props;
+---
+
+<div class={`sr-prose-block sr-prose-block--${align}${lede ? ' sr-prose-block--lede' : ''}`}>
+  <slot />
+</div>

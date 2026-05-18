@@ -1,0 +1,32 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  opacity?: number;
+}
+const { width = 180, color = 'var(--t-terra)', opacity = 1 } = Astro.props;
+const h = 12;
+const triSize = 6;
+const cx = width / 2;
+const cy = h / 2;
+---
+<svg
+  width={width}
+  height={h}
+  viewBox={`0 0 ${width} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-triangle-terminator"
+  style={`opacity: ${opacity};`}
+>
+  <!-- Left rule -->
+  <line x1="0" y1={cy} x2={cx - triSize - 4} y2={cy} stroke={color} stroke-width="0.75" />
+  <!-- Right rule -->
+  <line x1={cx + triSize + 4} y1={cy} x2={width} y2={cy} stroke={color} stroke-width="0.75" />
+  <!-- Center triangle pointing right -->
+  <polygon
+    points={`${cx - triSize},${cy - triSize*0.6} ${cx + triSize},${cy} ${cx - triSize},${cy + triSize*0.6}`}
+    fill={color}
+  />
+</svg>

@@ -1,0 +1,29 @@
+---
+import PinCascade from './PinCascade.astro';
+
+interface TimelineEntry {
+  year: string;
+  event: string;
+  highlight?: boolean;
+}
+
+interface Props {
+  entries: TimelineEntry[];
+  text: 'pachinko' | 'tfa';
+}
+const { entries, text } = Astro.props;
+---
+
+<div class={`sr-pin-timeline sr-pin-timeline--${text}`}>
+  <div class="sr-pin-timeline-rail" aria-hidden="true">
+    <PinCascade height={entries.length * 64} dotSize={4} gap={8} />
+  </div>
+  <ol class="sr-pin-timeline-list">
+    {entries.map((entry) => (
+      <li class={`sr-pin-timeline-entry${entry.highlight ? ' sr-pin-timeline-entry--highlight' : ''}`}>
+        <span class="sr-pin-timeline-year">{entry.year}</span>
+        <p class="sr-pin-timeline-event" set:html={entry.event} />
+      </li>
+    ))}
+  </ol>
+</div>

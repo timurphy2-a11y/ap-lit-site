@@ -1,59 +1,38 @@
 ---
-// PullQuote.astro
-// Inset pull-quote in the prose flow. NOT in the right rail.
-// Spec: 04-spoke-page.md
+import FloralScroll from './FloralScroll.astro';
+import UliTendril from './UliTendril.astro';
 
 interface Props {
-  quote:       string;
-  attribution: string;
-  accent?:     'pachinko' | 'tfa';
+  quote?: string;
+  attribution?: string;
+  text?: 'pachinko' | 'tfa';
 }
-
-const { quote, attribution, accent = 'pachinko' } = Astro.props;
-const accentColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-teal)';
+const { quote, attribution, text } = Astro.props;
 ---
 
-<blockquote class="sr-pull-quote" style={`border-left-color: ${accentColor};`}>
-  <span class="sr-pull-quote-mark" style={`color: ${accentColor};`}>"</span>
-  <p class="sr-pull-quote-text">{quote}</p>
-  <cite class="sr-pull-quote-attribution">{attribution}</cite>
-</blockquote>
-
-<style>
-  .sr-pull-quote {
-    margin:        var(--s-10) 0;
-    padding:       var(--s-8) 0;
-    border-left:   none;
-    position:      relative;
-  }
-
-  .sr-pull-quote-mark {
-    font-family: var(--font-display);
-    font-style:  italic;
-    font-size:   2rem;
-    line-height: 1;
-    position:    absolute;
-    left:        -1.5rem;
-    top:         var(--s-8);
-    user-select: none;
-    aria-hidden: true;
-  }
-
-  .sr-pull-quote-text {
-    font-family: var(--font-display);
-    font-style:  italic;
-    font-size:   var(--t-pull);
-    line-height: var(--lh-pull);
-    color:       var(--color-ink);
-    margin:      0 0 var(--s-3);
-  }
-
-  .sr-pull-quote-attribution {
-    display:        block;
-    font-style:     normal;
-    font-family:    var(--font-body);
-    font-size:      var(--t-meta);
-    color:          var(--color-muted);
-    letter-spacing: 0.02em;
-  }
-</style>
+<figure class={`sr-pullquote${text ? ` sr-pullquote--${text}` : ''}`}>
+  {text === 'pachinko' && (
+    <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true">
+      <FloralScroll width={80} color="var(--p-orange)" />
+    </div>
+  )}
+  {text === 'tfa' && (
+    <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true">
+      <UliTendril width={80} color="var(--t-terra)" opacity={0.7} />
+    </div>
+  )}
+  <blockquote class="sr-pullquote-body">
+    {quote ? <p>{quote}</p> : <slot />}
+  </blockquote>
+  {attribution && <figcaption class="sr-pullquote-attribution">{attribution}</figcaption>}
+  {text === 'pachinko' && (
+    <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true">
+      <FloralScroll width={80} color="var(--p-orange)" />
+    </div>
+  )}
+  {text === 'tfa' && (
+    <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true">
+      <UliTendril width={80} color="var(--t-terra)" opacity={0.7} />
+    </div>
+  )}
+</figure>

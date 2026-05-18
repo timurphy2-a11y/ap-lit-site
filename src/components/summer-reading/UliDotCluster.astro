@@ -1,0 +1,29 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  opacity?: number;
+}
+const { width = 62, color = 'var(--t-terra)', opacity = 0.7 } = Astro.props;
+const h = width * 0.35;
+---
+<svg
+  width={width}
+  height={h}
+  viewBox={`0 0 ${width} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-uli-dot-cluster"
+  style={`opacity: ${opacity};`}
+>
+  <!-- Dots at ascending diagonal — varying sizes per the PDF design -->
+  <circle cx={width*0.05} cy={h*0.72} r="2"   fill={color} />
+  <circle cx={width*0.18} cy={h*0.58} r="2.5" fill={color} />
+  <circle cx={width*0.31} cy={h*0.44} r="1.5" fill={color} />
+  <circle cx={width*0.44} cy={h*0.32} r="2"   fill={color} />
+  <circle cx={width*0.57} cy={h*0.20} r="2.5" fill={color} />
+  <circle cx={width*0.70} cy={h*0.30} r="1.5" fill={color} />
+  <circle cx={width*0.83} cy={h*0.18} r="2"   fill={color} />
+  <circle cx={width*0.95} cy={h*0.10} r="1.5" fill={color} />
+</svg>

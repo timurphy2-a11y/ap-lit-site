@@ -1,0 +1,29 @@
+---
+interface Props {
+  width?: number;
+  height?: number;
+  opacity?: number;
+}
+const { width = 300, height = 10, opacity = 1 } = Astro.props;
+const triW = height * 1.1;
+const count = Math.floor(width / triW);
+const totalW = count * triW;
+const colors = ['var(--t-terra)', 'var(--color-ink)'];
+---
+<svg
+  width={totalW}
+  height={height}
+  viewBox={`0 0 ${totalW} ${height}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-akwete-chevron"
+  style={`opacity: ${opacity};`}
+>
+  {Array.from({ length: count }, (_, i) => {
+    const x = i * triW;
+    const color = colors[i % 2];
+    const pts = `${x + triW/2},0 ${x},${height} ${x + triW},${height}`;
+    return <polygon points={pts} fill={color} />;
+  })}
+</svg>

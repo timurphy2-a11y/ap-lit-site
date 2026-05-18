@@ -98,4 +98,14 @@ const units = defineCollection({
   }),
 });
 
-export const collections = { units };
+const summerReading = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/summer-reading' }),
+  schema: z.object({
+    title: z.string(),
+    section: z.enum(['pachinko', 'tfa']),
+    spoke: z.enum(['world', 'culture', 'history', 'figures', 'novel']),
+    description: z.string().optional(),
+  }),
+});
+
+export const collections = { units, summerReading };
