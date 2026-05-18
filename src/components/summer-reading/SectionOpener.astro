@@ -1,0 +1,39 @@
+---
+import Medallion from './Medallion.astro';
+import UliCurve from './UliCurve.astro';
+import AkweteChevron from './AkweteChevron.astro';
+
+interface Props {
+  text: 'pachinko' | 'tfa';
+  eyebrow?: string;
+  heading: string;
+  deck?: string;
+  background?: 'cream' | 'tinted';
+  headingLevel?: 'h2' | 'h3';
+}
+const {
+  text,
+  eyebrow,
+  heading,
+  deck,
+  background = 'cream',
+  headingLevel = 'h2',
+} = Astro.props;
+
+const Tag = headingLevel;
+---
+
+<div class={`sr-section-opener sr-section-opener--${text} sr-section-opener--bg-${background}`}>
+  <div class="sr-section-opener-motif">
+    {text === 'pachinko' && <Medallion size={40} color="var(--p-teal)" />}
+    {text === 'tfa' && <UliCurve width={100} color="var(--t-terra)" opacity={0.7} />}
+  </div>
+  {eyebrow && <span class="sr-section-opener-eyebrow">{eyebrow}</span>}
+  <Tag class="sr-section-opener-heading">{heading}</Tag>
+  {deck && <p class="sr-section-opener-deck">{deck}</p>}
+  {text === 'tfa' && (
+    <div class="sr-section-opener-rule">
+      <AkweteChevron width={200} height={8} />
+    </div>
+  )}
+</div>

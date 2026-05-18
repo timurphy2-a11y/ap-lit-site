@@ -1,101 +1,15 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('summerReading', 'tfa/novel');
+const { Content } = await render(entry);
 ---
-<SummerLayout
-  title="Connections to the Novel — Things Fall Apart"
-  section="tfa"
-  spoke="novel"
->
-  <div class="sr-spoke-header">
-    <span class="sr-spoke-header-eyebrow">Things Fall Apart  ·  Spoke 05 of 05</span>
-    <h1 class="sr-spoke-header-title">Connections to the Novel</h1>
-    <p class="sr-spoke-header-deck">From historical context to the argument the novel makes — what Achebe's structural decisions mean.</p>
-  </div>
-
-  <div class="sr-spoiler-warning">
-    <p><strong>Note for students:</strong> This section discusses major plot events
-    including the endings of several characters' storylines. If you are still reading
-    the novel, you may want to return to this page after you have finished.</p>
-  </div>
-
-  <div class="sr-spoke-content">
-
-    <p class="sr-lede">The material covered in the previous four sections — Igbo political structure, cosmology, British colonialism, the missionaries, the figures who shaped the historical moment — offers information that is essential to a contextual understanding of <em>Things Fall Apart</em>. This section builds the connections between that context and the specific cultural claims asserted by Achebe with his debut novel.</p>
-
-    <h2>The World Achebe Renders Before He Destroys It</h2>
-
-    <p>The most important structural decision in <em>Things Fall Apart</em> is not what Achebe shows but when he shows it.</p>
-
-    <p>He begins with Okonkwo throwing Amalinze the Cat. He begins with the village assembly, the kola nut ceremony, the Night of Okonkwo's fame as a wrestler. He gives the reader Umuofia's governance, its cosmology, its agricultural rhythms, its gender dynamics, its internal tensions before any British presence has appeared. Part I of the novel is an extended act of cultural construction: a world built on the page so that when it is disrupted, the reader has experienced its logic from the inside.</p>
-
-    <p>Achebe's critique of the Western literary tradition — of Conrad's Congo, of Cary's Nigeria — was that Africa existed in those books without interiority, without history, without a functioning civilization that the arrival of Europeans could meaningfully destroy. The pre-colonial world was rendered as absence, as darkness, as the condition colonialism was correcting. Achebe renders the pre-colonial world on its own terms as presence, as richness, as a functional cultural system (however imperfect) that is being destroyed by hostile encroachment.</p>
-
-    <p>The reader who has lived inside Umuofia's justice system — who has watched the egwugwu adjudicate a dispute, understood the Oracle's authority, witnessed the Week of Peace as a genuine communal obligation — experiences the colonial disruption of those institutions as a tragic loss rather than a "civilizing" instantiation of the famous "white man's burden."</p>
-
-    <h2>Okonkwo's Values as Igbo Ideals at Extreme Pitch</h2>
-
-    <p>Presented initially as a kind of epic hero who reflects the central values of his culture, Okonkwo is a man who has internalized the Igbo achievement ethic completely. He is also a man whose fear of resembling his father is so consuming that he pushes those values to a pathological extreme.</p>
-
-    <p>His insistence on masculine strength, his contempt for weakness and failure, his emotional repression, his violence: these are not personal pathologies in a cultural vacuum. They are the Igbo masculine ideal operating at maximum intensity. The title system rewards demonstrated achievement. Age is respected but achievement is revered. The community's judgment falls on those, like Unoka, who fail to meet their obligations. Okonkwo has absorbed all of this — and amplified it.</p>
-
-    <p>This dynamic makes his tragedy both personal and cultural simultaneously. Personally, he is a man whose drive to be everything his father was not has produced a version of himself incapable of the flexibility that his changing world requires. Culturally, the novel asks a harder question: whether the same values that made Igbo civilization great — the meritocratic drive, the communal accountability, the masculine honor culture — also produced a structure with built-in vulnerabilities that colonialism could exploit.</p>
-
-    <p>The killing of Ikemefuna is the hinge of this question. The Oracle decrees that Ikemefuna must die. Obierika tells Okonkwo he had no obligation to participate, but he participates anyway — "because he was afraid of being thought weak." He strikes the killing blow on a boy who called him "father" because his definition of strength has no space for the act of stepping aside. The cost of this act — the night that follows, when he cannot sleep or eat, thinks of Ezinma as the daughter who "should have been a boy," yet cannot grieve for Ikemefuna — is the novel's earliest and most precise measurement of what the masculine ideal extracts from the men who embody it.</p>
-
-    <h2>What the Church Disrupts — and Why People Welcome It</h2>
-
-    <p>The arrival of the missionaries in Umuofia is often read as straightforwardly destructive, but Achebe's rendering of their insinuation into Umuofian society is complex in its cultural implications.</p>
-
-    <p>Eventually, the church dismantles Igbo governance and cosmology systematically. The egwugwu courts are superseded by colonial law; the Oracle's authority is bypassed; the village council's consensus-based decisions are overridden; and Umuofia's capacity for collective action is fractured along the convert/non-convert divide.</p>
-
-    <p>But the novel demonstrates that this procession of cultural domination begins with personal conversions, showing us how and why some individuals become alienated enough from Igbo culture to join the Christian church.</p>
-
-    <p>Nwoye, Okonkwo's son, hears a Christian hymn and feels something yield inside him — "the poetry of the new religion." He cannot meet the demands of Igbo masculine achievement; his father's version of what a man is has been a crushing weight since childhood. The church offers him a different set of values and a community that does not judge him by his father's standards. His conversion is as much an escape from Okonkwo as it is an embrace of Christianity.</p>
-
-    <p>The <em>osu</em> — the outcast class, permanently separated from the free community by ancestral dedication to a deity — find in the church the offer of inclusion they have never experienced. So do the mothers of twins, whose children were left to die in the Evil Forest because Ala considered twins an abomination. The church welcomes those the Igbo system has excluded.</p>
-
-    <p>Achebe suggests that colonialism succeeded in Igboland partly by embracing the people that Igbo culture had already marginalized. The missionaries did not create the <em>osu</em> system or the twin taboo. They simply offered an alternative to those suffering under them. The disruption of Igbo society worked through its existing fault lines, and some of those fault lines were real moral failures.</p>
-
-    <p>This is what makes Achebe's cultural message impossible to reduce to simple sympathy or simple critique. His novel is capacious enough to suggest both simultaneously.</p>
-
-    <h2>The Logic of Okonkwo's Tragedy</h2>
-
-    <p>Okonkwo's tragedy operates on two levels that the novel refuses to separate.</p>
-
-    <p>At the personal level: he is a man who has spent his life fighting to be everything his father was not, only to discover that the world has shifted so completely that the virtues he cultivated are now liabilities. His strength and his rigidity served him in the traditional world of Umuofia. In the new world that colonialism has made by the end of the novel, they are lethal liabilities.</p>
-
-    <p>At the cultural level: his death represents the impossibility of resistance on Igbo cultural terms. He cannot accept subjugation, adapt to colonialism, or persuade his fellow clansmen to fight. The community that would once have gone to war on the Oracle's sanction no longer has the cohesion to respond to Okonkwo's call. He kills a court messenger and looks around to find that no one is following him. He is the last man standing for something no one else will stand for because the world that made those values coherent has already fallen apart.</p>
-
-    <p>His suicide by hanging is itself an offense against Ala, an abomination. He dies in a way that denies him proper burial in the earth he spent his life honoring. Death by suicide is such a cultural taboo that Obierika is forced to pay the District Commissioner's men to take down the body and bury it, while the Igbo make sacrifices to "cleanse the desecrated land." The Igbo world that Okonkwo once embodied cannot accommodate the manner of his dying.</p>
-
-    <h2>What Falls Apart — and What Survives</h2>
-
-    <p>The title raises the question directly. What exactly falls apart?</p>
-
-    <p>The political structure: village autonomy, the council of elders, the egwugwu courts, the Oracle's judicial authority. The cosmological framework: the binding force of Ala, the ancestors, the communal obligations they entail. The social fabric: solidarity fractured between converts and non-converts, between those who accommodate and those who resist. Individual identity: Okonkwo cannot remake himself; Nwoye can survive only by rupture.</p>
-
-    <p>What survives — implicitly, through the act of writing the novel — is the history itself. <em>Things Fall Apart</em> exists. The Igbo world is not, as Conrad's tradition would have it, "a long night of savagery from which the first Europeans acting on God's behalf delivered them." It is what Achebe shows his readers: a complex, beautiful, flawed, fully human civilization whose destruction was tragedy, not progress.</p>
-
-    <h2>The District Commissioner's Final Paragraph</h2>
-
-    <p>The novel's last page is one of the most precisely calibrated endings in twentieth-century fiction.</p>
-
-    <p>The District Commissioner walks away from Okonkwo's hanging body. He will not cut it down himself — a district commissioner does not attend to such undignified details. He thinks about his book. Every day in Africa brings him material. Okonkwo's story — a man who killed a messenger and then hanged himself — is interesting. One could almost write a whole chapter about him. "Perhaps not a whole chapter but a reasonable paragraph, at any rate."</p>
-
-    <p>Achebe has given the reader two hundred pages of Okonkwo's life: his wrestling match at eighteen, his yam barns, his three wives, his love for Ezinma, his killing of Ikemefuna, his exile, his return, his inability to find anyone to fight alongside him, his death. The District Commissioner will give it a paragraph.</p>
-
-    <blockquote class="sr-pullquote">
-      <p>The contrast is the argument. This is what the colonial gaze does to human life: reduces it to administrative material, strips it of interiority and history and tragedy, files it under a title — <em>The Pacification of the Primitive Tribes of the Lower Niger</em> — that encodes every assumption the novel has spent two hundred pages dismantling.</p>
-    </blockquote>
-
-    <p>Achebe wrote the novel to give Okonkwo back his two hundred pages.</p>
-
-  </div>
-
+<SummerLayout title={entry.data.title} section="tfa" spoke="novel">
+  <Content />
   <SpokePagination
     section="tfa"
     prev={{ slug: 'figures', title: 'Key Figures', number: 4 }}
   />
-
 </SummerLayout>

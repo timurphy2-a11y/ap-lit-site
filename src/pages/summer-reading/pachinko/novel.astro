@@ -1,109 +1,15 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('summerReading', 'pachinko/novel');
+const { Content } = await render(entry);
 ---
-<SummerLayout
-  title="Connections to the Novel — Pachinko"
-  section="pachinko"
-  spoke="novel"
->
-  <div class="sr-spoke-header">
-    <span class="sr-spoke-header-eyebrow">Pachinko  ·  Spoke 05 of 05</span>
-    <h1 class="sr-spoke-header-title">Connections to the Novel</h1>
-    <p class="sr-spoke-header-deck">From historical context to thematic argument — what the background means for what the novel does on the page.</p>
-  </div>
-
-  <div class="sr-spoiler-warning">
-    <p><strong>Note for students:</strong> This section discusses major plot events
-    including the endings of several characters' storylines. If you are still reading
-    the novel, you may want to return to this page after you have finished.</p>
-  </div>
-
-  <div class="sr-spoke-content">
-
-    <p class="sr-lede">The four sections of this site have covered the history and culture that <em>Pachinko</em> inhabits: Japanese colonization of Korea, the legal dispossession of the Zainichi community, the experience of living between two languages and two names, the pachinko industry as economic refuge and social stigma. This section makes explicit connections between that background and the thematic material of the novel itself.</p>
-
-    <p>Context is not the same as argument. Knowing that the <em>sōshi-kaimei</em> policy forced Koreans to adopt Japanese names is historical information. Understanding the thematic significance of the ways that Lee's characters navigate that condition is literary analysis.</p>
-
-    <h2>"History has failed us, but no matter."</h2>
-
-    <p>The novel's first sentence is its thesis — and one of its most carefully constructed acts of misdirection.</p>
-
-    <p>"History has failed us" is straightforward: the large forces of history — colonization, war, legal dispossession, discrimination — have produced conditions no one in this novel chose and no one in this novel can fully escape.</p>
-
-    <p>"But no matter" is the harder and more ambiguous claim. It could be read as resignation: history has failed us, and there is nothing to be done about that failure. But so many of the storylines that follow this opening line do not read like resignation. Sunja sells kimchi from a cart in freezing weather. Kyunghee maintains the household through Yoseb's illness and Isak's imprisonment. Mozasu builds a pachinko empire from a stigmatized industry. The novel's characters persist — not heroically, not without cost, but relentlessly. "But no matter" is perhaps closer to defiance than defeat in tone: history has failed us, and we continue anyway.</p>
-
-    <p>The persistence of ordinary people — the daily labor of survival, the maintenance of family, the refusal to disappear — is itself a form of response to history's failure, even when it cannot change the conditions that history created.</p>
-
-    <h2>Sunja's Migration Is Not a Choice</h2>
-
-    <p>The novel presents Sunja's departure from Korea as a personal decision. She is pregnant by Hansu, Isak offers to marry her and take her to Japan, she accepts. Viewed at the level of individual psychology, this is a choice that Sunja makes.</p>
-
-    <p>Viewed against the historical context the other spokes have covered, it is barely a choice at all.</p>
-
-    <p>Sunja's family is poor because colonial land policy destroyed the economic conditions of Korean farming communities. The boarding house they run exists because poverty required them to take in lodgers. The lodgers passing through Yeongdo are themselves products of colonial economic disruption, workers moving through a disrupted economy. Sunja's pregnancy by Hansu, a yakuza with connections to the colonial economy, is entangled with the same economic conditions. Japan is where work exists because colonization reorganized the Korean economy to make Japan the center of gravity.</p>
-
-    <p>Lee does not directly state any of this. She shows Sunja making a decision and traces its consequences. But the decision is made inside a structure that has narrowed the available options to almost nothing.</p>
-
-    <h2>Noa and Mozasu: Two Strategies, Neither Sufficient</h2>
-
-    <p>Noa and Mozasu are the novel's central pairing — not because they are foils in the simple sense of opposites, but because they represent two available responses to the same structural condition. The novel shows both responses honestly, without declaring either sufficient.</p>
-
-    <p><strong>Noa's strategy</strong> is assimilation: if he is disciplined enough, educated enough, Japanese enough in speech and manner and name, the system will accept him. He studies English literature at Waseda University. He speaks perfect Japanese. He abandons contact with his family for sixteen years. He lives in Nagano as Nobuo Ban, a Japanese citizen, married to a Japanese woman whose mother would not tolerate a Korean son-in-law. His children do not know they are Korean.</p>
-
-    <p>When Sunja is finally brought by Hansu to see him — she watches from the car as he emerges for lunch, reads English novels alone in fifteen minutes, returns to his office — she sees a man who has achieved everything assimilation promises. He is successful, orderly, invisible as Korean. She steps out of the car and calls his name.</p>
-
-    <p>The scene that follows, in Noa's office, is the novel's most devastating confrontation with the costs of assimilation. Noa has told no one who he really is. His wife does not know. His children do not know. He cannot allow them to know, because discovery would cost him everything he has built. "It is terrible to be me," he tells his mother — not terrible to be Korean, but terrible to be the specific person he has constructed through years of systematic self-erasure.</p>
-
-    <p>The revelation that his biological father is Hansu — a yakuza — is not simply embarrassing. It collapses the distinction Noa has spent his adult life trying to maintain: between the Korean self he was born with and the Japanese self he has been building.</p>
-
-    <p><strong>Mozasu's strategy</strong> is pragmatic acceptance: he does not seek approval from a system that excludes him. He builds economic success within the stigmatized space the system leaves open. He runs pachinko parlors. He is openly Korean in a way that Noa is not. He has friends, community, his mother, his son. He does not apologize for what he does or what he is.</p>
-
-    <p>Mozasu survives. But survival in this context means remaining in a stigmatized industry in a marginalized community, succeeding on terms the dominant culture refuses to credit. When Etsuko — his Japanese girlfriend — is confronted by the social consequences of her relationship with a Zainichi Korean man, the limits of Mozasu's strategy become visible. He has made peace with the system's judgment. The system's judgment has not changed.</p>
-
-    <p>The strategies employed by both of Sunja's children fail to resolve the fundamental problem: being Korean in Japan, in the twentieth century, in the world this novel depicts, is a condition that neither assimilation nor pragmatic acceptance can finally escape or fully alleviate.</p>
-
-    <h2>Names and the Performance of Identity</h2>
-
-    <p>The question of names in <em>Pachinko</em> presents the issue of identity in its most compressed form.</p>
-
-    <p>Every Zainichi Korean character in the novel navigates the choice between their Korean name and a Japanese <em>tsūmei</em> — a passing name used in public contexts. This navigation is not dramatic; it is daily, habitual, and exhausting. A choice of name signals power, intimacy, danger, and belonging all at once.</p>
-
-    <p>For Sunja and Isak, the Korean name is who they are. It carries no penalty within the Ikaino community they inhabit.</p>
-
-    <p>For Noa, the Japanese name becomes the self he is trying to build — and eventually the prison he cannot escape. When his identity is exposed, there is no Korean name to return to. He has abandoned it so completely that his own children do not know their family is Korean. The Japanese name was supposed to make him Japanese; instead it made him a person who cannot be known.</p>
-
-    <p>For Solomon — educated in America, trilingual, professionally mobile — the name question has shifted again. He moves between identities with apparent ease. Yet when his Zainichi identity matters to the system — when the land deal falls apart because of what he is rather than what he has done — the ease dissolves. The <em>tsūmei</em> question has not disappeared; it has simply taken a subtler form for Solomon's generation.</p>
-
-    <h2>What "Home" Means Across Four Generations</h2>
-
-    <p>One of the novel's central questions is: where or what is home for a people systematically denied belonging in the country where they live? Lee's story maps the shifting answer to this question across generations in ways that make it progressively harder to locate.</p>
-
-    <p><strong>For the Issei</strong> — Sunja and Isak — Korea is home and Japan is exile. The hope of eventual return shapes everything. Korea as a place is still real, still remembered, still the ground of identity. Japan is where they work.</p>
-
-    <p><strong>For the Nisei</strong> — Noa and Mozasu — Korea is increasingly an abstraction. It is the language spoken at home, the food eaten at the table, the community they grew up in, but not a place they know through direct experience. When Japan strips them of nationality in 1952, it does not make them Korean; it makes them people without a state, assigned to a country they have not been allowed to fully inhabit.</p>
-
-    <p><strong>For the Sansei</strong> — Solomon — the question has become unanswerable in a new way. He has been to America, speaks three languages, holds a professional position in Tokyo's global finance world. His is the generation that has done everything the system ostensibly rewards. Yet when the system requires it, he is still <em>gaijin</em> — foreigner.</p>
-
-    <p>The novel's final image offers the closest thing to an answer that Lee is willing to provide. Sunja, at the end of the novel, buries a photograph at Noa's grave, covers the hole with dirt, picks up her bags, and heads home to where Kyunghee is waiting.</p>
-
-    <p>Home, in this final image, is not Korea and not Japan. It is the specific person waiting for her at the place where she lives, the particular relationship that has survived everything history has done to the people who share it. Sunja's home is also a home built on loss, grief, and the wreckage of what the system did to her sons. The community that remains is what remains. For the novel, that is enough — not triumphant, not redeemed, but enough.</p>
-
-    <h2>The Novel's Opening Sentence, Again</h2>
-
-    <p>The novel's last page returns Sunja to the cemetery, to Noa's grave, to the act of burying a photograph and leaving. She picks up her bags. Kyunghee would be waiting for her at home.</p>
-
-    <p>The last sentence echoes the first. "History has failed us, but no matter." The "no matter" suggested by the novel's ending is this: Kyunghee is waiting. There is somewhere to go. The daily labor of maintaining the meals, the relationships, the persistence of ordinary life is what the novel has been about for eighty years.</p>
-
-    <blockquote class="sr-pullquote">
-      <p>Lee presents the persistence of this community, across all of the history that the novel has encompassed, as a cultural achievement that the history of what was done to them cannot erase. The Zainichi community is still there, and Lee's novel exists as an attempt to document their endurance.</p>
-    </blockquote>
-
-  </div>
-
+<SummerLayout title={entry.data.title} section="pachinko" spoke="novel">
+  <Content />
   <SpokePagination
     section="pachinko"
     prev={{ slug: 'figures', title: 'Key Figures', number: 4 }}
   />
-
 </SummerLayout>

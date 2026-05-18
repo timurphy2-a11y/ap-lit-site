@@ -1,0 +1,31 @@
+---
+interface Props {
+  size?: number;
+  opacity?: number;
+}
+const { size = 48, opacity = 1 } = Astro.props;
+---
+<svg
+  width={size}
+  height={size * 0.75}
+  viewBox="0 0 48 36"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-butterfly"
+  style={`opacity: ${opacity};`}
+>
+  <!-- Lower wings (teal) -->
+  <path d="M24 22 C16 22, 4 28, 4 20 C4 14, 14 16, 24 22Z" fill="var(--p-teal)" />
+  <path d="M24 22 C32 22, 44 28, 44 20 C44 14, 34 16, 24 22Z" fill="var(--p-teal)" />
+  <!-- Upper wings (terracotta/brown) -->
+  <path d="M24 18 C18 16, 6 8, 8 4 C10 0, 20 6, 24 18Z" fill="var(--p-orange)" />
+  <path d="M24 18 C30 16, 42 8, 40 4 C38 0, 28 6, 24 18Z" fill="var(--p-orange)" />
+  <!-- Body -->
+  <ellipse cx="24" cy="19" rx="1.5" ry="8" fill="var(--color-ink)" />
+  <!-- Antennae -->
+  <path d="M24 11 C22 6, 20 4, 19 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round" />
+  <path d="M24 11 C26 6, 28 4, 29 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round" />
+  <circle cx="19" cy="3" r="1.5" fill="var(--color-ink)" />
+  <circle cx="29" cy="3" r="1.5" fill="var(--color-ink)" />
+</svg>

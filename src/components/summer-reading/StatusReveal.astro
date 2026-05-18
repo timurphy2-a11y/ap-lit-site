@@ -1,0 +1,23 @@
+---
+// Injects IntersectionObserver for [data-status-reveal] status grids.
+// Place once per page that contains a .sr-status-grid with data-status-reveal.
+---
+<script>
+  const cards = document.querySelectorAll(
+    '[data-status-reveal] .sr-status-card'
+  );
+  if (cards.length) {
+    const observer = new IntersectionObserver(
+      (observations) => {
+        observations.forEach((obs) => {
+          if (obs.isIntersecting) {
+            obs.target.classList.add('is-visible');
+            observer.unobserve(obs.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -32px 0px' }
+    );
+    cards.forEach((el) => observer.observe(el));
+  }
+</script>

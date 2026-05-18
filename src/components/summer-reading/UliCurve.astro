@@ -1,0 +1,27 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  opacity?: number;
+}
+const { width = 120, color = 'var(--color-ink)', opacity = 0.5 } = Astro.props;
+const h = width * 0.22;
+---
+<svg
+  width={width}
+  height={h}
+  viewBox={`0 0 ${width} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-uli-curve"
+  style={`opacity: ${opacity};`}
+>
+  <path
+    d={`M 0 ${h*0.6} C ${width*0.15} ${h*0.1}, ${width*0.35} ${h*0.1}, ${width*0.5} ${h*0.5} C ${width*0.65} ${h*0.9}, ${width*0.85} ${h*0.9}, ${width} ${h*0.4}`}
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    fill="none"
+  />
+</svg>

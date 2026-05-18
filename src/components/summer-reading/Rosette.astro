@@ -1,0 +1,34 @@
+---
+interface Props {
+  size?: number;
+  color?: string;
+  spokes?: number;
+  opacity?: number;
+}
+const { size = 48, color = 'var(--p-orange)', spokes = 20, opacity = 1 } = Astro.props;
+const cx = size / 2;
+const cy = size / 2;
+const r_outer = size * 0.46;
+const r_inner = size * 0.10;
+const dot_r   = size * 0.05;
+---
+<svg
+  width={size}
+  height={size}
+  viewBox={`0 0 ${size} ${size}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-rosette"
+  style={`opacity: ${opacity};`}
+>
+  {Array.from({ length: spokes }, (_, i) => {
+    const angle = (i * 2 * Math.PI) / spokes;
+    const x1 = cx + Math.cos(angle) * r_inner;
+    const y1 = cy + Math.sin(angle) * r_inner;
+    const x2 = cx + Math.cos(angle) * r_outer;
+    const y2 = cy + Math.sin(angle) * r_outer;
+    return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} stroke-width="1" stroke-linecap="round" />;
+  })}
+  <circle cx={cx} cy={cy} r={dot_r} fill="var(--p-gold)" />
+</svg>

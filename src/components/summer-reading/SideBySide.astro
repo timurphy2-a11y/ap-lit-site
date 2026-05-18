@@ -1,0 +1,11 @@
+---
+interface Props {
+  gap?: 'sm' | 'md' | 'lg';
+  align?: 'top' | 'center';
+}
+const { gap = 'md', align = 'top' } = Astro.props;
+---
+
+<div class={`sr-side-by-side sr-side-by-side--gap-${gap} sr-side-by-side--align-${align}`}>
+  <slot />
+</div>

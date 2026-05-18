@@ -1,0 +1,14 @@
+---
+import ButterflyMark from './ButterflyMark.astro';
+import TriangleTerminator from './TriangleTerminator.astro';
+
+interface Props {
+  text: 'pachinko' | 'tfa';
+}
+const { text } = Astro.props;
+---
+
+<div class={`sr-end-signature sr-end-signature--${text}`} aria-hidden="true">
+  {text === 'pachinko' && <ButterflyMark size={48} />}
+  {text === 'tfa' && <TriangleTerminator width={180} />}
+</div>

@@ -1,0 +1,14 @@
+---
+import Rosette from './Rosette.astro';
+import UliDotCluster from './UliDotCluster.astro';
+
+interface Props {
+  text: 'pachinko' | 'tfa';
+}
+const { text } = Astro.props;
+---
+
+<div class={`sr-section-terminator sr-section-terminator--${text}`} aria-hidden="true">
+  {text === 'pachinko' && <Rosette size={40} color="var(--p-orange)" />}
+  {text === 'tfa' && <UliDotCluster width={62} color="var(--t-terra)" />}
+</div>

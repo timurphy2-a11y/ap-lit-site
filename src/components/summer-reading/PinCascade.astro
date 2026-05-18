@@ -1,0 +1,29 @@
+---
+interface Props {
+  height?: number;
+  color?: string;
+  dotSize?: number;
+  gap?: number;
+  opacity?: number;
+}
+const { height = 120, color = 'var(--p-gold)', dotSize = 3, gap = 10, opacity = 1 } = Astro.props;
+const count = Math.floor((height - dotSize) / (dotSize + gap)) + 1;
+const totalH = (count - 1) * (dotSize + gap) + dotSize;
+const w = dotSize * 4;
+const cx = w / 2;
+---
+<svg
+  width={w}
+  height={totalH}
+  viewBox={`0 0 ${w} ${totalH}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  class="sr-motif-pin-cascade"
+  style={`opacity: ${opacity};`}
+>
+  {Array.from({ length: count }, (_, i) => {
+    const y = i * (dotSize + gap) + dotSize / 2;
+    return <circle cx={cx} cy={y} r={dotSize / 2} fill={color} />;
+  })}
+</svg>

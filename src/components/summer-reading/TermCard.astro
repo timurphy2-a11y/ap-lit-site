@@ -1,0 +1,18 @@
+---
+interface Props {
+  term: string;
+  original?: string;
+  text: 'pachinko' | 'tfa';
+}
+const { term, original, text } = Astro.props;
+---
+
+<div class={`sr-term-card sr-term-card--${text}`}>
+  <div class="sr-term-card-header">
+    <span class="sr-term-card-term">{term}</span>
+    {original && <span class="sr-term-card-original">{original}</span>}
+  </div>
+  <div class="sr-term-card-body">
+    <slot />
+  </div>
+</div>

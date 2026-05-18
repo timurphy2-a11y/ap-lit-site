@@ -1,0 +1,33 @@
+---
+import ImageCaption from './ImageCaption.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  credit?: string;
+  figureNumber?: number;
+  accent?: 'pachinko' | 'tfa';
+  width?: 'full' | 'prose' | 'narrow';
+}
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  figureNumber,
+  accent,
+  width = 'prose',
+} = Astro.props;
+---
+
+<div class={`sr-image-block sr-image-block--${width}`}>
+  <ImageCaption
+    src={src}
+    alt={alt}
+    caption={caption}
+    credit={credit}
+    figureNumber={figureNumber}
+    accent={accent}
+  />
+</div>
