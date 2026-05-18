@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
+import PeriodMotif from '../../../components/PeriodMotif.astro';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
 import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
@@ -39,6 +40,17 @@ const unitNumber = unit.slice(0, 2);
 const hubData = HUB_DATA[unit];
 const moment = HISTORICAL_MOMENTS[unit];
 const timelineEvents = HUB_EVENTS[unit] ?? [];
+
+// Per-unit mark palette (CSS-var parameterized motifs)
+const MARK_VARS: Record<string, { primary: string; highlight: string; spot: string }> = {
+  '00-medieval':      { primary: '#C9A24B', highlight: '#E0C387', spot: 'transparent' },
+  '01-renaissance':   { primary: '#B54C3A', highlight: '#C68A7A', spot: '#2C4A82' },
+  '02-baroque':       { primary: '#B07028', highlight: '#D49432', spot: 'transparent' },
+  '03-enlightenment': { primary: '#698BA1', highlight: '#A2B7C8', spot: 'transparent' },
+  '04-romanticism':   { primary: '#3D5A6D', highlight: '#8AA3B5', spot: '#A85428' },
+  '05-modernism':     { primary: '#A03828', highlight: '#D49A8C', spot: '#A07820' },
+};
+const marks = MARK_VARS[unit] ?? MARK_VARS['00-medieval'];
 
 // Per-unit accent color sets
 const ACCENTS: Record<string, { acc: string; philosophy: string; art: string; music: string }> = {
@@ -84,7 +96,7 @@ const momentJson = JSON.stringify({
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{meta.period} — AP Literature</title>
 </head>
-<body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music};`}>
+<body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
 
 <!-- ── Top nav ── -->
 <div class="topbar">
@@ -97,6 +109,11 @@ const momentJson = JSON.stringify({
     <a href="/sculpting-through-time">Sculpture</a>
     <a href="/hearing-through-form">Music</a>
   </nav>
+</div>
+
+<!-- ── Header band (role 6) ── -->
+<div class="header-band" aria-hidden="true">
+  <PeriodMotif unit={unit} role={6} />
 </div>
 
 <!-- ── Breadcrumb ── -->
@@ -116,7 +133,10 @@ const momentJson = JSON.stringify({
     <h1 class="unit-title">{meta.period}</h1>
     <div class="unit-dates">{meta.dates}</div>
   </div>
-  <div>
+  <div class="unit-head-right">
+    <span class="page-sig" aria-hidden="true">
+      <PeriodMotif unit={unit} role={5} />
+    </span>
     <p class="unit-kicker">{hubData.kicker}</p>
   </div>
 </section>
@@ -363,6 +383,19 @@ const momentJson = JSON.stringify({
 
   a { color: inherit; text-decoration: none; }
 
+  /* ── Header band (role 6) ──────────────────────────────────── */
+  .header-band {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 calc(-1 * var(--gutter));
+    width: calc(100% + 2 * var(--gutter));
+  }
+  .header-band svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   /* ── Topbar ─────────────────────────────────────────────────── */
   .topbar {
     display: flex;
@@ -419,7 +452,7 @@ const momentJson = JSON.stringify({
   .unit-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(120px, 18vw, 240px);
+    font-size: clamp(60px, 9vw, 120px);
     line-height: 0.85;
     color: var(--acc);
     letter-spacing: -0.04em;
@@ -448,6 +481,19 @@ const momentJson = JSON.stringify({
     letter-spacing: 0.1em;
     color: var(--ink-mute);
   }
+  .unit-head-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .page-sig {
+    display: block;
+    width: 56px;
+    height: 56px;
+  }
+  .page-sig svg { width: 100%; height: 100%; }
+
   .unit-kicker {
     font-size: 20px;
     line-height: 1.5;

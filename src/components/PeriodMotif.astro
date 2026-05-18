@@ -1,0 +1,12 @@
+---
+import { PERIOD_MOTIFS } from '../data/period-motifs';
+
+interface Props {
+  unit: string;
+  role: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+const { unit, role } = Astro.props;
+const svg = PERIOD_MOTIFS[unit]?.[role] ?? '';
+---
+<Fragment set:html={svg} />

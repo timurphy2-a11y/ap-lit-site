@@ -1,35 +1,83 @@
 ---
+import { PERIOD_MOTIFS } from '../data/period-motifs';
+
 interface Props {
   attribution?: string;
+  // Pass the unit ID to get the period-specific bracket SVG (role 4).
+  // Omit for the neutral fallback bracket.
+  unit?: string;
 }
-const { attribution } = Astro.props;
+
+const { attribution, unit } = Astro.props;
+const bracketSvg = unit ? (PERIOD_MOTIFS[unit]?.[4] ?? '') : '';
 ---
-<blockquote class="pull-quote not-prose">
-  <p class="pull-quote-text"><slot /></p>
-  {attribution && <cite class="pull-quote-cite">{attribution}</cite>}
-</blockquote>
+
+<figure class="pull-quote not-prose">
+  {bracketSvg ? (
+    <div class="brackets" aria-hidden="true" set:html={bracketSvg} />
+  ) : (
+    <div class="brackets" aria-hidden="true">
+      <!-- Neutral hairline bracket — auto-tints via --mark-primary -->
+      <svg viewBox="0 0 720 48" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="24" x2="318" y2="24" stroke="var(--mark-primary, var(--acc, currentColor))" stroke-width="0.7" opacity="0.5"/>
+        <line x1="0" y1="16" x2="0" y2="32" stroke="var(--mark-primary, var(--acc, currentColor))" stroke-width="1.2"/>
+        <circle cx="360" cy="24" r="4" fill="none" stroke="var(--mark-primary, var(--acc, currentColor))" stroke-width="1"/>
+        <circle cx="360" cy="24" r="1.6" fill="var(--mark-highlight, var(--acc, currentColor))"/>
+        <line x1="402" y1="24" x2="720" y2="24" stroke="var(--mark-primary, var(--acc, currentColor))" stroke-width="0.7" opacity="0.5"/>
+        <line x1="720" y1="16" x2="720" y2="32" stroke="var(--mark-primary, var(--acc, currentColor))" stroke-width="1.2"/>
+      </svg>
+    </div>
+  )}
+  <blockquote><slot /></blockquote>
+  {attribution && <figcaption>{attribution}</figcaption>}
+</figure>
 
 <style>
   .pull-quote {
-    border-left: 3px solid var(--thread-acc, var(--acc));
-    padding: 0.9rem 1.25rem 0.9rem 1.1rem;
-    margin: 2rem 0;
-    background-color: color-mix(in oklab, var(--thread-acc, var(--acc)) 6%, var(--bg));
-    border-radius: 0;
+    margin: 3.5rem 0;
+    padding: 0;
+    background: none;
+    border: none;
+    text-align: center;
   }
-  .pull-quote-text {
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: var(--ink-mute);
+
+  .brackets {
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .brackets svg {
+    display: block;
+    width: 100%;
+    height: 48px;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--font-display, Georgia, serif);
     font-style: italic;
+    font-size: clamp(22px, 2.8vw, 28px);
+    line-height: 1.35;
+    text-align: center;
+    max-width: 56ch;
+    margin: 8px auto 0;
+    padding: 0;
+    color: var(--ink);
+  }
+
+  .pull-quote blockquote p {
     margin: 0;
   }
-  .pull-quote-cite {
-    display: block;
-    text-align: right;
-    font-size: 0.8em;
+
+  .pull-quote figcaption {
+    font-family: var(--font-ui, var(--font-mono, monospace));
     font-style: normal;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--ink-soft);
-    margin-top: 0.6rem;
+    text-align: right;
+    max-width: 56ch;
+    margin: 16px auto 0;
   }
 </style>

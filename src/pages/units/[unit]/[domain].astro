@@ -3,11 +3,13 @@ import { getEntry, render } from 'astro:content';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
+import PeriodMotif from '../../../components/PeriodMotif.astro';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
 import MusicPlate from '../../../components/MusicPlate.astro';
 import { THREAD_ICONS } from '../../../components/threadIcons';
 import { PEOPLE } from '../../../components/BiographyPanel.jsx';
+import { PERIOD_MOTIFS } from '../../../data/period-motifs';
 
 // ── Static paths ──────────────────────────────────────────────────────────────
 
@@ -101,6 +103,19 @@ const nextLabel = nextUnit
   ? (await getEntry('units', `${nextUnit}/philosophy`))?.data.period
   : null;
 
+// ── Period motif mark vars ────────────────────────────────────────────────────
+
+const MARK_VARS: Record<string, { primary: string; highlight: string; spot: string }> = {
+  '00-medieval':      { primary: '#C9A24B', highlight: '#E0C387', spot: 'transparent' },
+  '01-renaissance':   { primary: '#B54C3A', highlight: '#C68A7A', spot: '#2C4A82' },
+  '02-baroque':       { primary: '#B07028', highlight: '#D49432', spot: 'transparent' },
+  '03-enlightenment': { primary: '#698BA1', highlight: '#A2B7C8', spot: 'transparent' },
+  '04-romanticism':   { primary: '#3D5A6D', highlight: '#8AA3B5', spot: '#A85428' },
+  '05-modernism':     { primary: '#A03828', highlight: '#D49A8C', spot: '#A07820' },
+};
+const marks = MARK_VARS[unit] ?? MARK_VARS['00-medieval'];
+const medallionSvg = PERIOD_MOTIFS[unit]?.[1] ?? '';
+
 // ── Domain display config ─────────────────────────────────────────────────────
 
 const DOMAIN_LABELS: Record<string, string> = {
@@ -171,7 +186,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{pageTitle}</title>
 </head>
-<body style={`--thread-acc: ${threadAcc};`}>
+<body style={`--thread-acc: ${threadAcc}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
 
 <!-- ── Top nav ── -->
 <div class="topbar">
@@ -184,6 +199,11 @@ const peopleJson   = JSON.stringify(PEOPLE);
     <a href="/sculpting-through-time">Sculpture</a>
     <a href="/hearing-through-form">Music</a>
   </nav>
+</div>
+
+<!-- ── Header band (role 6) ── -->
+<div class="header-band" aria-hidden="true">
+  <PeriodMotif unit={unit} role={6} />
 </div>
 
 <!-- ── Breadcrumb ── -->
@@ -203,6 +223,9 @@ const peopleJson   = JSON.stringify(PEOPLE);
     <h2>{meta.period}</h2>
   </div>
   <div class="dates">{meta.dates}</div>
+  <span class="page-sig" aria-hidden="true">
+    <PeriodMotif unit={unit} role={5} />
+  </span>
 </section>
 
 <!-- ── Thread tabs ── -->
@@ -258,6 +281,11 @@ const peopleJson   = JSON.stringify(PEOPLE);
     <h1>{domainTitle}: <em>{meta.period}</em></h1>
   </div>
 </section>
+
+<!-- ── Section terminator (role 3) ── -->
+<div class="section-terminator" aria-hidden="true">
+  <PeriodMotif unit={unit} role={3} />
+</div>
 
 <!-- ── Hero image (art / sculpture) ── -->
 {(() => {
@@ -320,6 +348,11 @@ const peopleJson   = JSON.stringify(PEOPLE);
   <article class="prose">
     <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed }} />
   </article>
+
+  <!-- ── Column divider (role 2) ── -->
+  <span class="motif-rule" aria-hidden="true">
+    <PeriodMotif unit={unit} role={2} />
+  </span>
 
   <!-- ── Sidebar ── -->
   <aside>
@@ -549,7 +582,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
   });
 </script>
 
-<script define:vars={{ threadSigils }}>
+<script define:vars={{ threadSigils, medallionSvg }}>
   document.addEventListener('DOMContentLoaded', () => {
     const prose = document.querySelector('article.prose');
     if (!prose) return;
@@ -580,9 +613,16 @@ const peopleJson   = JSON.stringify(PEOPLE);
       titleWrap.className = 'sub-title';
       while (h2.firstChild) titleWrap.appendChild(h2.firstChild);
 
+      // Section-opener medallion (role 1) — top-right of heading
+      const medallion = document.createElement('span');
+      medallion.className = 'section-medallion';
+      medallion.setAttribute('aria-hidden', 'true');
+      if (medallionSvg) medallion.innerHTML = medallionSvg;
+
       h2.appendChild(box);
       h2.appendChild(idx);
       h2.appendChild(titleWrap);
+      h2.appendChild(medallion);
     });
   });
 </script>
@@ -650,6 +690,13 @@ const peopleJson   = JSON.stringify(PEOPLE);
   .nav { display: flex; gap: 28px; flex-wrap: wrap; }
   .nav a:hover { color: var(--ink); }
 
+  /* ── Header band (role 6) ── */
+  .header-band {
+    width: calc(100% + 2 * var(--gutter));
+    margin: 0 calc(-1 * var(--gutter));
+    overflow: hidden;
+  }
+
   /* ── Breadcrumb ── */
   .crumb {
     padding: 20px 0 0;
@@ -670,7 +717,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
   /* ── Unit strip ── */
   .unit-strip {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     gap: 28px;
     align-items: center;
     padding: 28px 0;
@@ -706,6 +753,11 @@ const peopleJson   = JSON.stringify(PEOPLE);
     font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--ink-soft);
+  }
+  .unit-strip .page-sig {
+    display: block;
+    width: 56px;
+    height: 56px;
   }
 
   /* ── Thread tabs ── */
@@ -789,6 +841,17 @@ const peopleJson   = JSON.stringify(PEOPLE);
     max-width: 22ch;
   }
   .page-head h1 em { font-style: italic; color: var(--ink-mute); }
+
+  /* ── Section terminator (role 3) ── */
+  .section-terminator {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0 36px;
+  }
+  .section-terminator svg {
+    width: 64px;
+    height: 64px;
+  }
 
   /* ── Hero plate (art / sculpture) ── */
   figure.hero-plate {
@@ -1010,11 +1073,32 @@ const peopleJson   = JSON.stringify(PEOPLE);
   /* ── Two-column layout ── */
   .layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 72px;
+    grid-template-columns: minmax(0, 1fr) 28px 300px;
+    gap: 48px 0;
+    column-gap: 0;
     padding: 48px 0 32px;
   }
-  @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; gap: 48px; } }
+  .layout > .prose { padding-right: 48px; }
+  .layout > aside { padding-left: 0; }
+  @media (max-width: 1100px) {
+    .layout { grid-template-columns: 1fr; gap: 48px; }
+    .layout > .prose { padding-right: 0; }
+    .motif-rule { display: none; }
+  }
+
+  /* ── Column divider (role 2) ── */
+  .motif-rule {
+    width: 28px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .motif-rule svg {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+  }
 
   /* ── Prose: base ── */
   .prose {
@@ -1057,7 +1141,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
   /* Sub-thread heading sections — grid layout populated by JS */
   .prose h2:not(:first-of-type):not(:last-of-type) {
     display: grid;
-    grid-template-columns: 56px 1fr;
+    grid-template-columns: 56px 1fr 48px;
     grid-template-rows: auto auto;
     column-gap: 20px;
     row-gap: 2px;
@@ -1105,6 +1189,18 @@ const peopleJson   = JSON.stringify(PEOPLE);
   .prose h2 .sub-title {
     grid-column: 2;
     grid-row: 2;
+  }
+  .prose h2 .section-medallion {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    width: 48px;
+    height: 48px;
+    align-self: center;
+    justify-self: end;
+  }
+  .prose h2 .section-medallion svg {
+    width: 48px;
+    height: 48px;
   }
 
   /* Arc (last h2): Looking Forward */
@@ -1231,6 +1327,12 @@ const peopleJson   = JSON.stringify(PEOPLE);
   /* PullQuote component wrapper */
   .prose .pull-quote {
     margin: 28px 0;
+  }
+  .prose .pull-quote blockquote {
+    border-left: none;
+    padding-left: 0;
+    margin: 0;
+    font-style: italic;
   }
 
   /* ── Sidebar ── */
