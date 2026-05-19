@@ -14,7 +14,7 @@ const bracketSvg = unit ? (PERIOD_MOTIFS[unit]?.[4] ?? '') : '';
 
 <figure class="pull-quote not-prose">
   {bracketSvg ? (
-    <div class="brackets" aria-hidden="true" set:html={bracketSvg} />
+    <div class="brackets period-brackets" aria-hidden="true" set:html={bracketSvg} />
   ) : (
     <div class="brackets" aria-hidden="true">
       <!-- Neutral hairline bracket — auto-tints via --mark-primary -->
@@ -51,6 +51,11 @@ const bracketSvg = unit ? (PERIOD_MOTIFS[unit]?.[4] ?? '') : '';
     display: block;
     width: 100%;
     height: 48px;
+  }
+  .period-brackets svg {
+    height: 88px;
+    width: 242px;
+    margin: 0 auto;
   }
 
   .pull-quote blockquote {
