@@ -87,10 +87,10 @@ const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.phil
 const subThreadColors = colors.subThreads;
 
 const DOMAIN_THREAD_COLORS: Record<string, [string, string, string]> = {
-  philosophy: ['#A85A38', '#8A4428', '#C47050'],
-  art:        ['#c98a18', '#a57014', '#e0a028'],
-  sculpture:  ['#7B6B5B', '#5E5248', '#9A8878'],
-  music:      ['#3278AA', '#2560A0', '#4090C8'],
+  philosophy: ['#3A332B', '#5A5046', '#857A6B'],
+  art:        ['#75435B', '#94586E', '#B58193'],
+  sculpture:  ['#4F6B4D', '#5F8060', '#7B9883'],
+  music:      ['#574878', '#6F5E95', '#8C80AE'],
 };
 const domainColors = DOMAIN_THREAD_COLORS[domain] ?? DOMAIN_THREAD_COLORS.philosophy;
 
@@ -151,7 +151,7 @@ const threadSigils = entry.data.threads
 
 const DOMAIN_TITLES: Record<string, string> = {
   philosophy: 'Philosophical Context',
-  art:        'Visual Art',
+  art:        'Painting',
   sculpture:  'Sculpture',
   music:      'Musical Context',
 };
@@ -368,10 +368,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
               <span class="sig-xs">
                 <ThreadIcon thread={t.id} size={28} color={subAcc} />
               </span>
-              <div>
-                <div class="tt">{t.label}</div>
-                <div class="gloss">{t.period_summary}</div>
-              </div>
+              <div class="tt">{t.label}</div>
+              <div class="gloss">{t.period_summary}</div>
             </li>
           );
         })}
@@ -618,6 +616,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
       medallion.className = 'section-medallion';
       medallion.setAttribute('aria-hidden', 'true');
       if (medallionSvg) medallion.innerHTML = medallionSvg;
+
+      if (sigil) h2.style.setProperty('--sub-acc', sigil.color);
 
       h2.appendChild(box);
       h2.appendChild(idx);
@@ -1161,8 +1161,8 @@ const peopleJson   = JSON.stringify(PEOPLE);
     grid-row: 1 / 3;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg-sunken);
+    border: 1px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 40%, var(--rule-strong));
+    background: color-mix(in oklab, var(--sub-acc, var(--bg-sunken)) 5%, var(--bg-sunken));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1189,6 +1189,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
   .prose h2 .sub-title {
     grid-column: 2;
     grid-row: 2;
+    color: var(--sub-acc, var(--ink));
   }
   .prose h2 .section-medallion {
     grid-column: 3;
@@ -1363,61 +1364,68 @@ const peopleJson   = JSON.stringify(PEOPLE);
   }
 
   /* Analytical Threads list */
-  .threads-list {
+  aside .threads-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
-  .threads-list li {
-    padding: 14px 16px;
-    border: 1px solid var(--rule);
-    background: var(--bg-sunken);
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 14px;
-    align-items: start;
+  aside .threads-list li {
+    --c: var(--sub-acc, var(--thread-acc));
+    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
+    background: color-mix(in oklab, var(--c) 5%, var(--bg));
+    padding: 14px 16px 14px 18px;
     position: relative;
-    transition: border-color 160ms ease, background 160ms ease;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    transition: background 160ms ease, border-color 160ms ease;
   }
-  .threads-list li::before {
+  aside .threads-list li::before {
     content: '';
     position: absolute;
     left: -1px; top: -1px; bottom: -1px;
     width: 3px;
-    background: var(--sub-acc, var(--thread-acc));
+    background: var(--c);
   }
-  .threads-list li:hover {
-    border-color: var(--sub-acc, var(--thread-acc));
-    background: var(--bg-raised);
+  aside .threads-list li:hover {
+    background: color-mix(in oklab, var(--c) 9%, var(--bg));
+    border-color: color-mix(in oklab, var(--c) 50%, var(--rule));
   }
-  .sig-xs {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--sub-acc, var(--rule-strong));
-    background: color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 10%, var(--bg));
+  aside .threads-list .sig-xs {
+    width: 36px;
+    height: 36px;
+    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
+    background: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .sig-xs svg {
-    width: 28px;
-    height: 28px;
+  aside .threads-list .sig-xs svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
-  .tt {
-    font-family: var(--font-display);
-    font-size: 15px;
-    color: var(--sub-acc, var(--ink));
-    line-height: 1.2;
-    margin-bottom: 4px;
+  aside .threads-list .tt {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 14.5px;
+    line-height: 1.15;
+    color: var(--c);
+    align-self: center;
   }
-  .gloss {
+  aside .threads-list .gloss {
     font-family: var(--font-display);
+    font-style: italic;
     font-size: 13.5px;
     line-height: 1.4;
-    color: var(--ink-soft);
+    color: var(--ink-mute);
+    margin-top: 0;
+    grid-column: 1 / -1;
   }
 
   /* Readings list */

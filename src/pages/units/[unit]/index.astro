@@ -1,6 +1,5 @@
 ---
 import { getEntry } from 'astro:content';
-import ThreadIcon from '../../../components/ThreadIcon.astro';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
@@ -156,94 +155,104 @@ const momentJson = JSON.stringify({
   <span class="drop">{dropLetter}</span>{introRest}
 </div>
 
-<!-- ── Threads grid ── -->
-<div class="threads">
-
-  <!-- Philosophy -->
-  <div class="thread" style="--thread-acc: var(--acc-philosophy);">
-    <div class="thread-head">
-      <div class="sigil">
-        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="20" cy="20" r="14" stroke="currentColor"/>
-          <circle cx="20" cy="20" r="8" stroke="currentColor"/>
-          <circle cx="20" cy="20" r="1.8" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <h3>Philosophy</h3>
+<!-- ── Thread buttons ── -->
+<section class="thread-section">
+  <div class="thread-frieze">
+    <span class="frieze-label">The Four Threads</span>
+    <div class="frieze-band" aria-hidden="true">
+      <PeriodMotif unit={unit} role={6} />
     </div>
-    <ul>
-      {philosophy.data.threads.map((t) => (
-        <li>
-          <a href={`/units/${unit}/philosophy#${t.id}`}>
-            <span class="sigil sm"><ThreadIcon thread={t.id} size={20} /></span>
-            <span>{t.label}</span>
-            <span class="arrow">→</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <span class="frieze-label">Unit {unitNumber} · {meta.period}</span>
   </div>
+  <div class="thread-buttons">
 
-  <!-- Visual Art — header + vertical split -->
-  <div class="thread split" style="--thread-acc: var(--acc-art);">
-    <div class="thread-head">
-      <div class="sigil">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
-          <path d="M20 6 L28 14 L28 26 L20 34 L12 26 L12 14 Z"/>
-        </svg>
-      </div>
-      <h3>Visual Art</h3>
-    </div>
-    <div class="split-body">
-      <a class="half" href={`/units/${unit}/art`}>
-        <div class="sigil">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
-            <circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+    <!-- Philosophy -->
+    <a class="thread-btn" href={`/units/${unit}/philosophy`}>
+      <div class="btn-top">
+        <div class="btn-sigil">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="20" r="14"/>
+            <circle cx="20" cy="20" r="8"/>
+            <circle cx="20" cy="20" r="1.8" fill="#F6F1E8" stroke="none"/>
           </svg>
         </div>
-        <div class="lbl">Painting</div>
-      </a>
-      <a class="half" href={`/units/${unit}/sculpture`}>
-        <div class="sigil">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+        <div class="btn-label">Philosophy</div>
+      </div>
+      <div class="btn-bottom">
+        <div class="btn-caption">Argument, faith, the human position</div>
+        <div class="btn-footer">
+          <span>Open thread</span>
+          <span class="btn-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Painting -->
+    <a class="thread-btn" href={`/units/${unit}/art`}>
+      <div class="btn-top">
+        <span class="btn-eyebrow">Visual Art</span>
+        <div class="btn-sigil">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
+            <circle cx="20" cy="20" r="1.5" fill="#F6F1E8" stroke="none"/>
+          </svg>
+        </div>
+        <div class="btn-label">Painting</div>
+      </div>
+      <div class="btn-bottom">
+        <div class="btn-caption">Figure, space, light, surface</div>
+        <div class="btn-footer">
+          <span>Open thread</span>
+          <span class="btn-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Sculpture -->
+    <a class="thread-btn" href={`/units/${unit}/sculpture`}>
+      <div class="btn-top">
+        <span class="btn-eyebrow">Visual Art</span>
+        <div class="btn-sigil">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z"/>
             <path d="M6 14 L20 22 L34 14"/>
             <line x1="20" y1="22" x2="20" y2="36"/>
           </svg>
         </div>
-        <div class="lbl">Sculpture</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Music -->
-  <div class="thread" style="--thread-acc: var(--acc-music);">
-    <div class="thread-head">
-      <div class="sigil">
-        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 24 A 14 14 0 0 1 34 24" stroke="currentColor"/>
-          <circle cx="20" cy="24" r="2" fill="currentColor" stroke="none"/>
-          <line x1="6" y1="32" x2="34" y2="32" stroke="currentColor"/>
-        </svg>
+        <div class="btn-label">Sculpture</div>
       </div>
-      <h3>Music</h3>
-    </div>
-    <ul>
-      {music.data.threads.map((t) => (
-        <li>
-          <a href={`/units/${unit}/music#${t.id}`}>
-            <span class="sigil sm"><ThreadIcon thread={t.id} size={20} /></span>
-            <span>{t.label}</span>
-            <span class="arrow">→</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
+      <div class="btn-bottom">
+        <div class="btn-caption">Body, volume, material, setting</div>
+        <div class="btn-footer">
+          <span>Open thread</span>
+          <span class="btn-arrow">→</span>
+        </div>
+      </div>
+    </a>
 
-</div>
+    <!-- Music -->
+    <a class="thread-btn" href={`/units/${unit}/music`}>
+      <div class="btn-top">
+        <div class="btn-sigil">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 24 A 14 14 0 0 1 34 24"/>
+            <circle cx="20" cy="24" r="2" fill="#F6F1E8" stroke="none"/>
+            <line x1="6" y1="32" x2="34" y2="32"/>
+          </svg>
+        </div>
+        <div class="btn-label">Music</div>
+      </div>
+      <div class="btn-bottom">
+        <div class="btn-caption">Texture, consonance, structure</div>
+        <div class="btn-footer">
+          <span>Open thread</span>
+          <span class="btn-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
 
 <!-- ── Historical Moment ── -->
 <div class="section-label" style="padding-top: 72px;">
@@ -574,6 +583,7 @@ const momentJson = JSON.stringify({
   /* ── About prose ────────────────────────────────────────────── */
   .about {
     max-width: var(--measure);
+    margin: 0 auto;
     font-size: 19px;
     line-height: 1.65;
     color: var(--ink-mute);
@@ -591,132 +601,138 @@ const momentJson = JSON.stringify({
     letter-spacing: -0.02em;
   }
 
-  /* ── Threads grid ───────────────────────────────────────────── */
-  .threads {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
+  /* ── Thread buttons ─────────────────────────────────────────── */
+  .thread-section {
     margin-top: 48px;
   }
-  @media (max-width: 1000px) { .threads { grid-template-columns: 1fr; } }
 
-  .thread {
-    background: var(--bg-raised);
+  .thread-frieze {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 4px 14px;
+  }
+  .frieze-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .frieze-band {
+    flex: 1;
+    overflow: hidden;
+    height: 72px;
+  }
+  .frieze-band svg {
+    display: block;
+    width: 100%;
+    height: 72px;
   }
 
-  .thread-head {
-    padding: 22px 20px 18px;
+  .thread-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .thread-buttons { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .thread-buttons { grid-template-columns: 1fr; } }
+
+  .thread-btn {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    background: var(--bg);
+    border: 1px solid var(--mark-highlight);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 160ms ease;
+  }
+  .thread-btn:hover { border-color: var(--mark-primary); }
+  .thread-btn:hover .btn-top { filter: brightness(1.07); }
+  .thread-btn:hover .btn-arrow { transform: translateX(2px); }
+  @media (max-width: 480px) { .thread-btn { height: auto; } }
+
+  .btn-top {
+    flex: 0 0 62%;
+    background: var(--mark-primary);
+    padding: 22px 18px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--rule);
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+    transition: filter 160ms ease;
   }
 
-  /* Domain-level sigil box */
-  .sigil {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg-sunken);
+  .btn-eyebrow {
+    position: absolute;
+    top: 12px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,0.65);
+  }
+
+  .btn-sigil {
+    width: 64px;
+    height: 64px;
+    border: 1.25px solid rgba(246,241,232,0.65);
+    background: rgba(0,0,0,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color 200ms ease;
     flex-shrink: 0;
   }
-  .sigil svg {
-    width: 24px;
-    height: 24px;
-    color: var(--thread-acc, var(--ink-mute));
-    transition: color 200ms ease;
+  .btn-sigil svg {
+    width: 38px;
+    height: 38px;
   }
-  /* Small inline sigil wraps ThreadIcon */
-  .sigil.sm {
-    width: 30px;
-    height: 30px;
-    flex: 0 0 30px;
-  }
-  .sigil.sm svg,
-  .sigil.sm :global(svg) { width: 20px; height: 20px; }
 
-  .thread-head h3 {
+  .btn-label {
     font-family: var(--font-display);
+    font-style: italic;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 30px;
     line-height: 1;
-    letter-spacing: 0.02em;
-    margin: 0;
-    color: var(--thread-acc, var(--ink));
+    color: #F6F1E8;
+  }
+
+  .btn-bottom {
+    flex: 1;
+    padding: 12px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn-caption {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--ink-mute);
     text-align: center;
   }
 
-  .thread ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .btn-footer {
     display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .thread ul li { border-bottom: 1px solid var(--rule); }
-  .thread ul li:last-child { border-bottom: 0; }
-  .thread ul li a {
-    display: grid;
-    grid-template-columns: 32px 1fr auto;
+    justify-content: space-between;
     align-items: center;
-    gap: 14px;
-    padding: 16px 24px;
-    font-family: var(--font-display);
-    font-size: 16px;
-    color: var(--ink-mute);
-    transition: color 160ms ease, background 160ms ease;
-  }
-  .thread ul li a .arrow {
     font-family: var(--font-mono);
-    color: var(--rule-strong);
-    transition: transform 160ms ease, color 160ms ease;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
   }
-  .thread ul li a:hover { color: var(--ink); background: rgba(255,255,255,0.015); }
-  .thread ul li a:hover .sigil { border-color: var(--ink-mute); }
-  .thread ul li a:hover .arrow { color: var(--acc); transform: translateX(3px); }
-
-  /* Visual Art split card */
-  .thread.split .split-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex: 1;
-  }
-  .thread.split .half {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 28px 16px;
-    color: var(--ink);
-    transition: background 160ms ease;
-  }
-  .thread.split .half + .half { border-left: 1px solid var(--rule); }
-  .thread.split .half:hover { background: rgba(255,255,255,0.02); }
-  .thread.split .half:hover .sigil { border-color: var(--ink-mute); }
-  .thread.split .half .lbl {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 17px;
-    letter-spacing: 0.01em;
-    color: var(--thread-acc, var(--ink));
-  }
-  .thread.split .half .sigil { width: 40px; height: 40px; }
-  .thread.split .half .sigil svg { width: 22px; height: 22px; }
-
-  @media (max-width: 560px) {
-    .thread.split .split-body { grid-template-columns: 1fr; }
-    .thread.split .half + .half { border-left: 0; border-top: 1px solid var(--rule); }
+  .btn-arrow {
+    color: var(--mark-primary);
+    transition: transform 160ms ease;
   }
 
   /* ── Historical Moment ──────────────────────────────────────── */
