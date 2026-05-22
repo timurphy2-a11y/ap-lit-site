@@ -1,15 +1,26 @@
 ---
+// ImageBlock.astro
+// Thin wrapper around ImageCaption that applies a width-variant modifier
+// class to the <figure> element via ImageCaption's widthVariant prop.
+//
+// width: 'inset'  — ~480px, centred  (secondary image, portrait or detail)
+//        'full'   — ~860px, centred  (dominant image, landscape)
+//        'bleed'  — 100vw, breaks out of sr-page padding (atmospheric)
+//        'prose'  — constrained to reading column (legacy alias for 'full')
+//        'narrow' — ~420px, centred  (legacy alias for 'inset')
+
 import ImageCaption from './ImageCaption.astro';
 
 interface Props {
-  src: string;
-  alt: string;
-  caption?: string;
-  credit?: string;
+  src:          string;
+  alt:          string;
+  caption?:     string;
+  credit?:      string;
   figureNumber?: number;
-  accent?: 'pachinko' | 'tfa';
-  width?: 'full' | 'prose' | 'narrow';
+  accent?:      'pachinko' | 'tfa';
+  width?:       'inset' | 'full' | 'bleed' | 'prose' | 'narrow';
 }
+
 const {
   src,
   alt,
@@ -17,17 +28,19 @@ const {
   credit,
   figureNumber,
   accent,
-  width = 'prose',
+  width = 'full',
 } = Astro.props;
+
+// Normalise legacy width aliases
+const normalised = width === 'prose' ? 'full' : width === 'narrow' ? 'inset' : width;
 ---
 
-<div class={`sr-image-block sr-image-block--${width}`}>
-  <ImageCaption
-    src={src}
-    alt={alt}
-    caption={caption}
-    credit={credit}
-    figureNumber={figureNumber}
-    accent={accent}
-  />
-</div>
+<ImageCaption
+  src={src}
+  alt={alt}
+  caption={caption}
+  credit={credit}
+  figureNumber={figureNumber}
+  accent={accent}
+  widthVariant={`sr-image-caption--${normalised}`}
+/>

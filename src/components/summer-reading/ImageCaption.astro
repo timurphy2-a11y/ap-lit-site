@@ -2,22 +2,28 @@
 // ImageCaption.astro
 // Inline figure + caption in the prose flow.
 // Spec: 04-spoke-page.md
+//
+// widthVariant: optional modifier class applied to the <figure>.
+// Used by ImageBlock to apply sr-image-caption--inset/full/bleed.
+// When used directly in MDX (no width context) leave it unset.
 
 interface Props {
-  src:          string;
-  alt:          string;
-  figureNumber: number;
-  caption:      string;
-  credit?:      string;
-  accent?:      'pachinko' | 'tfa';
+  src:           string;
+  alt:           string;
+  figureNumber:  number;
+  caption:       string;
+  credit?:       string;
+  accent?:       'pachinko' | 'tfa';
+  widthVariant?: string;
 }
 
-const { src, alt, figureNumber, caption, credit, accent = 'pachinko' } = Astro.props;
+const { src, alt, figureNumber, caption, credit, accent = 'pachinko', widthVariant } = Astro.props;
 const eyebrowColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-orange)';
 const figLabel = `FIG ${String(figureNumber).padStart(2, '0')}`;
+const figureClass = ['sr-image-caption', widthVariant].filter(Boolean).join(' ');
 ---
 
-<figure class="sr-image-caption">
+<figure class={figureClass}>
   <img src={src} alt={alt} class="sr-image-caption-img" loading="lazy" />
   <figcaption class="sr-image-caption-caption">
     <span class="sr-image-caption-fig" style={`color: ${eyebrowColor}`}>{figLabel}</span>
@@ -36,9 +42,9 @@ const figLabel = `FIG ${String(figureNumber).padStart(2, '0')}`;
     display:         block;
     width:           100%;
     height:          auto;
-    max-height:      60vh;
+    max-height:      65vh;
     object-fit:      cover;
-    object-position: center;
+    object-position: center top;
     border:          1px solid var(--color-rule);
   }
 
