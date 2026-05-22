@@ -1,0 +1,93 @@
+---
+// ImageBlock.astro
+// Standalone image with optional caption, supporting three width variants:
+//   inset  — half-column (~480px), centered
+//   full   — content-column width (~860px), centered
+//   bleed  — true edge-to-edge
+//
+// All variants: max-height 60vh (bleed: 70vh for atmospheric openers).
+
+interface Props {
+  src:        string;
+  alt:        string;
+  width?:     'inset' | 'full' | 'bleed';
+  caption?:   string;
+  credit?:    string;
+  accent?:    'pachinko' | 'tfa';
+}
+
+const {
+  src,
+  alt,
+  width = 'full',
+  caption,
+  credit,
+  accent = 'pachinko',
+} = Astro.props;
+
+const eyebrowColor = accent === 'tfa' ? 'var(--t-terra)' : 'var(--p-orange)';
+---
+
+<figure class={`image-block image-block--${width}`}>
+  <img src={src} alt={alt} class="image-block-img" loading="lazy" />
+  {(caption || credit) && (
+    <figcaption class="image-block-caption">
+      {caption && <span class="image-block-caption-text">{caption}</span>}
+      {credit  && <span class="image-block-credit" style={`color: ${eyebrowColor}`}> — {credit}</span>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  /* ── shared ── */
+  .image-block {
+    margin: var(--s-8) 0;
+    padding: 0;
+  }
+
+  .image-block-img {
+    display:    block;
+    width:      100%;
+    height:     auto;
+    max-height: 60vh;
+    object-fit: cover;
+    object-position: center;
+    border:     1px solid var(--color-rule);
+  }
+
+  .image-block-caption {
+    margin-top:  var(--s-2);
+    font-family: var(--font-body);
+    font-size:   var(--t-meta);
+    line-height: var(--lh-meta);
+    color:       var(--color-muted);
+  }
+
+  .image-block-credit {
+    opacity: 0.7;
+  }
+
+  /* ── width variants ── */
+  .image-block--inset {
+    max-width:    480px;
+    margin-left:  auto;
+    margin-right: auto;
+  }
+
+  .image-block--full {
+    max-width:    860px;
+    margin-left:  auto;
+    margin-right: auto;
+  }
+
+  /* bleed: true edge-to-edge; taller cap for atmospheric use */
+  .image-block--bleed {
+    max-width:    100vw;
+    margin-left:  calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+
+  .image-block--bleed .image-block-img {
+    max-height: 70vh;
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+// ProseBlock.astro
+// Constrained prose column within a spoke page.
+// Keeps text at a readable measure (max 560px) regardless of the
+// surrounding grid or layout width.
+//
+// align: 'left' (default) | 'right' | 'center'
+
+interface Props {
+  align?: 'left' | 'right' | 'center';
+}
+
+const { align = 'left' } = Astro.props;
+---
+
+<div class={`prose-block prose-block--${align}`}>
+  <slot />
+</div>
+
+<style>
+  .prose-block {
+    max-width:     560px;
+    width:         100%;
+    padding:       0;
+    margin-top:    2rem;
+    margin-bottom: 2rem;
+  }
+
+  .prose-block--left   { margin-left: 0;    margin-right: auto; }
+  .prose-block--right  { margin-left: auto; margin-right: 0;    }
+  .prose-block--center { margin-left: auto; margin-right: auto; }
+
+  /* Text is always left-aligned regardless of block alignment */
+  .prose-block :global(*) {
+    text-align: left;
+  }
+</style>

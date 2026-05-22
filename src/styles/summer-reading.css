@@ -183,7 +183,7 @@
 .sr-spoke-content {
   max-width:     var(--content-prose);
   margin-inline: auto;
-  padding:       var(--s-12) var(--gutter-lg);
+  padding:       var(--s-12) clamp(1.5rem, 5vw, 5rem);
 }
 
 /* Two-column with rail (full spoke layout) */
@@ -193,7 +193,7 @@
   gap:       var(--s-10);
   max-width: calc(var(--content-prose) + 320px + var(--s-10));
   margin-inline: auto;
-  padding:   var(--s-12) var(--gutter-lg);
+  padding:   var(--s-12) clamp(1.5rem, 5vw, 5rem);
   align-items: start;
 }
 
