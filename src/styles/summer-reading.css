@@ -183,7 +183,7 @@
 .sr-spoke-content {
   max-width:     var(--content-prose);
   margin-inline: auto;
-  padding:       var(--s-12) var(--gutter-lg);
+  padding:       var(--s-12) clamp(1.5rem, 5vw, 5rem);
 }
 
 /* Two-column with rail (full spoke layout) */
@@ -193,7 +193,7 @@
   gap:       var(--s-10);
   max-width: calc(var(--content-prose) + 320px + var(--s-10));
   margin-inline: auto;
-  padding:   var(--s-12) var(--gutter-lg);
+  padding:   var(--s-12) clamp(1.5rem, 5vw, 5rem);
   align-items: start;
 }
 
@@ -2125,15 +2125,19 @@
 
 /* ── ProseBlock ──────────────────────────────────────────────────────── */
 .sr-prose-block {
-  max-width:        68ch;
+  max-width:        560px;
+  width:            100%;
   font-size:        1rem;
   line-height:      1.75;
   color:            var(--color-ink);
 }
 
-.sr-prose-block--left   { margin-right: auto; }
-.sr-prose-block--center { margin-left: auto; margin-right: auto; text-align: center; }
-.sr-prose-block--right  { margin-left: auto; }
+.sr-prose-block--left   { margin-left: 0; margin-right: auto; }
+.sr-prose-block--center { margin-left: auto; margin-right: auto; }
+.sr-prose-block--right  { margin-left: auto; margin-right: 0; }
+
+/* Text is always left-aligned regardless of block alignment */
+.sr-prose-block * { text-align: left; }
 
 .sr-prose-block--lede > p:first-child {
   font-size:        1.125rem;
@@ -2149,9 +2153,9 @@
 
 /* ── ImageBlock ──────────────────────────────────────────────────────── */
 .sr-image-block { margin: 1.5rem 0; }
-.sr-image-block--full { width: 100%; }
-.sr-image-block--prose { max-width: 68ch; }
-.sr-image-block--narrow { max-width: 42ch; margin-left: auto; margin-right: auto; }
+.sr-image-block--full   { max-width: 860px; margin-left: auto; margin-right: auto; }
+.sr-image-block--prose  { max-width: 560px; margin-left: auto; margin-right: auto; }
+.sr-image-block--narrow { max-width: 420px; margin-left: auto; margin-right: auto; }
 
 /* ── SideBySide ──────────────────────────────────────────────────────── */
 .sr-side-by-side {
