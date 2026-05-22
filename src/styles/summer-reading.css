@@ -2135,6 +2135,8 @@
   font-size:        1rem;
   line-height:      1.75;
   color:            var(--color-ink);
+  margin-top:       2.5rem;
+  margin-bottom:    2.5rem;
 }
 
 .sr-prose-block--left   { margin-left: 0; margin-right: auto; }
@@ -2185,12 +2187,36 @@
 
 /* All images: cap height so no single image dominates the viewport */
 .sr-image-caption img {
-  width:           100%;
-  height:          auto;
-  max-height:      65vh;
+  max-height:      50vh;
   object-fit:      cover;
-  object-position: center top;
-  display:         block;
+  object-position: center;
+}
+
+/* ── Vertical rhythm — spoke element spacing ─────────────────────────── */
+
+/* Extra space after SectionOpener before the first content block */
+.sr-section-opener + .sr-prose-block,
+.sr-section-opener + .sr-image-caption,
+.sr-section-opener + .sr-term-card {
+  margin-top: 2rem;
+}
+
+/* Space between ProseBlock and TermCard */
+.sr-prose-block + .sr-term-card,
+.sr-term-card + .sr-prose-block {
+  margin-top: 2rem;
+}
+
+/* Generous space before and after PullQuote */
+.sr-prose-block + .sr-pullquote,
+.sr-term-card  + .sr-pullquote {
+  margin-top: 3rem;
+}
+
+.sr-pullquote + .sr-prose-block,
+.sr-pullquote + .sr-term-card,
+.sr-pullquote + .sr-image-caption {
+  margin-top: 3rem;
 }
 
 /* ── SideBySide ──────────────────────────────────────────────────────── */
