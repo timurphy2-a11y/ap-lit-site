@@ -51,7 +51,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
     <p class="lede">
       Political upheaval, intellectual revolution, and literary landmark — placed
       in sequence from the medieval foundations to the Cold War. Filter by unit
-      or by thread, then read how each moment shapes the works on your syllabus.
+      or by thread; click any entry to open its historical context.
     </p>
 
     <!-- Filters ─────────────────────────────────────────── -->
@@ -149,8 +149,11 @@ const sorted = [...ENTRIES].sort((a, b) => {
               <span class="swatch"></span>{typeMeta.label}
             </div>
             <div class="body">
-              <h3 class="title">{entry.title}</h3>
-              {(entry as RegularEntry).note && <p class="note">{(entry as RegularEntry).note}</p>}
+              <h3
+                class="title note-trigger"
+                data-note={(entry as RegularEntry).note}
+                tabindex="0"
+              >{entry.title}</h3>
             </div>
           </div>
         );
@@ -169,6 +172,14 @@ const sorted = [...ENTRIES].sort((a, b) => {
     </div>
 
   </div><!-- /.tl-wrap -->
+
+  <!-- Note popover ────────────────────────────────────────────────────────── -->
+  <div id="tl-popover" class="tl-popover">
+    <button id="pop-close" class="pop-close" aria-label="Close">×</button>
+    <p class="pop-entry"></p>
+    <p class="pop-note"></p>
+  </div>
+
 </div><!-- /.tl-page -->
 
 </Layout>
@@ -202,6 +213,80 @@ const sorted = [...ENTRIES].sort((a, b) => {
       stroke: RULE, 'stroke-width': 0.4 }));
     svg.appendChild(el('line', { x1: 0, y1: blockY + blockH + 4, x2: W, y2: blockY + blockH + 4,
       stroke: RULE, 'stroke-width': 0.4 }));
+  })();
+</script>
+
+<!-- ─── Note popover ─────────────────────────────────────────────────────────── -->
+<script is:inline>
+  (function initPopover() {
+    const pop      = document.getElementById('tl-popover');
+    const popNote  = pop && pop.querySelector('.pop-note');
+    const popEntry = pop && pop.querySelector('.pop-entry');
+    const popClose = document.getElementById('pop-close');
+    if (!pop || !popNote || !popEntry) return;
+
+    let activeRow = null;
+
+    function openPop(rowEl, triggerEl) {
+      const note  = triggerEl.dataset.note || '';
+      const title = triggerEl.textContent.trim();
+      const pVal  = getComputedStyle(rowEl).getPropertyValue('--p').trim();
+
+      popNote.textContent  = note;
+      popEntry.textContent = title;
+      pop.style.setProperty('--pop-accent', pVal);
+
+      const rect  = rowEl.getBoundingClientRect();
+      const POP_W = 380;
+      const POP_H = 150;
+      let left = rect.left + 100;
+      let top  = rect.bottom + 8;
+
+      left = Math.max(16, Math.min(left, window.innerWidth - POP_W - 16));
+      if (top + POP_H > window.innerHeight - 16) {
+        top = Math.max(16, rect.top - POP_H - 8);
+      }
+
+      pop.style.left = left + 'px';
+      pop.style.top  = top + 'px';
+      pop.classList.add('open');
+      activeRow = rowEl;
+    }
+
+    function closePop() {
+      pop.classList.remove('open');
+      activeRow = null;
+    }
+
+    document.addEventListener('click', function(e) {
+      const trigger = e.target.closest('.note-trigger');
+      if (trigger) {
+        const rowEl = trigger.closest('.row');
+        if (activeRow === rowEl && pop.classList.contains('open')) {
+          closePop();
+        } else {
+          openPop(rowEl, trigger);
+        }
+        return;
+      }
+      if (!pop.contains(e.target)) closePop();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePop();
+      if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('note-trigger')) {
+        e.preventDefault();
+        document.activeElement.click();
+      }
+    });
+
+    popClose && popClose.addEventListener('click', closePop);
+
+    var scrollTimer;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(closePop, 200);
+    }, { passive: true });
   })();
 </script>
 
@@ -622,5 +707,67 @@ const sorted = [...ENTRIES].sort((a, b) => {
     font-size: 18px;
     color: var(--ink-soft);
     border-bottom: 1px solid var(--rule);
+  }
+
+  /* ─── Note trigger ─────────────────────────────────────────────────────── */
+  .tl-page .row .title.note-trigger {
+    cursor: pointer;
+    transition: color 120ms;
+  }
+  .tl-page .row .title.note-trigger:hover {
+    color: color-mix(in oklab, var(--p) 85%, var(--ink));
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: color-mix(in oklab, var(--p) 50%, var(--rule));
+    text-underline-offset: 3px;
+  }
+  .tl-page .row .title.note-trigger:focus-visible {
+    outline: 2px solid var(--p);
+    outline-offset: 2px;
+  }
+
+  /* ─── Note popover ─────────────────────────────────────────────────────── */
+  .tl-popover {
+    position: fixed;
+    z-index: 200;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    background: var(--bg-raised);
+    border: 1px solid var(--rule-strong);
+    border-left: 4px solid var(--pop-accent, var(--acc));
+    padding: 18px 24px 20px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+    display: none;
+  }
+  .tl-popover.open { display: block; }
+  .tl-popover .pop-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 1;
+  }
+  .tl-popover .pop-close:hover { color: var(--ink); }
+  .tl-popover .pop-entry {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+    padding-right: 24px;
+  }
+  .tl-popover .pop-note {
+    font-family: var(--font-cg);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+    margin: 0;
   }
 </style>
