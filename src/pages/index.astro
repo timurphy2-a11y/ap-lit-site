@@ -1,17 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
+import { PERIOD_MOTIFS } from '../data/period-motifs';
 import Layout from '../layouts/Layout.astro';
 
 const artEntries = (await getCollection('units', ({ id }) => id.endsWith('/art')))
   .sort((a, b) => a.id.localeCompare(b.id));
 
-const ACCENT: Record<string, string> = {
-  '00-medieval':      '#C9A24B',
-  '01-renaissance':   '#B54C3A',
-  '02-baroque':       '#B07028',
-  '03-enlightenment': '#698BA1',
-  '04-romanticism':   '#3D5A6D',
-  '05-modernism':     '#A03828',
+const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: string }> = {
+  '00-medieval':      { accent: '#C9A24B', highlight: '#E0C387', tint: '#EFE2BD' },
+  '01-renaissance':   { accent: '#B54C3A', highlight: '#C68A7A', tint: '#EFD4CC' },
+  '02-baroque':       { accent: '#B07028', highlight: '#D49432', tint: '#EFDEBE' },
+  '03-enlightenment': { accent: '#698BA1', highlight: '#A2B7C8', tint: '#D8E0E7' },
+  '04-romanticism':   { accent: '#3D5A6D', highlight: '#8AA3B5', tint: '#CAD5DD' },
+  '05-modernism':     { accent: '#A03828', highlight: '#D49A8C', tint: '#EDD3CC' },
 };
 ---
 
@@ -44,21 +45,36 @@ const ACCENT: Record<string, string> = {
   <!-- ── Card Codex ────────────────────────────────────────────────── -->
   <div class="codex">
     {artEntries.map((entry) => {
-      const unitId = entry.id.replace('/art', '');
-      const num    = unitId.slice(0, 2);
-      const accent = ACCENT[unitId] ?? '#A07820';
+      const unitId   = entry.id.replace('/art', '');
+      const num      = unitId.slice(0, 2);
+      const pd       = PERIOD_DATA[unitId] ?? PERIOD_DATA['00-medieval'];
+      const { accent, highlight, tint } = pd;
+      const motifSvg = PERIOD_MOTIFS[unitId]?.[1] ?? '';
       const { period, dates, core_text, author } = entry.data;
       return (
-        <a class="codex-card" href={`/units/${unitId}`} style={`--acc: ${accent};`}>
-          <div class="drop">{num}</div>
-          <div class="meta">{dates}</div>
-          <h3>{period}</h3>
-          <div class="anchor">
-            {core_text
-              ? <><em>{core_text}</em><span class="by">{author}</span></>
-              : <span class="no-anchor">Foundation unit</span>
-            }
+        <a class="codex-card" href={`/units/${unitId}`}
+           style={`--acc:${accent}; --hl:${highlight}; --tint:${tint};`}>
+
+          <div class="left-tile">
+            <div class="numeral">{num}</div>
+            <div class="unit-label">UNIT</div>
           </div>
+
+          <div class="card-body">
+            <div class="dates">{dates}</div>
+            <h3>{period}</h3>
+            <div class="anchor">
+              {core_text
+                ? <><em>{core_text}</em><span class="by">{author}</span></>
+                : <span class="no-anchor">Foundation unit</span>
+              }
+            </div>
+          </div>
+
+          <div class="medallion"
+               style={`--mark-primary:${accent}; --mark-highlight:${highlight}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-spot:transparent;`}
+               set:html={motifSvg} />
+
         </a>
       );
     })}
@@ -77,7 +93,7 @@ const ACCENT: Record<string, string> = {
       <!-- Timeline — a tick-mark scale -->
       <a class="res" href="/timeline">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <line x1="4"  y1="20" x2="36" y2="20"/>
             <line x1="8"  y1="14" x2="8"  y2="26"/>
             <line x1="16" y1="16" x2="16" y2="24"/>
@@ -93,7 +109,7 @@ const ACCENT: Record<string, string> = {
       <!-- People — profile reduced to head + shoulder arc -->
       <a class="res" href="/people">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="20" cy="15" r="5"/>
             <path d="M8 32 C 8 24, 32 24, 32 32"/>
           </svg>
@@ -106,7 +122,7 @@ const ACCENT: Record<string, string> = {
       <!-- Compare / Threads — three interwoven strands -->
       <a class="res" href="/compare">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 10 C 14 20, 26 20, 34 10"/>
             <path d="M6 20 C 14 30, 26 10, 34 20"/>
             <path d="M6 30 C 14 20, 26 20, 34 30"/>
@@ -120,7 +136,7 @@ const ACCENT: Record<string, string> = {
       <!-- Painting — a diamond/lozenge: picture plane on its point -->
       <a class="res" href="/seeing-through-paint">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
             <circle class="dot" cx="20" cy="20" r="1.5"/>
           </svg>
@@ -133,7 +149,7 @@ const ACCENT: Record<string, string> = {
       <!-- Music — a fermata arc over a dot: hold this moment -->
       <a class="res" href="/hearing-through-form">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 24 A 14 14 0 0 1 34 24"/>
             <circle class="dot" cx="20" cy="24" r="2"/>
             <line x1="6" y1="32" x2="34" y2="32"/>
@@ -147,7 +163,7 @@ const ACCENT: Record<string, string> = {
       <!-- Sculpture — an axonometric cube: volume made visible -->
       <a class="res" href="/sculpting-through-time">
         <div class="sigil" aria-hidden="true">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 6 L 34 14 L 34 28 L 20 36 L 6 28 L 6 14 Z"/>
             <path d="M6 14 L 20 22 L 34 14"/>
             <line x1="20" y1="22" x2="20" y2="36"/>
@@ -172,6 +188,11 @@ const ACCENT: Record<string, string> = {
 </Layout>
 
 <style>
+  :root {
+    --seal: #5A4022;
+    --iron: #2E3640;
+  }
+
   /* ── Page wrapper ────────────────────────────────────────────── */
   .page {
     padding: 0 var(--gutter);
@@ -230,79 +251,116 @@ const ACCENT: Record<string, string> = {
   .codex {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
+    gap: 16px;
   }
   @media (max-width: 900px) { .codex { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .codex { grid-template-columns: 1fr; } }
 
   .codex-card {
     background: var(--bg-raised);
-    padding: 28px 28px 24px;
     display: grid;
-    grid-template-columns: 72px 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 8px 20px;
-    min-height: 220px;
-    transition: background 160ms ease;
+    grid-template-columns: 92px 1fr;
+    border: 1px solid var(--hl);
+    min-height: 200px;
     position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: background 160ms ease;
   }
   .codex-card:hover { background: #E0D5BD; }
-  .codex-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; height: 100%; width: 3px;
-    background: var(--acc);
-  }
 
-  .codex-card .drop {
-    grid-row: 1 / 4;
+  /* Left illuminated-initial tile */
+  .left-tile {
+    background: var(--tint);
+    border-right: 1px solid var(--hl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 0;
+  }
+  .numeral {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: 72px;
+    font-size: 56px;
     line-height: 0.9;
     color: var(--acc);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
   }
-  .codex-card .meta {
+  .unit-label {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    color: var(--acc);
+    opacity: 0.7;
+    margin-top: 10px;
+  }
+
+  /* Right body column */
+  .card-body {
+    padding: 20px 80px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-body .dates {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    align-self: end;
   }
   .codex-card h3 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin: 0;
     color: var(--ink);
   }
-  .codex-card .anchor {
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-style: italic;
-    color: var(--ink-mute);
-    padding-top: 12px;
+  .card-body .anchor {
+    margin-top: auto;
     border-top: 1px solid var(--rule);
-    align-self: end;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
-  .codex-card .anchor .by {
+  .card-body .anchor em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .card-body .anchor .by {
     font-family: var(--font-ui);
     font-style: normal;
-    font-size: 12px;
-    letter-spacing: 0.08em;
+    font-size: 10px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-left: 6px;
   }
-  .codex-card .anchor .no-anchor {
-    font-style: normal;
+  .card-body .anchor .no-anchor {
+    font-family: var(--font-display);
+    font-size: 14px;
     color: var(--ink-soft);
+  }
+
+  /* Corner medallion */
+  .medallion {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 52px;
+    height: 52px;
+    opacity: 0.92;
+    pointer-events: none;
+  }
+  .medallion :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   /* ── Resources ───────────────────────────────────────────────── */
@@ -332,41 +390,34 @@ const ACCENT: Record<string, string> = {
     transition: background 160ms ease;
   }
   .res:hover { background: var(--bg-raised); }
-  .res:hover .sigil { border-color: var(--ink-mute); }
-  .res:hover .sigil svg { color: var(--ink); stroke: var(--ink); }
-  .res:hover .sigil svg .dot { fill: var(--ink); }
 
   .res .sigil {
     grid-row: 1 / 4;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--rule-strong);
+    background: var(--seal);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color 200ms ease;
-    background: var(--bg-sunken);
     flex-shrink: 0;
   }
   .res .sigil svg {
-    width: 32px;
-    height: 32px;
-    color: var(--ink-mute);
-    stroke: var(--ink-mute);
-    transition: color 200ms ease, stroke 200ms ease;
+    width: 30px;
+    height: 30px;
+    color: var(--bg);
+    stroke: var(--bg);
   }
   .res .sigil svg .dot {
-    fill: var(--ink-mute);
+    fill: var(--bg);
     stroke: none;
-    transition: fill 200ms ease;
   }
 
   .res .kind {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--iron);
     align-self: start;
   }
   .res h4 {
@@ -380,9 +431,9 @@ const ACCENT: Record<string, string> = {
   }
   .res p {
     font-family: var(--font-display);
-    font-size: 15.5px;
+    font-size: 14px;
     line-height: 1.5;
-    color: var(--ink-mute);
+    color: var(--iron);
     margin: 4px 0 0;
     max-width: 42ch;
   }
