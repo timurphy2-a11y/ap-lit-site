@@ -14,3 +14,8 @@ export { default as DiagramBlock } from './DiagramBlock.astro';
 export { default as KeyFigureCard } from './KeyFigureCard.astro';
 export { default as TimelineReveal } from './TimelineReveal.astro';
 export { default as StatusReveal } from './StatusReveal.astro';
+// Scrolly zone architecture (Spoke 1–3 pages)
+export { default as ScrollyZone } from './ScrollyZone.astro';
+export { default as Beat } from './Beat.astro';
+export { default as ZoneSeam } from './ZoneSeam.astro';
+export { default as CascadeEntry } from './CascadeEntry.astro';

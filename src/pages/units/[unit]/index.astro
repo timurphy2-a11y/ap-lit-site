@@ -62,6 +62,17 @@ const ACCENTS: Record<string, { acc: string; philosophy: string; art: string; mu
 };
 const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 
+// Per-unit Historical Moment bar tokens
+const MOMENT_COLORS: Record<string, { goldWash: string; goldWashHover: string; accDeep: string }> = {
+  '00-medieval':      { goldWash: '#F2E6C7', goldWashHover: '#EEDFB5', accDeep: '#A8862E' },
+  '01-renaissance':   { goldWash: '#F2E0DC', goldWashHover: '#EDD4CE', accDeep: '#8F3020' },
+  '02-baroque':       { goldWash: '#F0E4CC', goldWashHover: '#ECDAB8', accDeep: '#885218' },
+  '03-enlightenment': { goldWash: '#E0E8EE', goldWashHover: '#D4DFE7', accDeep: '#4A6A80' },
+  '04-romanticism':   { goldWash: '#D8E2E8', goldWashHover: '#C8D6DE', accDeep: '#2E4455' },
+  '05-modernism':     { goldWash: '#EEE0DD', goldWashHover: '#E8D4D0', accDeep: '#7A2018' },
+};
+const momentColors = MOMENT_COLORS[unit] ?? MOMENT_COLORS['00-medieval'];
+
 // Prev/next labels
 const prevLabel = prevUnit
   ? (await getEntry('units', `${prevUnit}/philosophy`))?.data.period
@@ -95,7 +106,7 @@ const momentJson = JSON.stringify({
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{meta.period} — AP Literature</title>
 </head>
-<body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
+<body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355; --gold-wash:${momentColors.goldWash}; --gold-wash-hover:${momentColors.goldWashHover}; --acc-deep:${momentColors.accDeep};`}>
 
 <!-- ── Top nav ── -->
 <div class="topbar">
@@ -261,20 +272,27 @@ const momentJson = JSON.stringify({
 </div>
 
 <div class="moment-frame">
-  <button class="moment-bar" id="moment-trigger" type="button">
-    <span class="label">The Period</span>
-    <span class="phrase">{hubData.historicalMomentTitle}</span>
-    <span class="chev">Read <span>→</span></span>
+  <button class="moment-bar" id="moment-trigger" type="button" aria-label={`Read the period essay — ${hubData.historicalMomentTitle}`}>
+    <span class="moment-glyph-box" aria-hidden="true">
+      <PeriodMotif unit={unit} role={3} />
+    </span>
+    <span class="moment-eyebrow">The Period</span>
+    <span class="moment-phrase">{hubData.historicalMomentTitle}</span>
+    <span class="moment-cta" aria-hidden="true">
+      <span>Read the period</span><span class="moment-arrow"> →</span>
+    </span>
   </button>
 
-  <div class="htline">
+  <div class="moment-timeline">
     <div class="axis" aria-hidden="true"></div>
     <div class="row">
       {timelineEvents.map((evt) => (
         <div class="node">
           <div class="yr">{evt.year}</div>
-          <div class="tick" aria-hidden="true"></div>
-          <div class="ev">{evt.title}</div>
+          <div class="marker" aria-hidden="true">
+            <PeriodMotif unit={unit} role={3} />
+          </div>
+          <div class="ev" set:html={evt.title} />
         </div>
       ))}
     </div>
@@ -736,117 +754,137 @@ const momentJson = JSON.stringify({
   }
 
   /* ── Historical Moment ──────────────────────────────────────── */
+  :root { --cream: #F6F1E8; }
+
   .moment-frame {
     border: 1px solid var(--rule);
-    background: var(--bg-raised);
+    background: var(--cream);
     margin-bottom: 48px;
   }
+
   .moment-bar {
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto 1fr auto;
     align-items: center;
-    gap: 28px;
-    padding: 22px 28px;
-    background: transparent;
+    gap: 24px;
+    padding: 26px 28px;
+    background: var(--gold-wash);
     border: 0;
     border-bottom: 1px solid var(--rule);
-    cursor: pointer;
-    transition: background 160ms ease;
-    font-family: var(--font-display);
     text-align: left;
+    cursor: pointer;
     color: inherit;
+    transition: background 160ms ease;
   }
-  .moment-bar:hover { background: #E0D5BD; }
-  .moment-bar .label {
-    font-family: var(--font-ui);
-    font-size: 12px;
+  .moment-bar:hover { background: var(--gold-wash-hover); }
+  .moment-bar:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+
+  .moment-glyph-box {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--acc);
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .moment-glyph-box svg { width: 22px; height: 22px; }
+
+  .moment-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    white-space: nowrap;
   }
-  .moment-bar .phrase {
+
+  .moment-phrase {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(26px, 3.2vw, 38px);
+    font-size: clamp(26px, 3.2vw, 40px);
+    line-height: 1;
     color: var(--ink);
     letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  .moment-bar .chev {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--acc);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
-  /* Horizontal timeline */
-  .htline {
-    padding: 40px 28px 28px;
-    position: relative;
+  .moment-cta {
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    background: var(--acc);
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
-  .htline .axis {
+
+  /* Timeline */
+  .moment-timeline {
+    position: relative;
+    padding: 46px 36px 36px;
+    background: var(--cream);
+  }
+  .moment-timeline .axis {
     position: absolute;
-    left: 28px; right: 28px; top: 76px;
+    left: 36px; right: 36px;
+    top: 84px;
     height: 1px;
     background: var(--rule-strong);
   }
-  .htline .row {
+  .moment-timeline .row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     position: relative;
   }
-  .htline .node {
-    position: relative;
-    padding: 0 14px 0 0;
+  .moment-timeline .node {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     align-items: flex-start;
-    gap: 12px;
   }
-  .htline .node .yr {
+  .moment-timeline .node .yr {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: 26px;
-    color: var(--acc);
-    letter-spacing: -0.01em;
+    font-size: 28px;
+    color: var(--acc-deep);
     line-height: 1;
+    letter-spacing: -0.01em;
   }
-  .htline .node .tick {
-    width: 1px; height: 20px;
-    background: var(--rule-strong);
-    margin-left: 2px;
+  .moment-timeline .node .marker {
+    padding: 2px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
-  .htline .node .tick::before {
-    content: '';
-    display: block;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--bg-raised);
-    border: 1px solid var(--acc);
-    margin-left: -4px;
-    margin-top: 18px;
-  }
-  .htline .node .ev {
+  .moment-timeline .node .marker svg { width: 14px; height: 14px; }
+  .moment-timeline .node .ev {
     font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 14px;
     color: var(--ink-mute);
     line-height: 1.35;
-    max-width: 20ch;
+    max-width: 22ch;
     margin-top: 4px;
   }
-  .htline .node .ev em { font-style: italic; color: var(--ink); }
+  .moment-timeline .node .ev em { font-style: italic; color: var(--ink); }
 
   @media (max-width: 900px) {
-    .htline { padding: 24px 20px; }
-    .htline .axis { display: none; }
-    .htline .row { grid-template-columns: 1fr; gap: 16px; }
-    .htline .node .tick { display: none; }
+    .moment-timeline { padding: 24px 20px; }
+    .moment-timeline .axis { display: none; }
+    .moment-timeline .row { grid-template-columns: 1fr; gap: 16px; }
+    .moment-timeline .node .marker { display: none; }
+  }
+  @media (max-width: 720px) {
+    .moment-eyebrow { display: none; }
+    .moment-bar { grid-template-columns: auto 1fr auto; }
   }
 
   /* ── Modal ──────────────────────────────────────────────────── */

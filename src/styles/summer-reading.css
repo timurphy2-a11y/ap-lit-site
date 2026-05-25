@@ -4,6 +4,7 @@
  */
 
 @import './tokens.css';
+@import './scrolly-zones.css';
 
 /* ── Legacy aliases (keep for backward compat with Phase 1 content) ─── */
 :root {
