@@ -1,55 +1,626 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import APLitTimeline from '../components/APLitTimeline.jsx';
+import { ENTRIES } from '../data/timeline-entries';
+import type { RegularEntry } from '../data/timeline-entries';
+
+type UnitKey = '00' | '01' | '02' | '03' | '04' | '05';
+type TypeKey = 'POL' | 'phil' | 'paint' | 'sculp' | 'music';
+
+const UNIT_META: Record<UnitKey, { name: string; url: string }> = {
+  '00': { name: 'Medieval',      url: '/units/00-medieval/' },
+  '01': { name: 'Renaissance',   url: '/units/01-renaissance/' },
+  '02': { name: 'Baroque',       url: '/units/02-baroque/' },
+  '03': { name: 'Enlightenment', url: '/units/03-enlightenment/' },
+  '04': { name: 'Romantic',      url: '/units/04-romanticism/' },
+  '05': { name: 'Modernist',     url: '/units/05-modernism/' },
+};
+
+const TYPE_META: Record<TypeKey, { label: string; color: string; full: string }> = {
+  POL:   { label: 'POL',   color: 'var(--iron)',     full: 'Political · Military' },
+  phil:  { label: 'PHIL',  color: 'var(--th-phil)',  full: 'Philosophy' },
+  paint: { label: 'PAINT', color: 'var(--th-paint)', full: 'Painting' },
+  sculp: { label: 'SCULP', color: 'var(--th-sculp)', full: 'Sculpture' },
+  music: { label: 'MUSIC', color: 'var(--th-music)', full: 'Music' },
+};
+
+const sorted = [...ENTRIES].sort((a, b) => {
+  if (a.year !== b.year) return a.year - b.year;
+  if (a.type === 'AP' && b.type !== 'AP') return 1;
+  if (b.type === 'AP' && a.type !== 'AP') return -1;
+  return 0;
+});
 ---
 
 <Layout title="Historical Timeline — AP Literature">
 
-<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
-<section class="g-hero">
-  <div class="g-wrap">
-    <p class="g-label">§ V &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Historical Context</p>
-    <h1 class="g-title">Historical Timeline</h1>
-    <p class="g-thesis">
-      Political upheaval, intellectual revolution, and literary landmark — placed in sequence
-      from the Reformation to the Cold War. Filter by era or event type, then click any entry
-      to read how it shapes the works on your syllabus.
-    </p>
-  </div>
-</section>
+<div class="tl-page">
 
-<APLitTimeline client:load />
+  <!-- Spectrum strip — six equal period-colour blocks, full width -->
+  <div class="header-band" aria-hidden="true">
+    <svg id="header-svg" viewBox="0 0 1152 36" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div class="tl-wrap">
+
+    <div class="breadcrumb">§ V · Shared Resource · Historical Context</div>
+
+    <div class="doc-head">
+      <h1>Historical <em>Timeline</em></h1>
+    </div>
+
+    <p class="lede">
+      Political upheaval, intellectual revolution, and literary landmark — placed
+      in sequence from the medieval foundations to the Cold War. Filter by unit
+      or by thread, then read how each moment shapes the works on your syllabus.
+    </p>
+
+    <!-- Filters ─────────────────────────────────────────── -->
+    <div class="filters">
+
+      <div class="filter-row" id="filter-units">
+        <button class="pill all active" data-unit="all">
+          <span class="dot" style="background: var(--ink-soft)"></span>All units
+        </button>
+        <button class="pill" data-unit="00" style="--c: var(--acc-00)">
+          <span class="dot"></span>Medieval
+        </button>
+        <button class="pill" data-unit="01" style="--c: var(--acc-01)">
+          <span class="dot"></span>Renaissance
+        </button>
+        <button class="pill" data-unit="02" style="--c: var(--acc-02)">
+          <span class="dot"></span>Baroque
+        </button>
+        <button class="pill" data-unit="03" style="--c: var(--acc-03)">
+          <span class="dot"></span>Enlightenment
+        </button>
+        <button class="pill" data-unit="04" style="--c: var(--acc-04)">
+          <span class="dot"></span>Romanticism
+        </button>
+        <button class="pill" data-unit="05" style="--c: var(--acc-05)">
+          <span class="dot"></span>Modernism
+        </button>
+      </div>
+
+      <div class="filter-row" id="filter-types">
+        <button class="pill all active" data-type="all">
+          <span class="dot" style="background: var(--ink-soft)"></span>All events
+        </button>
+        <button class="pill" data-type="POL" style="--c: var(--iron)">
+          <span class="dot"></span>Political
+        </button>
+        <button class="pill" data-type="phil" style="--c: var(--th-phil)">
+          <span class="dot"></span>Philosophy
+        </button>
+        <button class="pill" data-type="paint" style="--c: var(--th-paint)">
+          <span class="dot"></span>Painting
+        </button>
+        <button class="pill" data-type="sculp" style="--c: var(--th-sculp)">
+          <span class="dot"></span>Sculpture
+        </button>
+        <button class="pill" data-type="music" style="--c: var(--th-music)">
+          <span class="dot"></span>Music
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Timeline rows ───────────────────────────────────── -->
+    <div class="timeline" id="timeline">
+      {sorted.map(entry => {
+        const unit = entry.unit as UnitKey;
+        const unitMeta = UNIT_META[unit];
+
+        if (entry.type === 'AP') {
+          return (
+            <div
+              class="row ap-row"
+              style={`--p: var(--acc-${unit})`}
+              data-unit={unit}
+              data-type="AP"
+            >
+              <div class="year">{entry.year}</div>
+              <div class="anchor">
+                <div class="anchor-meta">
+                  <div class="label">Anchor text</div>
+                  <div class="badge">AP Lit</div>
+                  <div class="unit-label">Unit {unit} · {unitMeta.name}</div>
+                </div>
+                <div class="anchor-body">
+                  <div class="ap-title">{entry.apTitle}</div>
+                  <div class="author">{entry.apAuthor}</div>
+                  <p class="note">{entry.apNote}</p>
+                  <a class="read" href={unitMeta.url}>Read historical context · →</a>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        const typeMeta = TYPE_META[entry.type as TypeKey];
+        return (
+          <div
+            class="row"
+            style={`--p: var(--acc-${unit}); --c: ${typeMeta.color}`}
+            data-unit={unit}
+            data-type={entry.type}
+          >
+            <div class="year">{entry.year}</div>
+            <div class="chip" title={typeMeta.full}>
+              <span class="swatch"></span>{typeMeta.label}
+            </div>
+            <div class="body">
+              <h3 class="title">{entry.title}</h3>
+              {(entry as RegularEntry).note && <p class="note">{(entry as RegularEntry).note}</p>}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Legend ──────────────────────────────────────────── -->
+    <div class="legend">
+      <span class="group-label">Period bar</span>
+      <span class="item"><span class="bar" style="background: var(--acc-00)"></span>Medieval</span>
+      <span class="item"><span class="bar" style="background: var(--acc-01)"></span>Renaissance</span>
+      <span class="item"><span class="bar" style="background: var(--acc-02)"></span>Baroque</span>
+      <span class="item"><span class="bar" style="background: var(--acc-03)"></span>Enlightenment</span>
+      <span class="item"><span class="bar" style="background: var(--acc-04)"></span>Romantic</span>
+      <span class="item"><span class="bar" style="background: var(--acc-05)"></span>Modernist</span>
+    </div>
+
+  </div><!-- /.tl-wrap -->
+</div><!-- /.tl-page -->
 
 </Layout>
 
-<style>
-  .g-wrap { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+<!-- ─── Spectrum strip builder ──────────────────────────────────────────────── -->
+<script is:inline>
+  (function buildBand() {
+    const W = 1152, H = 36;
+    const RULE  = '#C9BDA5';
+    const CREAM = '#F4EDDF';
+    const ACCENTS = ['#C9A24B', '#B54C3A', '#B07028', '#698BA1', '#3D5A6D', '#A03828'];
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const node = document.createElementNS(NS, tag);
+      for (const k in attrs) node.setAttribute(k, attrs[k]);
+      return node;
+    }
+    const svg = document.getElementById('header-svg');
+    if (!svg) return;
+    svg.appendChild(el('rect', { x: 0, y: 0, width: W, height: H, fill: CREAM }));
+    const blockH = 22;
+    const blockY = (H - blockH) / 2;
+    const gap    = 3;
+    const blockW = (W - gap * (ACCENTS.length - 1)) / ACCENTS.length;
+    ACCENTS.forEach((color, i) => {
+      svg.appendChild(el('rect', {
+        x: i * (blockW + gap), y: blockY, width: blockW, height: blockH, fill: color,
+      }));
+    });
+    svg.appendChild(el('line', { x1: 0, y1: blockY - 4, x2: W, y2: blockY - 4,
+      stroke: RULE, 'stroke-width': 0.4 }));
+    svg.appendChild(el('line', { x1: 0, y1: blockY + blockH + 4, x2: W, y2: blockY + blockH + 4,
+      stroke: RULE, 'stroke-width': 0.4 }));
+  })();
+</script>
 
-  /* ── Hero ─────────────────────────────────────────────────────── */
-  .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
-  .g-label {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.2em;
+<!-- ─── Filter wiring ────────────────────────────────────────────────────────── -->
+<script is:inline>
+  (function initFilters() {
+    const root  = document.getElementById('timeline');
+    const state = { unit: 'all', type: 'all' };
+
+    function apply() {
+      if (!root) return;
+      let visible = 0;
+      root.querySelectorAll('.row').forEach(function(r) {
+        const okU = state.unit === 'all' || r.dataset.unit === state.unit;
+        const okT = state.type === 'all' || r.dataset.type === state.type || r.dataset.type === 'AP';
+        const show = okU && okT;
+        r.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      let empty = root.querySelector('.empty');
+      if (visible === 0) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.className = 'empty';
+          empty.textContent = 'No entries match these filters.';
+          root.appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    }
+
+    function bind(rowEl, key) {
+      if (!rowEl) return;
+      rowEl.querySelectorAll('.pill').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          rowEl.querySelectorAll('.pill').forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state[key] = btn.dataset[key];
+          apply();
+        });
+      });
+    }
+
+    bind(document.getElementById('filter-units'), 'unit');
+    bind(document.getElementById('filter-types'), 'type');
+    apply();
+  })();
+</script>
+
+<style is:global>
+  /* ─── Token aliases for the timeline ──────────────────────────────────── */
+  :root {
+    --acc-00: var(--acc-medieval);
+    --acc-01: var(--acc-renaissance);
+    --acc-02: var(--acc-baroque);
+    --acc-03: var(--acc-enlightenment);
+    --acc-04: var(--acc-romanticism);
+    --acc-05: var(--acc-modernism);
+
+    /* Thread family heads (one per thread; sub-thread shades belong on unit pages) */
+    --th-phil:  #3A332B;
+    --th-paint: #75435B;
+    --th-sculp: #4F6B4D;
+    --th-music: #574878;
+
+    /* Course-neutral reserves */
+    --iron: #2E3640;
+    --seal: #5A4022;
+
+    --font-cg: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  /* ─── Page shell ───────────────────────────────────────────────────────── */
+  .tl-page {
+    background: var(--bg);
+  }
+
+  .tl-page .tl-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 64px) 96px;
+  }
+
+  /* ─── Header band ──────────────────────────────────────────────────────── */
+  .tl-page .header-band {
+    width: 100%;
+    height: 36px;
+    margin: 16px 0 4px;
+    overflow: hidden;
+  }
+  .tl-page .header-band svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ─── Breadcrumb ───────────────────────────────────────────────────────── */
+  .tl-page .breadcrumb {
+    padding: 14px 0 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin: 0 0 28px;
   }
-  .g-title {
-    font-family: var(--font-display);
+
+  /* ─── Doc head ─────────────────────────────────────────────────────────── */
+  .tl-page .doc-head {
+    margin: 44px 0 0;
+    text-align: center;
+  }
+  .tl-page .doc-head h1 {
+    font-family: var(--font-cg);
     font-weight: 300;
-    font-size: clamp(40px, 6vw, 80px);
+    font-size: clamp(46px, 6vw, 76px);
     line-height: 0.98;
     letter-spacing: -0.02em;
-    margin: 0 0 28px;
+    margin: 0 auto;
+    max-width: 18ch;
     color: var(--ink);
   }
-  .g-thesis {
-    max-width: 58ch;
-    font-family: var(--font-display);
-    font-size: 17px;
-    line-height: 1.65;
+  .tl-page .doc-head h1 em {
+    font-style: italic;
     color: var(--ink-mute);
+  }
+
+  .tl-page .lede {
+    font-family: var(--font-cg);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    max-width: 60ch;
+    margin: 18px auto 42px;
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  /* ─── Filter strip ─────────────────────────────────────────────────────── */
+  .tl-page .filters {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 28px;
+  }
+  .tl-page .filter-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .tl-page .filter-row:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .tl-page .pill {
+    --c: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: border-color 120ms, background 120ms, color 120ms;
+  }
+  .tl-page .pill:hover {
+    border-color: color-mix(in oklab, var(--c) 55%, var(--rule));
+    color: var(--ink);
+  }
+  .tl-page .pill .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--c);
+    flex-shrink: 0;
+  }
+  .tl-page .pill.active {
+    background: color-mix(in oklab, var(--c) 12%, var(--bg));
+    border-color: color-mix(in oklab, var(--c) 60%, var(--rule));
+    color: var(--ink);
+  }
+
+  /* ─── Timeline list ────────────────────────────────────────────────────── */
+  .tl-page .timeline {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tl-page .row {
+    --c: var(--ink-soft);
+    --p: var(--ink-soft);
+    display: grid;
+    grid-template-columns: 130px 90px 1fr;
+    column-gap: 22px;
+    align-items: baseline;
+    padding: 16px 18px 16px 22px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    transition: background 120ms;
+  }
+  .tl-page .row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    bottom: -1px;
+    width: 3px;
+    background: var(--p);
+  }
+  .tl-page .row:hover {
+    background: color-mix(in oklab, var(--p) 4%, var(--bg));
+  }
+
+  .tl-page .row .year {
+    font-family: var(--font-cg);
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--p);
+    align-self: center;
+  }
+
+  .tl-page .row .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 9px;
+    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--rule));
+    background: color-mix(in oklab, var(--c) 8%, var(--bg));
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c);
+    width: fit-content;
+    align-self: center;
+  }
+  .tl-page .row .chip .swatch {
+    width: 6px;
+    height: 6px;
+    background: var(--c);
+  }
+
+  .tl-page .row .body {
+    padding-top: 2px;
+  }
+  .tl-page .row .title {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.3;
+    color: var(--ink);
     margin: 0;
+  }
+  .tl-page .row .note {
+    font-family: var(--font-cg);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    margin: 4px 0 0;
+    max-width: 64ch;
+  }
+
+  /* ─── AP anchor rows ───────────────────────────────────────────────────── */
+  .tl-page .row.ap-row {
+    --c: var(--p);
+    grid-template-columns: 130px 1fr;
+    padding: 26px 22px 26px 22px;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tl-page .row.ap-row::before {
+    width: 5px;
+  }
+  .tl-page .row.ap-row .year {
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--p);
+  }
+  .tl-page .ap-row .anchor {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .tl-page .ap-row .anchor-meta {
+    border-right: 1px solid color-mix(in oklab, var(--p) 30%, var(--rule));
+    padding-right: 22px;
+  }
+  .tl-page .ap-row .anchor-meta .label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--p) 50%, var(--ink-soft));
+    margin-bottom: 6px;
+  }
+  .tl-page .ap-row .anchor-meta .unit-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .tl-page .ap-row .anchor-meta .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border: 1px solid var(--p);
+    color: var(--p);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .tl-page .ap-row .anchor-body {
+    padding-right: 18px;
+  }
+  .tl-page .ap-row .anchor-body .ap-title {
+    font-family: var(--font-cg);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .tl-page .ap-row .anchor-body .author {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 8px 0 10px;
+  }
+  .tl-page .ap-row .anchor-body .note {
+    font-family: var(--font-cg);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .tl-page .ap-row .anchor-body .read {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--p);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 120ms;
+  }
+  .tl-page .ap-row .anchor-body .read:hover {
+    opacity: 0.7;
+  }
+  .tl-page .ap-row:hover {
+    background: color-mix(in oklab, var(--p) 7%, var(--bg-raised));
+  }
+
+  /* ─── Legend ───────────────────────────────────────────────────────────── */
+  .tl-page .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 32px;
+    padding: 26px 0 4px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .tl-page .legend .item {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .tl-page .legend .item .bar {
+    width: 4px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  .tl-page .legend .group-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-right: 6px;
+    align-self: center;
+  }
+
+  /* ─── Empty state ──────────────────────────────────────────────────────── */
+  .tl-page .empty {
+    padding: 56px 22px;
+    text-align: center;
+    font-family: var(--font-cg);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
   }
 </style>
