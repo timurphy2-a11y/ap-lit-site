@@ -1,826 +1,976 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import ThreadIcon from '../components/ThreadIcon.astro';
+import { PERIOD_MOTIFS } from '../data/period-motifs';
 
 const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeCompare(b.id));
 
-const UNIT_ACCENTS: Record<string, string> = {
-  '00-medieval':      '#C9A24B',
-  '01-renaissance':   '#B54C3A',
-  '02-baroque':       '#B07028',
-  '03-enlightenment': '#698BA1',
-  '04-romanticism':   '#3D5A6D',
-  '05-modernism':     '#A03828',
+// ── Period accent + tint table (canonical from handoff) ──────────────────
+const PERIOD_META = [
+  { unit: '00-medieval',      num: '00', acc: '#C9A24B', tint: '#F3E6BE' },
+  { unit: '01-renaissance',   num: '01', acc: '#B54C3A', tint: '#F1D8CF' },
+  { unit: '02-baroque',       num: '02', acc: '#B07028', tint: '#F1DDBC' },
+  { unit: '03-enlightenment', num: '03', acc: '#698BA1', tint: '#D9E2EA' },
+  { unit: '04-romanticism',   num: '04', acc: '#3D5A6D', tint: '#CCD6DD' },
+  { unit: '05-modernism',     num: '05', acc: '#A03828', tint: '#EFD4CC' },
+] as const;
+
+// ── Thread family colors ──────────────────────────────────────────────────
+const FAMILIES: Record<string, { dark: string; mid: string; light: string }> = {
+  philosophy: { dark: '#3A332B', mid: '#5A5046', light: '#857A6B' },
+  painting:   { dark: '#75435B', mid: '#94586E', light: '#B58193' },
+  sculpture:  { dark: '#4F6B4D', mid: '#5F8060', light: '#7B9883' },
+  music:      { dark: '#574878', mid: '#6F5E95', light: '#8C80AE' },
+};
+const SEAL_COLOR = '#5A4022';
+
+// ── Thread definitions ────────────────────────────────────────────────────
+const SUBJECT_THREADS: Record<string, Array<{ id: string; label: string; weight: 'dark' | 'mid' | 'light' }>> = {
+  philosophy: [
+    { id: 'human-position',        label: 'The Human Position',           weight: 'dark'  },
+    { id: 'knowledge-limits',      label: 'Knowledge and Its Limits',     weight: 'mid'   },
+    { id: 'individual-authority',  label: 'The Individual and Authority', weight: 'light' },
+  ],
+  painting: [
+    { id: 'figure-space',      label: 'Figure & Space',     weight: 'dark'  },
+    { id: 'light-shadow',      label: 'Light & Shadow',     weight: 'mid'   },
+    { id: 'brushwork-surface', label: 'Brushwork & Surface',weight: 'light' },
+  ],
+  sculpture: [
+    { id: 'body-volume',     label: 'Body & Volume',    weight: 'dark'  },
+    { id: 'material-making', label: 'Material & Making',weight: 'mid'   },
+    { id: 'space-setting',   label: 'Space & Setting',  weight: 'light' },
+  ],
+  music: [
+    { id: 'texture-voices',        label: 'Texture & Voices',        weight: 'dark'  },
+    { id: 'consonance-dissonance', label: 'Consonance & Dissonance', weight: 'mid'   },
+    { id: 'structure-freedom',     label: 'Structure & Freedom',     weight: 'light' },
+  ],
 };
 
-const DOMAIN_LABELS = {
-  philosophy: 'Philosophy',
-  art: 'Visual Art',
-  music: 'Music',
+// ── Domain pill family-mid colors ─────────────────────────────────────────
+const DOMAIN_MID: Record<string, string> = {
+  philosophy: FAMILIES.philosophy.mid,  // #5A5046
+  art:        SEAL_COLOR,               // #5A4022 (umbrella tone — splits to rose + moss)
+  music:      FAMILIES.music.mid,       // #6F5E95
 };
 
-const domainOrder = ['philosophy', 'art', 'music'] as const;
+// ── Collected content data ────────────────────────────────────────────────
+const artEntries    = allEntries.filter(e => e.data.domain === 'art');
+const sculptEntries = allEntries.filter(e => e.data.domain === 'sculpture');
+const musicEntries  = allEntries.filter(e => e.data.domain === 'music');
 
-const SCULPTURE_ACCENT = '#7B6B5B';
-
-function getPrimaryMusic(entry: typeof allEntries[0]) {
-  const fl = entry.data.featured_listening;
-  if (!fl) return null;
-  return Array.isArray(fl) ? fl[0] : fl;
+// Period name + dates (pull from art; fallback to any domain)
+const PERIOD_INFO: Record<string, { name: string; dates: string }> = {};
+for (const e of allEntries) {
+  if (!PERIOD_INFO[e.data.unit]) {
+    PERIOD_INFO[e.data.unit] = { name: e.data.period, dates: e.data.dates };
+  }
 }
 
-const artEntries = allEntries.filter(e => e.data.domain === 'art');
-const sculptureEntries = allEntries.filter(e => e.data.domain === 'sculpture');
-const artThreads = artEntries[0]?.data.threads ?? [];
-const sculptureThreads = sculptureEntries[0]?.data.threads ?? [];
+// Gloss map: threadId → unitId → period_summary
+const GLOSS: Record<string, Record<string, string>> = {};
+for (const e of allEntries) {
+  for (const t of (e.data.threads ?? [])) {
+    if (!GLOSS[t.id]) GLOSS[t.id] = {};
+    GLOSS[t.id][e.data.unit] = t.period_summary;
+  }
+}
+
+// Art (painting) hero images
+const ART: Record<string, { image?: string; title?: string; artist?: string }> = {};
+for (const e of artEntries) {
+  ART[e.data.unit] = {
+    image:  e.data.hero_painting?.image,
+    title:  e.data.hero_painting?.title,
+    artist: e.data.hero_painting?.artist,
+  };
+}
+
+// Sculpture hero images
+const SCULPT: Record<string, { image?: string; title?: string; artist?: string }> = {};
+for (const e of sculptEntries) {
+  const d = e.data as any;
+  SCULPT[e.data.unit] = {
+    image:  d.hero_sculpture?.image,
+    title:  d.hero_sculpture?.title,
+    artist: d.hero_sculpture?.artist,
+  };
+}
+
+// Music featured listening
+const MUSIC: Record<string, { title?: string; composer?: string; youtubeId?: string }> = {};
+for (const e of musicEntries) {
+  const fl = e.data.featured_listening as any;
+  const m = Array.isArray(fl) ? fl[0] : fl;
+  MUSIC[e.data.unit] = {
+    title:     m?.title,
+    composer:  m?.composer,
+    youtubeId: m?.youtube_id,
+  };
+}
+
+// ── Thread sigil SVG strings (inline, aria-hidden) ────────────────────────
+const SIG: Record<string, string> = {
+  'human-position': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="8" y="6" width="24" height="28"/><circle cx="20" cy="16" r="3"/><path d="M14 28 C14 22,26 22,26 28"/></svg>`,
+  'knowledge-limits': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 12 L20 16 L32 12 L32 30 L20 34 L8 30 Z"/><line x1="20" y1="16" x2="20" y2="34"/><line x1="6" y1="8" x2="34" y2="8" stroke-dasharray="2 3"/></svg>`,
+  'individual-authority': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 16 A14 14 0 0 1 34 16"/><circle cx="20" cy="28" r="2.5" fill="currentColor" stroke="none"/><line x1="20" y1="16" x2="20" y2="25" stroke-dasharray="2 2"/></svg>`,
+  'figure-space': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><line x1="3" y1="34" x2="37" y2="34"/><circle cx="17" cy="11" r="3.5"/><path d="M17 14.5 L17 30 M17 19 L13 25 M17 19 L21 25 M17 30 L14 34 M17 30 L20 34"/><circle cx="30" cy="22" r="2"/><path d="M30 24 L30 31"/></svg>`,
+  'light-shadow': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="20" cy="20" r="6"/><line x1="20" y1="9" x2="20" y2="4"/><line x1="20" y1="31" x2="20" y2="36"/><line x1="9" y1="20" x2="4" y2="20"/><line x1="31" y1="20" x2="36" y2="20"/><line x1="12.2" y1="12.2" x2="8.7" y2="8.7"/><line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/><line x1="27.8" y1="12.2" x2="31.3" y2="8.7"/><line x1="12.2" y1="27.8" x2="8.7" y2="31.3"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  'brushwork-surface': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="6" y="6" width="28" height="28"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="28" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="28" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="28" r="1" fill="currentColor" stroke="none"/><rect x="9" y="9" width="22" height="22" stroke-dasharray="1.5 2" opacity=".55"/></svg>`,
+  'body-volume': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><line x1="14" y1="4" x2="14" y2="36"/><line x1="26" y1="4" x2="26" y2="36"/><circle cx="20" cy="11" r="3.5"/><line x1="20" y1="15" x2="20" y2="32"/><line x1="20" y1="19" x2="16" y2="26"/><line x1="20" y1="19" x2="24" y2="26"/></svg>`,
+  'material-making': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="6" y="18" width="28" height="16"/><path d="M18 6 L22 6 L20 14 Z"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="10" y1="24" x2="30" y2="24" stroke-dasharray="2 2"/><line x1="10" y1="30" x2="30" y2="30" stroke-dasharray="2 2"/></svg>`,
+  'space-setting': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M6 36 L6 16 L20 6 L34 16 L34 36 Z"/><path d="M14 36 L14 24 A6 6 0 0 1 26 24 L26 36"/><circle cx="20" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  'texture-voices': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 20 Q10 12,16 20 T28 20 T40 20"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg>`,
+  'consonance-dissonance': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M6 20 A14 14 0 0 1 34 20"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  'structure-freedom': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 20 Q9 14,14 20 Q19 26,24 20 Q29 14,34 20"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/></svg>`,
+};
+
+// Subject subtitles
+const SUBJECT_SUBTITLE: Record<string, string> = {
+  philosophy: 'How this philosophical question is answered in each period',
+  painting:   'How painters approach this visual problem in each period',
+  sculpture:  'How sculptors approach this three-dimensional problem in each period',
+  music:      'How composers handle this musical dimension in each period',
+};
+
+// All threads flat (for rendering card grids and thread pills)
+const ALL_THREADS = [
+  ...SUBJECT_THREADS.philosophy.map(t => ({ ...t, subject: 'philosophy', mode: 'text'  as const })),
+  ...SUBJECT_THREADS.painting.map(t =>   ({ ...t, subject: 'painting',   mode: 'image' as const })),
+  ...SUBJECT_THREADS.sculpture.map(t =>  ({ ...t, subject: 'sculpture',  mode: 'image' as const })),
+  ...SUBJECT_THREADS.music.map(t =>      ({ ...t, subject: 'music',      mode: 'audio' as const })),
+];
 ---
 
 <Layout title="Threads Across Time — AP Literature">
 
-<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-<section class="cmp-hero">
-  <div class="cmp-wrap">
-    <div class="section-label">
-      <span class="n">§ IV</span>
-      <span>Cross-Era Comparison</span>
-      <span class="rule-line"></span>
+<div class="cmp-page">
+
+  <!-- ══ 1. Page header ══════════════════════════════════════════════════ -->
+  <header class="cmp-header">
+    <div class="seal-tile" aria-hidden="true">
+      <!-- ThreadsSigil: three interwoven strands + center dot -->
+      <svg viewBox="0 0 46 46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 9 C13 23 33 23 37 37" stroke="currentColor" stroke-width="2"/>
+        <path d="M37 9 C33 23 13 23 9 37" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 23 C10 17 15 29 23 23 C31 17 36 29 42 23" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="23" cy="23" r="2.6" fill="currentColor" stroke="none"/>
+      </svg>
     </div>
-    <h1 class="cmp-title">Threads Across Time</h1>
-    <p class="cmp-thesis">
+    <p class="cmp-eyebrow">§ IV · Cross-Era Comparison</p>
+    <h1 class="cmp-title">Threads Across <em>Time</em></h1>
+    <p class="cmp-lede">
       Three persistent questions run through all six periods of this course — about what it means
       to be human, what we can know, and how the individual relates to authority. Select a domain
-      and a thread to trace how the answer changes from the Medieval foundations through
-      Modernism's crisis of certainty.
+      and a thread to trace how the answer changes.
     </p>
-  </div>
-</section>
+  </header>
 
-<!-- ── Domain tabs ───────────────────────────────────────────────────────── -->
-<div class="cmp-tabs-bar">
-  <div class="cmp-wrap">
-    <div class="cmp-tabs" role="tablist" aria-label="Select domain">
-      {domainOrder.map((domain) => (
-        <button
-          class="cmp-tab"
-          data-domain={domain}
-          role="tab"
-          aria-selected="false"
-        >
-          {DOMAIN_LABELS[domain]}
+  <!-- ══ 2. Thread-tinted banner (cascade + sub-head) ════════════════════ -->
+  <div class="thread-banner" id="cmp-banner" style={`--family-mid: ${FAMILIES.philosophy.mid}`}>
+    <div class="banner-inner">
+
+      <!-- Row 1: Domain pills -->
+      <div class="cascade-row r1" role="group" aria-label="Select domain">
+        <button class="pill domain-pill"
+          data-domain="philosophy"
+          aria-pressed="true"
+          type="button"
+          style={`--pill-mid: ${DOMAIN_MID.philosophy}`}>
+          <span class="pill-sigil" aria-hidden="true">
+            <!-- PhilosophySig: concentric circles + dot -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="pill-label">Philosophy</span>
         </button>
-      ))}
-    </div>
-  </div>
-</div>
-
-<!-- ── Philosophy ────────────────────────────────────────────────────────── -->
-{(() => {
-  const entries = allEntries.filter(e => e.data.domain === 'philosophy');
-  const threads = entries[0]?.data.threads ?? [];
-  return (
-    <div class="domain-section hidden" data-domain="philosophy" role="tabpanel">
-      <div class="cmp-wrap">
-
-        <div class="cmp-thread-row" role="tablist">
-          {threads.map((thread) => (
-            <button
-              class="cmp-thread-btn"
-              data-domain="philosophy"
-              data-thread={thread.id}
-              role="tab"
-              aria-selected="false"
-            >
-              <ThreadIcon thread={thread.id} size={20} />
-              {thread.label}
-            </button>
-          ))}
-        </div>
-
-        {threads.map((thread, ti) => (
-          <div
-            class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
-            data-domain="philosophy"
-            data-thread={thread.id}
-          >
-            <div class="cmp-thread-head">
-              <h2 class="cmp-thread-title">
-                <ThreadIcon thread={thread.id} size={20} />
-                {thread.label}
-              </h2>
-              <p class="cmp-thread-sub">How this philosophical question is answered in each period</p>
-            </div>
-            <div class="cmp-grid">
-              {entries.map((entry) => {
-                const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
-                const num = unitId.slice(0, 2);
-                const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                return (
-                  <article class="cmp-card" style={`--u-acc: ${accent}`}>
-                    <div class="cmp-card-swatch"></div>
-                    <div class="cmp-card-body">
-                      <div class="cmp-card-eyebrow">
-                        <span class="cmp-card-num">{num}</span>
-                        <div>
-                          <div class="cmp-card-period-name">{entry.data.period}</div>
-                          <span class="cmp-card-dates">{entry.data.dates}</span>
-                        </div>
-                      </div>
-                      {periodThread && (
-                        <p class="cmp-card-summary">{periodThread.period_summary}</p>
-                      )}
-                      <a href={`/units/${unitId}`} class="cmp-card-link">
-                        Full {entry.data.period} unit →
-                      </a>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-
+        <button class="pill domain-pill"
+          data-domain="art"
+          aria-pressed="false"
+          type="button"
+          style={`--pill-mid: ${DOMAIN_MID.art}`}>
+          <span class="pill-sigil" aria-hidden="true">
+            <!-- VisualArtSig: diamond inside hex -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+              <polygon points="12,2 20.4,7 20.4,17 12,22 3.6,17 3.6,7"/>
+              <polygon points="12,7 17,12 12,17 7,12"/>
+            </svg>
+          </span>
+          <span class="pill-label">Visual Art</span>
+        </button>
+        <button class="pill domain-pill"
+          data-domain="music"
+          aria-pressed="false"
+          type="button"
+          style={`--pill-mid: ${DOMAIN_MID.music}`}>
+          <span class="pill-sigil" aria-hidden="true">
+            <!-- MusicSig: fermata arc + dot + baseline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+              <path d="M4 16 A8 8 0 0 1 20 16"/>
+              <circle cx="12" cy="10" r="2" fill="currentColor" stroke="none"/>
+              <line x1="2" y1="19" x2="22" y2="19"/>
+            </svg>
+          </span>
+          <span class="pill-label">Music</span>
+        </button>
       </div>
-    </div>
-  );
-})()}
 
-<!-- ── Visual Art (Painting + Sculpture) ─────────────────────────────────── -->
-<div class="domain-section hidden" data-domain="art" role="tabpanel">
-  <div class="cmp-wrap">
-
-    <div class="cmp-sub-tabs">
-      <button
-        class="cmp-sub-tab"
-        data-sub="painting"
-        aria-selected="true"
-      >Painting</button>
-      <button
-        class="cmp-sub-tab"
-        data-sub="sculpture"
-        aria-selected="false"
-      >Sculpture</button>
-    </div>
-
-    <!-- Painting thread selector -->
-    <div class="visual-art-sub-panel cmp-thread-row" data-sub="painting" role="tablist">
-      {artThreads.map((thread) => (
-        <button
-          class="cmp-thread-btn"
-          data-domain="art"
-          data-thread={thread.id}
-          role="tab"
-          aria-selected="false"
-        >
-          <ThreadIcon thread={thread.id} size={20} />
-          {thread.label}
+      <!-- Row 2: Medium pills (Visual Art only) -->
+      <div class="cascade-row r2" id="medium-row" role="group" aria-label="Select medium" hidden>
+        <button class="pill medium-pill"
+          data-medium="painting"
+          aria-pressed="true"
+          type="button"
+          style={`--pill-mid: ${FAMILIES.painting.mid}`}>
+          <span class="pill-label">Painting</span>
         </button>
-      ))}
-    </div>
-
-    <!-- Sculpture thread selector -->
-    <div class="visual-art-sub-panel cmp-thread-row hidden" data-sub="sculpture" role="tablist">
-      {sculptureThreads.map((thread) => (
-        <button
-          class="cmp-thread-btn"
-          data-domain="sculpture"
-          data-thread={thread.id}
-          role="tab"
-          aria-selected="false"
-        >
-          <ThreadIcon thread={thread.id} size={20} />
-          {thread.label}
+        <button class="pill medium-pill"
+          data-medium="sculpture"
+          aria-pressed="false"
+          type="button"
+          style={`--pill-mid: ${FAMILIES.sculpture.mid}`}>
+          <span class="pill-label">Sculpture</span>
         </button>
-      ))}
-    </div>
+      </div>
 
-    <!-- Painting thread comparisons -->
-    <div class="visual-art-sub-panel" data-sub="painting">
-      {artThreads.map((thread, ti) => (
-        <div
-          class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
-          data-domain="art"
-          data-thread={thread.id}
-        >
-          <div class="cmp-thread-head">
-            <h2 class="cmp-thread-title">
-              <ThreadIcon thread={thread.id} size={20} />
-              {thread.label}
-            </h2>
-            <p class="cmp-thread-sub">How painters approach this visual problem in each period</p>
-          </div>
-          <div class="cmp-grid">
-            {artEntries.map((entry) => {
-              const unitId = entry.data.unit;
-              const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
-              const num = unitId.slice(0, 2);
-              const periodThread = entry.data.threads.find(t => t.id === thread.id);
-              const heroPainting = entry.data.hero_painting;
-              return (
-                <article class="cmp-card" style={`--u-acc: ${accent}`}>
-                  <div class="cmp-card-swatch"></div>
-                  {heroPainting?.image && (
-                    <a href={`/units/${unitId}/art`} class="cmp-card-img-wrap">
-                      <img
-                        src={heroPainting.image}
-                        alt={`${heroPainting.title} by ${heroPainting.artist}`}
-                        loading="lazy"
-                      />
-                    </a>
-                  )}
-                  <div class="cmp-card-body">
-                    <div class="cmp-card-eyebrow">
-                      <span class="cmp-card-num">{num}</span>
-                      <div>
-                        <div class="cmp-card-period-name">{entry.data.period}</div>
-                        <span class="cmp-card-dates">{entry.data.dates}</span>
-                      </div>
+      <!-- Row 3: Thread pills (12 total; JS shows/hides 3 at a time) -->
+      <div class="cascade-row r3" role="group" aria-label="Select thread">
+        {ALL_THREADS.map((t) => {
+          const color = FAMILIES[t.subject][t.weight];
+          return (
+            <button
+              class="pill thread-pill"
+              data-thread={t.id}
+              data-subject={t.subject}
+              aria-pressed="false"
+              type="button"
+              style={`--pill-mid: ${color}`}
+              hidden>
+              <span class="pill-sigil" aria-hidden="true" set:html={SIG[t.id]}></span>
+              <span class="pill-label">{t.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <!-- Sub-head (updated by JS) -->
+      <div class="thread-subhead">
+        <div class="subhead-title" id="subhead-title">The Human Position</div>
+        <div class="subhead-sub" id="subhead-sub">{SUBJECT_SUBTITLE.philosophy}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 3. Card grids (one per thread) ══════════════════════════════════ -->
+  <div class="cmp-grids">
+    {ALL_THREADS.map((t) => {
+      const unitLink = (unit: string) =>
+        t.subject === 'philosophy' ? `/units/${unit}` :
+        t.subject === 'painting'   ? `/units/${unit}/art` :
+        t.subject === 'sculpture'  ? `/units/${unit}/sculpture` :
+        `/units/${unit}/music`;
+
+      return (
+        <div class="card-grid hidden" data-thread={t.id} data-subject={t.subject}>
+          {PERIOD_META.map((pm) => {
+            const info   = PERIOD_INFO[pm.unit];
+            const gloss  = GLOSS[t.id]?.[pm.unit] ?? '';
+            const artImg = t.subject === 'painting'  ? ART[pm.unit]   : null;
+            const scImg  = t.subject === 'sculpture' ? SCULPT[pm.unit]: null;
+            const imgData = artImg ?? scImg;
+            const musData = t.subject === 'music'    ? MUSIC[pm.unit] : null;
+            const motifSvg = t.mode === 'text' ? (PERIOD_MOTIFS[pm.unit]?.[1] ?? '') : '';
+            const markStyle = `--mark-primary:${pm.acc};--mark-highlight:${pm.acc}cc;--mark-ink:#2C2820;--mark-cream:#F6F1E8;--mark-spot:transparent;`;
+
+            return (
+              <article
+                class="period-card"
+                style={`--acc:${pm.acc};--tint:${pm.tint};${markStyle}`}>
+
+                {/* Image slot — image mode only */}
+                {t.mode === 'image' && imgData?.image && (
+                  <div class="card-image"
+                    style={`background-image:url(${imgData.image})`}
+                    role="img"
+                    aria-label={`${imgData.title} by ${imgData.artist}`}>
+                  </div>
+                )}
+                {t.mode === 'image' && !imgData?.image && (
+                  <div class="card-image-ph"></div>
+                )}
+
+                {/* Card body */}
+                <div class="card-body">
+
+                  {/* Header row: numeral + top-right slot */}
+                  <div class="card-header-row">
+                    <div class="card-header-left">
+                      <div class="card-num" aria-hidden="true">{pm.num}</div>
+                      <div class="card-unit-lbl" aria-hidden="true">UNIT</div>
                     </div>
-                    {periodThread && (
-                      <p class="cmp-card-summary">{periodThread.period_summary}</p>
+                    {t.mode === 'text' && motifSvg && (
+                      <div class="card-motif" aria-hidden="true" set:html={motifSvg}></div>
                     )}
-                    {heroPainting && (
-                      <div class="cmp-card-work">
-                        <em>{heroPainting.title}</em>
-                        <span class="cmp-card-work-by">{heroPainting.artist}</span>
-                      </div>
+                    {t.mode === 'audio' && musData?.youtubeId && (
+                      <button
+                        class="play-disc"
+                        aria-label={`Play ${musData.title ?? ''} — ${musData.composer ?? ''}`}
+                        aria-pressed="false"
+                        data-youtube-id={musData.youtubeId}
+                        type="button">
+                        <svg viewBox="0 0 20 20" aria-hidden="true" width="14" height="14">
+                          <polygon points="6,4 16,10 6,16" fill="currentColor"/>
+                        </svg>
+                      </button>
                     )}
-                    <a href={`/units/${unitId}/art`} class="cmp-card-link">
-                      Full {entry.data.period} unit →
+                  </div>
+
+                  {/* Period identity */}
+                  <div class="card-period-title">{info?.name ?? ''}</div>
+                  <div class="card-dates">{info?.dates ?? ''}</div>
+
+                  {/* Thread-specific gloss */}
+                  <p class="card-gloss">{gloss}</p>
+
+                  {/* Spacer (text mode only — pushes anchor to bottom) */}
+                  {t.mode === 'text' && <div class="card-spacer"></div>}
+
+                  {/* Caption (image + audio modes) */}
+                  {t.mode === 'image' && imgData?.title && (
+                    <div class="card-caption">
+                      <em class="caption-title">{imgData.title}</em>
+                      <span class="caption-by">{imgData.artist}</span>
+                    </div>
+                  )}
+                  {t.mode === 'audio' && musData?.title && (
+                    <div class="card-caption">
+                      <em class="caption-title">{musData.title}</em>
+                      <span class="caption-by">{musData.composer} · ▶ Listen</span>
+                    </div>
+                  )}
+
+                  {/* YouTube embed (audio mode — revealed by JS) */}
+                  {t.mode === 'audio' && musData?.youtubeId && (
+                    <div class="youtube-embed" hidden>
+                      <iframe
+                        data-src={`https://www.youtube.com/embed/${musData.youtubeId}?autoplay=1`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                      </iframe>
+                    </div>
+                  )}
+
+                  {/* Anchor row */}
+                  <div class={`anchor-row${t.mode !== 'text' ? ' no-top-border' : ''}`}>
+                    <div class="anchor-bars" aria-hidden="true">
+                      <div class="anchor-bar"></div>
+                      <div class="anchor-bar"></div>
+                    </div>
+                    <a
+                      href={unitLink(pm.unit)}
+                      class="unit-link"
+                      aria-label={`Read the full ${info?.name ?? ''} unit`}>
+                      Full unit →
                     </a>
                   </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
 
-    <!-- Sculpture thread comparisons -->
-    <div class="visual-art-sub-panel hidden" data-sub="sculpture">
-      {sculptureThreads.map((thread, ti) => (
-        <div
-          class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
-          data-domain="sculpture"
-          data-thread={thread.id}
-        >
-          <div class="cmp-thread-head">
-            <h2 class="cmp-thread-title">
-              <ThreadIcon thread={thread.id} size={20} />
-              {thread.label}
-            </h2>
-            <p class="cmp-thread-sub">How sculptors approach this three-dimensional problem in each period</p>
-          </div>
-          <div class="cmp-grid">
-            {sculptureEntries.map((entry) => {
-              const unitId = entry.data.unit;
-              const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
-              const num = unitId.slice(0, 2);
-              const periodThread = entry.data.threads.find(t => t.id === thread.id);
-              const heroSculpture = entry.data.hero_sculpture;
-              return (
-                <article class="cmp-card" style={`--u-acc: ${accent}`}>
-                  <div class="cmp-card-swatch"></div>
-                  {heroSculpture?.image && (
-                    <a href={`/units/${unitId}/sculpture`} class="cmp-card-img-wrap">
-                      <img
-                        src={heroSculpture.image}
-                        alt={`${heroSculpture.title} by ${heroSculpture.artist}`}
-                        loading="lazy"
-                      />
-                    </a>
-                  )}
-                  <div class="cmp-card-body">
-                    <div class="cmp-card-eyebrow">
-                      <span class="cmp-card-num">{num}</span>
-                      <div>
-                        <div class="cmp-card-period-name">{entry.data.period}</div>
-                        <span class="cmp-card-dates">{entry.data.dates}</span>
-                      </div>
-                    </div>
-                    {periodThread && (
-                      <p class="cmp-card-summary">{periodThread.period_summary}</p>
-                    )}
-                    {heroSculpture && (
-                      <div class="cmp-card-work">
-                        <em>{heroSculpture.title}</em>
-                        <span class="cmp-card-work-by" style={`color: ${SCULPTURE_ACCENT}`}>{heroSculpture.artist}</span>
-                      </div>
-                    )}
-                    <a href={`/units/${unitId}/sculpture`} class="cmp-card-link">
-                      Full {entry.data.period} unit →
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
-      ))}
-    </div>
-
+      );
+    })}
   </div>
+
 </div>
-
-<!-- ── Music ─────────────────────────────────────────────────────────────── -->
-{(() => {
-  const entries = allEntries.filter(e => e.data.domain === 'music');
-  const threads = entries[0]?.data.threads ?? [];
-  return (
-    <div class="domain-section hidden" data-domain="music" role="tabpanel">
-      <div class="cmp-wrap">
-
-        <div class="cmp-thread-row" role="tablist">
-          {threads.map((thread) => (
-            <button
-              class="cmp-thread-btn"
-              data-domain="music"
-              data-thread={thread.id}
-              role="tab"
-              aria-selected="false"
-            >
-              <ThreadIcon thread={thread.id} size={20} />
-              {thread.label}
-            </button>
-          ))}
-        </div>
-
-        {threads.map((thread, ti) => (
-          <div
-            class={`thread-comparison${ti > 0 ? ' hidden' : ''}`}
-            data-domain="music"
-            data-thread={thread.id}
-          >
-            <div class="cmp-thread-head">
-              <h2 class="cmp-thread-title">
-                <ThreadIcon thread={thread.id} size={20} />
-                {thread.label}
-              </h2>
-              <p class="cmp-thread-sub">How composers handle this musical dimension in each period</p>
-            </div>
-            <div class="cmp-grid">
-              {entries.map((entry) => {
-                const unitId = entry.data.unit;
-                const accent = UNIT_ACCENTS[unitId] ?? '#A07820';
-                const num = unitId.slice(0, 2);
-                const periodThread = entry.data.threads.find(t => t.id === thread.id);
-                const music = getPrimaryMusic(entry);
-                return (
-                  <article class="cmp-card" style={`--u-acc: ${accent}`}>
-                    <div class="cmp-card-swatch"></div>
-                    <div class="cmp-card-body">
-                      <div class="cmp-card-eyebrow">
-                        <span class="cmp-card-num">{num}</span>
-                        <div>
-                          <div class="cmp-card-period-name">{entry.data.period}</div>
-                          <span class="cmp-card-dates">{entry.data.dates}</span>
-                        </div>
-                      </div>
-                      {periodThread && (
-                        <p class="cmp-card-summary">{periodThread.period_summary}</p>
-                      )}
-                      {music && (
-                        <div class="cmp-card-work">
-                          <em>{music.title}</em>
-                          <span class="cmp-card-work-by">{music.composer}</span>
-                          {music.youtube_id && (
-                            <>
-                              <button
-                                class="cmp-listen-btn"
-                                data-youtube-id={music.youtube_id}
-                                style={`--btn-acc: ${accent}`}
-                              >
-                                ▶ Listen
-                              </button>
-                              <div class="youtube-embed hidden" style="margin-top: 10px; aspect-ratio: 16/9; overflow: hidden;">
-                                <iframe
-                                  data-src={`https://www.youtube.com/embed/${music.youtube_id}?autoplay=1`}
-                                  class="w-full h-full border-0"
-                                  style="width:100%;height:100%;border:0;"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowfullscreen
-                                ></iframe>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      )}
-                      <a href={`/units/${unitId}/music`} class="cmp-card-link">
-                        Full {entry.data.period} unit →
-                      </a>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-
-      </div>
-    </div>
-  );
-})()}
-
 </Layout>
 
 <style>
-  /* ── Layout ──────────────────────────────────────────────────── */
-  .cmp-wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 64px);
-  }
+/* ── Page shell ────────────────────────────────────────────────────── */
+.cmp-page {
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
 
-  /* ── Hero ────────────────────────────────────────────────────── */
-  .cmp-hero {
-    padding: 64px 0 56px;
-    border-bottom: 1px solid var(--rule);
-  }
+/* ── Page header ───────────────────────────────────────────────────── */
+.cmp-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px var(--gutter) 40px;
+  text-align: center;
+}
 
-  .section-label {
-    display: flex;
-    align-items: baseline;
-    gap: 18px;
-    padding-bottom: 32px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .section-label .n {
-    font-family: var(--font-mono);
-    color: var(--ink-mute);
-  }
-  .rule-line {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-    display: block;
-  }
+.seal-tile {
+  width: 88px;
+  height: 88px;
+  background: #5A4022;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  flex-shrink: 0;
+}
+.seal-tile svg {
+  width: 46px;
+  height: 46px;
+}
 
-  .cmp-title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(40px, 6vw, 80px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    margin: 0 0 28px;
-    color: var(--ink);
-  }
+.cmp-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
 
-  .cmp-thesis {
-    max-width: 58ch;
-    font-family: var(--font-display);
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink-mute);
-    margin: 0;
-  }
+.cmp-title {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0;
+}
+.cmp-title em {
+  font-style: italic;
+  color: var(--ink-mute);
+}
 
-  /* ── Domain tab bar ──────────────────────────────────────────── */
-  .cmp-tabs-bar {
-    position: sticky;
-    top: 57px;
-    z-index: 30;
-    background: var(--bg);
-    border-bottom: 1px solid var(--rule);
-  }
+.cmp-lede {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  max-width: 62ch;
+  margin: 0;
+}
 
-  .cmp-tabs {
-    display: flex;
-    gap: 4px;
-    padding: 8px 0;
-  }
+/* ── Thread-tinted banner ──────────────────────────────────────────── */
+.thread-banner {
+  background: color-mix(in oklab, var(--family-mid) 7%, var(--bg));
+  border-top: 1px solid color-mix(in oklab, var(--family-mid) 26%, var(--rule));
+  border-bottom: 1px solid color-mix(in oklab, var(--family-mid) 26%, var(--rule));
+  margin-bottom: 32px;
+  transition: background 200ms, border-color 200ms;
+}
 
-  .cmp-tab {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 18px;
-    background: none;
-    border: 1px solid transparent;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: color 150ms, border-color 150ms, background 150ms;
-  }
-  .cmp-tab[aria-selected="true"] {
-    color: var(--ink);
-    border-color: var(--rule-strong);
-    background: var(--bg-raised);
-  }
-  .cmp-tab:hover:not([aria-selected="true"]) { color: var(--ink-mute); }
+.banner-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px var(--gutter) 26px;
+}
 
-  /* ── Thread selector row ─────────────────────────────────────── */
-  .cmp-thread-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 32px 0 24px;
-  }
+/* ── Cascade rows ──────────────────────────────────────────────────── */
+.cascade-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
 
-  .cmp-thread-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-ui);
-    font-size: 14px;
-    padding: 8px 18px;
-    border: 1px solid var(--rule);
-    background: none;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 150ms;
-  }
-  .cmp-thread-btn[aria-selected="true"] {
-    background: var(--bg-raised);
-    border-color: var(--rule-strong);
-    color: var(--ink);
-  }
-  .cmp-thread-btn:hover:not([aria-selected="true"]) { color: var(--ink-mute); }
+.r1 { max-width: 720px; }
+.r2 { max-width: 480px; }
+.r3 { max-width: 920px; }
 
-  /* ── Thread section heading ──────────────────────────────────── */
-  .cmp-thread-head {
-    padding: 4px 0 20px;
-  }
-  .cmp-thread-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 22px;
-    color: var(--ink);
-    margin: 0 0 6px;
-  }
-  .cmp-thread-sub {
-    font-family: var(--font-ui);
-    font-size: 14px;
-    color: var(--ink-soft);
-  }
+.r1 .pill { flex: 1; }
+.r3 .pill { flex: 1; }
 
-  /* ── Sub-toggle (Painting / Sculpture) ──────────────────────── */
-  .cmp-sub-tabs {
-    display: flex;
-    gap: 8px;
-    padding: 28px 0 4px;
-  }
-  .cmp-sub-tab {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 18px;
-    background: none;
-    border: 1px solid var(--rule);
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 150ms;
-  }
-  .cmp-sub-tab[aria-selected="true"] {
-    background: var(--bg-raised);
-    border-color: var(--rule-strong);
-    color: var(--ink);
-  }
+/* ── Pills ─────────────────────────────────────────────────────────── */
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  color: var(--ink-mute);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  overflow: hidden;
+  transition: background 160ms, border-color 160ms, color 160ms;
+  white-space: nowrap;
+}
 
-  /* ── Card grid ───────────────────────────────────────────────── */
-  .cmp-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-bottom: 64px;
-  }
-  @media (max-width: 900px) { .cmp-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .cmp-grid { grid-template-columns: 1fr; } }
+.pill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--pill-mid);
+  opacity: 0;
+  transition: opacity 160ms;
+}
 
-  /* ── Card ────────────────────────────────────────────────────── */
-  .cmp-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-raised);
-    overflow: hidden;
-    transition: background 200ms;
-  }
-  .cmp-card:hover { background: #E0D5BD; }
+.pill[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--pill-mid) 14%, var(--bg));
+  border-color: var(--pill-mid);
+  color: var(--pill-mid);
+}
+.pill[aria-pressed="true"]::before { opacity: 1; }
+.pill:hover:not([aria-pressed="true"]) { color: var(--ink); }
 
-  .cmp-card-swatch {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: var(--u-acc);
-    z-index: 1;
-  }
+.pill:focus-visible {
+  outline: 2px solid var(--pill-mid);
+  outline-offset: 2px;
+}
 
-  .cmp-card-img-wrap {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    display: block;
-  }
-  .cmp-card-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 400ms ease;
-  }
-  .cmp-card:hover .cmp-card-img-wrap img { transform: scale(1.02); }
-  .cmp-card-img-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(20,17,16,.5) 100%);
-    pointer-events: none;
-  }
+.pill-sigil {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.pill-sigil svg { display: block; }
 
-  .cmp-card-body {
-    padding: 20px 22px 24px 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
+.domain-pill { height: 56px; font-size: 20px; padding: 0 20px; }
+.domain-pill .pill-sigil svg { width: 24px; height: 24px; }
+.medium-pill  { height: 48px; font-size: 18px; padding: 0 28px; }
+.thread-pill  { height: 54px; font-size: 17px; gap: 10px; padding: 0 16px; }
+.thread-pill .pill-sigil svg { width: 22px; height: 22px; }
 
-  .cmp-card-eyebrow {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-  }
+/* ── Thread sub-head ───────────────────────────────────────────────── */
+.thread-subhead { text-align: center; padding-top: 6px; }
 
-  .cmp-card-num {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: 40px;
-    line-height: 1;
-    color: var(--u-acc);
-    flex-shrink: 0;
-  }
+.subhead-title {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.1;
+  transition: color 160ms;
+}
 
-  .cmp-card-period-name {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 19px;
-    color: var(--ink);
-    line-height: 1.2;
-  }
+.subhead-sub {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-mute);
+  margin-top: 6px;
+}
 
-  .cmp-card-dates {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    margin-top: 3px;
-  }
+/* ── Card grids ────────────────────────────────────────────────────── */
+.cmp-grids {
+  max-width: calc(1100px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
 
-  .cmp-card-summary {
-    font-family: var(--font-display);
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--ink-mute);
-    flex: 1;
-  }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+}
 
-  .cmp-card-work {
-    padding-top: 12px;
-    border-top: 1px solid var(--rule);
-    font-family: var(--font-display);
-    font-size: 14px;
-    color: var(--ink-mute);
-  }
-  .cmp-card-work em { color: var(--ink); font-style: italic; }
+/* ── Period card ───────────────────────────────────────────────────── */
+.period-card {
+  background: var(--tint);
+  border: 1px solid color-mix(in oklab, var(--acc) 36%, var(--rule));
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
 
-  .cmp-card-work-by {
-    display: block;
-    font-family: var(--font-ui);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 4px;
-  }
+/* Image slot */
+.card-image,
+.card-image-ph {
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid color-mix(in oklab, var(--acc) 32%, var(--rule));
+  flex-shrink: 0;
+}
+.card-image-ph {
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--acc) 8%, var(--tint)) 0px,
+    color-mix(in oklab, var(--acc) 8%, var(--tint)) 4px,
+    var(--tint) 4px,
+    var(--tint) 12px
+  );
+}
 
-  .cmp-card-link {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-    transition: color 150ms;
-    margin-top: auto;
-  }
-  .cmp-card-link:hover { color: var(--ink); }
+/* Card body */
+.card-body {
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
 
-  /* ── Music listen button ─────────────────────────────────────── */
-  .cmp-listen-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 10px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    padding: 5px 12px;
-    background: none;
-    border: 1px solid var(--rule-strong);
-    color: var(--btn-acc, var(--ink-soft));
-    cursor: pointer;
-    transition: all 150ms;
-  }
-  .cmp-listen-btn:hover {
-    border-color: var(--btn-acc, var(--ink));
-    background: color-mix(in oklab, var(--btn-acc, var(--ink-soft)) 10%, transparent);
-  }
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
-  /* ── Utilities ───────────────────────────────────────────────── */
-  .hidden { display: none !important; }
+.card-header-left { display: flex; flex-direction: column; }
+
+.card-num {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 0.9;
+  color: var(--acc);
+  letter-spacing: -0.02em;
+}
+
+.card-unit-lbl {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* Period motif (text mode, top-right slot) */
+.card-motif {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+.card-motif :global(svg) {
+  width: 32px !important;
+  height: 32px !important;
+  display: block;
+}
+
+/* Play disc (audio mode, top-right slot) */
+.play-disc {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--acc);
+  background: color-mix(in oklab, var(--acc) 12%, var(--bg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--acc);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 160ms;
+}
+.play-disc:hover {
+  background: color-mix(in oklab, var(--acc) 22%, var(--bg));
+}
+.play-disc[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--acc) 28%, var(--bg));
+}
+.play-disc:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+.card-period-title {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-weight: 500;
+  font-size: 18.5px;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.card-dates {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.card-gloss {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  margin: 0;
+}
+
+.card-spacer { flex: 1; }
+
+/* Caption (image + audio) */
+.card-caption {
+  margin-top: auto;
+  border-top: 1px solid color-mix(in oklab, var(--acc) 28%, var(--rule));
+  padding-top: 10px;
+}
+.caption-title {
+  font-family: 'Cormorant Garamond', var(--font-display);
+  font-style: italic;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  display: block;
+}
+.caption-by {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* YouTube embed */
+.youtube-embed {
+  margin-top: 8px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.youtube-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Anchor row */
+.anchor-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in oklab, var(--acc) 28%, var(--rule));
+}
+.anchor-row.no-top-border {
+  border-top: none;
+  padding-top: 0;
+}
+
+.anchor-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.anchor-bar {
+  width: 24px;
+  height: 2px;
+  background: var(--acc);
+}
+
+.unit-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acc);
+  transition: opacity 150ms;
+}
+.unit-link:hover { opacity: 0.72; }
+
+/* ── Utilities ─────────────────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .cmp-lede  { max-width: 42ch; }
+  .r1 .pill  { gap: 8px; font-size: 17px; }
+  .r3 .pill  { font-size: 14px; padding: 0 10px; gap: 6px; }
+  .r3 .pill-label { display: none; }
+}
 </style>
 
 <script>
-  // ── Domain tabs ──────────────────────────────────────────────────────────
-  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.cmp-tab');
-  const domainSections = document.querySelectorAll<HTMLElement>('.domain-section');
+// ── Constants (mirrors server-side data) ─────────────────────────────────
+const THREAD_SUBJECT: Record<string, string> = {
+  'human-position': 'philosophy', 'knowledge-limits': 'philosophy', 'individual-authority': 'philosophy',
+  'figure-space': 'painting',  'light-shadow': 'painting',  'brushwork-surface': 'painting',
+  'body-volume': 'sculpture',  'material-making': 'sculpture', 'space-setting': 'sculpture',
+  'texture-voices': 'music',   'consonance-dissonance': 'music', 'structure-freedom': 'music',
+};
 
-  function activateDomain(targetDomain: string) {
-    domainTabs.forEach((tab) => {
-      tab.setAttribute('aria-selected', String(tab.dataset.domain === targetDomain));
-    });
-    domainSections.forEach((sec) => {
-      sec.classList.toggle('hidden', sec.dataset.domain !== targetDomain);
-    });
-  }
+const SUBJECT_FIRST: Record<string, string> = {
+  philosophy: 'human-position',
+  painting:   'figure-space',
+  sculpture:  'body-volume',
+  music:      'texture-voices',
+};
 
-  domainTabs.forEach((tab) => {
-    tab.addEventListener('click', () => activateDomain(tab.dataset.domain!));
+const FAMILIES: Record<string, Record<string, string>> = {
+  philosophy: { dark: '#3A332B', mid: '#5A5046', light: '#857A6B' },
+  painting:   { dark: '#75435B', mid: '#94586E', light: '#B58193' },
+  sculpture:  { dark: '#4F6B4D', mid: '#5F8060', light: '#7B9883' },
+  music:      { dark: '#574878', mid: '#6F5E95', light: '#8C80AE' },
+};
+
+const THREAD_WEIGHT: Record<string, string> = {
+  'human-position': 'dark', 'knowledge-limits': 'mid', 'individual-authority': 'light',
+  'figure-space': 'dark',   'light-shadow': 'mid',     'brushwork-surface': 'light',
+  'body-volume': 'dark',    'material-making': 'mid',  'space-setting': 'light',
+  'texture-voices': 'dark', 'consonance-dissonance': 'mid', 'structure-freedom': 'light',
+};
+
+const SUBJECT_SUBTITLE: Record<string, string> = {
+  philosophy: 'How this philosophical question is answered in each period',
+  painting:   'How painters approach this visual problem in each period',
+  sculpture:  'How sculptors approach this three-dimensional problem in each period',
+  music:      'How composers handle this musical dimension in each period',
+};
+
+// ── State ────────────────────────────────────────────────────────────────
+type Domain  = 'philosophy' | 'art' | 'music';
+type Medium  = 'painting' | 'sculpture';
+type Subject = 'philosophy' | 'painting' | 'sculpture' | 'music';
+
+interface State { domain: Domain; medium: Medium; subject: Subject; thread: string; }
+
+const state: State = { domain: 'philosophy', medium: 'painting', subject: 'philosophy', thread: 'human-position' };
+
+// Read URL params
+const params = new URLSearchParams(location.search);
+const dP = params.get('d'); const mP = params.get('m'); const tP = params.get('t');
+
+if (dP === 'philosophy' || dP === 'art' || dP === 'music') state.domain = dP as Domain;
+if (state.domain === 'art' && (mP === 'painting' || mP === 'sculpture')) state.medium = mP as Medium;
+state.subject = (state.domain === 'art' ? state.medium : state.domain) as Subject;
+state.thread  = (tP && THREAD_SUBJECT[tP] === state.subject) ? tP : SUBJECT_FIRST[state.subject];
+
+// ── DOM references ───────────────────────────────────────────────────────
+const banner       = document.getElementById('cmp-banner')!;
+const mediumRow    = document.getElementById('medium-row') as HTMLElement;
+const subheadTitle = document.getElementById('subhead-title')!;
+const subheadSub   = document.getElementById('subhead-sub')!;
+
+// ── Update UI ────────────────────────────────────────────────────────────
+function updateUI() {
+  const { domain, medium, subject, thread } = state;
+  const family = FAMILIES[subject];
+
+  // Banner tint
+  banner.style.setProperty('--family-mid', family.mid);
+
+  // Domain pills
+  document.querySelectorAll<HTMLButtonElement>('.domain-pill').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.domain === domain));
   });
 
-  // ── Visual Art sub-toggle ─────────────────────────────────────────────────
-  const subTabs = document.querySelectorAll<HTMLButtonElement>('.cmp-sub-tab');
-  const subPanels = document.querySelectorAll<HTMLElement>('.visual-art-sub-panel');
-
-  function activateVisualArtSub(targetSub: string) {
-    subTabs.forEach((tab) => {
-      tab.setAttribute('aria-selected', String(tab.dataset.sub === targetSub));
-    });
-    subPanels.forEach((panel) => {
-      panel.classList.toggle('hidden', panel.dataset.sub !== targetSub);
-    });
-    const subDomain = targetSub === 'painting' ? 'art' : 'sculpture';
-    const firstBtn = document.querySelector<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${subDomain}"]`);
-    if (firstBtn) activateThread(subDomain, firstBtn.dataset.thread!);
-  }
-
-  subTabs.forEach((tab) => {
-    tab.addEventListener('click', () => activateVisualArtSub(tab.dataset.sub!));
+  // Medium row visibility + pills
+  mediumRow.hidden = domain !== 'art';
+  document.querySelectorAll<HTMLButtonElement>('.medium-pill').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.medium === medium));
   });
 
-  // ── Thread buttons ────────────────────────────────────────────────────────
-  function activateThread(targetDomain: string, targetThread: string) {
-    document.querySelectorAll<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${targetDomain}"]`).forEach((btn) => {
-      btn.setAttribute('aria-selected', String(btn.dataset.thread === targetThread));
-    });
-    document.querySelectorAll<HTMLElement>(`.thread-comparison[data-domain="${targetDomain}"]`).forEach((el) => {
-      el.classList.toggle('hidden', el.dataset.thread !== targetThread);
-    });
-  }
-
-  document.querySelectorAll<HTMLButtonElement>('.cmp-thread-btn').forEach((btn) => {
-    btn.addEventListener('click', () => activateThread(btn.dataset.domain!, btn.dataset.thread!));
+  // Thread pills — show only current subject's 3
+  document.querySelectorAll<HTMLButtonElement>('.thread-pill').forEach(btn => {
+    const show = btn.dataset.subject === subject;
+    btn.hidden = !show;
+    if (show) btn.setAttribute('aria-pressed', String(btn.dataset.thread === thread));
   });
 
-  // ── Listen / stop buttons ─────────────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.cmp-listen-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const embedDiv = btn.nextElementSibling as HTMLElement | null;
-      if (!embedDiv) return;
-      const isHidden = embedDiv.classList.contains('hidden');
-      const iframe = embedDiv.querySelector('iframe');
-      if (!iframe) return;
-      if (isHidden) {
-        const dataSrc = iframe.getAttribute('data-src');
-        if (dataSrc) { iframe.setAttribute('src', dataSrc); iframe.removeAttribute('data-src'); }
-        embedDiv.classList.remove('hidden');
-        btn.textContent = '■ Stop';
-      } else {
-        const currentSrc = iframe.getAttribute('src');
-        if (currentSrc) { iframe.setAttribute('data-src', currentSrc); iframe.removeAttribute('src'); }
-        embedDiv.classList.add('hidden');
-        btn.textContent = '▶ Listen';
-      }
-    });
+  // Card grids
+  document.querySelectorAll<HTMLElement>('.card-grid').forEach(grid => {
+    grid.classList.toggle('hidden', grid.dataset.thread !== thread);
   });
 
-  // ── Initialise ────────────────────────────────────────────────────────────
-  (['philosophy', 'art', 'music', 'sculpture'] as const).forEach((domain) => {
-    const firstBtn = document.querySelector<HTMLButtonElement>(`.cmp-thread-btn[data-domain="${domain}"]`);
-    if (firstBtn) activateThread(domain, firstBtn.dataset.thread!);
+  // Sub-head
+  const threadBtn = document.querySelector<HTMLButtonElement>(`.thread-pill[data-thread="${thread}"]`);
+  const threadLabel = threadBtn?.querySelector('.pill-label')?.textContent ?? '';
+  const threadColor = family[THREAD_WEIGHT[thread]];
+
+  subheadTitle.textContent = threadLabel;
+  (subheadTitle as HTMLElement).style.color = threadColor;
+  subheadSub.textContent = SUBJECT_SUBTITLE[subject];
+
+  // URL (no scroll)
+  const p = new URLSearchParams();
+  p.set('d', domain);
+  if (domain === 'art') p.set('m', medium);
+  p.set('t', thread);
+  history.replaceState(null, '', '?' + p.toString());
+}
+
+// ── Event handlers ───────────────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('.domain-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.domain  = btn.dataset.domain as Domain;
+    state.subject = (state.domain === 'art' ? state.medium : state.domain) as Subject;
+    state.thread  = SUBJECT_FIRST[state.subject];
+    updateUI();
   });
-  activateDomain('philosophy');
-  activateVisualArtSub('painting');
+});
+
+document.querySelectorAll<HTMLButtonElement>('.medium-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.medium  = btn.dataset.medium as Medium;
+    state.subject = state.medium;
+    state.thread  = SUBJECT_FIRST[state.subject];
+    updateUI();
+  });
+});
+
+document.querySelectorAll<HTMLButtonElement>('.thread-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.thread = btn.dataset.thread!;
+    updateUI();
+  });
+});
+
+// ── YouTube play discs ───────────────────────────────────────────────────
+let activeBtn: HTMLButtonElement | null = null;
+let activeEmbed: HTMLElement | null = null;
+
+document.querySelectorAll<HTMLButtonElement>('.play-disc').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card  = btn.closest('.period-card')!;
+    const embed = card.querySelector<HTMLElement>('.youtube-embed');
+    if (!embed) return;
+
+    const stopping = activeEmbed === embed;
+
+    // Stop any currently playing
+    if (activeEmbed) {
+      const iframe = activeEmbed.querySelector('iframe')!;
+      if (iframe.src) { iframe.dataset.src = iframe.src; iframe.removeAttribute('src'); }
+      activeEmbed.hidden = true;
+      if (activeBtn) activeBtn.setAttribute('aria-pressed', 'false');
+      activeBtn = null; activeEmbed = null;
+    }
+
+    if (stopping) return;
+
+    // Start this one
+    const iframe = embed.querySelector('iframe')!;
+    if (iframe.dataset.src) { iframe.src = iframe.dataset.src; delete iframe.dataset.src; }
+    embed.hidden = false;
+    btn.setAttribute('aria-pressed', 'true');
+    activeBtn = btn; activeEmbed = embed;
+  });
+});
+
+// ── Initialize ───────────────────────────────────────────────────────────
+updateUI();
 </script>
