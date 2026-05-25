@@ -556,13 +556,14 @@ const ALL_THREADS = [
   align-items: center;
   flex-shrink: 0;
 }
-.pill-sigil svg { display: block; }
+.pill-sigil :global(svg) { display: block; }
 
 .domain-pill { height: 56px; font-size: 20px; padding: 0 20px; }
-.domain-pill .pill-sigil svg { width: 24px; height: 24px; }
+.domain-pill .pill-sigil :global(svg) { width: 24px; height: 24px; }
 .medium-pill  { height: 48px; font-size: 18px; padding: 0 28px; }
+.medium-pill .pill-sigil :global(svg) { width: 22px; height: 22px; }
 .thread-pill  { height: 54px; font-size: 17px; gap: 10px; padding: 0 16px; }
-.thread-pill .pill-sigil svg { width: 22px; height: 22px; }
+.thread-pill .pill-sigil :global(svg) { width: 22px; height: 22px; }
 
 /* ── Thread sub-head ───────────────────────────────────────────────── */
 .thread-subhead { text-align: center; padding-top: 6px; }
