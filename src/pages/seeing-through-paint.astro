@@ -1,14 +1,13 @@
 ---
 import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import ThreadIcon from '../components/ThreadIcon.astro';
 
 const UNIT_IDS = [
   '00-medieval', '01-renaissance', '02-baroque',
   '03-enlightenment', '04-romanticism', '05-modernism',
 ] as const;
 
-const UNIT_ACCENTS: Record<string, string> = {
+const PERIOD_ACCENTS: Record<string, string> = {
   '00-medieval':      '#C9A24B',
   '01-renaissance':   '#B54C3A',
   '02-baroque':       '#B07028',
@@ -17,321 +16,601 @@ const UNIT_ACCENTS: Record<string, string> = {
   '05-modernism':     '#A03828',
 };
 
-const THREAD_COLORS = ['#c98a18', '#a57014', '#e0a028'];
-
 const THREADS = [
   {
     id: 'figure-space',
-    label: 'Figure & Space',
+    title: 'Figure & Space',
+    weight: 'var(--th-1)',
     question: 'How does the painting represent space, and what is the relationship of the human figure to the world it inhabits?',
-    arc: "The story this thread tells is the story of Western painting's ambition to represent space — and ultimately, its abandonment of that ambition. The medieval painter places figures on a flat, symbolic ground: spatial depth is irrelevant because the real space being mapped is spiritual hierarchy, not physical distance. The Renaissance invents a rational system for representing three-dimensional space on a flat surface, and the figure steps confidently into it — standing on solid ground, inhabiting a world the viewer could in principle walk through. The Baroque keeps perspectival space but charges it with instability: figures twist, surge, and emerge from shadow in compositions that feel dynamic and vertiginous. The Enlightenment brings the figure indoors, into intimate, legible social spaces where people perform for each other. Romanticism reverses the Renaissance hierarchy: the figure shrinks until it is almost nothing against an immensity of sky, mountain, and sea that no rational system can contain. Modernism completes the reversal, shattering the unified picture plane itself — showing multiple viewpoints simultaneously, dissolving the figure into geometry, asking whether a coherent represented space was ever anything more than a convention.",
+    story: "is the story of Western painting's ambition to represent space — and ultimately, its abandonment of that ambition. The medieval painter places figures on a flat, symbolic ground: spatial depth is irrelevant because the real space being mapped is spiritual hierarchy, not physical distance. The Renaissance invents a rational system for representing three-dimensional space on a flat surface, and the figure steps confidently into it — standing on solid ground, inhabiting a world the viewer could in principle walk through. The Baroque keeps perspectival space but charges it with instability: figures twist, surge, and emerge from shadow in compositions that feel dynamic and vertiginous. The Enlightenment brings the figure indoors, into intimate, legible social spaces where people perform for each other. Romanticism reverses the Renaissance hierarchy: the figure shrinks until it is almost nothing against an immensity of sky, mountain, and sea that no rational system can contain. Modernism completes the reversal, shattering the unified picture plane itself — showing multiple viewpoints simultaneously, dissolving the figure into geometry, asking whether a coherent represented space was ever anything more than a convention.",
   },
   {
     id: 'light-shadow',
-    label: 'Light & Shadow',
+    title: 'Light & Shadow',
+    weight: 'var(--th-2)',
     question: "Where does light come from, how does it fall, and what does the painter's handling of illumination reveal about the culture's assumptions?",
-    arc: "The story this thread tells is the story of what light means — and of the moment painting realized that light is not a given but a choice. For medieval painters, light is not a physical phenomenon at all: it is the intrinsic radiance of the sacred, uniform, omnidirectional, shadowless — the visual equivalent of divine truth that illuminates everything equally without casting darkness on anything. The Renaissance naturalizes light: it comes from somewhere specific, casts shadows that reveal the volume of forms, and makes the world look as an informed observer would actually see it. The Baroque weaponizes light's opposite: tenebrism reduces the world to near-total darkness, then picks out a single crucial action in a concentrated beam, making light itself the drama. The Enlightenment relaxes into soft, diffuse, flattering illumination — a pastel world where irony hides beneath the charm. Romanticism releases light into weather and atmosphere: Turner's skies are not lit by a source so much as constituted by light itself, form dissolving into radiance. Modernism dismantles the system entirely, first decomposing light into its component colors, then producing luminosity from paint alone, with no reference to any external source.",
+    story: "is the story of what light means — and of the moment painting realized that light is not a given but a choice. For medieval painters, light is not a physical phenomenon at all: it is the intrinsic radiance of the sacred, uniform, omnidirectional, shadowless — the visual equivalent of divine truth that illuminates everything equally without casting darkness on anything. The Renaissance naturalizes light: it comes from somewhere specific, casts shadows that reveal the volume of forms, and makes the world look as an informed observer would actually see it. The Baroque weaponizes light's opposite: tenebrism reduces the world to near-total darkness, then picks out a single crucial action in a concentrated beam, making light itself the drama. The Enlightenment relaxes into soft, diffuse, flattering illumination — a pastel world where irony hides beneath the charm. Romanticism releases light into weather and atmosphere: Turner's skies are not lit by a source so much as constituted by light itself, form dissolving into radiance. Modernism dismantles the system entirely, first decomposing light into its component colors, then producing luminosity from paint alone, with no reference to any external source.",
   },
   {
     id: 'brushwork-surface',
-    label: 'Brushwork & Surface',
+    title: 'Brushwork & Surface',
+    weight: 'var(--th-3)',
     question: "Is the painter's hand visible? What does the texture and treatment of the painted surface declare about art, craft, and individual expression?",
-    arc: "The story this thread tells is the story of the painter's hand — when it became visible, and what that visibility meant. For the medieval craftsman, the individual touch is precisely what must not appear: the goal is fidelity to tradition and devotion to the sacred subject, and the seamless, anonymous surface is the visual proof of that subordination. Renaissance painting achieves a different kind of invisibility: oil paint, used with extraordinary skill, creates surfaces of such smooth, continuous illusion that the medium disappears entirely behind the image — the rational mind, it claims, can reproduce reality without a trace of its own presence. The Baroque splits this convention: Vermeer perfects the Renaissance ideal of luminous, seamless surface, while Rembrandt's thick impasto makes the paint itself a physical presence, a texture the eye can almost feel. The Enlightenment returns to refined, decorative fluency — surfaces that shimmer with the exquisite ease of silk and lacework. Romanticism makes the hand conspicuous and purposeful: visible, energetic brushwork stops merely depicting a storm and starts behaving like one, embodying emotion rather than representing it. Modernism declares the surface not a means to an end but the subject itself — what Rembrandt introduced, modernism makes explicit and final: a painting is a flat surface covered with paint, and the mark of the maker is everything.",
+    story: "is the story of the painter's hand — when it became visible, and what that visibility meant. For the medieval craftsman, the individual touch is precisely what must not appear: the goal is fidelity to tradition and devotion to the sacred subject, and the seamless, anonymous surface is the visual proof of that subordination. Renaissance painting achieves a different kind of invisibility: oil paint, used with extraordinary skill, creates surfaces of such smooth, continuous illusion that the medium disappears entirely behind the image — the rational mind, it claims, can reproduce reality without a trace of its own presence. The Baroque splits this convention: Vermeer perfects the Renaissance ideal of luminous, seamless surface, while Rembrandt's thick impasto makes the paint itself a physical presence, a texture the eye can almost feel. The Enlightenment returns to refined, decorative fluency — surfaces that shimmer with the exquisite ease of silk and lacework. Romanticism makes the hand conspicuous and purposeful: visible, energetic brushwork stops merely depicting a storm and starts behaving like one, embodying emotion rather than representing it. Modernism declares the surface not a means to an end but the subject itself — what Rembrandt introduced, modernism makes explicit and final: a painting is a flat surface covered with paint, and the mark of the maker is everything.",
   },
 ];
+
+// Inline SVG sigils — currentColor stroke so CSS can drive active/default states
+const SIGS: Record<string, string> = {
+  'figure-space':      `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="34" x2="37" y2="34"/><circle cx="17" cy="11" r="3.5"/><path d="M17 14.5 L17 30 M17 19 L13 25 M17 19 L21 25 M17 30 L14 34 M17 30 L20 34"/><circle cx="30" cy="22" r="2"/><path d="M30 24 L30 31 M30 26.5 L28 30 M30 26.5 L32 30"/><circle cx="9" cy="9" r=".8" fill="currentColor" stroke="none"/><circle cx="25" cy="6" r=".8" fill="currentColor" stroke="none"/><circle cx="9" cy="20" r=".8" fill="currentColor" stroke="none"/><circle cx="17" cy="6" r="1.3" fill="currentColor" stroke="none"/></svg>`,
+  'light-shadow':      `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="20" cy="20" r="6"/><line x1="20" y1="9" x2="20" y2="4"/><line x1="20" y1="31" x2="20" y2="36"/><line x1="9" y1="20" x2="4" y2="20"/><line x1="31" y1="20" x2="36" y2="20"/><line x1="12.2" y1="12.2" x2="8.7" y2="8.7"/><line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/><line x1="27.8" y1="12.2" x2="31.3" y2="8.7"/><line x1="12.2" y1="27.8" x2="8.7" y2="31.3"/><line x1="14.3" y1="9.6" x2="12.6" y2="5.0" opacity=".55"/><line x1="25.7" y1="30.4" x2="27.4" y2="35.0" opacity=".55"/><line x1="9.6" y1="25.7" x2="5.0" y2="27.4" opacity=".55"/><line x1="30.4" y1="14.3" x2="35.0" y2="12.6" opacity=".55"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  'brushwork-surface': `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="6" y="6" width="28" height="28"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="20" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="28" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="28" r="1" fill="currentColor" stroke="none"/><circle cx="28" cy="28" r="1" fill="currentColor" stroke="none"/><rect x="9" y="9" width="22" height="22" stroke-dasharray="1.5 2" opacity=".55"/></svg>`,
+};
 
 const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/art`)));
 ---
 
 <Layout title="Seeing Through Paint — AP Literature">
 
-<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
-<section class="g-hero">
-  <div class="g-wrap">
-    <p class="g-label">§ III &nbsp;·&nbsp; Shared Resource &nbsp;·&nbsp; Visual Art</p>
-    <h1 class="g-title">Seeing Through Paint</h1>
-    <p class="g-thesis">
+<div class="stp-page">
+
+  <!-- Full-bleed three-strand braid band -->
+  <div id="stp-band" class="stp-band" aria-hidden="true"></div>
+
+  <!-- Centered header -->
+  <header class="stp-head">
+    <div class="stp-seal" aria-hidden="true">
+      <!-- Painting mark: rotated square + center dot -->
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
+        <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <p class="stp-eyebrow"><strong>§ III</strong> · Shared Resource · Visual Art</p>
+    <h1 class="stp-title">Seeing Through <em>Paint</em></h1>
+    <p class="stp-lede">
       A complete guide to the visual art of each period, from the gold-ground certainties of medieval
       painting through Modernism's shattering of the picture plane. Three threads — Figure &amp; Space,
       Light &amp; Shadow, and Brushwork &amp; Surface — run continuously through all six periods.
       Follow them from start to finish, or jump to any thread below.
     </p>
-  </div>
-</section>
+  </header>
 
-<!-- ── Sticky thread nav ─────────────────────────────────────────────────── -->
-<div class="g-nav-bar">
-  <div class="g-wrap">
-    <nav class="g-nav" aria-label="Jump to thread">
-      {THREADS.map((thread, ti) => (
+  <!-- Sticky thread nav -->
+  <nav class="stp-tnav" id="stp-tnav" aria-label="Jump to thread">
+    <div class="stp-tnav-row">
+      {THREADS.map((t, i) => (
         <a
-          href={`#${thread.id}`}
-          class="g-nav-link thread-nav-link"
-          data-anchor={thread.id}
-          style={`--accent: ${THREAD_COLORS[ti]};`}
+          class:list={['stp-tbtn', i === 0 && 'active']}
+          href={`#${t.id}`}
+          data-target={t.id}
+          style={`--w: ${t.weight}`}
         >
-          <ThreadIcon thread={thread.id} size={24} color={THREAD_COLORS[ti]} />
-          {thread.label}
+          <span class="stp-tbtn-sig" set:html={SIGS[t.id]}></span>
+          <span class="stp-tbtn-label">{t.title}</span>
         </a>
       ))}
-    </nav>
-  </div>
-</div>
+    </div>
+  </nav>
 
-<!-- ── Introduction ──────────────────────────────────────────────────────── -->
-<div class="g-wrap">
-  <div class="g-intro">
-    <p>
-      Painting is the art form that most directly records the assumptions of its culture about what
-      the world looks like and how it should be represented. The choices a painter makes about space,
-      light, and the physical act of painting are never merely aesthetic — they are arguments about
-      perception, reality, and the relationship between the observer and the observed.
-    </p>
-    <p>
-      This guide traces three analytical threads across six historical periods, from the medieval
-      gold ground to the Modernist canvas. Reading each thread as a continuous arc — rather than
-      encountering the periods one by one — makes visible something that individual unit pages cannot:
-      the story of how Western culture has understood the act of seeing, and what painting is for.
-    </p>
-  </div>
-</div>
+  <div class="stp-wrap">
 
-<!-- ── Thread sections ───────────────────────────────────────────────────── -->
-<main class="g-wrap">
-  {THREADS.map((thread, ti) => {
-    const tc = THREAD_COLORS[ti];
-    const isLast = ti === THREADS.length - 1;
+    <!-- Intro prose -->
+    <section class="stp-intro">
+      <p>Painting is the art form that most directly records the assumptions of its culture about what the world looks like and how it should be represented. The choices a painter makes about space, light, and the physical act of painting are never merely aesthetic — they are arguments about perception, reality, and the relationship between the observer and the observed.</p>
+      <p>This guide traces three analytical threads across six historical periods, from the medieval gold ground to the Modernist canvas. Reading each thread as a continuous arc — rather than encountering the periods one by one — makes visible something that individual unit pages cannot: the story of how Western culture has understood the act of seeing, and what painting is for.</p>
+      <div class="stp-divider"></div>
+    </section>
 
-    return (
-      <>
-        <div id={thread.id} class="g-thread-head">
-          <div class="g-thread-eyebrow">
-            <ThreadIcon thread={thread.id} size={34} color={tc} />
-            <h2 class="g-thread-name">{thread.label}</h2>
+    <!-- Thread sections -->
+    <main>
+      {THREADS.map((thread) => (
+        <section class="stp-thread" id={thread.id} style={`--w: ${thread.weight}`}>
+
+          <div class="stp-thread-head">
+            <div class="stp-thread-sigil" set:html={SIGS[thread.id]}></div>
+            <div>
+              <div class="stp-thread-label">Thread · <strong>{thread.title}</strong></div>
+              <h2>{thread.title}</h2>
+            </div>
           </div>
-          <p class="g-thread-question">{thread.question}</p>
-        </div>
 
-        <div class="g-arc-block" style={`--tc: ${THREAD_COLORS[0]}`}>
-          <span class="g-arc-kicker">The story this thread tells</span>
-          {' '}{thread.arc.replace('The story this thread tells', '').trimStart()}
-        </div>
+          <p class="stp-thread-q">{thread.question}</p>
 
-        <div class="g-card-grid">
-          {entries.map((entry) => {
-            const unitId = entry.data.unit;
-            const uAccent = UNIT_ACCENTS[unitId] ?? '#A07820';
-            const num = unitId.slice(0, 2);
-            const periodThread = entry.data.threads.find((t: { id: string }) => t.id === thread.id);
-            const hero = entry.data.hero_painting;
+          <div class="stp-story">
+            <p><strong>The story this thread tells</strong> {thread.story}</p>
+          </div>
 
-            return (
-              <article class="g-scard" style={`--u-acc: ${uAccent}`}>
-                <div class="g-scard-swatch"></div>
-                {hero?.image && (
-                  <a href={`/units/${unitId}/art`} class="g-scard-img-wrap">
-                    <img src={hero.image} alt={`${hero.title} by ${hero.artist}`} loading="lazy" />
-                  </a>
-                )}
-                <div class="g-scard-body">
-                  <div class="g-scard-eyebrow">
-                    <span class="g-scard-num">{num}</span>
-                    <div>
-                      <div class="g-scard-period">{entry.data.period}</div>
-                      <span class="g-scard-dates">{entry.data.dates}</span>
+          <div class="stp-cards">
+            {entries.map((entry) => {
+              const unitId = entry.data.unit;
+              const acc = PERIOD_ACCENTS[unitId] ?? '#A07820';
+              const num = unitId.slice(0, 2);
+              const gloss = entry.data.threads.find((t) => t.id === thread.id)?.period_summary ?? '';
+              const hero = entry.data.hero_painting;
+              return (
+                <a class="stp-card" href={`/units/${unitId}/art`} style={`--acc: ${acc}`} aria-label={`Read the full ${entry.data.period} unit`}>
+                  {hero?.image && <div class="stp-card-img" style={`background-image:url('${hero.image}')`}></div>}
+                  <div class="stp-card-body">
+                    <div class="stp-card-top">
+                      <span class="stp-card-num">{num}</span>
+                      <span class="stp-card-ttl">{entry.data.period}</span>
+                    </div>
+                    <div class="stp-card-dates">{entry.data.dates}</div>
+                    <p class="stp-card-gloss">{gloss}</p>
+                    <div class="stp-card-cap">
+                      {hero && (
+                        <>
+                          <div class="stp-card-work">{hero.title}</div>
+                          <div class="stp-card-by">{hero.artist}</div>
+                        </>
+                      )}
+                      <span class="stp-card-full">Full {entry.data.period} unit →</span>
                     </div>
                   </div>
-                  {periodThread && <p class="g-scard-summary">{periodThread.period_summary}</p>}
-                  {hero && (
-                    <div class="g-scard-work">
-                      <em>{hero.title}</em>
-                      <span class="g-scard-artist">{hero.artist}</span>
-                    </div>
-                  )}
-                  <a href={`/units/${unitId}/art`} class="g-scard-link">
-                    Full {entry.data.period} unit →
-                  </a>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                </a>
+              );
+            })}
+          </div>
 
-        {!isLast && <hr class="g-divider" />}
-      </>
-    );
-  })}
-</main>
+        </section>
+      ))}
+    </main>
 
-<!-- ── Footer ────────────────────────────────────────────────────────────── -->
-<footer class="g-footer">
-  <div class="g-wrap">
-    <div class="g-footer-inner">
-      <a href="/">← Home</a>
-      <div class="g-footer-links">
+    <!-- Footer -->
+    <footer class="stp-footer">
+      <a class="stp-home" href="/">← Home</a>
+      <div class="stp-siblings">
         <a href="/sculpting-through-time">Sculpting Through Time</a>
         <a href="/hearing-through-form">Hearing Through Form</a>
       </div>
-    </div>
-  </div>
-</footer>
+    </footer>
+
+  </div><!-- /.stp-wrap -->
+</div><!-- /.stp-page -->
 
 </Layout>
 
 <style>
-  .g-wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); }
-
-  /* ── Hero ─────────────────────────────────────────────────────── */
-  .g-hero { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
-  .g-label {
-    font-family: var(--font-ui);
-    font-size: 11.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 28px;
-  }
-  .g-title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(40px, 6vw, 80px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    margin: 0 0 28px;
-    color: var(--ink);
-  }
-  .g-thesis {
-    max-width: 58ch;
-    font-family: var(--font-display);
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink-mute);
-    margin: 0;
+  /* ── Page-level custom properties ────────────────────────────────────── */
+  .stp-page {
+    --th-1: #75435B;   /* Figure & Space  · deep madder */
+    --th-2: #94586E;   /* Light & Shadow  · dusty rose  */
+    --th-3: #B58193;   /* Brushwork & Surface · muted pink */
+    --seal:  #5A4022;
+    --gutter: clamp(24px, 4.5vw, 80px);
+    --maxw: 1320px;
+    --display: 'Cormorant Garamond', Georgia, serif;
   }
 
-  /* ── Sticky nav ───────────────────────────────────────────────── */
-  .g-nav-bar { position: sticky; top: 57px; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--rule); overflow-x: auto; }
-  .g-nav { display: flex; gap: 8px; padding: 10px 0; white-space: nowrap; align-items: center; }
-  .g-nav-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 18px;
-    color: var(--ink-soft);
-    background: var(--bg-raised);
-    border: 1px solid var(--rule);
-    transition: color 150ms, background 150ms, border-color 150ms;
-    white-space: nowrap;
-  }
-  .g-nav-link:hover {
-    color: var(--ink);
-    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
-    background: color-mix(in oklab, var(--accent) 10%, transparent);
-  }
-  .g-nav-link.active {
-    color: var(--accent);
-    border-color: color-mix(in oklab, var(--accent) 55%, transparent);
-    background: color-mix(in oklab, var(--accent) 14%, transparent);
+  /* ── Full-bleed braid band ────────────────────────────────────────────── */
+  .stp-band {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    line-height: 0;
+    background: var(--bg);
   }
 
-  /* ── Intro ────────────────────────────────────────────────────── */
-  .g-intro {
-    max-width: 72ch;
-    padding: 48px 0 32px;
+  /* ── Centered header ──────────────────────────────────────────────────── */
+  .stp-head {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 52px var(--gutter) 48px;
+    max-width: var(--maxw);
+    margin: 0 auto;
   }
-  .g-intro p {
-    font-family: var(--font-display);
-    font-size: 16px;
-    line-height: 1.75;
+
+  .stp-seal {
+    width: 88px;
+    height: 88px;
+    background: var(--seal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .stp-seal svg {
+    width: 46px;
+    height: 46px;
+    color: var(--bg);
+  }
+
+  .stp-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .stp-eyebrow strong { color: var(--ink-mute); font-weight: 500; }
+
+  .stp-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(30px, 5.8vw, 74px);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .stp-title em { font-style: italic; color: var(--ink-mute); }
+
+  .stp-lede {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
     color: var(--ink-mute);
+    max-width: 60ch;
+    margin: 0;
+    text-wrap: pretty;
   }
-  .g-intro p:first-child { color: var(--ink); }
 
-  /* ── Thread heading ───────────────────────────────────────────── */
-  .g-thread-head { padding: 40px 0 16px; scroll-margin-top: 110px; }
-  .g-thread-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-  .g-thread-name { font-family: var(--font-display); font-weight: 400; font-size: 32px; color: var(--ink); margin: 0; }
-  .g-thread-question { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-soft); margin: 0; padding-left: 46px; }
+  /* ── Sticky thread nav ────────────────────────────────────────────────── */
+  .stp-tnav {
+    position: sticky;
+    top: 62px;
+    z-index: 39;
+    background: color-mix(in oklab, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+    /* bleed to full width */
+    padding: 14px var(--gutter);
+  }
 
-  /* ── Arc block ────────────────────────────────────────────────── */
-  .g-arc-block {
-    margin: 16px 0 28px;
-    padding: 18px 22px;
-    border: 1px solid color-mix(in oklab, var(--tc) 30%, transparent);
-    background: color-mix(in oklab, var(--tc) 7%, transparent);
-    font-family: var(--font-display);
-    font-size: 15.5px;
+  .stp-tnav-row {
+    display: flex;
+    gap: 12px;
+    max-width: calc(var(--maxw) - 2 * var(--gutter));
+    margin: 0 auto;
+  }
+
+  .stp-tbtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 13px 18px;
+    position: relative;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: background 160ms, color 160ms, border-color 160ms;
+  }
+  .stp-tbtn-sig {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 160ms;
+  }
+  .stp-tbtn-sig svg { width: 100%; height: 100%; }
+  .stp-tbtn-label { transition: color 160ms; }
+
+  .stp-tbtn:hover {
+    background: var(--bg-raised);
+    color: var(--ink);
+  }
+  .stp-tbtn:hover .stp-tbtn-sig { color: var(--ink-mute); }
+
+  .stp-tbtn.active {
+    background: color-mix(in oklab, var(--w) 12%, var(--bg));
+    border-color: var(--w);
+    color: var(--w);
+  }
+  .stp-tbtn.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--w);
+  }
+  .stp-tbtn.active .stp-tbtn-sig { color: var(--w); }
+
+  @media (max-width: 720px) {
+    .stp-tbtn { font-size: 0; gap: 0; padding: 13px; }
+    .stp-tbtn-sig { width: 24px; height: 24px; }
+  }
+
+  /* ── Content wrapper ──────────────────────────────────────────────────── */
+  .stp-wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ── Intro prose ──────────────────────────────────────────────────────── */
+  .stp-intro {
+    padding: 56px 0 8px;
+    text-align: center;
+  }
+  .stp-intro p {
+    font-size: 18px;
     line-height: 1.7;
     color: var(--ink-mute);
+    max-width: 62ch;
+    margin: 0 auto 22px;
+    text-wrap: pretty;
   }
-  .g-arc-kicker { font-weight: 600; color: var(--tc); }
+  .stp-divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 40px 0 0;
+  }
 
-  /* ── Card grid ────────────────────────────────────────────────── */
-  .g-card-grid {
+  /* ── Thread section ───────────────────────────────────────────────────── */
+  .stp-thread {
+    padding: 56px 0 8px;
+    scroll-margin-top: 76px;
+  }
+
+  .stp-thread-head {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 22px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .stp-thread-sigil {
+    width: 64px;
+    height: 64px;
+    border: 1px solid color-mix(in oklab, var(--w) 32%, var(--rule));
+    background: color-mix(in oklab, var(--w) 6%, var(--bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--w);
+    flex-shrink: 0;
+  }
+  .stp-thread-sigil svg { width: 36px; height: 36px; }
+
+  .stp-thread-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .stp-thread-label strong { color: var(--w); font-weight: 500; }
+
+  .stp-thread-head h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4vw, 46px);
+    line-height: 1;
+    letter-spacing: -.015em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .stp-thread-q {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.4;
+    color: var(--w);
+    margin: 18px 0 24px;
+    max-width: 60ch;
+  }
+
+  /* Story box */
+  .stp-story {
+    background: color-mix(in oklab, var(--w) 7%, var(--bg));
+    border: 1px solid color-mix(in oklab, var(--w) 26%, var(--rule));
+    border-left: 3px solid var(--w);
+    padding: 26px 30px;
+    margin-bottom: 36px;
+  }
+  .stp-story p {
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .stp-story p strong { color: var(--w); font-weight: 600; }
+
+  /* ── Card grid ────────────────────────────────────────────────────────── */
+  .stp-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-bottom: 48px;
+    gap: 20px;
   }
-  @media (max-width: 900px) { .g-card-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .g-card-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1080px) { .stp-cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 680px)  { .stp-cards { grid-template-columns: 1fr; } }
 
-  /* ── Painting card ────────────────────────────────────────────── */
-  .g-scard { position: relative; display: flex; flex-direction: column; background: var(--bg-raised); overflow: hidden; transition: background 200ms; }
-  .g-scard:hover { background: #E0D5BD; }
-  .g-scard-swatch { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--u-acc); z-index: 1; }
-  .g-scard-img-wrap { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-sunken); }
-  .g-scard-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .g-scard-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(20,17,16,.5) 100%); pointer-events: none; }
-  .g-scard-body { padding: 20px 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .g-scard-eyebrow { display: flex; align-items: baseline; gap: 12px; }
-  .g-scard-num { font-family: var(--font-display); font-weight: 300; font-size: 40px; line-height: 1; color: var(--u-acc); flex-shrink: 0; }
-  .g-scard-period { font-family: var(--font-display); font-weight: 400; font-size: 19px; color: var(--ink); line-height: 1.2; }
-  .g-scard-dates { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); margin-top: 3px; }
-  .g-scard-summary { font-family: var(--font-display); font-size: 15px; line-height: 1.65; color: var(--ink-mute); flex: 1; }
-  .g-scard-work { padding-top: 12px; border-top: 1px solid var(--rule); font-family: var(--font-display); font-size: 14px; color: var(--ink-mute); }
-  .g-scard-work em { color: var(--ink); font-style: italic; }
-  .g-scard-artist { display: block; font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
-  .g-scard-link { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft); transition: color 150ms; margin-top: auto; }
-  .g-scard-link:hover { color: var(--ink); }
+  .stp-card {
+    display: flex;
+    flex-direction: column;
+    background: color-mix(in oklab, var(--acc) 12%, var(--bg));
+    border: 1px solid color-mix(in oklab, var(--acc) 32%, var(--rule));
+    border-left: 3px solid var(--acc);
+    overflow: hidden;
+    text-decoration: none;
+    transition: filter 160ms;
+  }
+  .stp-card:hover { filter: brightness(.97); }
 
-  /* ── Divider / footer ─────────────────────────────────────────── */
-  .g-divider { border: none; border-top: 1px solid var(--rule); margin: 8px 0; }
-  .g-footer { margin-top: 48px; border-top: 1px solid var(--rule); }
-  .g-footer-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 24px 0; }
-  .g-footer-links { display: flex; gap: 24px; }
-  .g-footer a, .g-footer-links a { font-family: var(--font-ui); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); transition: color 150ms; }
-  .g-footer a:hover, .g-footer-links a:hover { color: var(--ink); }
+  .stp-card-img {
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-sunken);
+    border-bottom: 1px solid color-mix(in oklab, var(--acc) 30%, var(--rule));
+  }
+
+  .stp-card-body {
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .stp-card-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .stp-card-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: .85;
+    color: var(--acc);
+    letter-spacing: -.02em;
+    flex-shrink: 0;
+  }
+  .stp-card-ttl {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -.005em;
+  }
+  .stp-card-dates {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    margin: 6px 0 0;
+  }
+  .stp-card-gloss {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+    margin: 14px 0 0;
+    text-wrap: pretty;
+  }
+
+  .stp-card-cap {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid color-mix(in oklab, var(--acc) 26%, var(--rule));
+  }
+  .stp-card-work {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15.5px;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .stp-card-by {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 5px;
+  }
+  .stp-card-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--acc);
+  }
+
+  /* ── Footer ───────────────────────────────────────────────────────────── */
+  .stp-footer {
+    margin: 80px 0 0;
+    padding: 26px 0 64px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .stp-home {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 160ms;
+  }
+  .stp-home:hover { color: var(--ink); }
+
+  .stp-siblings { display: flex; gap: 14px; }
+  .stp-siblings a {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-mute);
+    padding: 8px 16px;
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    transition: color 160ms, border-color 160ms;
+  }
+  .stp-siblings a:hover { color: var(--ink); border-color: var(--rule-strong); }
 </style>
 
 <script>
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.thread-nav-link');
-  const sectionIds = ['figure-space', 'light-shadow', 'brushwork-surface'];
+  // ── Three-strand braid band ─────────────────────────────────────────────
+  // Band fills any viewport width via a seamless SVG <pattern>.
+  // Colors are driven entirely by --th-1/2/3 from .stp-page.
+  (function buildBraidBand() {
+    const H = 60, mid = H / 2, amp = H * 0.30, wl = H * 1.25;
+    const phases = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
+    const weights = ['var(--th-1)', 'var(--th-2)', 'var(--th-3)'];
+    const sineD = (phase: number) => {
+      const step = wl / 24;
+      let d = `M ${(-step).toFixed(2)} ${(mid + amp * Math.sin((2 * Math.PI * -step) / wl + phase)).toFixed(2)}`;
+      for (let x = 0; x <= wl + step; x += step) {
+        d += ` L ${x.toFixed(2)} ${(mid + amp * Math.sin((2 * Math.PI * x) / wl + phase)).toFixed(2)}`;
+      }
+      return d;
+    };
+    const strands = phases.map((p, i) => {
+      const d = sineD(p);
+      return `<path d="${d}" fill="none" stroke="var(--bg)" stroke-width="8"/>`
+           + `<path d="${d}" fill="none" stroke="${weights[i]}" stroke-width="3.4" stroke-linecap="round"/>`;
+    }).join('');
+    const el = document.getElementById('stp-band');
+    if (el) {
+      el.innerHTML =
+        `<svg width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg">`
+        + `<defs><pattern id="braidpat-stp" width="${wl}" height="${H}" patternUnits="userSpaceOnUse">${strands}</pattern></defs>`
+        + `<rect x="0" y="0" width="100%" height="${H}" fill="url(#braidpat-stp)"/></svg>`;
+    }
+  })();
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const id = e.target.id;
-          navLinks.forEach((link) => link.classList.toggle('active', link.dataset.anchor === id));
-        }
-      });
-    },
-    { rootMargin: '-20% 0px -70% 0px' }
-  );
+  // ── Scroll-spy: highlight active thread in nav ──────────────────────────
+  const btns = [...document.querySelectorAll<HTMLElement>('.stp-tbtn')];
+  const secs = ['figure-space', 'light-shadow', 'brushwork-surface'].map(id => document.getElementById(id));
 
-  sectionIds.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        btns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  secs.forEach(s => { if (s) spy.observe(s); });
 </script>
