@@ -1,0 +1,181 @@
+---
+// ScrollyZone.astro — Full-spoke scrollytelling zone wrapper.
+// One mechanic: sticky visual field, beats fade through it.
+// Two levers: `field` (visual type) and `tempo` (pacing preset).
+// No per-zone animation or easing props — intentional by design.
+
+import KoreaStraitMap from './KoreaStraitMap.astro';
+import JapanMap from './JapanMap.astro';
+import CosmologicalDescent from './CosmologicalDescent.astro';
+
+interface Props {
+  field: 'photo' | 'map' | 'cascade' | 'ground';
+  tempo: 'contemplative' | 'steady' | 'driving' | 'still';
+  image?: string;
+  mapId?: 'korea-strait' | 'japan' | 'cosmo-descent';
+  alt?: string;
+  caption?: string;
+  ground?: 'cream' | 'tinted';
+  text?: 'pachinko' | 'tfa';
+}
+
+const {
+  field,
+  tempo,
+  image,
+  mapId,
+  alt,
+  caption,
+  ground = 'cream',
+  text = 'pachinko',
+} = Astro.props;
+---
+
+<section
+  class={`sr-scrolly-zone sr-scrolly-zone--${field}`}
+  data-field={field}
+  data-tempo={tempo}
+  data-ground={ground}
+  data-text={text}
+>
+
+  {/* ── Photo field ─────────────────────────────────────────────────── */}
+  {field === 'photo' && (
+    <div class="sr-zone-field sr-zone-photo-field" aria-hidden="true">
+      {image && (
+        <img
+          src={image}
+          alt={alt ?? ''}
+          class="sr-zone-photo"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      {caption && (
+        <div class="sr-zone-caption">{caption}</div>
+      )}
+    </div>
+  )}
+
+  {/* ── Map field ───────────────────────────────────────────────────── */}
+  {field === 'map' && (
+    <div class="sr-zone-field sr-zone-map-field" aria-hidden="true">
+      {mapId === 'korea-strait' && <KoreaStraitMap />}
+      {mapId === 'japan' && <JapanMap />}
+      {mapId === 'cosmo-descent' && <CosmologicalDescent />}
+    </div>
+  )}
+
+  {/* ── Cascade field: grid layout (rail + content side by side) ────── */}
+  {field === 'cascade' && (
+    <div class="sr-zone-cascade-layout">
+      <div class="sr-zone-cascade-rail" aria-hidden="true">
+        <div class="sr-zone-cascade-stem"></div>
+      </div>
+      <div class="sr-zone-cascade-content">
+        <slot />
+      </div>
+    </div>
+  )}
+
+  {/* ── Beats overlay (photo and map zones) ─────────────────────────── */}
+  {(field === 'photo' || field === 'map') && (
+    <div class="sr-zone-beats">
+      <slot />
+    </div>
+  )}
+
+  {/* ── Ground zone: normal flow, no sticky ─────────────────────────── */}
+  {field === 'ground' && (
+    <div class="sr-zone-ground-content">
+      <slot />
+    </div>
+  )}
+
+</section>
+
+<script>
+  // Initializes IntersectionObserver for all scrolly zones on the page.
+  // Runs once (Astro deduplicates bundled scripts). Respects reduced-motion
+  // and mobile breakpoint — both fall back to static layout via CSS.
+
+  function initScrollyZones(): void {
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Guard against 0-width (headless / pre-layout environments).
+    const w = window.innerWidth;
+    const isMobile  = w > 0 && w < 768;
+    if (isReduced || isMobile) return;
+
+    const zones = document.querySelectorAll<HTMLElement>(
+      '.sr-scrolly-zone:not([data-field="ground"])'
+    );
+
+    zones.forEach(zone => {
+      const field  = zone.querySelector<HTMLElement>('.sr-zone-field');
+      const beats  = zone.querySelectorAll<HTMLElement>('[data-beat]');
+      if (!beats.length) return;
+
+      if (zone.dataset.field === 'cascade') {
+        // Cascade: entries accumulate as they are revealed; emphasis shifts to newest.
+        let prevNewest: HTMLElement | null = null;
+
+        // Reveal first beat immediately so the zone never opens blank.
+        beats[0].classList.add('is-revealed', 'is-newest');
+        prevNewest = beats[0] as HTMLElement;
+
+        const cascadeObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            // Permanent reveal — never removed.
+            el.classList.add('is-revealed');
+            // Shift newest emphasis to this entry.
+            if (prevNewest && prevNewest !== el) prevNewest.classList.remove('is-newest');
+            el.classList.add('is-newest');
+            prevNewest = el;
+          });
+        }, {
+          threshold: 0,
+          rootMargin: '-38% 0px -38% 0px',
+        });
+
+        beats.forEach(beat => cascadeObserver.observe(beat));
+
+      } else {
+        // Photo/map: one active beat at a time, fades through the visual field.
+        beats[0].classList.add('is-active');
+        if (field && beats[0].dataset.activates) {
+          field.dataset.state = beats[0].dataset.activates;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            // Deactivate all beats in this zone.
+            beats.forEach(b => b.classList.remove('is-active'));
+
+            // Activate the beat that just entered the center band.
+            const beat = entry.target as HTMLElement;
+            beat.classList.add('is-active');
+
+            // Forward the activates state to the visual field (map zones).
+            const state = beat.dataset.activates;
+            if (state && field) field.dataset.state = state;
+          });
+        }, {
+          threshold: 0,
+          rootMargin: '-38% 0px -38% 0px',
+        });
+
+        beats.forEach(beat => observer.observe(beat));
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollyZones);
+  } else {
+    initScrollyZones();
+  }
+</script>

@@ -1,0 +1,80 @@
+---
+// Japan schematic map for Pachinko World Zone 5 (Osaka/Ikaino → Tokyo).
+// Two progressive state reveals: osaka-marker, tokyo-marker.
+// CSS in scrolly-zones.css controls visibility per data-state.
+---
+
+<svg
+  viewBox="0 0 860 560"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  class="sr-japan-map"
+  role="img"
+  aria-label="Schematic map of Japan showing Ikaino in Osaka and the later move to Tokyo"
+>
+  <style>
+    .jm-land  { fill: #EDE8DC; stroke: #C8C0B0; stroke-width: 1.5; }
+    .jm-water { fill: #F6F1E8; }
+    .jm-label-region {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      fill: #6B6355;
+    }
+    .jm-label-city {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      fill: #2C2820;
+    }
+    .jm-label-sub {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 11px;
+      fill: #6B6355;
+    }
+    .jm-dot-teal   { fill: #2AA8A0; }
+    .jm-dot-orange { fill: #C4722A; }
+    .jm-route { stroke: #C8C0B0; stroke-width: 1.5; stroke-dasharray: 8 4; fill: none; }
+  </style>
+
+  <!-- Water background -->
+  <rect width="860" height="560" class="jm-water" />
+
+  <!-- Honshu — main island, simplified east-west band -->
+  <path
+    d="M 50,140 L 110,100 L 200,90 L 320,80 L 450,70 L 580,80 L 700,100 L 800,130 L 830,200 L 820,300 L 790,380 L 740,440 L 680,470 L 600,460 L 510,420 L 420,380 L 340,360 L 250,370 L 160,400 L 90,430 L 50,400 L 30,320 L 40,220 Z"
+    class="jm-land"
+  />
+
+  <!-- Kyushu (lower left, simplified) -->
+  <path
+    d="M 50,410 L 90,440 L 110,500 L 70,540 L 20,530 L 0,480 L 20,440 Z"
+    class="jm-land"
+  />
+
+  <!-- Shikoku (small island below center) -->
+  <path
+    d="M 260,395 L 350,378 L 420,390 L 430,430 L 360,450 L 260,440 Z"
+    class="jm-land"
+  />
+
+  <!-- Label -->
+  <text x="430" y="55" text-anchor="middle" class="jm-label-region">Japan · Honshu</text>
+
+  <!-- osaka-marker: Ikaino, Osaka -->
+  <g data-show-from="osaka-marker">
+    <circle cx="280" cy="310" r="8" class="jm-dot-orange" />
+    <text x="264" y="306" text-anchor="end" class="jm-label-city" fill="#C4722A">Ikaino</text>
+    <text x="264" y="321" text-anchor="end" class="jm-label-sub">Osaka</text>
+  </g>
+
+  <!-- tokyo-marker: Tokyo -->
+  <g data-show-from="tokyo-marker">
+    <line x1="288" y1="310" x2="620" y2="210" class="jm-route" />
+    <circle cx="625" cy="208" r="8" class="jm-dot-teal" />
+    <text x="641" y="204" text-anchor="start" class="jm-label-city">Tokyo</text>
+    <text x="641" y="219" text-anchor="start" class="jm-label-sub">Three generations later</text>
+  </g>
+</svg>

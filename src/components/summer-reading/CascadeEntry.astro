@@ -1,0 +1,23 @@
+---
+interface Props {
+  date: string;
+  highlight?: boolean;
+}
+
+const { date, highlight = false } = Astro.props;
+---
+
+<div
+  class={`sr-cascade-entry${highlight ? ' sr-cascade-entry--highlight' : ''}`}
+  data-beat
+>
+  <div class="sr-cascade-pin" aria-hidden="true">
+    <div class="sr-cascade-dot"></div>
+  </div>
+  <div class="sr-cascade-text">
+    <span class="sr-cascade-year">{date}</span>
+    <p class="sr-cascade-event">
+      <slot />
+    </p>
+  </div>
+</div>

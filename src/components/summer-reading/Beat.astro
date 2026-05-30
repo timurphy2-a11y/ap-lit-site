@@ -1,0 +1,46 @@
+---
+interface Props {
+  align?: 'left' | 'center' | 'right';
+  variant?: 'prose' | 'termcard';
+  activates?: string;
+  word?: string;
+  romaji?: string;
+  gloss?: string;
+}
+
+const {
+  align = 'left',
+  variant = 'prose',
+  activates,
+  word,
+  romaji,
+  gloss,
+} = Astro.props;
+---
+
+<div
+  class={`sr-zone-beat sr-zone-beat--${align} sr-zone-beat--${variant}`}
+  data-beat
+  data-activates={activates}
+>
+  {variant === 'prose' && (
+    <div class="sr-beat-card">
+      <slot />
+    </div>
+  )}
+
+  {variant === 'termcard' && (
+    <div class="sr-beat-card sr-beat-card--termcard">
+      <div class="sr-beat-term-header">
+        {word && <span class="sr-beat-term-original">{word}</span>}
+        <div class="sr-beat-term-meta">
+          {romaji && <span class="sr-beat-term-romaji">{romaji}</span>}
+          {gloss && <span class="sr-beat-term-gloss">"{gloss}"</span>}
+        </div>
+      </div>
+      <div class="sr-beat-term-body">
+        <slot />
+      </div>
+    </div>
+  )}
+</div>

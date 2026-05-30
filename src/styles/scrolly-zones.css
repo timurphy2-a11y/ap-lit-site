@@ -1,0 +1,613 @@
+/* Scrolly Zone Architecture — The Living Atlas
+ * Full-spoke sticky scrollytelling for Spoke 1–3 pages.
+ * One mechanic, two levers (field + tempo). No per-zone variations.
+ * Imported by summer-reading.css.
+ */
+
+/* ── Calibration variables — tune these, used throughout ───────────────── */
+:root {
+  --zone-field-width:      60%;         /* photo/map field width within container */
+  --beat-outer-inset:      var(--s-2);  /* outer padding on beat rows */
+  --cascade-entry-spacing: var(--s-8);  /* margin between cascade timeline entries */
+  --cascade-date-color:    #8B4A10;     /* date color on --color-card background */
+}
+
+/* ── Tempo presets (the only rhythm variation permitted) ────────────────── */
+.sr-scrolly-zone[data-tempo="contemplative"] { --beat-dwell: 540px; }
+.sr-scrolly-zone[data-tempo="steady"]        { --beat-dwell: 420px; }
+.sr-scrolly-zone[data-tempo="driving"]       { --beat-dwell: 220px; }
+.sr-scrolly-zone[data-tempo="still"]         { --beat-dwell: 0px; }
+
+/* ── Zone wrapper ───────────────────────────────────────────────────────── */
+.sr-scrolly-zone {
+  position: relative;
+}
+
+.sr-scrolly-zone[data-ground="cream"]  { background: var(--color-cream); }
+.sr-scrolly-zone[data-ground="tinted"] { background: var(--color-card); }
+
+/* ── Sticky visual field ────────────────────────────────────────────────── */
+.sr-zone-field {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: var(--zone-field-width, 75%);
+  margin-inline: auto;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Photo field — explicit background so no-image zones read cleanly */
+.sr-zone-photo-field {
+  background: var(--color-cream);
+}
+
+.sr-scrolly-zone[data-ground="tinted"] .sr-zone-photo-field {
+  background: var(--color-card);
+}
+
+.sr-zone-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Persistent caption fixed to bottom of photo zone */
+.sr-zone-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--s-3) var(--s-5);
+  background: rgba(44, 40, 32, 0.7);
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: rgba(246, 241, 232, 0.85);
+}
+
+/* Map field: SVG fills the panel */
+.sr-zone-map-field {
+  background: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-zone-map-field svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Map state management (accumulative reveals) ───────────────────────── */
+.sr-zone-map-field [data-show-from] {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* Korea Strait (Zone 3) — 6 accumulative states */
+.sr-zone-map-field[data-state="route-base"] [data-show-from="route-base"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="route-line"] [data-show-from="route-base"],
+.sr-zone-map-field[data-state="route-line"] [data-show-from="route-line"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="year-1905"] [data-show-from="route-base"],
+.sr-zone-map-field[data-state="year-1905"] [data-show-from="route-line"],
+.sr-zone-map-field[data-state="year-1905"] [data-show-from="year-1905"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="volume-1930"] [data-show-from="route-base"],
+.sr-zone-map-field[data-state="volume-1930"] [data-show-from="route-line"],
+.sr-zone-map-field[data-state="volume-1930"] [data-show-from="year-1905"],
+.sr-zone-map-field[data-state="volume-1930"] [data-show-from="volume-1930"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="inspection"] [data-show-from="route-base"],
+.sr-zone-map-field[data-state="inspection"] [data-show-from="route-line"],
+.sr-zone-map-field[data-state="inspection"] [data-show-from="year-1905"],
+.sr-zone-map-field[data-state="inspection"] [data-show-from="volume-1930"],
+.sr-zone-map-field[data-state="inspection"] [data-show-from="inspection"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="route-base"],
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="route-line"],
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="year-1905"],
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="volume-1930"],
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="inspection"],
+.sr-zone-map-field[data-state="ikaino-marker"] [data-show-from="ikaino-marker"] { opacity: 1; }
+
+/* Japan map (Zone 5) — 2 accumulative states */
+.sr-zone-map-field[data-state="osaka-marker"] [data-show-from="osaka-marker"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="tokyo-marker"] [data-show-from="osaka-marker"],
+.sr-zone-map-field[data-state="tokyo-marker"] [data-show-from="tokyo-marker"] { opacity: 1; }
+
+/* Cosmological Descent (TFA Culture Zone 3a) — 4 accumulative states */
+.sr-zone-map-field[data-state="chukwu"] [data-show-from="chukwu"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="ala"] [data-show-from="chukwu"],
+.sr-zone-map-field[data-state="ala"] [data-show-from="ala"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="chi"] [data-show-from="chukwu"],
+.sr-zone-map-field[data-state="chi"] [data-show-from="ala"],
+.sr-zone-map-field[data-state="chi"] [data-show-from="chi"] { opacity: 1; }
+
+.sr-zone-map-field[data-state="egwugwu"] [data-show-from="chukwu"],
+.sr-zone-map-field[data-state="egwugwu"] [data-show-from="ala"],
+.sr-zone-map-field[data-state="egwugwu"] [data-show-from="chi"],
+.sr-zone-map-field[data-state="egwugwu"] [data-show-from="egwugwu"] { opacity: 1; }
+
+/* ── Beats container (the overlay layer) ────────────────────────────────── */
+.sr-zone-beats {
+  position: relative;
+  z-index: 1;
+  margin-top: -100vh;        /* pull back over sticky field */
+  padding-bottom: var(--beat-dwell, 280px); /* trailing dwell after last beat */
+}
+
+/* Ground zones: normal flow, no overlay */
+.sr-zone-ground-content {
+  position: relative;
+  z-index: 1;
+  padding: var(--s-12) 0 var(--s-16);
+}
+
+/* ── SectionOpener inside a scrolly zone ────────────────────────────────── */
+.sr-scrolly-zone .sr-section-opener {
+  background: rgba(246, 241, 232, 0.96);
+  padding: var(--s-10) var(--s-6);
+}
+
+.sr-scrolly-zone[data-ground="tinted"] .sr-section-opener {
+  background: rgba(237, 232, 220, 0.97);
+}
+
+/* ── Beat: the observed text unit ───────────────────────────────────────── */
+.sr-zone-beat {
+  margin-top: var(--beat-dwell, 280px);
+  padding: 0 var(--beat-outer-inset, var(--s-2));
+  display: flex;
+}
+
+/* Alignment: controls card position within the beat row */
+.sr-zone-beat--left   { justify-content: flex-start; }
+.sr-zone-beat--center { justify-content: center; }
+.sr-zone-beat--right  { justify-content: flex-end; }
+
+/* Observed beats: start dim, active beats are full opacity */
+.sr-zone-beat[data-beat] {
+  opacity: 0.2;
+  transition: opacity 0.45s ease;
+}
+
+.sr-zone-beat[data-beat].is-active,
+.sr-zone-beat[data-beat].is-revealed {
+  opacity: 1;
+}
+
+/* Ground zones: all beats at full opacity (no IO, no fade) */
+.sr-scrolly-zone[data-field="ground"] .sr-zone-beat {
+  opacity: 1;
+  margin-top: var(--s-8);
+}
+
+/* ── Beat card panel ────────────────────────────────────────────────────── */
+.sr-beat-card {
+  max-width: 36rem;
+  min-width: min(20rem, 100%);
+  width: 100%;
+  padding: var(--s-5) var(--s-6);
+  background: rgba(246, 241, 232, 0.93);
+}
+
+.sr-beat-card p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-4);
+}
+
+.sr-beat-card p:last-child { margin-bottom: 0; }
+.sr-beat-card strong { font-weight: 600; }
+.sr-beat-card em { font-style: italic; }
+
+/* Ground zones: no card panel */
+.sr-scrolly-zone[data-field="ground"] .sr-beat-card {
+  background: transparent;
+  padding: 0;
+  max-width: var(--content-prose);
+}
+
+/* Map-field beats: explicit opaque cream card for WCAG contrast over pale SVG */
+.sr-scrolly-zone[data-field="map"] .sr-beat-card {
+  background: rgba(246, 241, 232, 0.93);
+}
+.sr-scrolly-zone[data-field="map"] .sr-beat-card p {
+  color: var(--color-ink);
+}
+
+/* ── Term card beat ─────────────────────────────────────────────────────── */
+.sr-beat-card--termcard {
+  padding: var(--s-5) var(--s-6);
+  background: rgba(246, 241, 232, 0.96);
+  border-top: 2px solid var(--p-teal);
+}
+
+.sr-beat-term-header {
+  margin-bottom: var(--s-3);
+}
+
+.sr-beat-term-original {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  margin-bottom: var(--s-1);
+}
+
+.sr-beat-term-romaji {
+  display: inline;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  margin-right: var(--s-3);
+}
+
+.sr-beat-term-gloss {
+  display: inline;
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.sr-beat-term-body p {
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-3);
+}
+
+.sr-beat-term-body p:last-child { margin-bottom: 0; }
+
+/* ── Zone seam ──────────────────────────────────────────────────────────── */
+.sr-zone-seam {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sr-zone-seam-half--from {
+  height: var(--s-12);
+}
+
+.sr-zone-seam-half--to {
+  height: var(--s-12);
+}
+
+.sr-zone-seam-motif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--s-4) 0;
+}
+
+/* Ground colors for seam halves */
+.sr-zone-seam[data-from="cream"] .sr-zone-seam-half--from  { background: var(--color-cream); }
+.sr-zone-seam[data-from="tinted"] .sr-zone-seam-half--from { background: var(--color-card); }
+.sr-zone-seam[data-to="cream"] .sr-zone-seam-half--to      { background: var(--color-cream); }
+.sr-zone-seam[data-to="tinted"] .sr-zone-seam-half--to     { background: var(--color-card); }
+
+/* Motif background: midpoint blends */
+.sr-zone-seam[data-from="cream"][data-to="tinted"] .sr-zone-seam-motif {
+  background: linear-gradient(to bottom, var(--color-cream), var(--color-card));
+}
+.sr-zone-seam[data-from="tinted"][data-to="cream"] .sr-zone-seam-motif {
+  background: linear-gradient(to bottom, var(--color-card), var(--color-cream));
+}
+.sr-zone-seam[data-from="cream"][data-to="cream"] .sr-zone-seam-motif,
+.sr-zone-seam[data-from="tinted"][data-to="tinted"] .sr-zone-seam-motif {
+  background: var(--color-cream);
+}
+
+/* ── Cascade zone layout ────────────────────────────────────────────────── */
+.sr-scrolly-zone--cascade {
+  overflow: visible;
+}
+
+.sr-zone-cascade-layout {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: start;
+}
+
+.sr-zone-cascade-rail {
+  grid-column: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+}
+
+.sr-zone-cascade-stem {
+  width: 3px;
+  height: 100%;
+  background: rgba(42, 168, 160, 0.35);
+}
+
+.sr-zone-cascade-content {
+  grid-column: 2;
+  padding: var(--s-10) clamp(var(--s-5), 4vw, var(--s-10)) var(--s-20);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Cascade entry ──────────────────────────────────────────────────────── */
+.sr-cascade-entry {
+  display: grid;
+  grid-template-columns: var(--s-6) 1fr;
+  gap: var(--s-3);
+  align-items: start;
+  margin-bottom: var(--cascade-entry-spacing, var(--s-8));
+  opacity: 0.2;
+  transition: opacity 0.45s ease;
+}
+
+.sr-cascade-entry:last-child {
+  margin-bottom: 0;
+}
+
+.sr-cascade-entry.is-active {
+  opacity: 1;
+}
+
+.sr-cascade-pin {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.sr-cascade-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-rule);
+  border: 1.5px solid var(--color-rule);
+  transform: scale(0.75);
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sr-cascade-entry.is-active .sr-cascade-dot {
+  background: var(--p-teal);
+  border-color: var(--p-teal);
+  transform: scale(1);
+}
+
+.sr-cascade-entry--highlight .sr-cascade-dot {
+  background: var(--p-orange);
+  border-color: var(--p-orange);
+}
+
+.sr-cascade-year {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cascade-date-color, #8B4A10);
+  display: block;
+  margin-bottom: var(--s-1);
+}
+
+.sr-cascade-entry--highlight .sr-cascade-year {
+  color: var(--p-teal);
+}
+
+/* ── Cascade accumulate mechanic: revealed = permanent, newest = emphasis ── */
+.sr-cascade-entry.is-revealed {
+  opacity: 1;
+}
+
+.sr-cascade-entry.is-revealed .sr-cascade-dot {
+  background: var(--p-teal);
+  border-color: var(--p-teal);
+  transform: scale(1);
+}
+
+.sr-cascade-entry.is-newest .sr-cascade-dot {
+  transform: scale(1.2);
+}
+
+.sr-cascade-entry.is-newest .sr-cascade-year {
+  color: var(--p-teal);
+}
+
+.sr-cascade-entry.is-newest .sr-cascade-event {
+  font-weight: 500;
+}
+
+.sr-cascade-event {
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-meta);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.sr-cascade-event em { font-style: italic; }
+
+/* Lead prose beat inside cascade content */
+.sr-zone-cascade-content .sr-zone-beat {
+  margin-top: 0;
+  margin-bottom: var(--s-10);
+  padding: 0;
+}
+
+.sr-zone-cascade-content .sr-beat-card {
+  background: transparent;
+  padding: 0;
+}
+
+/* ── End signature spacing in scrolly context ───────────────────────────── */
+.sr-scrolly-zone .sr-end-signature,
+.sr-zone-ground-content .sr-end-signature {
+  margin-top: var(--s-12);
+}
+
+/* ── Generation descent stack — Three Generations zone (Zone 6) ─────────── */
+/* Medallion nodes between cards; reads as ordered stages in a sequence       */
+
+/* Card */
+.sr-gen-card {
+  padding: var(--s-5) var(--s-6);
+  background: rgba(246, 241, 232, 0.65);
+}
+
+.sr-gen-card p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.sr-gen-stack-b {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: var(--content-prose);
+  margin: var(--s-10) auto;
+  padding: 0 var(--s-5);
+}
+
+.sr-gen-sep-b {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--s-2) 0;
+}
+
+.sr-gen-sep-line-v {
+  width: 1.5px;
+  height: var(--s-6);
+  background: rgba(42, 168, 160, 0.35);
+  flex-shrink: 0;
+}
+
+/* ── prefers-reduced-motion: everything static ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sr-zone-field {
+    position: static;
+    height: auto;
+    max-height: 60vh;
+  }
+
+  .sr-zone-beats {
+    margin-top: 0;
+  }
+
+  .sr-zone-beat[data-beat] {
+    opacity: 1;
+    transition: none;
+  }
+
+  .sr-zone-map-field [data-show-from] {
+    opacity: 1;
+    transition: none;
+  }
+
+  .sr-cascade-entry {
+    opacity: 1;
+    transition: none;
+  }
+
+  .sr-cascade-dot {
+    transform: scale(1);
+    transition: none;
+  }
+
+  .sr-scrolly-zone--cascade .sr-zone-cascade-layout {
+    display: block;
+  }
+
+  .sr-zone-cascade-rail {
+    position: static;
+    height: 2px;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .sr-zone-cascade-stem {
+    width: 100%;
+    height: 2px;
+  }
+}
+
+/* ── Mobile: sequential inline fallback (<768px) ───────────────────────── */
+@media (max-width: 767px) {
+  .sr-zone-field {
+    position: static;
+    height: auto;
+    max-height: 50vh;
+  }
+
+  .sr-zone-beats {
+    margin-top: 0;
+  }
+
+  .sr-zone-beat[data-beat] {
+    opacity: 1;
+  }
+
+  .sr-zone-beat {
+    margin-top: var(--s-6);
+  }
+
+  .sr-beat-card {
+    max-width: 100%;
+  }
+
+  .sr-zone-map-field [data-show-from] {
+    opacity: 1;
+  }
+
+  .sr-scrolly-zone--cascade .sr-zone-cascade-layout {
+    display: block;
+  }
+
+  .sr-zone-cascade-rail {
+    position: static;
+    height: auto;
+    padding: var(--s-4) 0;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .sr-zone-cascade-stem {
+    width: 100%;
+    height: 2px;
+  }
+
+  .sr-zone-cascade-content {
+    padding: var(--s-6) 0 var(--s-10);
+  }
+
+  .sr-cascade-entry {
+    opacity: 1;
+    margin-bottom: var(--s-6);
+  }
+
+  .sr-cascade-dot {
+    transform: scale(1);
+    background: var(--p-teal);
+    border-color: var(--p-teal);
+  }
+}

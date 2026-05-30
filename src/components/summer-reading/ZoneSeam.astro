@@ -1,0 +1,26 @@
+---
+import Rosette from './Rosette.astro';
+import UliDotCluster from './UliDotCluster.astro';
+
+interface Props {
+  text: 'pachinko' | 'tfa';
+  groundFrom: 'cream' | 'tinted';
+  groundTo: 'cream' | 'tinted';
+}
+
+const { text, groundFrom, groundTo } = Astro.props;
+---
+
+<div
+  class="sr-zone-seam"
+  data-from={groundFrom}
+  data-to={groundTo}
+  aria-hidden="true"
+>
+  <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+  <div class="sr-zone-seam-motif">
+    {text === 'pachinko' && <Rosette size={44} color="var(--p-orange)" />}
+    {text === 'tfa' && <UliDotCluster width={62} color="var(--t-terra)" />}
+  </div>
+  <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+</div>

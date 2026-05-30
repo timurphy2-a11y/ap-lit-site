@@ -1,0 +1,118 @@
+---
+// Cosmological Descent diagram for TFA Culture spoke, Section 3a.
+// Reveals 4 layers progressively via data-state on parent .sr-zone-map-field.
+// Mirrors the KoreaStraitMap data-show-from / data-state pattern.
+// CSS state rules live in scrolly-zones.css.
+---
+
+<svg
+  viewBox="0 0 480 460"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  class="sr-cosmo-descent"
+  role="img"
+  aria-label="Diagram of the Igbo cosmological hierarchy: Chukwu at the summit, Ala below, chi at the individual level, and Egwugwu and the Oracle as mediating institutions"
+>
+  <style>
+    .cd-bg          { fill: #F6F1E8; }
+    .cd-label-main  {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      fill: #2C2820;
+    }
+    .cd-label-accent  { fill: #C4722A; }
+    .cd-label-sub   {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 10px;
+      fill: #6B6355;
+    }
+    .cd-label-chi   {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-style: italic;
+      font-size: 14px;
+      fill: #2C2820;
+    }
+    .cd-ring-outer  { fill: none; stroke: #C4722A; stroke-width: 1.5; stroke-dasharray: 5 4; stroke-opacity: 0.35; }
+    .cd-ring-inner  { fill: rgba(196,114,42,0.12); stroke: #C4722A; stroke-width: 1.5; }
+    .cd-node-ala    { fill: rgba(196,114,42,0.16); stroke: #C4722A; stroke-width: 1.5; }
+    .cd-node-chi    { fill: rgba(196,114,42,0.22); stroke: #C4722A; stroke-width: 1.5; }
+    .cd-line        { stroke: #C8C0B0; stroke-width: 1.5; fill: none; }
+    .cd-branch      { stroke: #C8C0B0; stroke-width: 1.5; stroke-dasharray: 4 3; fill: none; }
+    .cd-inst-rect   { fill: rgba(212,168,64,0.10); stroke: #D4A840; stroke-width: 1; }
+    .cd-label-inst  {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      fill: #2C2820;
+    }
+    .cd-label-inst-sub {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 9px;
+      fill: #6B6355;
+    }
+    .cd-caption     {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 9.5px;
+      fill: #6B6355;
+      font-style: italic;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="480" height="460" class="cd-bg" />
+
+  <!-- ── Layer 1: Chukwu — supreme, distant ─────────────────────── -->
+  <g data-show-from="chukwu">
+    <!-- Outer ring: cosmic distance -->
+    <circle cx="240" cy="72" r="44" class="cd-ring-outer" />
+    <!-- Inner node -->
+    <circle cx="240" cy="72" r="18" class="cd-ring-inner" />
+    <!-- Primary label (inside node area) -->
+    <text x="240" y="68" text-anchor="middle" class="cd-label-main cd-label-accent">CHUKWU</text>
+    <text x="240" y="80" text-anchor="middle" class="cd-label-sub" font-size="8.5">Chineke</text>
+    <!-- Sublabel outside ring -->
+    <text x="240" y="126" text-anchor="middle" class="cd-label-sub">the supreme source</text>
+  </g>
+
+  <!-- ── Layer 2: Ala — earth level ─────────────────────────────── -->
+  <g data-show-from="ala">
+    <!-- Connecting line: Chukwu → Ala -->
+    <line x1="240" y1="116" x2="240" y2="185" class="cd-line" />
+    <!-- Ala node -->
+    <circle cx="240" cy="200" r="18" class="cd-node-ala" />
+    <text x="240" y="196" text-anchor="middle" class="cd-label-main cd-label-accent">ALA</text>
+    <text x="240" y="208" text-anchor="middle" class="cd-label-sub" font-size="8.5">earth goddess</text>
+    <!-- Sublabel -->
+    <text x="240" y="232" text-anchor="middle" class="cd-label-sub">the earth · moral force</text>
+  </g>
+
+  <!-- ── Layer 3: chi — individual level ────────────────────────── -->
+  <g data-show-from="chi">
+    <!-- Connecting line: Ala → chi -->
+    <line x1="240" y1="218" x2="240" y2="295" class="cd-line" />
+    <!-- chi node (smaller: intimate, personal scale) -->
+    <circle cx="240" cy="308" r="14" class="cd-node-chi" />
+    <text x="240" y="305" text-anchor="middle" class="cd-label-chi">chi</text>
+    <text x="240" y="336" text-anchor="middle" class="cd-label-sub">the personal spirit</text>
+  </g>
+
+  <!-- ── Layer 4: Egwugwu / Oracle — institutional mediators ──────── -->
+  <g data-show-from="egwugwu">
+    <!-- Branch lines from chi (dashed = mediation, not direct descent) -->
+    <line x1="228" y1="320" x2="146" y2="385" class="cd-branch" />
+    <line x1="252" y1="320" x2="334" y2="385" class="cd-branch" />
+    <!-- Egwugwu box -->
+    <rect x="80" y="389" width="132" height="36" rx="2" class="cd-inst-rect" />
+    <text x="146" y="403" text-anchor="middle" class="cd-label-inst">EGWUGWU</text>
+    <text x="146" y="416" text-anchor="middle" class="cd-label-inst-sub">ancestral court</text>
+    <!-- Oracle box -->
+    <rect x="268" y="389" width="132" height="36" rx="2" class="cd-inst-rect" />
+    <text x="334" y="403" text-anchor="middle" class="cd-label-inst">ORACLE</text>
+    <text x="334" y="416" text-anchor="middle" class="cd-label-inst-sub">Agbala</text>
+    <!-- Bottom caption: structural description -->
+    <text x="240" y="444" text-anchor="middle" class="cd-caption">how the human world reaches the divine</text>
+  </g>
+</svg>

@@ -1,0 +1,124 @@
+---
+// Korea Strait schematic map for Pachinko World Zone 3.
+// Elements are revealed progressively via data-state on the parent field.
+// CSS in scrolly-zones.css controls visibility per state.
+---
+
+<svg
+  viewBox="0 0 860 560"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  class="sr-korea-strait-map"
+  role="img"
+  aria-label="Schematic map of the Korea Strait showing the ferry crossing from Busan to Shimonoseki"
+>
+  <style>
+    .ksm-land  { fill: #EDE8DC; stroke: #C8C0B0; stroke-width: 1.5; }
+    .ksm-water { fill: #F6F1E8; }
+    .ksm-label-region {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      fill: #6B6355;
+    }
+    .ksm-label-water {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      fill: #6B6355;
+      opacity: 0.55;
+    }
+    .ksm-label-city {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      fill: #2C2820;
+    }
+    .ksm-label-anno {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 13px;
+      fill: #2C2820;
+    }
+    .ksm-label-anno-sm {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 11px;
+      fill: #6B6355;
+    }
+    .ksm-label-num {
+      font-family: "Fraunces", ui-serif, serif;
+      font-style: italic;
+      font-size: 22px;
+      fill: #2C2820;
+    }
+    .ksm-dot-teal  { fill: #2AA8A0; }
+    .ksm-dot-orange { fill: #C4722A; }
+    .ksm-route { stroke: #2AA8A0; stroke-width: 2; stroke-dasharray: 10 5; fill: none; }
+    .ksm-link  { stroke: #C4722A; stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+  </style>
+
+  <!-- Water background -->
+  <rect width="860" height="560" class="ksm-water" />
+
+  <!-- Korea peninsula (simplified) -->
+  <path
+    d="M 30,0 L 270,0 L 270,60 L 290,120 L 295,220 L 280,340 L 255,430 L 230,520 L 195,560 L 30,560 Z"
+    class="ksm-land"
+  />
+
+  <!-- Japan: Kyushu + western Honshu (simplified) -->
+  <path
+    d="M 590,0 L 860,0 L 860,560 L 700,560 L 640,490 L 590,390 L 570,280 L 575,160 L 590,60 Z"
+    class="ksm-land"
+  />
+
+  <!-- Region labels (always visible) -->
+  <text x="130" y="45" text-anchor="middle" class="ksm-label-region">Korea</text>
+  <text x="730" y="45" text-anchor="middle" class="ksm-label-region">Japan</text>
+  <text x="430" y="265" text-anchor="middle" class="ksm-label-water">Korea Strait</text>
+
+  <!-- route-base: city dots + labels -->
+  <g data-show-from="route-base">
+    <!-- Busan -->
+    <circle cx="280" cy="340" r="6" class="ksm-dot-teal" />
+    <text x="265" y="336" text-anchor="end" class="ksm-label-city">Busan</text>
+
+    <!-- Shimonoseki -->
+    <circle cx="580" cy="290" r="6" class="ksm-dot-teal" />
+    <text x="596" y="286" text-anchor="start" class="ksm-label-city">Shimonoseki</text>
+  </g>
+
+  <!-- route-line: the crossing -->
+  <g data-show-from="route-line">
+    <line x1="287" y1="340" x2="573" y2="290" class="ksm-route" />
+    <text x="430" y="344" text-anchor="middle" class="ksm-label-anno-sm">≈ 200 km</text>
+  </g>
+
+  <!-- year-1905: route opened annotation -->
+  <g data-show-from="year-1905">
+    <text x="430" y="228" text-anchor="middle" class="ksm-label-num">1905</text>
+    <text x="430" y="245" text-anchor="middle" class="ksm-label-anno-sm">Route opened under Japanese control</text>
+  </g>
+
+  <!-- volume-1930: migration volume -->
+  <g data-show-from="volume-1930">
+    <text x="430" y="440" text-anchor="middle" class="ksm-label-num">400,000</text>
+    <text x="430" y="458" text-anchor="middle" class="ksm-label-anno-sm">Koreans entered Japan in 1930</text>
+  </g>
+
+  <!-- inspection: boarding requirements near Busan -->
+  <g data-show-from="inspection">
+    <text x="200" y="395" text-anchor="middle" class="ksm-label-anno-sm">To board:</text>
+    <text x="200" y="411" text-anchor="middle" class="ksm-label-anno-sm">10 yen · Japanese · Employment</text>
+  </g>
+
+  <!-- ikaino-marker: Osaka / Ikaino on Japan side -->
+  <g data-show-from="ikaino-marker">
+    <line x1="580" y1="297" x2="648" y2="380" class="ksm-link" />
+    <circle cx="650" cy="383" r="6" class="ksm-dot-orange" />
+    <text x="666" y="379" text-anchor="start" class="ksm-label-city" fill="#C4722A">Ikaino</text>
+    <text x="666" y="394" text-anchor="start" class="ksm-label-anno-sm">Osaka</text>
+  </g>
+</svg>
