@@ -22,17 +22,33 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 
   <!-- ── Hero ──────────────────────────────────────────────────────── -->
   <section class="hero">
-    <div>
-      <h1>Historical &amp; Aesthetic<br>Background Materials</h1>
-    </div>
-    <div>
-      <p class="thesis">
-        Six units of philosophical, visual, and musical context — from the medieval
-        foundations that all later periods react against, through Modernism's crisis
-        of certainty.
-      </p>
-    </div>
+    <h1>Cultural Background Materials</h1>
+    <p class="thesis">
+      Six units of philosophical, visual, and musical context — from the medieval
+      foundations that all later periods react against, through Modernism's crisis
+      of certainty.
+    </p>
   </section>
+
+  <!-- ── Six-unit spectrum band ─────────────────────────────────────── -->
+  <nav class="spectrum" aria-label="The six units">
+    {[
+      { id: '00-medieval',      n: '00', acc: '#A8862E', label: 'Unit 00 — Medieval'       },
+      { id: '01-renaissance',   n: '01', acc: '#B54C3A', label: 'Unit 01 — Renaissance'    },
+      { id: '02-baroque',       n: '02', acc: '#B07028', label: 'Unit 02 — Baroque'        },
+      { id: '03-enlightenment', n: '03', acc: '#698BA1', label: 'Unit 03 — Enlightenment'  },
+      { id: '04-romanticism',   n: '04', acc: '#3D5A6D', label: 'Unit 04 — Romanticism'    },
+      { id: '05-modernism',     n: '05', acc: '#A03828', label: 'Unit 05 — Modernism'      },
+    ].map(({ id, acc, label }) => (
+      <a class="seg" href={`/units/${id}`} style={`--c: ${acc}`} aria-label={label}>
+        <span class="block"
+              style={`--mark-primary:var(--bg);--mark-highlight:var(--bg);--mark-cream:var(--bg);--mark-spot:transparent;--mark-ink:var(--bg)`}
+              set:html={PERIOD_MOTIFS[id]?.[1] ?? ''}
+              aria-hidden="true">
+        </span>
+      </a>
+    ))}
+  </nav>
 
   <!-- ── Section label ─────────────────────────────────────────────── -->
   <div class="section-label">
@@ -200,28 +216,55 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 
   /* ── Hero ────────────────────────────────────────────────────── */
   .hero {
-    padding: 96px 0 64px;
+    padding: 92px 0 52px;
     border-bottom: 1px solid var(--rule);
+    text-align: center;
   }
-  .hero > div + div { margin-top: 28px; }
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(40px, 6.5vw, 92px);
-    line-height: 0.98;
+    font-size: clamp(30px, 6.3vw, 88px);
+    line-height: 1.0;
     letter-spacing: -0.02em;
     margin: 0;
     color: var(--ink);
+    white-space: nowrap;
   }
   .hero .thesis {
-    max-width: 48ch;
+    max-width: 58ch;
+    margin: 26px auto 0;
     font-size: 19px;
     line-height: 1.6;
     color: var(--ink-mute);
-    margin: 0;
+    text-wrap: balance;
   }
-  @media (max-width: 900px) {
-    .hero { padding: 56px 0 48px; }
+  @media (max-width: 600px) {
+    .hero { padding: 56px 0 40px; }
+    .hero h1 { white-space: normal; }
+  }
+
+  /* ── Spectrum band ───────────────────────────────────────────── */
+  .spectrum {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    padding: 44px 0 8px;
+    text-decoration: none;
+  }
+  .spectrum .seg { display: block; text-decoration: none; }
+  .spectrum .block {
+    height: 88px;
+    background: var(--c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 200ms ease;
+  }
+  .spectrum .seg:hover .block { transform: translateY(-4px); }
+  .spectrum .block :global(svg) { display: block; width: 52px; height: 52px; }
+  @media (max-width: 680px) {
+    .spectrum { grid-template-columns: repeat(3, 1fr); row-gap: 4px; }
+    .spectrum .block { height: 72px; }
   }
 
   /* ── Section label ───────────────────────────────────────────── */
