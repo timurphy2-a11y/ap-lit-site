@@ -17,6 +17,7 @@ interface Props {
   caption?: string;
   ground?: 'cream' | 'tinted';
   text?: 'pachinko' | 'tfa';
+  portrait?: boolean;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   caption,
   ground = 'cream',
   text = 'pachinko',
+  portrait = false,
 } = Astro.props;
 ---
 
@@ -46,7 +48,7 @@ const {
         <img
           src={image}
           alt={alt ?? ''}
-          class="sr-zone-photo"
+          class={`sr-zone-photo${portrait ? ' sr-zone-photo--portrait' : ''}`}
           loading="lazy"
           decoding="async"
         />
@@ -66,15 +68,10 @@ const {
     </div>
   )}
 
-  {/* ── Cascade field: grid layout (rail + content side by side) ────── */}
+  {/* ── Cascade field: single-column wire; sr-cascade-entries wrapper is in the MDX ── */}
   {field === 'cascade' && (
-    <div class="sr-zone-cascade-layout">
-      <div class="sr-zone-cascade-rail" aria-hidden="true">
-        <div class="sr-zone-cascade-stem"></div>
-      </div>
-      <div class="sr-zone-cascade-content">
-        <slot />
-      </div>
+    <div class="sr-zone-cascade-content">
+      <slot />
     </div>
   )}
 
@@ -95,54 +92,79 @@ const {
 </section>
 
 <script>
-  // Initializes IntersectionObserver for all scrolly zones on the page.
-  // Runs once (Astro deduplicates bundled scripts). Respects reduced-motion
-  // and mobile breakpoint — both fall back to static layout via CSS.
+  // Scrolly zone controller. Runs once (Astro deduplicates bundled scripts).
+  // Respects reduced-motion and mobile breakpoint — CSS fallback handles static layout.
 
   function initScrollyZones(): void {
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // Guard against 0-width (headless / pre-layout environments).
     const w = window.innerWidth;
-    const isMobile  = w > 0 && w < 768;
+    const isMobile = w > 0 && w < 768;
     if (isReduced || isMobile) return;
 
+    // ── Cascade: position-driven playhead sweep ──────────────────────────
+    // Robust to fast/jumped scrolls: IntersectionObserver only catches boundary
+    // crossings, so a fling can skip entries and strand them dim. A scroll-driven
+    // sweep re-evaluates every entry against the viewport midpoint on every tick.
+    const cascadeSweeps: Array<() => void> = [];
+
+    function initCascadeZone(zone: HTMLElement): void {
+      const entries = Array.from(zone.querySelectorAll<HTMLElement>('.sr-cascade-entry'));
+      const progress = zone.querySelector<HTMLElement>('.sr-zone-cascade-progress');
+      if (!entries.length) return;
+
+      function sweep(): void {
+        const line = window.innerHeight * 0.5;
+        let lastLit = -1;
+        entries.forEach((el, i) => {
+          const anchor = el.getBoundingClientRect().top + 8; // pin position
+          const lit = anchor < line;
+          const was = el.classList.contains('is-revealed');
+          if (lit) {
+            lastLit = i;
+            if (!was) {
+              el.classList.add('is-revealed');
+              el.classList.remove('landed');
+              void el.offsetWidth; // restart transition
+              el.classList.add('landed');
+            }
+          } else if (was) {
+            el.classList.remove('is-revealed', 'landed');
+          }
+        });
+        entries.forEach((el, i) => el.classList.toggle('is-newest', i === lastLit));
+        if (progress) {
+          progress.style.height =
+            Math.max(0, Math.round(((lastLit + 1) / entries.length) * 100)) + '%';
+        }
+      }
+
+      cascadeSweeps.push(sweep);
+      sweep();
+    }
+
+    let sweepQueued = false;
+    function runCascadeSweeps(): void {
+      if (sweepQueued) return;
+      sweepQueued = true;
+      requestAnimationFrame(() => {
+        sweepQueued = false;
+        cascadeSweeps.forEach(fn => fn());
+      });
+    }
+
+    // ── Photo/map: one active beat at a time ─────────────────────────────
     const zones = document.querySelectorAll<HTMLElement>(
       '.sr-scrolly-zone:not([data-field="ground"])'
     );
 
     zones.forEach(zone => {
-      const field  = zone.querySelector<HTMLElement>('.sr-zone-field');
-      const beats  = zone.querySelectorAll<HTMLElement>('[data-beat]');
+      const field = zone.querySelector<HTMLElement>('.sr-zone-field');
+      const beats = zone.querySelectorAll<HTMLElement>('[data-beat]');
       if (!beats.length) return;
 
       if (zone.dataset.field === 'cascade') {
-        // Cascade: entries accumulate as they are revealed; emphasis shifts to newest.
-        let prevNewest: HTMLElement | null = null;
-
-        // Reveal first beat immediately so the zone never opens blank.
-        beats[0].classList.add('is-revealed', 'is-newest');
-        prevNewest = beats[0] as HTMLElement;
-
-        const cascadeObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target as HTMLElement;
-            // Permanent reveal — never removed.
-            el.classList.add('is-revealed');
-            // Shift newest emphasis to this entry.
-            if (prevNewest && prevNewest !== el) prevNewest.classList.remove('is-newest');
-            el.classList.add('is-newest');
-            prevNewest = el;
-          });
-        }, {
-          threshold: 0,
-          rootMargin: '-38% 0px -38% 0px',
-        });
-
-        beats.forEach(beat => cascadeObserver.observe(beat));
-
+        initCascadeZone(zone);
       } else {
-        // Photo/map: one active beat at a time, fades through the visual field.
         beats[0].classList.add('is-active');
         if (field && beats[0].dataset.activates) {
           field.dataset.state = beats[0].dataset.activates;
@@ -151,15 +173,9 @@ const {
         const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-
-            // Deactivate all beats in this zone.
             beats.forEach(b => b.classList.remove('is-active'));
-
-            // Activate the beat that just entered the center band.
             const beat = entry.target as HTMLElement;
             beat.classList.add('is-active');
-
-            // Forward the activates state to the visual field (map zones).
             const state = beat.dataset.activates;
             if (state && field) field.dataset.state = state;
           });
@@ -171,6 +187,11 @@ const {
         beats.forEach(beat => observer.observe(beat));
       }
     });
+
+    if (cascadeSweeps.length) {
+      window.addEventListener('scroll', runCascadeSweeps, { passive: true });
+      window.addEventListener('resize', runCascadeSweeps);
+    }
   }
 
   if (document.readyState === 'loading') {

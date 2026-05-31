@@ -1,80 +1,124 @@
 ---
-// Japan schematic map for Pachinko World Zone 5 (Osaka/Ikaino → Tokyo).
+// Japan engraved map for Pachinko World Zone 5 (Osaka/Ikaino → Tokyo).
+// Land paths traced from Natural Earth 1:50m — survey-accurate geometry.
+// Calibration: Osaka/Ikaino (34.69°N, 135.50°E) → SVG (252,302);
+//              Tokyo (35.68°N, 139.69°E) → SVG (584,206).
+// Note: Kyushu's main body lies ~1° west of this map's left edge (132.3°E);
+//       a directional label marks its off-frame position.
 // Two progressive state reveals: osaka-marker, tokyo-marker.
 // CSS in scrolly-zones.css controls visibility per data-state.
 ---
 
 <svg
-  viewBox="0 0 860 560"
+  viewBox="0 0 720 460"
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="xMidYMid meet"
   class="sr-japan-map"
   role="img"
-  aria-label="Schematic map of Japan showing Ikaino in Osaka and the later move to Tokyo"
+  aria-label="Engraved chart of Honshu showing Ikaino in Osaka and the later move to Tokyo"
 >
   <style>
-    .jm-land  { fill: #EDE8DC; stroke: #C8C0B0; stroke-width: 1.5; }
-    .jm-water { fill: #F6F1E8; }
-    .jm-label-region {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      fill: #6B6355;
-    }
-    .jm-label-city {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      fill: #2C2820;
-    }
-    .jm-label-sub {
-      font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 11px;
-      fill: #6B6355;
-    }
-    .jm-dot-teal   { fill: #2AA8A0; }
-    .jm-dot-orange { fill: #C4722A; }
-    .jm-route { stroke: #C8C0B0; stroke-width: 1.5; stroke-dasharray: 8 4; fill: none; }
+    .jm-sea{fill:#F1EADA;}
+    .jm-grid{stroke:#C9B68E;stroke-width:.6;opacity:.28;}
+    .jm-halo{fill:#D8C7A1;}
+    .jm-land{fill:url(#jmHatch);stroke:#5A4A30;stroke-width:1.1;stroke-linejoin:round;}
+    .jm-ls{font-family:"Fraunces",ui-serif,serif;font-style:italic;fill:#4A3A22;}
+    .jm-lm{font-family:"JetBrains Mono",ui-monospace,monospace;text-transform:uppercase;fill:#6B6355;}
+    .jm-route{fill:none;stroke:#9C6B2E;stroke-width:2;stroke-dasharray:3 4;stroke-linecap:round;}
   </style>
+  <defs>
+    <pattern id="jmHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="#E7DCC4" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#C9B68E" stroke-width="0.6" opacity="0.6" />
+    </pattern>
+    <filter id="jmHalo" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="3.5" /></filter>
+  </defs>
 
-  <!-- Water background -->
-  <rect width="860" height="560" class="jm-water" />
+  <rect width="720" height="460" class="jm-sea" />
+  <g class="jm-grid">
+    <line x1="180" y1="0" x2="180" y2="460" /><line x1="420" y1="0" x2="420" y2="460" /><line x1="600" y1="0" x2="600" y2="460" />
+    <line x1="0" y1="140" x2="720" y2="140" /><line x1="0" y1="330" x2="720" y2="330" />
+  </g>
 
-  <!-- Honshu — main island, simplified east-west band -->
-  <path
-    d="M 50,140 L 110,100 L 200,90 L 320,80 L 450,70 L 580,80 L 700,100 L 800,130 L 830,200 L 820,300 L 790,380 L 740,440 L 680,470 L 600,460 L 510,420 L 420,380 L 340,360 L 250,370 L 160,400 L 90,430 L 50,400 L 30,320 L 40,220 Z"
-    class="jm-land"
-  />
+  <!-- Land halo (blur layer) — Natural Earth 1:50m geometry -->
+  <g class="jm-halo" filter="url(#jmHalo)">
+    <!-- Honshu -->
+    <path d="M 684.6,-1.8 L 688.1,10.3 L 690.7,32.7 L 687.9,66.9 L 685.3,77.8 L 679.5,85.2 L 675.1,88.6 L 671.3,92.8 L 666.4,104.0 L 658.3,126.2 L 657.6,131.8 L 657.6,137.6 L 655.4,145.1 L 654.0,152.5 L 655.3,161.2 L 657.8,169.2 L 668.7,189.9 L 673.0,196.1 L 677.8,201.6 L 659.2,207.8 L 655.9,210.7 L 644.8,222.5 L 641.3,233.7 L 641.6,246.0 L 639.7,250.5 L 636.7,254.3 L 633.5,256.9 L 621.2,262.6 L 613.3,268.2 L 605.4,277.0 L 602.3,281.7 L 596.2,280.2 L 592.7,276.1 L 596.1,271.0 L 595.1,264.9 L 596.8,249.4 L 594.8,243.2 L 601.1,238.5 L 604.1,230.9 L 610.7,224.9 L 615.4,219.5 L 616.2,215.2 L 612.0,210.5 L 607.6,207.1 L 601.4,207.1 L 595.5,208.1 L 591.6,212.6 L 590.3,218.6 L 590.6,221.5 L 590.2,224.0 L 580.8,232.3 L 582.1,241.0 L 584.8,245.4 L 588.3,247.5 L 587.2,250.5 L 582.8,257.5 L 579.7,258.2 L 574.0,248.4 L 566.9,243.0 L 558.1,243.0 L 549.1,245.0 L 542.2,251.5 L 540.0,256.9 L 538.5,262.5 L 539.0,276.2 L 536.1,287.5 L 530.6,297.5 L 527.9,301.2 L 521.1,308.0 L 516.5,308.9 L 513.1,305.8 L 510.4,301.1 L 513.8,284.0 L 513.7,274.4 L 521.7,269.5 L 515.1,262.7 L 507.1,259.9 L 495.8,263.6 L 492.6,267.7 L 490.5,273.2 L 484.4,280.2 L 477.7,286.7 L 470.2,297.9 L 465.1,311.1 L 448.4,306.8 L 439.3,305.8 L 430.2,306.1 L 413.9,304.5 L 396.1,307.2 L 375.7,312.4 L 377.0,308.6 L 393.7,300.7 L 394.3,298.4 L 392.7,294.0 L 388.5,293.8 L 378.5,295.3 L 373.4,294.6 L 371.3,290.0 L 367.9,287.9 L 365.7,289.9 L 366.4,298.9 L 364.0,300.2 L 360.7,297.8 L 361.7,290.8 L 359.5,280.4 L 359.2,274.0 L 362.7,268.5 L 359.1,266.2 L 355.3,267.1 L 350.5,269.7 L 346.3,273.5 L 337.3,292.3 L 333.9,303.1 L 340.4,311.8 L 358.3,323.9 L 361.4,326.9 L 361.4,332.0 L 359.3,337.5 L 354.4,339.9 L 334.8,343.9 L 317.8,351.8 L 312.8,359.7 L 297.4,390.4 L 285.0,411.4 L 267.5,418.7 L 248.3,412.2 L 243.6,404.9 L 239.9,395.9 L 232.7,387.7 L 226.3,378.8 L 222.5,368.2 L 223.1,351.2 L 220.3,340.9 L 222.8,338.2 L 233.4,332.0 L 236.9,328.5 L 242.9,320.4 L 245.0,315.9 L 245.3,309.0 L 240.5,305.5 L 228.1,305.6 L 215.7,307.7 L 206.8,304.7 L 195.3,296.5 L 191.8,294.7 L 179.4,294.2 L 170.6,295.7 L 161.9,298.7 L 152.7,299.7 L 149.7,301.3 L 139.0,311.4 L 130.6,317.8 L 123.3,320.9 L 107.6,321.8 L 99.8,323.8 L 91.5,327.2 L 89.2,326.9 L 80.5,331.5 L 70.5,335.6 L 65.2,339.6 L 55.4,336.9 L 36.1,344.2 L 26.7,345.0 L 17.0,341.1 L 8.1,334.6 L -0.6,337.4 L -6.5,346.9 L -7.9,356.5 L -7.9,271.9 L -4.8,269.8 L 7.5,256.8 L 23.7,242.2 L 30.0,231.4 L 33.8,228.4 L 47.8,222.4 L 66.3,217.7 L 75.1,218.0 L 83.7,227.4 L 88.4,226.1 L 93.1,223.7 L 102.7,222.3 L 112.5,223.9 L 122.1,224.0 L 131.7,222.8 L 150.1,219.6 L 159.8,215.9 L 169.3,211.0 L 203.0,207.6 L 226.2,199.5 L 229.9,200.1 L 233.4,201.9 L 233.7,208.0 L 230.8,214.5 L 233.6,218.5 L 238.3,221.0 L 260.1,221.7 L 266.3,223.2 L 275.4,218.7 L 283.9,213.1 L 292.9,205.8 L 299.2,197.5 L 293.4,187.2 L 292.1,175.9 L 297.0,163.6 L 304.0,153.3 L 312.4,147.1 L 320.1,139.9 L 335.7,119.5 L 346.9,103.0 L 351.0,82.7 L 348.6,58.8 L 358.5,40.9 L 367.9,37.9 L 386.6,29.8 L 396.4,27.4 L 397.9,30.9 L 397.6,35.6 L 382.9,50.5 L 374.5,56.7 L 369.4,58.6 L 364.8,61.3 L 362.9,66.6 L 370.4,75.4 L 372.3,81.9 L 371.9,88.2 L 372.2,93.8 L 380.7,99.9 L 390.4,101.9 L 394.4,101.9 L 398.0,100.3 L 409.1,85.3 L 411.6,82.7 L 443.2,71.7 L 458.8,63.4 L 467.4,61.2 L 475.4,56.8 L 493.5,40.0 L 500.2,32.2 L 506.3,23.6 L 511.2,13.7 L 515.0,2.9 L 520.2,-3.8 L 530.7,-9.7 L 683.0,-9.7 L 684.6,-1.8 Z" />
+    <!-- Shikoku -->
+    <path d="M 172.4,348.1 L 183.7,346.9 L 183.5,364.6 L 185.1,370.6 L 188.2,375.9 L 186.6,383.7 L 191.7,386.3 L 176.6,395.2 L 163.0,406.9 L 157.4,414.8 L 152.4,423.3 L 149.4,432.2 L 147.5,441.9 L 143.0,438.1 L 129.9,422.4 L 121.6,418.1 L 108.2,415.8 L 104.0,416.3 L 76.6,431.0 L 72.9,441.7 L 65.4,457.8 L 61.9,463.1 L 58.0,464.7 L 55.2,467.4 L 54.7,469.7 L 13.8,469.7 L 13.7,465.1 L 8.6,460.1 L 12.4,453.6 L 12.5,448.3 L 14.7,445.4 L 15.5,441.1 L 15.2,437.5 L 10.0,436.3 L 6.8,433.8 L 7.4,424.1 L 4.4,423.8 L -3.1,425.5 L -7.9,427.8 L -7.9,423.2 L -2.5,420.3 L 3.7,416.2 L 17.1,404.5 L 25.6,399.0 L 30.1,389.2 L 31.4,383.2 L 34.3,378.0 L 36.8,369.6 L 41.2,366.8 L 48.8,359.7 L 53.1,360.4 L 58.0,369.2 L 64.5,376.0 L 69.2,375.4 L 77.6,371.9 L 81.6,371.1 L 91.3,371.5 L 100.0,367.2 L 103.6,362.2 L 104.9,355.9 L 101.7,345.3 L 105.9,346.3 L 109.9,345.9 L 119.3,339.2 L 129.1,335.2 L 139.2,334.2 L 150.5,338.0 L 161.5,344.1 L 172.4,348.1 Z" />
+    <!-- Awaji Island -->
+    <path d="M 198.5,349.2 L 191.0,348.7 L 187.3,345.0 L 186.1,340.4 L 193.1,333.2 L 199.3,323.1 L 204.8,318.6 L 209.3,316.1 L 212.8,316.2 L 204.9,330.3 L 207.1,341.0 L 198.5,349.2 Z" />
+    <!-- Oki Islands -->
+    <path d="M 79.6,158.8 L 72.9,157.6 L 69.0,152.4 L 70.2,146.5 L 77.3,142.0 L 84.1,151.1 L 83.3,155.2 L 79.6,158.8 Z" />
+    <!-- Smaller islands -->
+    <path d="M 159.5,323.9 L 158.1,323.4 L 153.1,327.9 L 152.0,323.6 L 148.1,320.8 L 147.6,318.6 L 159.0,317.1 L 162.6,318.3 L 161.0,322.0 L 159.5,323.9 Z" />
+    <path d="M 18.2,361.6 L 11.2,360.4 L 14.0,357.1 L 16.2,353.0 L 17.7,352.2 L 19.1,356.6 L 20.5,357.7 L 18.2,361.6 Z" />
+    <path d="M -0.4,377.8 L 8.8,376.3 L 9.9,377.3 L 7.2,380.6 L 3.2,383.7 L -4.1,381.4 L -7.9,381.3 L -7.9,374.0 L -4.2,374.2 L -0.4,377.8 Z" />
+  </g>
 
-  <!-- Kyushu (lower left, simplified) -->
-  <path
-    d="M 50,410 L 90,440 L 110,500 L 70,540 L 20,530 L 0,480 L 20,440 Z"
-    class="jm-land"
-  />
+  <!-- Land fill — Natural Earth 1:50m geometry -->
+  <g class="jm-land">
+    <!-- Honshu -->
+    <path d="M 684.6,-1.8 L 688.1,10.3 L 690.7,32.7 L 687.9,66.9 L 685.3,77.8 L 679.5,85.2 L 675.1,88.6 L 671.3,92.8 L 666.4,104.0 L 658.3,126.2 L 657.6,131.8 L 657.6,137.6 L 655.4,145.1 L 654.0,152.5 L 655.3,161.2 L 657.8,169.2 L 668.7,189.9 L 673.0,196.1 L 677.8,201.6 L 659.2,207.8 L 655.9,210.7 L 644.8,222.5 L 641.3,233.7 L 641.6,246.0 L 639.7,250.5 L 636.7,254.3 L 633.5,256.9 L 621.2,262.6 L 613.3,268.2 L 605.4,277.0 L 602.3,281.7 L 596.2,280.2 L 592.7,276.1 L 596.1,271.0 L 595.1,264.9 L 596.8,249.4 L 594.8,243.2 L 601.1,238.5 L 604.1,230.9 L 610.7,224.9 L 615.4,219.5 L 616.2,215.2 L 612.0,210.5 L 607.6,207.1 L 601.4,207.1 L 595.5,208.1 L 591.6,212.6 L 590.3,218.6 L 590.6,221.5 L 590.2,224.0 L 580.8,232.3 L 582.1,241.0 L 584.8,245.4 L 588.3,247.5 L 587.2,250.5 L 582.8,257.5 L 579.7,258.2 L 574.0,248.4 L 566.9,243.0 L 558.1,243.0 L 549.1,245.0 L 542.2,251.5 L 540.0,256.9 L 538.5,262.5 L 539.0,276.2 L 536.1,287.5 L 530.6,297.5 L 527.9,301.2 L 521.1,308.0 L 516.5,308.9 L 513.1,305.8 L 510.4,301.1 L 513.8,284.0 L 513.7,274.4 L 521.7,269.5 L 515.1,262.7 L 507.1,259.9 L 495.8,263.6 L 492.6,267.7 L 490.5,273.2 L 484.4,280.2 L 477.7,286.7 L 470.2,297.9 L 465.1,311.1 L 448.4,306.8 L 439.3,305.8 L 430.2,306.1 L 413.9,304.5 L 396.1,307.2 L 375.7,312.4 L 377.0,308.6 L 393.7,300.7 L 394.3,298.4 L 392.7,294.0 L 388.5,293.8 L 378.5,295.3 L 373.4,294.6 L 371.3,290.0 L 367.9,287.9 L 365.7,289.9 L 366.4,298.9 L 364.0,300.2 L 360.7,297.8 L 361.7,290.8 L 359.5,280.4 L 359.2,274.0 L 362.7,268.5 L 359.1,266.2 L 355.3,267.1 L 350.5,269.7 L 346.3,273.5 L 337.3,292.3 L 333.9,303.1 L 340.4,311.8 L 358.3,323.9 L 361.4,326.9 L 361.4,332.0 L 359.3,337.5 L 354.4,339.9 L 334.8,343.9 L 317.8,351.8 L 312.8,359.7 L 297.4,390.4 L 285.0,411.4 L 267.5,418.7 L 248.3,412.2 L 243.6,404.9 L 239.9,395.9 L 232.7,387.7 L 226.3,378.8 L 222.5,368.2 L 223.1,351.2 L 220.3,340.9 L 222.8,338.2 L 233.4,332.0 L 236.9,328.5 L 242.9,320.4 L 245.0,315.9 L 245.3,309.0 L 240.5,305.5 L 228.1,305.6 L 215.7,307.7 L 206.8,304.7 L 195.3,296.5 L 191.8,294.7 L 179.4,294.2 L 170.6,295.7 L 161.9,298.7 L 152.7,299.7 L 149.7,301.3 L 139.0,311.4 L 130.6,317.8 L 123.3,320.9 L 107.6,321.8 L 99.8,323.8 L 91.5,327.2 L 89.2,326.9 L 80.5,331.5 L 70.5,335.6 L 65.2,339.6 L 55.4,336.9 L 36.1,344.2 L 26.7,345.0 L 17.0,341.1 L 8.1,334.6 L -0.6,337.4 L -6.5,346.9 L -7.9,356.5 L -7.9,271.9 L -4.8,269.8 L 7.5,256.8 L 23.7,242.2 L 30.0,231.4 L 33.8,228.4 L 47.8,222.4 L 66.3,217.7 L 75.1,218.0 L 83.7,227.4 L 88.4,226.1 L 93.1,223.7 L 102.7,222.3 L 112.5,223.9 L 122.1,224.0 L 131.7,222.8 L 150.1,219.6 L 159.8,215.9 L 169.3,211.0 L 203.0,207.6 L 226.2,199.5 L 229.9,200.1 L 233.4,201.9 L 233.7,208.0 L 230.8,214.5 L 233.6,218.5 L 238.3,221.0 L 260.1,221.7 L 266.3,223.2 L 275.4,218.7 L 283.9,213.1 L 292.9,205.8 L 299.2,197.5 L 293.4,187.2 L 292.1,175.9 L 297.0,163.6 L 304.0,153.3 L 312.4,147.1 L 320.1,139.9 L 335.7,119.5 L 346.9,103.0 L 351.0,82.7 L 348.6,58.8 L 358.5,40.9 L 367.9,37.9 L 386.6,29.8 L 396.4,27.4 L 397.9,30.9 L 397.6,35.6 L 382.9,50.5 L 374.5,56.7 L 369.4,58.6 L 364.8,61.3 L 362.9,66.6 L 370.4,75.4 L 372.3,81.9 L 371.9,88.2 L 372.2,93.8 L 380.7,99.9 L 390.4,101.9 L 394.4,101.9 L 398.0,100.3 L 409.1,85.3 L 411.6,82.7 L 443.2,71.7 L 458.8,63.4 L 467.4,61.2 L 475.4,56.8 L 493.5,40.0 L 500.2,32.2 L 506.3,23.6 L 511.2,13.7 L 515.0,2.9 L 520.2,-3.8 L 530.7,-9.7 L 683.0,-9.7 L 684.6,-1.8 Z" />
+    <!-- Shikoku -->
+    <path d="M 172.4,348.1 L 183.7,346.9 L 183.5,364.6 L 185.1,370.6 L 188.2,375.9 L 186.6,383.7 L 191.7,386.3 L 176.6,395.2 L 163.0,406.9 L 157.4,414.8 L 152.4,423.3 L 149.4,432.2 L 147.5,441.9 L 143.0,438.1 L 129.9,422.4 L 121.6,418.1 L 108.2,415.8 L 104.0,416.3 L 76.6,431.0 L 72.9,441.7 L 65.4,457.8 L 61.9,463.1 L 58.0,464.7 L 55.2,467.4 L 54.7,469.7 L 13.8,469.7 L 13.7,465.1 L 8.6,460.1 L 12.4,453.6 L 12.5,448.3 L 14.7,445.4 L 15.5,441.1 L 15.2,437.5 L 10.0,436.3 L 6.8,433.8 L 7.4,424.1 L 4.4,423.8 L -3.1,425.5 L -7.9,427.8 L -7.9,423.2 L -2.5,420.3 L 3.7,416.2 L 17.1,404.5 L 25.6,399.0 L 30.1,389.2 L 31.4,383.2 L 34.3,378.0 L 36.8,369.6 L 41.2,366.8 L 48.8,359.7 L 53.1,360.4 L 58.0,369.2 L 64.5,376.0 L 69.2,375.4 L 77.6,371.9 L 81.6,371.1 L 91.3,371.5 L 100.0,367.2 L 103.6,362.2 L 104.9,355.9 L 101.7,345.3 L 105.9,346.3 L 109.9,345.9 L 119.3,339.2 L 129.1,335.2 L 139.2,334.2 L 150.5,338.0 L 161.5,344.1 L 172.4,348.1 Z" />
+    <!-- Awaji Island -->
+    <path d="M 198.5,349.2 L 191.0,348.7 L 187.3,345.0 L 186.1,340.4 L 193.1,333.2 L 199.3,323.1 L 204.8,318.6 L 209.3,316.1 L 212.8,316.2 L 204.9,330.3 L 207.1,341.0 L 198.5,349.2 Z" />
+    <!-- Oki Islands -->
+    <path d="M 79.6,158.8 L 72.9,157.6 L 69.0,152.4 L 70.2,146.5 L 77.3,142.0 L 84.1,151.1 L 83.3,155.2 L 79.6,158.8 Z" />
+    <!-- Smaller islands -->
+    <path d="M 159.5,323.9 L 158.1,323.4 L 153.1,327.9 L 152.0,323.6 L 148.1,320.8 L 147.6,318.6 L 159.0,317.1 L 162.6,318.3 L 161.0,322.0 L 159.5,323.9 Z" />
+    <path d="M 18.2,361.6 L 11.2,360.4 L 14.0,357.1 L 16.2,353.0 L 17.7,352.2 L 19.1,356.6 L 20.5,357.7 L 18.2,361.6 Z" />
+    <path d="M -0.4,377.8 L 8.8,376.3 L 9.9,377.3 L 7.2,380.6 L 3.2,383.7 L -4.1,381.4 L -7.9,381.3 L -7.9,374.0 L -4.2,374.2 L -0.4,377.8 Z" />
+  </g>
 
-  <!-- Shikoku (small island below center) -->
-  <path
-    d="M 260,395 L 350,378 L 420,390 L 430,430 L 360,450 L 260,440 Z"
-    class="jm-land"
-  />
+  <!-- Sea labels -->
+  <text x="330" y="70" text-anchor="middle" class="jm-ls" style="font-size:16px;letter-spacing:.16em;fill:#6B6355">Sea of Japan</text>
+  <text x="450" y="430" text-anchor="middle" class="jm-ls" style="font-size:16px;letter-spacing:.16em;fill:#6B6355">Pacific Ocean</text>
 
-  <!-- Label -->
-  <text x="430" y="55" text-anchor="middle" class="jm-label-region">Japan · Honshu</text>
+  <!-- Mt Fuji mark (138.73°E, 35.36°N → SVG ≈ 508, 237) -->
+  <g stroke="#5A4A30" stroke-width="0.9" fill="none" opacity="0.7">
+    <path d="M 496,251 l 12,-22 l 12,22 Z" />
+  </g>
+  <text x="508" y="265" text-anchor="middle" class="jm-lm" style="font-size:7px;letter-spacing:.08em">Fuji</text>
+
+  <!-- Island labels -->
+  <text x="400" y="295" text-anchor="middle" transform="rotate(-14 400 295)" class="jm-ls" style="font-size:19px;letter-spacing:.1em">Honshū</text>
+  <text x="110" y="420" text-anchor="middle" class="jm-ls" style="font-size:12px">Shikoku</text>
+  <!-- Kyushu is ~1° west of this map's left edge; directional marker -->
+  <text x="4" y="453" class="jm-lm" style="font-size:7.5px;letter-spacing:.06em;fill:#9C8E7E">← Kyūshū</text>
+
+  <!-- Compass -->
+  <g transform="translate(672,60)" stroke="#5A4A30" fill="#5A4A30">
+    <circle cx="0" cy="0" r="14" fill="none" stroke-width="0.75" opacity="0.5" />
+    <path d="M0,-16 L4,0 L0,3 L-4,0 Z" />
+    <path d="M0,16 L4,0 L0,-3 L-4,0 Z" fill="none" stroke-width="0.75" />
+    <text x="0" y="-19" text-anchor="middle" class="jm-lm" style="font-size:8px;fill:#5A4A30">N</text>
+  </g>
+
+  <!-- Scale bar -->
+  <g transform="translate(44,432)" stroke="#6B6355">
+    <line x1="0" y1="0" x2="104" y2="0" stroke-width="1.5" />
+    <line x1="0" y1="-3" x2="0" y2="3" stroke-width="1.5" />
+    <line x1="52" y1="-3" x2="52" y2="3" stroke-width="1.5" />
+    <line x1="104" y1="-3" x2="104" y2="3" stroke-width="1.5" />
+    <text x="0" y="13" class="jm-lm" style="font-size:8px" stroke="none">0</text>
+    <text x="104" y="13" text-anchor="end" class="jm-lm" style="font-size:8px" stroke="none">200 km</text>
+  </g>
 
   <!-- osaka-marker: Ikaino, Osaka -->
   <g data-show-from="osaka-marker">
-    <circle cx="280" cy="310" r="8" class="jm-dot-orange" />
-    <text x="264" y="306" text-anchor="end" class="jm-label-city" fill="#C4722A">Ikaino</text>
-    <text x="264" y="321" text-anchor="end" class="jm-label-sub">Osaka</text>
+    <circle cx="252" cy="302" r="5" fill="#C4722A" />
+    <text x="242" y="298" text-anchor="end" class="jm-ls" style="font-size:15px;fill:#2C2820">Ikaino</text>
+    <text x="242" y="313" text-anchor="end" class="jm-lm" style="font-size:8px;letter-spacing:.1em">Osaka</text>
   </g>
 
   <!-- tokyo-marker: Tokyo -->
   <g data-show-from="tokyo-marker">
-    <line x1="288" y1="310" x2="620" y2="210" class="jm-route" />
-    <circle cx="625" cy="208" r="8" class="jm-dot-teal" />
-    <text x="641" y="204" text-anchor="start" class="jm-label-city">Tokyo</text>
-    <text x="641" y="219" text-anchor="start" class="jm-label-sub">Three generations later</text>
+    <path d="M 262,304 Q 430,232 580,210" class="jm-route" />
+    <path d="M 580,210 l -12,-4 l 4,12 z" fill="#9C6B2E" />
+    <circle cx="584" cy="206" r="5" fill="#2AA8A0" />
+    <text x="594" y="202" class="jm-ls" style="font-size:15px;fill:#2C2820">Tokyo</text>
+    <text x="594" y="217" class="jm-lm" style="font-size:8px;letter-spacing:.1em">1989</text>
   </g>
 </svg>

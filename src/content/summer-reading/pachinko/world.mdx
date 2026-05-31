@@ -131,6 +131,9 @@ import {
     *Pachinko* spans the entire arc of Japan's colonial and postcolonial relationship with Korea — from the first forced opening of Korean ports to the year the novel ends, two years before Japan's bubble economy collapsed.
   </Beat>
 
+  <div class="sr-cascade-entries">
+  <div class="sr-zone-cascade-progress"></div>
+
   <CascadeEntry date="1876">
     Japan forces Korea to open its ports through an unequal treaty, beginning a half-century of expanding Japanese dominance.
   </CascadeEntry>
@@ -178,6 +181,8 @@ import {
   <CascadeEntry date="1989" highlight={true}>
     The novel's final sections. Japan is at the peak of its bubble economy. Solomon works at a Japanese branch of a British bank in Tokyo. *The novel ends here.*
   </CascadeEntry>
+
+  </div>
 </ScrollyZone>
 
 <ZoneSeam text="pachinko" groundFrom="tinted" groundTo="cream" />
@@ -229,43 +234,67 @@ import {
   ground="tinted"
   text="pachinko"
 >
-  <SectionOpener text="pachinko" eyebrow="THE STRUCTURE" heading="Three Generations" background="tinted" />
+  <SectionOpener text="pachinko" eyebrow="THE STRUCTURE" heading="Four Generations" background="tinted" />
 
-  <div class="sr-zone-beat sr-zone-beat--center">
-    <div class="sr-beat-card">
-      <p><em>Pachinko</em> is organized around three generations of Sunja's family, each of which inhabits a different legal and historical moment.</p>
-    </div>
+  <div class="sr-gen-lead">
+    <p><em>Pachinko</em> follows four generations of one family — from the Korean rootstock who never crossed to Japan, through the descendants who built their lives there across eighty years.</p>
   </div>
 
-  <div class="sr-gen-stack-b">
-    <div class="sr-gen-card">
-      <p><strong>Issei (first generation): Sunja and Isak.</strong> Born in Korea, arrived in Japan as adults. Legally Japanese subjects under colonial rule, but socially and economically Korean and marginal. Korea is home; Japan is where they work and survive.</p>
-    </div>
-    <div class="sr-gen-sep-b">
-      <div class="sr-gen-sep-line-v"></div>
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="14" cy="14" r="12.32" stroke="var(--p-teal)" stroke-width="1.5"/>
-        <circle cx="14" cy="14" r="8.4" stroke="var(--p-teal)" stroke-width="1"/>
-        <circle cx="14" cy="14" r="1.96" fill="var(--p-gold)"/>
-      </svg>
-      <div class="sr-gen-sep-line-v"></div>
-    </div>
-    <div class="sr-gen-card">
-      <p><strong>Nisei (second generation): Noa and Mozasu.</strong> Born or raised primarily in Japan. Korean by heritage and legal status but grown up in the only country they know. Noa's driven attempt to assimilate, and Mozasu's practical embrace of the pachinko industry, are the novel's central pairing.</p>
-    </div>
-    <div class="sr-gen-sep-b">
-      <div class="sr-gen-sep-line-v"></div>
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="14" cy="14" r="12.32" stroke="var(--p-teal)" stroke-width="1.5"/>
-        <circle cx="14" cy="14" r="8.4" stroke="var(--p-teal)" stroke-width="1"/>
-        <circle cx="14" cy="14" r="1.96" fill="var(--p-gold)"/>
-      </svg>
-      <div class="sr-gen-sep-line-v"></div>
-    </div>
-    <div class="sr-gen-card">
-      <p><strong>Sansei (third generation): Solomon.</strong> Educated in America, fluent in Korean, Japanese, and English, professionally mobile — and still unable to acquire full belonging in Japan. The 1989 sections test whether a generation that has done everything right can escape the condition the system assigned at birth.</p>
-    </div>
-  </div>
+  <ol class="sr-gen-track" data-gen-count="4">
+
+    <li class="sr-gen-node" data-gen="1">
+      <div class="sr-gen-rail"><span class="sr-gen-bead"></span></div>
+      <div class="sr-gen-body">
+        <div class="sr-gen-meta">
+          <span class="sr-gen-index">Generation I</span>
+          <span class="sr-gen-era">b. 1880s–90s · Korea</span>
+        </div>
+        <h3 class="sr-gen-people">Yangjin &amp; Hoonie</h3>
+        <p class="sr-gen-text">The rootstock. Born in late-Joseon Korea, they run the Yeongdo boarding house where the novel opens. They never cross to Japan; their world is the one the family leaves behind.</p>
+        <span class="sr-gen-home" data-home="rooted">Home: Korea, without question</span>
+      </div>
+    </li>
+
+    <li class="sr-gen-node" data-gen="2">
+      <div class="sr-gen-rail"><span class="sr-gen-bead"></span></div>
+      <div class="sr-gen-body">
+        <div class="sr-gen-meta">
+          <span class="sr-gen-index">Generation II · <em>Issei</em></span>
+          <span class="sr-gen-era">cross c. 1933 · Osaka</span>
+        </div>
+        <h3 class="sr-gen-people">Sunja &amp; Isak</h3>
+        <p class="sr-gen-text">The first to leave. They arrive in Osaka as adults — legally Japanese subjects under colonial rule, but socially and economically Korean and marginal. Korea is home; Japan is where they work and survive.</p>
+        <span class="sr-gen-home" data-home="remembered">Home: Korea remembered, Japan endured</span>
+      </div>
+    </li>
+
+    <li class="sr-gen-node" data-gen="3">
+      <div class="sr-gen-rail"><span class="sr-gen-bead"></span></div>
+      <div class="sr-gen-body">
+        <div class="sr-gen-meta">
+          <span class="sr-gen-index">Generation III · <em>Nisei</em></span>
+          <span class="sr-gen-era">b. 1930s–40s · Ikaino</span>
+        </div>
+        <h3 class="sr-gen-people">Noa &amp; Mozasu</h3>
+        <p class="sr-gen-text">Born or raised in Japan — the only country they know. Noa's driven attempt to assimilate and Mozasu's practical embrace of the pachinko industry are the novel's central pairing.</p>
+        <span class="sr-gen-home" data-home="split">Home: ambiguous, split</span>
+      </div>
+    </li>
+
+    <li class="sr-gen-node" data-gen="4">
+      <div class="sr-gen-rail"><span class="sr-gen-bead"></span></div>
+      <div class="sr-gen-body">
+        <div class="sr-gen-meta">
+          <span class="sr-gen-index">Generation IV · <em>Sansei</em></span>
+          <span class="sr-gen-era">b. 1960s · Tokyo &amp; abroad</span>
+        </div>
+        <h3 class="sr-gen-people">Solomon</h3>
+        <p class="sr-gen-text">Educated in America, fluent in Korean, Japanese, and English, professionally mobile — and still unable to acquire full belonging in Japan. The 1989 sections test whether a generation that has done everything right can escape the condition the system assigned at birth.</p>
+        <span class="sr-gen-home" data-home="unresolved">Home: unresolved by geography</span>
+      </div>
+    </li>
+
+  </ol>
 </ScrollyZone>
 
 <ZoneSeam text="pachinko" groundFrom="tinted" groundTo="cream" />
@@ -282,6 +311,7 @@ import {
   alt="A pachinko machine — the vertical pinball device that gives the novel its title"
   ground="cream"
   text="pachinko"
+  portrait
 >
   <SectionOpener text="pachinko" eyebrow="THE METAPHOR" heading="Pachinko" background="cream" />
 

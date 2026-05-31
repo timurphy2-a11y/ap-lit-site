@@ -37,40 +37,53 @@
   z-index: 0;
 }
 
-/* Photo field — explicit background so no-image zones read cleanly */
+/* Photo field — framed plate: photo sits centered as a contained card */
 .sr-zone-photo-field {
-  background: var(--color-cream);
-}
-
-.sr-scrolly-zone[data-ground="tinted"] .sr-zone-photo-field {
-  background: var(--color-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  background: transparent;
+  padding: var(--s-8);
 }
 
 .sr-zone-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
   display: block;
+  flex: none;
+  width: min(46%, 540px);
+  height: auto;
+  aspect-ratio: 4 / 3;
+  max-height: 56vh;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--color-rule);
+  box-shadow: 0 18px 44px -20px rgba(44, 40, 32, 0.45);
 }
 
-/* Persistent caption fixed to bottom of photo zone */
+/* Portrait variant for tall images (e.g. pachinko machine) */
+.sr-zone-photo--portrait {
+  aspect-ratio: 3 / 4;
+  width: min(34%, 360px);
+  max-height: 62vh;
+}
+
+/* Caption sits below the plate */
 .sr-zone-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--s-3) var(--s-5);
-  background: rgba(44, 40, 32, 0.7);
+  position: static;
+  max-width: min(46%, 540px);
+  background: transparent;
+  color: var(--color-muted);
+  padding: 0;
+  text-align: center;
   font-family: var(--font-body);
   font-size: var(--t-meta);
   line-height: var(--lh-meta);
-  color: rgba(246, 241, 232, 0.85);
 }
 
-/* Map field: SVG fills the panel */
+/* Map field: SVG fills the panel; background matches engraved sea tone */
 .sr-zone-map-field {
-  background: var(--color-cream);
+  background: #F1EADA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,6 +155,8 @@
   z-index: 1;
   margin-top: -100vh;        /* pull back over sticky field */
   padding-bottom: var(--beat-dwell, 280px); /* trailing dwell after last beat */
+  max-width: 1060px;
+  margin-inline: auto;
 }
 
 /* Ground zones: normal flow, no overlay */
@@ -164,7 +179,7 @@
 /* ── Beat: the observed text unit ───────────────────────────────────────── */
 .sr-zone-beat {
   margin-top: var(--beat-dwell, 280px);
-  padding: 0 var(--beat-outer-inset, var(--s-2));
+  padding-inline: clamp(var(--s-4), 4vw, var(--s-12));
   display: flex;
 }
 
@@ -192,7 +207,7 @@
 
 /* ── Beat card panel ────────────────────────────────────────────────────── */
 .sr-beat-card {
-  max-width: 36rem;
+  max-width: 30rem;
   min-width: min(20rem, 100%);
   width: 100%;
   padding: var(--s-5) var(--s-6);
@@ -317,38 +332,58 @@
   background: var(--color-cream);
 }
 
-/* ── Cascade zone layout ────────────────────────────────────────────────── */
+/* ── Cascade zone layout — single-column wire with playhead ─────────────── */
 .sr-scrolly-zone--cascade {
   overflow: visible;
 }
 
-.sr-zone-cascade-layout {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  align-items: start;
+.sr-zone-cascade-content {
+  position: relative;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: 10vh var(--s-5) 16vh;
 }
 
-.sr-zone-cascade-rail {
-  grid-column: 1;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+/* ── Cascade entries wrapper — the wire lives here ──────────────────────── */
+.sr-cascade-entries {
+  position: relative;
+}
+
+/* Dim wire — full descent */
+.sr-cascade-entries::before {
+  content: '';
+  position: absolute;
+  left: 11px;    /* centres on the 9px dot in the 24px pin column */
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: rgba(42, 168, 160, 0.18);
+}
+
+/* Teal charge — JS-driven height, glowing tip */
+.sr-zone-cascade-progress {
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  width: 2px;
+  height: 0;
+  background: var(--p-teal);
+  border-radius: 2px;
+  transition: height 0.55s var(--ease-out);
   z-index: 0;
 }
 
-.sr-zone-cascade-stem {
-  width: 3px;
-  height: 100%;
-  background: rgba(42, 168, 160, 0.35);
-}
-
-.sr-zone-cascade-content {
-  grid-column: 2;
-  padding: var(--s-10) clamp(var(--s-5), 4vw, var(--s-10)) var(--s-20);
-  position: relative;
-  z-index: 1;
+.sr-zone-cascade-progress::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--p-teal);
+  box-shadow: 0 0 12px 2px rgba(42, 168, 160, 0.5);
 }
 
 /* ── Cascade entry ──────────────────────────────────────────────────────── */
@@ -357,17 +392,15 @@
   grid-template-columns: var(--s-6) 1fr;
   gap: var(--s-3);
   align-items: start;
-  margin-bottom: var(--cascade-entry-spacing, var(--s-8));
-  opacity: 0.2;
-  transition: opacity 0.45s ease;
+  margin-bottom: clamp(2rem, 5.5vh, 4.75rem);
+  position: relative;
+  z-index: 1;
+  opacity: 0.16;
+  transition: opacity 0.5s ease;
 }
 
 .sr-cascade-entry:last-child {
   margin-bottom: 0;
-}
-
-.sr-cascade-entry.is-active {
-  opacity: 1;
 }
 
 .sr-cascade-pin {
@@ -380,38 +413,16 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--color-rule);
+  background: transparent;
   border: 1.5px solid var(--color-rule);
-  transform: scale(0.75);
-  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transform: scale(0.7);
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.sr-cascade-entry.is-active .sr-cascade-dot {
-  background: var(--p-teal);
-  border-color: var(--p-teal);
-  transform: scale(1);
-}
-
-.sr-cascade-entry--highlight .sr-cascade-dot {
-  background: var(--p-orange);
-  border-color: var(--p-orange);
-}
-
-.sr-cascade-year {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--cascade-date-color, #8B4A10);
-  display: block;
-  margin-bottom: var(--s-1);
-}
-
-.sr-cascade-entry--highlight .sr-cascade-year {
-  color: var(--p-teal);
-}
-
-/* ── Cascade accumulate mechanic: revealed = permanent, newest = emphasis ── */
+/* ── Revealed = lit; newest = active playhead ───────────────────────────── */
 .sr-cascade-entry.is-revealed {
   opacity: 1;
 }
@@ -423,15 +434,33 @@
 }
 
 .sr-cascade-entry.is-newest .sr-cascade-dot {
-  transform: scale(1.2);
+  transform: scale(1.35);
+  box-shadow: 0 0 0 5px rgba(42, 168, 160, 0.16);
+}
+
+/* Row rises into place as it's revealed */
+.sr-cascade-text {
+  transform: translateY(6px);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.sr-cascade-entry.is-revealed .sr-cascade-text {
+  transform: none;
+}
+
+.sr-cascade-year {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cascade-date-color, #8B4A10);
+  display: block;
+  margin-bottom: var(--s-1);
+  transition: color 0.3s ease;
 }
 
 .sr-cascade-entry.is-newest .sr-cascade-year {
   color: var(--p-teal);
-}
-
-.sr-cascade-entry.is-newest .sr-cascade-event {
-  font-weight: 500;
 }
 
 .sr-cascade-event {
@@ -440,9 +469,28 @@
   line-height: var(--lh-meta);
   color: var(--color-ink);
   margin: 0;
+  transition: font-weight 0.3s ease;
 }
 
 .sr-cascade-event em { font-style: italic; }
+
+.sr-cascade-entry.is-newest .sr-cascade-event {
+  font-weight: 500;
+}
+
+/* ── Highlight entries (orange accent) ──────────────────────────────────── */
+.sr-cascade-entry--highlight .sr-cascade-year {
+  color: var(--p-orange);
+}
+
+.sr-cascade-entry--highlight.is-revealed .sr-cascade-dot {
+  background: var(--p-orange);
+  border-color: var(--p-orange);
+}
+
+.sr-cascade-entry--highlight.is-newest .sr-cascade-dot {
+  box-shadow: 0 0 0 5px rgba(196, 114, 42, 0.18);
+}
 
 /* Lead prose beat inside cascade content */
 .sr-zone-cascade-content .sr-zone-beat {
@@ -462,45 +510,144 @@
   margin-top: var(--s-12);
 }
 
-/* ── Generation descent stack — Three Generations zone (Zone 6) ─────────── */
-/* Medallion nodes between cards; reads as ordered stages in a sequence       */
+/* ── Four Generations ledger — Zone 6 ───────────────────────────────────── */
 
-/* Card */
-.sr-gen-card {
-  padding: var(--s-5) var(--s-6);
-  background: rgba(246, 241, 232, 0.65);
+.sr-gen-lead {
+  max-width: var(--content-prose);
+  margin: var(--s-6) auto var(--s-10);
+  padding-inline: var(--s-5);
 }
 
-.sr-gen-card p {
+.sr-gen-lead p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  text-align: center;
+  margin: 0;
+}
+
+.sr-gen-track {
+  list-style: none;
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  position: relative;
+}
+
+/* Continuous descent line through the beads */
+.sr-gen-track::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--s-5) + 13px);
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    rgba(42, 168, 160, 0.15),
+    rgba(42, 168, 160, 0.5) 50%,
+    var(--p-orange) 100%);
+}
+
+.sr-gen-node {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--s-5);
+  position: relative;
+  padding-bottom: var(--s-8);
+}
+
+.sr-gen-node:last-child { padding-bottom: 0; }
+
+.sr-gen-rail { position: relative; display: flex; justify-content: center; }
+
+.sr-gen-bead {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-card);
+  border: 2px solid var(--p-teal);
+  margin-top: 6px;
+  z-index: 1;
+  box-shadow: 0 0 0 4px var(--color-card);
+}
+
+.sr-gen-node[data-gen="4"] .sr-gen-bead {
+  border-color: var(--p-orange);
+  background: var(--p-orange);
+}
+
+.sr-gen-body {
+  background: rgba(246, 241, 232, 0.7);
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  padding: var(--s-5) var(--s-6);
+}
+
+.sr-gen-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-2);
+}
+
+.sr-gen-index {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+}
+
+.sr-gen-index em { font-style: italic; text-transform: none; letter-spacing: 0.04em; }
+
+.sr-gen-era {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.sr-gen-people {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin: 0 0 var(--s-2);
+}
+
+.sr-gen-text {
   font-family: var(--font-body);
   font-size: var(--t-body);
   line-height: var(--lh-prose);
   color: var(--color-ink);
-  margin: 0;
+  margin: 0 0 var(--s-3);
 }
 
-.sr-gen-stack-b {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  max-width: var(--content-prose);
-  margin: var(--s-10) auto;
-  padding: 0 var(--s-5);
+.sr-gen-text:last-child { margin-bottom: 0; }
+
+.sr-gen-home {
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: var(--s-1);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--color-rule);
+  color: var(--color-muted);
 }
 
-.sr-gen-sep-b {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--s-2) 0;
-}
-
-.sr-gen-sep-line-v {
-  width: 1.5px;
-  height: var(--s-6);
-  background: rgba(42, 168, 160, 0.35);
-  flex-shrink: 0;
-}
+.sr-gen-home[data-home="rooted"]     { color: var(--p-teal);   border-color: rgba(42,168,160,0.5);  background: rgba(42,168,160,0.08); }
+.sr-gen-home[data-home="remembered"] { color: var(--p-orange); border-color: rgba(196,114,42,0.45); background: rgba(196,114,42,0.08); }
+.sr-gen-home[data-home="split"]      { color: var(--p-coral);  border-color: rgba(196,83,122,0.45); background: rgba(196,83,122,0.08); }
+.sr-gen-home[data-home="unresolved"] { color: var(--color-ink); border-color: var(--color-ink); background: transparent; }
 
 /* ── prefers-reduced-motion: everything static ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -524,31 +671,30 @@
     transition: none;
   }
 
+  /* Cascade: plain static list — never strand content behind dim base */
   .sr-cascade-entry {
     opacity: 1;
     transition: none;
   }
 
-  .sr-cascade-dot {
-    transform: scale(1);
+  .sr-cascade-text {
+    transform: none;
     transition: none;
   }
 
-  .sr-scrolly-zone--cascade .sr-zone-cascade-layout {
-    display: block;
+  .sr-cascade-dot {
+    transform: scale(1);
+    background: var(--p-teal);
+    border-color: var(--p-teal);
+    transition: none;
   }
 
-  .sr-zone-cascade-rail {
-    position: static;
-    height: 2px;
-    width: 100%;
-    flex-direction: row;
+  .sr-cascade-entry--highlight .sr-cascade-dot {
+    background: var(--p-orange);
+    border-color: var(--p-orange);
   }
 
-  .sr-zone-cascade-stem {
-    width: 100%;
-    height: 2px;
-  }
+  .sr-zone-cascade-progress { display: none; }
 }
 
 /* ── Mobile: sequential inline fallback (<768px) ───────────────────────── */
@@ -579,30 +725,18 @@
     opacity: 1;
   }
 
-  .sr-scrolly-zone--cascade .sr-zone-cascade-layout {
-    display: block;
-  }
-
-  .sr-zone-cascade-rail {
-    position: static;
-    height: auto;
-    padding: var(--s-4) 0;
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .sr-zone-cascade-stem {
-    width: 100%;
-    height: 2px;
-  }
-
   .sr-zone-cascade-content {
     padding: var(--s-6) 0 var(--s-10);
   }
 
+  /* Cascade: plain static list on mobile */
   .sr-cascade-entry {
     opacity: 1;
     margin-bottom: var(--s-6);
+  }
+
+  .sr-cascade-text {
+    transform: none;
   }
 
   .sr-cascade-dot {
@@ -610,4 +744,11 @@
     background: var(--p-teal);
     border-color: var(--p-teal);
   }
+
+  .sr-cascade-entry--highlight .sr-cascade-dot {
+    background: var(--p-orange);
+    border-color: var(--p-orange);
+  }
+
+  .sr-zone-cascade-progress { display: none; }
 }

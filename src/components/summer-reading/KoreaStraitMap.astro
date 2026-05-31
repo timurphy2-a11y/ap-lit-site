@@ -1,124 +1,127 @@
 ---
-// Korea Strait schematic map for Pachinko World Zone 3.
-// Elements are revealed progressively via data-state on the parent field.
-// CSS in scrolly-zones.css controls visibility per state.
+// Korea Strait engraved map for Pachinko World Zone 3.
+// Land paths traced from Natural Earth 1:50m — survey-accurate geometry.
+// Calibration: Busan (35.10°N, 129.04°E) → SVG (160,110);
+//              Shimonoseki (33.95°N, 130.93°E) → SVG (536,346).
+// Accumulative reveals via data-show-from; CSS in scrolly-zones.css controls opacity per state.
 ---
 
 <svg
-  viewBox="0 0 860 560"
+  viewBox="0 0 660 460"
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="xMidYMid meet"
   class="sr-korea-strait-map"
   role="img"
-  aria-label="Schematic map of the Korea Strait showing the ferry crossing from Busan to Shimonoseki"
+  aria-label="Engraved chart of the Korea Strait crossing from Busan to Shimonoseki"
 >
   <style>
-    .ksm-land  { fill: #EDE8DC; stroke: #C8C0B0; stroke-width: 1.5; }
-    .ksm-water { fill: #F6F1E8; }
-    .ksm-label-region {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      fill: #6B6355;
-    }
-    .ksm-label-water {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      fill: #6B6355;
-      opacity: 0.55;
-    }
-    .ksm-label-city {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      fill: #2C2820;
-    }
-    .ksm-label-anno {
-      font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 13px;
-      fill: #2C2820;
-    }
-    .ksm-label-anno-sm {
-      font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 11px;
-      fill: #6B6355;
-    }
-    .ksm-label-num {
-      font-family: "Fraunces", ui-serif, serif;
-      font-style: italic;
-      font-size: 22px;
-      fill: #2C2820;
-    }
-    .ksm-dot-teal  { fill: #2AA8A0; }
-    .ksm-dot-orange { fill: #C4722A; }
-    .ksm-route { stroke: #2AA8A0; stroke-width: 2; stroke-dasharray: 10 5; fill: none; }
-    .ksm-link  { stroke: #C4722A; stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+    .km-sea{fill:#F1EADA;}
+    .km-grid{stroke:#C9B68E;stroke-width:.6;opacity:.3;}
+    .km-halo{fill:#D8C7A1;}
+    .km-land{fill:url(#kmHatch);stroke:#5A4A30;stroke-width:1.1;stroke-linejoin:round;}
+    .km-ls{font-family:"Fraunces",ui-serif,serif;font-style:italic;fill:#4A3A22;}
+    .km-lm{font-family:"JetBrains Mono",ui-monospace,monospace;text-transform:uppercase;fill:#6B6355;}
+    .km-route{fill:none;stroke:#9C6B2E;stroke-width:2;stroke-dasharray:3 4;stroke-linecap:round;}
+    .km-route2{fill:none;stroke:#9C6B2E;stroke-width:3.6;stroke-dasharray:3 4;stroke-linecap:round;opacity:.9;}
   </style>
+  <defs>
+    <pattern id="kmHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="#E7DCC4" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#C9B68E" stroke-width="0.6" opacity="0.6" />
+    </pattern>
+    <filter id="kmHalo" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="3.5" /></filter>
+  </defs>
 
-  <!-- Water background -->
-  <rect width="860" height="560" class="ksm-water" />
+  <rect width="660" height="460" class="km-sea" />
+  <g class="km-grid">
+    <line x1="90" y1="0" x2="90" y2="460" /><line x1="330" y1="0" x2="330" y2="460" /><line x1="560" y1="0" x2="560" y2="460" />
+    <line x1="0" y1="105" x2="660" y2="105" /><line x1="0" y1="315" x2="660" y2="315" />
+  </g>
 
-  <!-- Korea peninsula (simplified) -->
-  <path
-    d="M 30,0 L 270,0 L 270,60 L 290,120 L 295,220 L 280,340 L 255,430 L 230,520 L 195,560 L 30,560 Z"
-    class="ksm-land"
-  />
+  <!-- Land halo (blur layer) — Natural Earth 1:50m geometry -->
+  <g class="km-halo" filter="url(#kmHalo)">
+    <path d="M 644.7,331.8 L 631.1,335.0 L 614.1,342.9 L 596.2,346.4 L 579.8,340.7 L 564.2,331.5 L 549.2,334.2 L 533.8,340.7 L 527.9,282.0 L 530.9,274.3 L 540.3,264.0 L 550.8,255.2 L 576.2,252.1 L 602.0,255.0 L 620.4,250.9 L 636.0,239.3 L 652.4,222.8 L 670.9,209.4 L 679.9,205.6 L 679.9,327.3 L 644.7,331.8 Z" />
+    <path d="M 611.4,423.4 L 622.7,423.8 L 633.2,421.0 L 649.2,413.0 L 665.9,407.1 L 677.9,410.1 L 679.9,411.4 L 679.9,451.5 L 672.4,460.5 L 659.5,480.5 L 270.7,480.5 L 273.4,470.4 L 283.3,466.1 L 291.7,467.1 L 320.0,474.9 L 322.6,463.9 L 318.5,458.1 L 316.3,451.3 L 334.9,441.7 L 365.3,433.9 L 371.6,430.2 L 377.0,422.3 L 384.4,418.2 L 405.7,418.3 L 423.6,410.8 L 438.4,390.3 L 441.9,379.0 L 447.2,369.7 L 484.2,353.1 L 493.4,350.6 L 518.0,352.6 L 540.6,362.0 L 551.7,381.7 L 561.5,402.9 L 584.7,417.3 L 611.4,423.4 Z" />
+    <path d="M 243.9,473.0 L 259.1,467.5 L 265.4,466.9 L 254.8,480.5 L 240.1,480.5 L 243.9,473.0 Z" />
+    <path d="M 296.6,395.8 L 286.3,389.2 L 291.3,370.9 L 294.7,364.8 L 306.5,370.8 L 310.3,387.3 L 296.6,395.8 Z" />
+    <path d="M 194.7,318.7 L 189.1,306.0 L 194.8,269.9 L 219.1,277.3 L 218.7,288.4 L 207.6,310.4 L 194.7,318.7 Z" />
+    <path d="M 224.7,273.0 L 211.2,266.0 L 205.1,259.7 L 217.6,228.6 L 216.1,216.9 L 216.9,211.1 L 241.8,194.8 L 246.0,198.0 L 247.6,202.5 L 245.4,209.4 L 246.6,224.8 L 227.9,250.3 L 228.8,263.2 L 224.7,273.0 Z" />
+    <path d="M 81.8,184.5 L 56.5,167.5 L 50.4,158.2 L 69.7,144.4 L 86.0,128.7 L 96.7,127.7 L 100.5,171.9 L 81.8,184.5 Z" />
+    <path d="M 248.6,-10.5 L 235.4,28.4 L 217.5,62.2 L 194.6,93.2 L 167.3,105.3 L 148.1,109.7 L 111.4,111.3 L 80.9,106.0 L 54.7,109.8 L 44.2,116.3 L 36.4,127.3 L 42.2,144.5 L 41.4,157.1 L 30.2,156.2 L 8.0,148.8 L -16.6,147.8 L -19.9,146.7 L -19.9,-20.5 L 251.5,-20.5 L 248.6,-10.5 Z" />
+  </g>
 
-  <!-- Japan: Kyushu + western Honshu (simplified) -->
-  <path
-    d="M 590,0 L 860,0 L 860,560 L 700,560 L 640,490 L 590,390 L 570,280 L 575,160 L 590,60 Z"
-    class="ksm-land"
-  />
+  <!-- Land fill — Natural Earth 1:50m geometry -->
+  <g class="km-land">
+    <path d="M 644.7,331.8 L 631.1,335.0 L 614.1,342.9 L 596.2,346.4 L 579.8,340.7 L 564.2,331.5 L 549.2,334.2 L 533.8,340.7 L 527.9,282.0 L 530.9,274.3 L 540.3,264.0 L 550.8,255.2 L 576.2,252.1 L 602.0,255.0 L 620.4,250.9 L 636.0,239.3 L 652.4,222.8 L 670.9,209.4 L 679.9,205.6 L 679.9,327.3 L 644.7,331.8 Z" />
+    <path d="M 611.4,423.4 L 622.7,423.8 L 633.2,421.0 L 649.2,413.0 L 665.9,407.1 L 677.9,410.1 L 679.9,411.4 L 679.9,451.5 L 672.4,460.5 L 659.5,480.5 L 270.7,480.5 L 273.4,470.4 L 283.3,466.1 L 291.7,467.1 L 320.0,474.9 L 322.6,463.9 L 318.5,458.1 L 316.3,451.3 L 334.9,441.7 L 365.3,433.9 L 371.6,430.2 L 377.0,422.3 L 384.4,418.2 L 405.7,418.3 L 423.6,410.8 L 438.4,390.3 L 441.9,379.0 L 447.2,369.7 L 484.2,353.1 L 493.4,350.6 L 518.0,352.6 L 540.6,362.0 L 551.7,381.7 L 561.5,402.9 L 584.7,417.3 L 611.4,423.4 Z" />
+    <path d="M 243.9,473.0 L 259.1,467.5 L 265.4,466.9 L 254.8,480.5 L 240.1,480.5 L 243.9,473.0 Z" />
+    <path d="M 296.6,395.8 L 286.3,389.2 L 291.3,370.9 L 294.7,364.8 L 306.5,370.8 L 310.3,387.3 L 296.6,395.8 Z" />
+    <path d="M 194.7,318.7 L 189.1,306.0 L 194.8,269.9 L 219.1,277.3 L 218.7,288.4 L 207.6,310.4 L 194.7,318.7 Z" />
+    <path d="M 224.7,273.0 L 211.2,266.0 L 205.1,259.7 L 217.6,228.6 L 216.1,216.9 L 216.9,211.1 L 241.8,194.8 L 246.0,198.0 L 247.6,202.5 L 245.4,209.4 L 246.6,224.8 L 227.9,250.3 L 228.8,263.2 L 224.7,273.0 Z" />
+    <path d="M 81.8,184.5 L 56.5,167.5 L 50.4,158.2 L 69.7,144.4 L 86.0,128.7 L 96.7,127.7 L 100.5,171.9 L 81.8,184.5 Z" />
+    <path d="M 248.6,-10.5 L 235.4,28.4 L 217.5,62.2 L 194.6,93.2 L 167.3,105.3 L 148.1,109.7 L 111.4,111.3 L 80.9,106.0 L 54.7,109.8 L 44.2,116.3 L 36.4,127.3 L 42.2,144.5 L 41.4,157.1 L 30.2,156.2 L 8.0,148.8 L -16.6,147.8 L -19.9,146.7 L -19.9,-20.5 L 251.5,-20.5 L 248.6,-10.5 Z" />
+  </g>
 
-  <!-- Region labels (always visible) -->
-  <text x="130" y="45" text-anchor="middle" class="ksm-label-region">Korea</text>
-  <text x="730" y="45" text-anchor="middle" class="ksm-label-region">Japan</text>
-  <text x="430" y="265" text-anchor="middle" class="ksm-label-water">Korea Strait</text>
+  <!-- Always-visible region and water labels -->
+  <text x="44" y="40" class="km-ls" style="font-size:20px;letter-spacing:.06em">Korea</text>
+  <text x="624" y="446" text-anchor="end" class="km-ls" style="font-size:17px">Kyūshū</text>
+  <text x="332" y="250" text-anchor="middle" class="km-ls" style="font-size:16px;letter-spacing:.18em;fill:#6B6355">Korea Strait</text>
+  <text x="162" y="145" text-anchor="middle" class="km-lm" style="font-size:8px;letter-spacing:.12em">Yeongdo</text>
+  <text x="220" y="256" text-anchor="middle" transform="rotate(52 220 256)" class="km-ls" style="font-size:12px">Tsushima</text>
+  <text x="285" y="374" text-anchor="middle" class="km-ls" style="font-size:11px">Iki</text>
+
+  <!-- Compass -->
+  <g transform="translate(612,56)" stroke="#5A4A30" fill="#5A4A30">
+    <circle cx="0" cy="0" r="14" fill="none" stroke-width="0.75" opacity="0.5" />
+    <path d="M0,-16 L4,0 L0,3 L-4,0 Z" />
+    <path d="M0,16 L4,0 L0,-3 L-4,0 Z" fill="none" stroke-width="0.75" />
+    <text x="0" y="-19" text-anchor="middle" class="km-lm" style="font-size:8px;fill:#5A4A30">N</text>
+  </g>
+
+  <!-- Scale bar -->
+  <g transform="translate(44,432)" stroke="#6B6355">
+    <line x1="0" y1="0" x2="93" y2="0" stroke-width="1.5" />
+    <line x1="0" y1="-3" x2="0" y2="3" stroke-width="1.5" />
+    <line x1="46.5" y1="-3" x2="46.5" y2="3" stroke-width="1.5" />
+    <line x1="93" y1="-3" x2="93" y2="3" stroke-width="1.5" />
+    <text x="0" y="13" class="km-lm" style="font-size:8px" stroke="none">0</text>
+    <text x="93" y="13" text-anchor="end" class="km-lm" style="font-size:8px" stroke="none">100 km</text>
+  </g>
 
   <!-- route-base: city dots + labels -->
   <g data-show-from="route-base">
-    <!-- Busan -->
-    <circle cx="280" cy="340" r="6" class="ksm-dot-teal" />
-    <text x="265" y="336" text-anchor="end" class="ksm-label-city">Busan</text>
-
-    <!-- Shimonoseki -->
-    <circle cx="580" cy="290" r="6" class="ksm-dot-teal" />
-    <text x="596" y="286" text-anchor="start" class="ksm-label-city">Shimonoseki</text>
+    <circle cx="160" cy="110" r="4.5" fill="#2AA8A0" />
+    <text x="150" y="106" text-anchor="end" class="km-ls" style="font-size:15px;fill:#2C2820">Busan</text>
+    <circle cx="536" cy="346" r="4.5" fill="#2AA8A0" />
+    <text x="546" y="350" class="km-ls" style="font-size:15px;fill:#2C2820">Shimonoseki</text>
   </g>
 
   <!-- route-line: the crossing -->
   <g data-show-from="route-line">
-    <line x1="287" y1="340" x2="573" y2="290" class="ksm-route" />
-    <text x="430" y="344" text-anchor="middle" class="ksm-label-anno-sm">≈ 200 km</text>
+    <path d="M 168,116 Q 380,150 524,336" class="km-route" />
+    <path d="M 524,336 l -13,-2 l 7,11 z" fill="#9C6B2E" />
   </g>
 
-  <!-- year-1905: route opened annotation -->
+  <!-- year-1905 -->
   <g data-show-from="year-1905">
-    <text x="430" y="228" text-anchor="middle" class="ksm-label-num">1905</text>
-    <text x="430" y="245" text-anchor="middle" class="ksm-label-anno-sm">Route opened under Japanese control</text>
+    <text x="196" y="104" class="km-ls" style="font-size:13px;fill:#9C6B2E">1905</text>
   </g>
 
-  <!-- volume-1930: migration volume -->
+  <!-- volume-1930: thicker route emphasis -->
   <g data-show-from="volume-1930">
-    <text x="430" y="440" text-anchor="middle" class="ksm-label-num">400,000</text>
-    <text x="430" y="458" text-anchor="middle" class="ksm-label-anno-sm">Koreans entered Japan in 1930</text>
+    <path d="M 168,116 Q 380,150 524,336" class="km-route2" />
   </g>
 
-  <!-- inspection: boarding requirements near Busan -->
+  <!-- inspection: boarding requirement marker near Busan -->
   <g data-show-from="inspection">
-    <text x="200" y="395" text-anchor="middle" class="ksm-label-anno-sm">To board:</text>
-    <text x="200" y="411" text-anchor="middle" class="ksm-label-anno-sm">10 yen · Japanese · Employment</text>
+    <path d="M 150,128 l 8,6 l -8,6 l -8,-6 z" fill="none" stroke="#9C6B2E" stroke-width="1.3" />
   </g>
 
   <!-- ikaino-marker: Osaka / Ikaino on Japan side -->
   <g data-show-from="ikaino-marker">
-    <line x1="580" y1="297" x2="648" y2="380" class="ksm-link" />
-    <circle cx="650" cy="383" r="6" class="ksm-dot-orange" />
-    <text x="666" y="379" text-anchor="start" class="ksm-label-city" fill="#C4722A">Ikaino</text>
-    <text x="666" y="394" text-anchor="start" class="ksm-label-anno-sm">Osaka</text>
+    <line x1="540" y1="342" x2="592" y2="372" stroke="#C4722A" stroke-width="1.3" stroke-dasharray="5 4" />
+    <circle cx="596" cy="374" r="5" fill="#C4722A" />
+    <text x="606" y="372" class="km-ls" style="font-size:13px;fill:#2C2820">Ikaino</text>
+    <text x="606" y="386" class="km-lm" style="font-size:8px;letter-spacing:.1em">Osaka →</text>
   </g>
 </svg>
