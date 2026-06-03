@@ -5,6 +5,7 @@
 
 @import './tokens.css';
 @import './scrolly-zones.css';
+@import './tfa-culture.css';
 
 /* ── Legacy aliases (keep for backward compat with Phase 1 content) ─── */
 :root {
@@ -20,7 +21,7 @@
   /* TFA alias used by existing pages */
   --t-terracotta:      var(--t-terra);
   --t-green:           var(--t-forest);
-  --t-ochre:           var(--t-ochre);
+  --t-ochre:           #D4A840;
 }
 
 /* ── Section-scoped accent resolution ────────────────────────────────── */
