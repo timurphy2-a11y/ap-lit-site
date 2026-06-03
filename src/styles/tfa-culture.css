@@ -1,0 +1,760 @@
+/* TFA Culture (Spoke 2 — "Igbo Society and Cosmology") — spoke-specific styles
+ * Imported by summer-reading.css. Layered on top of tokens.css + scrolly-zones.css.
+ * Production version: Tweaks panel and density-lever sections are excluded.
+ */
+
+/* ════════════════════════════════════════════════════════════════
+   0 · Image placeholders (stand in for CC0-confirmed + pending photos)
+   ════════════════════════════════════════════════════════════════ */
+.sr-ph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background:
+    repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-rule);
+}
+.sr-ph::after {
+  content: attr(data-ph);
+  white-space: pre-line;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  background: rgba(246, 241, 232, 0.9);
+  padding: 9px 13px;
+  border: 1px solid var(--color-rule);
+  max-width: 82%;
+}
+/* permission-pending images read in faint terracotta to flag the licensing gate */
+.sr-ph--pending {
+  background:
+    repeating-linear-gradient(135deg, #efe6d6, #efe6d6 11px, #e9ddc8 11px, #e9ddc8 22px);
+  border-color: rgba(196, 114, 42, 0.4);
+}
+.sr-ph--pending::after { color: #9c6b2e; border-color: rgba(196, 114, 42, 0.4); }
+
+/* ════════════════════════════════════════════════════════════════
+   1 · Held-image caption block
+   ════════════════════════════════════════════════════════════════ */
+.tfa-held-caption {
+  max-width: 30rem;
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: left;
+}
+.tfa-held-caption em { font-style: italic; }
+.tfa-held-fig {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-right: var(--s-2);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   2 · TFA term card — uli paired-tendril corners, terracotta accent
+   Works both as a sticky beat (§1/§2) and inside a still cluster (§3b/§5)
+   ════════════════════════════════════════════════════════════════ */
+.sr-beat-card--tfa {
+  position: relative;
+  border-top: 2px solid var(--t-terra);
+  background: rgba(246, 241, 232, 0.97);
+}
+.sr-beat-card--tfa .sr-beat-term-romaji { color: var(--t-terra); }
+
+/* uli paired-tendril corner accents (top-left + bottom-right) */
+.sr-tc-corner {
+  position: absolute;
+  width: 46px;
+  height: 21px;
+  pointer-events: none;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+}
+.sr-tc-corner--tl { top: 9px;    left: 12px; }
+.sr-tc-corner--br { bottom: 9px; right: 12px; transform: rotate(180deg); }
+
+/* Reserve a clear ornament band top + bottom so the tendrils bracket the card
+   from the corners instead of colliding with the term title / last body line. */
+.sr-beat-card--tfa.sr-beat-card--termcard {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+
+/* The Igbo term + gloss header */
+.sr-beat-card--tfa .sr-beat-term-original {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.sr-beat-card--tfa .sr-beat-term-gloss {
+  display: block;
+  margin-top: var(--s-1);
+  font-style: italic;
+  line-height: var(--lh-meta);
+}
+
+/* ── Still term-card cluster (§3b, §5) — held study objects ─────────── */
+.tfa-term-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+  max-width: 42rem;
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--gutter-lg);
+}
+.tfa-term-cluster .sr-beat-card--tfa.sr-beat-card--termcard {
+  max-width: none;
+  padding: var(--s-8) var(--s-8) var(--s-8) var(--s-6);
+}
+.tfa-term-cluster .sr-beat-term-original { font-size: 1.625rem; }
+.tfa-term-cluster .sr-beat-term-body p { font-size: var(--t-body); }
+
+/* Ikenga image nested inside the §3b cluster, between chi and Agbala.
+ * The block hugs the image width and centers as a unit. */
+.tfa-cluster-image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  width: min(360px, 100%);
+  margin-inline: auto;
+}
+.tfa-cluster-image .sr-ph { aspect-ratio: 4 / 5; width: 100%; }
+.tfa-cluster-image img { display: block; width: 100%; height: auto; }
+.tfa-cluster-image .tfa-held-caption { max-width: none; }
+
+/* ════════════════════════════════════════════════════════════════
+   3 · Still zones (§2b, §4, §5) — held content column
+   ════════════════════════════════════════════════════════════════ */
+.tfa-still {
+  max-width: var(--content-wide);
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--gutter-lg);
+}
+.tfa-still .sr-prose-block { margin-top: var(--s-8); margin-bottom: var(--s-8); }
+
+/* Image pair (§4 egwugwu) */
+.tfa-image-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+  margin: var(--s-8) 0 var(--s-4);
+}
+.tfa-image-pair .sr-ph { aspect-ratio: 3 / 4; }
+.tfa-pair-caption {
+  max-width: var(--content-prose);
+  margin: 0 auto var(--s-8);
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .tfa-image-pair { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   4 · §1a Acephalous nested-rings diagram
+   Same accumulative-reveal engine as the cosmo descent; centerless
+   geometry is the point (politics is nested + horizontal; §3a descends).
+   ════════════════════════════════════════════════════════════════ */
+.sr-acephalous { width: 100%; height: 100%; }
+/* JS fades rings in; the "no king" center (.ac-premise) is always on */
+.sr-acephalous [data-show-from] { transition: none !important; opacity: 0; }
+
+/* §1 two-column split — diagram pinned left, level cards scroll right */
+.tfa-s1-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-10) var(--gutter-lg) var(--s-6);
+  text-align: center;
+}
+.tfa-s1-intro .sr-section-opener { background: none; padding-bottom: var(--s-6); }
+.tfa-s1-intro-card { max-width: 34rem; margin: 0 auto; text-align: left; }
+.tfa-s1-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-12);
+  max-width: var(--content-page);
+  margin: 0 auto;
+  padding: 0 var(--gutter-lg) var(--s-10);
+  align-items: start;
+}
+.tfa-s1-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tfa-s1-sticky .sr-acephalous { width: 100%; max-width: 520px; max-height: 88vh; height: auto; }
+.tfa-s1-steps { display: flex; flex-direction: column; padding-top: 18vh; }
+.tfa-s1-step {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tfa-s1-step:first-child { min-height: 64vh; }
+.tfa-s1-step:last-child  { min-height: 60vh; }
+.tfa-s1-step .sr-beat-card { max-width: 30rem; }
+.tfa-s1-step[data-beat] { opacity: 0.26; transition: opacity 0.5s ease; }
+.tfa-s1-step[data-beat].is-active { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .tfa-s1-cols { grid-template-columns: 1fr; gap: var(--s-6); }
+  .tfa-s1-steps { padding-top: 0; }
+  .tfa-s1-sticky { position: static; height: auto; padding: var(--s-6) 0; }
+  .tfa-s1-step,
+  .tfa-s1-step:first-child,
+  .tfa-s1-step:last-child { min-height: 0; padding: var(--s-3) 0; }
+  .tfa-s1-step[data-beat] { opacity: 1; }
+  .sr-acephalous [data-show-from] { opacity: 1; }
+}
+
+.sr-acephalous .ac-bg { fill: var(--color-cream); }
+.sr-acephalous .ac-ring { fill: none; stroke: var(--t-terra); stroke-width: 2.25; stroke-dasharray: 6 4; stroke-opacity: 0.8; }
+.sr-acephalous .ac-ring:not(.ac-ring--outer) { fill: rgba(196,114,42,0.05); }
+.sr-acephalous .ac-ring--outer { stroke-opacity: 0.6; }
+.sr-acephalous .ac-center { fill: none; stroke: var(--color-muted); stroke-width: 1.5; stroke-dasharray: 3 3; stroke-opacity: 0.75; }
+.sr-acephalous .ac-dot { fill: var(--t-terra); }
+.sr-acephalous .ac-spoke { stroke: var(--color-rule); stroke-width: 1.75; stroke-dasharray: 4 3; }
+.sr-acephalous .ac-lbl { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--color-ink); }
+.sr-acephalous .ac-lbl--accent { fill: var(--t-terra); }
+.sr-acephalous .ac-sub { font-family: var(--font-body); font-size: 11.5px; fill: var(--color-muted); }
+.sr-acephalous .ac-ctr { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--color-muted); }
+
+/* ── §1b object study ─────────────────────────────────────────────────── */
+.tfa-object-study {
+  max-width: var(--content-wide);
+  margin: var(--s-12) auto 0;
+  padding: var(--s-8) var(--gutter-lg) 0;
+  border-top: 1px solid var(--color-rule);
+}
+.tfa-object-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  display: block;
+  text-align: center;
+  margin-bottom: var(--s-3);
+}
+.tfa-object-term {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.875rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  text-align: center;
+  margin: 0 0 var(--s-2);
+}
+.tfa-object-gloss {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: center;
+  max-width: var(--content-prose);
+  margin: 0 auto var(--s-8);
+}
+.tfa-object-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-8);
+  align-items: end;
+}
+.tfa-object-pair figure { margin: 0; display: flex; flex-direction: column; gap: var(--s-3); }
+.tfa-object-pair img {
+  display: block;
+  width: 100%;
+  height: 460px;
+  object-fit: contain;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  padding: var(--s-4);
+}
+.tfa-object-pair figcaption {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+}
+.tfa-object-pair .tfa-held-fig { display: inline; }
+.tfa-object-body {
+  max-width: var(--content-prose);
+  margin: var(--s-8) auto 0;
+}
+.tfa-object-body p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .tfa-object-pair { grid-template-columns: 1fr; gap: var(--s-6); }
+}
+
+/* §2 object study — single object (the ọzọ stool), on tinted ground */
+.tfa-object-single { display: flex; justify-content: center; }
+.tfa-object-single figure { margin: 0; display: flex; flex-direction: column; gap: var(--s-3); max-width: 420px; }
+.tfa-object-single img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  padding: var(--s-4);
+}
+.tfa-object-single figcaption {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+}
+.tfa-object-single .tfa-held-fig { display: inline; }
+
+/* ════════════════════════════════════════════════════════════════
+   5 · §2 The Title System — vertical ascent ladder
+   Reuses the §1 two-column split hooks. Diagram is on the RIGHT.
+   ════════════════════════════════════════════════════════════════ */
+.tfa-zone--s2 { background: var(--color-card); }
+
+.sr-ascent { width: 100%; height: 100%; overflow: hidden; }
+/* JS fades the rungs in; the titleless ground (.asc-base) is always on */
+.sr-ascent [data-show-from] { transition: none !important; opacity: 0; }
+/* The ladder "camera" pans so the active rung rises to center as each card reads */
+.sr-ascent .asc-pan {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.tfa-s1-sticky .sr-ascent { width: 100%; max-width: 430px; max-height: 88vh; height: auto; }
+
+.sr-ascent .asc-line { stroke: var(--t-terra); stroke-width: 2.5; fill: none; stroke-opacity: 0.85; }
+.sr-ascent .asc-line--ground { stroke: var(--color-rule); stroke-width: 2; stroke-dasharray: 4 5; stroke-opacity: 0.8; }
+.sr-ascent .asc-arrow { fill: var(--t-terra); }
+
+/* Nodes deepen in terracotta as the climb rises — weight = standing */
+.sr-ascent .asc-node-base { fill: var(--color-card); stroke: var(--color-muted); stroke-width: 1.5; stroke-dasharray: 3 3; stroke-opacity: 0.8; }
+.sr-ascent .asc-node-1 { fill: rgba(196,114,42,0.30); stroke: var(--t-terra); stroke-width: 2; }
+.sr-ascent .asc-node-2 { fill: rgba(196,114,42,0.58); stroke: var(--t-terra); stroke-width: 2; }
+.sr-ascent .asc-node-ozo-outer { fill: none; stroke: var(--t-terra); stroke-width: 1.5; stroke-dasharray: 5 5; stroke-opacity: 0.55; }
+.sr-ascent .asc-node-ozo { fill: var(--t-terra); stroke: var(--t-terra); stroke-width: 2; }
+.sr-ascent .asc-node-ozo-core { fill: var(--color-card); }
+
+/* Active-rung highlight: soft halo + dashed tie toward the card */
+.sr-ascent .asc-cur { fill: rgba(196,114,42,0.14); opacity: 0; transition: opacity 0.45s ease; }
+.sr-ascent .asc-cur--ozo { fill: rgba(196,114,42,0.16); }
+.sr-ascent .asc-tie { stroke: var(--t-terra); stroke-width: 1.5; stroke-dasharray: 2 5; stroke-linecap: round; stroke-opacity: 0.7; opacity: 0; transition: opacity 0.45s ease; }
+.sr-ascent [data-show-from].is-current .asc-cur,
+.sr-ascent [data-show-from].is-current .asc-tie { opacity: 1; }
+
+.sr-ascent .asc-lbl { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--color-ink); }
+.sr-ascent .asc-lbl--accent { fill: var(--t-terra); }
+.sr-ascent .asc-lbl--lg { font-size: 17px; }
+.sr-ascent .asc-lbl--muted { fill: var(--color-muted); }
+.sr-ascent .asc-sub { font-family: var(--font-body); font-size: 12px; fill: var(--color-muted); }
+
+/* §2 timing — cards on left, ladder on right */
+.tfa-zone--s2 .tfa-s1-steps { padding-top: 18vh; padding-bottom: 26vh; }
+.tfa-zone--s2 .tfa-s1-step,
+.tfa-zone--s2 .tfa-s1-step:first-child,
+.tfa-zone--s2 .tfa-s1-step:last-child { min-height: 66vh; }
+
+/* §2 flips the two-column grid: cards left, ladder right */
+.tfa-zone--s2 .tfa-s1-steps  { order: 1; }
+.tfa-zone--s2 .tfa-s1-sticky { order: 2; }
+.tfa-zone--s2 .tfa-s1-step { align-items: flex-end; }
+.tfa-zone--s2 .tfa-s1-step .sr-beat-card { margin-left: auto; }
+
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .sr-ascent { overflow: visible; }
+  .sr-ascent .asc-pan { transform: none !important; }
+  .sr-ascent .asc-cur, .sr-ascent .asc-tie { opacity: 0 !important; }
+  .sr-ascent [data-show-from] { opacity: 1; }
+  .tfa-zone--s2 .tfa-s1-steps { padding-top: 0; padding-bottom: 0; }
+  .tfa-zone--s2 .tfa-s1-step,
+  .tfa-zone--s2 .tfa-s1-step:first-child,
+  .tfa-zone--s2 .tfa-s1-step:last-child { min-height: 0; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   6 · §3 The Cosmological World — center channel
+   §1 left · §2 right · §3 center.
+   ════════════════════════════════════════════════════════════════ */
+.tfa-s3-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-10) var(--gutter-lg) var(--s-6);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.tfa-s3-intro .sr-section-opener { background: none; padding-bottom: var(--s-6); }
+.tfa-s3-intro-card { max-width: 34rem; margin: 0 auto; text-align: left; }
+
+/* Narrow center channel + margin cards */
+.tfa-zone--s3a .sr-zone-field { width: clamp(340px, 34%, 440px); }
+.tfa-zone--s3a .sr-zone-beats { max-width: none; }
+.tfa-zone--s3a .sr-zone-beat { padding-inline: clamp(16px, 4vw, 72px); }
+.tfa-zone--s3a .sr-zone-beat[data-activates] .sr-beat-card {
+  max-width: clamp(210px, 23%, 330px);
+  min-width: 0;
+}
+
+/* Spirit-Axis cosmogram */
+.sr-cosmo-axis text { font-family: var(--font-mono); }
+.sr-cosmo-axis .cw-lbl { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--color-ink); }
+.sr-cosmo-axis .cw-lbl--accent { fill: var(--t-terra); }
+.sr-cosmo-axis .cw-lbl--lg { font-size: 19px; letter-spacing: 0.1em; }
+.sr-cosmo-axis .cw-lbl--sm { font-size: 11px; }
+.sr-cosmo-axis .cw-lbl--chi { font-family: var(--font-display); font-style: italic; font-size: 21px; letter-spacing: 0; text-transform: none; fill: var(--t-terra); }
+.sr-cosmo-axis .cw-sub { font-family: var(--font-body); font-size: 13px; fill: var(--color-muted); }
+.sr-cosmo-axis .cw-sub--it { font-style: italic; }
+.sr-cosmo-axis .cw-sub--sm { font-size: 11px; }
+.sr-cosmo-axis .cw-rays line { stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; opacity: 0.5; }
+.sr-cosmo-axis .cw-aura { fill: none; stroke: var(--t-terra); stroke-width: 1.3; stroke-dasharray: 4 5; opacity: 0.6; }
+.sr-cosmo-axis .cw-aura--far { opacity: 0.36; }
+.sr-cosmo-axis .cw-core { fill: var(--t-terra); }
+.sr-cosmo-axis .cw-axis { stroke: var(--t-terra); stroke-width: 1.4; stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.7; }
+.sr-cosmo-axis .cw-earth { stroke: var(--color-ink); stroke-width: 2; opacity: 0.5; }
+.sr-cosmo-axis .cw-node-ala { fill: rgba(196,114,42,0.5); stroke: var(--t-terra); stroke-width: 2; }
+.sr-cosmo-axis .cw-node-chi { fill: none; stroke: var(--t-terra); stroke-width: 2; }
+.sr-cosmo-axis .cw-chi-sat { fill: var(--t-terra); }
+.sr-cosmo-axis .cw-chi-tie { stroke: var(--t-terra); stroke-width: 1.3; opacity: 0.7; }
+.sr-cosmo-axis .cw-branch { stroke: var(--color-muted); stroke-width: 1.2; opacity: 0.6; }
+.sr-cosmo-axis .cw-gate { fill: none; stroke: var(--color-ink); stroke-width: 1.6; opacity: 0.7; }
+
+/* JS tweens opacity on these groups — disable CSS transitions so they don't freeze */
+.sr-cosmo-axis [data-show-from] { transition: none !important; }
+
+/* §3 channel widens on mobile / reduced motion */
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .tfa-zone--s3a .sr-zone-field { width: min(440px, 88vw); }
+  .tfa-zone--s3a .sr-zone-beat[data-activates] .sr-beat-card { max-width: 100%; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   7 · Breath separator (within-section dot cluster + label)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-breath {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-10) 0 var(--s-8);
+  background: var(--color-cream);
+}
+.tfa-breath--label {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+}
+.tfa-breath--tinted { background: var(--color-card); }
+.tfa-breath-text {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   8 · Spoke header — umber band + Akwete chevron beneath
+   ════════════════════════════════════════════════════════════════ */
+.tfa-spoke-header {
+  background: var(--t-umber);
+  padding: var(--s-12) var(--gutter-lg) var(--s-10);
+}
+.tfa-spoke-header-inner {
+  max-width: var(--content-page);
+  margin-inline: auto;
+  text-align: center;
+}
+.tfa-spoke-header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--t-ochre);
+  display: block;
+  margin-bottom: var(--s-3);
+}
+.tfa-spoke-header-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--t-hero);
+  line-height: var(--lh-display);
+  color: var(--t-cream);
+  margin: 0 auto var(--s-4);
+  max-width: 22ch;
+}
+.tfa-spoke-header-deck {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: rgba(240, 228, 207, 0.72);
+  margin: 0 auto;
+  max-width: var(--content-prose);
+}
+.tfa-header-chevron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--t-umber);
+  padding: 0 0 var(--s-2);
+  overflow: hidden;
+}
+.tfa-header-chevron svg { display: block; width: 100%; }
+
+/* ════════════════════════════════════════════════════════════════
+   9 · §5 Key Practices — uli ideogram triptych
+   Three glyphs hung from one shared ground (Ọmenala).
+   ════════════════════════════════════════════════════════════════ */
+.tfa-triptych {
+  max-width: 50rem;
+  margin: var(--s-8) auto 0;
+  background: rgba(246, 241, 232, 0.97);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--t-terra);
+  padding: var(--s-8) clamp(var(--s-6), 4vw, var(--s-12)) var(--s-12);
+}
+.tfa-triptych-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1.5px dashed var(--t-terra);
+  padding-bottom: var(--s-3);
+}
+.tfa-triptych-head .is-accent { color: var(--t-terra); text-align: right; }
+.tfa-triptych-head span { white-space: nowrap; }
+.tfa-triptych-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-8);
+}
+.tfa-tri-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--s-10);
+}
+/* stem + node that hangs each practice from the shared ground line */
+.tfa-tri-col::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 26px;
+  background: var(--t-terra);
+  opacity: 0.55;
+}
+.tfa-tri-col::after {
+  content: "";
+  position: absolute;
+  top: 24px; left: 50%;
+  width: 5px; height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--t-terra);
+}
+.tfa-tri-glyph { width: 92px; margin-bottom: var(--s-4); }
+.tfa-tri-glyph--tall { width: 84px; }
+.tfa-tri-glyph svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-tri-term {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  margin: 0 0 var(--s-2);
+}
+.tfa-tri-gloss {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-3);
+}
+.tfa-tri-essence {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-4);
+  max-width: 17rem;
+}
+.tfa-tri-more {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+.tfa-tri-more-mark { transition: transform var(--dur-base) var(--ease-out); }
+.tfa-tri-more:hover,
+.tfa-tri-more:focus-visible { color: var(--t-terra); }
+.tfa-tri-more:focus-visible { outline: 2px solid var(--t-terra); outline-offset: 3px; border-radius: 2px; }
+.tfa-tri-more:hover .tfa-tri-more-mark,
+.tfa-tri-more[aria-expanded="true"] .tfa-tri-more-mark { transform: translateX(3px); }
+.tfa-tri-more[aria-expanded="true"] { color: var(--t-terra); }
+
+/* the full-account popover */
+.tfa-tri-detail {
+  position: absolute;
+  top: 100%;
+  z-index: 20;
+  width: min(24rem, 82vw);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  max-height: min(70vh, 600px);
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--t-terra);
+  box-shadow: 0 24px 54px -26px rgba(44, 40, 32, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  /* opacity/visibility flip instantly to avoid freeze; only transform animates */
+  transition: transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.tfa-tri-detail::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 100%;
+  height: 14px;
+}
+.tfa-tri-detail-body { overflow-y: auto; overscroll-behavior: contain; padding: var(--s-6); }
+.tfa-tri-detail-body::-webkit-scrollbar { width: 8px; }
+.tfa-tri-detail-body::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 4px; }
+.tfa-tri-detail-body::-webkit-scrollbar-track { background: transparent; }
+.tfa-tri-col:first-child .tfa-tri-detail { left: 0; }
+.tfa-tri-col:nth-child(2) .tfa-tri-detail { left: 50%; transform: translate(-50%, 6px); }
+.tfa-tri-col:last-child .tfa-tri-detail { right: 0; }
+.tfa-tri-more:hover ~ .tfa-tri-detail,
+.tfa-tri-more:focus-visible ~ .tfa-tri-detail,
+.tfa-tri-detail:hover,
+.tfa-tri-detail:focus-within,
+.tfa-tri-detail.is-pinned {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.tfa-tri-col:nth-child(2) .tfa-tri-more:hover ~ .tfa-tri-detail,
+.tfa-tri-col:nth-child(2) .tfa-tri-more:focus-visible ~ .tfa-tri-detail,
+.tfa-tri-col:nth-child(2) .tfa-tri-detail:hover,
+.tfa-tri-col:nth-child(2) .tfa-tri-detail:focus-within,
+.tfa-tri-col:nth-child(2) .tfa-tri-detail.is-pinned { transform: translate(-50%, 0); }
+.tfa-tri-detail-head { margin-bottom: var(--s-4); padding-right: var(--s-8); }
+.tfa-tri-detail-term {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+.tfa-tri-detail-gloss {
+  display: block;
+  margin-top: var(--s-1);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+}
+.tfa-tri-detail p {
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-3);
+}
+.tfa-tri-detail p:last-child { margin-bottom: 0; }
+.tfa-tri-detail p em { font-style: italic; }
+.tfa-tri-detail-close {
+  position: absolute;
+  top: var(--s-3); right: var(--s-3);
+  width: 26px; height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--color-muted);
+  opacity: 0;
+  pointer-events: none;
+  transition: color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.tfa-tri-detail.is-pinned .tfa-tri-detail-close { opacity: 1; pointer-events: auto; }
+.tfa-tri-detail-close:hover { color: var(--t-terra); background: rgba(196, 114, 42, 0.1); }
+
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .tfa-triptych-head { flex-direction: column; gap: var(--s-1); }
+  .tfa-triptych-head .is-accent { text-align: left; }
+  .tfa-triptych-cols { grid-template-columns: 1fr; gap: var(--s-12); }
+  /* On touch there is no hover: only the tapped (pinned) panel opens, in-flow. */
+  .tfa-tri-detail,
+  .tfa-tri-col:nth-child(2) .tfa-tri-detail {
+    position: static;
+    left: auto; right: auto;
+    width: 100%;
+    max-height: none;
+    margin-top: var(--s-4);
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    box-shadow: none;
+    display: none;
+  }
+  .tfa-tri-detail-body { overflow: visible; }
+  .tfa-tri-detail.is-pinned { display: flex; }
+}

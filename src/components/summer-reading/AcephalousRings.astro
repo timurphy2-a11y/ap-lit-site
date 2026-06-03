@@ -1,0 +1,63 @@
+---
+// §1a — Igbo acephalous nested-rings diagram.
+// Layers revealed progressively by the tfa-culture scroll engine.
+// data-show-from keys: "village" | "agegrades" | "umunna"
+// The .ac-premise group (no-king center) is always visible.
+---
+
+<svg
+  viewBox="0 0 480 480"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  class="sr-acephalous"
+  role="img"
+  aria-label="Nested-rings diagram of Igbo political structure: the family lineage within the village assembly, age grades cutting across, with no king at the center"
+>
+  <rect width="480" height="480" class="ac-bg" />
+
+  <!-- Layer 1 (outermost): Oha-na-Eze — the village assembly -->
+  <g data-show-from="village">
+    <circle cx="240" cy="240" r="160" class="ac-ring ac-ring--outer" />
+    <circle cx="400" cy="240" r="2.5" class="ac-dot" />
+    <circle cx="353" cy="353" r="2.5" class="ac-dot" />
+    <circle cx="240" cy="400" r="2.5" class="ac-dot" />
+    <circle cx="127" cy="353" r="2.5" class="ac-dot" />
+    <circle cx="80"  cy="240" r="2.5" class="ac-dot" />
+    <circle cx="127" cy="127" r="2.5" class="ac-dot" />
+    <circle cx="240" cy="80"  r="2.5" class="ac-dot" />
+    <circle cx="353" cy="127" r="2.5" class="ac-dot" />
+    <text x="240" y="45"  text-anchor="middle" class="ac-lbl ac-lbl--accent">Oha-na-Eze</text>
+    <text x="240" y="63"  text-anchor="middle" class="ac-sub">the village assembly · all family heads</text>
+  </g>
+
+  <!-- Layer 2: Age grades — radial spokes cutting across lineage -->
+  <g data-show-from="agegrades">
+    <line x1="272" y1="255" x2="399" y2="314" class="ac-spoke" />
+    <line x1="243" y1="275" x2="255" y2="414" class="ac-spoke" />
+    <line x1="211" y1="260" x2="97"  y2="340" class="ac-spoke" />
+    <line x1="208" y1="225" x2="81"  y2="166" class="ac-spoke" />
+    <line x1="237" y1="205" x2="225" y2="66"  class="ac-spoke" />
+    <line x1="269" y1="220" x2="383" y2="140" class="ac-spoke" />
+    <text x="240" y="450" text-anchor="middle" class="ac-lbl">Age grades</text>
+    <text x="240" y="468" text-anchor="middle" class="ac-sub">peer bonds that cut across lineage</text>
+  </g>
+
+  <!-- Layer 3 (innermost): Umunna — the family patrilineage -->
+  <g data-show-from="umunna">
+    <circle cx="240" cy="240" r="80" class="ac-ring" />
+    <circle cx="309" cy="280" r="3" class="ac-dot" />
+    <circle cx="240" cy="320" r="3" class="ac-dot" />
+    <circle cx="171" cy="280" r="3" class="ac-dot" />
+    <circle cx="171" cy="200" r="3" class="ac-dot" />
+    <circle cx="219" cy="162" r="3" class="ac-dot" />
+    <text x="146" y="233" text-anchor="end" class="ac-lbl ac-lbl--accent">Umunna</text>
+    <text x="146" y="251" text-anchor="end" class="ac-sub">the family · patrilineage</text>
+  </g>
+
+  <!-- Always on: the empty center — "no king, no center" -->
+  <g class="ac-premise">
+    <circle cx="240" cy="240" r="20" class="ac-center" />
+    <text x="240" y="235" text-anchor="middle" class="ac-ctr">no king</text>
+    <text x="240" y="251" text-anchor="middle" class="ac-ctr">no center</text>
+  </g>
+</svg>

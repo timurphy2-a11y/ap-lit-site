@@ -1,0 +1,61 @@
+---
+// §2 — Igbo title system ascent ladder (panning camera).
+// The .asc-base group (Agbala — the titleless ground) is always visible.
+// data-show-from keys: "t1" | "t2" | "ozo"
+// data-cy: vertical center of each rung group (viewBox units), used by JS pan.
+// The SVG is mirrored so labels and tie-lines point LEFT toward the cards.
+---
+
+<svg
+  viewBox="0 0 400 620"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  class="sr-ascent"
+  role="img"
+  aria-label="Vertical ladder of the Igbo title system: from the titleless man at the bottom up through earned titles to the Ọzọ title at the summit"
+>
+  <g class="asc-pan">
+
+    <!-- Always on: the titleless ground — Agbala -->
+    <g class="asc-base" data-cy="500">
+      <line x1="282" y1="588" x2="282" y2="468" class="asc-line asc-line--ground" />
+      <circle cx="282" cy="588" r="15" class="asc-node-base" />
+      <text x="250" y="583" text-anchor="end" class="asc-lbl asc-lbl--muted">Agbala</text>
+      <text x="250" y="599" text-anchor="end" class="asc-sub">a man with no title, no standing</text>
+    </g>
+
+    <!-- Rung 1: A title taken -->
+    <g data-show-from="t1" data-cy="456">
+      <line x1="282" y1="588" x2="282" y2="456" class="asc-line" />
+      <line x1="252" y1="456" x2="8"   y2="456" class="asc-tie" />
+      <circle cx="282" cy="456" r="30" class="asc-cur" />
+      <circle cx="282" cy="456" r="16" class="asc-node-1" />
+      <text x="250" y="450" text-anchor="end" class="asc-lbl">A title taken</text>
+      <text x="250" y="466" text-anchor="end" class="asc-sub">proven wealth · a feast given</text>
+    </g>
+
+    <!-- Rung 2: Higher titles -->
+    <g data-show-from="t2" data-cy="300">
+      <line x1="282" y1="456" x2="282" y2="300" class="asc-line" />
+      <line x1="249" y1="300" x2="8"   y2="300" class="asc-tie" />
+      <circle cx="282" cy="300" r="34" class="asc-cur" />
+      <circle cx="282" cy="300" r="19" class="asc-node-2" />
+      <text x="250" y="294" text-anchor="end" class="asc-lbl">Higher titles</text>
+      <text x="250" y="310" text-anchor="end" class="asc-sub">each costlier than the last</text>
+    </g>
+
+    <!-- Summit: Ọzọ -->
+    <g data-show-from="ozo" data-cy="120">
+      <line x1="282" y1="300" x2="282" y2="130" class="asc-line" />
+      <line x1="244" y1="120" x2="8"   y2="120" class="asc-tie" />
+      <circle cx="282" cy="120" r="44" class="asc-cur asc-cur--ozo" />
+      <circle cx="282" cy="120" r="33" class="asc-node-ozo-outer" />
+      <circle cx="282" cy="120" r="23" class="asc-node-ozo" />
+      <circle cx="282" cy="120" r="6"  class="asc-node-ozo-core" />
+      <polygon points="282,52 270,74 294,74" class="asc-arrow" />
+      <text x="234" y="114" text-anchor="end" class="asc-lbl asc-lbl--accent asc-lbl--lg">Ọzọ</text>
+      <text x="234" y="130" text-anchor="end" class="asc-sub">the highest honor, rarely reached</text>
+    </g>
+
+  </g>
+</svg>

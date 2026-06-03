@@ -1,0 +1,25 @@
+---
+import UliTendril from './UliTendril.astro';
+
+interface Props {
+  term: string;
+  gloss: string;
+}
+const { term, gloss } = Astro.props;
+---
+
+<div class="sr-beat-card sr-beat-card--termcard sr-beat-card--tfa">
+  <span class="sr-tc-corner sr-tc-corner--tl" aria-hidden="true">
+    <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+  </span>
+  <span class="sr-tc-corner sr-tc-corner--br" aria-hidden="true">
+    <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+  </span>
+  <div class="sr-beat-term-header">
+    <span class="sr-beat-term-original">{term}</span>
+    <span class="sr-beat-term-gloss">{gloss}</span>
+  </div>
+  <div class="sr-beat-term-body">
+    <slot />
+  </div>
+</div>
