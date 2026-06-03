@@ -153,6 +153,14 @@
   margin: var(--s-8) 0 var(--s-4);
 }
 .tfa-image-pair .sr-ph { aspect-ratio: 3 / 4; }
+.tfa-image-pair img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--color-rule);
+}
 .tfa-pair-caption {
   max-width: var(--content-prose);
   margin: 0 auto var(--s-8);
