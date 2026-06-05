@@ -1,16 +1,793 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
+import '../../../styles/pachinko-zainichi.css';
 
-const entry = await getEntry('summerReading', 'pachinko/history');
-const { Content } = await render(entry);
+const imgBase = '/images/summer-reading/pachinko/zainichi';
 ---
-<SummerLayout title={entry.data.title} section="pachinko" spoke="history">
-  <Content />
+
+<SummerLayout title="Japan and the Zainichi — Pachinko · The Living Atlas" section="pachinko" spoke="history">
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 1 — Annexation and Dispossession · photo · steady · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--photo" data-field="photo" data-tempo="steady" data-ground="cream" data-text="pachinko" data-screen-label="Zone 1 · Annexation and Dispossession">
+    <div class="sr-zone-field sr-zone-photo-stack" data-stages="3" aria-hidden="true">
+      <figure class="sr-photo-stage" data-stage="stage-1876">
+        <img class="sr-zone-photo sr-zone-photo--wide" src={`${imgBase}/history/ganghwa-gatling-1876.jpg`} alt="Four Gatling guns and a line of Japanese troops drawn up before a tiled-roof building at Ganghwa, 1876 Kuroda mission." />
+        <figcaption class="sr-zone-caption"><span class="sr-stage-year">1876</span>The Treaty of Ganghwa forces open three Korean ports — the first concession in a methodical, three-decade dismantling. <em>Gatling guns staged by Japanese troops at Ganghwa during the Kuroda mission, 1876. Public domain, via Wikimedia Commons.</em></figcaption>
+      </figure>
+      <figure class="sr-photo-stage" data-stage="stage-1910">
+        <img class="sr-zone-photo sr-zone-photo--wide" src={`${imgBase}/history/annexation-power-of-attorney-1910.jpg`} alt="The 1910 general power of attorney, brush-written in Korean with a large red imperial seal at left, delegating authority to Yi Wan-yong and sealed by Emperor Sunjong." />
+        <figcaption class="sr-zone-caption"><span class="sr-stage-year">1910</span>Formal annexation. The power of attorney above — sealed by Emperor Sunjong — handed full authority to Prime Minister Yi Wan-yong to conclude the treaty; Korea is renamed <em>Chōsen</em> and placed under a military Governor-General. <em>General power of attorney to Yi Wan-yong, signed and sealed by Sunjong, 1910. Public domain, via Wikimedia Commons.</em></figcaption>
+      </figure>
+      <figure class="sr-photo-stage" data-stage="stage-1965">
+        <img class="sr-zone-photo" src={`${imgBase}/history/normalization-treaty-1965.jpg`} alt="Black-and-white photograph of President Park Chung-hee seated at a desk signing the 1965 normalization treaty at the Blue House, flanked by officials in dark suits." />
+        <figcaption class="sr-zone-caption"><span class="sr-stage-year">1965</span>Normalization. President Park Chung-hee signs the Treaty on Basic Relations — settling claims but leaving the annexation's validity deliberately ambiguous, a dispute that remains live today. <em>President Park Chung-hee signing the normalization treaty at the Blue House, December 17, 1965.</em></figcaption>
+      </figure>
+      <div class="sr-stage-dots" aria-hidden="true">
+        <span data-dot="stage-1876"></span><span data-dot="stage-1910"></span><span data-dot="stage-1965"></span>
+      </div>
+    </div>
+    <div class="sr-zone-beats">
+      <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-cream">
+        <div class="sr-section-opener-motif" data-motif="medallion" data-size="40"></div>
+        <span class="sr-section-opener-eyebrow">HOW JAPAN TOOK KOREA</span>
+        <h2 class="sr-section-opener-heading">Annexation and Dispossession</h2>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--left sr-zone-beat--prose" data-beat data-activates="stage-1876">
+        <div class="sr-beat-card"><p>Korea did not fall quickly. Japan dismantled it methodically over three decades: forced treaties in 1876, protectorate status in 1905, formal annexation in 1910. At each stage, Korean sovereignty was stripped while the appearance of an independent state was maintained long enough for the next concession to be extracted.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="stage-1910">
+        <div class="sr-beat-card"><p>Formal annexation came on August 29, 1910. The treaty was signed not by Emperor Sunjong but by Prime Minister Yi Wan-yong, who served as Japan's collaborator and became the most reviled figure in modern Korean history. Japan's Resident-General had suppressed all Korean newspapers in the days before signing to prevent public knowledge of what was being negotiated. Korea was renamed <em>Chōsen</em> and governed by a Governor-General — always a Japanese military officer appointed directly by the Japanese Emperor.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--center sr-zone-beat--prose" data-beat data-activates="stage-1965">
+        <div class="sr-beat-card"><p>The annexation's legal validity has been disputed ever since. When Japan and South Korea normalized relations in 1965, the compromise language declared all pre-1910 treaties "already null and void" — deliberately ambiguous about whether they were invalid from the start or merely rescinded. That ambiguity remains a live political dispute: a disagreement, fundamentally, over whether Japan owes a full accounting of what it did.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="cream" data-to="tinted" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — The Colonial Timeline 1876–1945 · cascade · driving · tinted
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--cascade" data-field="cascade" data-tempo="driving" data-ground="tinted" data-text="pachinko" data-cascade-variant="land" data-screen-label="Zone 2 · The Colonial Timeline">
+    <div class="sr-zone-cascade-layout">
+      <div class="sr-zone-cascade-rail" aria-hidden="true"><div class="sr-zone-cascade-stem"></div></div>
+      <div class="sr-zone-cascade-content">
+        <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-tinted">
+          <div class="sr-section-opener-motif" data-motif="medallion" data-size="40"></div>
+          <span class="sr-section-opener-eyebrow">THE MECHANISM</span>
+          <h2 class="sr-section-opener-heading">Japanese Policy in Korea, 1876–1945</h2>
+        </div>
+
+        <div class="sr-cascade-entries">
+        <div class="sr-zone-cascade-progress"></div>
+        <div class="sr-cascade-entry" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1876</span><p class="sr-cascade-event"><strong>Treaty of Ganghwa.</strong> Japan forces Korea to open three ports to Japanese trade under an unequal treaty — Korea's first formal step toward colonial subjugation.</p></div>
+        </div>
+        <div class="sr-cascade-entry" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1905</span><p class="sr-cascade-event"><strong>Korea becomes a Japanese protectorate.</strong> Following the Russo-Japanese War, Japan controls Korea's foreign policy, military, and civil administration. Formal sovereignty survives in name only.</p></div>
+        </div>
+        <div class="sr-cascade-entry sr-cascade-entry--highlight" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1910</span><p class="sr-cascade-event"><strong>Annexation.</strong> Korea is formally absorbed into the Japanese Empire and renamed <em>Chōsen</em>. Korean newspapers are suppressed; the country is placed under a military Governor-General.</p></div>
+        </div>
+        <div class="sr-cascade-entry" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1910–1918</span><p class="sr-cascade-event"><strong>The Land Survey.</strong> Japanese property registration displaces Korean farmers under customary tenure, transferring land to Japanese buyers. By the survey's end, approximately 70% of Korean agricultural workers are tenant farmers.</p></div>
+        </div>
+        <div class="sr-cascade-entry sr-cascade-entry--highlight" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1919</span><p class="sr-cascade-event"><strong>The March First Movement.</strong> Two million Koreans participate in demonstrations for independence. Japan responds with force — approximately 7,500 killed, 46,000 arrested. Japan shifts from military rule to "cultural rule."</p></div>
+        </div>
+        <div class="sr-cascade-entry" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1937–1942</span><p class="sr-cascade-event"><strong>Wartime assimilation policies.</strong> <em>Kōminka</em> — "imperialization" — intensifies: Korean language banned in schools (1937), the <em>sōshi-kaimei</em> policy requires Korean families to register Japanese-style names (1940), military conscription extended to Korea (1942).</p></div>
+        </div>
+        <div class="sr-cascade-entry" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1939–1945</span><p class="sr-cascade-event"><strong>Labor mobilization.</strong> Hundreds of thousands of Koreans are mobilized for wartime labor in Japan and Japanese-controlled territories — through recruitment, government coordination, and formal conscription. The Zainichi community's origins are built from this migration.</p></div>
+        </div>
+        <div class="sr-cascade-entry sr-cascade-entry--highlight" data-beat>
+          <div class="sr-cascade-pin" aria-hidden="true"><div class="sr-cascade-dot"></div></div>
+          <div class="sr-cascade-text"><span class="sr-cascade-year">1945</span><p class="sr-cascade-event"><strong>Surrender and liberation.</strong> Japan surrenders in August 1945. Colonial rule ends. Approximately two million Koreans are living in Japan. Most eventually repatriate; roughly 600,000 remain — and are immediately confronted with a new legal question: who are they now?</p></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="tinted" data-to="cream" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 3 — The San Francisco Moment · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="pachinko" data-screen-label="Zone 3 · From Subjects to Stateless">
+    <div class="sr-zone-ground-content">
+      <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-cream">
+        <div class="sr-section-opener-motif" data-motif="medallion" data-size="40"></div>
+        <span class="sr-section-opener-eyebrow">1952</span>
+        <h2 class="sr-section-opener-heading">From Subjects to Stateless</h2>
+      </div>
+
+      <div class="pz-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>Japan's treatment of the Zainichi community after 1945 is one of the most precisely documented cases of systematic legal dispossession in modern history. The mechanism was not a single dramatic act of exclusion but a series of administrative decisions — each one narrowing the community's legal standing until, in 1952, the process reached its logical conclusion.</p>
+        </div>
+
+        <div class="pz-contradiction">
+          <div class="pz-ct-grid">
+            <div class="pz-ct-panel pz-ct-panel--l">
+              <span class="pz-ct-law">Election Law revision · Dec 1945</span>
+              <div class="pz-ct-claim">Too <em>Korean</em> to vote</div>
+              <div class="pz-ct-sub">Voting rights revoked — Koreans ruled <em>not Japanese.</em></div>
+            </div>
+            <div class="pz-ct-fulcrum">
+              <span class="pz-ct-law pz-ct-law-ghost">·</span>
+              <span class="pz-ct-eq">＝</span>
+              <span class="pz-ct-same">same<br />people</span>
+            </div>
+            <div class="pz-ct-panel pz-ct-panel--r">
+              <span class="pz-ct-law">School Closure Orders · 1948</span>
+              <div class="pz-ct-claim">Too <em>Japanese</em> to self-govern</div>
+              <div class="pz-ct-sub">Ethnic schools shut — Koreans ruled <em>Japanese nationals.</em></div>
+            </div>
+          </div>
+          <p class="pz-ct-coda">The 1947 Alien Registration Ordinance made the doublethink official: it registered Koreans as foreigners while, on paper, they were still Japanese nationals. The state simply held whichever classification excluded them more.</p>
+        </div>
+
+        <figure class="pz-figure pz-figure--inset">
+          <img class="pz-figure-img" src={`${imgBase}/history/korean-registration-certificate-1946.jpg`} alt="A 1946 Korean Registration Certificate (朝鮮人登録證) issued by Osaka Prefecture: a worn card printed in Japanese and English, hand-filled with the holder's name, occupation and address, bearing a sepia ID photograph of a man and a red official seal." />
+          <figcaption class="pz-figcaption">Korean Registration Certificate issued by Osaka Prefecture, 1946. The certificate identifies its holder as Korean — a legal classification that, within six years, would become the basis for stripping that holder of Japanese nationality entirely. <em>History Museum of J-Koreans (在日韓人歴史資料館), Tokyo.</em></figcaption>
+        </figure>
+
+        <div class="pz-stroke">
+          <div class="pz-stroke-meta">MINISTRY OF JUSTICE CIRCULAR NOTICE · <b>19 APRIL 1952</b></div>
+          <div class="pz-stroke-big">600,000</div>
+          <div class="pz-stroke-line">stripped of Japanese nationality overnight — by administrative circular, not by law.</div>
+          <div class="pz-stroke-neg">
+            <span>No statute passed</span>
+            <span>No individual choice offered</span>
+          </div>
+          <div class="pz-stroke-cite">A notice from the Director-General of the Civil Affairs Bureau instructed officials that, when the San Francisco Peace Treaty took force nine days later, all Koreans would cease to be Japanese nationals. <em>(Iwasawa, International Law, Human Rights, and Japanese Law, Oxford University Press, 1998, pp. 130–31.)</em></div>
+        </div>
+
+        <div class="pz-statband" role="img" aria-label="In 1952, 61 percent of the Zainichi community was unemployed; day laboring at 6.6 percent was the single largest recorded occupation; and public-sector jobs, insurance, pension and housing were all closed to non-citizens.">
+          <div class="pz-stat-cell"><div class="pz-stat-num">61<small>%</small></div><div class="pz-stat-cap"><strong>Unemployed</strong>in the Zainichi community</div></div>
+          <div class="pz-stat-cell"><div class="pz-stat-num">6.6<small>%</small></div><div class="pz-stat-cap"><strong>Day laboring</strong>the single largest recorded occupation</div></div>
+          <div class="pz-stat-cell"><div class="pz-stat-num">0</div><div class="pz-stat-cap"><strong>Public-sector jobs</strong>insurance, pension &amp; housing — all closed to non-citizens</div></div>
+        </div>
+        <p class="pz-statband-foot">Exclusion was comprehensive and immediate. <strong>Pachinko was one of the few economic margins left open.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="cream" data-to="tinted" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 4 — The Legal Arc 1945–1992 · STATUS (map variant) · driving · tinted
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--map" data-field="map" data-tempo="driving" data-ground="tinted" data-text="pachinko" data-screen-label="Zone 4 · The Legal Arc, 1945–1992">
+    <div class="pz-pinrail" aria-hidden="true"></div>
+    <div class="sr-zone-field sr-zone-map-field sr-zone-status-field" aria-hidden="true">
+      <svg class="sr-status-diagram" viewBox="0 0 700 470" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A stepped chart of the Zainichi legal condition, 1952–2000, climbing toward but never reaching a full-citizenship ceiling">
+        <text class="sd-eyebrow" x="92" y="50">THE LEGAL CONDITION, 1945–2000</text>
+
+        <line class="sd-ceil" x1="92" y1="104" x2="690" y2="104" />
+        <text class="sd-ceil-label" x="648" y="95" text-anchor="end">FULL CITIZENSHIP · SECURE BELONGING</text>
+
+        <line class="sd-tick" x1="92" y1="104" x2="92" y2="392" opacity="0.6" />
+        <line class="sd-axis" x1="92" y1="392" x2="664" y2="392" />
+        <path d="M664 392 l -7 -3.5 l 0 7 z" fill="var(--color-ink)" />
+
+        <g>
+          <line class="sd-tick" x1="92"  y1="388" x2="92"  y2="396" /><text class="sd-year" x="92"  y="410" text-anchor="middle">1945</text>
+          <line class="sd-tick" x1="159" y1="388" x2="159" y2="396" /><text class="sd-year sd-year-active" x="159" y="410" text-anchor="middle">1952</text>
+          <line class="sd-tick" x1="284" y1="388" x2="284" y2="396" /><text class="sd-year sd-year-active" x="284" y="410" text-anchor="middle">1965</text>
+          <line class="sd-tick" x1="448" y1="388" x2="448" y2="396" /><text class="sd-year sd-year-active" x="448" y="410" text-anchor="middle">1982</text>
+          <line class="sd-tick" x1="534" y1="388" x2="534" y2="396" /><text class="sd-year sd-year-active" x="534" y="410" text-anchor="middle">1991</text>
+          <line class="sd-tick" x1="621" y1="388" x2="621" y2="396" /><text class="sd-year sd-year-active" x="621" y="410" text-anchor="middle">2000</text>
+        </g>
+
+        <text class="sd-foot" x="378" y="442" text-anchor="middle">Each step is a reform the community organized and won. The dashed line — full citizenship — is the ceiling.</text>
+
+        <g data-show-from="status-1952" opacity="0">
+          <polygon points="159,392 159,372 284,372 284,392" fill="#C4537A" opacity="0.5" />
+          <path class="sd-tread" d="M159 392 L159 372 L284 372" />
+          <circle cx="159" cy="372" r="5" fill="#C4537A" stroke="#F6F1E8" stroke-width="1.4" />
+          <text class="sd-cond" x="159" y="360" text-anchor="start">Stateless</text>
+        </g>
+
+        <g data-show-from="status-1965" opacity="0">
+          <polygon points="284,392 284,300 448,300 448,392" fill="#C4722A" opacity="0.5" />
+          <path class="sd-tread" d="M284 372 L284 300 L448 300" />
+          <circle cx="284" cy="300" r="5" fill="#C4722A" stroke="#F6F1E8" stroke-width="1.4" />
+          <text class="sd-cond" x="284" y="288" text-anchor="middle">Special residency</text>
+        </g>
+
+        <g data-show-from="status-1982" opacity="0">
+          <polygon points="448,392 448,248 534,248 534,392" fill="#D4A840" opacity="0.5" />
+          <path class="sd-tread" d="M448 300 L448 248 L534 248" />
+          <circle cx="448" cy="248" r="5" fill="#D4A840" stroke="#F6F1E8" stroke-width="1.4" />
+          <text class="sd-cond" x="448" y="236" text-anchor="middle">Broader pathway</text>
+        </g>
+
+        <g data-show-from="status-1991" opacity="0">
+          <polygon points="534,392 534,192 621,192 621,392" fill="#3FA9A0" opacity="0.5" />
+          <path class="sd-tread" d="M534 248 L534 192 L621 192" />
+          <circle cx="534" cy="192" r="5" fill="#3FA9A0" stroke="#F6F1E8" stroke-width="1.4" />
+          <text class="sd-cond" x="534" y="180" text-anchor="middle">Unified status</text>
+        </g>
+
+        <g data-show-from="status-2000" opacity="0">
+          <polygon points="621,392 621,174 640,174 640,392" fill="#2AA8A0" opacity="0.5" />
+          <path class="sd-tread" d="M621 192 L621 174 L640 174" />
+          <circle cx="621" cy="174" r="5" fill="#2AA8A0" stroke="#F6F1E8" stroke-width="1.4" />
+          <line x1="640" y1="174" x2="688" y2="174" stroke="#2AA8A0" stroke-width="2" stroke-dasharray="3 4" opacity="0.55" />
+          <text class="sd-persist" x="694" y="190" text-anchor="end">↳ to the present</text>
+          <line x1="636" y1="104" x2="636" y2="174" stroke="#C4537A" stroke-width="1.3" />
+          <line x1="631" y1="104" x2="641" y2="104" stroke="#C4537A" stroke-width="1.3" />
+          <line x1="631" y1="174" x2="641" y2="174" stroke="#C4537A" stroke-width="1.3" />
+          <text class="sd-annot" x="628" y="131" text-anchor="end">citizenship —</text>
+          <text class="sd-annot" x="628" y="147" text-anchor="end">never granted</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-tinted">
+        <div class="sr-section-opener-motif" data-motif="medallion" data-size="40"></div>
+        <span class="sr-section-opener-eyebrow">FORTY-SEVEN YEARS</span>
+        <h2 class="sr-section-opener-heading">The Legal Arc, 1945–1992</h2>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--left sr-zone-beat--prose" data-beat data-activates="status-1952">
+        <div class="sr-beat-card"><p>The legal status of the Zainichi community did not stabilize after 1952 — it remained in flux for four more decades, improving incrementally through political campaigns the community organized and sustained over generations. Each milestone below is a reform that was fought for; none of them resolved the fundamental condition.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="status-1965">
+        <div class="sr-beat-card"><p>In 1955, fingerprinting was required of all registered foreigners. In 1965, the Japan–South Korea normalization treaty gave South Korea-affiliated Zainichi a "special permanent residency" — legal security, but not citizenship. Those affiliated with North Korea, or with neither state, remained in legal limbo.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--left sr-zone-beat--prose" data-beat data-activates="status-1982">
+        <div class="sr-beat-card"><p>In 1982, Japan ratified international human rights covenants that required extending permanent residency more broadly. For the first time, Zainichi Koreans with North Korean affiliation — or no affiliation — had a pathway to legal stability.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="status-1991">
+        <div class="sr-beat-card"><p>The 1985 citizenship law amendment allowed matrilineal transfer for the first time. In 1991, all Korean permanent residents were unified under a single legal category — eliminating a two-tier system that had divided the community since 1965.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--center sr-zone-beat--prose" data-beat data-activates="status-2000">
+        <div class="sr-beat-card"><p>The fingerprinting requirement — which had been used as an enforcement tool against the community since 1955 — was partially abolished in 1991–92 for South Korea-affiliated residents. Full abolition for all long-term foreign residents did not come until April 2000. And still, the ceiling above was never reached: Japan extends no citizenship to the Zainichi as a community. A path to individual naturalization exists and many have taken it — but as a birthright, belonging remains, to this day, a gap.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pz-zone-tail">
+    <figure class="pz-figure pz-figure--portrait">
+      <img class="pz-figure-img" src={`${imgBase}/history/fingerprinting-protest-1984.jpg`} alt="A 1984 street protest photographed from above: a long column of Zainichi Korean marchers in white caps carry placards beside a sound truck, led by a giant inflatable hand whose raised thumb bears a fingerprint whorl — a protest against the Alien Registration Act's fingerprinting requirement." />
+      <figcaption class="pz-figcaption">A protest march against the Alien Registration Act, organized by Zainichi Korean youth and women's groups, October 1984. The giant thumb — marked with a fingerprint whorl — protests the law's fingerprinting requirement; the campaign spanned nearly three decades before partial abolition in 1991–1992. <em>History Museum of J-Koreans (在日韓人歴史資料館), Tokyo.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="sr-zone-seam" data-from="tinted" data-to="cream" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 5 — The Pachinko Industry · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground sr-scrolly-zone--pachinko-feature" data-field="ground" data-tempo="still" data-ground="cream" data-text="pachinko" data-screen-label="Zone 5 · The Pachinko Industry">
+
+    <div class="pz-pi-hero">
+      <img class="pz-pi-hero-img" src={`${imgBase}/pachinko/parlor-boom-era.png`} alt="A crowded boom-era pachinko parlor: long rows of machines, players seated under hanging lights and vintage signage, staff carrying red trays of steel balls through a smoky hall." />
+      <div class="pz-pi-hero-glow" aria-hidden="true"></div>
+      <div class="pz-pi-hero-scrim" aria-hidden="true"></div>
+      <div class="pz-pi-hero-cap">
+        <span class="pz-pi-hero-eyebrow">EXCLUSION AS FOUNDATION</span>
+        <h2 class="pz-pi-hero-title">The Pachinko Industry</h2>
+        <p class="pz-pi-credit">A boom-era parlor floor — the industry the community did not choose.</p>
+      </div>
+    </div>
+
+    <div class="pz-still">
+      <div class="sr-prose-block sr-prose-block--center">
+        <p>The pachinko industry's relationship to the Zainichi community is a direct consequence of the discrimination described above — and a precise illustration of how systematic exclusion shapes economic life. Zainichi Koreans did not choose pachinko. They entered it because the system left them few other options, and stayed because, when others left, they could not.</p>
+      </div>
+    </div>
+
+    <div class="pz-pi-strip">
+      <figure class="pz-pi-plate">
+        <div class="pz-pi-plate-img"><img src={`${imgBase}/pachinko/machine-face-1960s.jpg`} alt="The face of a restored 1960s Shōraku pachinko machine: a pale blue speckled circular playfield studded with brass pins in fan patterns, maroon-and-gold spinner targets, brass tulip catchers, and a wood cabinet with a metal ball tray and brass launch handle." /></div>
+        <figcaption class="pz-pi-plate-cap"><span class="num">main_037</span><span>Shōraku machine, 1960s</span></figcaption>
+      </figure>
+      <figure class="pz-pi-plate">
+        <div class="pz-pi-plate-img"><img src={`${imgBase}/pachinko/steel-balls.jpg`} alt="An open palm cupping roughly thirty polished steel pachinko balls, their mirror-bright surfaces catching the light." /></div>
+        <figcaption class="pz-pi-plate-cap"><span class="num">bl_004</span><span>Steel balls (玉)</span></figcaption>
+      </figure>
+      <figure class="pz-pi-plate">
+        <div class="pz-pi-plate-img"><img src={`${imgBase}/pachinko/ball-renting-machine.jpg`} alt="A polished steel pachinko ball-renting machine: a glass hopper brimming with steel balls above a hand-crank dispenser and a catch tray, its panels labeled in Japanese (パチンコ液箱)." /></div>
+        <figcaption class="pz-pi-plate-cap"><span class="num">main_041</span><span>Ball-renting machine</span></figcaption>
+      </figure>
+    </div>
+    <div class="pz-pi-stripcaption">
+      <p class="pz-figcaption">Equipment from the era of rapid Zainichi Korean ownership growth following the 1954 contraction. <em>History Museum of J-Koreans (在日韓人歴史資料館), Tokyo.</em></p>
+    </div>
+
+    <div class="pz-still">
+      <div class="sr-beat-card sr-beat-card--termcard">
+        <div class="sr-beat-term-header">
+          <span class="sr-beat-term-original">パチンコ</span>
+          <div class="sr-beat-term-meta">
+            <span class="sr-beat-term-romaji">pachinko</span>
+            <span class="sr-beat-term-gloss">vertical pinball machine; the industry built around it</span>
+          </div>
+        </div>
+        <div class="sr-beat-term-body"><p>Gambling is formally prohibited in Japan. Pachinko circumvents this through a prize-exchange mechanism: players win tokens or prizes that are then exchanged for cash at separate kiosks nearby. This quasi-legal structure made Japanese investors reluctant to commit to the industry. When a 1954 regulatory change caused a significant contraction — the number of parlors collapsed from 50,000 to 9,000 — Japanese owners could leave for other work. Zainichi Koreans, excluded from most formal employment, had no such exit. They stayed. As the industry recovered and expanded, Korean ownership grew dramatically.</p></div>
+      </div>
+
+      <div class="sr-prose-block sr-prose-block--center">
+        <p>By the 1990s, pachinko had become a 19 trillion yen annual industry — roughly twice the export revenues of Japan's entire car industry. Zainichi Koreans accounted for approximately 90% of sales.</p>
+      </div>
+
+      <div class="pz-pi-stat" role="img" aria-label="Pachinko's annual revenue in the early 1990s was roughly twice Japan's total automotive export revenue.">
+        <span class="pz-info-eyebrow pz-pi-stat-eyebrow">ANNUAL REVENUE · EARLY 1990s</span>
+        <div class="pz-bar-row">
+          <div class="pz-bar-label"><span class="pz-bar-name">Pachinko industry</span><span class="pz-bar-val">≈ ¥19 trillion / year</span></div>
+          <div class="pz-bar-track"><div class="pz-bar-fill pz-bar-fill--pachinko"></div></div>
+        </div>
+        <div class="pz-bar-row">
+          <div class="pz-bar-label"><span class="pz-bar-name">Japan's total automotive exports</span><span class="pz-bar-val">≈ ¥9.5 trillion / year</span></div>
+          <div class="pz-bar-track"><div class="pz-bar-fill pz-bar-fill--auto"></div></div>
+        </div>
+        <p class="pz-info-mult">≈ 2× the export revenue of Japan's entire car industry — and Zainichi Koreans accounted for roughly 90% of sales.</p>
+      </div>
+    </div>
+
+    <div class="pz-pi-shadow">
+      <img class="pz-pi-shadow-img" src={`${imgBase}/pachinko/parlor-night-exterior.png`} alt="A lone pachinko parlor glowing across a deserted, rain-slicked street at night; its neon パチンコ sign burns against the fog while a single figure walks away into the dark." />
+      <div class="pz-pi-shadow-scrim" aria-hidden="true"></div>
+      <div class="pz-pi-shadow-inner">
+        <span class="pz-pi-shadow-eyebrow">WHAT PROSPERITY CANNOT BUY</span>
+        <h3 class="pz-pi-shadow-title">The industry Japanese society disdained, built into an economic foundation the community had not chosen.</h3>
+        <p>The stigma attached to pachinko — its association with gambling, quasi-legality, and Korean identity — was produced by the same discrimination that made Korean participation necessary. In <em>Pachinko</em>, this dynamic runs through every generation: Mozasu's success in the industry is real and hard-won; what it cannot buy is the respect the dominant culture withholds on principle.</p>
+      </div>
+      <p class="pz-pi-shadow-credit">Atmospheric rendering · a boom-era parlor after hours</p>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="cream" data-to="tinted" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 6 — Chongryon and Mindan · ground · still · tinted
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="pachinko" data-screen-label="Zone 6 · Chongryon and Mindan">
+    <div class="pz-pinrail pz-pinrail--right" aria-hidden="true"></div>
+    <div class="sr-zone-ground-content">
+      <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-tinted">
+        <div class="sr-section-opener-motif" data-motif="medallion" data-size="40"></div>
+        <span class="sr-section-opener-eyebrow">A COMMUNITY DIVIDED</span>
+        <h2 class="sr-section-opener-heading">Chongryon and Mindan</h2>
+      </div>
+
+      <div class="pz-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>After 1945, the Zainichi community faced a choice it had not made and could not avoid: Cold War geopolitics divided the Korean peninsula and forced the diaspora to take sides.</p>
+        </div>
+
+        <div class="cm-divided-wrap">
+
+          <div class="cm-locator">
+            <div class="cm-map">
+              <svg viewBox="16 6 104 196" role="img" aria-label="A schematic map of the Korean peninsula split at the 38th parallel: the northern half is coral (North Korea), the southern half is teal (South Korea), divided by a dashed line. Pyongyang sits in the north, Seoul just south of the line.">
+                <defs>
+                  <clipPath id="cmKorea">
+                    <path d="M50,20 C70,14 88,16 96,24 C104,40 100,58 99,74 C98,92 95,106 92,124 C89,142 84,156 74,168 C66,174 58,170 54,158 C50,146 56,136 52,124 C48,112 40,108 44,96 C47,84 54,80 50,68 C46,56 36,54 38,42 C39,32 44,26 50,20 Z"/>
+                  </clipPath>
+                </defs>
+                <rect x="10" y="0" width="120" height="86" fill="#C4537A" clip-path="url(#cmKorea)"/>
+                <rect x="10" y="86" width="120" height="140" fill="#2AA8A0" clip-path="url(#cmKorea)"/>
+                <ellipse cx="58" cy="184" rx="5" ry="3.4" fill="#2AA8A0" stroke="#2C2820" stroke-width="1.1"/>
+                <path d="M50,20 C70,14 88,16 96,24 C104,40 100,58 99,74 C98,92 95,106 92,124 C89,142 84,156 74,168 C66,174 58,170 54,158 C50,146 56,136 52,124 C48,112 40,108 44,96 C47,84 54,80 50,68 C46,56 36,54 38,42 C39,32 44,26 50,20 Z" fill="none" stroke="#2C2820" stroke-width="1.6"/>
+                <line x1="24" y1="86" x2="112" y2="86" stroke="#2C2820" stroke-width="1.4" stroke-dasharray="5 4"/>
+                <text x="112" y="83" font-family="'JetBrains Mono',monospace" font-size="7.5" letter-spacing="0.5" fill="#2C2820" text-anchor="end">38°N</text>
+                <circle cx="61" cy="50" r="2.4" fill="#F6F1E8" stroke="#2C2820" stroke-width="1"/>
+                <text x="66" y="52.5" font-family="'JetBrains Mono',monospace" font-size="6.5" fill="#F6F1E8">Pyongyang</text>
+                <circle cx="66" cy="98" r="2.4" fill="#F6F1E8" stroke="#2C2820" stroke-width="1"/>
+                <text x="71" y="100.5" font-family="'JetBrains Mono',monospace" font-size="6.5" fill="#F6F1E8">Seoul</text>
+                <text x="45" y="40" font-family="'JetBrains Mono',monospace" font-size="7.5" letter-spacing="1" fill="#F6F1E8">NORTH</text>
+                <text x="60" y="142" font-family="'JetBrains Mono',monospace" font-size="7.5" letter-spacing="1" fill="#F6F1E8">SOUTH</text>
+              </svg>
+            </div>
+            <div class="cm-locator-body">
+              <span class="cm-locator-eyebrow">The line was real before it was a metaphor</span>
+              <p>In 1945 the peninsula was split at the <em>38th parallel</em> — a Soviet-backed North and a US-backed South. The diaspora in Japan was made to mirror that division. <em>The dashed seam running through the diagram below is that same line</em>, and each side carries its color.</p>
+              <ul class="cm-legend">
+                <li><span class="sw sw--teal"></span><span>South → <b>Mindan</b></span></li>
+                <li><span class="sw sw--coral"></span><span>North → <b>Chongryon</b></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cmA-field">
+            <div class="cmA-seam"><span class="cmA-seam-badge">THE 38TH PARALLEL</span></div>
+
+            <div class="cmA-col cmA-col--mindan">
+              <span class="cmA-org">Mindan</span>
+              <span class="cmA-tag">Est. 1946 · aligned with South</span>
+              <p class="cmA-essence">Korean Residents Union in Japan.</p>
+              <ul class="cmA-prov">
+                <li>Legal aid &amp; representation</li>
+                <li>Korean-language schooling</li>
+                <li>1965 — path to residency</li>
+              </ul>
+            </div>
+
+            <div class="cmA-col cmA-col--chongryon">
+              <span class="cmA-org">Chongryon</span>
+              <span class="cmA-tag">Est. 1955 · aligned with North</span>
+              <p class="cmA-essence">North Korea's <em>de facto</em> mission in Japan.</p>
+              <ul class="cmA-prov">
+                <li>Korean-language schools</li>
+                <li>Community loans</li>
+                <li>Repatriation, 1959–84</li>
+              </ul>
+            </div>
+
+            <div class="cmA-people">
+              <span class="cmA-dot cmA-dot--south" style="left:40.4%;top:30.1%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:36.5%;top:72.0%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:43.8%;top:65.6%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:42.3%;top:29.5%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:46.9%;top:46.2%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:40.4%;top:78.0%"></span>
+              <span class="cmA-dot" style="left:50.6%;top:26.5%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:54.1%;top:32.5%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:52.9%;top:29.4%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:36.6%;top:65.0%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:29.4%;top:75.1%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:52.7%;top:29.6%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:57.6%;top:57.1%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:30.2%;top:20.0%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:39.7%;top:56.7%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:56.3%;top:46.7%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:56.5%;top:43.0%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:42.7%;top:22.7%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:61.3%;top:77.9%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:79.7%;top:56.3%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:32.9%;top:37.6%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:44.1%;top:62.7%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:42.3%;top:37.7%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:39.0%;top:79.4%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:61.9%;top:45.0%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:59.0%;top:31.5%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:32.4%;top:60.0%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:57.4%;top:68.8%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:15.3%;top:15.4%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:70.4%;top:23.6%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:30.7%;top:46.2%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:25.6%;top:33.5%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:38.3%;top:14.1%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:38.9%;top:21.2%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:32.8%;top:63.9%"></span>
+              <span class="cmA-dot" style="left:50.8%;top:75.4%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:53.6%;top:37.7%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:36.8%;top:18.5%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:21.9%;top:53.6%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:45.9%;top:73.8%"></span>
+              <span class="cmA-dot cmA-dot--south" style="left:37.7%;top:73.3%"></span>
+              <span class="cmA-dot cmA-dot--north" style="left:66.3%;top:58.7%"></span>
+              <span class="cmA-dot cmA-dot--gold" style="left:50%;top:50%"></span>
+              <span class="cmA-people-label">each mark = one Zainichi family, sorted by a line it did not draw</span>
+            </div>
+          </div>
+
+          <div class="cmA-stakes">
+            <span class="cmA-stakes-lead">Affiliation decided —</span>
+            <span class="cmA-stake">which school</span>
+            <span class="cmA-stake-sep">/</span>
+            <span class="cmA-stake">which bank would lend</span>
+            <span class="cmA-stake-sep">/</span>
+            <span class="cmA-stake">which legal aid</span>
+          </div>
+
+          <p class="cm-repat"><span class="cm-repat-year">1959–84</span> Chongryon organized a mass repatriation campaign that sent <b>≈90,000 people</b> to North Korea — most of whom found conditions far worse than promised and were unable to leave.</p>
+
+          <p class="cm-field-caption"><em>The division was not of the community's making.</em> The single gold mark holds the seam — the many who wanted only to keep living where they already lived.</p>
+        </div>
+
+        <div class="sr-beat-card sr-beat-card--termcard">
+          <div class="sr-beat-term-header">
+            <span class="sr-beat-term-original">在日韓国・朝鮮人</span>
+            <div class="sr-beat-term-meta">
+              <span class="sr-beat-term-romaji">Zainichi Kankoku / Chōsenjin</span>
+              <span class="sr-beat-term-gloss">"Korean residents in Japan"</span>
+            </div>
+          </div>
+          <div class="sr-beat-term-body"><p>The term <em>Zainichi</em> (在日) — literally "residing in Japan" — became the community's common self-designation across both political affiliations. Its neutrality was the point: it named a condition (living in Japan) rather than a political loyalty (South or North Korea) or a legal status (alien). In the novel, the word carries the weight of everything the community built in the space between those categories.</p></div>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>Hansu's dismissal of both organizations in the novel — his observation that neither group's leadership ever actually intends to return to Korea — reflects something Min Jin Lee found repeatedly in her research: the Zainichi community was often clear-eyed about the gap between organizational political rhetoric and the reality of people's lives. The organizations were necessary. They were also, for many in the community, beside the point.</p>
+        </div>
+      </div>
+
+      <div class="sr-end-signature sr-end-signature--pachinko" data-motif="butterfly" data-size="72"></div>
+    </div>
+  </section>
+
   <SpokePagination
     section="pachinko"
     prev={{ slug: 'culture', title: 'Korean Identity', number: 2 }}
     next={{ slug: 'figures', title: 'Key Figures', number: 4 }}
   />
+
 </SummerLayout>
+
+<script is:inline>
+(function () {
+  'use strict';
+
+  function medallion(size, color) {
+    var c = size / 2, outer = size * 0.44, inner = size * 0.30, dot = size * 0.07;
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true" class="sr-motif-medallion">' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + outer + '" stroke="' + color + '" stroke-width="1.5"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + inner + '" stroke="' + color + '" stroke-width="1"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + dot + '" fill="var(--p-gold)"/></svg>';
+  }
+  function rosette(size, color, spokes) {
+    var c = size / 2, ro = size * 0.46, ri = size * 0.10, dr = size * 0.05, lines = '';
+    for (var i = 0; i < spokes; i++) {
+      var a = i * 2 * Math.PI / spokes;
+      lines += '<line x1="' + (c + Math.cos(a) * ri) + '" y1="' + (c + Math.sin(a) * ri) +
+        '" x2="' + (c + Math.cos(a) * ro) + '" y2="' + (c + Math.sin(a) * ro) +
+        '" stroke="' + color + '" stroke-width="1" stroke-linecap="round"/>';
+    }
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true" class="sr-motif-rosette">' +
+      lines + '<circle cx="' + c + '" cy="' + c + '" r="' + dr + '" fill="var(--p-gold)"/></svg>';
+  }
+  function butterfly(size) {
+    return '<svg width="' + size + '" height="' + (size * 0.75) + '" viewBox="0 0 48 36" fill="none" aria-hidden="true" class="sr-motif-butterfly">' +
+      '<path d="M24 22 C16 22, 4 28, 4 20 C4 14, 14 16, 24 22Z" fill="var(--p-teal)"/>' +
+      '<path d="M24 22 C32 22, 44 28, 44 20 C44 14, 34 16, 24 22Z" fill="var(--p-teal)"/>' +
+      '<path d="M24 18 C18 16, 6 8, 8 4 C10 0, 20 6, 24 18Z" fill="var(--p-orange)"/>' +
+      '<path d="M24 18 C30 16, 42 8, 40 4 C38 0, 28 6, 24 18Z" fill="var(--p-orange)"/>' +
+      '<ellipse cx="24" cy="19" rx="1.5" ry="8" fill="var(--color-ink)"/>' +
+      '<path d="M24 11 C22 6, 20 4, 19 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round"/>' +
+      '<path d="M24 11 C26 6, 28 4, 29 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round"/>' +
+      '<circle cx="19" cy="3" r="1.5" fill="var(--color-ink)"/>' +
+      '<circle cx="29" cy="3" r="1.5" fill="var(--color-ink)"/></svg>';
+  }
+  function buildMotifs() {
+    document.querySelectorAll('[data-motif]').forEach(function (el) {
+      var k = el.getAttribute('data-motif');
+      var size = parseInt(el.getAttribute('data-size') || '40', 10);
+      if (k === 'medallion') el.innerHTML = medallion(size, 'var(--p-teal)');
+      else if (k === 'rosette') el.innerHTML = rosette(size, 'var(--p-orange)', 20);
+      else if (k === 'butterfly') el.innerHTML = butterfly(size);
+    });
+  }
+
+  var observers = [];
+  function disconnectAll() { observers.forEach(function (o) { o.disconnect(); }); observers = []; }
+
+  function initPhotoMap() {
+    document.querySelectorAll('.sr-scrolly-zone[data-field="photo"]').forEach(function (zone) {
+      var field = zone.querySelector('.sr-zone-field');
+      var beats = zone.querySelectorAll('[data-beat]');
+      if (!beats.length) return;
+      beats[0].classList.add('is-active');
+      if (field && beats[0].dataset.activates) field.dataset.state = beats[0].dataset.activates;
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          beats.forEach(function (b) { b.classList.remove('is-active'); });
+          e.target.classList.add('is-active');
+          var s = e.target.dataset.activates;
+          if (s && field) field.dataset.state = s;
+        });
+      }, { threshold: 0, rootMargin: '-40% 0px -40% 0px' });
+      beats.forEach(function (b) { obs.observe(b); });
+      observers.push(obs);
+    });
+  }
+
+  var statusSweeps = [];
+  function initStatus() {
+    statusSweeps = [];
+    document.querySelectorAll('.sr-scrolly-zone[data-field="map"]').forEach(function (zone) {
+      var field = zone.querySelector('.sr-zone-field');
+      var beats = Array.prototype.slice.call(zone.querySelectorAll('[data-beat]'));
+      var ceil = field && field.querySelector('.sd-ceil');
+      if (!field || !beats.length) return;
+      function sweep() {
+        var line = ceil ? ceil.getBoundingClientRect().top : window.innerHeight * 0.38;
+        var lastPassed = -1;
+        beats.forEach(function (el, i) {
+          if (el.getBoundingClientRect().top <= line + 1) lastPassed = i;
+        });
+        beats.forEach(function (el, i) { el.classList.toggle('is-active', i === lastPassed); });
+        if (lastPassed >= 0 && beats[lastPassed].dataset.activates) {
+          field.dataset.state = beats[lastPassed].dataset.activates;
+        } else {
+          field.removeAttribute('data-state');
+        }
+      }
+      statusSweeps.push(sweep);
+      sweep();
+    });
+  }
+
+  var cascadeSweeps = [];
+  function initCascade() {
+    cascadeSweeps = [];
+    document.querySelectorAll('.sr-scrolly-zone[data-field="cascade"]').forEach(function (zone) {
+      var entries = Array.prototype.slice.call(zone.querySelectorAll('.sr-cascade-entry'));
+      var progress = zone.querySelector('.sr-zone-cascade-progress');
+      if (!entries.length) return;
+      function sweep() {
+        var line = window.innerHeight * 0.5;
+        var lastLit = -1;
+        entries.forEach(function (el, i) {
+          var rect = el.getBoundingClientRect();
+          var anchor = rect.top + 8;
+          var lit = anchor < line;
+          var was = el.classList.contains('is-revealed');
+          if (lit) {
+            lastLit = i;
+            if (!was) {
+              el.classList.add('is-revealed');
+              el.classList.remove('landed');
+              void el.offsetWidth;
+              el.classList.add('landed');
+            }
+          } else if (was) {
+            el.classList.remove('is-revealed', 'landed');
+          }
+        });
+        entries.forEach(function (el, i) { el.classList.toggle('is-newest', i === lastLit); });
+        if (progress) progress.style.height = Math.max(0, Math.round(((lastLit + 1) / entries.length) * 100)) + '%';
+      }
+      cascadeSweeps.push(sweep);
+      sweep();
+    });
+  }
+
+  var sweepQueued = false;
+  function runScrollSweeps() {
+    if (sweepQueued) return;
+    sweepQueued = true;
+    var schedule = document.hidden
+      ? function (fn) { setTimeout(fn, 16); }
+      : function (fn) { requestAnimationFrame(fn); };
+    schedule(function () {
+      sweepQueued = false;
+      cascadeSweeps.forEach(function (fn) { fn(); });
+      statusSweeps.forEach(function (fn) { fn(); });
+    });
+  }
+
+  function initZones() {
+    disconnectAll();
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var w = window.innerWidth;
+    var mobile = w > 0 && w < 768;
+    if (reduced || mobile) return;
+    initPhotoMap();
+    initStatus();
+    initCascade();
+  }
+
+  var DEFAULTS = { cascade: 'land', img: 'framed', dwell: 1 };
+  var state = load();
+
+  function load() {
+    try {
+      var s = JSON.parse(localStorage.getItem('pz-tweaks') || '{}');
+      return Object.assign({}, DEFAULTS, s);
+    } catch (e) { return Object.assign({}, DEFAULTS); }
+  }
+  function save() { try { localStorage.setItem('pz-tweaks', JSON.stringify(state)); } catch (e) {} }
+
+  function apply() {
+    var root = document.documentElement;
+    var page = document.querySelector('.sr-page');
+    if (page) page.setAttribute('data-img-mode', state.img);
+    root.style.setProperty('--dwell-scale', String(state.dwell));
+    document.querySelectorAll('.sr-scrolly-zone[data-field="cascade"]').forEach(function (z) {
+      z.setAttribute('data-cascade-variant', state.cascade);
+    });
+  }
+
+  function buildPanel() {
+    var panel = document.createElement('div');
+    panel.className = 'pw-tweaks';
+    panel.innerHTML =
+      '<button class="pw-tweaks-tab" aria-expanded="true" title="Toggle variations panel">Variations</button>' +
+      '<div class="pw-tweaks-body">' +
+        '<div class="pw-tweaks-title">Zainichi — explore</div>' +
+        seg('cascade', 'Colonial timeline', [['land', 'Landing'], ['calm', 'Calm']]) +
+        seg('img', 'Image fields', [['framed', 'Framed plate'], ['bleed', 'Full bleed']]) +
+        '<div class="pw-tweaks-row">' +
+          '<label class="pw-tweaks-label">Scroll dwell <span class="pw-dwell-val">' + state.dwell.toFixed(2) + '×</span></label>' +
+          '<input type="range" class="pw-slider" data-key="dwell" min="0.6" max="1.6" step="0.05" value="' + state.dwell + '" />' +
+        '</div>' +
+        '<button class="pw-reset">Reset</button>' +
+      '</div>';
+    document.body.appendChild(panel);
+
+    panel.querySelector('.pw-tweaks-tab').addEventListener('click', function () {
+      var open = panel.classList.toggle('is-collapsed');
+      this.setAttribute('aria-expanded', String(!open));
+    });
+    panel.querySelectorAll('.pw-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = this.getAttribute('data-key');
+        state[key] = this.getAttribute('data-val');
+        save(); apply(); refresh(panel);
+      });
+    });
+    var slider = panel.querySelector('.pw-slider');
+    slider.addEventListener('input', function () {
+      state.dwell = parseFloat(this.value);
+      panel.querySelector('.pw-dwell-val').textContent = state.dwell.toFixed(2) + '×';
+      save(); apply();
+    });
+    panel.querySelector('.pw-reset').addEventListener('click', function () {
+      state = Object.assign({}, DEFAULTS); save(); apply();
+      slider.value = state.dwell;
+      panel.querySelector('.pw-dwell-val').textContent = state.dwell.toFixed(2) + '×';
+      refresh(panel);
+    });
+    refresh(panel);
+  }
+
+  function seg(key, label, opts) {
+    var btns = opts.map(function (o) {
+      return '<button class="pw-opt" data-key="' + key + '" data-val="' + o[0] + '">' + o[1] + '</button>';
+    }).join('');
+    return '<div class="pw-tweaks-row"><label class="pw-tweaks-label">' + label + '</label>' +
+      '<div class="pw-seg">' + btns + '</div></div>';
+  }
+  function refresh(panel) {
+    panel.querySelectorAll('.pw-opt').forEach(function (b) {
+      var on = state[b.getAttribute('data-key')] === b.getAttribute('data-val');
+      b.classList.toggle('is-on', on);
+    });
+  }
+
+  function boot() {
+    buildMotifs();
+    apply();
+    buildPanel();
+    initZones();
+    window.addEventListener('scroll', runScrollSweeps, { passive: true });
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { initZones(); runScrollSweeps(); }, 250);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
