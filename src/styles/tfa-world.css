@@ -156,6 +156,20 @@
   object-position: center 62%;
   display: block;
 }
+/* Caption sits over the photo at bottom of the sticky field */
+.tfa-zone--photo .sr-zone-field .sr-zone-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  max-width: 100%;
+  background: rgba(40, 24, 8, 0.62);
+  color: var(--t-cream);
+  padding: var(--s-3) var(--s-6);
+  text-align: left;
+  backdrop-filter: blur(2px);
+}
 
 /* ════════════════════════════════════════════════════════════════
    5 · Zone 4 — the four-day-week compass · driving · center channel
