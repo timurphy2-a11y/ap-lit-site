@@ -6,6 +6,7 @@
 @import './tokens.css';
 @import './scrolly-zones.css';
 @import './tfa-culture.css';
+@import './tfa-world.css';
 
 /* ── Legacy aliases (keep for backward compat with Phase 1 content) ─── */
 :root {

@@ -1,12 +1,987 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
-
-const entry = await getEntry('summerReading', 'tfa/world');
-const { Content } = await render(entry);
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import SectionTerminator from '../../../components/summer-reading/SectionTerminator.astro';
+import ZoneSeam from '../../../components/summer-reading/ZoneSeam.astro';
+import EndSignature from '../../../components/summer-reading/EndSignature.astro';
+import PullQuote from '../../../components/summer-reading/PullQuote.astro';
+import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
+import UliTendril from '../../../components/summer-reading/UliTendril.astro';
 ---
-<SummerLayout title={entry.data.title} section="tfa" spoke="world">
-  <Content />
-  <SpokePagination section="tfa" next={{ slug: 'culture', title: 'Igbo Culture', number: 2 }} />
+
+<SummerLayout title="The World of the Novel — Things Fall Apart" section="tfa" spoke="world">
+
+  <!-- ════════════════════════════════════════════════════════════
+       SPOKE HEADER — umber band + Akwete chevron beneath
+       ════════════════════════════════════════════════════════════ -->
+  <div class="tfa-spoke-header">
+    <div class="tfa-spoke-header-inner">
+      <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 01</span>
+      <h1 class="tfa-spoke-header-title">The World of the Novel</h1>
+      <p class="tfa-spoke-header-deck">Late-nineteenth-century Igboland — autonomous village republics, an economy built on the yam, and a calendar of sacred time. Achebe renders this world whole and working from the inside, before any colonial presence appears to disrupt it.</p>
+    </div>
+  </div>
+  <div class="tfa-header-chevron" aria-hidden="true">
+    <AkweteChevron width={1200} height={9} />
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 1 — Where the Novel Is Set · still · cream
+       Held prose column: map callout, at-a-glance stats,
+       village constellation, Umuofia term card.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§1 Where the Novel Is Set">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="THINGS FALL APART" heading="Igboland" background="cream" />
+
+      <div class="tfa-still">
+
+        <!-- Map detail-callout: Africa locator + Igboland enlarged -->
+        <figure class="tfa-mapfig">
+          <div class="tfa-mapstage">
+            <img
+              class="tfa-mapstage-img"
+              src="/images/summer-reading/tfa/map-of-igboland.jpg"
+              alt="A historical-style map of Igboland in the lower Niger River region of southeastern Nigeria — the Igbo cultural area shaded in terracotta, with towns including Onitsha, Awka, Owerri, Arochukwu and Bonny, bordered by Nigeria to the north and Cameroon to the east, opening onto the Bight of Biafra."
+            />
+            <svg
+              class="tfa-mapdetail"
+              viewBox="0 0 300 200"
+              preserveAspectRatio="none"
+              role="img"
+              aria-label="A detail-callout: the African continent at left with Nigeria marked, expanding by fan lines into the enlarged map of Igboland at right."
+            >
+              <polygon class="md-fan" points="47,107 128,16 128,184 47,113" />
+              <line class="md-fanline" x1="47" y1="107" x2="128" y2="16" />
+              <line class="md-fanline" x1="47" y1="113" x2="128" y2="184" />
+              <rect class="md-mapframe" x="128" y="16" width="168" height="168" />
+              <svg class="md-africa" x="6" y="50" width="92" height="106" viewBox="0 0 200 230" preserveAspectRatio="xMidYMid meet">
+                <path class="loc-land" d="M 38 42 Q 48 36 62 33 Q 90 29 120 33 Q 138 35 150 42 Q 157 54 163 66 L 181 75 Q 190 80 191 83 Q 182 89 170 92 Q 162 110 156 132 Q 149 162 140 186 Q 132 204 122 210 Q 113 209 110 197 Q 105 174 102 156 Q 98 141 88 134 L 80 132 Q 62 128 46 122 Q 28 116 20 107 Q 15 98 19 86 Q 25 62 38 42 Z" />
+                <rect class="md-mark" x="71" y="123" width="18" height="15" />
+                <circle class="md-pin" cx="80" cy="131" r="4" />
+              </svg>
+              <text class="md-lbl md-lbl--africa" x="50" y="84" text-anchor="middle" font-size="6.5">AFRICA</text>
+              <text class="md-lbl md-lbl--nigeria" x="41" y="127" text-anchor="middle" font-size="5.4">Nigeria</text>
+            </svg>
+          </div>
+          <figcaption class="tfa-figcaption">
+            <span class="tfa-fignum">Fig 01</span>Igboland — the southeastern region of present-day Nigeria, straddling the lower Niger River and its delta, shown enlarged from the marked region of the continent at left. Umuofia, the novel's setting, is one of nine related villages here. Wikimedia Commons. Public domain.
+          </figcaption>
+        </figure>
+
+        <!-- At-a-glance stats band -->
+        <dl class="tfa-glance">
+          <div class="tfa-glance-head">The world, at a glance</div>
+          <div class="tfa-stat">
+            <span class="tfa-stat-num">~5,000</span>
+            <span class="tfa-stat-txt">people in a typical <b>village group</b> — the largest political unit, a federation of villages.</span>
+          </div>
+          <div class="tfa-stat">
+            <span class="tfa-stat-num">100s</span>
+            <span class="tfa-stat-txt">of these <b>autonomous communities</b> across Igboland, sharing a language but no central state.</span>
+          </div>
+          <div class="tfa-stat">
+            <span class="tfa-stat-num">0</span>
+            <span class="tfa-stat-txt">kings, chiefs, or capitals. Authority was <b>local and collective</b>, held by councils and elders.</span>
+          </div>
+          <div class="tfa-glance-src">Scale per <em>Encyclopædia Britannica</em>, "Igbo." Late-19th-century totals are not precisely recorded.</div>
+        </dl>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p><em>Things Fall Apart</em> is set in the late nineteenth century in Igboland — the southeastern region of present-day Nigeria, in the territory of the lower Niger River. The novel follows Okonkwo, a man of considerable standing in the village of Umuofia, across the final years of his world's existence as an autonomous, self-governing community. By the time the novel ends, that world has been enclosed by British colonial administration.</p>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The Igbo homeland was not a political nation. Before European colonization, the Igbo lived in hundreds of autonomous village communities, connected by shared language, cultural practices, and religious beliefs, but without a single centralized government or ruler. Each village was a sovereign republic, governing itself through councils of elders, age grades, and a meritocratic title system.</p>
+        </div>
+
+        <!-- Village constellation — JS-generated -->
+        <div class="tfa-diagram-block tfa-constellation-block">
+          <span class="tfa-block-eyebrow">No king, no center</span>
+          <svg
+            class="tfa-constellation"
+            data-constellation
+            viewBox="0 0 600 300"
+            role="img"
+            aria-label="Dozens of village marks scattered across the field with no central point; nine of them, near each other, are linked to their neighbours in an irregular web and loosely enclosed — the federation of Umuofia."
+          ></svg>
+          <p class="tfa-diagram-caption">Hundreds of self-governing villages, no capital among them. <em>Umuofia</em> — the novel's setting — is one such loosely organized federation: nine villages bound to their neighbours for defense and ritual, representative of the whole.</p>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>This political organization was not a failure to develop centralized governance. It was a fully developed alternative to it. The significance of this distinction becomes clear when the British arrive and discover they have no chiefs to co-opt. The story of what happens next — how the British imposed the fiction of chiefs on a society that had none — is one of the historical through-lines traced by this site.</p>
+        </div>
+
+      </div>
+
+      <!-- Umuofia term card — ideogram layout -->
+      <div class="tfa-term-cluster">
+        <div class="sr-beat-card sr-beat-card--termcard sr-beat-card--tfa tfa-termcard--ideogram">
+          <span class="sr-tc-corner sr-tc-corner--tl" aria-hidden="true">
+            <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+          </span>
+          <span class="sr-tc-corner sr-tc-corner--br" aria-hidden="true">
+            <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+          </span>
+          <figure class="tfa-ideogram">
+            <svg class="tfa-ideogram-svg" viewBox="0 0 96 80" role="img" aria-label="An ideogram: three trees with dotted foliage above a small cluster of people — the meaning of Umuofia, people of the forest.">
+              <line class="ig-trunk" x1="26" y1="52" x2="26" y2="30" />
+              <line class="ig-trunk" x1="48" y1="56" x2="48" y2="24" />
+              <line class="ig-trunk" x1="68" y1="52" x2="68" y2="34" />
+              <g class="ig-leaf">
+                <circle cx="26" cy="16" r="2" /><circle cx="20" cy="22" r="1.9" /><circle cx="32" cy="22" r="1.9" /><circle cx="22" cy="29" r="1.8" /><circle cx="31" cy="29" r="1.8" /><circle cx="26" cy="23" r="1.7" />
+                <circle cx="48" cy="7" r="2.1" /><circle cx="40" cy="13" r="2" /><circle cx="56" cy="13" r="2" /><circle cx="35" cy="21" r="1.9" /><circle cx="61" cy="21" r="1.9" /><circle cx="44" cy="17" r="1.9" /><circle cx="52" cy="17" r="1.9" /><circle cx="48" cy="24" r="1.8" />
+                <circle cx="68" cy="21" r="2" /><circle cx="62" cy="27" r="1.9" /><circle cx="74" cy="27" r="1.9" /><circle cx="64" cy="34" r="1.8" /><circle cx="72" cy="34" r="1.8" /><circle cx="68" cy="28" r="1.7" />
+              </g>
+              <path class="ig-ground" d="M30 74 Q48 80 66 74" />
+              <g class="ig-person">
+                <circle cx="48" cy="60" r="2.4" /><circle cx="41" cy="64" r="2.4" /><circle cx="55" cy="64" r="2.4" /><circle cx="44" cy="69" r="2.4" /><circle cx="52" cy="69" r="2.4" />
+              </g>
+            </svg>
+            <figcaption class="tfa-ideogram-cap">
+              <span class="ig-cap-root">umu</span> people<br />
+              <span class="ig-cap-root">ọfịa</span> forest
+            </figcaption>
+          </figure>
+          <div class="tfa-termcard-text">
+            <div class="sr-beat-term-header">
+              <span class="sr-beat-term-original">Umuofia</span>
+              <div class="sr-beat-term-meta">
+                <span class="sr-beat-term-gloss">"people of the forest" — the novel's primary setting</span>
+              </div>
+            </div>
+            <div class="sr-beat-term-body">
+              <p>Umuofia is renowned for its military strength and for the power of its <em>agadi-nwayi</em>, the spirit of the old woman. It is "never beaten" in war, and its Oracle holds authority over the surrounding region. For the novel's purposes, it is representative: what happens to Umuofia is what happened across Igboland.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — Before the Missionaries · photo · steady · tinted
+       The Bonny Chiefs photograph pins; beats read against it.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone tfa-zone--photo" data-field="photo" data-tempo="steady" data-ground="tinted" data-text="tfa" data-screen-label="§2 Before the Missionaries">
+
+    <div class="tfa-photo-intro">
+      <SectionOpener text="tfa" eyebrow="THE WORLD ACHEBE BEGINS WITH" heading="Before the Missionaries" background="tinted" />
+    </div>
+
+    <div class="sr-zone-field sr-zone-photo-field">
+      <div class="tfa-ph-fill">
+        <img
+          class="tfa-ph-img"
+          src="/images/summer-reading/tfa/t1-bonny-chiefs.jpg"
+          alt="A sepia photograph from 1896: a large group of Bonny chiefs in formal dress posed on the veranda of a colonial building with the British Naval Commandant of the Bight of Biafra and Bight of Benin and other uniformed officials seated among them."
+        />
+      </div>
+      <div class="sr-zone-caption">Bonny chiefs with the Naval Commandant of the Bight of Biafra and Bight of Benin, 1896 — African leaders and British colonial naval authority in direct visual juxtaposition. The posture of accommodation that colonial administration required of those who remained in power. Wikimedia Commons. Public domain.</div>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat>
+        <div class="sr-beat-card">
+          <p><em>Things Fall Apart</em> does not start with the arrival of missionaries or the establishment of colonial administration. It opens with Okonkwo throwing Amalinze the Cat in a wrestling match. The story begins inside a fully functioning, internally coherent world — its governance, its cosmology, its economy, its social obligations — before any colonial presence has appeared.</p>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--center" data-beat>
+        <div class="sr-beat-card">
+          <PullQuote
+            text="tfa"
+            quote="Age was respected among his people, but achievement was revered. As the elders said, if a child washed his hands he could eat with kings."
+            attribution="— Things Fall Apart, Chinua Achebe"
+          />
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat>
+        <div class="sr-beat-card">
+          <p>This temporal choice constitutes a deliberate literary argument. Readers of <em>Things Fall Apart</em> spend the majority of the novel inside a world that works before they see that world disrupted. By the time the missionaries appear, readers already understand what is being disrupted from the inside — not as outsider observers of an alien society, but as people who have been given access to a civilization's internal logic.</p>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--center" data-beat>
+        <div class="sr-beat-card">
+          <p>Chinua Achebe was explicit about why this mattered. He had grown up reading British novels about Africa — including Joyce Cary's <em>Mister Johnson</em> — in which Africa existed as backdrop for European narratives and Africans existed without interiority, without history, without fully realized culture. He had been taught, through colonial education, to identify with the white characters in those novels, not the African ones. <em>Things Fall Apart</em> was his correction: a novel in which an African civilization is the subject, not the setting, and in which that civilization's destruction is tragedy rather than progress.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="tfa-zone-tail tfa-zone-tail--tinted" aria-hidden="true"></div>
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 3 — The Yam Economy · still · cream
+       The spoke's densest zone: yam intro, barn progression,
+       side-by-side, yam barn photo, obi term card, compound plan.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§3 The Yam Economy">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="THE STRUCTURAL FOUNDATION" heading="The Yam Economy" background="cream" />
+
+      <div class="tfa-still">
+
+        <!-- Ji (yam) ideogram + intro prose -->
+        <div class="tfa-yam-intro">
+          <figure class="tfa-yam-glyph">
+            <svg class="tfa-yam-glyph-svg" viewBox="0 0 96 86" role="img" aria-label="An ideogram of a yam: a tuber growing in a soil mound, with its stake and climbing vine — ji, the yam.">
+              <line class="ym-soil" x1="14" y1="54" x2="82" y2="54" />
+              <path class="ym-mound" d="M24 54 Q48 30 72 54 Z" />
+              <path class="ym-tuber" d="M45 56 C40 62 42 72 48 77 C55 72 55 62 50 56 Z" />
+              <line class="ym-stake" x1="48" y1="42" x2="48" y2="8" />
+              <path class="ym-vine" d="M48 36 C41 31 43 22 48 18 C51 15 49 12 48 9" />
+              <path class="ym-leaf" d="M43 27 C38 24 39 30 43 30 C46 29 47 24 43 27 Z" />
+              <path class="ym-leaf" d="M52 18 C57 15 57 21 52 21 C49 20 49 15 52 18 Z" />
+            </svg>
+            <figcaption class="tfa-yam-glyph-cap"><b>ji</b> · yam</figcaption>
+          </figure>
+          <div class="sr-prose-block">
+            <p>In Umuofia, the yam is not a crop — it is the organizing principle of social life. Yam farming defines masculine status, structures the relationship between wealth and labor, and ties a man's standing to the earth he works.</p>
+          </div>
+        </div>
+
+        <!-- Barn progression diagram — JS-generated -->
+        <div class="tfa-diagram-block tfa-yam-block">
+          <span class="tfa-block-eyebrow">From borrowed yams to a full barn</span>
+          <svg
+            class="tfa-yam-svg"
+            data-yam-progression
+            viewBox="0 0 760 318"
+            role="img"
+            aria-label="A progression: a young man borrows 800 seed yams from a patron's full barn and returns a share, then over successive seasons fills his own barn from nearly empty to full — becoming a great man."
+          ></svg>
+          <p class="tfa-diagram-caption">A man's barn was the measure of his standing — and most men began in another man's debt. Okonkwo starts the novel borrowing 800 seed yams from Nwakibie, on shares; season by season, a full barn is what marks <em>"a great man."</em></p>
+        </div>
+
+        <!-- Two-column split -->
+        <div class="sr-side-by-side sr-side-by-side--gap-lg sr-side-by-side--align-top">
+          <div class="tfa-sbs-col">
+            <span class="tfa-sbs-eyebrow">The measure of a man</span>
+            <p>Yam cultivation was men's work, and hard — clearing, mounding, planting, staking, weeding, harvesting across the year. A man's harvest was the direct index of his standing: <em>"Yam stood for manliness,"</em> Achebe writes, <em>"and he who could feed his family on yams from one harvest to another was a great man indeed."</em></p>
+          </div>
+          <div class="tfa-sbs-col">
+            <span class="tfa-sbs-eyebrow">A structure of dependency</span>
+            <p>The economy also ran on dependency. A young man without land borrowed seed yams from an established farmer, on shares — the arrangement Okonkwo has with Nwakibie at the novel's start. The obligations of that debt shape his character as much as his ambition does.</p>
+          </div>
+        </div>
+
+        <!-- Yam barn photograph -->
+        <figure class="tfa-figure tfa-figure--inset">
+          <img
+            src="/images/summer-reading/tfa/t1-yam-barn.jpg"
+            alt="A black-and-white photograph: an Igbo man, seated on a low carved stool with his back to the camera, ties yams in rows onto the tall wooden pole-and-rope frame of a yam barn (ọba jị); a bowl of yams and scattered tubers sit on the ground beside him."
+            loading="lazy"
+          />
+          <figcaption class="tfa-figcaption">
+            <span class="tfa-fignum">Fig 02</span>An Igbo man tying yams onto the wooden frame of a yam barn (<em>ọba jị</em>), photographed between 1880 and 1939. The barn's open-air construction — wooden poles and ropes allowing ventilation — is the standard form. Photographed by J. Stöcker. © The Trustees of the British Museum. CC BY-NC-SA 4.0.
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <!-- obi term card (ideogram) + compound plan -->
+      <div class="tfa-term-cluster">
+
+        <div class="sr-beat-card sr-beat-card--termcard sr-beat-card--tfa tfa-termcard--ideogram">
+          <span class="sr-tc-corner sr-tc-corner--tl" aria-hidden="true">
+            <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+          </span>
+          <span class="sr-tc-corner sr-tc-corner--br" aria-hidden="true">
+            <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+          </span>
+          <figure class="tfa-ideogram">
+            <svg class="tfa-ideogram-svg" viewBox="0 0 96 80" role="img" aria-label="An ideogram: a thatched open-fronted hall on posts, sheltering a small cluster of people and a stack of yams — the obi, the physical expression of everything a man has built.">
+              <path class="ig-roof" d="M14 36 L48 11 L82 36 Z" />
+              <g class="ig-thatch">
+                <line x1="31" y1="23.5" x2="24" y2="34" />
+                <line x1="40" y1="17" x2="33" y2="34" />
+                <line x1="48" y1="13" x2="48" y2="34" />
+                <line x1="56" y1="17" x2="63" y2="34" />
+                <line x1="65" y1="23.5" x2="72" y2="34" />
+              </g>
+              <line class="ig-eave" x1="14" y1="36" x2="82" y2="36" />
+              <line class="ig-post" x1="22" y1="36" x2="22" y2="64" />
+              <line class="ig-post" x1="74" y1="36" x2="74" y2="64" />
+              <path class="ig-ground" d="M12 64 Q48 70 84 64" />
+              <g class="ig-person">
+                <circle cx="35" cy="52" r="2.3" />
+                <circle cx="29" cy="58" r="2.3" />
+                <circle cx="41" cy="58" r="2.3" />
+              </g>
+              <g class="ig-yam">
+                <path d="M56 60 Q60 47 64 60 Z" />
+                <path d="M62 60 Q66 50 70 60 Z" />
+              </g>
+            </svg>
+            <figcaption class="tfa-ideogram-cap">
+              <span class="ig-cap-root">obi</span> the hall at the heart<br />of all he has built
+            </figcaption>
+          </figure>
+          <div class="tfa-termcard-text">
+            <div class="sr-beat-term-header">
+              <span class="sr-beat-term-original">obi</span>
+              <div class="sr-beat-term-meta">
+                <span class="sr-beat-term-gloss">the main living quarters of the head of a household; also the compound as a whole</span>
+              </div>
+            </div>
+            <div class="sr-beat-term-body">
+              <p>In Umuofia, a man's compound — his obi, his barns, his wives' huts, the space his family inhabits — is the physical expression of everything he has built. Okonkwo's compound is substantial: three wives, barns full of yams, a reputation established through wrestling, war, and consistent agricultural achievement.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compound plan diagram — JS-generated -->
+        <div class="tfa-diagram-block">
+          <svg
+            class="tfa-compound"
+            data-compound
+            viewBox="0 0 480 500"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="Plan-view diagram of a typical Igbo compound: a red-earth perimeter wall enclosing a courtyard; the obi — open-fronted hipped-thatch hall — at the top facing the thatched gateway; three round wives' huts with conical thatch roofs; an elevated yam barn; a standalone shrine; and an ili-alo tree at the center."
+          ></svg>
+          <p class="tfa-diagram-caption">A compound built in thatch and red earth. The <em>obi</em> — larger and more elaborately roofed than the rest — faces the gate across the courtyard, the head's watchpoint over all who come and go. Round <em>mkpuke</em> shelter each wife; the elevated <em>ọba</em> guards the yams; a standalone shrine holds the ancestors. Okonkwo's compound at the novel's start — three wives, full barns, a prominent obi — is a physical record of everything he has built.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 4 — Sacred Time · map/week · driving · tinted
+       The spoke's animated centerpiece. Harmattan term card +
+       thirteen-moons calendar (held) + four-day-week compass (sticky,
+       four reveal layers driven by scroll beats).
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--map tfa-zone--s4" data-field="map" data-tempo="driving" data-ground="tinted" data-text="tfa" data-screen-label="§4 Sacred Time">
+
+    <div class="tfa-s4-intro">
+      <SectionOpener text="tfa" eyebrow="MARKING TIME" heading="Sacred Time" background="tinted" />
+    </div>
+
+    <!-- harmattan term card (ideogram) — lead-in to the calendar -->
+    <div class="tfa-term-cluster tfa-s4-leadin">
+      <div class="sr-beat-card sr-beat-card--termcard sr-beat-card--tfa tfa-termcard--ideogram">
+        <span class="sr-tc-corner sr-tc-corner--tl" aria-hidden="true">
+          <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+        </span>
+        <span class="sr-tc-corner sr-tc-corner--br" aria-hidden="true">
+          <UliTendril width={46} color="var(--t-terra)" opacity={0.6} />
+        </span>
+        <figure class="tfa-ideogram">
+          <svg class="tfa-ideogram-svg" viewBox="0 0 96 80" role="img" aria-label="An ideogram: a hazy sun dimmed by desert dust, with the dry harmattan wind sweeping across and carrying dust over the bare stubble of a harvested, resting field.">
+            <circle class="ig-sun" cx="25" cy="21" r="9.5" />
+            <g class="ig-sun-ray">
+              <line x1="25" y1="6" x2="25" y2="2" />
+              <line x1="11" y1="21" x2="7" y2="21" />
+              <line x1="14.7" y1="10.7" x2="11.9" y2="7.9" />
+              <line x1="35.3" y1="10.7" x2="38.1" y2="7.9" />
+              <line x1="14.7" y1="31.3" x2="11.9" y2="34.1" />
+            </g>
+            <g class="ig-wind">
+              <path d="M8 38 q20 -7 42 -3 q22 3 40 -2" />
+              <path d="M6 49 q22 -6 44 -2 q20 2 40 -3" />
+              <path d="M12 59 q18 -5 38 -2 q20 2 36 -3" />
+            </g>
+            <g class="ig-dust">
+              <circle cx="40" cy="35" r="1.4" />
+              <circle cx="64" cy="36" r="1.2" />
+              <circle cx="52" cy="47" r="1.4" />
+              <circle cx="80" cy="45" r="1.2" />
+              <circle cx="34" cy="57" r="1.2" />
+              <circle cx="72" cy="56" r="1.3" />
+            </g>
+            <path class="ig-ground" d="M10 70 Q48 75 86 70" />
+            <g class="ig-stubble">
+              <line x1="24" y1="71" x2="24" y2="66" />
+              <line x1="40" y1="72" x2="40" y2="67" />
+              <line x1="56" y1="72" x2="56" y2="67" />
+              <line x1="72" y1="71" x2="72" y2="66" />
+            </g>
+          </svg>
+          <figcaption class="tfa-ideogram-cap tfa-ideogram-cap--stack">
+            <span class="ig-cap-root">harmattan</span>the dry wind,<br />the season of rest
+          </figcaption>
+        </figure>
+        <div class="tfa-termcard-text">
+          <div class="sr-beat-term-header">
+            <span class="sr-beat-term-original">harmattan</span>
+            <div class="sr-beat-term-meta">
+              <span class="sr-beat-term-gloss">a dry, dusty wind from the Sahara that blows across West Africa during the dry season</span>
+            </div>
+          </div>
+          <div class="sr-beat-term-body">
+            <p>The harmattan is the wind of the dry season — the season of rest between harvests, of wrestling matches and storytelling, of the activities that fill the time when the fields lie fallow. It is the season in which the novel begins. The agricultural calendar marks time in <em>Things Fall Apart</em> as clearly as the clock marks time in a Western novel; knowing where the community is in its farming year tells the reader what kind of time it is.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thirteen moons calendar — JS-generated -->
+    <div class="tfa-moons-block">
+      <span class="tfa-block-eyebrow">The Igbo year — thirteen moons</span>
+      <svg
+        class="tfa-moons"
+        data-moons
+        viewBox="0 0 720 150"
+        role="img"
+        aria-label="The Igbo year as a row of thirteen moons, each a lunar month beginning at the new moon, progressing from new to full and back; the first moon marks the new year and the eighth marks the new-yam harvest, with one extra intercalary day at the year's end."
+      ></svg>
+      <p class="tfa-moons-cap">Four market days make a week — <b>izu</b>. Seven weeks make a moon — <b>ọnwa</b>, twenty-eight days. Thirteen moons make a year — <b>afọ</b> — plus a single extra day at its close. The calendar is lunar: each month opens on a new moon. Below is one such week.</p>
+    </div>
+
+    <!-- Week compass — sticky, four JS-generated reveal layers -->
+    <div class="sr-zone-field sr-zone-map-field tfa-week-field">
+      <svg
+        class="sr-week"
+        data-week
+        viewBox="0 0 440 540"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="The Igbo four-day week drawn as a compass: Afọ to the north, Eke to the east, Nkwọ to the south, and Orie to the west, each market day carrying an elemental association. The terracotta Week of Peace washes across the whole week; within it, a raised hand and the fracture it opens mark Okonkwo's offense."
+      ></svg>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="week-base">
+        <div class="sr-beat-card">
+          <p>Igbo communities organized time on a four-day week — not the seven-day week of the Western calendar but a cycle of four market days, each named for a guardian spirit, each tied to one of the four directions, and each carrying its own associations: <strong>Eke</strong>, <strong>Orie</strong>, <strong>Afọ</strong>, and <strong>Nkwọ</strong>. Villages near each other held their markets on different days, so a trader could move between them across the week.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="week-peace">
+        <div class="sr-beat-card">
+          <p>The Week of Peace is the most sacred period in the Igbo agricultural calendar — the seven days before planting during which the earth goddess Ala prohibits all conflict. No one in Umuofia is to speak harshly, let alone raise a hand. The earth must not be shown anger before it is asked to grow.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="week-offense">
+        <div class="sr-beat-card">
+          <p>Okonkwo beats his wife Ojiugo during the Week of Peace — not because he does not know what the Week is, but because his furious, controlling temperament cannot contain itself when he discovers she has gone to braid her hair without preparing the afternoon meal. He is punished by the priest of Ala, Ezeani, who tells him: "You have committed a great evil." The punishment is not merely social; it is cosmological. Okonkwo has shown the earth goddess contempt at the moment she most demands reverence.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="week-full">
+        <div class="sr-beat-card">
+          <p>The Week of Peace episode is the novel's first demonstration of how Igbo sacred time works — and of how Okonkwo's defining flaw operates within it. He is not ignorant of the law. He simply cannot govern himself. This is the crack in the foundation that the novel will spend the rest of its pages widening.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 5 — The Infrastructure of Community Life · still · cream
+       Analytical close: three centered prose beats + triangle signature.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§5 What Sacred Time Means">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="SACRED TIME" heading="The Infrastructure of Community Life" background="cream" />
+
+      <div class="tfa-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>Sacred time in Igboland is not merely a religious concept; it is also an administrative one. The calendar structures when fields are cleared, when yams are planted, when the egwugwu emerge to administer justice, when marriages can be arranged, when wars can be fought. The Igbo week is the infrastructure of community life.</p>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>Achebe immerses the reader in this infrastructure before any outside force arrives, so that when that infrastructure is disrupted — when the colonial administration and the church impose their own calendar — the reader already intimately knows the world that is being replaced.</p>
+        </div>
+
+      </div>
+
+      <EndSignature text="tfa" />
+
+    </div>
+  </section>
+
+  <SpokePagination
+    section="tfa"
+    next={{ slug: 'culture', title: 'Igbo Society and Cosmology', number: 2 }}
+  />
+
 </SummerLayout>
+
+<script>
+// TFA World — Spoke 1 scroll reveal engine + diagram generators.
+// Drives Zone 2 (photo field, steady) and Zone 4 (week circle, driving/accumulative).
+// Populates JS-generated SVG diagrams: constellation, yam progression, compound plan,
+// thirteen moons, four-day-week compass.
+// Tweaks panel is excluded from the production build.
+(function () {
+  'use strict';
+
+  /* ── Catmull-Rom → cubic Bézier, closed smooth path ── */
+  function smoothClosedPath(pts: number[][]): string {
+    const n = pts.length;
+    let d = '';
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      if (i === 0) d += 'M' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1);
+      const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+      const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+      d += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) +
+        ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    return d + 'Z';
+  }
+
+  /* ── Zone 1 — village constellation ── */
+  function buildConstellation(): void {
+    const svg = document.querySelector<SVGSVGElement>('[data-constellation]');
+    if (!svg) return;
+    const W = 600, H = 300;
+
+    // Seeded PRNG for stable layout across renders
+    function rng(seed: number) {
+      return function () {
+        seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+        let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    const rnd = rng(19581960);
+    const parts: string[] = [];
+
+    // Nine villages of Umuofia — no hub, no ring: peers loosely bound
+    const cx = 432, cy = 150;
+    const nine: number[][] = [
+      [398, 120], [436, 106], [470, 126],
+      [410, 150], [452, 148], [486, 158],
+      [404, 184], [442, 192], [474, 186]
+    ];
+    const bound: number[][] = [
+      [434, 82], [492, 104], [516, 150], [494, 206],
+      [440, 222], [384, 206], [366, 150], [388, 96]
+    ];
+
+    // Scatter of ~50 autonomous villages across the field
+    let n = 0, tries = 0;
+    while (n < 50 && tries < 1600) {
+      tries++;
+      const x = 20 + rnd() * (W - 40);
+      const y = 18 + rnd() * (H - 70);
+      if (Math.hypot(x - cx, y - cy) < 98) continue;
+      if (y > 232 && x > 330 && x < 545) continue;
+      const r = 1.9 + rnd() * 1.5;
+      parts.push('<circle class="cn-village" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(1) + '"/>');
+      n++;
+    }
+
+    parts.push('<path class="cn-bound" d="' + smoothClosedPath(bound) + '"/>');
+
+    const links = [[0,1],[1,2],[2,5],[5,8],[8,7],[7,6],[6,3],[3,0],[4,1],[4,3],[4,8]];
+    links.forEach(l => {
+      const a = nine[l[0]], b = nine[l[1]];
+      parts.push('<line class="cn-link" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '"/>');
+    });
+    nine.forEach(p => parts.push('<circle class="cn-nine" cx="' + p[0] + '" cy="' + p[1] + '" r="4"/>'));
+    parts.push('<text class="cn-lbl cn-lbl--nine" x="' + cx + '" y="246" text-anchor="middle">Umuofia</text>');
+    parts.push('<text class="cn-sub" x="' + cx + '" y="261" text-anchor="middle">nine villages, loosely bound</text>');
+    svg.innerHTML = parts.join('');
+  }
+
+  /* ── Zone 3 — yam barn progression ── */
+  function buildYamProgression(): void {
+    const svg = document.querySelector<SVGSVGElement>('[data-yam-progression]');
+    if (!svg) return;
+
+    function barn(cx: number, baseY: number, w: number, h: number, count: number): string {
+      const lx = cx - w / 2, rx = cx + w / 2, topY = baseY - h, peakY = topY - 15;
+      let s = '';
+      s += '<path class="yb-frame" d="M' + (lx - 6) + ' ' + topY + ' L' + cx + ' ' + peakY + ' L' + (rx + 6) + ' ' + topY + '"/>';
+      s += '<line class="yb-frame" x1="' + lx + '" y1="' + topY + '" x2="' + lx + '" y2="' + baseY + '"/>';
+      s += '<line class="yb-frame" x1="' + rx + '" y1="' + topY + '" x2="' + rx + '" y2="' + baseY + '"/>';
+      s += '<line class="yb-frame yb-frame--thin" x1="' + cx + '" y1="' + topY + '" x2="' + cx + '" y2="' + baseY + '"/>';
+      s += '<line class="yb-ground" x1="' + (lx - 11) + '" y1="' + baseY + '" x2="' + (rx + 11) + '" y2="' + baseY + '"/>';
+      const cols = 4, rows = 3, iL = cx - w / 2 + 14, iR = cx + w / 2 - 14, iT = topY + 15, iB = baseY - 13;
+      let k = 0;
+      for (let r = rows - 1; r >= 0 && k < count; r--) {
+        for (let c = 0; c < cols && k < count; c++) {
+          const yx = iL + (iR - iL) * (c / (cols - 1));
+          const yy = iT + (iB - iT) * (r / (rows - 1));
+          s += '<ellipse class="yb-yam" cx="' + yx.toFixed(1) + '" cy="' + yy.toFixed(1) + '" rx="4.4" ry="9.3"/>';
+          k++;
+        }
+      }
+      return s;
+    }
+    function arrowR(x1: number, x2: number, y: number, cls: string): string {
+      return '<line class="yb-arrow ' + cls + '" x1="' + x1 + '" y1="' + y + '" x2="' + (x2 - 5) + '" y2="' + y + '"/>' +
+        '<polygon class="yb-head" points="' + x2 + ',' + y + ' ' + (x2 - 7) + ',' + (y - 4) + ' ' + (x2 - 7) + ',' + (y + 4) + '"/>';
+    }
+    function arrowL(x1: number, x2: number, y: number, cls: string): string {
+      return '<line class="yb-arrow ' + cls + '" x1="' + x1 + '" y1="' + y + '" x2="' + (x2 + 5) + '" y2="' + y + '"/>' +
+        '<polygon class="yb-head" points="' + x2 + ',' + y + ' ' + (x2 + 7) + ',' + (y - 4) + ' ' + (x2 + 7) + ',' + (y + 4) + '"/>';
+    }
+    function progArrow(x1: number, x2: number, y: number): string {
+      return '<line class="yb-prog" x1="' + x1 + '" y1="' + y + '" x2="' + (x2 - 5) + '" y2="' + y + '"/>' +
+        '<polygon class="yb-prog-head" points="' + x2 + ',' + y + ' ' + (x2 - 7) + ',' + (y - 4) + ' ' + (x2 - 7) + ',' + (y + 4) + '"/>';
+    }
+
+    const baseY = 256, p: string[] = [];
+    p.push(barn(72, baseY, 76, 90, 12));
+    p.push(barn(290, baseY, 98, 96, 2));
+    p.push(barn(480, baseY, 98, 96, 6));
+    p.push(barn(668, baseY, 98, 96, 12));
+    p.push(arrowR(116, 235, 214, ''));
+    p.push('<text class="yb-flow" x="175" y="205" text-anchor="middle">800 seed yams</text>');
+    p.push(arrowL(235, 116, 244, 'yb-arrow--dash'));
+    p.push('<text class="yb-flow" x="175" y="262" text-anchor="middle">a share returns</text>');
+    p.push(progArrow(345, 425, 220));
+    p.push(progArrow(535, 615, 220));
+    p.push('<text class="yb-lbl yb-lbl--muted" x="72" y="284" text-anchor="middle">the patron</text>');
+    p.push('<text class="yb-sub" x="72" y="299" text-anchor="middle">e.g. Nwakibie</text>');
+    p.push('<text class="yb-lbl" x="290" y="284" text-anchor="middle">borrowed start</text>');
+    p.push('<text class="yb-lbl" x="480" y="284" text-anchor="middle">season by season</text>');
+    p.push('<text class="yb-lbl yb-lbl--accent" x="668" y="284" text-anchor="middle">a great man</text>');
+    svg.innerHTML = p.join('');
+  }
+
+  /* ── Zone 3 — Igbo compound plan ── */
+  function buildCompound(): void {
+    const svg = document.querySelector<SVGSVGElement>('[data-compound]');
+    if (!svg) return;
+    const P: string[] = [];
+
+    // Perimeter wall
+    P.push('<rect class="cp-wall-outer" x="16" y="16" width="448" height="448" rx="24"/>');
+    P.push('<rect class="cp-wall-inner" x="28" y="28" width="424" height="424" rx="16"/>');
+    let uli = '';
+    for (let u = 0; u < 4; u++) { const ux = 70 + u * 110; uli += 'M' + ux + ' 22 q5 -4 10 0 q5 4 10 0 '; }
+    P.push('<path class="cp-wall-uli" d="' + uli + '"/>');
+
+    P.push('<line class="cp-sight" x1="240" y1="172" x2="240" y2="432"/>');
+    [[200,262],[290,250],[252,318],[306,338],[196,332]].forEach(d =>
+      P.push('<circle class="cp-yard-dot" cx="' + d[0] + '" cy="' + d[1] + '" r="1.8"/>')
+    );
+
+    // Conical-thatch round hut — ụlọ nwunyè
+    function hut(cx: number, cy: number, r: number): string {
+      let s = '<g><circle class="cp-hut" cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>';
+      for (let i = 0; i < 14; i++) {
+        const a = (i / 14) * Math.PI * 2;
+        s += '<line class="cp-thatch" x1="' + (cx + Math.cos(a) * r * 0.18).toFixed(1) + '" y1="' + (cy + Math.sin(a) * r * 0.18).toFixed(1) +
+          '" x2="' + (cx + Math.cos(a) * r * 0.92).toFixed(1) + '" y2="' + (cy + Math.sin(a) * r * 0.92).toFixed(1) + '"/>';
+      }
+      s += '<circle class="cp-hut-apex" cx="' + cx + '" cy="' + cy + '" r="2.4"/></g>';
+      return s;
+    }
+    P.push(hut(96, 240, 36)); P.push(hut(156, 368, 30)); P.push(hut(392, 288, 33));
+
+    // Obi — hipped-thatch hall
+    const ox = 174, oy = 94, ow = 132, oh = 78, ox2 = ox + ow, oy2 = oy + oh;
+    const rx = ox + 30, rx2 = ox2 - 30, ry = oy + oh / 2;
+    P.push('<rect class="cp-roof" x="' + ox + '" y="' + oy + '" width="' + ow + '" height="' + oh + '" rx="3"/>');
+    P.push('<line class="cp-ridge" x1="' + rx + '" y1="' + ry + '" x2="' + rx2 + '" y2="' + ry + '"/>');
+    P.push('<line class="cp-thatch" x1="' + ox + '" y1="' + oy + '" x2="' + rx + '" y2="' + ry + '"/>');
+    P.push('<line class="cp-thatch" x1="' + ox2 + '" y1="' + oy + '" x2="' + rx2 + '" y2="' + ry + '"/>');
+    P.push('<line class="cp-thatch" x1="' + ox + '" y1="' + oy2 + '" x2="' + rx + '" y2="' + ry + '"/>');
+    P.push('<line class="cp-thatch" x1="' + ox2 + '" y1="' + oy2 + '" x2="' + rx2 + '" y2="' + ry + '"/>');
+    for (let t = 1; t < 9; t++) {
+      const px = ox + (ow / 9) * t;
+      P.push('<line class="cp-thatch" x1="' + px.toFixed(1) + '" y1="' + oy + '" x2="' + px.toFixed(1) + '" y2="' + (ry - 4).toFixed(1) + '"/>');
+      P.push('<line class="cp-thatch" x1="' + px.toFixed(1) + '" y1="' + oy2 + '" x2="' + px.toFixed(1) + '" y2="' + (ry + 4).toFixed(1) + '"/>');
+    }
+    P.push('<circle class="cp-yard-dot" cx="' + (ox + 24) + '" cy="' + (oy2 + 8) + '" r="2.4"/>');
+    P.push('<circle class="cp-yard-dot" cx="' + (ox2 - 24) + '" cy="' + (oy2 + 8) + '" r="2.4"/>');
+
+    // Shrine
+    P.push('<rect class="cp-shrine" x="52" y="80" width="70" height="54" rx="3"/>');
+    P.push('<path class="cp-shrine-mark" d="M87 92 v30 M76 101 h22 M76 101 l-4 -6 M98 101 l4 -6"/>');
+
+    // Yam barn — ọba jị
+    P.push('<rect class="cp-barn" x="344" y="76" width="92" height="68" rx="2"/>');
+    P.push('<rect class="cp-barn" x="349" y="81" width="82" height="58" fill="none"/>');
+    for (let b = 1; b < 5; b++) {
+      const bx = 344 + (92 / 5) * b;
+      P.push('<line class="cp-barn-line" x1="' + bx.toFixed(1) + '" y1="81" x2="' + bx.toFixed(1) + '" y2="139"/>');
+    }
+    P.push('<line class="cp-barn-line" x1="349" y1="110" x2="431" y2="110"/>');
+
+    // Ili-alo tree + drying yams
+    P.push('<line class="cp-tree-trunk" x1="252" y1="306" x2="252" y2="288"/>');
+    [[252,276,3],[245,283,2.4],[259,283,2.4],[248,289,2.1],[256,289,2.1]].forEach(l =>
+      P.push('<circle class="cp-tree-leaf" cx="' + l[0] + '" cy="' + l[1] + '" r="' + l[2] + '"/>')
+    );
+    P.push('<path class="cp-yam" d="M300 332 q5 -13 10 0 Z"/>');
+    P.push('<path class="cp-yam" d="M309 332 q5 -10 10 0 Z"/>');
+
+    // Gateway — mgbo ezi
+    P.push('<path class="cp-gate" d="M210 454 L240 432 L270 454 Z"/>');
+    P.push('<rect class="cp-wall-inner" x="232" y="448" width="16" height="16"/>');
+    P.push('<circle class="cp-guard" cx="214" cy="450" r="3"/>');
+    P.push('<circle class="cp-guard" cx="266" cy="450" r="3"/>');
+
+    // Labels
+    function lbl(x: number, y: number, cls: string, anchor: string, size: string | null, txt: string): void {
+      P.push('<text class="' + cls + '" x="' + x + '" y="' + y + '" text-anchor="' + anchor + '"' + (size ? ' style="font-size:' + size + '"' : '') + '>' + txt + '</text>');
+    }
+    lbl(240, 82, 'cp-lbl cp-lbl--accent', 'middle', '12px', 'OBI');
+    lbl(87, 158, 'cp-lbl cp-lbl--forest', 'middle', '9px', 'SHRINE');
+    lbl(87, 170, 'cp-sub', 'middle', null, 'ngwuru ọnụ arụsị');
+    lbl(390, 162, 'cp-lbl cp-lbl--ochre', 'middle', '10px', 'ỌBA');
+    lbl(390, 174, 'cp-sub', 'middle', null, 'the yam barn');
+    lbl(96, 294, 'cp-lbl cp-lbl--accent', 'middle', '9px', 'ỤLỌ NWUNYÈ');
+    lbl(96, 306, 'cp-sub', 'middle', null, "wives' huts");
+    lbl(252, 412, 'cp-sub', 'middle', null, 'ama · the courtyard');
+    lbl(240, 490, 'cp-lbl cp-lbl--accent', 'middle', '10px', 'MGBO EZI · the gate');
+
+    svg.innerHTML = P.join('');
+  }
+
+  /* ── Zone 4 — thirteen moons calendar ── */
+  function moonLit(cx: number, cy: number, r: number, phase: number): string {
+    if (phase < 0.012 || phase > 0.988) return '';
+    const top = cy - r, bot = cy + r;
+    const rx = (r * Math.abs(Math.cos(phase * 2 * Math.PI))).toFixed(2);
+    const waxing = phase < 0.5;
+    const limbSweep = waxing ? 1 : 0;
+    const termSweep = waxing ? (phase < 0.25 ? 0 : 1) : (phase < 0.75 ? 0 : 1);
+    return 'M' + cx + ' ' + top +
+      ' A' + r + ' ' + r + ' 0 0 ' + limbSweep + ' ' + cx + ' ' + bot +
+      ' A' + rx + ' ' + r + ' 0 0 ' + termSweep + ' ' + cx + ' ' + top + ' Z';
+  }
+
+  function buildMoons(): void {
+    const svg = document.querySelector<SVGSVGElement>('[data-moons]');
+    if (!svg) return;
+    const M: string[] = [];
+    const n = 13, x0 = 44, step = 52, cy = 64, r = 15;
+    M.push('<line class="mn-base" x1="30" y1="' + cy + '" x2="690" y2="' + cy + '"/>');
+    for (let i = 0; i < n; i++) {
+      const cx = x0 + i * step;
+      M.push('<circle class="mn-disk" cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>');
+      const d = moonLit(cx, cy, r, i / (n - 1));
+      if (d) M.push('<path class="mn-lit" d="' + d + '"/>');
+      M.push('<text class="mn-num" x="' + cx + '" y="92" text-anchor="middle">' + (i + 1) + '</text>');
+    }
+    function flag(idx: number, txt: string): void {
+      const cx = x0 + idx * step;
+      M.push('<line class="mn-flag-line" x1="' + cx + '" y1="' + (cy - r - 2) + '" x2="' + cx + '" y2="26"/>');
+      M.push('<text class="mn-flag" x="' + cx + '" y="20" text-anchor="middle">' + txt + '</text>');
+    }
+    flag(0, 'new year');
+    flag(7, 'new yam');
+    const ix = x0 + (n - 1) * step + 30;
+    M.push('<circle class="mn-intercal" cx="' + ix + '" cy="' + cy + '" r="6"/>');
+    M.push('<circle class="mn-intercal-core" cx="' + ix + '" cy="' + cy + '" r="2"/>');
+    M.push('<text class="mn-intercal-lbl" x="' + (ix + 12) + '" y="' + (cy + 4) + '" text-anchor="start">+1 day</text>');
+    svg.innerHTML = M.join('');
+  }
+
+  /* ── Zone 4 — four-day week as a compass ── */
+  function buildWeek(): void {
+    const svg = document.querySelector<SVGSVGElement>('[data-week]');
+    if (!svg) return;
+    const cx = 220, cy = 270, R = 118, nr = 24;
+
+    interface DayDef { x: number; y: number; name: string; tag: string; elem: string; }
+    const DAYS: Record<string, DayDef> = {
+      afo:  { x: cx,      y: cy - R, name: 'Afọ',  tag: 'north', elem: 'earth' },
+      eke:  { x: cx + R,  y: cy,     name: 'Eke',  tag: 'east',  elem: 'fire'  },
+      nkwo: { x: cx,      y: cy + R, name: 'Nkwọ', tag: 'south', elem: 'air'   },
+      orie: { x: cx - R,  y: cy,     name: 'Orie', tag: 'west',  elem: 'water' }
+    };
+
+    function elemGlyph(kind: string, x: number, y: number): string {
+      if (kind === 'fire')
+        return '<path class="wk-elem-fill" d="M' + x + ' ' + (y - 13) + ' C' + (x + 9) + ' ' + (y - 3) + ' ' + (x + 7) + ' ' + (y + 8) + ' ' + x + ' ' + (y + 11) +
+          ' C' + (x - 7) + ' ' + (y + 8) + ' ' + (x - 9) + ' ' + (y - 3) + ' ' + x + ' ' + (y - 13) + ' Z"/>';
+      if (kind === 'water') {
+        let s = '';
+        [-7, 0, 7].forEach(dy => { s += '<path class="wk-elem" d="M' + (x - 12) + ' ' + (y + dy) + ' q 6 -4 12 0 t 12 0"/>'; });
+        return s;
+      }
+      if (kind === 'earth')
+        return '<path class="wk-elem" d="M' + (x - 11) + ' ' + (y + 7) + ' Q ' + x + ' ' + (y - 9) + ' ' + (x + 11) + ' ' + (y + 7) + '"/>' +
+          '<line class="wk-elem" x1="' + (x - 12) + '" y1="' + (y + 7) + '" x2="' + (x + 12) + '" y2="' + (y + 7) + '"/>' +
+          '<circle class="wk-elem-fill" cx="' + x + '" cy="' + (y + 2) + '" r="2.2"/>';
+      return '<path class="wk-elem" d="M' + (x - 12) + ' ' + (y - 4) + ' q 9 -5 14 0 q 3 4 -2 5"/>' +
+        '<path class="wk-elem" d="M' + (x - 10) + ' ' + (y + 6) + ' q 8 -4 13 0 q 3 3 -1 4"/>';
+    }
+
+    const G: string[] = [];
+
+    // Layer 1 — compass of four market days
+    const base: string[] = [];
+    base.push('<circle class="wk-ring" cx="' + cx + '" cy="' + cy + '" r="' + R + '"/>');
+    base.push('<line class="wk-compass" x1="' + cx + '" y1="' + (cy - R) + '" x2="' + cx + '" y2="' + (cy + R) + '"/>');
+    base.push('<line class="wk-compass" x1="' + (cx - R) + '" y1="' + cy + '" x2="' + (cx + R) + '" y2="' + cy + '"/>');
+    base.push('<circle class="wk-hub" cx="' + cx + '" cy="' + cy + '" r="3"/>');
+    Object.keys(DAYS).forEach(k => {
+      const dd = DAYS[k];
+      base.push('<circle class="wk-node" cx="' + dd.x + '" cy="' + dd.y + '" r="' + nr + '"/>');
+      base.push(elemGlyph(dd.elem, dd.x, dd.y));
+    });
+    function dayLabel(lx: number, ly: number, name: string, dir: string, elem: string): string {
+      return '<text class="wk-day" x="' + lx + '" y="' + ly + '" text-anchor="middle">' + name + '</text>' +
+        '<text class="wk-tag" x="' + lx + '" y="' + (ly + 15) + '" text-anchor="middle">' + dir + '</text>' +
+        '<text class="wk-tag" x="' + lx + '" y="' + (ly + 28) + '" text-anchor="middle">' + elem + '</text>';
+    }
+    base.push(dayLabel(cx, 92, 'Afọ', 'north', 'earth'));
+    base.push(dayLabel(cx, 432, 'Nkwọ', 'south', 'air'));
+    base.push(dayLabel(400, 262, 'Eke', 'east', 'fire'));
+    base.push(dayLabel(42, 262, 'Orie', 'west', 'water'));
+    G.push('<g data-show-from="week-base">' + base.join('') + '</g>');
+
+    // Layer 2 — Week of Peace overlay
+    const peace: string[] = [];
+    peace.push('<circle class="wk-peace" cx="' + cx + '" cy="' + cy + '" r="110"/>');
+    peace.push('<text class="wk-peace-lbl" x="' + cx + '" y="210" text-anchor="middle">The Week of Peace</text>');
+    peace.push('<text class="wk-mkt" x="' + cx + '" y="225" text-anchor="middle">Ala forbids all conflict</text>');
+    G.push('<g data-show-from="week-peace">' + peace.join('') + '</g>');
+
+    // Layer 3 — the offense: raised hand + fracture
+    const hx = 220, hy = 272;
+    const off: string[] = [];
+    off.push('<g class="wk-hand">');
+    off.push('<rect x="' + (hx - 9) + '" y="' + (hy - 1) + '" width="18" height="13" rx="4"/>');
+    const fing: number[][] = [[hx - 8, hy - 9], [hx - 3.6, hy - 13], [hx + 0.8, hy - 12], [hx + 5, hy - 8]];
+    fing.forEach(f => off.push('<rect x="' + f[0] + '" y="' + f[1] + '" width="3.4" height="' + (hy + 3 - f[1]) + '" rx="1.7"/>'));
+    off.push('<rect x="' + (hx - 12) + '" y="' + (hy - 2) + '" width="3.4" height="10" rx="1.7" transform="rotate(-55 ' + (hx - 10) + ' ' + (hy + 6) + ')"/>');
+    off.push('</g>');
+    [hx - 4.4, hx, hx + 4.4].forEach(sx =>
+      off.push('<line class="wk-hand-sep" x1="' + sx + '" y1="' + (hy - 6) + '" x2="' + sx + '" y2="' + (hy + 4) + '"/>')
+    );
+    off.push('<path class="wk-crack" d="M118 300 L150 290 L176 309 L210 295 L240 311 L270 296 L300 312 L324 301"/>');
+    off.push('<text class="wk-offense-lbl" x="' + cx + '" y="338" text-anchor="middle">Okonkwo strikes</text>');
+    off.push('<text class="wk-mkt" x="' + cx + '" y="353" text-anchor="middle">"a great evil"</text>');
+    G.push('<g data-show-from="week-offense" class="wk-offense-group">' + off.join('') + '</g>');
+
+    // Layer 4 — full state: summary ring
+    const full: string[] = [];
+    full.push('<circle class="wk-full-ring" cx="' + cx + '" cy="' + cy + '" r="132"/>');
+    full.push('<text class="wk-center-lbl" x="' + cx + '" y="508" text-anchor="middle">a crack in the foundation</text>');
+    G.push('<g data-show-from="week-full">' + full.join('') + '</g>');
+
+    svg.innerHTML = G.join('');
+  }
+
+  /* ── Position-driven scroll reveal engine ── */
+  type RevealEl = HTMLElement & { __t?: number; __c?: number };
+  let sweeps: Array<() => void> = [];
+
+  function initZones(): void {
+    sweeps = [];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobile = window.innerWidth > 0 && window.innerWidth < 768;
+    if (reduced || mobile) return;
+
+    document.querySelectorAll<HTMLElement>('.sr-scrolly-zone[data-field="photo"], .sr-scrolly-zone[data-field="map"]').forEach(z => {
+      const field = z.querySelector<HTMLElement>('.sr-zone-field');
+      const beats = Array.from(z.querySelectorAll<HTMLElement>('[data-beat]'));
+      if (!beats.length) return;
+
+      function sweep(): void {
+        const line = window.innerHeight * 0.5;
+        let bestIdx = 0, bestDist = Infinity, lastPassed = -1;
+        beats.forEach((beat, i) => {
+          const rect = beat.getBoundingClientRect();
+          const mid = rect.top + rect.height / 2;
+          const dist = Math.abs(mid - line);
+          if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+          if (rect.top + 8 < line) lastPassed = i;
+        });
+        beats.forEach((beat, i) => beat.classList.toggle('is-active', i === bestIdx));
+
+        if (field && field.querySelector('[data-show-from]')) {
+          const revealed: Record<string, number> = {};
+          const topIdx = Math.max(lastPassed, bestIdx);
+          for (let i = 0; i <= topIdx; i++) {
+            const key = beats[i]?.dataset.activates;
+            if (key) revealed[key] = 1;
+          }
+          setFieldReveal(field, revealed);
+          const cur = beats[bestIdx]?.dataset.activates;
+          field.querySelectorAll('[data-show-from]').forEach(g => {
+            g.classList.toggle('is-current', !!cur && g.getAttribute('data-show-from') === cur);
+          });
+        }
+      }
+      sweeps.push(sweep);
+      sweep();
+    });
+  }
+
+  // CSS opacity transitions freeze on SVG <g> elements in this engine.
+  // Tween a static inline opacity per rAF frame instead.
+  let revealTween: number | ReturnType<typeof setTimeout> | null = null;
+  const nextFrame = (fn: () => void): number | ReturnType<typeof setTimeout> =>
+    document.hidden ? setTimeout(fn, 16) : requestAnimationFrame(fn);
+
+  function setFieldReveal(field: Element, revealed: Record<string, number>): void {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let changed = false;
+    field.querySelectorAll<RevealEl>('[data-show-from]').forEach(g => {
+      const target = revealed[g.getAttribute('data-show-from') ?? ''] ? 1 : 0;
+      if (g.__t === undefined) g.__t = parseFloat(getComputedStyle(g).opacity) || 0;
+      if (g.__t !== target) { g.__t = target; changed = true; }
+      if (g.__c === undefined) g.__c = parseFloat(getComputedStyle(g).opacity) || 0;
+      if (reduced) { g.__c = target; g.style.opacity = String(target); }
+    });
+    if (reduced || !changed) return;
+    if (!revealTween) revealTween = nextFrame(tickReveal);
+  }
+
+  function tickReveal(): void {
+    revealTween = null;
+    let moving = false;
+    document.querySelectorAll<RevealEl>('[data-show-from]').forEach(g => {
+      if (g.__t === undefined) return;
+      let cur = g.__c !== undefined ? g.__c : (parseFloat(getComputedStyle(g).opacity) || 0);
+      const diff = g.__t - cur;
+      if (Math.abs(diff) < 0.02) { cur = g.__t; }
+      else { cur += diff * 0.16; moving = true; }
+      g.__c = cur;
+      g.style.opacity = String(cur);
+    });
+    if (moving) revealTween = nextFrame(tickReveal);
+  }
+
+  let sweepQueued = false;
+  function runSweeps(): void {
+    if (sweepQueued) return;
+    sweepQueued = true;
+    nextFrame(() => { sweepQueued = false; sweeps.forEach(fn => fn()); });
+  }
+
+  function boot(): void {
+    buildConstellation();
+    buildYamProgression();
+    buildCompound();
+    buildMoons();
+    buildWeek();
+    initZones();
+    window.addEventListener('scroll', runSweeps, { passive: true });
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { initZones(); runSweeps(); }, 250);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>

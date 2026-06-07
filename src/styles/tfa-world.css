@@ -1,0 +1,530 @@
+/* TFA World (Spoke 1 — "The World of the Novel") — spoke-specific styles
+ * Imported by summer-reading.css. Layered on top of tokens.css + scrolly-zones.css + tfa-culture.css.
+ * Carries the World-specific components: Zone 2 photo field, Zone 3 compound plan,
+ * Zone 4 four-day-week circle + thirteen moons, Zone 1 map callout + constellation,
+ * and the ideogram term cards used across Zones 1 / 3 / 4.
+ */
+
+/* ════════════════════════════════════════════════════════════════
+   1 · Scroll tempo dwell overrides for this spoke
+   ════════════════════════════════════════════════════════════════ */
+.sr-scrolly-zone[data-tempo="steady"]  { --beat-dwell: calc(420px * var(--dwell-scale, 1)); }
+.sr-scrolly-zone[data-tempo="driving"] { --beat-dwell: calc(260px * var(--dwell-scale, 1)); }
+
+/* ════════════════════════════════════════════════════════════════
+   2 · Figure (framed plate) — full, inset, and map widths
+   ════════════════════════════════════════════════════════════════ */
+.tfa-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin: var(--s-10) auto;
+}
+.tfa-figure--full  { width: min(820px, 100%); }
+.tfa-figure--inset { width: min(440px, 100%); }
+.tfa-figure--map   { width: min(560px, 100%); }
+.tfa-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-rule);
+  box-shadow: 0 18px 44px -24px rgba(44, 40, 32, 0.45);
+}
+.tfa-figure--inset img { aspect-ratio: 4 / 5; object-fit: cover; }
+.tfa-figcaption {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: left;
+  max-width: 34rem;
+}
+.tfa-figcaption em { font-style: italic; }
+.tfa-fignum {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-right: var(--s-2);
+}
+
+/* SideBySide in still flow (Zone 3 yam labor / dependency) */
+.tfa-still .sr-side-by-side { margin: var(--s-10) 0; gap: var(--s-10); }
+.tfa-sbs-col {
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--s-4);
+}
+.tfa-sbs-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-3);
+}
+.tfa-sbs-col p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}
+.tfa-sbs-col p + p { margin-top: var(--s-4); }
+@media (max-width: 640px) { .tfa-still .sr-side-by-side { gap: var(--s-6); } }
+
+/* Diagram block — container for held SVG diagrams */
+.tfa-diagram-block {
+  max-width: 42rem;
+  margin: var(--s-4) auto 0;
+  padding: var(--s-8) clamp(var(--s-4), 4vw, var(--s-10)) var(--s-6);
+  background: rgba(246, 241, 232, 0.6);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--t-terra);
+}
+.tfa-diagram-block svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-diagram-caption {
+  margin-top: var(--s-5);
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: center;
+}
+.tfa-diagram-caption em { font-style: italic; }
+
+/* ════════════════════════════════════════════════════════════════
+   3 · Zone 3 — Igbo compound plan (SVG class vocabulary)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-compound .cp-wall-outer { fill: rgba(196,114,42,0.13); stroke: var(--t-terra); stroke-width: 1.4; }
+.tfa-compound .cp-wall-inner { fill: var(--color-cream); stroke: var(--t-terra); stroke-width: 1; stroke-opacity: 0.6; }
+.tfa-compound .cp-wall-uli   { fill: none; stroke: var(--t-terra); stroke-width: 1; opacity: 0.4; stroke-linecap: round; }
+.tfa-compound .cp-roof   { fill: rgba(196,114,42,0.12); stroke: var(--t-terra); stroke-width: 1.7; stroke-linejoin: round; }
+.tfa-compound .cp-ridge  { stroke: var(--t-terra); stroke-width: 1.4; stroke-linecap: round; fill: none; }
+.tfa-compound .cp-thatch { stroke: var(--t-terra); stroke-width: 0.8; opacity: 0.5; stroke-linecap: round; }
+.tfa-compound .cp-hut    { fill: rgba(196,114,42,0.07); stroke: var(--t-terra); stroke-width: 1.6; }
+.tfa-compound .cp-hut-apex { fill: var(--t-terra); }
+.tfa-compound .cp-barn   { fill: rgba(212,168,64,0.14); stroke: var(--t-ochre); stroke-width: 1.6; }
+.tfa-compound .cp-barn-line { stroke: var(--t-ochre); stroke-width: 1; opacity: 0.65; }
+.tfa-compound .cp-shrine { fill: rgba(90,138,50,0.12); stroke: var(--t-forest); stroke-width: 1.6; }
+.tfa-compound .cp-shrine-mark { stroke: var(--t-forest); stroke-width: 1.5; stroke-linecap: round; fill: none; }
+.tfa-compound .cp-gate   { fill: rgba(196,114,42,0.12); stroke: var(--t-terra); stroke-width: 1.7; stroke-linejoin: round; }
+.tfa-compound .cp-guard  { fill: var(--t-umber); }
+.tfa-compound .cp-tree-trunk { stroke: var(--t-forest); stroke-width: 1.6; stroke-linecap: round; }
+.tfa-compound .cp-tree-leaf  { fill: var(--t-forest); opacity: 0.75; }
+.tfa-compound .cp-yam    { fill: rgba(212,168,64,0.32); stroke: var(--t-ochre); stroke-width: 1; stroke-linejoin: round; }
+.tfa-compound .cp-yard-dot { fill: var(--color-rule); }
+.tfa-compound .cp-sight  { stroke: var(--t-terra); stroke-width: 1.2; stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.55; }
+.tfa-compound .cp-lbl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--color-ink);
+}
+.tfa-compound .cp-lbl--accent { fill: var(--t-terra); }
+.tfa-compound .cp-lbl--forest { fill: var(--t-forest); }
+.tfa-compound .cp-lbl--ochre  { fill: #9c7a18; }
+.tfa-compound .cp-sub {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 10.5px;
+  fill: var(--color-muted);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   4 · Zone 2 — the photographic field (Bonny Chiefs) · steady
+   ════════════════════════════════════════════════════════════════ */
+.tfa-photo-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-10) var(--gutter-lg) var(--s-6);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.tfa-photo-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
+.tfa-zone--photo .sr-zone-field { width: clamp(320px, 56%, 720px); }
+.tfa-ph-fill { position: absolute; inset: 0; }
+.tfa-ph-fill .sr-ph { height: 100%; border: none; }
+.tfa-ph-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 62%;
+  display: block;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   5 · Zone 4 — the four-day-week compass · driving · center channel
+   ════════════════════════════════════════════════════════════════ */
+.tfa-s4-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-10) var(--gutter-lg) var(--s-6);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.tfa-s4-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
+.tfa-s4-leadin { margin: var(--s-2) auto var(--s-12); position: relative; z-index: 2; }
+.tfa-zone--s4 .sr-zone-field { width: clamp(340px, 36%, 460px); }
+.tfa-zone--s4 .sr-zone-beats { max-width: none; }
+.tfa-zone--s4 .sr-zone-beat { padding-inline: clamp(16px, 4vw, 72px); }
+.tfa-zone--s4 .sr-zone-beat[data-activates] .sr-beat-card {
+  max-width: clamp(210px, 24%, 340px);
+  min-width: 0;
+}
+
+/* Week SVG — JS tweens inline opacity, so kill the CSS transition */
+.tfa-week-field .sr-week { width: 100%; height: 100%; }
+.tfa-week-field [data-show-from] { transition: none !important; opacity: 0; }
+
+.sr-week text { font-family: var(--font-mono); }
+.sr-week .wk-ring   { fill: none; stroke: var(--t-terra); stroke-width: 1.4; stroke-dasharray: 4 6; stroke-opacity: 0.38; }
+.sr-week .wk-compass { stroke: var(--color-rule); stroke-width: 1; stroke-dasharray: 2 7; stroke-linecap: round; opacity: 0.85; }
+.sr-week .wk-hub    { fill: var(--t-terra); }
+.sr-week .wk-node   { fill: var(--color-cream); stroke: var(--t-terra); stroke-width: 2; }
+.sr-week .wk-day    { font-size: 16px; letter-spacing: 0.05em; fill: var(--t-terra); font-weight: 500; }
+.sr-week .wk-tag    { font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; fill: var(--color-muted); }
+.sr-week .wk-mkt    { font-family: var(--font-body); font-size: 10px; font-style: italic; fill: var(--color-muted); }
+.sr-week .wk-ctr-lbl { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--color-muted); }
+.sr-week .wk-elem   { fill: none; stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sr-week .wk-elem-fill { fill: var(--t-terra); }
+
+/* peace overlay */
+.sr-week .wk-peace  { fill: rgba(196,114,42,0.14); stroke: var(--t-terra); stroke-width: 1.4; stroke-opacity: 0.5; }
+.sr-week .wk-peace-lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--t-terra); }
+
+/* offense — raised hand + fracture */
+.sr-week .wk-hand   { fill: var(--t-umber); }
+.sr-week .wk-hand-sep { stroke: var(--color-cream); stroke-width: 0.9; stroke-linecap: round; opacity: 0.55; }
+.sr-week .wk-crack  { stroke: var(--t-umber); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.sr-week .wk-offense-lbl { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; fill: var(--t-umber); }
+
+/* full-state ring + center label */
+.sr-week .wk-full-ring  { fill: none; stroke: var(--t-terra); stroke-width: 1; stroke-opacity: 0.4; }
+.sr-week .wk-center-lbl { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--color-muted); }
+
+/* gentle scale-in on the active layer's nodes */
+@media (prefers-reduced-motion: no-preference) {
+  .tfa-week-field [data-show-from].is-current .wk-node {
+    animation: wk-pulse 0.7s var(--ease-out);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+@keyframes wk-pulse {
+  0%   { transform: scale(0.7); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   5b · The Thirteen Moons (held calendar graphic above the week)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-moons-block {
+  max-width: 760px;
+  margin: 0 auto var(--s-12);
+  padding: 0 var(--gutter-lg);
+  position: relative;
+  z-index: 2;
+}
+.tfa-moons { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-moons-block .tfa-block-eyebrow { margin-bottom: var(--s-5); }
+.mn-base { fill: none; stroke: var(--color-rule); stroke-width: 1; }
+.mn-disk { fill: var(--color-card); stroke: var(--t-terra); stroke-width: 1; stroke-opacity: 0.5; }
+.mn-lit  { fill: var(--t-terra); opacity: 0.82; }
+.mn-num  { font-family: var(--font-mono); font-size: 11px; fill: var(--color-muted); }
+.mn-flag-line { stroke: var(--t-terra); stroke-width: 1; stroke-dasharray: 2 2; opacity: 0.6; }
+.mn-flag { font-family: var(--font-body); font-style: italic; font-size: 11px; fill: var(--t-terra); }
+.mn-intercal { fill: none; stroke: var(--t-ochre); stroke-width: 1.4; stroke-dasharray: 2 2; }
+.mn-intercal-core { fill: var(--t-ochre); }
+.mn-intercal-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; fill: #9c7a18; }
+.tfa-moons-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-prose);
+  color: var(--color-muted);
+  text-align: center;
+  max-width: 46rem;
+  margin: var(--s-5) auto 0;
+}
+.tfa-moons-cap b { color: var(--t-terra); font-weight: 600; font-style: normal; }
+@media (max-width: 640px) {
+  .mn-num { font-size: 13px; }
+  .mn-flag { font-size: 12px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   6 · Zone tail — blank breathing space before a section terminator
+   ════════════════════════════════════════════════════════════════ */
+.tfa-zone-tail { height: clamp(56px, 10vh, 136px); }
+.tfa-zone-tail--tinted { background: var(--color-card); }
+.tfa-zone-tail--cream  { background: var(--color-cream); }
+
+/* ════════════════════════════════════════════════════════════════
+   7 · Zone 5 — togglable third closing paragraph
+   ════════════════════════════════════════════════════════════════ */
+.tfa-z5-beat3 { transition: opacity var(--dur-base) var(--ease-out); }
+
+/* ════════════════════════════════════════════════════════════════
+   8 · Reduced-motion / mobile fallbacks (World-specific zones)
+   ════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  /* Show all week-circle layers when JS reveal is off */
+  .tfa-week-field [data-show-from] { opacity: 1; }
+  .tfa-zone--s4 .sr-zone-field { width: min(440px, 90vw); }
+  .tfa-zone--s4 .sr-zone-beat[data-activates] .sr-beat-card { max-width: 100%; }
+  .tfa-zone--photo .sr-zone-field { width: min(720px, 100%); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   9 · ZONE 1 ENRICHMENTS — map detail-callout, at-a-glance stats,
+       village constellation, and section block-eyebrow label
+   ════════════════════════════════════════════════════════════════ */
+
+/* 9a · Map detail-callout */
+.tfa-mapfig {
+  width: min(760px, 100%);
+  margin: var(--s-10) auto var(--s-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.tfa-mapstage { position: relative; width: 100%; aspect-ratio: 3 / 2; }
+.tfa-mapstage-img {
+  position: absolute;
+  left: 42.667%;
+  top: 8%;
+  width: 56%;
+  height: 84%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 16px 36px -18px rgba(44, 40, 32, 0.5);
+}
+.tfa-mapdetail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.md-fan { fill: rgba(196, 114, 42, 0.07); }
+.md-fanline { fill: none; stroke: var(--t-umber); stroke-width: 0.8; stroke-dasharray: 3 2; opacity: 0.5; }
+.md-mapframe { fill: none; stroke: var(--color-rule); stroke-width: 1; }
+.md-africa .loc-land { fill: rgba(196, 114, 42, 0.13); stroke: var(--t-terra); stroke-width: 2.4; stroke-linejoin: round; }
+.md-mark { fill: none; stroke: var(--t-umber); stroke-width: 3; }
+.md-pin  { fill: var(--t-umber); }
+.md-lbl  { font-family: var(--font-mono); fill: var(--color-muted); }
+.md-lbl--africa  { letter-spacing: 0.24em; }
+.md-lbl--nigeria { fill: var(--t-umber); font-weight: 500; }
+
+/* 9b · At-a-glance stats band */
+.tfa-glance {
+  width: min(820px, 100%);
+  margin: 0 auto var(--s-6);
+  padding: 0 var(--gutter-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-6) var(--s-8);
+  align-items: start;
+}
+.tfa-glance-head {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+}
+.tfa-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--s-3);
+}
+.tfa-stat-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.1rem;
+  line-height: 0.95;
+  color: var(--t-terra);
+}
+.tfa-stat-txt {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-ink);
+}
+.tfa-stat-txt b { font-weight: 600; }
+.tfa-glance-src {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+@media (max-width: 620px) {
+  .tfa-glance { grid-template-columns: 1fr; gap: var(--s-5); }
+}
+
+/* 9c · Village constellation */
+.tfa-constellation-block { max-width: 600px; }
+.tfa-constellation { width: 100%; height: auto; display: block; overflow: visible; }
+.cn-village { fill: var(--t-terra); opacity: 0.5; }
+.cn-link    { stroke: var(--t-umber); stroke-width: 1.1; opacity: 0.5; stroke-linecap: round; }
+.cn-nine    { fill: var(--t-umber); stroke: var(--color-cream); stroke-width: 1; }
+.cn-bound   { fill: rgba(196, 114, 42, 0.05); stroke: var(--t-terra); stroke-width: 1.2; stroke-dasharray: 4 5; opacity: 0.7; }
+.cn-lbl     { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.cn-lbl--nine { fill: var(--t-umber); font-weight: 500; }
+.cn-sub     { font-family: var(--font-body); font-style: italic; font-size: 11.5px; fill: var(--color-muted); }
+
+/* 9d · Block eyebrow label for held study objects */
+.tfa-block-eyebrow {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-2);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   10 · Ideogram term cards (Zones 1, 3, 4)
+        Flex layout: ideogram figure at left, term text at right
+   ════════════════════════════════════════════════════════════════ */
+.tfa-termcard--ideogram {
+  display: flex;
+  gap: clamp(var(--s-5), 3vw, var(--s-8));
+  align-items: center;
+}
+.tfa-ideogram {
+  flex: 0 0 auto;
+  width: 130px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding-top: var(--s-1);
+}
+.tfa-ideogram-svg { width: 108px; height: auto; display: block; overflow: visible; }
+.tfa-ideogram-cap {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  color: var(--color-muted);
+  text-align: center;
+}
+.tfa-ideogram-cap .ig-cap-root {
+  color: var(--t-terra);
+  font-style: normal;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-right: 0.35em;
+}
+.tfa-ideogram-cap--stack .ig-cap-root {
+  display: block;
+  margin-right: 0;
+  margin-bottom: 0.15em;
+}
+.tfa-termcard-text { flex: 1 1 auto; min-width: 0; }
+
+/* SVG classes used inside ideogram figures */
+.ig-trunk  { stroke: var(--t-terra); stroke-width: 1.6; stroke-linecap: round; fill: none; }
+.ig-leaf   { fill: var(--t-terra); }
+.ig-person { fill: var(--t-umber); stroke: var(--color-cream); stroke-width: 0.8; }
+.ig-ground { stroke: var(--t-terra); stroke-width: 1.3; stroke-dasharray: 3 4; fill: none; opacity: 0.5; stroke-linecap: round; }
+.ig-roof   { fill: rgba(196, 114, 42, 0.10); stroke: var(--t-terra); stroke-width: 1.7; stroke-linejoin: round; }
+.ig-thatch line { stroke: var(--t-terra); stroke-width: 0.9; opacity: 0.55; stroke-linecap: round; }
+.ig-eave   { stroke: var(--t-terra); stroke-width: 1.7; stroke-linecap: round; }
+.ig-post   { stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; }
+.ig-yam path { fill: rgba(212, 168, 64, 0.30); stroke: var(--t-ochre); stroke-width: 1.1; stroke-linejoin: round; }
+.ig-sun     { fill: none; stroke: var(--t-terra); stroke-width: 1.6; opacity: 0.85; }
+.ig-sun-ray line { stroke: var(--t-terra); stroke-width: 1.2; stroke-linecap: round; opacity: 0.45; }
+.ig-wind path { fill: none; stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; }
+.ig-wind path:nth-child(2) { opacity: 0.8; }
+.ig-wind path:nth-child(3) { opacity: 0.6; }
+.ig-dust  { fill: var(--t-ochre); }
+.ig-stubble line { stroke: var(--t-terra); stroke-width: 1.2; stroke-linecap: round; opacity: 0.55; }
+
+@media (max-width: 560px) {
+  .tfa-termcard--ideogram { flex-direction: column; align-items: center; text-align: center; gap: var(--s-4); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   11 · ZONE 3 — Yam economy visuals
+        11a · ji (yam) ideogram beside the intro prose
+        11b · "borrowed yams → full barn" progression diagram
+   ════════════════════════════════════════════════════════════════ */
+
+/* 11a · yam-mound ideogram */
+.tfa-yam-intro {
+  max-width: var(--content-wide);
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--gutter-lg);
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--s-5), 4vw, var(--s-9));
+}
+.tfa-yam-glyph {
+  flex: 0 0 auto;
+  width: 128px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+}
+.tfa-yam-glyph-svg { width: 104px; height: auto; display: block; overflow: visible; }
+.tfa-yam-glyph-cap {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+.tfa-yam-glyph-cap b { color: var(--t-terra); font-weight: 500; }
+.tfa-yam-intro .sr-prose-block { margin: 0; max-width: none; }
+.tfa-yam-intro .sr-prose-block p { text-align: left; }
+
+/* Yam mound SVG classes */
+.ym-soil  { stroke: var(--t-terra); stroke-width: 1.3; stroke-dasharray: 3 4; opacity: 0.55; stroke-linecap: round; }
+.ym-mound { fill: rgba(196, 114, 42, 0.10); stroke: var(--t-terra); stroke-width: 1.6; stroke-linejoin: round; }
+.ym-tuber { fill: var(--t-ochre); stroke: var(--t-terra); stroke-width: 1; }
+.ym-stake { stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; fill: none; }
+.ym-vine  { stroke: var(--t-forest); stroke-width: 1.4; stroke-linecap: round; fill: none; }
+.ym-leaf  { fill: var(--t-forest); opacity: 0.85; }
+
+/* 11b · barn progression diagram */
+.tfa-yam-block { max-width: 800px; }
+.tfa-yam-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.yb-frame  { stroke: var(--t-umber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.yb-frame--thin { stroke-width: 1; opacity: 0.45; }
+.yb-ground { stroke: var(--t-terra); stroke-width: 1.4; opacity: 0.6; stroke-linecap: round; }
+.yb-yam    { fill: var(--t-ochre); stroke: var(--t-terra); stroke-width: 0.8; }
+.yb-arrow  { stroke: var(--t-umber); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+.yb-arrow--dash { stroke-dasharray: 3 3; opacity: 0.75; }
+.yb-head   { fill: var(--t-umber); }
+.yb-prog   { stroke: var(--t-terra); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+.yb-prog-head { fill: var(--t-terra); }
+.yb-lbl    { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--color-ink); }
+.yb-lbl--accent { fill: var(--t-terra); }
+.yb-lbl--muted  { fill: var(--color-muted); }
+.yb-flow   { font-family: var(--font-body); font-style: italic; font-size: 12.5px; fill: var(--t-umber); }
+.yb-sub    { font-family: var(--font-body); font-style: italic; font-size: 11px; fill: var(--color-muted); }
+
+@media (max-width: 620px) {
+  .tfa-yam-intro { flex-direction: column; align-items: center; text-align: center; }
+  .tfa-yam-intro .sr-prose-block p { text-align: center; }
+}
