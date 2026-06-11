@@ -1,16 +1,1001 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
-
-const entry = await getEntry('summerReading', 'tfa/history');
-const { Content } = await render(entry);
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import SectionTerminator from '../../../components/summer-reading/SectionTerminator.astro';
+import ZoneSeam from '../../../components/summer-reading/ZoneSeam.astro';
+import EndSignature from '../../../components/summer-reading/EndSignature.astro';
+import PullQuote from '../../../components/summer-reading/PullQuote.astro';
+import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
 ---
-<SummerLayout title={entry.data.title} section="tfa" spoke="history">
-  <Content />
+
+<SummerLayout title="Colonialism in West Africa — Things Fall Apart" section="tfa" spoke="history">
+
+  <!-- ════════════════════════════════════════════════════════════
+       SPOKE HEADER
+       ════════════════════════════════════════════════════════════ -->
+  <div class="tfa-spoke-header">
+    <div class="tfa-spoke-header-inner">
+      <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 03</span>
+      <h1 class="tfa-spoke-header-title">Colonialism in West Africa</h1>
+      <p class="tfa-spoke-header-deck">How an empire reached a society it could not read — partitioning a continent in a Berlin map room, inventing chiefs for a people who had none, and reducing a whole world to a paragraph in an administrator's book.</p>
+    </div>
+  </div>
+  <div class="tfa-header-chevron" aria-hidden="true">
+    <AkweteChevron width={1200} height={9} />
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 1 — Partitioning a Continent · exclusive reveal
+       ════════════════════════════════════════════════════════════ -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--map tfa-zone--map tfa-partition-zone"
+    data-field="map"
+    data-tempo="driving"
+    data-ground="cream"
+    data-text="tfa"
+    data-screen-label="§1 Partitioning a Continent"
+  >
+
+    <div class="tfa-z2-intro">
+      <SectionOpener
+        text="tfa"
+        eyebrow="1884–1885"
+        heading="Partitioning a Continent"
+        background="cream"
+      />
+
+      <div class="sr-prose-block sr-prose-block--center">
+        <p>By the 1880s, European powers were competing intensely for African territory — its raw materials, its land, its strategic position, and the commercial routes to which it offered access. To prevent open conflict between European rivals, German Chancellor Otto von Bismarck convened a conference in Berlin beginning November 15, 1884. Fourteen nations attended.</p>
+      </div>
+
+      <figure class="tfa-figure tfa-figure--full">
+        <img
+          src="/assets/tfa/berlin-conference-1884.webp"
+          alt="A black-and-white engraving of the Berlin Conference, 1884: European diplomats seated around a long table in a formal hall. A large map of Africa hangs on the wall behind them, one delegate gesturing toward it."
+          loading="lazy"
+        />
+        <figcaption class="tfa-figcaption">
+          <span class="tfa-fignum">Fig 01</span>The Berlin Conference, 1884–1885, as depicted in the German illustrated magazine <em>Die Gartenlaube</em>. Fourteen European nations gathered to divide Africa among themselves — Bismarck stands at the centre, the map of the continent on the wall behind them. The peoples whose land was being partitioned were not present. <em>Die Gartenlaube</em>, 1884. Public domain.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="sr-zone-field sr-zone-map-field tfa-partition-field" data-reveal="exclusive">
+      <svg
+        class="sr-partition"
+        data-partition-map
+        viewBox="-16 -44 452 556"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="A schematic map of Africa. First a continent of many peoples with no fixed external borders; then straight lines ruled across it from a Berlin origin point; then, by 1914, the continent divided into the holdings of seven European powers, with only Liberia and Ethiopia left free and Igboland absorbed into British territory."
+      ></svg>
+      <div class="sr-zone-caption">The partition of Africa, 1884–1914. The map is schematic — it shows the division of the continent among European powers, not exact borders. Holdings and proportions are approximate. Site-produced SVG.</div>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="part-living">
+        <div class="sr-beat-card sr-beat-card--lead">
+          <p>No African representatives were present. No African leaders were consulted.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="part-partition">
+        <div class="sr-beat-card">
+          <p>The conference established the principle of effective occupation: a European power could claim African territory only if it could demonstrate actual administrative control, not merely coastal presence. This principle accelerated what became known as the Scramble for Africa. By 1914, the conference participants and their successors had divided virtually all of Africa among themselves. Only Liberia and Ethiopia remained independent.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="part-1914">
+        <div class="sr-beat-card">
+          <p>Britain's position in the Nigeria region was formalized at Berlin. Through a combination of commercial enterprise — the Royal Niger Company, chartered in 1886 — and military pressure, Britain had been extending its influence along the Niger River for decades. The Berlin Conference ratified this dominance and created the framework within which the Protectorate of Southern Nigeria would be formally established in 1900.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="part-1914">
+        <div class="sr-beat-card">
+          <p>The borders drawn at Berlin and in subsequent negotiations were entirely indifferent to the political, ethnic, and cultural organization of the peoples being divided. The Igbo, Hausa, Yoruba, and hundreds of other peoples with distinct languages, cultures, and governance systems were consolidated into a single colonial entity whose borders reflected European negotiation, not African reality.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — Indirect Rule · exclusive reveal
+       ════════════════════════════════════════════════════════════ -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--map tfa-zone--map tfa-warrant-zone"
+    data-field="map"
+    data-tempo="driving"
+    data-ground="tinted"
+    data-text="tfa"
+    data-screen-label="§2 Indirect Rule"
+  >
+
+    <div class="tfa-z2-intro">
+      <SectionOpener
+        text="tfa"
+        eyebrow="The Administrative Strategy"
+        heading="Indirect Rule"
+        background="tinted"
+      />
+
+      <figure class="tfa-figure tfa-figure--wide" style="margin-top:var(--s-8);">
+        <img
+          src="/assets/tfa/lugard-emirs-london-zoo.png"
+          alt="A black-and-white photograph in a garden: a row of northern Nigerian emirs in white robes and turbans standing alongside several European men in dark Edwardian suits. A bearded official with a cane stands at the centre, flanked by the robed leaders."
+          loading="lazy"
+        />
+        <figcaption class="tfa-figcaption">
+          <span class="tfa-fignum">Fig 03</span>The Sultan of Sokoto and the Emirs of Gwandu and Kano at the London Zoological Gardens with Frederick Lugard. The photograph captures the co-option dynamic of indirect rule: Nigerian leaders positioned alongside the man who structured their administrative subjugation. In northern Nigeria, this dynamic worked — there were emirs to co-opt. In Igboland, there were not. Wikimedia Commons. Public domain.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="sr-zone-field sr-zone-map-field tfa-warrant-field" data-reveal="exclusive">
+      <svg
+        class="sr-warrant"
+        data-warrant-map
+        viewBox="0 0 460 400"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="A schematic map of Igboland as many autonomous village councils. British authority reaches in from one administrative point but finds no chief to anchor to; warrant chiefs are then imposed, offset from the communities they claim to rule."
+      ></svg>
+      <div class="sr-zone-caption">Indirect rule in Igboland, late nineteenth to early twentieth century. Each marker is an autonomous Igbo village community. The map is schematic — it shows political organization, not geography. Site-produced SVG based on the historical record.</div>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="map-precolonial">
+        <div class="sr-beat-card">
+          <p>The British colonial strategy in Nigeria was built around the doctrine of indirect rule, developed by Frederick Lugard, who served as High Commissioner of Northern Nigeria from 1900 and as Governor-General of the amalgamated Nigeria from 1914 to 1919. The principle was economical: rather than deploying large numbers of expensive British administrators across a vast territory, rule through existing local authorities — co-opt indigenous leaders, place British officials above them, and use the existing hierarchy to collect taxes, maintain order, and administer colonial law.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="map-attempt">
+        <div class="sr-beat-card">
+          <p>In northern Nigeria, indirect rule worked. The Hausa and Fulani of the north had large, hierarchically organized Islamic emirates with established rulers — emirs — who could be absorbed into the colonial administrative framework. In Igboland, it was a catastrophe. The Igbo had no emirs. They had no kings, no paramount chiefs, no permanent rulers with authority over more than a single village. When the British arrived looking for chiefs to co-opt, they found village councils, age grades, and the egwugwu — institutions that did not fit the administrative model they needed.</p>
+        </div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--center" data-beat data-activates="map-warrant">
+        <div class="sr-beat-card">
+          <p>Their solution was the warrant chief system: the British selected individuals — sometimes arbitrarily, often rewarding those most willing to collaborate — and issued them written warrants granting colonial authority over their communities. These warrant chiefs were frequently men with no traditional standing. Without traditional legitimacy, they depended entirely on British backing to maintain their authority, frequently using that backing to enrich themselves and settle personal scores. The system was corrupt by design.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- §2 coda — Obierika's lament -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--ground"
+    data-field="ground"
+    data-tempo="still"
+    data-ground="tinted"
+    data-text="tfa"
+    data-screen-label="§2 Obierika's lament"
+  >
+    <div class="sr-zone-ground-content" style="padding-block:var(--s-12);">
+      <PullQuote
+        text="tfa"
+        quote='"The white man is very clever. He came quietly and peaceably with his religion. We were amused at his foolishness and allowed him to stay. Now he has won our brothers, and our clan can no longer act like one."'
+        attribution="— Things Fall Apart, Chinua Achebe (Obierika to Okonkwo)"
+      />
+    </div>
+  </section>
+
+  <!-- §2b — The Women's War -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--ground"
+    data-field="ground"
+    data-tempo="still"
+    data-ground="tinted"
+    data-text="tfa"
+    data-screen-label="§2b The Women's War"
+  >
+    <div class="sr-zone-ground-content" style="padding-top:var(--s-6);">
+      <div class="tfa-still">
+        <span class="tfa-gloss">1929 · two decades after the novel</span>
+        <div class="tfa-ww-block">
+          <svg
+            class="tfa-ww-svg"
+            data-encircle
+            viewBox="0 0 300 200"
+            role="img"
+            aria-label="A ring of mobilised women encircling a single warrant chief — the traditional women's sanction of sitting on a man, the form the Women's War took in 1929."
+          ></svg>
+          <div class="tfa-ww-marker">
+            <hr class="ww-rule" />
+            <div class="ww-num-row">
+              <span class="ww-num">tens of thousands</span>
+              <span class="ww-num-lbl">women mobilised through their own associations</span>
+            </div>
+            <div class="ww-num-row">
+              <span class="ww-num">32</span>
+              <span class="ww-num-lbl">killed at the Native Courts they marched against</span>
+            </div>
+          </div>
+          <p class="tfa-ww-cap">The women's traditional sanction — gathering at a man's compound to shame him from office, called <em>"sitting on a man"</em> — scaled into mass action against the warrant chiefs.</p>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The most dramatic demonstration of the warrant chief system's failure came in the Women's War (<em>Ogu Umunwanyi</em>) of 1929 — two decades after the novel's setting. Tens of thousands of Igbo and Ibibio women mobilized through traditional women's associations that the colonial administration had entirely failed to account for or understand. They marched to Native Court buildings, demanded the resignation of the warrant chiefs, and were met with force: thirty-two women were killed. In the aftermath, the British conducted a formal inquiry, acknowledged the system's failures, and began studying Igbo governance seriously for the first time. The system was eventually dismantled and replaced with a structure more attentive to actual Igbo political organization.</p>
+        </div>
+
+        <p class="tfa-marker-note">This event postdates the novel's setting, but it illustrates what the warrant chief system produced — and the kind of organized resistance that Okonkwo, in the novel's final section, fails to inspire.</p>
+      </div>
+    </div>
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 3 — Disruption Through Respect · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--ground"
+    data-field="ground"
+    data-tempo="still"
+    data-ground="cream"
+    data-text="tfa"
+    data-screen-label="§3 Disruption Through Respect"
+  >
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener
+        text="tfa"
+        eyebrow="The Church"
+        heading="Disruption Through Respect"
+        background="cream"
+      />
+
+      <div class="tfa-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The missionaries who arrive in <em>Things Fall Apart</em> are not uniformly brutal or contemptuous. Mr. Brown, the first missionary to establish a lasting church in Umuofia, is patient, genuinely curious, and willing to engage seriously with Igbo theology. He learns the language. He sits with the elder Akunna for long philosophical conversations. He treats Igbo religion with intellectual respect.</p>
+        </div>
+
+        <p class="tfa-pivot">He is also the most structurally effective agent of colonial disruption in the novel.</p>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The Church Missionary Society and the Roman Catholic Mission arrived ahead of formal colonial administration in many areas, establishing schools and congregations before district commissioners appeared. Mission schools became the primary pathway to Western literacy and education, which quickly became the primary pathway to employment in the colonial administration. The missionaries were not simply converting souls; they were producing the administrative class that would govern colonial Nigeria.</p>
+        </div>
+
+        <figure class="tfa-church-block">
+          <svg
+            class="sr-church-pipe"
+            data-church-pipe
+            viewBox="0 0 600 240"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="A left-to-right pipeline of five stages — mission church, mission school, literacy, colonial post, the administrative class. The line and the figures begin warm and harden stage by stage into the cold colonial apparatus."
+          ></svg>
+          <figcaption class="tfa-church-cap">The mission school was the only road to literacy, and literacy the only road to colonial employment. The soft entry and the hard structure are <em>one line</em>: what begins as Mr. Brown's benevolent church hardens, stage by stage, into the administrative class that would govern colonial Nigeria.</figcaption>
+        </figure>
+
+        <span class="tfa-gloss">Who the church reached first</span>
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The church also specifically targeted the margins of Igbo society — the <em>osu</em> (outcasts), the mothers of twins, those who had suffered most under Igbo hierarchical norms. The church offered them dignity, inclusion, and a community outside the system that had excluded them. Nwoye, who cannot meet his father's demands for masculine achievement, finds in the church a different set of values and a different community. His conversion is not simply religious; it is an escape from a structure within which he cannot succeed.</p>
+        </div>
+
+        <figure class="tfa-church-block">
+          <svg
+            class="sr-church-path"
+            data-church-path
+            viewBox="0 0 460 348"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="A schematic map of Umuofia as a cluster of communities. The church never reaches for a centre; a single continuous path threads the margins, reaching the people the clan had pushed out — among them Nwoye."
+          ></svg>
+          <figcaption class="tfa-church-cap">Each community holds firm at its <em>titled centre</em>. The church never reaches for the centre. Its single path runs the <em>margins</em>, reaching first the people the clan itself had pushed out — the <em>osu</em>, the mothers of twins, a son like Nwoye who could not meet his father's measure.</figcaption>
+        </figure>
+
+        <PullQuote
+          text="tfa"
+          quote='"It was not the mad logic of the Trinity that captivated him. It was the poetry of the new religion, something felt in the marrow."'
+          attribution="— Things Fall Apart, Chinua Achebe"
+        />
+
+        <span class="tfa-gloss tfa-gloss--muted">Achebe's most uncomfortable argument</span>
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>This is one of Achebe's most uncomfortable arguments: colonialism succeeded partly because the culture it displaced had its own exclusions, and some of the people most desperately seeking escape from those exclusions were willing to accept the alternative the missionaries offered. The church exploited not only Igbo culture's strengths but also its genuine failures.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 4 — What Replaced What · still · tinted
+       ════════════════════════════════════════════════════════════ -->
+  <section
+    class="sr-scrolly-zone sr-scrolly-zone--ground"
+    data-field="ground"
+    data-tempo="still"
+    data-ground="tinted"
+    data-text="tfa"
+    data-screen-label="§4 What Replaced What"
+  >
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener
+        text="tfa"
+        eyebrow="The Colonial Replacement"
+        heading="What Replaced What"
+        background="tinted"
+      />
+
+      <div class="tfa-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>Colonial administration did not simply add new institutions alongside existing ones. It replaced Igbo institutions, function by function, with colonial equivalents that operated on entirely different principles.</p>
+        </div>
+
+        <div class="tfa-rep-block">
+          <div
+            class="tfa-rep"
+            data-replacement
+            role="img"
+            aria-label="A two-column diagram: each Igbo institution and the colonial form that replaced it. Egwugwu courts to the Native Court system; oracle war sanction to a colonial prohibition on conflict; village council authority to the warrant chief system; the communal social fabric to a convert and non-convert division."
+          ></div>
+          <p class="tfa-rep-cap">Colonial administration did not merely add new structures to Igboland. It replaced the institutions through which Igbo political, judicial, and social life functioned. What remained was not Igbo governance modified by colonial presence — it was <em>colonial governance occupying the space where Igbo governance had been.</em></p>
+        </div>
+
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The District Commissioner who appears in the novel's final section considers himself a reasonable man, engaged in a civilizing project. He has spent years bringing order to different parts of Africa, and he plans to write a book about his experience. Its title — <em>The Pacification of the Primitive Tribes of the Lower Niger</em> — is Achebe's summary of the self-image of the entire colonial project. The title encodes every assumption the novel has spent two hundred pages dismantling: that the Igbo were primitive, that what happened to them was pacification, and that the story belongs to the man with the pen.</p>
+        </div>
+
+        <!-- The disappearance close -->
+        <div class="tfa-close">
+          <div class="tfa-close-variant tfa-close-variant--disappearance">
+            <figure class="cc-disappear-quote">
+              <div class="cc-dq-rule"></div>
+              <blockquote>"The story of this man who had killed a messenger and hanged himself would make interesting reading. One could almost write a whole chapter on him. Perhaps not a whole chapter but <span class="cc-hinge">a reasonable paragraph</span>, at any rate. There was so much else to include, and one must be firm in <span class="cc-cut">cutting out details</span>."</blockquote>
+              <figcaption>Things Fall Apart, Chinua Achebe · the District Commissioner, closing page</figcaption>
+            </figure>
+            <figure class="cc-disappear">
+              <svg
+                class="cc-disappear-svg"
+                viewBox="0 0 840 380"
+                data-diminish
+                role="img"
+                aria-label="Three figures of Okonkwo, left to right. At left, a large terra figure braced like a wrestler stands wrapped in flame and ringed by his clan. In the middle the same figure is smaller and cooled to brown. At right he is a single small umber mark embedded in a block of grey administrative prose — a reasonable paragraph."
+              ></svg>
+              <figcaption class="cc-disappear-cap">At the centre stands the Okonkwo of Part One — braced to grapple, the wrestler who threw Amalinze the Cat, his whole figure wrapped in the flame his people named him for: the <em>Roaring Flame</em>. In the middle the fire cools and the detail falls away. By the last he is what the District Commissioner leaves of him — a bare mark in a paragraph, <em>cold, impotent ash</em>.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <EndSignature text="tfa" />
+
+    </div>
+  </section>
+
   <SpokePagination
     section="tfa"
-    prev={{ slug: 'culture', title: 'Igbo Culture', number: 2 }}
+    prev={{ slug: 'culture', title: 'Igbo Society and Cosmology', number: 2 }}
     next={{ slug: 'figures', title: 'Key Figures', number: 4 }}
   />
+
 </SummerLayout>
+
+<script>
+// TFA Colonialism — Spoke 3 scroll engine + diagram generators.
+// Drives §1 (partition-of-Africa map) and §2 (warrant-chief map),
+// both with exclusive crossfade reveal.
+// Motifs are handled by Astro components. Tweaks panel omitted.
+(function () {
+  'use strict';
+
+  /* ── GEO data from partition-geo.js, inlined ── */
+  const GEO = {"africa":[[171.3,8],[182.4,10],[179.4,15],[182.4,22.1],[178.4,27.1],[183.4,33.1],[201.5,37.1],[205.5,43.2],[212.5,46.2],[225.6,48.2],[226.6,39.1],[235.6,34.1],[251.7,40.1],[261.7,40.1],[274.8,44.2],[279.8,44.2],[285.9,40.1],[304.9,42.2],[310,59.2],[303.9,65.3],[310,77.3],[317,84.4],[318,90.4],[327,97.4],[330.1,113.5],[338.1,119.5],[343.1,134.6],[354.2,138.6],[360.2,130.6],[355.2,138.6],[368.2,152.7],[377.3,149.7],[366.2,156.7],[373.3,162.7],[403.4,157.7],[410.4,153.7],[416.5,157.7],[414.5,173.8],[400.4,201.9],[353.2,249.1],[346.1,263.2],[345.1,267.2],[348.1,270.2],[347.1,283.3],[354.2,295.3],[352.2,311.4],[363.2,310.4],[365.2,312.4],[364.2,314.4],[353.2,313.4],[353.2,322.5],[350.2,327.5],[329.1,339.5],[316,351.6],[317,376.7],[300.9,384.8],[299.9,393.8],[294.9,401.8],[261.7,434],[231.6,438],[222.6,436],[216.5,426.9],[216.5,414.9],[201.5,389.8],[197.4,368.7],[191.4,353.6],[181.4,338.5],[182.4,318.4],[184.4,311.4],[192.4,301.4],[192.4,292.3],[182.4,260.2],[163.3,237.1],[169.3,218],[168.3,208.9],[158.3,203.9],[148.2,206.9],[139.2,195.9],[130.1,193.9],[113,197.9],[102,203.9],[93,199.9],[85.9,199.9],[74.9,204.9],[67.8,204.9],[51.8,195.9],[44.7,200.9],[50.8,194.9],[36.7,183.8],[28.7,187.8],[34.7,180.8],[20.6,160.7],[8.6,167.7],[19.6,159.7],[14.6,154.7],[14.6,147.6],[3.5,145.6],[15.6,145.6],[13.6,137.6],[21.6,119.5],[20.6,95.4],[31.7,79.3],[24.6,72.3],[31.7,78.3],[47.7,60.2],[58.8,55.2],[67.8,47.2],[73.9,31.1],[86.9,20.1],[75.9,16],[87.9,18],[94,12],[99,12],[102,16],[117.1,17],[120.1,14],[133.1,11],[170.3,9]],"regions":[{"power":"fr","p":[[171.3,10],[181.4,12],[178.4,16],[181.4,22.1],[177.3,27.1],[181.4,37.1],[173.3,42.2],[175.3,46.2],[173.3,49.2],[171.3,44.2],[168.3,49.2],[171.3,56.2],[170.3,67.3],[172.3,70.3],[168.3,73.3],[168.3,77.3],[172.3,81.3],[171.3,84.4],[175.3,88.4],[180.4,88.4],[180.4,94.4],[195.4,92.4],[199.5,94.4],[201.5,100.4],[202.5,95.4],[208.5,92.4],[250.7,115.5],[252.7,114.5],[252.7,132.6],[250.7,135.6],[246.7,135.6],[246.7,140.6],[240.6,147.6],[241.6,155.7],[244.7,156.7],[245.7,160.7],[245.7,164.7],[242.7,165.7],[250.7,169.8],[250.7,178.8],[259.7,181.8],[260.7,185.8],[268.8,190.9],[268.8,193.9],[273.8,197.9],[256.7,197.9],[252.7,200.9],[247.7,199.9],[244.7,203.9],[243.7,201.9],[237.6,202.9],[231.6,196.9],[226.6,197.9],[221.6,205.9],[223.6,206.9],[219.5,208.9],[221.6,213],[216.5,226],[217.5,232],[209.5,241.1],[208.5,249.1],[200.5,257.2],[194.4,254.1],[184.4,262.2],[181.4,257.2],[183.4,244.1],[180.4,245.1],[181.4,249.1],[176.3,252.1],[173.3,245.1],[169.3,244.1],[165.3,238.1],[164.3,235.1],[168.3,228],[170.3,225],[179.4,225],[182.4,218],[189.4,218],[190.4,222],[192.4,220],[193.4,222],[195.4,218],[205.5,222],[209.5,220],[209.5,210.9],[207.5,211.9],[200.5,202.9],[200.5,193.9],[204.5,190.9],[203.5,188.8],[211.5,185.8],[203.5,182.8],[202.5,176.8],[197.4,172.8],[202.5,173.8],[205.5,169.8],[201.5,164.7],[203.5,163.7],[202.5,153.7],[198.4,149.7],[195.4,150.7],[192.4,143.6],[185.4,150.7],[174.3,148.7],[170.3,152.7],[160.3,148.7],[156.3,151.7],[149.2,146.6],[140.2,146.6],[133.1,157.7],[132.1,155.7],[122.1,159.7],[122.1,162.7],[131.1,159.7],[134.1,164.7],[133.1,170.8],[130.1,172.8],[131.1,175.8],[128.1,177.8],[129.1,191.9],[124.1,189.8],[124.1,171.8],[119.1,166.7],[119.1,161.7],[97,163.7],[93,170.8],[97,172.8],[96,177.8],[98,178.8],[92,189.8],[95,195.9],[90.9,198.9],[76.9,200.9],[71.9,204.9],[70.9,195.9],[63.8,187.8],[69.8,179.8],[66.8,176.8],[63.8,183.8],[62.8,181.8],[58.8,184.8],[58.8,178.8],[54.8,174.8],[52.8,177.8],[47.7,167.7],[41.7,166.7],[35.7,173.8],[32.7,171.8],[30.7,174.8],[25.6,165.7],[24.6,162.7],[33.7,158.7],[34.7,153.7],[37.7,152.7],[33.7,143.6],[17.6,143.6],[16.6,146.6],[15.6,136.6],[20.6,127.6],[37.7,131.6],[35.7,132.6],[42.7,139.6],[42.7,145.6],[49.8,136.6],[52.8,139.6],[55.8,136.6],[82.9,138.6],[84.9,135.6],[85.9,132.6],[82.9,128.6],[83.9,81.3],[87.9,81.3],[92,77.3],[76.9,67.3],[70.9,59.2],[66.8,60.2],[71.9,64.3],[68.8,70.3],[66.8,68.3],[51.8,68.3],[49.8,83.4],[42.7,87.4],[41.7,95.4],[22.6,95.4],[31.7,81.3],[35.7,85.4],[37.7,84.4],[32.7,79.3],[48.8,61.2],[61.8,61.2],[54.8,58.2],[56.8,59.2],[66.8,51.2],[72.9,36.1],[76.9,39.1],[78.9,33.1],[75.9,29.1],[85.9,25.1],[97,30.1],[111,31.1],[115.1,35.1],[107,35.1],[105,38.1],[111,39.1],[119.1,34.1],[116.1,31.1],[117.1,19.1],[121.1,16],[124.1,17],[126.1,13],[170.3,11]]},{"power":"gb","p":[[261.7,41.2],[273.8,43.2],[275.8,46.2],[285.9,41.2],[295.9,44.2],[304.9,42.2],[310,59.2],[302.9,66.3],[309,77.3],[315,81.3],[317,91.4],[327,99.4],[329.1,114.5],[338.1,120.5],[329.1,128.6],[326,152.7],[319,160.7],[319,164.7],[315,165.7],[315,176.8],[309,182.8],[319,188.8],[321,195.9],[327,198.9],[327,202.9],[344.1,208.9],[352.2,203.9],[361.2,206.9],[356.2,214],[356.2,235.1],[360.2,241.1],[355.2,245.1],[350.2,256.2],[345.1,258.2],[338.1,253.1],[339.1,251.1],[335.1,246.1],[313,232],[309,235.1],[296.9,235.1],[296.9,240.1],[291.9,236.1],[291.9,227],[300.9,217],[297.9,214],[297.9,208.9],[289.9,200.9],[281.8,202.9],[259.7,180.8],[253.7,178.8],[252.7,171.8],[242.7,153.7],[244.7,143.6],[248.7,137.6],[254.7,134.6],[253.7,114.5],[208.5,91.4],[212.5,82.3],[233.6,79.3],[250.7,59.2],[254.7,50.2],[254.7,42.2],[260.7,42.2]]},{"power":"gb","p":[[293.9,280.3],[315,291.3],[317,300.4],[315,310.4],[322,319.4],[322,324.5],[318,330.5],[315,325.5],[317,319.4],[308,313.4],[287.9,320.5],[289.9,326.5],[303.9,331.5],[301.9,350.6],[293.9,363.7],[294.9,390.8],[298.9,392.8],[294.9,401.8],[260.7,434],[235.6,435],[231.6,438],[219.5,433],[219.5,429],[216.5,426.9],[219.5,420.9],[218.5,416.9],[210.5,401.8],[210.5,398.8],[216.5,403.8],[222.6,403.8],[229.6,398.8],[229.6,360.6],[234.6,360.6],[235.6,339.5],[243.7,340.5],[244.7,338.5],[250.7,342.6],[258.7,335.5],[257.7,332.5],[249.7,335.5],[250.7,333.5],[243.7,327.5],[243.7,309.4],[254.7,309.4],[256.7,307.4],[255.7,299.4],[260.7,297.3],[264.8,302.4],[272.8,301.4],[282.8,309.4],[287.9,310.4],[289.9,303.4],[282.8,300.4],[283.8,284.3],[292.9,281.3]]},{"power":"be","p":[[229.6,198.9],[237.6,204.9],[246.7,204.9],[249.7,201.9],[263.8,198.9],[270.8,200.9],[276.8,198.9],[284.8,204.9],[289.9,201.9],[296.9,208.9],[296.9,214],[299.9,217],[291.9,225],[290.9,237.1],[284.8,244.1],[287.9,248.1],[287.9,265.2],[294.9,277.3],[294.9,279.3],[282.8,284.3],[281.8,300.4],[288.9,303.4],[287.9,309.4],[282.8,308.4],[272.8,300.4],[264.8,301.4],[260.7,296.3],[257.7,298.4],[254.7,295.3],[247.7,295.3],[243.7,298.4],[244.7,291.3],[241.6,286.3],[242.7,275.2],[240.6,273.2],[233.6,271.2],[229.6,272.2],[226.6,278.3],[216.5,278.3],[208.5,265.2],[193.4,264.2],[186.4,267.2],[184.4,265.2],[195.4,256.2],[200.5,259.2],[208.5,252.1],[212.5,240.1],[218.5,234.1],[222.6,209.9],[228.6,199.9]]},{"power":"pt","p":[[193.4,265.2],[209.5,267.2],[211.5,275.2],[220.5,280.3],[222.6,278.3],[228.6,279.3],[230.6,273.2],[240.6,274.2],[239.6,287.3],[243.7,292.3],[242.7,299.4],[247.7,296.3],[255.7,297.3],[255.7,306.4],[242.7,307.4],[241.6,328.5],[248.7,335.5],[240.6,335.5],[238.6,338.5],[236.6,335.5],[223.6,335.5],[219.5,331.5],[217.5,333.5],[183.4,332.5],[184.4,312.4],[187.4,311.4],[186.4,308.4],[194.4,299.4],[193.4,289.3],[190.4,288.3],[191.4,284.3],[189.4,283.3],[190.4,276.2],[186.4,272.2],[186.4,268.2],[193.4,266.2]]},{"power":"es","p":[[72.9,64.3],[90.9,77.3],[82.9,81.3],[81.9,128.6],[84.9,132.6],[82.9,137.6],[55.8,135.6],[52.8,138.6],[47.7,135.6],[42.7,144.6],[43.7,139.6],[37.7,130.6],[30.7,127.6],[19.6,127.6],[23.6,116.5],[21.6,96.4],[41.7,96.4],[43.7,87.4],[50.8,83.4],[52.8,68.3],[68.8,71.3],[71.9,65.3]]},{"power":"it","p":[[186.4,34.1],[188.4,37.1],[190.4,35.1],[191.4,38.1],[194.4,36.1],[195.4,39.1],[201.5,37.1],[201.5,41.2],[205.5,45.2],[207.5,43.2],[212.5,48.2],[217.5,46.2],[220.5,50.2],[222.6,48.2],[225.6,50.2],[228.6,47.2],[226.6,39.1],[229.6,36.1],[230.6,38.1],[234.6,37.1],[235.6,34.1],[251.7,42.2],[252.7,40.1],[261.7,40.1],[251.7,43.2],[253.7,49.2],[249.7,54.2],[250.7,56.2],[237.6,69.3],[232.6,78.3],[213.5,79.3],[206.5,86.4],[206.5,92.4],[200.5,94.4],[197.4,93.4],[199.5,91.4],[196.4,89.4],[183.4,91.4],[179.4,84.4],[174.3,85.4],[174.3,80.3],[170.3,75.3],[173.3,72.3],[173.3,57.2],[170.3,51.2],[176.3,49.2],[176.3,43.2],[182.4,39.1],[183.4,35.1],[187.4,35.1]]},{"power":"de","p":[[312,233],[331.1,244.1],[337.1,249.1],[339.1,255.1],[347.1,259.2],[344.1,263.2],[346.1,265.2],[344.1,269.2],[348.1,273.2],[345.1,283.3],[351.2,291.3],[350.2,295.3],[343.1,299.4],[337.1,296.3],[334.1,301.4],[333.1,299.4],[320,300.4],[317,299.4],[316,291.3],[313,288.3],[311,289.3],[295.9,280.3],[295.9,275.2],[288.9,265.2],[289.9,251.1],[285.9,244.1],[291.9,237.1],[296.9,241.1],[296.9,236.1],[311,234.1]]},{"power":"gb","p":[[192.4,147.6],[198.4,160.7],[191.4,165.7],[188.4,177.8],[183.4,181.8],[181.4,189.8],[178.4,191.9],[174.3,187.8],[169.3,187.8],[162.3,198.9],[162.3,204.9],[156.3,202.9],[152.2,205.9],[148.2,205.9],[139.2,194.9],[130.1,193.9],[130.1,178.8],[136.2,165.7],[134.1,157.7],[139.2,149.7],[148.2,148.7],[155.2,153.7],[162.3,151.7],[169.3,154.7],[173.3,151.7],[186.4,151.7],[191.4,148.7]]},{"power":"pt","p":[[351.2,295.3],[353.2,296.3],[350.2,305.4],[351.2,311.4],[347.1,313.4],[346.1,309.4],[343.1,314.4],[345.1,317.4],[352.2,315.4],[352.2,324.5],[345.1,331.5],[338.1,332.5],[333.1,337.5],[330.1,336.5],[317,350.6],[315,349.6],[313,354.6],[316,359.6],[314,360.6],[318,363.7],[318,369.7],[314,378.7],[313,376.7],[310,380.7],[305.9,379.7],[301.9,383.7],[299.9,382.7],[297.9,386.8],[299.9,389.8],[296.9,390.8],[294.9,363.7],[299.9,359.6],[303.9,350.6],[305.9,331.5],[298.9,326.5],[289.9,325.5],[289.9,321.5],[308,314.4],[311,319.4],[316,319.4],[313,326.5],[318,332.5],[323,327.5],[324,319.4],[316,310.4],[317,301.4],[333.1,300.4],[334.1,302.4],[338.1,298.4],[343.1,300.4],[350.2,296.3]]},{"power":"de","p":[[188.4,332.5],[210.5,335.5],[216.5,335.5],[219.5,332.5],[222.6,337.5],[226.6,335.5],[228.6,338.5],[235.6,336.5],[237.6,338.5],[234.6,339.5],[233.6,360.6],[228.6,360.6],[228.6,398.8],[222.6,402.8],[216.5,402.8],[210.5,397.8],[209.5,400.8],[202.5,388.8],[198.4,375.7],[200.5,374.7],[199.5,368.7],[195.4,365.7],[197.4,363.7],[193.4,358.6],[193.4,353.6],[188.4,349.6],[183.4,338.5],[183.4,333.5],[188.4,333.5]]},{"power":"it","p":[[406.4,155.7],[414.5,157.7],[415.5,155.7],[416.5,157.7],[414.5,160.7],[416.5,166.7],[413.4,168.7],[415.5,170.8],[412.4,171.8],[414.5,173.8],[410.4,176.8],[412.4,178.8],[409.4,179.8],[411.4,181.8],[408.4,182.8],[407.4,190.9],[403.4,192.9],[398.4,203.9],[374.3,226],[372.3,231],[371.3,229],[360.2,242.1],[361.2,238.1],[357.2,235.1],[357.2,214],[368.2,201.9],[372.3,201.9],[372.3,198.9],[380.3,200.9],[396.4,179.8],[391.3,178.8],[390.3,180.8],[379.3,174.8],[377.3,176.8],[376.3,173.8],[374.3,175.8],[369.2,170.8],[366.2,159.7],[368.2,157.7],[371.3,163.7],[372.3,161.7],[373.3,164.7],[375.3,162.7],[378.3,164.7],[386.3,163.7],[387.3,160.7],[389.3,162.7],[391.3,159.7],[393.4,161.7],[395.4,158.7],[397.4,160.7],[398.4,157.7],[401.4,159.7],[405.4,156.7]]},{"power":"de","p":[[196.4,151.7],[200.5,153.7],[201.5,161.7],[199.5,163.7],[203.5,168.7],[195.4,174.8],[201.5,178.8],[203.5,183.8],[197.4,196.9],[199.5,203.9],[207.5,213],[207.5,219],[202.5,219],[199.5,216],[191.4,218],[170.3,217],[170.3,208.9],[162.3,201.9],[169.3,188.8],[174.3,188.8],[178.4,192.9],[182.4,189.8],[184.4,181.8],[189.4,177.8],[192.4,165.7],[199.5,160.7],[196.4,152.7]]},{"power":"gb","p":[[111,163.7],[112,167.7],[115.1,168.7],[116.1,189.8],[120.1,196.9],[113,196.9],[105,202.9],[95,199.9],[95,187.8],[99,180.8],[97,164.7],[110,164.7]]},{"power":"es","p":[[95,13],[102,18],[112,17],[116.1,21.1],[116.1,32.1],[83.9,24.1],[94,14]]},{"power":"it","p":[[336.1,123.5],[341.1,126.6],[339.1,129.6],[345.1,138.6],[347.1,136.6],[351.2,139.6],[352.2,137.6],[352.2,142.6],[356.2,139.6],[365.2,149.7],[361.2,153.7],[348.1,140.6],[337.1,143.6],[334.1,140.6],[332.1,145.6],[328,141.6],[329.1,131.6],[336.1,124.5]]},{"power":"gb","p":[[40.7,169.8],[48.8,170.8],[49.8,176.8],[52.8,178.8],[50.8,183.8],[43.7,189.8],[34.7,180.8],[32.7,175.8],[39.7,170.8]]},{"power":"de","p":[[114.1,163.7],[118.1,164.7],[122.1,171.8],[124.1,192.9],[121.1,195.9],[117.1,189.8],[117.1,172.8],[113,164.7]]},{"power":"pt","p":[[24.6,151.7],[33.7,152.7],[33.7,157.7],[30.7,156.7],[23.6,162.7],[22.6,159.7],[16.6,157.7],[16.6,153.7],[24.6,152.7]]}],"free":[{"p":[[335.1,143.6],[348.1,143.6],[352.2,145.6],[360.2,154.7],[358.2,161.7],[361.2,164.7],[364.2,163.7],[366.2,168.7],[374.3,176.8],[393.4,181.8],[380.3,197.9],[372.3,197.9],[363.2,203.9],[352.2,202.9],[347.1,205.9],[338.1,205.9],[331.1,200.9],[328,200.9],[328,197.9],[321,193.9],[321,189.8],[311,181.8],[316,178.8],[317,166.7],[321,163.7],[321,159.7],[328,151.7],[328,145.6],[331.1,144.6],[333.1,146.6],[335.1,144.6]]},{"p":[[54.8,179.8],[56.8,180.8],[57.8,186.8],[62.8,186.8],[60.8,190.9],[66.8,193.9],[66.8,201.9],[53.8,194.9],[57.8,191.9],[56.8,189.8],[51.8,193.9],[46.7,189.8],[53.8,180.8]]}],"islands":[{"power":"fr","p":[[399.4,308.4],[403.4,310.4],[405.4,327.5],[402.4,327.5],[400.4,330.5],[401.4,334.5],[397.4,339.5],[396.4,348.6],[380.3,384.8],[370.2,387.8],[366.2,385.8],[363.2,382.7],[363.2,372.7],[361.2,368.7],[363.2,362.6],[370.2,354.6],[368.2,337.5],[375.3,329.5],[383.3,330.5],[384.3,328.5],[388.3,328.5],[389.3,323.5],[391.3,324.5],[393.4,318.4],[399.4,313.4],[399.4,309.4]]}],"clusters":[[148.2,26.1],[38.7,81.3],[83.9,106.5],[151.2,107.5],[223.6,103.4],[261.7,105.5],[30.7,146.6],[84.9,155.7],[160.1,173.7,"igbo"],[195.4,160.7],[289.9,144.6],[326,151.7],[207.5,190.9],[268.8,189.8],[344.1,210.9],[384.3,215],[219.5,279.3],[286.9,270.2],[327,259.2],[228.6,312.4],[258.7,326.5],[341.1,333.5],[207.5,368.7],[256.7,374.7]],"meta":{"nigeria":[160.1,173.7],"freeCentroids":[{"cx":347.6,"cy":177.6,"sz":2957},{"cx":57.9,"cy":191.4,"sz":222}],"regionLabels":{"fr":[145.7,121.3],"gb":[290,138.1],"be":[254,247.6],"it":[208.1,61.7]},"viewExtent":{"x0":3.5,"x1":416.5,"y0":8,"y1":438}}};
+
+  /* ── Seeded PRNG ── */
+  function rng(seed) {
+    return function () {
+      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* ═══════════════════ Warrant-chief map (Zone 2) ════════════════════ */
+  const villagesB = (function () {
+    const r = rng(8841), pts = [];
+    for (let row = 0; row < 3; row++) for (let col = 0; col < 4; col++) {
+      if (row === 1 && col === 3) continue;
+      pts.push({
+        x: +(118 + col * 86 + (r() - 0.5) * 30).toFixed(1),
+        y: +(96 + row * 88 + (r() - 0.5) * 26).toFixed(1)
+      });
+    }
+    return pts;
+  })();
+  const deadTargetsB = [0, 3, 5, 7, 10];
+  const warrantSpecsB = [
+    { i: 0, dx: 22, dy: -16 }, { i: 3, dx: -20, dy: 14 }, { i: 5, dx: 24, dy: 10 },
+    { i: 7, dx: -22, dy: -12 }, { i: 10, dx: 18, dy: 17 }
+  ];
+
+  function wmFrame() {
+    return '<rect class="wm-frame" x="72" y="44" width="348" height="300" rx="10"/>' +
+      '<text class="wm-frame-lbl" x="78" y="38">IGBOLAND · SCHEMATIC</text>';
+  }
+  function villageRing(v, ghost) {
+    const g = ghost ? ' is-ghost' : '';
+    const dots = [[-4, 2], [4, 2], [0, -4]].map(d =>
+      `<circle class="wm-council${g}" cx="${v.x + d[0]}" cy="${v.y + d[1]}" r="1.7"/>`
+    ).join('');
+    return `<circle class="wm-village-ring${g}" cx="${v.x}" cy="${v.y}" r="13"/>${dots}`;
+  }
+  function crownJack() {
+    const d = 'M22 184 L22 172 L28 178 L34 168 L40 178 L46 172 L46 184 Z';
+    const NAVY = '#3A4760', RED = '#9E3B34', WH = '#EDE4D2', bx0 = 22, by0 = 168, bx1 = 46, by1 = 184;
+    return `<g aria-hidden="true">
+      <clipPath id="cjclip"><path d="${d}"/></clipPath>
+      <g clip-path="url(#cjclip)">
+        <rect x="${bx0}" y="${by0}" width="24" height="16" fill="${NAVY}"/>
+        <line x1="${bx0}" y1="${by0}" x2="${bx1}" y2="${by1}" stroke="${WH}" stroke-width="3"/>
+        <line x1="${bx1}" y1="${by0}" x2="${bx0}" y2="${by1}" stroke="${WH}" stroke-width="3"/>
+        <line x1="${bx0}" y1="${by0}" x2="${bx1}" y2="${by1}" stroke="${RED}" stroke-width="1.3"/>
+        <line x1="${bx1}" y1="${by0}" x2="${bx0}" y2="${by1}" stroke="${RED}" stroke-width="1.3"/>
+        <line x1="34" y1="${by0}" x2="34" y2="${by1}" stroke="${WH}" stroke-width="4.2"/>
+        <line x1="${bx0}" y1="176" x2="${bx1}" y2="176" stroke="${WH}" stroke-width="4.2"/>
+        <line x1="34" y1="${by0}" x2="34" y2="${by1}" stroke="${RED}" stroke-width="2"/>
+        <line x1="${bx0}" y1="176" x2="${bx1}" y2="176" stroke="${RED}" stroke-width="2"/>
+      </g>
+      <path d="${d}" fill="none" stroke="var(--t-umber)" stroke-width="1.3" stroke-linejoin="round"/>
+      <line x1="21" y1="187" x2="47" y2="187" stroke="var(--t-umber)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="22" cy="170" r="1.8" fill="var(--t-umber)"/>
+      <circle cx="34" cy="164" r="1.8" fill="var(--t-umber)"/>
+      <circle cx="46" cy="170" r="1.8" fill="var(--t-umber)"/>
+      <text class="wm-hub-lbl" x="34" y="204" text-anchor="middle">BRITISH</text>
+      <text class="wm-hub-lbl" x="34" y="214" text-anchor="middle">RULE</text>
+    </g>`;
+  }
+  function deadArrow(hx, hy, tx, ty, rr) {
+    const dx = tx - hx, dy = ty - hy, len = Math.hypot(dx, dy);
+    const ux = dx / len, uy = dy / len;
+    const ex = (tx - ux * (rr + 3)).toFixed(1), ey = (ty - uy * (rr + 3)).toFixed(1);
+    return `<path class="wm-arrow wm-arrow--dash" d="M${hx} ${hy} L${ex} ${ey}"/>` +
+      `<line class="wm-deadcross" x1="${+ex - 4}" y1="${+ey - 4}" x2="${+ex + 4}" y2="${+ey + 4}"/>` +
+      `<line class="wm-deadcross" x1="${+ex - 4}" y1="${+ey + 4}" x2="${+ex + 4}" y2="${+ey - 4}"/>`;
+  }
+  function warrantMarker(x, y, vx, vy, label) {
+    return `<line class="wm-misalign" x1="${vx}" y1="${vy}" x2="${x}" y2="${y}"/>` +
+      `<circle class="wm-warrant-halo" cx="${x}" cy="${y}" r="11"/>` +
+      `<line class="wm-warrant-stem" x1="${x}" y1="${y + 9}" x2="${x}" y2="${y - 2}"/>` +
+      `<path class="wm-warrant" d="M${x} ${y - 10} L${x + 6} ${y - 3} L${x} ${y + 4} L${x - 6} ${y - 3} Z"/>` +
+      (label ? `<text class="wm-warrant-lbl" x="${x + 14}" y="${y + 2}">WARRANT CHIEF</text>` : '');
+  }
+  function buildWarrantMap() {
+    const svg = document.querySelector('[data-warrant-map]');
+    if (!svg) return;
+    const rings = villagesB.map(v => villageRing(v, false)).join('');
+    const ringsGhost = villagesB.map(v => villageRing(v, true)).join('');
+    const g1 = `<g data-show-from="map-precolonial">${wmFrame()}${rings}<text class="wm-note" x="246" y="372" text-anchor="middle">Many self-governing councils · no paramount chief to co-opt.</text></g>`;
+    const arrows = deadTargetsB.map(idx => deadArrow(50, 176, villagesB[idx].x, villagesB[idx].y, 13)).join('');
+    const g2 = `<g data-show-from="map-attempt">${wmFrame()}${rings}${crownJack()}${arrows}<text class="wm-note wm-note--umber" x="246" y="372" text-anchor="middle">Indirect rule needs a chief — the arrows find none.</text></g>`;
+    const marks = warrantSpecsB.map((w, k) => {
+      const v = villagesB[w.i];
+      return warrantMarker(v.x + w.dx, v.y + w.dy, v.x, v.y, k === 0);
+    }).join('');
+    const g3 = `<g data-show-from="map-warrant">${wmFrame()}${ringsGhost}${marks}<text class="wm-note wm-note--accent" x="246" y="372" text-anchor="middle">Chiefs imposed — offset from the communities they claim to rule.</text></g>`;
+    svg.innerHTML = g1 + g2 + g3;
+  }
+
+  /* ═══════════════════ Partition-of-Africa map (Zone 1) ══════════════════ */
+  function pPath(pts) { return 'M' + pts.map((p, i) => (i ? 'L' : '') + p[0] + ' ' + p[1]).join(' ') + 'Z'; }
+  function pPts(pts)  { return pts.map(p => p[0] + ',' + p[1]).join(' '); }
+  function pDist(a, b) { return Math.hypot(b[0] - a[0], b[1] - a[1]); }
+
+  const PCOL = { fr: '#4F9E8C', gb: '#C4544A', de: '#DD9A48', be: '#8A6298', pt: '#E6C158', it: '#93B7D2', es: '#46689E' };
+  const PDOTS = [[0, 0], [-6, -3], [5, -4], [6, 4], [-4, 5]];
+  const PBERLIN = [228, -18];
+  const PLINES = [
+    [[150, 44], [120, 300]], [[236, 30], [252, 286]], [[64, 176], [250, 200]],
+    [[256, 214], [344, 300]], [[166, 344], [342, 344]]
+  ];
+  const PLEGEND = [
+    ['France', PCOL.fr], ['Britain', PCOL.gb], ['Germany', PCOL.de], ['Belgium', PCOL.be],
+    ['Portugal', PCOL.pt], ['Italy', PCOL.it], ['Spain', PCOL.es], ['Independent', 'free']
+  ];
+  const PREGION_LBL = [
+    { t: 'FRANCE', k: 'fr' }, { t: 'BRITAIN', k: 'gb' }, { t: 'BELGIUM', k: 'be' }, { t: 'ITALY', k: 'it' }
+  ];
+
+  function pFrameLbl(t) { return `<text class="pcA-frame-lbl" x="-6" y="-20">${t}</text>`; }
+  function pOutline(faint) { return `<path class="pcA-coast${faint ? ' is-faint' : ''}" d="${pPath(GEO.africa)}"/>`; }
+  function pClusters(ghost) {
+    return '<g clip-path="url(#pcAclip)">' + GEO.clusters.map(c => {
+      const g = (ghost && c[2] !== 'igbo') ? ' is-ghost' : '';
+      return PDOTS.map(o => `<circle class="pcA-cluster-dot${g}" cx="${+c[0] + o[0]}" cy="${+c[1] + o[1]}" r="2"/>`).join('');
+    }).join('') + '</g>';
+  }
+  function pLine(seg, draw) {
+    const len = pDist(seg[0], seg[1]);
+    const style = draw ? ` style="--len:${len.toFixed(0)}"` : '';
+    return `<line class="${draw ? 'pcA-line pcA-line--draw' : 'pcA-border'}"${style} x1="${seg[0][0]}" y1="${seg[0][1]}" x2="${seg[1][0]}" y2="${seg[1][1]}"/>`;
+  }
+  function pTicks(seg) {
+    const dx = seg[1][0] - seg[0][0], dy = seg[1][1] - seg[0][1], len = Math.hypot(dx, dy);
+    const nx = -dy / len, ny = dx / len;
+    let out = '';
+    for (let k = 1; k <= 4; k++) {
+      const t = k / 5, px = seg[0][0] + dx * t, py = seg[0][1] + dy * t;
+      out += `<line class="pcA-tick" x1="${(px - nx * 3).toFixed(1)}" y1="${(py - ny * 3).toFixed(1)}" x2="${(px + nx * 3).toFixed(1)}" y2="${(py + ny * 3).toFixed(1)}"/>`;
+    }
+    return out;
+  }
+  function pRegions() {
+    return '<g clip-path="url(#pcAclip)">' +
+      `<path d="${pPath(GEO.africa)}" fill="rgba(120,96,60,0.12)"/>` +
+      GEO.regions.map(r => `<polygon points="${pPts(r.p)}" fill="${PCOL[r.power] || '#999'}" fill-opacity="0.82"/>`).join('') +
+      GEO.regions.map(r => `<polygon class="pcA-region-edge" points="${pPts(r.p)}"/>`).join('') +
+      '</g>';
+  }
+  function pIslands() {
+    return (GEO.islands || []).map(s =>
+      `<polygon points="${pPts(s.p)}" fill="${PCOL[s.power] || PCOL.fr}" fill-opacity="0.82"/>` +
+      `<polygon class="pcA-region-edge" points="${pPts(s.p)}"/>`
+    ).join('');
+  }
+  function pRegionLabels() {
+    const rl = GEO.meta && GEO.meta.regionLabels || {};
+    return PREGION_LBL.map(l => {
+      const c = rl[l.k]; if (!c) return '';
+      return `<text class="pcA-region-lbl" x="${c[0]}" y="${c[1]}" text-anchor="middle">${l.t}</text>`;
+    }).join('');
+  }
+  function pFree() {
+    const free = GEO.free || [];
+    const carve = '<g clip-path="url(#pcAclip)">' + free.map(f => `<polygon class="pcA-free" points="${pPts(f.p)}"/>`).join('') + '</g>';
+    const labels = free.map(f => {
+      let cx = 0, cy = 0; f.p.forEach(p => { cx += p[0]; cy += p[1]; }); cx /= f.p.length; cy /= f.p.length;
+      if (cx > 200) return `<text class="pcA-free-lbl" x="${cx.toFixed(0)}" y="${(cy + 2).toFixed(0)}" text-anchor="middle">ETHIOPIA</text>`;
+      return `<line class="pcA-free-leader" x1="${(cx - 3).toFixed(0)}" y1="${(cy + 2).toFixed(0)}" x2="${(cx - 26).toFixed(0)}" y2="${(cy + 40).toFixed(0)}"/>` +
+        `<text class="pcA-free-lbl" x="${(cx - 24).toFixed(0)}" y="${(cy + 44).toFixed(0)}" text-anchor="middle">LIBERIA</text>`;
+    }).join('');
+    return carve + labels;
+  }
+  function pIgboCallout() {
+    const c = (GEO.meta && GEO.meta.nigeria) || [160, 174];
+    return `<circle class="pcA-igbo-ring" cx="${c[0]}" cy="${c[1]}" r="13"/>` +
+      `<line class="pcA-igbo-leader" x1="${c[0] - 10}" y1="${c[1] + 7}" x2="40" y2="322"/>` +
+      `<text class="pcA-igbo-lbl" x="36" y="322" text-anchor="end">IGBOLAND</text>` +
+      `<text class="pcA-igbo-lbl" x="36" y="334" text-anchor="end">→ BRITISH</text>`;
+  }
+  function pLegend() {
+    const x0 = 8, y0 = 460, colW = 108;
+    const rows = [PLEGEND.slice(0, 4), PLEGEND.slice(4)];
+    let out = '';
+    rows.forEach((row, ri) => {
+      row.forEach((e, ci) => {
+        const x = x0 + ci * colW, y = y0 + ri * 17;
+        const sw = e[1] === 'free'
+          ? `<rect class="pcA-leg-free" x="${x}" y="${y - 8}" width="9" height="9"/>`
+          : `<rect class="pcA-leg-sw" x="${x}" y="${y - 8}" width="9" height="9" fill="${e[1]}"/>`;
+        out += sw + `<text class="pcA-leg-lbl" x="${x + 14}" y="${y}">${e[0]}</text>`;
+      });
+    });
+    return out;
+  }
+  function pBerlin() {
+    let b = `<g><circle class="pcA-berlin-node" cx="${PBERLIN[0]}" cy="${PBERLIN[1]}" r="3.5"/>` +
+      `<text class="pcA-berlin-lbl" x="${PBERLIN[0] + 9}" y="${PBERLIN[1] + 3}">BERLIN · 1884–85</text>`;
+    PLINES.forEach(s => {
+      b += `<line class="pcA-leader" x1="${PBERLIN[0]}" y1="${PBERLIN[1]}" x2="${s[0][0]}" y2="${s[0][1]}"/>`;
+    });
+    return b + '</g>';
+  }
+  function buildPartitionMap() {
+    const svg = document.querySelector('[data-partition-map]');
+    if (!svg) return;
+    const defs = `<defs><clipPath id="pcAclip"><path d="${pPath(GEO.africa)}"/></clipPath></defs>`;
+    const s1 = `<g data-show-from="part-living">${pFrameLbl('AFRICA · SCHEMATIC')}${pOutline(false)}${pClusters(false)}</g>`;
+    const lines2 = PLINES.map(s => pLine(s, true) + pTicks(s)).join('');
+    const s2 = `<g data-show-from="part-partition">${pFrameLbl('AFRICA · SCHEMATIC')}${pOutline(false)}${pClusters(false)}${pBerlin()}${lines2}</g>`;
+    const s3 = `<g data-show-from="part-1914">${pFrameLbl('AFRICA · 1914')}${pRegions()}${pIslands()}${pFree()}${pClusters(true)}${pOutline(true)}${pRegionLabels()}${pIgboCallout()}${pLegend()}</g>`;
+    svg.innerHTML = defs + s1 + s2 + s3;
+  }
+
+  /* ═══════════════════ Institution glyphs (replacement diagram) ══════════ */
+  function warmGlyph(kind) {
+    const cw = 'ig-w', cf = 'ig-w-fill', cs = 'ig-w-soft';
+    if (kind === 'egwugwu') return `<path class="${cf}" d="M23 5 L26 11 L20 11 Z"/>` +
+      `<ellipse class="${cw}" cx="23" cy="25" rx="11" ry="15"/>` +
+      `<path class="${cf}" d="M17 21 q2 -3 4 0 q-2 2 -4 0 Z"/><path class="${cf}" d="M25 21 q2 -3 4 0 q-2 2 -4 0 Z"/>` +
+      `<line class="${cw}" x1="23" y1="24" x2="23" y2="32"/><line class="${cw}" x1="19" y1="35" x2="27" y2="35"/>`;
+    if (kind === 'oracle') return `<path class="${cs}" d="M13 36 L13 24 Q13 12 23 12 Q33 12 33 24 L33 36 Z"/>` +
+      `<line class="${cw}" x1="10" y1="36" x2="36" y2="36"/><line class="${cw}" x1="23" y1="33" x2="23" y2="20"/>` +
+      `<path class="${cw}" d="M23 20 l-4 -5 M23 20 l4 -5"/><circle class="${cf}" cx="23" cy="17" r="1.8"/>`;
+    if (kind === 'council') {
+      let s = `<circle class="${cf}" cx="23" cy="23" r="2.2"/>`;
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2 - Math.PI / 2;
+        s += `<circle class="${cf}" cx="${(23 + Math.cos(a) * 13).toFixed(1)}" cy="${(23 + Math.sin(a) * 13).toFixed(1)}" r="2.6"/>`;
+      }
+      return s + `<circle class="${cw}" cx="23" cy="23" r="13" style="stroke-dasharray:2 4;opacity:0.5"/>`;
+    }
+    let f = `<rect class="${cs}" x="11" y="11" width="24" height="24" rx="3"/>`;
+    [16, 23, 30].forEach(p => {
+      f += `<line class="${cw}" x1="${p}" y1="12" x2="${p}" y2="34" style="opacity:0.7"/>` +
+        `<line class="${cw}" x1="12" y1="${p}" x2="34" y2="${p}" style="opacity:0.7"/>`;
+    });
+    return f;
+  }
+  function coldGlyph(kind) {
+    if (kind === 'court') return `<path class="ig-c-soft" d="M13 19 L23 10 L33 19 Z"/>` +
+      `<line class="ig-c" x1="11" y1="19" x2="35" y2="19"/>` +
+      `<line class="ig-c" x1="16" y1="21" x2="16" y2="33"/><line class="ig-c" x1="23" y1="21" x2="23" y2="33"/><line class="ig-c" x1="30" y1="21" x2="30" y2="33"/>` +
+      `<line class="ig-c" x1="11" y1="36" x2="35" y2="36"/>`;
+    if (kind === 'ban') return `<circle class="ig-c" cx="23" cy="23" r="13"/><line class="ig-c" x1="14" y1="32" x2="32" y2="14"/>` +
+      `<line class="ig-c" x1="18" y1="18" x2="28" y2="28" style="opacity:0.4"/><line class="ig-c" x1="28" y1="18" x2="18" y2="28" style="opacity:0.4"/>`;
+    if (kind === 'warrant') return `<rect class="ig-c-soft" x="13" y="9" width="18" height="25" rx="1"/>` +
+      `<line class="ig-c" x1="17" y1="15" x2="27" y2="15" style="opacity:0.6"/><line class="ig-c" x1="17" y1="20" x2="27" y2="20" style="opacity:0.6"/><line class="ig-c" x1="17" y1="25" x2="24" y2="25" style="opacity:0.6"/>` +
+      `<circle class="ig-c" cx="30" cy="31" r="5"/><path class="ig-c" d="M28 31 l1.5 1.5 l3 -3.5"/>`;
+    return `<rect class="ig-c-soft" x="11" y="12" width="24" height="22" rx="2"/>` +
+      `<path class="ig-c" d="M23 11 l-3 5 l3 4 l-3 5 l3 5" style="stroke-width:1.7"/>` +
+      `<circle class="ig-c-fill" cx="16" cy="20" r="1.8"/><circle class="ig-c-fill" cx="16" cy="27" r="1.8"/>` +
+      `<circle class="ig-c-fill" cx="30" cy="20" r="1.8"/><circle class="ig-c-fill" cx="30" cy="27" r="1.8"/>`;
+  }
+  function glyphSvg(inner) { return `<svg viewBox="0 0 46 46">${inner}</svg>`; }
+
+  const PAIRS = [
+    { igbo: 'Egwugwu courts', igboSub: 'masked ancestral justice', col: 'Native Court system', colSub: 'colonial magistrates', warm: 'egwugwu', cold: 'court' },
+    { igbo: 'Oracle war sanction', igboSub: 'Agbala must assent', col: 'Prohibition on conflict', colSub: 'inter-village war banned', warm: 'oracle', cold: 'ban' },
+    { igbo: 'Village council', igboSub: 'ndichie · age grades', col: 'Warrant chief system', colSub: 'appointed by warrant', warm: 'council', cold: 'warrant' },
+    { igbo: 'Communal fabric', igboSub: 'one people, one clan', col: 'Convert / non-convert split', colSub: 'a community divided', warm: 'fabric', cold: 'divide' }
+  ];
+  function buildReplacement() {
+    const el = document.querySelector('[data-replacement]');
+    if (!el) return;
+    const head = '<div class="rep-head"><span class="rep-h-igbo">Igbo institution</span><span></span><span class="rep-h-col">Colonial replacement</span></div>';
+    const arrow = '<div class="rep-mid"><svg width="40" height="14" viewBox="0 0 40 14"><line class="rep-arrow" x1="2" y1="7" x2="32" y2="7"/><path class="rep-arrow-head" d="M32 3 L38 7 L32 11 Z"/></svg></div>';
+    const rows = PAIRS.map(p =>
+      `<div class="rep-row">` +
+      `<div class="rep-cell"><span class="rep-glyph">${glyphSvg(warmGlyph(p.warm))}</span><span class="rep-name">${p.igbo}<span class="rep-sub">${p.igboSub}</span></span></div>` +
+      arrow +
+      `<div class="rep-cell rep-cell--right"><span class="rep-name rep-name--cold">${p.col}<span class="rep-sub">${p.colSub}</span></span><span class="rep-glyph">${glyphSvg(coldGlyph(p.cold))}</span></div>` +
+      `</div>`
+    ).join('');
+    el.innerHTML = head + rows;
+  }
+
+  /* ═══════════════════ Women's War — encircle (Zone 2b) ═════════════════ */
+  function wwFig(x, y) {
+    return `<circle class="ww-fig" cx="${x}" cy="${y - 3.6}" r="2.2"/>` +
+      `<path class="ww-fig" d="M${x - 2.4} ${y + 5} L${x} ${y - 1} L${x + 2.4} ${y + 5} Z"/>`;
+  }
+  function buildEncircle() {
+    const svg = document.querySelector('[data-encircle]');
+    if (!svg) return;
+    const cx = 150, cy = 96, R = 60, n = 15;
+    const parts = [];
+    parts.push(`<line class="ww-warrant-stem" x1="${cx}" y1="${cy + 10}" x2="${cx}" y2="${cy - 4}"/>`);
+    parts.push(`<path class="ww-warrant" d="M${cx} ${cy - 11} L${cx + 7} ${cy - 3} L${cx} ${cy + 5} L${cx - 7} ${cy - 3} Z"/>`);
+    parts.push(`<circle class="ww-ring" cx="${cx}" cy="${cy}" r="38"/>`);
+    parts.push(`<circle class="ww-ring" cx="${cx}" cy="${cy}" r="${R}" style="opacity:0.4"/>`);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+      const rr = R + (i % 2 ? 4 : -3);
+      parts.push(wwFig(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr));
+    }
+    parts.push(`<text class="ww-lbl" x="${cx}" y="186" text-anchor="middle">OGU UMUNWANYI · 1929</text>`);
+    svg.innerHTML = parts.join('');
+  }
+
+  /* ═══════════════════ Zone 3 — church path ══════════════════════════════ */
+  function smoothPath(pts) {
+    if (pts.length < 2) return '';
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+      const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+      d += ` C${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${p2[0]} ${p2[1]}`;
+    }
+    return d;
+  }
+  const CP_COMMS = [[120, 120, 24], [255, 100, 22], [370, 165, 22], [150, 235, 22], [300, 252, 24]];
+  const CP_PATH  = [[56, 280], [128, 256], [104, 150], [238, 120], [350, 192], [292, 278]];
+  const CP_REACH = [[128, 256, ''], [104, 150, 'NWOYE'], [238, 120, ''], [350, 192, ''], [292, 278, '']];
+
+  function cpDisc(c) {
+    const [cx, cy, r] = c;
+    const dots = [[-4, 2], [4, 2], [0, -4]].map(d => `<circle class="cp-center" cx="${cx + d[0]}" cy="${cy + d[1]}" r="1.9"/>`).join('');
+    return `<circle class="cp-disc" cx="${cx}" cy="${cy}" r="${r}"/>${dots}`;
+  }
+  function cpReached(p) {
+    const [px, py, label] = p;
+    let s = `<circle class="cp-reached-halo" cx="${px}" cy="${py}" r="7"/>` +
+      `<circle class="cp-excluded" cx="${px}" cy="${py}" r="4.2"/>` +
+      `<circle class="cp-reached" cx="${px}" cy="${py}" r="2.4"/>`;
+    if (label) s += `<text class="cp-lbl" x="${+px - 9}" y="${+py + 3}" text-anchor="end">${label}</text>`;
+    return s;
+  }
+  function cpChapel(x, y) {
+    return `<g><rect class="cp-chapel" x="${x - 7}" y="${y}" width="14" height="12"/>` +
+      `<path class="cp-chapel" d="M${x - 9} ${y} L${x} ${y - 10} L${x + 9} ${y}"/>` +
+      `<line class="cp-chapel" x1="${x}" y1="${y - 18}" x2="${x}" y2="${y - 11}"/>` +
+      `<line class="cp-chapel" x1="${x - 2.6}" y1="${y - 15}" x2="${x + 2.6}" y2="${y - 15}"/>` +
+      `<text class="cp-lbl" x="${x}" y="${y + 26}" text-anchor="middle">THE CHURCH</text></g>`;
+  }
+  function buildChurchPath() {
+    const svg = document.querySelector('[data-church-path]');
+    if (!svg) return;
+    const frame = '<rect class="cp-frame" x="58" y="44" width="350" height="276" rx="10"/>' +
+      '<text class="cp-frame-lbl" x="64" y="38">UMUOFIA · SCHEMATIC</text>';
+    const discs = CP_COMMS.map(cpDisc).join('');
+    const path  = `<path class="cp-path" d="${smoothPath(CP_PATH)}"/>`;
+    const reach = CP_REACH.map(p => cpReached(p)).join('');
+    const note  = '<text class="cp-note" x="233" y="340" text-anchor="middle">Not the centre — the margins.</text>';
+    svg.innerHTML = frame + discs + path + reach + cpChapel(46, 290) + note;
+  }
+
+  /* ═══════════════════ Zone 3 — church pipeline ══════════════════════════ */
+  const PIPE = [
+    { x: 78,  name: ['Mission', 'church'],       sub: "Mr. Brown's church",  g: 'chapel' },
+    { x: 194, name: ['Mission', 'school'],        sub: 'the road to letters', g: 'book' },
+    { x: 310, name: ['Literacy'],                 sub: 'reading · writing',   g: 'pen' },
+    { x: 426, name: ['Colonial', 'post'],         sub: 'clerk · interpreter', g: 'doc' },
+    { x: 540, name: ['Administrative', 'class'],  sub: 'who governs Nigeria', g: 'columns' }
+  ];
+  function pipeMix(t) {
+    return [
+      Math.round(196 + (44 - 196) * t),
+      Math.round(114 + (26 - 114) * t),
+      Math.round(42  + (8  - 42)  * t)
+    ];
+  }
+  function pipeGlyph(kind, x, col) {
+    const s = ` stroke="${col}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"`;
+    const sf = ` fill="${col}"`;
+    if (kind === 'chapel') return `<g${s}><rect x="${x - 7}" y="90" width="14" height="12"/><path d="M${x - 9} 90 L${x} 80 L${x + 9} 90"/><line x1="${x}" y1="73" x2="${x}" y2="79"/><line x1="${x - 2.6}" y1="76" x2="${x + 2.6}" y2="76"/></g>`;
+    if (kind === 'book')   return `<g${s}><line x1="${x}" y1="84" x2="${x}" y2="103"/><path d="M${x} 85 C ${x - 10} 83 ${x - 13} 88 ${x - 13} 100 L ${x} 102"/><path d="M${x} 85 C ${x + 10} 83 ${x + 13} 88 ${x + 13} 100 L ${x} 102"/></g>`;
+    if (kind === 'pen')    return `<g${s}><line x1="${x - 9}" y1="90" x2="${x + 3}" y2="90"/><line x1="${x - 9}" y1="95" x2="${x + 6}" y2="95"/><line x1="${x - 9}" y1="100" x2="${x}" y2="100"/><line x1="${x + 11}" y1="80" x2="${x - 1}" y2="101"/><path${sf} stroke="none" d="M${x - 1} 101 L${x - 4.5} 104 L${x + 1.5} 103.5 Z"/></g>`;
+    if (kind === 'doc')    return `<g${s}><rect x="${x - 9}" y="80" width="17" height="23" rx="1"/><line x1="${x - 5}" y1="86" x2="${x + 4}" y2="86"/><line x1="${x - 5}" y1="91" x2="${x + 4}" y2="91"/><line x1="${x - 5}" y1="96" x2="${x + 1}" y2="96"/><circle cx="${x + 7}" cy="101" r="4.5"/><path d="M${x + 4.6} 101 l1.6 1.7 l3 -3.4"/></g>`;
+    return `<g${s}><path d="M${x - 12} 88 L${x} 79 L${x + 12} 88 Z"/><line x1="${x - 8}" y1="90" x2="${x - 8}" y2="102"/><line x1="${x}" y1="90" x2="${x}" y2="102"/><line x1="${x + 8}" y1="90" x2="${x + 8}" y2="102"/><line x1="${x - 12}" y1="104" x2="${x + 12}" y2="104"/></g>`;
+  }
+  function buildChurchPipeline() {
+    const svg = document.querySelector('[data-church-pipe]');
+    if (!svg) return;
+    const defs = '<defs><linearGradient id="tcp-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C4722A"/><stop offset="1" stop-color="#2C1A08"/></linearGradient></defs>';
+    const eyebrow = '<text class="tcp-eyebrow" x="78" y="30">SOFT ENTRY → HARD RULE</text>';
+    const spine = '<line x1="78" y1="96" x2="540" y2="96" stroke="url(#tcp-grad)" stroke-width="2.5"/>';
+    let chevs = '';
+    for (let k = 0; k < PIPE.length - 1; k++) {
+      const mx = (PIPE[k].x + PIPE[k + 1].x) / 2;
+      const [r, g, b] = pipeMix((k + 0.5) / (PIPE.length - 1));
+      chevs += `<path d="M${mx - 3} 92 L${mx + 3} 96 L${mx - 3} 100" fill="none" stroke="rgb(${r},${g},${b})" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+    const nodes = PIPE.map((st, i) => {
+      const [r, g, b] = pipeMix(i / (PIPE.length - 1));
+      const col = `rgb(${r},${g},${b})`;
+      const faint = `rgba(${r},${g},${b},0.07)`;
+      const node = `<circle cx="${st.x}" cy="96" r="27" fill="${faint}" stroke="${col}" stroke-width="1.6"/>`;
+      const glyph = pipeGlyph(st.g, st.x, col);
+      const nameCls = i <= 1 ? 'tcp-name--warm' : (i === 2 ? 'tcp-name--mid' : 'tcp-name--cold');
+      const ny = 152;
+      const names = st.name.map((ln, j) => `<text class="${nameCls}" x="${st.x}" y="${ny + j * 15}" text-anchor="middle">${ln}</text>`).join('');
+      const sub   = `<text class="tcp-sub" x="${st.x}" y="${ny + st.name.length * 15 + 4}" text-anchor="middle">${st.sub}</text>`;
+      return node + glyph + names + sub;
+    }).join('');
+    svg.innerHTML = defs + eyebrow + spine + chevs + nodes;
+  }
+
+  /* ═══════════════════ Zone 4 — disappearance emblem ════════════════════ */
+  function person(x, baseY, h, hCls, bCls) {
+    const hr = h * 0.17, headCy = baseY - h + hr;
+    const shoulder = headCy + hr * 1.25, half = h * 0.23;
+    return `<circle class="${hCls}" cx="${x.toFixed(1)}" cy="${headCy.toFixed(1)}" r="${hr.toFixed(1)}"/>` +
+      `<path class="${bCls}" d="M${(x - half).toFixed(1)} ${baseY.toFixed(1)} L${x.toFixed(1)} ${shoulder.toFixed(1)} L${(x + half).toFixed(1)} ${baseY.toFixed(1)} Z"/>`;
+  }
+  function flamePath(cx, baseY, k) {
+    const X = o => (cx + o * k).toFixed(1);
+    const Y = o => (baseY + o * k).toFixed(1);
+    return `M${X(-24)} ${Y(0)}` +
+      ` C${X(-38)} ${Y(-32)} ${X(-26)} ${Y(-52)} ${X(-16)} ${Y(-62)}` +
+      ` C${X(-21)} ${Y(-74)} ${X(-14)} ${Y(-80)} ${X(-11)} ${Y(-88)}` +
+      ` C${X(-8)} ${Y(-76)} ${X(-6)} ${Y(-71)} ${X(-2)} ${Y(-75)}` +
+      ` C${X(0)} ${Y(-88)} ${X(2)} ${Y(-96)} ${X(3)} ${Y(-101)}` +
+      ` C${X(4)} ${Y(-88)} ${X(7)} ${Y(-76)} ${X(11)} ${Y(-72)}` +
+      ` C${X(9)} ${Y(-80)} ${X(15)} ${Y(-76)} ${X(14)} ${Y(-68)}` +
+      ` C${X(24)} ${Y(-52)} ${X(38)} ${Y(-32)} ${X(24)} ${Y(0)}` +
+      ` C${X(15)} ${Y(6)} ${X(-15)} ${Y(6)} ${X(-24)} ${Y(0)} Z`;
+  }
+  function flameAura(cx, baseY, k) { return `<path class="dg-flame" d="${flamePath(cx, baseY, k)}"/>`; }
+  function ankletCords(cx, baseY, k) {
+    function band(ax) {
+      return `<line class="dg-anklet" x1="${(ax - 4 * k).toFixed(1)}" y1="${(baseY - 7 * k).toFixed(1)}" x2="${(ax + 4 * k).toFixed(1)}" y2="${(baseY - 7 * k).toFixed(1)}"/>` +
+        `<line class="dg-anklet" x1="${(ax - 3.5 * k).toFixed(1)}" y1="${(baseY - 4 * k).toFixed(1)}" x2="${(ax + 3.5 * k).toFixed(1)}" y2="${(baseY - 4 * k).toFixed(1)}"/>`;
+    }
+    return band(cx - 12 * k) + band(cx + 12 * k);
+  }
+  function emblem(cx, baseY, h, level) {
+    const k = h / 78;
+    const hr = 9 * k, headCy = baseY - h + hr;
+    const shY = headCy + hr + 3 * k, shH = 17 * k;
+    const hipY = baseY - 26 * k, hipH = 7 * k, foot = 13 * k;
+    const hCls = level === 'reduced' ? 'dg-mid-h' : 'dg-ok-h';
+    const bCls = level === 'reduced' ? 'dg-mid-b' : 'dg-ok-b';
+    const lCls = level === 'reduced' ? 'dg-mid-line' : 'dg-ok-line';
+    const p = [];
+    if (level === 'full') p.push(flameAura(cx, baseY, k));
+    p.push(`<path class="${lCls}" style="stroke-width:${(5 * k).toFixed(1)}" d="M${(cx - hipH).toFixed(1)} ${hipY.toFixed(1)} L${(cx - foot).toFixed(1)} ${baseY.toFixed(1)}"/>`);
+    p.push(`<path class="${lCls}" style="stroke-width:${(5 * k).toFixed(1)}" d="M${(cx + hipH).toFixed(1)} ${hipY.toFixed(1)} L${(cx + foot).toFixed(1)} ${baseY.toFixed(1)}"/>`);
+    p.push(`<path class="${bCls}" d="M${(cx - shH).toFixed(1)} ${shY.toFixed(1)} L${(cx + shH).toFixed(1)} ${shY.toFixed(1)} L${(cx + hipH).toFixed(1)} ${hipY.toFixed(1)} L${(cx - hipH).toFixed(1)} ${hipY.toFixed(1)} Z"/>`);
+    if (level === 'full') {
+      p.push(`<path class="${lCls}" style="stroke-width:${(4 * k).toFixed(1)}" d="M${(cx - shH).toFixed(1)} ${shY.toFixed(1)} L${(cx - 30 * k).toFixed(1)} ${(shY + 14 * k).toFixed(1)} L${(cx - 17 * k).toFixed(1)} ${(shY + 19 * k).toFixed(1)}"/>`);
+      p.push(`<path class="${lCls}" style="stroke-width:${(4 * k).toFixed(1)}" d="M${(cx + shH).toFixed(1)} ${shY.toFixed(1)} L${(cx + 30 * k).toFixed(1)} ${(shY + 14 * k).toFixed(1)} L${(cx + 17 * k).toFixed(1)} ${(shY + 19 * k).toFixed(1)}"/>`);
+    } else {
+      p.push(`<path class="${lCls}" style="stroke-width:${(3.4 * k).toFixed(1)}" d="M${(cx - shH + 1).toFixed(1)} ${shY.toFixed(1)} L${(cx - shH - 3 * k).toFixed(1)} ${(shY + 16 * k).toFixed(1)}"/>`);
+      p.push(`<path class="${lCls}" style="stroke-width:${(3.4 * k).toFixed(1)}" d="M${(cx + shH - 1).toFixed(1)} ${shY.toFixed(1)} L${(cx + shH + 3 * k).toFixed(1)} ${(shY + 16 * k).toFixed(1)}"/>`);
+    }
+    p.push(`<circle class="${hCls}" cx="${cx.toFixed(1)}" cy="${headCy.toFixed(1)}" r="${hr.toFixed(1)}"/>`);
+    if (level === 'full') {
+      p.push(ankletCords(cx, baseY, k));
+      p.push(`<line class="dg-title" x1="${(cx - 16 * k).toFixed(1)}" y1="${(baseY + 6 * k).toFixed(1)}" x2="${(cx + 16 * k).toFixed(1)}" y2="${(baseY + 6 * k).toFixed(1)}"/>`);
+      p.push(`<line class="dg-title" x1="${(cx - 11 * k).toFixed(1)}" y1="${(baseY + 10 * k).toFixed(1)}" x2="${(cx + 11 * k).toFixed(1)}" y2="${(baseY + 10 * k).toFixed(1)}"/>`);
+    } else {
+      p.push(`<line class="dg-title" x1="${(cx - 10 * k).toFixed(1)}" y1="${(baseY + 6 * k).toFixed(1)}" x2="${(cx + 10 * k).toFixed(1)}" y2="${(baseY + 6 * k).toFixed(1)}" style="stroke:#97602e;opacity:0.75"/>`);
+    }
+    return p.join('');
+  }
+  function buildDiminish() {
+    const svg = document.querySelector('[data-diminish]');
+    if (!svg) return;
+    const baseY = 250;
+    const parts = [];
+    parts.push(`<line class="dg-base" x1="40" y1="${baseY}" x2="800" y2="${baseY}"/>`);
+    // Station 1 — at the centre of his world
+    const c1x = 150, clan1 = 7;
+    for (let i = 0; i < clan1; i++) {
+      const a = -Math.PI + (i / (clan1 - 1)) * Math.PI;
+      parts.push(person(c1x + Math.cos(a) * 78, 188 + Math.sin(a) * 70, 13, 'dg-clan-h', 'dg-clan-b'));
+    }
+    parts.push(emblem(c1x, baseY, 86, 'full'));
+    parts.push(`<text class="dg-lbl dg-lbl--terra" x="${c1x}" y="318" text-anchor="middle">At the centre of his world</text>`);
+    parts.push(`<text class="dg-scale" x="${c1x}" y="334" text-anchor="middle">the roaring flame</text>`);
+    // Station 2 — the fire cools
+    const c2x = 420, clan2 = 5;
+    parts.push('<g opacity="0.3">');
+    for (let j = 0; j < clan2; j++) {
+      const a2 = -Math.PI + (j / (clan2 - 1)) * Math.PI;
+      parts.push(person(c2x + Math.cos(a2) * 54, 206 + Math.sin(a2) * 46, 11, 'dg-clan-h', 'dg-clan-b'));
+    }
+    parts.push('</g>');
+    parts.push(emblem(c2x, baseY, 52, 'reduced'));
+    parts.push(`<text class="dg-lbl" x="${c2x}" y="318" text-anchor="middle">As the world falls apart</text>`);
+    parts.push(`<text class="dg-scale" x="${c2x}" y="334" text-anchor="middle">the fire cools</text>`);
+    // Station 3 — a reasonable paragraph
+    const c3x = 680, boxL = 624, boxW = 116;
+    const lineYs = [182, 194, 206, 218, 230, 242];
+    const rline = rng(4471);
+    lineYs.forEach((ly, kk) => {
+      const w = boxW * (0.72 + rline() * 0.28);
+      if (kk === 3) {
+        parts.push(`<line class="dg-textline" x1="${boxL}" y1="${ly}" x2="${c3x - 9}" y2="${ly}"/>`);
+        parts.push(`<line class="dg-textline" x1="${c3x + 9}" y1="${ly}" x2="${boxL + w}" y2="${ly}"/>`);
+      } else {
+        parts.push(`<line class="dg-textline" x1="${boxL}" y1="${ly}" x2="${boxL + w}" y2="${ly}"/>`);
+      }
+    });
+    parts.push(person(c3x, 221, 13, 'dg-rec-h', 'dg-rec-b'));
+    parts.push(`<text class="dg-lbl dg-lbl--umber" x="${c3x}" y="318" text-anchor="middle">A reasonable paragraph</text>`);
+    parts.push(`<text class="dg-scale" x="${c3x}" y="334" text-anchor="middle">cold, impotent ash</text>`);
+    function conn(x1, x2) {
+      const my = baseY - 4;
+      parts.push(`<line class="dg-conn" x1="${x1}" y1="${my}" x2="${x2 - 7}" y2="${my}"/>`);
+      parts.push(`<path class="dg-arrow" d="M${x2 - 7} ${my - 3.2} L${x2} ${my} L${x2 - 7} ${my + 3.2} Z"/>`);
+    }
+    conn(258, 360);
+    conn(486, 602);
+    svg.innerHTML = parts.join('');
+  }
+
+  /* ═══════════════════ Exclusive-crossfade scroll engine ═════════════════
+     CSS transitions freeze on SVG <g> elements; tween opacity per rAF instead.
+  ══════════════════════════════════════════════════════════════════════════ */
+  let sweeps = [];
+  let revealTween = null;
+  const nextFrame = fn => document.hidden ? setTimeout(fn, 16) : requestAnimationFrame(fn);
+
+  function initZones() {
+    sweeps = [];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || window.innerWidth < 768) return;
+
+    document.querySelectorAll('.sr-scrolly-zone[data-field="map"]').forEach(z => {
+      const field = z.querySelector('.sr-zone-field');
+      const beats = Array.from(z.querySelectorAll('[data-beat]'));
+      if (!beats.length) return;
+
+      function sweep() {
+        const line = window.innerHeight * 0.5;
+        let bestIdx = 0, bestDist = Infinity;
+        beats.forEach((beat, i) => {
+          const rect = beat.getBoundingClientRect();
+          const dist = Math.abs((rect.top + rect.height / 2) - line);
+          if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+        });
+        beats.forEach((beat, i) => beat.classList.toggle('is-active', i === bestIdx));
+
+        if (field && field.querySelector('[data-show-from]')) {
+          const curKey = beats[bestIdx] && beats[bestIdx].dataset.activates;
+          const revealed = {};
+          if (curKey) revealed[curKey] = 1;
+          setFieldReveal(field, revealed);
+          field.querySelectorAll('[data-show-from]').forEach(g => {
+            g.classList.toggle('is-current', !!curKey && g.getAttribute('data-show-from') === curKey);
+          });
+        }
+      }
+      sweeps.push(sweep);
+      sweep();
+    });
+  }
+
+  function setFieldReveal(field, revealed) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let changed = false;
+    field.querySelectorAll('[data-show-from]').forEach(g => {
+      const target = revealed[g.getAttribute('data-show-from')] ? 1 : 0;
+      if (g.__t === undefined) g.__t = parseFloat(getComputedStyle(g).opacity) || 0;
+      if (g.__t !== target) { g.__t = target; changed = true; }
+      if (g.__c === undefined) g.__c = parseFloat(getComputedStyle(g).opacity) || 0;
+      if (reduced) { g.__c = target; g.style.opacity = String(target); }
+    });
+    if (reduced || !changed) return;
+    if (!revealTween) revealTween = nextFrame(tickReveal);
+  }
+
+  function tickReveal() {
+    revealTween = null;
+    let moving = false;
+    document.querySelectorAll('[data-show-from]').forEach(g => {
+      if (g.__t === undefined) return;
+      let cur = g.__c !== undefined ? g.__c : (parseFloat(getComputedStyle(g).opacity) || 0);
+      const diff = g.__t - cur;
+      if (Math.abs(diff) < 0.02) { cur = g.__t; }
+      else { cur += diff * 0.16; moving = true; }
+      g.__c = cur; g.style.opacity = String(cur);
+    });
+    if (moving) revealTween = nextFrame(tickReveal);
+  }
+
+  let sweepQueued = false;
+  function runSweeps() {
+    if (sweepQueued) return; sweepQueued = true;
+    nextFrame(() => { sweepQueued = false; sweeps.forEach(fn => fn()); });
+  }
+
+  function boot() {
+    document.body.classList.add('tfa-close-disappearance');
+    buildWarrantMap();
+    buildPartitionMap();
+    buildReplacement();
+    buildEncircle();
+    buildChurchPath();
+    buildChurchPipeline();
+    buildDiminish();
+    initZones();
+    window.addEventListener('scroll', runSweeps, { passive: true });
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { initZones(); runSweeps(); }, 250);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>

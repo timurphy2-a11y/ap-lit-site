@@ -1,0 +1,410 @@
+/* TFA Colonialism (Spoke 3 — "Colonialism in West Africa") — design-iteration overrides
+ * Layered ON TOP of summer-reading.css / scrolly-zones.css / tokens.css and
+ * tfa-world.css (which carries the shared TFA primitives: spoke header,
+ * section opener, term card, ideogram, figure, still zone, tweaks panel).
+ * This file holds only the Spoke-3 work: the warrant-chief map field, the
+ * colonial-replacement diagram, the Women's War encircle coda, the closing
+ * variants, institution ideograms, and the argument-zone density treatment.
+ */
+
+/* eyebrow color + dwell (this spoke is still-dominant, one driving map) */
+[data-section="tfa"] .sr-section-opener-eyebrow { color: var(--t-terra); }
+.sr-scrolly-zone[data-tempo="driving"] { --beat-dwell: calc(280px * var(--dwell-scale, 1)); }
+
+/* ════════════════════════════════════════════════════════════════
+   1 · Argument-zone density treatment (Zones 1, 3, 4)
+   Lead-lines (pulled key claims) + marginal mono glosses — no hidden text.
+   ════════════════════════════════════════════════════════════════ */
+.tfa-lead {
+  max-width: 30rem;
+  margin: var(--s-12) auto;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2rem);
+  line-height: 1.32;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.tfa-lead--accent { color: var(--t-terra); }
+/* the Zone-3 pivot: narrower, extra air, the sentence carries its own weight */
+.tfa-pivot {
+  max-width: 24rem;
+  margin: var(--s-16) auto;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 1.75rem);
+  line-height: 1.4;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.tfa-pivot::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--t-terra);
+  margin: 0 auto var(--s-6);
+  opacity: 0.7;
+}
+
+/* marginal mono gloss — a contextual label set above a prose block */
+.tfa-gloss {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin: 0 auto var(--s-3);
+}
+.tfa-gloss--muted { color: var(--color-muted); }
+/* contextual marker (Women's War / DC) — italic note set apart from the prose */
+.tfa-marker-note {
+  max-width: 34rem;
+  margin: var(--s-6) auto 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--t-meta);
+  line-height: var(--lh-prose);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   2 · ZONE 2 — the warrant-chief map field · driving · tinted
+   Exclusive crossfade between three complete states (JS tween owns opacity).
+   ════════════════════════════════════════════════════════════════ */
+.tfa-z2-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-10) var(--gutter-lg) var(--s-6);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.tfa-z2-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
+
+/* wide landscape figure (the Lugard / northern-emirs photo in the map intro) */
+.tfa-figure--wide { width: min(680px, 100%); margin-inline: auto; }
+.tfa-figure--wide figcaption { max-width: 40rem; margin-inline: auto; }
+
+.tfa-zone--map .sr-zone-field { width: clamp(340px, 58%, 680px); }
+.tfa-zone--map .sr-zone-beat { padding-inline: clamp(16px, 4vw, 64px); }
+.tfa-zone--map .sr-zone-beat .sr-beat-card { max-width: clamp(220px, 30%, 360px); }
+
+/* Indirect Rule — split layout: graphic pinned RIGHT, cards flow down the LEFT
+   channel (a deliberate contrast with §1's centered channel). */
+.tfa-warrant-zone .sr-zone-field {
+  width: clamp(320px, 46%, 560px);
+  margin-left: auto;
+  margin-right: clamp(8px, 4vw, 64px);
+}
+.tfa-warrant-zone .sr-zone-beats { max-width: none; }
+.tfa-warrant-zone .sr-zone-beat { justify-content: flex-start; padding-inline: clamp(16px, 4vw, 64px); }
+.tfa-warrant-zone .sr-zone-beat .sr-beat-card { max-width: clamp(240px, 40%, 420px); min-width: 0; }
+
+/* JS owns the accumulative/crossfade opacity — kill the inherited transition */
+.tfa-warrant-field .sr-warrant { width: 100%; height: 100%; }
+.tfa-warrant-field [data-show-from] { transition: none !important; opacity: 0; }
+
+/* persistent caption — lighter than the photo caption, for the pale map */
+.tfa-warrant-field .sr-zone-caption {
+  background: rgba(44, 26, 8, 0.72);
+  color: rgba(240, 228, 207, 0.9);
+}
+
+/* warrant-map SVG element styles */
+.sr-warrant .wm-frame   { fill: none; stroke: var(--color-rule); stroke-width: 1; stroke-dasharray: 3 6; opacity: 0.7; }
+.sr-warrant .wm-frame-lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--color-rule); }
+.sr-warrant .wm-village-ring { fill: rgba(90,138,50,0.07); stroke: var(--t-forest); stroke-width: 1.4; }
+.sr-warrant .wm-council { fill: var(--t-forest); opacity: 0.8; }
+.sr-warrant .wm-village-ring.is-ghost { opacity: 0.2; }
+.sr-warrant .wm-council.is-ghost { opacity: 0.16; }
+.sr-warrant .wm-hub-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--t-umber); }
+.sr-warrant .wm-arrow { stroke: var(--t-umber); stroke-width: 1.4; opacity: 0.6; fill: none; stroke-linecap: round; }
+.sr-warrant .wm-arrow--dash { stroke-dasharray: 4 4; }
+.sr-warrant .wm-deadcross { stroke: var(--t-umber); stroke-width: 1.3; opacity: 0.6; stroke-linecap: round; }
+.sr-warrant .wm-warrant { fill: var(--t-terra); stroke: var(--color-cream); stroke-width: 1; }
+.sr-warrant .wm-warrant-stem { stroke: var(--t-terra); stroke-width: 1.4; stroke-linecap: round; }
+.sr-warrant .wm-warrant-halo { fill: none; stroke: var(--t-terra); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.6; }
+.sr-warrant .wm-warrant-lbl { font-family: var(--font-mono); font-size: 7.5px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--t-terra); }
+.sr-warrant .wm-misalign { stroke: var(--t-terra); stroke-width: 1; stroke-dasharray: 1.5 2.5; opacity: 0.75; }
+.sr-warrant .wm-note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; fill: var(--color-muted); }
+.sr-warrant .wm-note--accent { fill: var(--t-terra); }
+.sr-warrant .wm-note--umber { fill: var(--t-umber); }
+
+/* density lever — hide the in-map text labels, leave pure drawing */
+.tfa-warrant-field.is-glyphs text { opacity: 0; }
+
+/* ════════════════════════════════════════════════════════════════
+   2b · ZONE 1 — the partition-of-Africa map field · driving · cream
+   Exclusive crossfade: living → partition (lines from Berlin) → 1914.
+   ════════════════════════════════════════════════════════════════ */
+.tfa-partition-field .sr-partition { width: 100%; height: 100%; }
+.tfa-partition-field [data-show-from] { transition: none !important; opacity: 0; }
+.tfa-partition-field .sr-zone-caption {
+  background: rgba(44, 26, 8, 0.72);
+  color: rgba(240, 228, 207, 0.9);
+}
+/* center-channel layout: a narrow centered map, beat cards flow through the outer margins */
+.tfa-partition-zone .sr-zone-field.tfa-partition-field { width: clamp(340px, 38%, 480px); }
+.tfa-partition-zone .sr-zone-beats { max-width: none; }
+.tfa-partition-zone .sr-zone-beat { padding-inline: clamp(16px, 4vw, 72px); }
+.tfa-partition-zone .sr-zone-beat[data-activates] .sr-beat-card { max-width: clamp(200px, 22%, 320px); min-width: 0; }
+/* the lead beat (absent Africans) reads over the living continent — keep its drama */
+.tfa-zone--map .sr-beat-card--lead { border-top: 2px solid var(--t-terra); }
+.sr-beat-card--lead p {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 1.3rem; line-height: 1.34; color: var(--t-terra); text-wrap: balance;
+}
+
+/* partition-map SVG element styles */
+.sr-partition .pcA-coast { fill: rgba(90,138,50,0.07); stroke: var(--t-forest); stroke-width: 1.4; stroke-linejoin: round; }
+.sr-partition .pcA-coast.is-faint { fill: none; stroke: var(--t-umber); stroke-width: 1; opacity: 0.55; }
+.sr-partition .pcA-frame-lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--color-rule); }
+.sr-partition .pcA-cluster-dot { fill: var(--t-forest); opacity: 0.82; }
+.sr-partition .pcA-cluster-dot.is-ghost { opacity: 0.16; }
+.sr-partition .pcA-region-edge { fill: none; stroke: rgba(44,26,8,0.55); stroke-width: 0.8; stroke-linejoin: round; }
+.sr-partition .pcA-region-lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; fill: rgba(40,26,8,0.82); }
+.sr-partition .pcA-berlin-node { fill: var(--t-umber); }
+.sr-partition .pcA-berlin-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--t-umber); }
+.sr-partition .pcA-leader { stroke: var(--t-umber); stroke-width: 0.8; stroke-dasharray: 1.5 3; opacity: 0.5; fill: none; }
+.sr-partition .pcA-line { stroke: var(--t-terra); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+.sr-partition .pcA-tick { stroke: var(--t-terra); stroke-width: 1; opacity: 0.7; stroke-linecap: round; }
+.sr-partition .pcA-border { stroke: var(--t-umber); stroke-width: 1.4; fill: none; stroke-linecap: round; opacity: 0.85; }
+.sr-partition .pcA-free { fill: var(--color-cream); stroke: var(--t-forest); stroke-width: 0.9; stroke-dasharray: 2.5 2.5; }
+.sr-partition .pcA-free-leader { stroke: var(--t-forest); stroke-width: 0.8; opacity: 0.7; }
+.sr-partition .pcA-free-lbl { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--t-forest); }
+.sr-partition .pcA-igbo-ring { fill: none; stroke: var(--t-terra); stroke-width: 1.4; stroke-dasharray: 2 3; }
+.sr-partition .pcA-igbo-leader { stroke: var(--t-terra); stroke-width: 1; opacity: 0.7; }
+.sr-partition .pcA-igbo-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--t-terra); }
+.sr-partition .pcA-leg-sw { stroke: rgba(44,26,8,0.25); stroke-width: 0.5; }
+.sr-partition .pcA-leg-free { fill: var(--color-cream); stroke: var(--t-forest); stroke-width: 0.9; stroke-dasharray: 2 2; }
+.sr-partition .pcA-leg-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--color-muted); }
+.sr-partition .pcA-note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.03em; fill: var(--color-muted); }
+.sr-partition .pcA-note--umber { fill: var(--t-umber); }
+.sr-partition .pcA-note--accent { fill: var(--t-terra); }
+
+/* line-draw: visible by default (print / reduced motion); animate only when motion is welcome */
+.sr-partition .pcA-line--draw { stroke-dasharray: var(--len); stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .sr-partition [data-show-from] .pcA-line--draw { stroke-dashoffset: var(--len); }
+  .sr-partition [data-show-from].is-current .pcA-line--draw { animation: pcA-draw 900ms var(--ease-out, ease-out) forwards; }
+}
+@keyframes pcA-draw { to { stroke-dashoffset: 0; } }
+
+/* ════════════════════════════════════════════════════════════════
+   3 · ZONE 4 — the colonial-replacement diagram (held, two-register)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-rep-block { max-width: 44rem; margin: var(--s-10) auto; }
+.tfa-rep {
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--t-terra);
+  background: rgba(246, 241, 232, 0.6);
+  padding: var(--s-6) clamp(var(--s-4), 4vw, var(--s-10)) var(--s-8);
+}
+.rep-head {
+  display: grid; grid-template-columns: 1fr 60px 1fr; gap: var(--s-3);
+  margin-bottom: var(--s-2);
+}
+.rep-head span {
+  font-family: var(--font-mono); font-size: var(--t-tag);
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.rep-head .rep-h-igbo { color: var(--t-terra); text-align: center; }
+.rep-head .rep-h-col { color: var(--t-umber); text-align: center; }
+.rep-row {
+  display: grid; grid-template-columns: 1fr 60px 1fr;
+  align-items: center; gap: var(--s-3);
+  padding: var(--s-4) 0; border-bottom: 1px solid var(--color-rule);
+}
+.rep-row:first-of-type { border-top: 1px solid var(--color-rule); }
+.rep-cell { display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: var(--s-4); }
+.rep-cell--right { grid-template-columns: 1fr 48px; text-align: right; }
+.rep-glyph { flex: 0 0 auto; width: 48px; height: 48px; }
+.rep-glyph svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.rep-name { font-family: var(--font-display); font-style: italic; font-size: 1.0625rem; line-height: 1.2; color: var(--color-ink); }
+.rep-name .rep-sub {
+  display: block; font-family: var(--font-mono); font-size: 8.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; font-style: normal;
+  color: var(--color-muted); margin-top: var(--s-1);
+}
+.rep-name--cold { font-family: var(--font-body); font-style: normal; font-weight: 600; font-size: 0.9375rem; color: var(--t-umber); }
+.rep-name--cold .rep-sub { color: #8a8276; }
+.rep-mid { display: flex; align-items: center; justify-content: center; }
+.rep-arrow { stroke: var(--t-umber); stroke-width: 1.5; fill: none; }
+.rep-arrow-head { fill: var(--t-umber); }
+.tfa-rep-cap {
+  margin-top: var(--s-5); font-family: var(--font-body); font-size: var(--t-meta);
+  line-height: var(--lh-prose); color: var(--color-muted); text-align: center;
+}
+.tfa-rep-cap em { font-style: italic; }
+
+/* institution glyph strokes — warm Igbo / cold colonial */
+.ig-w { fill: none; stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ig-w-fill { fill: var(--t-terra); }
+.ig-w-soft { fill: rgba(196,114,42,0.10); stroke: var(--t-terra); stroke-width: 1.4; stroke-linejoin: round; }
+.ig-c { fill: none; stroke: var(--t-umber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ig-c-fill { fill: var(--t-umber); }
+.ig-c-soft { fill: rgba(44,26,8,0.06); stroke: var(--t-umber); stroke-width: 1.4; stroke-linejoin: round; }
+
+/* inline institution ideogram (a few spots in the argument zones) */
+.tfa-inst {
+  display: flex; align-items: center; gap: var(--s-4);
+  max-width: var(--content-prose); margin: var(--s-8) auto;
+}
+.tfa-inst-glyph { flex: 0 0 auto; width: 56px; height: 56px; }
+.tfa-inst-glyph svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.tfa-inst-text { font-family: var(--font-body); font-size: var(--t-body-sm); line-height: var(--lh-prose); color: var(--color-muted); }
+.tfa-inst-text b { font-family: var(--font-display); font-style: italic; font-weight: 500; color: var(--t-terra); font-size: 1.05rem; }
+
+/* ════════════════════════════════════════════════════════════════
+   3b · ZONE 3 — "Disruption Through Respect" graphics (held)
+   Two toggled options for the encroachment-strategy figure.
+   ════════════════════════════════════════════════════════════════ */
+.tfa-church-block { max-width: 40rem; margin: var(--s-12) auto var(--s-8); }
+
+.sr-church-path { display: block; width: 100%; max-width: 460px; height: auto; margin: 0 auto; overflow: visible; }
+.sr-church-pipe { display: block; width: 100%; height: auto; overflow: visible; }
+
+.tfa-church-cap {
+  margin: var(--s-5) auto 0; max-width: 34rem;
+  font-family: var(--font-body); font-size: var(--t-meta);
+  line-height: var(--lh-prose); color: var(--color-muted); text-align: center;
+}
+.tfa-church-cap em { font-style: italic; color: var(--color-ink); }
+
+/* Option A — the soft path in (margins map) */
+.sr-church-path .cp-frame { fill: none; stroke: var(--color-rule); stroke-width: 1; stroke-dasharray: 3 6; opacity: 0.7; }
+.sr-church-path .cp-frame-lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--color-rule); }
+.sr-church-path .cp-disc { fill: rgba(90,138,50,0.07); stroke: var(--t-forest); stroke-width: 1.4; }
+.sr-church-path .cp-center { fill: var(--t-forest); opacity: 0.8; }
+.sr-church-path .cp-path { fill: none; stroke: var(--t-terra); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sr-church-path .cp-reached-halo { fill: none; stroke: var(--t-terra); stroke-width: 1; opacity: 0.45; }
+.sr-church-path .cp-excluded { fill: var(--color-cream); stroke: var(--t-terra); stroke-width: 1.3; }
+.sr-church-path .cp-reached { fill: var(--t-terra); }
+.sr-church-path .cp-chapel { fill: none; stroke: var(--t-terra); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sr-church-path .cp-lbl { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--t-terra); }
+.sr-church-path .cp-note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; fill: var(--color-muted); }
+
+/* Option B — the conversion pipeline */
+.sr-church-pipe .tcp-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--color-muted); }
+.sr-church-pipe .tcp-name--warm { font-family: var(--font-display); font-style: italic; font-size: 13px; fill: var(--t-terra); }
+.sr-church-pipe .tcp-name--mid  { font-family: var(--font-display); font-style: italic; font-size: 12.5px; fill: #784619; }
+.sr-church-pipe .tcp-name--cold { font-family: var(--font-body); font-weight: 600; font-size: 12px; fill: var(--t-umber); }
+.sr-church-pipe .tcp-sub { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--color-muted); }
+
+/* ════════════════════════════════════════════════════════════════
+   4 · ZONE 2b — the Women's War encircle coda (held)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-ww-block { max-width: 30rem; margin: var(--s-10) auto var(--s-6); }
+.tfa-ww-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-ww-block.is-marker .tfa-ww-svg { display: none; }
+.tfa-ww-marker { display: none; }
+.tfa-ww-block.is-marker .tfa-ww-marker { display: block; max-width: 26rem; margin: 0 auto; }
+.ww-fig { fill: var(--t-umber); }
+.ww-warrant { fill: var(--t-terra); stroke: var(--color-cream); stroke-width: 1; }
+.ww-warrant-stem { stroke: var(--t-terra); stroke-width: 1.4; stroke-linecap: round; }
+.ww-ring { fill: none; stroke: var(--t-umber); stroke-width: 1.2; stroke-dasharray: 3 4; opacity: 0.55; }
+.ww-lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--color-muted); }
+.tfa-ww-cap {
+  margin-top: var(--s-5); font-family: var(--font-body); font-size: var(--t-meta);
+  line-height: var(--lh-prose); color: var(--color-muted); text-align: center;
+}
+/* marker variant */
+.ww-rule { border: none; border-top: 1px solid var(--t-terra); opacity: 0.6; margin: 0 0 var(--s-5); }
+.ww-num { font-family: var(--font-display); font-style: italic; color: var(--t-terra); font-size: 2rem; line-height: 0.95; }
+.ww-num-lbl { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-top: var(--s-2); }
+.ww-num-row { margin-bottom: var(--s-6); }
+
+/* ════════════════════════════════════════════════════════════════
+   5 · ZONE 4 — the closing couplet (restrained default; plate/reduction = tweak)
+   ════════════════════════════════════════════════════════════════ */
+.tfa-close { max-width: var(--content-prose); margin: var(--s-12) auto 0; }
+.tfa-close-variant { display: none; }
+body.tfa-close-disappearance .tfa-close-variant--disappearance,
+body.tfa-close-restrained .tfa-close-variant--restrained,
+body.tfa-close-plate .tfa-close-variant--plate,
+body.tfa-close-reduction .tfa-close-variant--reduction { display: block; }
+
+/* restrained */
+.cc-restr { text-align: center; max-width: 34ch; margin: 0 auto; }
+.cc-restr p { font-family: var(--font-display); font-style: italic; font-size: 1.25rem; line-height: 1.5; color: var(--color-ink); margin: 0 0 var(--s-4); }
+.cc-restr .cc-kicker { font-family: var(--font-body); font-style: normal; font-size: var(--t-body); line-height: var(--lh-prose); color: var(--color-muted); }
+
+/* plate */
+.cc-plate { border: 1.5px solid var(--t-umber); background: rgba(240,228,207,0.4); padding: var(--s-10) var(--s-8); text-align: center; max-width: 30rem; margin: 0 auto; }
+.cc-plate-pre { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted); }
+.cc-plate-rule { width: 40px; height: 1px; background: var(--t-umber); margin: var(--s-3) auto; opacity: 0.6; }
+.cc-plate-title { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; line-height: 1.25; color: var(--t-umber); margin: var(--s-2) 0; }
+.cc-plate-by { font-family: var(--font-body); font-size: var(--t-meta); color: var(--color-muted); }
+.cc-margin { font-family: var(--font-body); font-size: var(--t-body-sm); color: var(--color-muted); margin: var(--s-6) auto 0; font-style: italic; text-align: center; max-width: 32rem; }
+.cc-margin b { color: var(--t-terra); font-style: normal; font-weight: 600; }
+
+/* reduction */
+.cc-life { font-family: var(--font-body); font-size: 9px; line-height: 1.55; color: var(--color-ink); column-count: 3; column-gap: var(--s-4); opacity: 0.8; max-height: 132px; overflow: hidden; position: relative; max-width: 40rem; margin: 0 auto; }
+.cc-life::after { content: ''; position: absolute; inset: auto 0 0 0; height: 44px; background: linear-gradient(to bottom, rgba(237,232,220,0), var(--color-card)); }
+.cc-funnel { display: flex; justify-content: center; margin: var(--s-4) 0; }
+.cc-para { font-family: var(--font-display); font-style: italic; font-size: 1.25rem; line-height: 1.5; color: var(--color-ink); border-left: 2px solid var(--t-terra); padding-left: var(--s-4); max-width: 30ch; margin: 0 auto; }
+.cc-para-lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-terra); display: block; margin-bottom: var(--s-2); }
+
+/* ════════════════════════════════════════════════════════════════
+   5b · ZONE 4 — "The Disappearance of Okonkwo" (default ship)
+   The full District-Commissioner quote as an inset, then Okonkwo drawn
+   as his own emblem — the "Roaring Flame" — cooling and simplifying
+   across three stations into a bare mark in a paragraph. The figure
+   breaks out wider than the prose column so the labels stay legible.
+   ════════════════════════════════════════════════════════════════ */
+.cc-disappear-quote { max-width: 34rem; margin: 0 auto; text-align: center; }
+.cc-dq-rule { width: 44px; height: 2px; background: var(--t-terra); opacity: 0.7; margin: 0 auto var(--s-8); }
+.cc-disappear-quote blockquote { margin: 0; font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.7rem); line-height: 1.42; color: var(--color-ink); text-wrap: pretty; }
+.cc-disappear-quote blockquote .cc-hinge { font-weight: 500; color: var(--t-terra); }
+.cc-disappear-quote blockquote .cc-cut { color: var(--t-umber); }
+.cc-disappear-quote figcaption { margin-top: var(--s-6); font-family: var(--font-mono); font-size: var(--t-tag); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); }
+
+.cc-disappear { width: min(58rem, 94vw); position: relative; left: 50%; transform: translateX(-50%); margin-block: var(--s-16) 0; }
+.cc-disappear-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.cc-disappear-cap { margin: var(--s-6) auto 0; max-width: 38rem; font-family: var(--font-body); font-size: var(--t-meta); line-height: var(--lh-prose); color: var(--color-muted); text-align: center; }
+.cc-disappear-cap em { font-style: italic; color: var(--color-ink); }
+
+/* the diminishing emblem — site-produced SVG element styles */
+.dg-clan-h, .dg-clan-b { fill: var(--t-forest); opacity: 0.72; }
+.dg-ok-h, .dg-ok-b { fill: var(--t-terra); }
+.dg-ok-line { stroke: var(--t-terra); stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.dg-flame { fill: rgba(196,114,42,0.07); stroke: var(--t-terra); stroke-width: 1.5; opacity: 0.9; stroke-linejoin: round; stroke-linecap: round; }
+.dg-anklet { stroke: var(--t-terra); stroke-width: 1.6; stroke-linecap: round; }
+.dg-title { stroke: var(--t-terra); stroke-width: 1.6; stroke-linecap: round; }
+.dg-mid-h, .dg-mid-b { fill: #97602e; }
+.dg-mid-line { stroke: #97602e; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.dg-rec-h, .dg-rec-b { fill: var(--t-umber); }
+.dg-textline { stroke: var(--color-rule); stroke-width: 2; stroke-linecap: round; }
+.dg-base { stroke: var(--color-rule); stroke-width: 1; opacity: 0.5; }
+.dg-conn { stroke: var(--t-umber); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0.5; fill: none; }
+.dg-arrow { fill: var(--t-umber); opacity: 0.6; }
+.dg-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--color-muted); }
+.dg-lbl--terra { fill: var(--t-terra); }
+.dg-lbl--umber { fill: var(--t-umber); }
+.dg-scale { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--color-rule); }
+
+/* ════════════════════════════════════════════════════════════════
+   6 · Reduced-motion / mobile fallback (principle G)
+   The map relaxes to static and shows its concluding state, fully composed.
+   ════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .tfa-warrant-field [data-show-from] { opacity: 0; }
+  .tfa-warrant-field [data-show-from="map-warrant"] { opacity: 1; }
+  .tfa-partition-field [data-show-from] { opacity: 0; }
+  .tfa-partition-field [data-show-from="part-1914"] { opacity: 1; }
+  .tfa-partition-zone .sr-zone-field.tfa-partition-field { width: min(460px, 92vw); }
+  .tfa-partition-zone .sr-zone-beat[data-activates] .sr-beat-card { max-width: 100%; }
+  .tfa-zone--map .sr-zone-field { width: min(560px, 92vw); }
+  .tfa-zone--map .sr-zone-beat .sr-beat-card { max-width: 100%; }
+  .tfa-warrant-zone .sr-zone-field { margin-inline: auto; }
+  .rep-row { grid-template-columns: 1fr 40px 1fr; }
+}
