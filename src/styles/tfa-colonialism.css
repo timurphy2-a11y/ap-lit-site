@@ -98,6 +98,14 @@
 .tfa-zone--map .sr-zone-beat { padding-inline: clamp(16px, 4vw, 64px); }
 .tfa-zone--map .sr-zone-beat .sr-beat-card { max-width: clamp(220px, 30%, 360px); }
 
+/* caption moved below the beats — centered, same muted style as sr-zone-caption */
+.tfa-partition-caption {
+  max-width: clamp(340px, 58%, 680px);
+  margin: var(--s-3) auto var(--s-2);
+  text-align: center;
+  padding-inline: var(--gutter-lg);
+}
+
 /* Indirect Rule — split layout: graphic pinned RIGHT, cards flow down the LEFT
    channel (a deliberate contrast with §1's centered channel). */
 .tfa-warrant-zone .sr-zone-field {
