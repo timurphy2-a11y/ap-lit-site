@@ -1,0 +1,428 @@
+/* Pachinko · Identity (Spoke 2 / slug: culture) — design-iteration overrides
+ * Layered ON TOP of summer-reading.css / scrolly-zones.css / tokens.css.
+ * Diagram-forward spoke: photo · pillars · descent · overwrite.
+ * Three earned SVG field types, all driven by the engine's
+ * data-state ↔ layer mechanic (gotcha D: opacity keyed on data-state,
+ * never an animation class).
+ *
+ * Warm/cold register (Principle Q) — established once, read by all three
+ * diagrams. Decided in the canvas pass:
+ *   warm = ember  (the Korean name · interior · hidden)
+ *   cold = graphite (the tsūmei · public · the colonial register)
+ * Both mixed from the page's own ink + orange (Principle A). Live-tunable.
+ */
+
+.sr-page[data-spoke="culture"] {
+  --warm-name: #B0541A;        /* ember — --p-orange deepened toward umber */
+  --warm-deep: #8E4112;
+  --warm-wash: rgba(176, 84, 26, 0.10);
+  --cold-name: #49545F;        /* graphite — page ink cooled toward slate */
+  --cold-deep: #323D47;
+  --cold-wash: rgba(73, 84, 95, 0.10);
+}
+/* register preset B (canvas comparison) — the beatsheet's suggested test */
+.sr-page[data-spoke="culture"][data-register="tealumber"] {
+  --warm-name: #1C5F5A;
+  --warm-deep: #134541;
+  --warm-wash: rgba(28, 95, 90, 0.10);
+  --cold-name: #8A5526;
+  --cold-deep: #6B3F18;
+  --cold-wash: rgba(138, 85, 38, 0.10);
+}
+
+/* SVG text helpers (resolve via this sheet, not inline) */
+.idg-mono { font-family: var(--font-mono); }
+.idg-disp { font-family: var(--font-display); font-style: italic; }
+.idg-kr   { font-family: "Noto Serif KR", serif; font-weight: 600; }
+.idg-jp   { font-family: "Noto Sans JP", sans-serif; font-weight: 800; }
+.idg-label { font-family: var(--font-mono); fill: var(--color-ink); letter-spacing: 3px; }
+.idg-cap   { font-family: var(--font-mono); fill: var(--color-muted); }
+
+/* ════════════════════════════════════════════════════════════════
+   0 · Image placeholders (stand in for photo images when missing)
+   ════════════════════════════════════════════════════════════════ */
+.sr-ph {
+  position: relative; width: 100%; height: 100%;
+  background: repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
+  display: flex; align-items: center; justify-content: center;
+}
+.sr-ph::after {
+  content: attr(data-ph); white-space: pre-line; text-align: center;
+  font-family: var(--font-mono); font-size: 10.5px; line-height: 1.5; letter-spacing: 0.06em;
+  color: var(--color-muted); background: rgba(246, 241, 232, 0.88);
+  padding: 9px 13px; border: 1px solid var(--color-rule); max-width: 80%;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   1 · Photo zone (Zone 1) — held framed plate (carried from siblings)
+   ════════════════════════════════════════════════════════════════ */
+.sr-zone-beats { max-width: 1060px; margin-inline: auto; }
+.sr-zone-beat { padding-inline: clamp(var(--s-4), 4vw, var(--s-12)); }
+.sr-beat-card { max-width: 30rem; }
+
+.sr-scrolly-zone[data-tempo="steady"]  { --beat-dwell: calc(420px * var(--dwell-scale, 1)); }
+.sr-scrolly-zone[data-tempo="driving"] { --beat-dwell: calc(230px * var(--dwell-scale, 1)); }
+
+.sr-zone-photo-stack { display: block; background: transparent; }
+.sr-photo-stage {
+  position: absolute; inset: 0; margin: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--s-4); padding: var(--s-8);
+  opacity: 0; transition: opacity 0.85s ease;
+}
+.sr-zone-photo-stack:not([data-state]) .sr-photo-stage[data-stage="fusan"],
+.sr-zone-photo-stack[data-state="fusan"] .sr-photo-stage[data-stage="fusan"] { opacity: 1; }
+.sr-zone-photo-stack .sr-photo-stage .sr-zone-photo {
+  width: min(60%, 640px); height: auto; aspect-ratio: 7 / 5; max-height: 56vh; flex: none;
+  object-fit: cover; border: 1px solid var(--color-rule);
+  box-shadow: 0 18px 44px -20px rgba(44, 40, 32, 0.45);
+}
+.sr-photo-stage .sr-ph { aspect-ratio: 7 / 5; width: min(60%, 640px); height: auto; flex: none;
+  border: 1px solid var(--color-rule); box-shadow: 0 18px 44px -20px rgba(44, 40, 32, 0.45); }
+.sr-zone-photo-stack .sr-photo-stage .sr-zone-caption {
+  position: static; max-width: min(60%, 640px);
+  background: transparent; color: var(--color-muted); padding: 0;
+  text-align: center; font-size: var(--t-meta); line-height: var(--lh-meta);
+}
+.sr-zone-photo-stack .sr-photo-stage .sr-zone-caption em { font-style: italic; }
+.sr-stage-year {
+  display: inline-block; margin-right: var(--s-2);
+  font-family: var(--font-mono); font-size: var(--t-eyebrow);
+  letter-spacing: 0.16em; color: var(--p-orange); vertical-align: 1px;
+}
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .sr-photo-stage { position: relative; transition: none; opacity: 1; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SHARED — diagram field types (pillars · descent · overwrite)
+   Sticky SVG field + scrolling beats. Layer opacity keyed on
+   field[data-state]; the SVG itself is JS-generated into [data-diagram].
+   ════════════════════════════════════════════════════════════════ */
+.sr-zone-diagram-field {
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(20px, 4vh, 64px) clamp(16px, 3vw, 56px);
+}
+.sr-scrolly-zone[data-ground="tinted"] .sr-zone-diagram-field { background: var(--color-card); }
+.sr-scrolly-zone[data-ground="cream"]  .sr-zone-diagram-field { background: var(--color-cream); }
+.id-diagram { width: 100%; max-width: 760px; }
+.id-diagram svg { display: block; width: 100%; height: auto; max-height: 88vh; }
+.id-diagram [class*="-warm"], .id-diagram [class*="-cold"], .id-diagram [class*="-press"],
+.id-diagram [class*="dgen-"] { transition: opacity 0.6s var(--ease-out); }
+
+/* ── Canonical diagram layout ───────────────────────────────────────────
+   Keep the system's real mechanic intact: the field is sticky & sits
+   BEHIND (z-index 0); the beats lane stays FULL WIDTH and overlays it
+   (margin-top:-100vh). Because beats is full width, the section opener
+   centres on the page (sitewide convention). Beat cards are confined to a
+   side gutter so they never cover the graphic. Two arrangements:
+     --center  pillars: graphic pinned mid, cards in BOTH gutters
+     --split   descent/overwrite: graphic one side, cards on the other   */
+
+/* opener: page-centred card above the pinned field (both arrangements) */
+.sr-scrolly-zone--center .sr-zone-beats > .sr-section-opener,
+.sr-scrolly-zone--split  .sr-zone-beats > .sr-section-opener {
+  max-width: 34rem; margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  /* PILLARS · center channel — graphic in the middle, cards both sides.
+     The card width tracks the channel at EVERY viewport: gutter is
+     (100% − channel)/2; card stops short of it by a margin + gap, and the
+     graphic's own viewBox padding adds ~100px more clearance inside. */
+  .sr-scrolly-zone--center { --pid-channel: min(42%, 480px); }
+  .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; }
+  .sr-scrolly-zone--center .sr-zone-beat { padding-inline: 0; }
+  .sr-scrolly-zone--center .sr-zone-beat--left   { justify-content: flex-start; }
+  .sr-scrolly-zone--center .sr-zone-beat--right  { justify-content: flex-end; }
+  .sr-scrolly-zone--center .sr-zone-beat--center { justify-content: center; }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > *,
+  .sr-scrolly-zone--center .sr-zone-beat--right > * {
+    max-width: min(19rem, calc((100% - var(--pid-channel)) / 2 - 56px));
+    min-width: 0; width: 100%;
+  }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  clamp(16px, 3vw, 48px); }
+  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: clamp(16px, 3vw, 48px); }
+  .sr-scrolly-zone--center .sr-zone-beat--center > * { max-width: 30rem; width: 100%; }
+
+  /* DESCENT & OVERWRITE · aside — graphic one side, cards on the other */
+  .sr-scrolly-zone--split .sr-zone-field { width: min(48%, 560px); }
+  /* Zone 4 (register ledger) fills its box edge-to-edge and reaches past
+     center, so confine its cards to the right half — no overlap onto the
+     graphic. Scoped to this zone so descent is untouched. */
+  .sr-scrolly-zone[data-field="overwrite"][data-diagram-side="left"] .sr-zone-field { margin-left: clamp(8px, 1vw, 16px); }
+  .sr-scrolly-zone--split[data-field="overwrite"][data-diagram-side="left"] .sr-zone-beat > * { max-width: min(17.5rem, 31vw); min-width: 0; width: 100%; }
+  .sr-scrolly-zone--split[data-diagram-side="right"] .sr-zone-field { margin-left: auto;  margin-right: clamp(8px, 2vw, 44px); }
+  .sr-scrolly-zone--split[data-diagram-side="left"]  .sr-zone-field { margin-right: auto; margin-left:  clamp(8px, 2vw, 44px); }
+  .sr-scrolly-zone--split[data-diagram-side="right"] .sr-zone-beat { justify-content: flex-start; }
+  .sr-scrolly-zone--split[data-diagram-side="left"]  .sr-zone-beat { justify-content: flex-end; }
+  .sr-scrolly-zone--split .sr-zone-beat { padding-inline: clamp(20px, 4vw, 64px); }
+  .sr-scrolly-zone--split .sr-zone-beat > * { max-width: min(31rem, calc(50% - 36px)); width: 100%; }
+}
+
+/* mobile / reduced-motion: unstack — field rides static above its beats */
+@media (max-width: 767px) {
+  .sr-scrolly-zone--center .sr-zone-field,
+  .sr-scrolly-zone--split  .sr-zone-field { position: relative; height: auto; width: 100%; margin: 0; }
+  .sr-scrolly-zone--center .sr-zone-beats,
+  .sr-scrolly-zone--split  .sr-zone-beats { margin-top: var(--s-6); }
+  .sr-scrolly-zone--center .sr-zone-beat,
+  .sr-scrolly-zone--split  .sr-zone-beat { justify-content: center; }
+  .sr-scrolly-zone--center .sr-zone-beat > *,
+  .sr-scrolly-zone--split  .sr-zone-beat > * { max-width: 32rem; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
+  .sr-scrolly-zone--center .sr-zone-field,
+  .sr-scrolly-zone--split  .sr-zone-field { margin-inline: auto; }
+}
+
+/* held pull-quote / term-card / inset image in the beats lane */
+.id-inflow { margin: var(--s-10) 0; max-width: 32rem; }
+.id-pullquote {
+  position: relative; margin: var(--s-10) 0; padding: var(--s-2) var(--s-8);
+  max-width: 32rem;
+}
+.id-pullquote-line {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 1.3rem; line-height: 1.4; color: var(--color-ink); margin: 0 0 var(--s-2);
+  text-wrap: pretty;
+}
+.id-pullquote-cite {
+  display: block; margin-top: var(--s-4);
+  font-family: var(--font-mono); font-size: var(--t-meta); line-height: var(--lh-meta);
+  color: var(--color-muted); font-style: normal;
+}
+.id-pullquote-cite em { font-style: italic; }
+.id-pullquote .id-floralslot { position: absolute; left: -4px; width: 120px; opacity: 0.85; }
+.id-pullquote .id-floralslot.id-floral--top { top: -30px; }
+.id-pullquote .id-floralslot svg { width: 120px; height: auto; }
+
+/* oath — animated variant: three lines arrive one at a time */
+.id-oath[data-oath="animated"] .id-pullquote-line {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.id-oath[data-oath="animated"].is-reciting .id-pullquote-line { opacity: 1; transform: none; }
+.id-oath[data-oath="animated"].is-reciting .id-pullquote-line:nth-child(2) { transition-delay: 0.35s; }
+.id-oath[data-oath="animated"].is-reciting .id-pullquote-line:nth-child(3) { transition-delay: 0.70s; }
+.id-oath[data-oath="animated"].is-reciting .id-pullquote-line:nth-child(4) { transition-delay: 1.05s; }
+@media (prefers-reduced-motion: reduce) {
+  .id-oath[data-oath="animated"] .id-pullquote-line { opacity: 1; transform: none; }
+}
+
+/* term card inside the beats lane */
+.sr-scrolly-zone .id-inflow.sr-beat-card--termcard {
+  background: rgba(246, 241, 232, 0.96);
+  border-top: 2px solid var(--cold-name);
+  padding: var(--s-5) var(--s-6);
+}
+.sr-scrolly-zone[data-ground="tinted"] .id-inflow.sr-beat-card--termcard {
+  background: rgba(237, 232, 220, 0.97);
+}
+.id-inflow .sr-beat-term-romaji { color: var(--cold-name); }
+
+/* inset image in flow */
+.id-figure { margin: var(--s-10) 0; max-width: 30rem; }
+.id-figure .sr-ph { aspect-ratio: 4 / 3; border: 1px solid var(--color-rule); box-shadow: 0 14px 36px -20px rgba(44,40,32,0.4); }
+.id-figure-img { display: block; width: 100%; height: auto; border: 1px solid var(--color-rule); box-shadow: 0 14px 36px -20px rgba(44,40,32,0.4); }
+.id-figcaption {
+  margin-top: var(--s-3); font-family: var(--font-body);
+  font-size: var(--t-meta); line-height: var(--lh-meta); color: var(--color-muted);
+}
+.id-figcaption em { font-style: italic; }
+
+/* ════════════════════════════════════════════════════════════════
+   ZONE 2 — PILLARS · exclusive crossfade (Construction B: pin-stack)
+   states: p-base · p-language · p-names · p-religion
+   ════════════════════════════════════════════════════════════════ */
+.id-diagram .pp-cold-1, .id-diagram .pp-cold-2, .id-diagram .pp-cold-3,
+.id-diagram .pp-press-1, .id-diagram .pp-press-2, .id-diagram .pp-press-3 { opacity: 0; }
+
+.sr-zone-field[data-state="p-language"] .pp-cold-1, .sr-zone-field[data-state="p-language"] .pp-press-1,
+.sr-zone-field[data-state="p-names"] .pp-cold-1, .sr-zone-field[data-state="p-names"] .pp-press-1,
+.sr-zone-field[data-state="p-names"] .pp-cold-2, .sr-zone-field[data-state="p-names"] .pp-press-2,
+.sr-zone-field[data-state="p-religion"] .pp-cold-1, .sr-zone-field[data-state="p-religion"] .pp-press-1,
+.sr-zone-field[data-state="p-religion"] .pp-cold-2, .sr-zone-field[data-state="p-religion"] .pp-press-2,
+.sr-zone-field[data-state="p-religion"] .pp-cold-3, .sr-zone-field[data-state="p-religion"] .pp-press-3 { opacity: 1; }
+
+.sr-zone-field[data-state="p-language"] .pp-warm-1,
+.sr-zone-field[data-state="p-names"] .pp-warm-1, .sr-zone-field[data-state="p-names"] .pp-warm-2,
+.sr-zone-field[data-state="p-religion"] .pp-warm-1, .sr-zone-field[data-state="p-religion"] .pp-warm-2,
+.sr-zone-field[data-state="p-religion"] .pp-warm-3 { opacity: 0.14; }
+
+/* ════════════════════════════════════════════════════════════════
+   ZONE 3 — DESCENT · accumulate
+   states: d-base · d-issei · d-nisei · d-sansei
+   ════════════════════════════════════════════════════════════════ */
+.id-diagram .dgen-1, .id-diagram .dgen-2, .id-diagram .dgen-3 { opacity: 0; }
+.sr-zone-field[data-state="d-issei"] .dgen-1,
+.sr-zone-field[data-state="d-nisei"] .dgen-1, .sr-zone-field[data-state="d-nisei"] .dgen-2,
+.sr-zone-field[data-state="d-sansei"] .dgen-1, .sr-zone-field[data-state="d-sansei"] .dgen-2,
+.sr-zone-field[data-state="d-sansei"] .dgen-3 { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════════
+   ZONE 4 — REGISTER · accumulate (the emotional center)
+   states: o-1 · o-2 · o-3 · o-4 — the name as a bureaucratic event.
+   Rows persist as they land; the violent gesture is the stamp
+   (scale-in seal + strike), not a crossfade.
+   ════════════════════════════════════════════════════════════════ */
+.rgz {
+  position: relative; width: 100%; max-width: 600px;
+  border: 1px solid var(--cold-name); border-radius: 3px;
+  background: var(--color-cream); overflow: hidden;
+  padding: 0 0 38px; box-sizing: border-box; word-break: keep-all;
+  container-type: inline-size;
+}
+.rgz-dochead {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 13px 20px 11px; border-bottom: 1.5px solid var(--cold-name);
+  background: var(--cold-wash);
+}
+.rgz-dochead-jp { font-size: 19px; letter-spacing: 0.13em; color: var(--cold-deep); white-space: nowrap; }
+.rgz-dochead-en { font-size: 8.5px; letter-spacing: 0.16em; color: var(--color-muted); text-align: right; }
+
+.rgz-cols, .rgz-row {
+  display: grid; grid-template-columns: 132px 168px 1fr;
+  gap: 14px; padding: 0 20px; align-items: center;
+}
+.rgz-cols { padding-top: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--color-rule); }
+.rgz-col { font-size: 8.5px; letter-spacing: 0.15em; color: var(--color-muted); }
+.rgz-col--warm { color: var(--warm-name); }
+.rgz-col--cold { color: var(--cold-name); }
+
+.rgz-row {
+  min-height: 92px; border-bottom: 1px dashed var(--color-rule);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+}
+.rgz-row--3 { border-bottom: none; }
+
+.rgz-name { display: flex; align-items: baseline; gap: 9px; }
+.rgz-kr { position: relative; font-size: 38px; line-height: 1; color: var(--warm-name); white-space: nowrap; }
+.rgz-kr-sub { font-weight: 700; font-size: 14px; color: var(--cold-name); opacity: 0.65; white-space: nowrap; }
+.rgz-kr--struck::after {
+  content: ''; position: absolute; left: -5%; top: 54%; height: 2.5px; width: 0;
+  background: var(--cold-name);
+  transition: width 0.3s 0.18s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.rgz-tsumei { position: relative; display: flex; align-items: center; gap: 12px; min-width: 0; }
+.rgz-stamp {
+  font-size: 23px; line-height: 1; letter-spacing: 0.06em; padding: 8px 11px;
+  border: 2.5px solid var(--cold-name); border-radius: 3px; color: var(--cold-name);
+  transform: rotate(-6deg); white-space: nowrap;
+}
+.rgz-stamp--line { opacity: 0.45; border-style: dashed; border-width: 1.5px; font-weight: 700; }
+.rgz-stamp--solid {
+  background: var(--cold-name); color: var(--color-cream);
+  opacity: 0; transform: rotate(-7deg) scale(1.55);
+  transition: opacity 0.28s cubic-bezier(0.2, 0.7, 0.3, 1.15),
+              transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1.15);
+}
+.rgz-rewrite { font-size: 10px; letter-spacing: 0.24em; color: var(--cold-name); opacity: 0; transition: opacity 0.4s 0.3s var(--ease-out); }
+.rgz-scripts { display: flex; flex-direction: column; gap: 1px; line-height: 1.12; }
+.rgz-scripts-jp { font-family: "Noto Sans JP", sans-serif; font-weight: 700; font-size: 15px; color: var(--cold-name); white-space: nowrap; }
+.rgz-scripts-en { font-size: 10.5px; letter-spacing: 0.2em; color: var(--cold-name); white-space: nowrap; }
+.rgz-print {
+  width: 12px; height: 12px; border-radius: 50%; background: var(--p-gold);
+  box-shadow: 0 0 0 2.5px var(--color-cream), 0 0 0 3.5px var(--p-gold); flex-shrink: 0;
+}
+.rgz-rownote { font-size: 8.5px; line-height: 1.65; letter-spacing: 0.03em; color: var(--color-muted); }
+.rgz-annot {
+  position: absolute; left: 20px; bottom: 12px; font-size: 10px;
+  color: var(--warm-name); opacity: 0; transition: opacity 0.5s var(--ease-out);
+}
+
+/* state map — accumulate: rows persist as they land */
+.sr-zone-field[data-state="o-2"] .rgz-row--1,
+.sr-zone-field[data-state="o-3"] .rgz-row--1,
+.sr-zone-field[data-state="o-3"] .rgz-row--2,
+.sr-zone-field[data-state="o-4"] .rgz-row--1,
+.sr-zone-field[data-state="o-4"] .rgz-row--2,
+.sr-zone-field[data-state="o-4"] .rgz-row--3 { opacity: 1; transform: none; }
+.sr-zone-field[data-state="o-3"] .rgz-stamp--solid,
+.sr-zone-field[data-state="o-4"] .rgz-stamp--solid { opacity: 1; transform: rotate(-7deg) scale(1); }
+.sr-zone-field[data-state="o-3"] .rgz-kr--struck::after,
+.sr-zone-field[data-state="o-4"] .rgz-kr--struck::after { width: 110%; }
+.sr-zone-field[data-state="o-3"] .rgz-rewrite,
+.sr-zone-field[data-state="o-4"] .rgz-rewrite { opacity: 1; }
+.sr-zone-field[data-state="o-4"] .rgz-annot { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rgz-row, .rgz-stamp--solid, .rgz-rewrite, .rgz-annot,
+  .rgz-kr--struck::after { transition: none; }
+}
+/* Reflow by the LEDGER's own width (not viewport): when the box is narrow,
+   the third column would crush the rownote to one-word-per-line, so drop the
+   note full-width beneath each row. */
+@container (max-width: 500px) {
+  .rgz-cols, .rgz-row { grid-template-columns: 132px 1fr; }
+  .rgz-col:last-child { display: none; }
+  .rgz-rownote { grid-column: 1 / -1; padding-bottom: 4px; }
+  .rgz-row { min-height: 0; padding-top: 13px; padding-bottom: 11px; row-gap: 6px; }
+}
+@container (max-width: 360px) {
+  .rgz-cols, .rgz-row { grid-template-columns: 104px 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   The warm thread — toggleable tweak.
+   A fixed warm hairline in the left channel, present across the diagram
+   zones. Toggled via data-thread="on" on .sr-page.
+   ════════════════════════════════════════════════════════════════ */
+.id-thread {
+  position: fixed; top: 0; bottom: 0; left: clamp(14px, 3.4vw, 60px);
+  width: 2px; z-index: 2; pointer-events: none; display: none;
+  background: linear-gradient(to bottom,
+    transparent 0%, var(--warm-name) 14%, var(--warm-name) 52%,
+    rgba(176,84,26,0.4) 74%, rgba(176,84,26,0.18) 100%);
+}
+.sr-page[data-thread="on"] .id-thread { display: block; }
+.id-thread::after {
+  content: ''; position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%);
+  width: 5px; height: 5px; border-radius: 50%; background: var(--warm-name); opacity: 0.7;
+}
+@media (max-width: 980px) { .id-thread { display: none !important; } }
+
+/* ════════════════════════════════════════════════════════════════
+   Section-opener flip medallion (variant A — hemisphere)
+   built by buildMotifs into [data-motif="medallion-flip"]
+   ════════════════════════════════════════════════════════════════ */
+.sr-section-opener-motif svg { display: block; }
+
+/* ════════════════════════════════════════════════════════════════
+   Variations panel (reused chrome; Identity levers)
+   ════════════════════════════════════════════════════════════════ */
+.pw-tweaks {
+  position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+  font-family: var(--font-body); width: 250px;
+  background: var(--color-cream); border: 1px solid var(--color-rule);
+  border-radius: 8px; box-shadow: 0 14px 40px -14px rgba(44, 40, 32, 0.5); overflow: hidden;
+}
+.pw-tweaks-tab {
+  width: 100%; text-align: left; font-family: var(--font-mono);
+  font-size: var(--t-eyebrow); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-cream); background: var(--color-ink);
+  border: none; padding: 10px 14px; cursor: pointer;
+}
+.pw-tweaks-tab::before { content: '▾ '; }
+.pw-tweaks.is-collapsed .pw-tweaks-tab::before { content: '▸ '; }
+.pw-tweaks.is-collapsed .pw-tweaks-body { display: none; }
+.pw-tweaks-body { padding: 14px; }
+.pw-tweaks-title { font-family: var(--font-display); font-style: italic; font-size: 1rem; color: var(--color-ink); margin-bottom: 12px; }
+.pw-tweaks-row { margin-bottom: 12px; }
+.pw-tweaks-label { display: block; font-family: var(--font-mono); font-size: var(--t-tag); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 6px; }
+.pw-seg { display: flex; gap: 4px; }
+.pw-opt {
+  flex: 1; font-family: var(--font-body); font-size: var(--t-tiny); color: var(--color-muted);
+  background: var(--color-card); border: 1px solid var(--color-rule); border-radius: 5px;
+  padding: 6px 4px; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.pw-opt:hover { color: var(--color-ink); }
+.pw-opt.is-on { background: var(--p-teal); border-color: var(--p-teal); color: #fff; }
+.pw-dwell-val { float: right; color: var(--p-teal); letter-spacing: 0; }
+.pw-slider { width: 100%; accent-color: var(--p-teal); }
+.pw-reset { font-family: var(--font-mono); font-size: var(--t-tag); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); background: transparent; border: 1px solid var(--color-rule); border-radius: 5px; padding: 6px 10px; cursor: pointer; }
+.pw-reset:hover { color: var(--color-ink); border-color: var(--color-ink); }
+@media (max-width: 767px) { .pw-tweaks { right: 10px; bottom: 10px; width: 212px; } }

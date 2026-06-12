@@ -1,16 +1,564 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
+import '../../../styles/pachinko-identity.css';
 
-const entry = await getEntry('summerReading', 'pachinko/culture');
-const { Content } = await render(entry);
+const imgBase = '/images/summer-reading/pachinko';
 ---
-<SummerLayout title={entry.data.title} section="pachinko" spoke="culture">
-  <Content />
+
+<SummerLayout title="Korean Identity Under Occupation — Pachinko · The Living Atlas" section="pachinko" spoke="culture">
+
+  <link slot="head" rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&family=Noto+Sans+JP:wght@700;800&display=swap" />
+  <link slot="head"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&family=Noto+Sans+JP:wght@700;800&display=swap"
+    rel="stylesheet" />
+
+  <div class="id-thread" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 1 — Living a Double Life · photo · steady · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--photo" data-field="photo" data-tempo="steady" data-ground="cream" data-text="pachinko" data-screen-label="Zone 1 · Living a Double Life">
+    <div class="sr-zone-field sr-zone-photo-field">
+      <div class="sr-zone-photo-stack" data-stages="1" aria-hidden="true">
+        <figure class="sr-photo-stage" data-stage="fusan">
+          <img class="sr-zone-photo" src={`${imgBase}/p2-main-street-fusan.jpg`} width="1600" height="1014" loading="lazy" decoding="async" alt="A wide unpaved main street in Fusan (Busan) around 1922, lined with low tile-roofed shops under a tangle of telegraph poles and wires. Pedestrians in both Korean and Japanese dress cross the road; a streetcar waits at right beneath a mountain ridge." />
+          <figcaption class="sr-zone-caption"><span class="sr-stage-year">1922</span>Main Street, Fusan (the Japanese reading of Busan). The colonial administration renamed Korean cities, imposed Japanese signage, and reorganized urban life to serve colonial purposes. <em>From The New York Public Library, public domain.</em></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="sr-zone-beats">
+      <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-cream">
+        <div class="sr-section-opener-motif" data-motif="medallion-flip" data-size="40"></div>
+        <span class="sr-section-opener-eyebrow">KOREAN IDENTITY</span>
+        <h2 class="sr-section-opener-heading">Living a Double Life</h2>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--center sr-zone-beat--prose" data-beat data-activates="fusan">
+        <div class="sr-beat-card"><p style="font-family: var(--font-display); font-style: italic; font-size: 1.4rem; line-height: 1.4; text-align: center;">To be Korean in Japan between 1910 and 1989 was to live a double life — not by choice, but by necessity.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--left sr-zone-beat--prose" data-beat data-activates="fusan">
+        <div class="sr-beat-card"><p>At home, one language; in public, another. One name on the family register, another on the workplace form. The inner life conducted in Korean; the external world navigated in Japanese. <em>Pachinko</em> is a novel about what this doubling does to people across generations: what it costs, what it preserves, and what it destroys.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="fusan">
+        <div class="sr-beat-card"><p>Japan's colonial administration did not simply govern Korea; it attempted, in stages, over thirty-five years, to replace Korean identity with Japanese identity. The early period restricted Korean-language instruction and controlled Korean publications. The March First Movement of 1919 — two million Koreans demonstrating for independence — was crushed with mass arrests and killings. The middle period brought modest relaxation without changing the terms of subordination. The final decade reversed even these concessions.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--center sr-zone-beat--prose" data-beat data-activates="fusan">
+        <div class="sr-beat-card" style="background: transparent;"><p style="font-family: var(--font-display); font-style: italic; font-size: 1.2rem; text-align: center; color: var(--color-ink);">Then came the policy that runs through <em>Pachinko</em> like a fault line.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="cream" data-to="tinted" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — Language, Names, Religion · pillars · driving · tinted
+       diagram: center · reveal: exclusive
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--center" data-field="pillars" data-tempo="driving" data-ground="tinted" data-text="pachinko" data-screen-label="Zone 2 · Language, Names, Religion">
+    <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-tinted">
+      <div class="sr-section-opener-motif" data-motif="medallion-flip" data-size="40"></div>
+      <span class="sr-section-opener-eyebrow">THREE PRESSURES</span>
+      <h2 class="sr-section-opener-heading">Language, Names, Religion</h2>
+    </div>
+    <div class="sr-zone-field sr-zone-diagram-field">
+      <div class="id-diagram" data-diagram="pillars"></div>
+    </div>
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left sr-zone-beat--prose" data-beat data-activates="p-base">
+        <div class="sr-beat-card"><p>The colonial assault on Korean identity worked through three dimensions of daily life at once — language, names, and religion. Each operated through different mechanisms. Together they constituted what historians describe as a policy of ethnocide: the destruction of national identity not by killing people but by forcing them to become Japanese, on paper and in public.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="p-language">
+        <div class="sr-beat-card"><p><strong>Language.</strong> Japanese was the mandatory language of education from the start of colonial rule, and Korean-language instruction was progressively restricted through the 1920s and 1930s. In 1938 — the year Korean was banned from schools entirely — a three-part oath was introduced for Korean children to recite every morning.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="p-language">
+        <div class="id-oath id-pullquote" data-oath="static">
+          <div class="id-floralslot id-floral--top" data-motif="floral" data-w="120"></div>
+          <p class="id-pullquote-line">We are subjects of imperial Japan.</p>
+          <p class="id-pullquote-line">We will work together to loyally serve the emperor.</p>
+          <p class="id-pullquote-line">We will train ourselves with discipline and become strong subjects.</p>
+          <span class="id-pullquote-cite">— Oath of the Imperial Subjects, 1938; required daily recitation in all Korean schools. Translation from Robinson, <em>Korea's Twentieth-Century Odyssey</em>, p. 94.</span>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="p-names">
+        <div class="sr-beat-card"><p><strong>Names.</strong> In 1940, the <em>sōshi-kaimei</em> policy required every Korean household to register a Japanese-style family name. It was officially described as voluntary. In practice, Koreans who refused lost access to employment, schools, hospitals, and government services. By mid-1940, roughly 80% of Korean households had registered Japanese names — most under coercion.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="p-names">
+        <div class="id-inflow sr-beat-card--termcard">
+          <div class="sr-beat-term-header">
+            <span class="sr-beat-term-original">創氏改名</span>
+            <div class="sr-beat-term-meta">
+              <span class="sr-beat-term-romaji">sōshi-kaimei</span>
+              <span class="sr-beat-term-gloss">"creation of a family name and changing of the given name"</span>
+            </div>
+          </div>
+          <div class="sr-beat-term-body"><p>The 1940 colonial policy requiring Korean households to register Japanese-style names. It produced the central daily negotiation of the Zainichi experience: a Korean name became a liability — marking the bearer as Zainichi, triggering discrimination in hiring, housing, and lending — a document that had to be hidden, while the Japanese name became a performance that had to be sustained.</p></div>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--right sr-zone-beat--prose" data-beat data-activates="p-religion">
+        <div class="sr-beat-card"><p><strong>Religion.</strong> In 1938 the Kyōwakai — Japan's compulsory organization for Koreans in Japan — began enforcing mandatory attendance at Shinto shrines as acts of loyalty to the emperor. Christian pastors who refused the shrine rituals, or who kept ministering in Korean, were arrested. This is the charge that takes Isak: not sedition, not organizing, but the refusal to subordinate his faith and his community to colonial ritual.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="p-religion">
+        <figure class="id-figure">
+          <img class="id-figure-img" src={`${imgBase}/p2-soshi-kaimei-bulletin.jpg`} width="1600" height="1127" loading="lazy" decoding="async" alt="A printed colonial court bulletin, c. 1940, set in dense vertical columns of Japanese with smaller Korean hangul glosses, headlines and key clauses emphasized in red. Pointing-hand symbols flank the heading; the August-10 registration deadline and the issuing Taikyu (Daegu) District Court are marked in bold." />
+          <figcaption class="id-figcaption">Official bulletin of the Taikyu (Daegu) Court announcing the <em>sōshi-kaimei</em> name-change policy, c. 1940. Bilingual Korean and Japanese — the bureaucratic face of cultural erasure, printed and distributed by a colonial court. <em>Public domain.</em></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="tinted" data-to="cream" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 3 — Zainichi · descent · driving · cream
+       diagram: right · reveal: accumulate
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--split" data-field="descent" data-tempo="driving" data-ground="cream" data-diagram-side="right" data-text="pachinko" data-screen-label="Zone 3 · Zainichi">
+    <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-cream">
+      <div class="sr-section-opener-motif" data-motif="medallion-flip" data-size="40"></div>
+      <span class="sr-section-opener-eyebrow">THE COMMUNITY</span>
+      <h2 class="sr-section-opener-heading">Zainichi</h2>
+    </div>
+    <div class="sr-zone-field sr-zone-diagram-field">
+      <div class="id-diagram" data-diagram="descent"></div>
+    </div>
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="d-base">
+        <div class="sr-beat-card"><p>The Zainichi community emerged from colonial economic disruption — the land dispossession and agricultural collapse that impoverished Korean farmers and drove roughly two million Koreans to Japan in search of work. By 1945 about two million Koreans were living in Japan. Most eventually repatriated, but some 600,000 remained, unable or unwilling to return to a divided, devastated peninsula.</p></div>
+      </div>
+
+      <div class="sr-zone-beat" data-beat data-activates="d-base">
+        <div class="id-pullquote">
+          <div class="id-floralslot id-floral--top" data-motif="floral" data-w="120"></div>
+          <p class="id-pullquote-line">"Who cares about 600,000 people."</p>
+          <span class="id-pullquote-cite">— Min Jin Lee, describing the challenge of making the case for <em>Pachinko</em>'s subject. Lee's line is the obstacle she set out to overcome, not resignation: the community was large enough to be one of Japan's most significant minorities, small enough to be invisible, and systematically excluded from telling its own story.</span>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="d-issei">
+        <div class="sr-beat-card"><p><strong>Issei — first generation.</strong> Arrived in Japan as adults. Korea is home; Japan is where they work. Sunja and Isak carry their Korean identities intact — names, language, food, faith — because their lives are lived mostly within the Korean community of Ikaino. The <em>tsūmei</em> question barely touches them. What they carry from Korea is still real; the place they left still exists in memory.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="d-nisei">
+        <div class="sr-beat-card"><p><strong>Nisei — second generation.</strong> Born or raised in Japan. Korea is a language spoken at home, a set of foods and customs, a category on a legal document. Japan is the only country they know — yet Japan stripped them of Japanese nationality in 1952, leaving them stateless. Noa's response is total assimilation; Mozasu's is pragmatic acceptance. Neither resolves the structural condition.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="d-sansei">
+        <div class="sr-beat-card"><p><strong>Sansei — third generation.</strong> Solomon. Educated abroad, trilingual, professionally mobile — the generation that has done everything the system ostensibly rewards. The name question has not disappeared; it has taken a subtler form. When the land deal falls apart because of <em>who</em> Solomon is rather than <em>what</em> he has done, the distance between his education and his circumstances becomes the novel's final measurement of structural exclusion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sr-zone-seam" data-from="cream" data-to="tinted" aria-hidden="true">
+    <div class="sr-zone-seam-half sr-zone-seam-half--from"></div>
+    <div class="sr-zone-seam-motif" data-motif="rosette" data-size="44"></div>
+    <div class="sr-zone-seam-half sr-zone-seam-half--to"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 4 — Two Names, Two Lives · overwrite · driving · tinted
+       diagram: left · reveal: accumulate · the emotional center
+       data-diagram key stays "overwrite" to keep engine wiring intact.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--split" data-field="overwrite" data-tempo="driving" data-ground="tinted" data-diagram-side="left" data-text="pachinko" data-screen-label="Zone 4 · Two Names, Two Lives">
+    <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-tinted">
+      <div class="sr-section-opener-motif" data-motif="medallion-flip" data-size="40"></div>
+      <span class="sr-section-opener-eyebrow">THE EVERYDAY TEXTURE</span>
+      <h2 class="sr-section-opener-heading">Two Names, Two Lives</h2>
+    </div>
+    <div class="sr-zone-field sr-zone-diagram-field">
+      <div class="id-diagram" data-diagram="overwrite"></div>
+    </div>
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="o-1">
+        <div class="sr-beat-card"><p>The <em>tsūmei</em> — the Japanese passing name — is the daily mechanism through which Zainichi Koreans navigated a world that excluded them. Not a dramatic act of identity, but a persistent, low-grade performance: the name used at work, at school, at the bank, with the landlord. The name that kept the Korean name hidden.</p></div>
+      </div>
+
+      <div class="sr-zone-beat" data-beat data-activates="o-1">
+        <div class="id-inflow sr-beat-card--termcard">
+          <div class="sr-beat-term-header">
+            <span class="sr-beat-term-original">通名</span>
+            <div class="sr-beat-term-meta">
+              <span class="sr-beat-term-romaji">tsūmei</span>
+              <span class="sr-beat-term-gloss">"passing name" — the Japanese-style name used in public, alongside the legal Korean name</span>
+            </div>
+          </div>
+          <div class="sr-beat-term-body"><p>The <em>tsūmei</em> is not a pseudonym and not a renunciation. It is a survival tool. Every Zainichi Korean character in <em>Pachinko</em> navigates the space between their Korean name and their <em>tsūmei</em> — a navigation that is daily, habitual, and exhausting. A choice of name signals power, intimacy, danger, and belonging all at once. For Noa the Japanese name becomes the self he is constructing; for Mozasu it is simply the name he uses at work; for Solomon it is both and neither.</p></div>
+        </div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="o-2">
+        <div class="sr-beat-card"><p>Inside the Ikaino community, the Korean name was simply a marker of true identity. Outside it — in the landlord's office, at the school gate, in the factory hiring hall — the calculation began. The doubling was not confined to language or name. It extended to food, to custom, to the decision of whether to tell someone where you were from. Min Jin Lee has described interviewing Zainichi Koreans who spent their entire adult lives concealing their identity from Japanese colleagues, neighbors, and in some cases their own children.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="o-3">
+        <div class="sr-beat-card"><p>What the novel renders, in a way no historical account can, is the texture of this concealment across a lifetime. Sunja selling kimchi from a cart among other Koreans is one kind of experience. Noa, reading English literature at a Japanese university while constructing an elaborate Japanese persona over years of methodical self-erasure, is another.</p></div>
+      </div>
+
+      <div class="sr-zone-beat sr-zone-beat--prose" data-beat data-activates="o-4">
+        <div class="sr-beat-card"><p>Solomon, managing the performance across three languages and two continents, is a third. The <em>tsūmei</em> is the same institution in all three cases; what it costs is different every time. Lee spent decades on this material, conducting hundreds of interviews across Japan — and nearly every Zainichi Korean she interviewed had some connection to the pachinko industry. The industry was not a choice; it was one of the few spaces the exclusion left open. That a disreputable trade entered through necessity became, through generations of labor, a community's economic foundation — the novel's central symbol of what survival under exclusion actually looks like.</p></div>
+      </div>
+
+      <div class="sr-end-signature sr-end-signature--pachinko" data-motif="butterfly" data-size="72"></div>
+    </div>
+  </section>
+
   <SpokePagination
     section="pachinko"
     prev={{ slug: 'world', title: 'The World of the Novel', number: 1 }}
-    next={{ slug: 'history', title: 'Japanese Colonialism', number: 3 }}
+    next={{ slug: 'history', title: 'Japan and the Zainichi', number: 3 }}
   />
+
 </SummerLayout>
+
+<script is:inline>
+(function () {
+  'use strict';
+
+  var W = 'var(--warm-name)', WD = 'var(--warm-deep)', WW = 'var(--warm-wash)';
+  var C = 'var(--cold-name)', CD = 'var(--cold-deep)', CW = 'var(--cold-wash)';
+
+  /* ───────────────────────── Motif generators ───────────────────────── */
+  function rosette(size, color, spokes) {
+    var c = size / 2, ro = size * 0.46, ri = size * 0.10, dr = size * 0.05, lines = '';
+    for (var i = 0; i < spokes; i++) {
+      var a = i * 2 * Math.PI / spokes;
+      lines += '<line x1="' + (c + Math.cos(a) * ri) + '" y1="' + (c + Math.sin(a) * ri) +
+        '" x2="' + (c + Math.cos(a) * ro) + '" y2="' + (c + Math.sin(a) * ro) +
+        '" stroke="' + color + '" stroke-width="1" stroke-linecap="round"/>';
+    }
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true" class="sr-motif-rosette">' +
+      lines + '<circle cx="' + c + '" cy="' + c + '" r="' + dr + '" fill="var(--p-gold)"/></svg>';
+  }
+
+  function medallionFlip(size) {
+    var c = size / 2, ro = size * 0.44, ri = size * 0.30, r2 = size * 0.20, dot = size * 0.045;
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true" class="sr-motif-medallion">' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + ro + '" stroke="var(--p-teal)" stroke-width="1.5"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + ri + '" stroke="var(--p-teal)" stroke-width="1"/>' +
+      '<path d="M ' + c + ' ' + (c - r2) + ' A ' + r2 + ' ' + r2 + ' 0 0 0 ' + c + ' ' + (c + r2) + ' Z" fill="' + W + '"/>' +
+      '<path d="M ' + c + ' ' + (c - r2) + ' A ' + r2 + ' ' + r2 + ' 0 0 1 ' + c + ' ' + (c + r2) + ' Z" fill="' + C + '"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + dot + '" fill="var(--p-gold)"/></svg>';
+  }
+
+  function butterfly(size) {
+    return '<svg width="' + size + '" height="' + (size * 0.75) + '" viewBox="0 0 48 36" fill="none" aria-hidden="true" class="sr-motif-butterfly">' +
+      '<path d="M24 22 C16 22, 4 28, 4 20 C4 14, 14 16, 24 22Z" fill="var(--p-teal)"/>' +
+      '<path d="M24 22 C32 22, 44 28, 44 20 C44 14, 34 16, 24 22Z" fill="var(--p-teal)"/>' +
+      '<path d="M24 18 C18 16, 6 8, 8 4 C10 0, 20 6, 24 18Z" fill="var(--p-orange)"/>' +
+      '<path d="M24 18 C30 16, 42 8, 40 4 C38 0, 28 6, 24 18Z" fill="var(--p-orange)"/>' +
+      '<ellipse cx="24" cy="19" rx="1.5" ry="8" fill="var(--color-ink)"/>' +
+      '<path d="M24 11 C22 6, 20 4, 19 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round"/>' +
+      '<path d="M24 11 C26 6, 28 4, 29 3" stroke="var(--color-ink)" stroke-width="1" stroke-linecap="round"/>' +
+      '<circle cx="19" cy="3" r="1.5" fill="var(--color-ink)"/>' +
+      '<circle cx="29" cy="3" r="1.5" fill="var(--color-ink)"/></svg>';
+  }
+
+  function floral(width, color) {
+    var h = width * 0.4;
+    return '<svg width="' + width + '" height="' + h + '" viewBox="0 0 ' + width + ' ' + h + '" fill="none" aria-hidden="true" class="sr-motif-floral-scroll id-floral">' +
+      '<path d="M 4 ' + (h * 0.5) + ' C 4 ' + (h * 0.15) + ', ' + (width * 0.14) + ' ' + (h * 0.05) + ', ' + (width * 0.18) + ' ' + (h * 0.28) + ' C ' + (width * 0.22) + ' ' + (h * 0.5) + ', ' + (width * 0.14) + ' ' + (h * 0.62) + ', ' + (width * 0.10) + ' ' + (h * 0.52) + ' C ' + (width * 0.06) + ' ' + (h * 0.42) + ', ' + (width * 0.12) + ' ' + (h * 0.35) + ', ' + (width * 0.16) + ' ' + (h * 0.40) + '" stroke="' + color + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M ' + (width - 4) + ' ' + (h * 0.5) + ' C ' + (width - 4) + ' ' + (h * 0.15) + ', ' + (width * 0.86) + ' ' + (h * 0.05) + ', ' + (width * 0.82) + ' ' + (h * 0.28) + ' C ' + (width * 0.78) + ' ' + (h * 0.5) + ', ' + (width * 0.86) + ' ' + (h * 0.62) + ', ' + (width * 0.90) + ' ' + (h * 0.52) + ' C ' + (width * 0.94) + ' ' + (h * 0.42) + ', ' + (width * 0.88) + ' ' + (h * 0.35) + ', ' + (width * 0.84) + ' ' + (h * 0.40) + '" stroke="' + color + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="' + (width * 0.5) + '" cy="' + (h * 0.5) + '" r="2.5" fill="' + color + '"/></svg>';
+  }
+
+  function buildMotifs() {
+    document.querySelectorAll('[data-motif]').forEach(function (el) {
+      var k = el.getAttribute('data-motif');
+      var size = parseInt(el.getAttribute('data-size') || '40', 10);
+      var w = parseInt(el.getAttribute('data-w') || '80', 10);
+      if (k === 'medallion-flip') el.innerHTML = medallionFlip(size);
+      else if (k === 'rosette') el.innerHTML = rosette(size, 'var(--p-orange)', 20);
+      else if (k === 'butterfly') el.innerHTML = butterfly(size);
+      else if (k === 'floral') el.innerHTML = floral(w, 'var(--p-orange)');
+    });
+  }
+
+  /* ───────────────────── Diagram 1 · PILLARS (pin-stack, B) ───────────── */
+  var PX = [185, 310, 435], PLABELS = ['LANGUAGE', 'NAMES', 'RELIGION'];
+  function warmCap(i, x) {
+    if (i === 0) return '<rect x="' + (x - 48) + '" y="70" width="96" height="62" rx="2" fill="' + WW + '" stroke="' + W + '" stroke-width="1.5"/>' +
+      '<text x="' + x + '" y="114" text-anchor="middle" class="idg-kr" font-size="30" fill="' + W + '">한글</text>';
+    if (i === 1) return '<rect x="' + (x - 26) + '" y="54" width="52" height="100" rx="2" fill="' + WW + '" stroke="' + W + '" stroke-width="1.5"/>' +
+      '<text x="' + x + '" y="98" text-anchor="middle" class="idg-kr" font-size="28" fill="' + W + '">金</text>' +
+      '<text x="' + x + '" y="138" text-anchor="middle" class="idg-kr" font-size="20" fill="' + W + '" opacity="0.72">氏</text>';
+    return '<line x1="' + x + '" y1="62" x2="' + x + '" y2="142" stroke="' + W + '" stroke-width="3" stroke-linecap="round"/>' +
+      '<line x1="' + (x - 24) + '" y1="90" x2="' + (x + 24) + '" y2="90" stroke="' + W + '" stroke-width="3" stroke-linecap="round"/>';
+  }
+  function coldMark(i, x) {
+    if (i === 0) return '<text x="' + x + '" y="116" text-anchor="middle" class="idg-jp" font-size="30" fill="' + C + '" transform="rotate(-7 ' + x + ' 108)">国語</text>';
+    if (i === 1) return '<text x="' + (x + 4) + '" y="108" text-anchor="middle" class="idg-jp" font-size="27" fill="' + C + '" transform="rotate(-7 ' + (x + 4) + ' 100)">金本</text>';
+    return '<path d="M ' + (x - 34) + ' 86 Q ' + x + ' 74 ' + (x + 34) + ' 86" fill="none" stroke="' + C + '" stroke-width="4"/>' +
+      '<line x1="' + (x - 23) + '" y1="102" x2="' + (x + 23) + '" y2="102" stroke="' + C + '" stroke-width="3"/>' +
+      '<line x1="' + (x - 18) + '" y1="88" x2="' + (x - 18) + '" y2="146" stroke="' + C + '" stroke-width="4"/>' +
+      '<line x1="' + (x + 18) + '" y1="88" x2="' + (x + 18) + '" y2="146" stroke="' + C + '" stroke-width="4"/>';
+  }
+  function pressMark(x) {
+    return '<line x1="' + (x - 58) + '" y1="160" x2="' + (x + 58) + '" y2="160" stroke="' + C + '" stroke-width="2.5"/>' +
+      '<line x1="' + (x + 58) + '" y1="160" x2="' + (x + 58) + '" y2="170" stroke="' + C + '" stroke-width="2.5"/>';
+  }
+  function shaftPins(x, cold) {
+    var s = '', row = 0;
+    for (var y = 198; y <= 462; y += 33, row++) {
+      var xs = (row % 2 === 0) ? [x - 17, x + 17] : [x];
+      for (var k = 0; k < xs.length; k++) {
+        s += cold
+          ? '<circle cx="' + xs[k] + '" cy="' + y + '" r="8.5" fill="' + CW + '" stroke="' + C + '" stroke-width="2"/>'
+          : '<circle cx="' + xs[k] + '" cy="' + y + '" r="8.5" fill="' + W + '"/>';
+      }
+    }
+    return s;
+  }
+  function pillarsSVG() {
+    var s = '<svg viewBox="0 0 620 560" fill="none" role="img" aria-label="Three pillars — Language, Names, Religion — each a stack of warm Korean pins capped by a Korean artifact, overdrawn pillar by pillar with a cold colonial mark and knocked cold.">';
+    for (var i = 0; i < 3; i++) {
+      var x = PX[i];
+      s += '<g class="pp-warm-' + (i + 1) + '">' + warmCap(i, x) + shaftPins(x, false) + '</g>';
+      s += '<g class="pp-cold-' + (i + 1) + '">' + coldMark(i, x) + shaftPins(x, true) + '</g>';
+      s += '<g class="pp-press-' + (i + 1) + '">' + pressMark(x) + '</g>';
+      s += '<text x="' + x + '" y="512" text-anchor="middle" class="idg-label" font-size="15">' + PLABELS[i] + '</text>';
+    }
+    s += '<line x1="148" y1="478" x2="472" y2="478" stroke="var(--color-rule)" stroke-width="1"/>';
+    return s + '</svg>';
+  }
+
+  /* ───────────────────── Diagram 2 · DESCENT (accumulate) ─────────────── */
+  function descentSVG() {
+    var cx = 150, CYS = [128, 348, 568], SHELL = [6, 16, 26], CORE = [44, 26, 9];
+    var GENS = [
+      ['ISSEI · FIRST GENERATION', 'Sunja · Isak', 'names, language, faith intact'],
+      ['NISEI · SECOND GENERATION', 'Noa · Mozasu', 'stateless in the only home they know'],
+      ['SANSEI · THIRD GENERATION', 'Solomon', 'measured, still, by the name — the filament holds']
+    ];
+    var FIL = [[66, 192], [192, 412], [412, 628]];
+    var s = '<svg viewBox="0 0 560 690" fill="none" role="img" aria-label="A vertical generational descent: Issei, Nisei, Sansei. Each is a warm Korean core inside a cold tsumei shell; the core recedes and the shell thickens down the generations, but a warm filament threading them never reaches zero.">';
+    s += '<line x1="40" y1="88" x2="40" y2="606" stroke="var(--color-rule)" stroke-width="1" stroke-dasharray="2 5"/>' +
+         '<path d="M 35 600 L 40 612 L 45 600" fill="none" stroke="var(--color-rule)" stroke-width="1"/>';
+    for (var i = 0; i < 3; i++) {
+      var cy = CYS[i], g = GENS[i];
+      s += '<g class="dgen-' + (i + 1) + '">';
+      s += '<line x1="' + cx + '" y1="' + FIL[i][0] + '" x2="' + cx + '" y2="' + FIL[i][1] + '" stroke="' + W + '" stroke-width="2" opacity="0.55"/>';
+      if (i === 2) s += '<circle cx="' + cx + '" cy="636" r="3.5" fill="' + W + '"/>';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="62" stroke="' + C + '" stroke-width="' + SHELL[i] + '"/>';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + CORE[i] + '" fill="' + W + '"/>';
+      s += '<text x="256" y="' + (cy - 22) + '" class="idg-mono" font-size="13" letter-spacing="2" fill="' + CD + '">' + g[0] + '</text>';
+      s += '<text x="256" y="' + (cy + 8) + '" class="idg-disp" font-size="25" fill="var(--color-ink)">' + g[1] + '</text>';
+      s += '<text x="256" y="' + (cy + 32) + '" class="idg-cap" font-size="11.5">' + g[2] + '</text>';
+      s += '</g>';
+    }
+    return s + '</svg>';
+  }
+
+  /* ────────────── Diagram 3 · REGISTER (accumulate) — Zone 4 ──────────────
+   * Three ledger rows — Sunja (held), Noa (erased, stamp lands),
+   * Solomon (refracted, fingerprinted) — accumulate across o-1…o-4.
+   * HTML (not SVG) so the stamp/strike can transition; visibility still
+   * resolves in CSS off field[data-state] (gotcha D). */
+  function registerHTML() {
+    return '<div class="rgz" role="img" aria-label="An alien-registration ledger with three rows. Sunja: her Korean name held, the passing name only an outline in the margin. Noa: his Korean name struck through, the tsumei Bando stamped over it and rewritten as Nobuo. Solomon: one name in three scripts beside a fingerprint. The real-name column never empties.">' +
+      '<div class="rgz-dochead"><span class="rgz-dochead-jp idg-jp">外国人登録</span>' +
+        '<span class="rgz-dochead-en idg-mono">REGISTRATION — the institution precedes the person</span></div>' +
+      '<div class="rgz-cols idg-mono"><span class="rgz-col rgz-col--warm">本名 · the real name</span>' +
+        '<span class="rgz-col rgz-col--cold">通名 · the passing name</span><span class="rgz-col"></span></div>' +
+      '<div class="rgz-row rgz-row--1">' +
+        '<div class="rgz-name"><span class="rgz-kr idg-kr">순자</span><span class="rgz-kr-sub idg-jp">順子</span></div>' +
+        '<div class="rgz-tsumei"><span class="rgz-stamp rgz-stamp--line idg-jp">坂東</span></div>' +
+        '<div class="rgz-rownote idg-mono">carried, rarely used — inside Ikaino the real name is the working surface</div>' +
+      '</div>' +
+      '<div class="rgz-row rgz-row--2">' +
+        '<div class="rgz-name"><span class="rgz-kr rgz-kr--struck idg-kr">노아</span></div>' +
+        '<div class="rgz-tsumei"><span class="rgz-stamp rgz-stamp--solid idg-jp">坂東</span><span class="rgz-rewrite idg-mono">NOBUO</span></div>' +
+        '<div class="rgz-rownote idg-mono">registered at Waseda as Bandō Nobuo — the stamp becomes the self</div>' +
+      '</div>' +
+      '<div class="rgz-row rgz-row--3">' +
+        '<div class="rgz-name"><span class="rgz-kr idg-kr">솔로몬</span></div>' +
+        '<div class="rgz-tsumei rgz-tsumei--sol"><span class="rgz-scripts"><span class="rgz-scripts-jp idg-jp">ソロモン</span><span class="rgz-scripts-en idg-mono">SOLOMON</span></span><span class="rgz-print" aria-hidden="true"></span></div>' +
+        '<div class="rgz-rownote idg-mono">fingerprinted at fourteen at the ward office — three scripts, one register</div>' +
+      '</div>' +
+      '<div class="rgz-annot idg-mono">the 本名 column never empties</div>' +
+    '</div>';
+  }
+
+  function buildDiagrams() {
+    document.querySelectorAll('[data-diagram]').forEach(function (el) {
+      var k = el.getAttribute('data-diagram');
+      if (k === 'pillars') el.innerHTML = pillarsSVG();
+      else if (k === 'descent') el.innerHTML = descentSVG();
+      else if (k === 'overwrite') el.innerHTML = registerHTML();
+    });
+  }
+
+  /* ───────────────────────── Scrolly observers ──────────────────────── */
+  var observers = [];
+  function disconnectAll() { observers.forEach(function (o) { o.disconnect(); }); observers = []; }
+
+  var FIELD_SEL = '.sr-scrolly-zone[data-field="photo"], .sr-scrolly-zone[data-field="pillars"], .sr-scrolly-zone[data-field="descent"], .sr-scrolly-zone[data-field="overwrite"]';
+
+  function initBeatFields() {
+    var zones = [];
+    document.querySelectorAll(FIELD_SEL).forEach(function (zone) {
+      var field = zone.querySelector('.sr-zone-field');
+      var beats = [].slice.call(zone.querySelectorAll('[data-beat][data-activates]'));
+      if (!field || !beats.length) return;
+      field.dataset.state = beats[0].dataset.activates;
+      beats[0].classList.add('is-active');
+      zones.push({ field: field, beats: beats });
+    });
+    if (!zones.length) return;
+
+    var TRIGGER = 0.55;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * TRIGGER;
+      zones.forEach(function (z) {
+        var fr = z.field.getBoundingClientRect();
+        if (fr.bottom <= 0 || fr.top >= window.innerHeight) return;
+        var active = z.beats[0];
+        z.beats.forEach(function (b) {
+          var r = b.getBoundingClientRect();
+          if ((r.top + r.height / 2) <= line) active = b;
+        });
+        if (z.field.dataset.state !== active.dataset.activates) z.field.dataset.state = active.dataset.activates;
+        z.beats.forEach(function (b) { b.classList.toggle('is-active', b === active); });
+      });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+    observers.push({ disconnect: function () { window.removeEventListener('scroll', onScroll); } });
+  }
+
+  function setStaticFinalStates() {
+    document.querySelectorAll(FIELD_SEL).forEach(function (zone) {
+      var field = zone.querySelector('.sr-zone-field');
+      var beats = zone.querySelectorAll('[data-beat][data-activates]');
+      if (field && beats.length) field.dataset.state = beats[beats.length - 1].dataset.activates;
+    });
+  }
+
+  function initOath() {
+    document.querySelectorAll('.id-oath[data-oath="animated"]').forEach(function (el) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('is-reciting'); });
+      }, { threshold: 0.4 });
+      obs.observe(el);
+      observers.push(obs);
+    });
+  }
+
+  function initZones() {
+    disconnectAll();
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobile = window.innerWidth > 0 && window.innerWidth < 768;
+    initOath();
+    if (reduced || mobile) { setStaticFinalStates(); return; }
+    initBeatFields();
+  }
+
+  /* ───────────────────────── Variations panel ───────────────────────── */
+  var DEFAULTS = { register: 'ember', tempo3: 'driving', thread: 'off', oath: 'static', dwell: 1 };
+  var state = load();
+  function load() {
+    try { return Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem('pid-tweaks') || '{}')); }
+    catch (e) { return Object.assign({}, DEFAULTS); }
+  }
+  function save() { try { localStorage.setItem('pid-tweaks', JSON.stringify(state)); } catch (e) {} }
+
+  function apply() {
+    var page = document.querySelector('.sr-page');
+    page.setAttribute('data-register', state.register === 'ember' ? 'ember' : 'tealumber');
+    page.setAttribute('data-thread', state.thread);
+    document.documentElement.style.setProperty('--dwell-scale', String(state.dwell));
+    var z3 = document.querySelector('.sr-scrolly-zone[data-field="descent"]');
+    if (z3) z3.setAttribute('data-tempo', state.tempo3 === 'steady' ? 'steady' : 'driving');
+    document.querySelectorAll('.id-oath').forEach(function (el) { el.setAttribute('data-oath', state.oath); });
+  }
+
+  function seg(key, label, opts) {
+    var btns = opts.map(function (o) {
+      return '<button class="pw-opt" data-key="' + key + '" data-val="' + o[0] + '">' + o[1] + '</button>';
+    }).join('');
+    return '<div class="pw-tweaks-row"><label class="pw-tweaks-label">' + label + '</label><div class="pw-seg">' + btns + '</div></div>';
+  }
+  function refresh(panel) {
+    panel.querySelectorAll('.pw-opt').forEach(function (b) {
+      b.classList.toggle('is-on', state[b.getAttribute('data-key')] === b.getAttribute('data-val'));
+    });
+  }
+  function buildPanel() {
+    var panel = document.createElement('div');
+    panel.className = 'pw-tweaks';
+    panel.innerHTML =
+      '<button class="pw-tweaks-tab" aria-expanded="true" title="Toggle variations panel">Variations</button>' +
+      '<div class="pw-tweaks-body">' +
+        '<div class="pw-tweaks-title">Identity — explore</div>' +
+        seg('register', 'Warm / cold register', [['ember', 'Ember · Graphite'], ['tealumber', 'Teal · Umber']]) +
+        seg('tempo3', 'Zone 3 descent', [['driving', 'Driving'], ['steady', 'Steady']]) +
+        seg('thread', 'Warm thread', [['off', 'Off'], ['on', 'On']]) +
+        seg('oath', 'Oath of 1938', [['static', 'Static'], ['animated', 'Recited']]) +
+        '<div class="pw-tweaks-row">' +
+          '<label class="pw-tweaks-label">Scroll dwell <span class="pw-dwell-val">' + state.dwell.toFixed(2) + '×</span></label>' +
+          '<input type="range" class="pw-slider" data-key="dwell" min="0.6" max="1.6" step="0.05" value="' + state.dwell + '" />' +
+        '</div>' +
+        '<button class="pw-reset">Reset</button>' +
+      '</div>';
+    document.body.appendChild(panel);
+
+    panel.querySelector('.pw-tweaks-tab').addEventListener('click', function () {
+      var open = panel.classList.toggle('is-collapsed');
+      this.setAttribute('aria-expanded', String(!open));
+    });
+    panel.querySelectorAll('.pw-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state[this.getAttribute('data-key')] = this.getAttribute('data-val');
+        save(); apply(); refresh(panel); initZones();
+      });
+    });
+    var slider = panel.querySelector('.pw-slider');
+    slider.addEventListener('input', function () {
+      state.dwell = parseFloat(this.value);
+      panel.querySelector('.pw-dwell-val').textContent = state.dwell.toFixed(2) + '×';
+      save(); apply();
+    });
+    panel.querySelector('.pw-reset').addEventListener('click', function () {
+      state = Object.assign({}, DEFAULTS); save(); apply();
+      slider.value = state.dwell;
+      panel.querySelector('.pw-dwell-val').textContent = state.dwell.toFixed(2) + '×';
+      refresh(panel); initZones();
+    });
+    refresh(panel);
+  }
+
+  /* ───────────────────────── Boot ───────────────────────── */
+  function boot() {
+    buildMotifs();
+    buildDiagrams();
+    apply();
+    buildPanel();
+    initZones();
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { initZones(); }, 250);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>

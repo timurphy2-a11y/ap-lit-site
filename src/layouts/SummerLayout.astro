@@ -54,6 +54,7 @@ if (spoke) {
     />
 
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body>
     <div class="sr-page" data-section={section} data-spoke={spoke ?? ''}>
