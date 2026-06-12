@@ -98,12 +98,20 @@
 .tfa-zone--map .sr-zone-beat { padding-inline: clamp(16px, 4vw, 64px); }
 .tfa-zone--map .sr-zone-beat .sr-beat-card { max-width: clamp(220px, 30%, 360px); }
 
-/* caption card — rolls up inside the beats container at the zone's tail */
+/* Partition zone: tighten trailing dwell so the caption card rests below the legend
+   at the moment the sticky field unsticks. Calculated: tail (zone_bottom − caption_page_y)
+   must be ≤ 224px to place the caption at ≥ 650px when the field releases. */
+.tfa-partition-zone .sr-zone-beats { padding-bottom: 70px; }
+
+/* caption card — rolls up inside the beats container at the zone's tail.
+   Width matches the sticky map field (58vw). Margin-top is large enough
+   that the card appears below the SVG color key even at the last sticky moment. */
 .tfa-partition-caption {
   position: relative;
   z-index: 1;
-  max-width: clamp(280px, 48%, 520px);
-  margin: var(--s-10) auto 0;
+  width: clamp(340px, 58vw, 680px);
+  max-width: 100%;
+  margin: 280px auto 0;
   padding: var(--s-4) var(--s-5);
   background: rgba(246, 241, 232, 0.95);
   border-top: 1px solid var(--color-rule);
