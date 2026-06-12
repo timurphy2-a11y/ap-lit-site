@@ -109,8 +109,8 @@
 .tfa-partition-caption {
   position: relative;
   z-index: 1;
-  width: clamp(340px, 58vw, 680px);
-  max-width: 100%;
+  box-sizing: border-box;
+  width: clamp(340px, 38%, 480px);
   margin: 280px auto 0;
   padding: var(--s-4) var(--s-5);
   background: rgba(246, 241, 232, 0.95);
