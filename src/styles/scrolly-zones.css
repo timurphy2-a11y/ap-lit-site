@@ -649,6 +649,134 @@
 .sr-gen-home[data-home="split"]      { color: var(--p-coral);  border-color: rgba(196,83,122,0.45); background: rgba(196,83,122,0.08); }
 .sr-gen-home[data-home="unresolved"] { color: var(--color-ink); border-color: var(--color-ink); background: transparent; }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   Ideograms — schematic glyphs in the warm/cold + pin-field idiom
+   Three placements: generation crests, the pin-field metaphor figure,
+   and a key-terms lexicon coda. All glyphs are reasoning-diagrams built
+   from the spoke's own vocabulary (warm Korea / cold Japan ground-lines,
+   the cascade's pins, the maps' dashed routes), not illustrations.
+   ════════════════════════════════════════════════════════════════════════════ */
+.sr-ideo svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* ── A · Generation crest (inside each .sr-gen-body) ──────────────────── */
+.sr-gen-figrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.sr-gen-ideo { flex: 0 0 auto; width: 66px; }
+.sr-gen-headings { flex: 1 1 auto; min-width: 0; }
+.sr-gen-headings .sr-gen-meta { margin-bottom: var(--s-2); justify-content: flex-start; gap: 3px 12px; }
+.sr-gen-index, .sr-gen-era { white-space: nowrap; }
+.sr-gen-headings .sr-gen-people { margin: 0; }
+@media (max-width: 620px) {
+  .sr-gen-figrow { gap: var(--s-3); }
+  .sr-gen-ideo { width: 54px; }
+}
+
+/* ── B · Pin-field figure (first metaphor beat) + quote crest ─────────── */
+.sr-beat-card--pinfig {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+}
+.sr-pin-figure { flex: 0 0 auto; width: 88px; }
+.sr-pin-crest {
+  width: 46px;
+  margin: 0 auto var(--s-3);
+}
+
+/* ── C · Key-terms lexicon (coda to the cascade timeline) ─────────────── */
+.sr-lexicon {
+  max-width: 44rem;
+  margin: var(--s-12) auto 0;
+  padding-inline: var(--s-5);
+}
+.sr-lexicon-head {
+  text-align: center;
+  margin-bottom: var(--s-6);
+}
+.sr-lexicon-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--p-orange);
+  margin-bottom: var(--s-2);
+}
+.sr-lexicon-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--color-ink);
+  margin: 0;
+}
+.sr-lexicon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+.sr-term {
+  display: flex;
+  gap: var(--s-5);
+  align-items: flex-start;
+  background: rgba(246, 241, 232, 0.8);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid #B0541A;
+  border-radius: 5px;
+  padding: var(--s-5);
+}
+.sr-term[data-reg="cold"] { border-top-color: #49545F; }
+.sr-term-ideo { flex: 0 0 auto; width: 60px; margin-top: 2px; }
+.sr-term-text { flex: 1 1 auto; min-width: 0; }
+.sr-term-word { margin-bottom: var(--s-3); line-height: 1.25; }
+.sr-term-orig {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.3125rem;
+  color: var(--color-ink);
+}
+.sr-term-han {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  color: #8E4112;
+  margin-left: 8px;
+}
+.sr-term[data-reg="cold"] .sr-term-han { color: #3B454F; }
+.sr-term-rom {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 5px;
+}
+.sr-term-gloss {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+.sr-term-body {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: var(--s-4) 0 0;
+}
+@media (max-width: 620px) {
+  .sr-term { gap: var(--s-4); padding: var(--s-4); }
+  .sr-term-ideo { width: 48px; }
+}
+
 /* ── prefers-reduced-motion: everything static ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .sr-zone-field {
