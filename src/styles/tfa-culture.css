@@ -504,14 +504,29 @@
   display: block;
   margin-bottom: var(--s-3);
 }
+.tfa-spoke-header-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: var(--s-4);
+}
+.tfa-spoke-badge {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .tfa-spoke-header-title {
   font-family: var(--font-display);
   font-style: italic;
   font-size: var(--t-hero);
   line-height: var(--lh-display);
   color: var(--t-cream);
-  margin: 0 auto var(--s-4);
-  max-width: 22ch;
+  margin: 0;
 }
 .tfa-spoke-header-deck {
   font-family: var(--font-body);

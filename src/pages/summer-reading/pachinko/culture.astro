@@ -1,6 +1,7 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
+import PSpokeGlyph from '../../../components/summer-reading/PSpokeGlyph.astro';
 import '../../../styles/pachinko-identity.css';
 
 const imgBase = '/images/summer-reading/pachinko';
@@ -30,7 +31,7 @@ const imgBase = '/images/summer-reading/pachinko';
     </div>
     <div class="sr-zone-beats">
       <div class="sr-section-opener sr-section-opener--pachinko sr-section-opener--bg-cream">
-        <div class="sr-section-opener-motif" data-motif="medallion-flip" data-size="40"></div>
+        <div class="sr-section-opener-motif"><PSpokeGlyph idx={1} size={40} color="var(--p-orange)" /></div>
         <span class="sr-section-opener-eyebrow">KOREAN IDENTITY</span>
         <h2 class="sr-section-opener-heading">Living a Double Life</h2>
       </div>
@@ -45,7 +46,7 @@ const imgBase = '/images/summer-reading/pachinko';
         <div class="sr-beat-card"><p>Japan's colonial administration did not simply govern Korea; it attempted, in stages, over thirty-five years, to replace Korean identity with Japanese identity. The early period restricted Korean-language instruction and controlled Korean publications. The March First Movement of 1919 — two million Koreans demonstrating for independence — was crushed with mass arrests and killings. The middle period brought modest relaxation without changing the terms of subordination. The final decade reversed even these concessions.</p></div>
       </div>
       <div class="sr-zone-beat sr-zone-beat--center sr-zone-beat--prose" data-beat data-activates="fusan">
-        <div class="sr-beat-card" style="background: transparent;"><p style="font-family: var(--font-display); font-style: italic; font-size: 1.2rem; text-align: center; color: var(--color-ink);">Then came the policy that runs through <em>Pachinko</em> like a fault line.</p></div>
+        <div class="sr-beat-card"><p style="font-family: var(--font-display); font-style: italic; font-size: 1.2rem; text-align: center; color: var(--color-ink);">Then came the policy that runs through <em>Pachinko</em> like a fault line.</p></div>
       </div>
     </div>
   </section>
@@ -214,14 +215,15 @@ const imgBase = '/images/summer-reading/pachinko';
         <div class="sr-beat-card"><p>Solomon, managing the performance across three languages and two continents, is a third. The <em>tsūmei</em> is the same institution in all three cases; what it costs is different every time. Lee spent decades on this material, conducting hundreds of interviews across Japan — and nearly every Zainichi Korean she interviewed had some connection to the pachinko industry. The industry was not a choice; it was one of the few spaces the exclusion left open. That a disreputable trade entered through necessity became, through generations of labor, a community's economic foundation — the novel's central symbol of what survival under exclusion actually looks like.</p></div>
       </div>
 
-      <div class="sr-end-signature sr-end-signature--pachinko" data-motif="butterfly" data-size="72"></div>
     </div>
   </section>
 
+  <div class="sr-end-signature sr-end-signature--pachinko" data-motif="butterfly" data-size="72"></div>
+
   <SpokePagination
     section="pachinko"
-    prev={{ slug: 'world', title: 'The World of the Novel', number: 1 }}
-    next={{ slug: 'history', title: 'Japan and the Zainichi', number: 3 }}
+    prev={{ slug: 'world', title: 'World', number: 1 }}
+    next={{ slug: 'history', title: 'Zainichi', number: 3 }}
   />
 
 </SummerLayout>
@@ -282,8 +284,7 @@ const imgBase = '/images/summer-reading/pachinko';
       var k = el.getAttribute('data-motif');
       var size = parseInt(el.getAttribute('data-size') || '40', 10);
       var w = parseInt(el.getAttribute('data-w') || '80', 10);
-      if (k === 'medallion-flip') el.innerHTML = medallionFlip(size);
-      else if (k === 'rosette') el.innerHTML = rosette(size, 'var(--p-orange)', 20);
+      if (k === 'rosette') el.innerHTML = rosette(size, 'var(--p-orange)', 20);
       else if (k === 'butterfly') el.innerHTML = butterfly(size);
       else if (k === 'floral') el.innerHTML = floral(w, 'var(--p-orange)');
     });

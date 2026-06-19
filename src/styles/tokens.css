@@ -8,16 +8,17 @@
  */
 
 :root {
-  /* ── Neutrals (shared) ── */
-  --color-cream:      #F6F1E8;   /* page ground */
-  --color-card:       #EDE8DC;   /* card / inset surface */
+  /* ── Neutrals (shared) — locked family values ── */
+  --color-cream:      #F4EDDF;   /* page ground */
+  --color-card:       #EBE2D0;   /* card / inset surface */
   --color-warm:       #F0E9D8;   /* deeper warm — passage blockquote ground */
-  --color-ink:        #2C2820;   /* primary text */
-  --color-muted:      #6B6355;   /* secondary text, captions */
-  --color-rule:       #C8C0B0;   /* hairline rules, inactive borders */
+  --color-ink:        #1B1714;   /* primary text */
+  --color-muted:      #6A6053;   /* secondary text, captions */
+  --color-rule:       #C9BDA5;   /* hairline rules, inactive borders */
 
   /* ── Pachinko ── */
   --p-teal:           #2AA8A0;   /* primary accent */
+  --p-teal-deep:      #1E7A74;   /* deep teal — landing panel ground */
   --p-orange:         #C4722A;   /* eyebrow / decorative warm */
   --p-gold:           #D4A840;   /* secondary highlight */
   --p-coral:          #C4537A;   /* tertiary; reused on Cultural Message "open question" */
@@ -36,7 +37,7 @@
   /* ── Type ── */
   --font-display:     "Fraunces", ui-serif, Georgia, serif;
   --font-body:        "DM Sans", system-ui, -apple-system, sans-serif;
-  --font-mono:        "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  --font-mono:        "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
 
   /* ── Type scale (display — Fraunces italic) ── */
   --t-hero:           clamp(2.5rem, 1.6rem + 4vw, 4rem);    /* 40–64px hub titles */
@@ -47,12 +48,12 @@
   --t-passage:        1.125rem;  /* 18px Cultural Message passage */
 
   /* ── Type scale (body — DM Sans) ── */
-  --t-body:           0.9375rem; /* 15px primary body */
-  --t-body-sm:        0.875rem;  /* 14px provocation, dense body */
+  --t-body:           1.0625rem; /* 17px primary body — family floor */
+  --t-body-sm:        0.9375rem; /* 15px secondary / dense body */
   --t-meta:           0.8125rem; /* 13px narrative context, captions */
   --t-tiny:           0.75rem;   /* 12px attribution */
 
-  /* ── Type scale (mono — JetBrains Mono) ── */
+  /* ── Type scale (mono — IBM Plex Mono) ── */
   --t-eyebrow:        0.625rem;  /* 10px UPPER 0.18em eyebrows */
   --t-tag:            0.5625rem; /* 9px novel tag, page-of-page indicator */
 

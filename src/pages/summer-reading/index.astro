@@ -1,123 +1,524 @@
 ---
-import SummerLayout from '../../layouts/SummerLayout.astro';
-import Medallion from '../../components/summer-reading/Medallion.astro';
-import UliMark from '../../components/summer-reading/UliMark.astro';
+// Landing page — "The World Was All Before Them"
+// Replaces the old shared-hub concept. Full-width two-panel color-field design.
+// Spec: design_handoff_landing_redesign/README.md
 
-// Pronunciation guide entries — open question: respelling vs. IPA.
-// Using plain English respellings for v1 per the spec.
-const pachinkoNames = [
-  { name: 'Sunja',     respell: '[SOON-jah]',       gloss: 'Protagonist; mother of two' },
-  { name: 'Yeongdo',   respell: '[YUNG-doh]',       gloss: 'Island near Busan, Korea' },
-  { name: 'Isak',      respell: '[EE-sahk]',        gloss: "Sunja's husband; pastor" },
-  { name: 'Mozasu',    respell: '[moh-ZAH-soo]',    gloss: "Sunja's younger son" },
-  { name: 'Zainichi',  respell: '[zai-NEE-chee]',   gloss: 'Korean diaspora in Japan' },
-  { name: 'Ikaino',    respell: '[ee-KAI-noh]',     gloss: 'Korean district in Osaka' },
-];
+import '../../styles/tokens.css';
+import PachinkoCrest from '../../components/summer-reading/PachinkoCrest.astro';
+import UliSun from '../../components/summer-reading/UliSun.astro';
+import PSpokeGlyph from '../../components/summer-reading/PSpokeGlyph.astro';
+import TSpokeGlyph from '../../components/summer-reading/TSpokeGlyph.astro';
 
-const tfaNames = [
-  { name: 'Okonkwo',   respell: '[oh-KOHN-kwoh]',    gloss: 'Protagonist; Things Fall Apart' },
-  { name: 'Umuofia',   respell: '[oo-moo-OH-fyah]',  gloss: "Okonkwo's clan village" },
-  { name: 'Ezinma',    respell: '[eh-ZIN-mah]',      gloss: "Okonkwo's favourite daughter" },
-  { name: 'Obierika',  respell: '[oh-bee-EH-ree-kah]', gloss: "Okonkwo's closest friend" },
-  { name: 'Ikemefuna', respell: '[ee-keh-meh-FOO-nah]', gloss: 'Boy placed in Okonkwo\'s care' },
-  { name: 'Chi',       respell: '[chee]',             gloss: 'Personal spirit / destiny' },
-];
+// Spoke data — real hrefs to existing pages
+const PACHINKO_SPOKES = [
+  { n: '01', title: 'World',       href: '/summer-reading/pachinko/world',   accent: 'var(--p-teal)',   idx: 0 },
+  { n: '02', title: 'Identity',    href: '/summer-reading/pachinko/culture', accent: 'var(--p-orange)', idx: 1 },
+  { n: '03', title: 'Zainichi',    href: '/summer-reading/pachinko/history', accent: 'var(--p-gold)',   idx: 2 },
+  { n: '04', title: 'Key Figures', href: '/summer-reading/pachinko/figures', accent: 'var(--p-coral)',  idx: 3 },
+  { n: '05', title: 'Connections', href: '/summer-reading/pachinko/novel',   accent: 'var(--p-teal)',   idx: 4 },
+] as const;
+
+const TFA_SPOKES = [
+  { n: '01', title: 'World',       href: '/summer-reading/tfa/world',   accent: 'var(--t-terra)',  idx: 0 },
+  { n: '02', title: 'Society',     href: '/summer-reading/tfa/culture', accent: 'var(--t-forest)', idx: 1 },
+  { n: '03', title: 'Colonialism', href: '/summer-reading/tfa/history', accent: 'var(--t-ochre)',  idx: 2 },
+  { n: '04', title: 'Key Figures', href: '/summer-reading/tfa/figures', accent: 'var(--t-terra)',  idx: 3 },
+  { n: '05', title: 'Connections', href: '/summer-reading/tfa/novel',   accent: 'var(--t-forest)', idx: 4 },
+] as const;
+
+// Compute BilateralBand geometry (Pachinko foot band, full-width via preserveAspectRatio)
+const BB_W = 600, BB_H = 20, BB_N = 5;
+const bbMeds = Array.from({ length: BB_N }, (_, i) => (i + 0.5) / BB_N);
+
+// Compute AkweteDiamond geometry (TFA foot band, full-width via preserveAspectRatio)
+const AK_W = 600, AK_H = 18, AK_UNIT = 28;
+const akCount = Math.floor(AK_W / AK_UNIT);
+const akPal = ['var(--t-terra)', 'var(--t-ochre)', 'var(--t-forest)'];
 ---
 
-<SummerLayout title="The Living Atlas — AP Literature Summer Reading" section="hub">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <title>The World Was All Before Them — AP Literature Summer Reading</title>
+</head>
+<body class="thr-body">
 
-  <!-- Hero — dual-motif title plate -->
-  <div class="sr-shared-hub-hero">
-    <!-- Left motif: Medallion (Pachinko) -->
-    <div style="position:absolute;top:0;left:0;transform:translate(-30%,-20%);pointer-events:none;">
-      <Medallion size={280} fill="var(--p-gold)" opacity={0.18} />
-    </div>
-    <!-- Right motif: UliMark (TFA) -->
-    <div style="position:absolute;top:0;right:0;transform:translate(30%,-20%);pointer-events:none;">
-      <UliMark size={280} fill="var(--t-terra)" opacity={0.18} />
-    </div>
-
-    <div style="position:relative;z-index:1;max-width:var(--content-prose);">
-      <span class="sr-hub-hero-eyebrow" style="color:var(--color-ink);">Summer Reading  ·  2026</span>
-      <h1 class="sr-hub-hero-title">The Living Atlas</h1>
-      <p class="sr-hub-hero-deck">Two novels. Twelve generations.<br />Two continents and a century.</p>
-    </div>
+  <!-- ─── Masthead ──────────────────────────────────────────────────────────── -->
+  <div class="thr-masthead">
+    <p class="thr-eyebrow">AP LITERATURE</p>
+    <h1 class="thr-h1">The World Was All Before Them</h1>
+    <div class="thr-rule" aria-hidden="true"></div>
+    <blockquote class="thr-epigraph">Some natural tears they dropped, but wiped them soon;
+The World was all before them, where to choose
+Their place of rest, and Providence their guide:
+They hand in hand with wandering steps and slow,
+Through Eden took their solitary way.</blockquote>
+    <p class="thr-attribution">JOHN MILTON · PARADISE LOST, THE CLOSING DESCRIPTION OF THE &#8220;EXPULSION&#8221; FROM EDEN</p>
+    <p class="thr-deck">Like Milton&#8217;s Adam and Eve, the characters in these novels are cast out of the familiar into worlds remade by empire. The pages of this site are designed to contextualize the nature and consequences of their displacement.</p>
   </div>
 
-  <!-- Framing prose -->
-  <div class="sr-hub-prose">
-    <p>This site pairs <em>Pachinko</em> (Min Jin Lee, 2017) and <em>Things Fall Apart</em> (Chinua Achebe, 1958) — two novels written sixty years apart that each ask what it costs to have your history erased, your name changed, and your civilization dismissed. The contextual sections here are designed to be read alongside the novels, in any order, before or after the reading you're doing for class.</p>
-    <p>The Cultural Message section collects close-reading prompts organized around the passages your test question is likely to draw on. Start there when you're ready to write.</p>
-  </div>
+  <!-- ─── Two-panel grid ───────────────────────────────────────────────────── -->
+  <div class="thr-grid">
 
-  <!-- Twin novel cards -->
-  <div class="sr-twin-cards">
-    <a href="/summer-reading/pachinko" class="sr-novel-card sr-novel-card--pachinko">
-      <span class="sr-novel-card-eyebrow">The Novel</span>
-      <h2 class="sr-novel-card-title">Pachinko</h2>
-      <p class="sr-novel-card-author">Min Jin Lee</p>
-      <p class="sr-novel-card-deck">Eight decades, three generations, one family across the Korea Strait. 1910 to 1989.</p>
-      <span class="sr-novel-card-cta">Begin reading →</span>
-    </a>
+    <!-- PACHINKO PANEL -->
+    <section class="thr-panel thr-panel--pachinko" data-screen-label="Pachinko">
+      <!-- faint oversized echo bleeding off lower-left corner -->
+      <div class="thr-echo thr-echo--left" aria-hidden="true">
+        <PachinkoCrest size={520} line="var(--t-cream)" gold="var(--p-gold)" accent="#7FD4CE" />
+      </div>
 
-    <a href="/summer-reading/tfa" class="sr-novel-card sr-novel-card--tfa">
-      <span class="sr-novel-card-eyebrow">The Novel</span>
-      <h2 class="sr-novel-card-title">Things Fall Apart</h2>
-      <p class="sr-novel-card-author">Chinua Achebe</p>
-      <p class="sr-novel-card-deck">A village's last decade before the missionaries arrived — and the decades that followed.</p>
-      <span class="sr-novel-card-cta">Begin reading →</span>
-    </a>
-  </div>
+      <!-- hero zone -->
+      <div class="thr-hero">
+        <p class="thr-panel-eyebrow">Text One · Min Jin Lee</p>
+        <div class="thr-crest-wrap">
+          <PachinkoCrest size={300} line="var(--t-cream)" gold="var(--p-gold)" accent="#7FD4CE" />
+        </div>
+        <h2 class="thr-panel-title thr-panel-title--lg">Pachinko</h2>
+        <p class="thr-panel-meta">1910–1989 · Korea &amp; Japan</p>
+        <p class="thr-panel-deck">Four generations of a Korean family across the Japanese occupation, war, and postwar Osaka.</p>
+      </div>
 
-  <!-- Pronunciation guide -->
-  <div class="sr-pronunciation" style="margin-inline: var(--gutter-lg);">
-    <span class="sr-pronunciation-eyebrow">How These Names Sound</span>
-    <table class="sr-pronunciation-table">
-      {pachinkoNames.map(({ name, respell, gloss }) => (
-        <tr>
-          <td class="sr-pron-name">{name}</td>
-          <td class="sr-pron-respell">{respell}</td>
-          <td class="sr-pron-gloss">{gloss}</td>
-        </tr>
-      ))}
-    </table>
-    <hr class="sr-pronunciation-divider" />
-    <table class="sr-pronunciation-table">
-      {tfaNames.map(({ name, respell, gloss }) => (
-        <tr>
-          <td class="sr-pron-name">{name}</td>
-          <td class="sr-pron-respell" style="color:var(--t-terra);">{respell}</td>
-          <td class="sr-pron-gloss">{gloss}</td>
-        </tr>
-      ))}
-    </table>
-  </div>
+      <!-- chip strip -->
+      <div class="thr-chips-wrap">
+        <p class="thr-chips-eyebrow">Five ways in</p>
+        <div class="thr-chips">
+          {PACHINKO_SPOKES.map((s) => (
+            <a href={s.href} class="thr-chip" style={`--chip-accent: ${s.accent};`}>
+              <span class="thr-chip-num">{s.n}</span>
+              <span class="thr-chip-title">{s.title}</span>
+              <span class="thr-chip-glyph">
+                <PSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
 
-  <!-- Cultural Message entry -->
-  <div style="max-width:var(--content-wide);margin-inline:auto;padding:var(--s-10) var(--gutter-lg);">
-    <p class="sr-cm-header-eyebrow">Cultural Message  ·  Two Readings</p>
-    <h2 style="font-family:var(--font-display);font-style:italic;font-size:var(--t-h2);color:var(--color-ink);margin:0 0 var(--s-3);">What the novels are doing on the page</h2>
-    <p style="font-family:var(--font-body);font-size:var(--t-body-sm);color:var(--color-muted);max-width:35rem;margin:0 0 var(--s-5);">Close-reading prompts organized around passages that reward careful attention — the moments that don't immediately announce themselves as thematically central.</p>
-    <div style="display:flex;gap:var(--s-6);">
-      <a href="/summer-reading/cultural-message/pachinko" style="font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-ink);text-decoration:underline;text-underline-offset:3px;">01 Pachinko</a>
-      <a href="/summer-reading/cultural-message/tfa" style="font-family:var(--font-mono);font-size:var(--t-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-ink);text-decoration:underline;text-underline-offset:3px;">02 Things Fall Apart</a>
-    </div>
-  </div>
+      <!-- section buttons -->
+      <div class="thr-btns">
+        <a href="/summer-reading/cultural-message/pachinko" class="thr-btn">Cultural Message Analysis <span class="thr-btn-arrow">→</span></a>
+        <a href="#pronunciation" class="thr-btn">Pronunciation Guide <span class="thr-btn-arrow">→</span></a>
+      </div>
 
-  <!-- Footer -->
-  <footer class="sr-hub-footer">
-    <span>The Living Atlas  ·  Summer Reading 2026</span>
-    <a href="/summer-reading">Site map →</a>
+      <!-- motif foot band — BilateralBand, gold/cream, full-width -->
+      <svg
+        viewBox={`0 0 ${BB_W} ${BB_H}`}
+        preserveAspectRatio="none"
+        width="100%"
+        height={BB_H}
+        aria-hidden="true"
+        style="display:block;"
+      >
+        <line x1="0" y1={BB_H / 2} x2={BB_W} y2={BB_H / 2} stroke="var(--p-gold)" stroke-width="0.5" opacity="0.4" />
+        {bbMeds.map((t, i) => {
+          const cx = t * BB_W;
+          const big = i === Math.floor(BB_N / 2);
+          const r = big ? 8 : 6;
+          return (
+            <>
+              <circle key={`bb-ring-${i}`} cx={cx} cy={BB_H / 2} r={r} fill="none" stroke={big ? 'var(--t-cream)' : 'var(--p-gold)'} stroke-width="1.4" />
+              <circle key={`bb-dot-${i}`} cx={cx} cy={BB_H / 2} r="1.5" fill="var(--t-cream)" />
+            </>
+          );
+        })}
+        {bbMeds.slice(0, -1).map((t, i) => {
+          const cx = ((t + bbMeds[i + 1]) / 2) * BB_W;
+          return [-4, 0, 4].map((dy, j) => (
+            <circle key={`bb-pin-${i}-${j}`} cx={cx} cy={BB_H / 2 + dy} r="0.9" fill="var(--t-cream)" />
+          ));
+        })}
+      </svg>
+    </section>
+
+    <!-- TFA PANEL -->
+    <section class="thr-panel thr-panel--tfa" data-screen-label="Things Fall Apart">
+      <!-- faint oversized echo bleeding off lower-right corner -->
+      <div class="thr-echo thr-echo--right" aria-hidden="true">
+        <UliSun size={520} line="var(--t-cream)" terra="var(--t-terra)" ochre="var(--t-ochre)" forest="#9FBF6A" />
+      </div>
+
+      <!-- hero zone -->
+      <div class="thr-hero">
+        <p class="thr-panel-eyebrow">Text Two · Chinua Achebe</p>
+        <div class="thr-crest-wrap">
+          <UliSun size={300} line="var(--t-cream)" terra="var(--t-terra)" ochre="var(--t-ochre)" forest="#9FBF6A" />
+        </div>
+        <h2 class="thr-panel-title thr-panel-title--md">Things Fall Apart</h2>
+        <p class="thr-panel-meta">1958 · Igboland, Nigeria</p>
+        <p class="thr-panel-deck">A late-19th-century Igbo village meets the slow, then sudden, arrival of empire.</p>
+      </div>
+
+      <!-- chip strip -->
+      <div class="thr-chips-wrap">
+        <p class="thr-chips-eyebrow">Five ways in</p>
+        <div class="thr-chips">
+          {TFA_SPOKES.map((s) => (
+            <a href={s.href} class="thr-chip" style={`--chip-accent: ${s.accent};`}>
+              <span class="thr-chip-num">{s.n}</span>
+              <span class="thr-chip-title">{s.title}</span>
+              <span class="thr-chip-glyph">
+                <TSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- section buttons -->
+      <div class="thr-btns">
+        <a href="/summer-reading/cultural-message/tfa" class="thr-btn">Cultural Message Analysis <span class="thr-btn-arrow">→</span></a>
+        <a href="#pronunciation" class="thr-btn">Pronunciation Guide <span class="thr-btn-arrow">→</span></a>
+      </div>
+
+      <!-- motif foot band — AkweteDiamond, full-width -->
+      <svg
+        viewBox={`0 0 ${AK_W} ${AK_H}`}
+        preserveAspectRatio="none"
+        width="100%"
+        height={AK_H}
+        aria-hidden="true"
+        style="display:block;"
+      >
+        {Array.from({ length: akCount }, (_, i) => {
+          const x = i * AK_UNIT + AK_UNIT / 2;
+          return (
+            <path
+              key={`ak-${i}`}
+              d={`M ${x} 2 L ${x + AK_UNIT / 2 - 1} ${AK_H / 2} L ${x} ${AK_H - 2} L ${x - AK_UNIT / 2 + 1} ${AK_H / 2} Z`}
+              fill={akPal[i % 3]}
+            />
+          );
+        })}
+      </svg>
+    </section>
+
+  </div><!-- /.thr-grid -->
+
+  <!-- ─── Footer ───────────────────────────────────────────────────────────── -->
+  <footer class="thr-footer">
+    <span class="thr-footer-text">THE WORLD WAS ALL BEFORE THEM · AP LITERATURE</span>
   </footer>
 
-</SummerLayout>
+</body>
+</html>
 
 <style>
-  .sr-hub-hero-deck {
+  /* ── Reset / base ── */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .thr-body {
+    margin: 0;
     font-family: var(--font-body);
-    font-size:   1rem;
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  /* ── Masthead ── */
+  .thr-masthead {
+    padding: 56px 56px 40px;
+    text-align: center;
+    background: var(--color-cream);
+  }
+
+  .thr-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.65625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--p-orange);
+    margin: 0 0 20px;
+  }
+
+  .thr-h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.5rem, 1.5rem + 4.5vw, 4.875rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .thr-rule {
+    width: 56px;
+    height: 2px;
+    background: var(--p-orange);
+    opacity: 0.5;
+    margin: 30px auto 26px;
+  }
+
+  .thr-epigraph {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #4a4234;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    white-space: pre-line;
+  }
+
+  .thr-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.59375rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin: 16px auto 0;
+    max-width: 620px;
+  }
+
+  .thr-deck {
+    font-family: var(--font-body);
+    font-size: 1.03125rem;
     line-height: 1.6;
-    color:       var(--color-muted);
-    margin:      var(--s-4) 0 0;
+    color: var(--color-muted);
+    max-width: 620px;
+    margin: 26px auto 0;
+  }
+
+  /* ── Two-panel grid ── */
+  .thr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 900px) {
+    .thr-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Panel ── */
+  .thr-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 880px;
+  }
+
+  .thr-panel--pachinko { background: var(--p-teal-deep); }
+  .thr-panel--tfa      { background: var(--t-umber); }
+
+  /* faint echo motif — oversized, bleeding off lower corner */
+  .thr-echo {
+    position: absolute;
+    bottom: -180px;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .thr-echo--left  { left: -160px; }
+  .thr-echo--right { right: -160px; }
+
+  /* ── Hero zone ── */
+  .thr-hero {
+    position: relative;
+    flex: 1;
+    padding: 52px 56px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .thr-panel-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--p-gold);
+    margin: 0 0 30px;
+  }
+
+  .thr-panel--tfa .thr-panel-eyebrow {
+    color: var(--t-ochre);
+  }
+
+  .thr-crest-wrap {
+    margin: 4px 0 26px;
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.25));
+  }
+
+  .thr-panel-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.015em;
+    color: rgba(246, 241, 232, 0.95);
+    margin: 0 0 16px;
+  }
+  .thr-panel-title--lg { font-size: clamp(2.5rem, 1rem + 4vw, 4.125rem); }
+  .thr-panel-title--md { font-size: clamp(2rem, 0.8rem + 3.5vw, 3.75rem); }
+
+  .thr-panel-meta {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.6);
+    margin: 0 0 22px;
+  }
+
+  .thr-panel-deck {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: rgba(246, 241, 232, 0.95);
+    max-width: 440px;
+    margin: 0;
+  }
+
+  /* ── Chip strip ── */
+  .thr-chips-wrap {
+    position: relative;
+    padding: 30px 40px 40px;
+  }
+
+  .thr-chips-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--p-gold);
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  .thr-panel--tfa .thr-chips-eyebrow {
+    color: var(--t-ochre);
+  }
+
+  .thr-chips {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .thr-chip {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.20);
+    border-top: 2px solid var(--chip-accent);
+    padding: 16px 12px 18px;
+    min-height: 150px;
+    box-sizing: border-box;
+    transition: background 160ms ease-out, transform 160ms ease-out;
+  }
+
+  .thr-chip:hover {
+    background: rgba(246, 241, 232, 0.13);
+    transform: translateY(-3px);
+  }
+
+  .thr-chip-num {
+    font-family: var(--font-mono);
+    font-size: 0.59375rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--p-gold);
+    margin-bottom: 9px;
+    display: block;
+  }
+
+  .thr-panel--tfa .thr-chip-num {
+    color: var(--t-ochre);
+  }
+
+  .thr-chip-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.12;
+    color: rgba(246, 241, 232, 0.95);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thr-chip-glyph {
+    margin-top: 13px;
+    opacity: 0.95;
+    display: flex;
+  }
+
+  /* ── Section buttons ── */
+  .thr-btns {
+    position: relative;
+    padding: 0 40px 38px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .thr-btn {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.30);
+    color: rgba(246, 241, 232, 0.95);
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 15px 16px;
+    transition: background 160ms ease-out, border-color 160ms ease-out;
+  }
+
+  .thr-btn:hover {
+    background: rgba(246, 241, 232, 0.16);
+    border-color: rgba(246, 241, 232, 0.55);
+  }
+
+  .thr-btn-arrow {
+    opacity: 0.65;
+  }
+
+  /* ── Footer ── */
+  .thr-footer {
+    background: var(--color-cream);
+    padding: 26px 56px;
+    text-align: center;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .thr-footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 700px) {
+    .thr-masthead { padding: 40px 24px 32px; }
+    .thr-hero { padding: 40px 24px 8px; }
+    .thr-chips-wrap { padding: 24px 20px 32px; }
+    .thr-btns { padding: 0 20px 28px; flex-direction: column; }
+    .thr-chips { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .thr-chip { padding: 10px 4px 12px; min-height: 120px; }
+    .thr-chip-title { font-size: 0.875rem; min-height: 32px; }
+    .thr-footer { padding: 20px 24px; }
   }
 </style>

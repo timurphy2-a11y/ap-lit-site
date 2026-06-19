@@ -1,12 +1,15 @@
 ---
 // SpokePagination.astro
 // Prev / next links at the foot of each spoke page.
-// Spec: 04-spoke-page.md
+// Spec: 04-spoke-page.md + landing_redesign handoff §4d (ideogram glyphs).
+
+import PSpokeGlyph from './PSpokeGlyph.astro';
+import TSpokeGlyph from './TSpokeGlyph.astro';
 
 interface SpokeLink {
   slug:   string;
   title:  string;
-  number: number;
+  number: number;  // 1-based
 }
 
 interface Props {
@@ -22,15 +25,46 @@ const base = `/summer-reading/${section}`;
 <nav class="sr-spoke-pagination" aria-label="Spoke pagination">
   {prev ? (
     <a href={`${base}/${prev.slug}`} class="sr-pagination-link sr-pagination-link--prev">
-      <span class="sr-pagination-eyebrow">← Spoke {String(prev.number).padStart(2, '0')}</span>
-      <span class="sr-pagination-title">{prev.title}</span>
+      <div class="sr-pagination-glyph">
+        {section === 'pachinko'
+          ? <PSpokeGlyph idx={(prev.number - 1) as 0|1|2|3|4} size={32} color="var(--color-ink)" />
+          : <TSpokeGlyph idx={(prev.number - 1) as 0|1|2|3|4} size={32} color="var(--color-ink)" />
+        }
+      </div>
+      <div>
+        <span class="sr-pagination-eyebrow">← Spoke {String(prev.number).padStart(2, '0')}</span>
+        <span class="sr-pagination-title">{prev.title}</span>
+      </div>
     </a>
   ) : <div />}
 
   {next ? (
     <a href={`${base}/${next.slug}`} class="sr-pagination-link sr-pagination-link--next">
-      <span class="sr-pagination-eyebrow">Spoke {String(next.number).padStart(2, '0')} →</span>
-      <span class="sr-pagination-title">{next.title}</span>
+      <div>
+        <span class="sr-pagination-eyebrow">Spoke {String(next.number).padStart(2, '0')} →</span>
+        <span class="sr-pagination-title">{next.title}</span>
+      </div>
+      <div class="sr-pagination-glyph">
+        {section === 'pachinko'
+          ? <PSpokeGlyph idx={(next.number - 1) as 0|1|2|3|4} size={32} color="var(--color-ink)" />
+          : <TSpokeGlyph idx={(next.number - 1) as 0|1|2|3|4} size={32} color="var(--color-ink)" />
+        }
+      </div>
     </a>
   ) : <div />}
 </nav>
+
+<style>
+  .sr-pagination-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .sr-pagination-link--next {
+    justify-content: flex-end;
+  }
+  .sr-pagination-glyph {
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+</style>

@@ -8,6 +8,7 @@ import EndSignature from '../../../components/summer-reading/EndSignature.astro'
 import PullQuote from '../../../components/summer-reading/PullQuote.astro';
 import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
 import UliTendril from '../../../components/summer-reading/UliTendril.astro';
+import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
 ---
 
 <SummerLayout title="The World of the Novel — Things Fall Apart" section="tfa" spoke="world">
@@ -18,7 +19,10 @@ import UliTendril from '../../../components/summer-reading/UliTendril.astro';
   <div class="tfa-spoke-header">
     <div class="tfa-spoke-header-inner">
       <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 01</span>
-      <h1 class="tfa-spoke-header-title">The World of the Novel</h1>
+      <div class="tfa-spoke-header-title-row">
+        <div class="tfa-spoke-badge" style="border-color: var(--t-terra);"><TSpokeGlyph idx={0} size={38} color="var(--t-cream)" /></div>
+        <h1 class="tfa-spoke-header-title">World</h1>
+      </div>
       <p class="tfa-spoke-header-deck">Late-nineteenth-century Igboland — autonomous village republics, an economy built on the yam, and a calendar of sacred time. Achebe renders this world whole and working from the inside, before any colonial presence appears to disrupt it.</p>
     </div>
   </div>
@@ -516,7 +520,7 @@ import UliTendril from '../../../components/summer-reading/UliTendril.astro';
 
   <SpokePagination
     section="tfa"
-    next={{ slug: 'culture', title: 'Igbo Society and Cosmology', number: 2 }}
+    next={{ slug: 'culture', title: 'Society', number: 2 }}
   />
 
 </SummerLayout>

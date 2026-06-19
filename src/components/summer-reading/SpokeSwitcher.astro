@@ -1,0 +1,169 @@
+---
+// SpokeSwitcher.astro
+// Persistent spoke-switcher rail — the landing chip grid re-skinned for
+// the cream reading surface. Renders below the top bar on all spoke pages.
+// Replaces SpokeNav; carries per-spoke ideograms and accent top borders.
+
+import PSpokeGlyph from './PSpokeGlyph.astro';
+import TSpokeGlyph from './TSpokeGlyph.astro';
+
+interface Props {
+  section:     'pachinko' | 'tfa';
+  activeSpoke: 'world' | 'culture' | 'history' | 'figures' | 'novel';
+}
+
+const { section, activeSpoke } = Astro.props;
+
+const base = `/summer-reading/${section}`;
+
+type SpokeSlug = 'world' | 'culture' | 'history' | 'figures' | 'novel';
+
+const PACHINKO_SPOKES: { slug: SpokeSlug; n: string; title: string; accent: string }[] = [
+  { slug: 'world',   n: '01', title: 'World',       accent: 'var(--p-teal)'  },
+  { slug: 'culture', n: '02', title: 'Identity',    accent: 'var(--p-orange)'},
+  { slug: 'history', n: '03', title: 'Zainichi',    accent: 'var(--p-gold)'  },
+  { slug: 'figures', n: '04', title: 'Key Figures', accent: 'var(--p-coral)' },
+  { slug: 'novel',   n: '05', title: 'Connections', accent: 'var(--p-teal)'  },
+];
+
+const TFA_SPOKES: { slug: SpokeSlug; n: string; title: string; accent: string }[] = [
+  { slug: 'world',   n: '01', title: 'World',        accent: 'var(--t-terra)'  },
+  { slug: 'culture', n: '02', title: 'Society',      accent: 'var(--t-forest)' },
+  { slug: 'history', n: '03', title: 'Colonialism',  accent: 'var(--t-ochre)'  },
+  { slug: 'figures', n: '04', title: 'Key Figures',  accent: 'var(--t-terra)'  },
+  { slug: 'novel',   n: '05', title: 'Connections',  accent: 'var(--t-forest)' },
+];
+
+const spokes = section === 'pachinko' ? PACHINKO_SPOKES : TFA_SPOKES;
+const novelLabel = section === 'pachinko' ? 'Pachinko' : 'Things Fall Apart';
+---
+
+<nav class="sr-spoke-switcher" aria-label="All spokes">
+  <div class="sr-spoke-switcher-eyebrow">{novelLabel} · five ways in</div>
+  <div class="sr-spoke-switcher-grid">
+    {spokes.map((s, i) => {
+      const active = s.slug === activeSpoke;
+      return (
+        <a
+          href={`${base}/${s.slug}`}
+          class={`sr-spoke-chip spk-mini${active ? ' active' : ''}`}
+          aria-current={active ? 'page' : undefined}
+          style={`--chip-accent: ${s.accent};`}
+        >
+          <div class="sr-spoke-chip-glyph">
+            {section === 'pachinko'
+              ? <PSpokeGlyph idx={i as 0|1|2|3|4} size={26} color={active ? 'var(--t-cream)' : 'var(--color-ink)'} />
+              : <TSpokeGlyph idx={i as 0|1|2|3|4} size={26} color={active ? 'var(--t-cream)' : 'var(--color-ink)'} />
+            }
+          </div>
+          <div class="sr-spoke-chip-text">
+            <span class="sr-spoke-chip-num">{s.n}</span>
+            <span class="sr-spoke-chip-title">{s.title}</span>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</nav>
+
+<style>
+  .sr-spoke-switcher {
+    background: var(--color-warm);
+    border-bottom: 1px solid var(--color-rule);
+    padding: 14px 3.5rem;
+  }
+
+  .sr-spoke-switcher-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+  }
+
+  .sr-spoke-switcher-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+
+  .sr-spoke-chip {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    min-height: 50px;
+    text-decoration: none;
+    background: var(--color-cream);
+    border: 1px solid var(--color-rule);
+    border-top: 2px solid var(--chip-accent);
+    transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+  }
+
+  .sr-spoke-chip.active {
+    background: var(--chip-accent);
+    border-color: var(--chip-accent);
+  }
+
+  .sr-spoke-chip:hover:not(.active) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(44, 40, 32, 0.12);
+  }
+
+  .sr-spoke-chip-glyph {
+    flex-shrink: 0;
+  }
+
+  .sr-spoke-chip-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sr-spoke-chip-num {
+    font-family: var(--font-mono);
+    font-size: 0.53125rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    display: block;
+  }
+
+  .sr-spoke-chip.active .sr-spoke-chip-num {
+    color: rgba(240, 228, 207, 0.8);
+  }
+
+  .sr-spoke-chip-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: var(--color-ink);
+    display: block;
+  }
+
+  .sr-spoke-chip.active .sr-spoke-chip-title {
+    color: var(--t-cream);
+  }
+
+  @media (max-width: 700px) {
+    .sr-spoke-switcher {
+      padding: 12px var(--gutter);
+    }
+    .sr-spoke-switcher-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .sr-spoke-chip {
+      padding: 8px 6px;
+      gap: 6px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 64px;
+    }
+  }
+</style>

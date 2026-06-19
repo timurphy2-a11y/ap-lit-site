@@ -7,6 +7,7 @@ import ZoneSeam from '../../../components/summer-reading/ZoneSeam.astro';
 import EndSignature from '../../../components/summer-reading/EndSignature.astro';
 import PullQuote from '../../../components/summer-reading/PullQuote.astro';
 import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
+import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
 ---
 
 <SummerLayout title="Colonialism in West Africa — Things Fall Apart" section="tfa" spoke="history">
@@ -17,7 +18,10 @@ import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astr
   <div class="tfa-spoke-header">
     <div class="tfa-spoke-header-inner">
       <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 03</span>
-      <h1 class="tfa-spoke-header-title">Colonialism in West Africa</h1>
+      <div class="tfa-spoke-header-title-row">
+        <div class="tfa-spoke-badge" style="border-color: var(--t-ochre);"><TSpokeGlyph idx={2} size={38} color="var(--t-cream)" /></div>
+        <h1 class="tfa-spoke-header-title">Colonialism</h1>
+      </div>
       <p class="tfa-spoke-header-deck">How an empire reached a society it could not read — partitioning a continent in a Berlin map room, inventing chiefs for a people who had none, and reducing a whole world to a paragraph in an administrator's book.</p>
     </div>
   </div>
@@ -378,7 +382,7 @@ import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astr
 
   <SpokePagination
     section="tfa"
-    prev={{ slug: 'culture', title: 'Igbo Society and Cosmology', number: 2 }}
+    prev={{ slug: 'culture', title: 'Society', number: 2 }}
     next={{ slug: 'figures', title: 'Key Figures', number: 4 }}
   />
 

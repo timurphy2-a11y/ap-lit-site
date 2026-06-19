@@ -11,6 +11,7 @@ import AcephalousRings from '../../../components/summer-reading/AcephalousRings.
 import AscentLadder from '../../../components/summer-reading/AscentLadder.astro';
 import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
 import UliDotCluster from '../../../components/summer-reading/UliDotCluster.astro';
+import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
 ---
 
 <SummerLayout title="Igbo Society and Cosmology — Things Fall Apart" section="tfa" spoke="culture">
@@ -20,8 +21,11 @@ import UliDotCluster from '../../../components/summer-reading/UliDotCluster.astr
        ════════════════════════════════════════════════════════════ -->
   <div class="tfa-spoke-header">
     <div class="tfa-spoke-header-inner">
-      <span class="tfa-spoke-header-eyebrow">Things Fall Apart · The World of the Novel</span>
-      <h1 class="tfa-spoke-header-title">Igbo Society and Cosmology</h1>
+      <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 02</span>
+      <div class="tfa-spoke-header-title-row">
+        <div class="tfa-spoke-badge" style="border-color: var(--t-forest);"><TSpokeGlyph idx={1} size={38} color="var(--t-cream)" /></div>
+        <h1 class="tfa-spoke-header-title">Society</h1>
+      </div>
       <p class="tfa-spoke-header-deck">A republic without a king, a meritocracy of titles, and a cosmos that runs from a distant creator down to the spirit assigned at a person's birth — the internal logic that makes Umuofia make sense.</p>
     </div>
   </div>
@@ -546,8 +550,8 @@ import UliDotCluster from '../../../components/summer-reading/UliDotCluster.astr
 
   <SpokePagination
     section="tfa"
-    prev={{ slug: 'world', title: 'The World of the Novel', number: 1 }}
-    next={{ slug: 'history', title: 'The Colonial Encounter', number: 3 }}
+    prev={{ slug: 'world', title: 'World', number: 1 }}
+    next={{ slug: 'history', title: 'Colonialism', number: 3 }}
   />
 
 </SummerLayout>

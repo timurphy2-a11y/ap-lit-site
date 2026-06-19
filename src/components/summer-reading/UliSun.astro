@@ -1,0 +1,98 @@
+---
+// UliSun.astro
+// "The Uli Sun" TFA super-motif — chi/earth core radiating ten uli tendrils,
+// dot accents in the field, ringed by an Akwete diamond weave.
+// Geometry from design_handoff_landing_redesign/references/threshold-motifs.jsx.
+
+interface Props {
+  size?:   number;
+  line?:   string;   // tendril strokes, rings
+  terra?:  string;   // dot accents (alternating)
+  ochre?:  string;   // dot accents (alternating) + core center
+  forest?: string;   // diamond palette
+}
+
+const {
+  size   = 320,
+  line   = 'var(--t-cream)',
+  terra  = 'var(--t-terra)',
+  ochre  = 'var(--t-ochre)',
+  forest = '#9FBF6A',
+} = Astro.props;
+
+const D2R = Math.PI / 180;
+const C = 200;
+
+// One tendril pointing up, rotated 10 times (36° each)
+const tendrilD = "M200 168 C 196 142, 174 140, 179 112 C 183 90, 205 90, 201 64 C 199 48, 187 46, 192 30";
+
+// Dot accents between tendrils (at r96 and r60)
+const dots: { cx96: number; cy96: number; cx60: number; cy60: number; colorOuter: string }[] = [];
+for (let i = 0; i < 10; i++) {
+  const a = (i * 36 + 18) * D2R;
+  dots.push({
+    cx96: C + 96 * Math.cos(a),
+    cy96: C + 96 * Math.sin(a),
+    cx60: C + 60 * Math.cos(a),
+    cy60: C + 60 * Math.sin(a),
+    colorOuter: i % 2 ? ochre : terra,
+  });
+}
+
+// Akwete diamond ring (32 diamonds at r184)
+const diamonds: { x: number; y: number; fill: string }[] = [];
+const pal = [terra, ochre, forest];
+for (let i = 0; i < 32; i++) {
+  const a = (i / 32) * 360 * D2R;
+  diamonds.push({ x: C + 184 * Math.cos(a), y: C + 184 * Math.sin(a), fill: pal[i % 3] });
+}
+---
+
+<svg
+  viewBox="0 0 400 400"
+  width={size}
+  height={size}
+  aria-hidden="true"
+  style="display:block;overflow:visible;"
+>
+  <!-- outer guide ring -->
+  <circle cx={C} cy={C} r="168" fill="none" stroke={line} stroke-width="0.8" opacity="0.35" />
+
+  <!-- Akwete diamond ring -->
+  {diamonds.map((d, i) => (
+    <path
+      key={i}
+      d={`M ${d.x} ${d.y - 6} L ${d.x + 5} ${d.y} L ${d.x} ${d.y + 6} L ${d.x - 5} ${d.y} Z`}
+      fill={d.fill}
+      opacity="0.85"
+    />
+  ))}
+
+  <!-- ten curvilinear uli tendrils -->
+  {Array.from({ length: 10 }, (_, i) => (
+    <path
+      key={i}
+      d={tendrilD}
+      transform={`rotate(${i * 36} ${C} ${C})`}
+      fill="none"
+      stroke={line}
+      stroke-width="1.7"
+      stroke-linecap="round"
+      opacity={i % 2 ? 0.55 : 0.9}
+    />
+  ))}
+
+  <!-- dot accents between tendrils -->
+  {dots.map((d, i) => (
+    <>
+      <circle key={`d-outer-${i}`} cx={d.cx96} cy={d.cy96} r="2.4" fill={d.colorOuter} opacity="0.9" />
+      <circle key={`d-inner-${i}`} cx={d.cx60} cy={d.cy60} r="1.5" fill={line} opacity="0.5" />
+    </>
+  ))}
+
+  <!-- chi / earth core -->
+  <circle cx={C} cy={C} r="26" fill="none" stroke={line} stroke-width="1.6" opacity="0.9" />
+  <circle cx={C} cy={C} r="17" fill="none" stroke={line} stroke-width="0.9" opacity="0.55" />
+  <circle cx={C} cy={C} r="6" fill={ochre} />
+  <circle cx={C} cy={C} r="2" fill={line} />
+</svg>

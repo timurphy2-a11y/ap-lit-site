@@ -320,6 +320,10 @@
 .sr-zone-seam[data-to="cream"] .sr-zone-seam-half--to      { background: var(--color-cream); }
 .sr-zone-seam[data-to="tinted"] .sr-zone-seam-half--to     { background: var(--color-card); }
 
+/* Section terminator inherits the ground of the section it follows */
+.sr-section-terminator:has(+ .sr-zone-seam[data-from="tinted"]) { background: var(--color-card); }
+.sr-section-terminator:has(+ .sr-zone-seam[data-from="cream"])  { background: var(--color-cream); }
+
 /* Motif background: midpoint blends */
 .sr-zone-seam[data-from="cream"][data-to="tinted"] .sr-zone-seam-motif {
   background: linear-gradient(to bottom, var(--color-cream), var(--color-card));

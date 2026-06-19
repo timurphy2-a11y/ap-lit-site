@@ -447,7 +447,7 @@
 .pz-pi-hero-title {
   font-family: var(--font-display); font-style: italic; font-weight: 400;
   font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.0; letter-spacing: -0.01em;
-  color: #F6F1E8; margin: 0; text-shadow: 0 2px 36px rgba(0,0,0,0.45);
+  color: var(--color-cream); margin: 0; text-shadow: 0 2px 36px rgba(0,0,0,0.45);
 }
 .pz-pi-credit {
   font-family: var(--font-mono); font-size: var(--t-tag); letter-spacing: 0.08em;

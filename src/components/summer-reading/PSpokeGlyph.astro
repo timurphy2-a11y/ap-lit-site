@@ -1,0 +1,70 @@
+---
+// PSpokeGlyph.astro
+// Per-spoke ideograms for Pachinko (idx 0–4).
+// 48×48 viewBox line-art glyphs in the pachinko aesthetic.
+// Source: design_handoff_landing_redesign/references/threshold-motifs.jsx
+
+interface Props {
+  idx:    0 | 1 | 2 | 3 | 4;
+  size?:  number;
+  color?: string;
+  gold?:  string;
+}
+
+const { idx, size = 46, color = 'var(--color-ink)', gold = 'var(--p-gold)' } = Astro.props;
+
+const P = `fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"`;
+---
+
+<svg
+  viewBox="0 0 48 48"
+  width={size}
+  height={size}
+  aria-hidden="true"
+  style="display:block;"
+>
+  {idx === 0 && (
+    <!-- 01 World — sea crossing: waves + dashed arc with gold endpoints -->
+    <g>
+      <path d="M6 30 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M6 38 q5 -6 10 0 t10 0 t10 0 t10 0" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" />
+      <path d="M10 22 Q24 6 38 20" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3" />
+      <circle cx="10" cy="22" r="2.4" fill={gold} />
+      <circle cx="38" cy="20" r="2.4" fill={gold} />
+    </g>
+  )}
+  {idx === 1 && (
+    <!-- 02 Identity — Christianity under pressure: cross + baseline -->
+    <g>
+      <line x1="24" y1="8" x2="24" y2="34" stroke={color} stroke-width="2" stroke-linecap="round" />
+      <line x1="14" y1="17" x2="34" y2="17" stroke={color} stroke-width="2" stroke-linecap="round" />
+      <line x1="10" y1="40" x2="38" y2="40" stroke={color} stroke-width="2" stroke-linecap="round" opacity="0.55" />
+      <line x1="18" y1="40" x2="14" y2="44" stroke={color} stroke-width="2" stroke-linecap="round" opacity="0.4" />
+      <line x1="30" y1="40" x2="34" y2="44" stroke={color} stroke-width="2" stroke-linecap="round" opacity="0.4" />
+    </g>
+  )}
+  {idx === 2 && (
+    <!-- 03 Zainichi — home cradling a pachinko ball -->
+    <g>
+      <path d="M10 22 L24 10 L38 22" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M13 21 V40 H35 V21" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="24" cy="31" r="6" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="22" cy="29" r="1.4" fill={gold} />
+    </g>
+  )}
+  {idx === 3 && (
+    <!-- 04 Key Figures — profile in a medallion -->
+    <g>
+      <circle cx="24" cy="24" r="17" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" />
+      <circle cx="24" cy="20" r="5" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M15 36 C 16 28, 32 28, 33 36" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  )}
+  {idx === 4 && (
+    <!-- 05 Connections — interlocking rings -->
+    <g>
+      <circle cx="18" cy="24" r="9" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="30" cy="24" r="9" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  )}
+</svg>

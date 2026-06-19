@@ -5,7 +5,11 @@
 // Does NOT modify any existing layout or global styles.
 
 import '../styles/summer-reading.css';
-import SpokeNav from '../components/summer-reading/SpokeNav.astro';
+import SpokeSwitcher from '../components/summer-reading/SpokeSwitcher.astro';
+import PSpokeGlyph from '../components/summer-reading/PSpokeGlyph.astro';
+import TSpokeGlyph from '../components/summer-reading/TSpokeGlyph.astro';
+import PachinkoCrest from '../components/summer-reading/PachinkoCrest.astro';
+import UliSun from '../components/summer-reading/UliSun.astro';
 
 interface Props {
   title:   string;
@@ -15,25 +19,38 @@ interface Props {
 
 const { title, section, spoke } = Astro.props;
 
-// Top-bar right-side context label
-const sectionLabel: Record<string, string> = {
-  hub:              'Summer Reading',
-  pachinko:         'Pachinko',
-  tfa:              'Things Fall Apart',
+// Spoke index (0-based) for ideogram selection
+const spokeOrder: Record<string, number> = {
+  world: 0, culture: 1, history: 2, figures: 3, novel: 4,
+};
+const spokeIndex = spoke ? (spokeOrder[spoke] ?? 0) : 0;
+const spokeNum = spoke ? String(spokeIndex + 1).padStart(2, '0') : '';
+
+// Spoke accent color per section+spoke (for the top-bar back arrow)
+const pachinkoAccents: Record<string, string> = {
+  world: 'var(--p-teal)', culture: 'var(--p-orange)', history: 'var(--p-gold)',
+  figures: 'var(--p-coral)', novel: 'var(--p-teal)',
+};
+const tfaAccents: Record<string, string> = {
+  world: 'var(--t-terra)', culture: 'var(--t-forest)', history: 'var(--t-ochre)',
+  figures: 'var(--t-terra)', novel: 'var(--t-forest)',
+};
+const arrowAccent = spoke
+  ? (section === 'pachinko' ? pachinkoAccents[spoke] : tfaAccents[spoke]) ?? 'var(--color-muted)'
+  : 'var(--color-muted)';
+
+// Context label for the right side of the top bar
+const sectionName: Record<string, string> = {
+  hub: 'Summer Reading',
+  pachinko: 'Pachinko',
+  tfa: 'Things Fall Apart',
   'cultural-message': 'Cultural Message',
 };
-
-const spokeOrder: Record<string, number> = {
-  world: 1, culture: 2, history: 3, figures: 4, novel: 5,
-};
-
-let contextLabel = sectionLabel[section] ?? 'Summer Reading';
-if (spoke) {
-  const num = String(spokeOrder[spoke] ?? '').padStart(2, '0');
-  contextLabel += `  ·  Spoke ${num} of 05`;
-} else if (section !== 'hub' && section !== 'cultural-message') {
-  contextLabel += '  ·  Hub';
-}
+const contextLabel = spoke
+  ? `${sectionName[section] ?? 'Summer Reading'}  ·  Spoke ${spokeNum}`
+  : section !== 'hub' && section !== 'cultural-message'
+    ? `${sectionName[section] ?? 'Summer Reading'}  ·  Hub`
+    : sectionName[section] ?? 'Summer Reading';
 ---
 
 <!doctype html>
@@ -45,11 +62,11 @@ if (spoke) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Fraunces (display) + DM Sans (body) + JetBrains Mono (eyebrows/labels) -->
+    <!-- Fraunces (display) + DM Sans (body) + IBM Plex Mono (eyebrows/labels) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -60,18 +77,78 @@ if (spoke) {
     <div class="sr-page" data-section={section} data-spoke={spoke ?? ''}>
 
       <header class="sr-topbar">
-        <a href="/summer-reading" class="sr-topbar-brand">The Living Atlas</a>
-        <span class="sr-topbar-context">{contextLabel}</span>
+        {spoke ? (
+          <>
+            <a href="/summer-reading" class="sr-topbar-back">
+              <span style={`color: ${arrowAccent};`}>←</span>
+              {' '}The World Was All Before Them
+            </a>
+            <div class="sr-topbar-right">
+              {section === 'pachinko'
+                ? <PSpokeGlyph idx={spokeIndex as 0|1|2|3|4} size={20} color="var(--color-ink)" />
+                : <TSpokeGlyph idx={spokeIndex as 0|1|2|3|4} size={20} color="var(--color-ink)" />
+              }
+              <span class="sr-topbar-context">{contextLabel}</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <a href="/summer-reading" class="sr-topbar-brand">The Living Atlas</a>
+            <span class="sr-topbar-context">{contextLabel}</span>
+          </>
+        )}
       </header>
 
       {spoke && (
-        <SpokeNav section={section as 'pachinko' | 'tfa'} activeSpoke={spoke} />
+        <SpokeSwitcher section={section as 'pachinko' | 'tfa'} activeSpoke={spoke} />
       )}
 
-      <main>
+      <main class="sr-main-content">
+        {spoke && (
+          <div class="sr-spoke-watermark" aria-hidden="true">
+            {section === 'pachinko'
+              ? <PachinkoCrest size={440} line="var(--color-ink)" gold="var(--p-gold)" accent="var(--p-teal)" />
+              : <UliSun size={440} line="var(--color-ink)" terra="var(--t-terra)" ochre="var(--t-ochre)" forest="var(--t-forest)" />
+            }
+          </div>
+        )}
         <slot />
       </main>
 
     </div>
   </body>
 </html>
+
+<style>
+  .sr-topbar-back {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .sr-topbar-back:hover {
+    color: var(--color-ink);
+  }
+  .sr-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .sr-main-content {
+    position: relative;
+  }
+
+  /* Spoke watermark — super-motif crest, top-right corner, ink-on-cream */
+  .sr-spoke-watermark {
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>

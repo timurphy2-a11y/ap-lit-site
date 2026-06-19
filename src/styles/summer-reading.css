@@ -2086,6 +2086,14 @@
   border-radius:    4px;
 }
 
+/* Inside a full-width scrolly ground column the -1.5rem bleed overshoots the
+   viewport (~16px) and creates a horizontal scrollbar; neutralize it there.
+   Intro-wrapper openers keep their bleed. */
+.sr-zone-ground-content > .sr-section-opener--bg-tinted {
+  margin-left:  0;
+  margin-right: 0;
+}
+
 .sr-section-opener-motif {
   display:          flex;
   justify-content:  center;
@@ -2136,7 +2144,7 @@
 .sr-prose-block {
   max-width:        560px;
   width:            100%;
-  font-size:        1rem;
+  font-size:        var(--t-body);
   line-height:      1.75;
   color:            var(--color-ink);
   margin-top:       2.5rem;
