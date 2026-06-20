@@ -154,7 +154,7 @@ const {
 
     // ── Photo/map: one active beat at a time ─────────────────────────────
     const zones = document.querySelectorAll<HTMLElement>(
-      '.sr-scrolly-zone:not([data-field="ground"])'
+      '.sr-scrolly-zone:not([data-field="ground"]):not([data-field="book"])'
     );
 
     zones.forEach(zone => {

@@ -1,6 +1,7 @@
 ---
 import Medallion from './Medallion.astro';
 import UliCurve from './UliCurve.astro';
+import TSpokeGlyph from './TSpokeGlyph.astro';
 import AkweteChevron from './AkweteChevron.astro';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   deck?: string;
   background?: 'cream' | 'tinted';
   headingLevel?: 'h2' | 'h3';
+  motifIdx?: 0 | 1 | 2 | 3 | 4;
 }
 const {
   text,
@@ -18,6 +20,7 @@ const {
   deck,
   background = 'cream',
   headingLevel = 'h2',
+  motifIdx,
 } = Astro.props;
 
 const Tag = headingLevel;
@@ -26,7 +29,8 @@ const Tag = headingLevel;
 <div class={`sr-section-opener sr-section-opener--${text} sr-section-opener--bg-${background}`}>
   <div class="sr-section-opener-motif">
     {text === 'pachinko' && <Medallion size={40} color="var(--p-teal)" />}
-    {text === 'tfa' && <UliCurve width={100} color="var(--t-terra)" opacity={0.7} />}
+    {text === 'tfa' && motifIdx !== undefined && <TSpokeGlyph idx={motifIdx} size={58} color="var(--color-ink)" />}
+    {text === 'tfa' && motifIdx === undefined && <UliCurve width={100} color="var(--t-terra)" opacity={0.7} />}
   </div>
   {eyebrow && <span class="sr-section-opener-eyebrow">{eyebrow}</span>}
   <Tag class="sr-section-opener-heading">{heading}</Tag>

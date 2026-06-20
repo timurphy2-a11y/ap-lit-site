@@ -1,15 +1,745 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
-import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
-
-const entry = await getEntry('summerReading', 'tfa/novel');
-const { Content } = await render(entry);
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import ZoneSeam from '../../../components/summer-reading/ZoneSeam.astro';
+import UliSun from '../../../components/summer-reading/UliSun.astro';
+import UliTendril from '../../../components/summer-reading/UliTendril.astro';
+import UliCurve from '../../../components/summer-reading/UliCurve.astro';
+import AkweteChevron from '../../../components/summer-reading/AkweteChevron.astro';
+import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
 ---
-<SummerLayout title={entry.data.title} section="tfa" spoke="novel">
-  <Content />
-  <SpokePagination
-    section="tfa"
-    prev={{ slug: 'figures', title: 'Key Figures', number: 4 }}
-  />
+
+<SummerLayout title="Connections to the Novel — Things Fall Apart" section="tfa" spoke="novel">
+
+  <!-- ════════════════════════════════════════════════════════════
+       SPOKE HEADER — umber band + UliSun watermark + Akwete chevron
+       ════════════════════════════════════════════════════════════ -->
+  <div class="tfa-spoke-header">
+    <div class="tfa-spoke-header-watermark" aria-hidden="true">
+      <UliSun size={440} line="var(--t-cream)" />
+    </div>
+    <div class="tfa-spoke-header-inner">
+      <span class="tfa-spoke-header-eyebrow">Things Fall Apart · Spoke 05</span>
+      <div class="tfa-spoke-header-title-row">
+        <div class="tfa-spoke-badge" style="border-color: var(--t-forest);"><TSpokeGlyph idx={4} size={38} color="var(--t-cream)" /></div>
+        <h1 class="tfa-spoke-header-title">Connections to the Novel</h1>
+      </div>
+      <p class="tfa-spoke-header-deck">Where the history meets the book. What Achebe builds before it breaks, what Okonkwo carries, how the church worked through the culture's own fault lines — and the reasonable paragraph that the whole novel was written to answer.</p>
+    </div>
+  </div>
+  <div class="tfa-header-chevron" aria-hidden="true">
+    <AkweteChevron width={1200} height={9} />
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SPOILER BANNER
+       ════════════════════════════════════════════════════════════ -->
+  <div class="tfa-spoiler" data-screen-label="Spoiler banner">
+    <div class="tfa-spoiler-inner">
+      <span class="tfa-spoiler-tag">Before you read on</span>
+      <p class="tfa-spoiler-text">This section discusses major plot events, including the endings of several characters' storylines. If you are still reading the novel, you may want to return to this page after you finish <em>Things Fall Apart</em>.</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       OPENING ORIENTATION — cream · no zone opener
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone" data-ground="cream" data-screen-label="Opening orientation">
+    <div class="tfa-orient">
+      <span class="tfa-orient-eyebrow">Spoke Five · Connections to the Novel</span>
+      <p>The other pages on this site have covered the history and culture that <em>Things Fall Apart</em> inhabits: Igbo political structure and cosmology, the agricultural rhythms of Umuofia, British colonialism and its administrative machinery, the missionaries and the social disruptions they produced. This page builds the connections between that context and the specific cultural claims Achebe makes with his novel.</p>
+      <p class="tfa-orient-lead">Context is not the same as argument. Understanding the warrant chief system is historical information. Understanding what Achebe is asserting about Igbo civilization — and about the tradition of Western writing that had erased it — is literary analysis.</p>
+      <div class="tfa-orient-rule" aria-hidden="true">
+        <UliCurve width={120} color="var(--t-terra)" opacity={0.7} />
+      </div>
+    </div>
+  </section>
+
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 1 — The Epigraph · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§1 The Epigraph">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="The Epigraph" heading="Achebe and Yeats" background="cream" motifIdx={4} />
+
+      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull tfa-verse">
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+        <blockquote class="sr-pullquote-body"><p>Turning and turning in the widening gyre<br />The falcon cannot hear the falconer;<br />Things fall apart; the centre cannot hold;<br />Mere anarchy is loosed upon the world.</p></blockquote>
+        <figcaption class="sr-pullquote-attribution">— W. B. Yeats, "The Second Coming" (1919)</figcaption>
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+      </figure>
+
+      <figure class="tfa-gyre-fig" aria-label="Yeats's widening gyre: a spiral that widens with every turn, leaving its fixed centre behind.">
+        <svg viewBox="0 0 240 200" class="tfa-gyre-svg" role="img" aria-label="A spiral that widens with every turn around a small fixed centre point; a small arrowhead at the open end shows it spinning outward.">
+          <path d="M125.0 100.0 L125.5 100.8 L125.8 101.7 L126.0 102.7 L126.0 103.7 L125.8 104.9 L125.4 106.0 L124.8 107.1 L124.0 108.2 L122.9 109.2 L121.7 110.0 L120.3 110.7 L118.8 111.1 L117.1 111.3 L115.4 111.3 L113.6 111.0 L111.8 110.4 L110.1 109.5 L108.4 108.3 L106.9 106.8 L105.6 105.1 L104.5 103.2 L103.7 101.0 L103.2 98.7 L103.1 96.2 L103.3 93.7 L103.9 91.2 L104.8 88.7 L106.2 86.4 L107.9 84.2 L110.0 82.2 L112.4 80.5 L115.1 79.1 L118.0 78.1 L121.1 77.5 L124.3 77.4 L127.6 77.7 L130.8 78.6 L134.0 79.9 L137.0 81.6 L139.8 83.9 L142.3 86.5 L144.5 89.6 L146.2 92.9 L147.4 96.6 L148.1 100.5 L148.3 104.5 L147.9 108.5 L146.9 112.6 L145.3 116.5 L143.2 120.2 L140.4 123.6 L137.2 126.7 L133.6 129.3 L129.5 131.4 L125.1 132.9 L120.5 133.8 L115.7 134.0 L110.8 133.6 L106.0 132.5 L101.4 130.6 L97.0 128.1 L92.9 125.0 L89.2 121.3 L86.1 117.0 L83.6 112.3 L81.7 107.2 L80.6 101.8 L80.2 96.2 L80.6 90.6 L81.9 85.0 L83.9 79.5 L86.7 74.4 L90.2 69.6 L94.4 65.4 L99.3 61.7 L104.7 58.7 L110.5 56.4 L116.6 55.0 L122.9 54.5 L129.4 54.8 L135.8 56.1 L142.0 58.3 L147.9 61.3 L153.4 65.2 L158.3 69.9 L162.6 75.3 L166.1 81.3 L168.7 87.7 L170.5 94.6 L171.2 101.7 L171.0 108.9 L169.8 116.1 L167.5 123.1 L164.2 129.8 L160.0 136.1 L154.9 141.7 L149.0 146.6 L142.4 150.6 L135.3 153.8 L127.7 155.9 L119.8 156.9 L111.8 156.9 L103.8 155.7 L96.0 153.3 L88.5 149.9 L81.5 145.4 L75.2 139.9 L69.6 133.6 L65.0 126.4 L61.3 118.7 L58.8 110.4 L57.4 101.7 L57.3 92.9 L58.4 84.1 L60.7 75.5 L64.3 67.2 L69.0 59.4 L74.8 52.3 L81.6 46.1 L89.3 40.8 L97.7 36.6 L106.6 33.6 L116.0 31.9 L125.6 31.5 L135.2 32.4 L144.7 34.7 L153.8 38.3 L162.4 43.3 L170.2 49.4 L177.2 56.5 L183.2 64.7 L188.0 73.7 L191.5 83.3 L193.6 93.4 L194.3 103.8 L193.6 114.2 L191.4 124.5 L187.7 134.4 L182.7 143.8 L176.3 152.5 L168.8 160.2 L160.1 166.9 L150.6 172.3 L140.3 176.4 L129.6 179.0" fill="none" stroke="#41525E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M120 180 L130 175 M120 180 L130 185" stroke="#41525E" stroke-width="2" stroke-linecap="round"></path>
+          <circle cx="120" cy="100" r="3" fill="var(--color-muted)"></circle>
+        </svg>
+        <figcaption class="tfa-gyre-cap">
+          <span class="tfa-gyre-key">Turning and turning · the widening gyre</span>
+          Yeats's figure for history — a spiral that widens with every turn until the centre it spun from can no longer hold it. Achebe sets the same gyre spinning over <em>Umuofia.</em>
+        </figcaption>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">The epigraph<span class="tfa-note-sub">a claim before the first page</span></p>
+        <div class="tfa-passage-body tfa-passage-body--lede">
+          <p>Achebe opens his novel with four lines from Yeats's "The Second Coming," written in the immediate aftermath of World War I. Yeats's poem is a vision of civilizational collapse — order dissolving, the falcon losing contact with the falconer, the center failing to hold. By choosing this epigraph, Achebe is making a claim before his novel has even begun.</p>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">The centre relocated<span class="tfa-note-sub">Europe → Umuofia</span></p>
+        <div class="tfa-passage-body">
+          <p>In Yeats, the center that cannot hold is European civilization; the collapse is the crisis of Western modernity. Achebe borrows the image and recontextualizes it entirely.<span class="tfa-more"> In <em>Things Fall Apart</em>, the center that cannot hold is Umuofia — an African civilization, fully realized on its own terms, destroyed not by internal failure but by external force. The widening gyre is colonial encroachment. The falcon that cannot hear the falconer is Okonkwo, increasingly unable to orient himself within a world that no longer operates by its own rules.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Literary authority<span class="tfa-note-sub">and a quiet irony</span></p>
+        <div class="tfa-passage-body">
+          <p>The choice of a Yeats epigraph is itself an argument about literary authority. Achebe is claiming the same register — the same weight of tragedy, the same civilizational stakes — for Igbo civilization's collapse that Yeats claimed for the collapse of the European order. He is insisting that what happens to Umuofia belongs in the same conversation as what Yeats was mourning.<span class="tfa-more"> There is also a quiet irony in the choice: Yeats could not have imagined his poem about European crisis being repurposed as the frame for an African novel written in deliberate opposition to the assumptions of that same tradition. That act of appropriation is itself a form of the novel's argument — the tools of the colonial literary tradition can be used to tell the story of what that tradition erased.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — Before the Missionaries · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§2 Before the Missionaries">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="The Structural Argument" heading="Before the Missionaries" background="cream" motifIdx={4} />
+
+      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull">
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+        <blockquote class="sr-pullquote-body"><p>"Okonkwo was well known throughout the nine villages and even beyond. His fame rested on solid personal achievements."</p></blockquote>
+        <figcaption class="sr-pullquote-attribution">— Things Fall Apart, Chinua Achebe (opening pages)</figcaption>
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">The decision<span class="tfa-note-sub">not what, but when</span></p>
+        <div class="tfa-passage-body tfa-passage-body--lede">
+          <p>The most important structural decision in <em>Things Fall Apart</em> is not what Achebe shows but when he shows it.<span class="tfa-more"> He begins with Okonkwo throwing Amalinze the Cat. He gives the reader Umuofia's governance, its cosmology, its agricultural rhythms, its gender dynamics, its internal tensions — before any British presence has appeared. Part I of the novel is an extended act of cultural construction: a world built on the page so that when it is disrupted, the reader has experienced its logic from the inside.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Against Conrad<span class="tfa-note-sub">Africa rendered as absence</span></p>
+        <div class="tfa-passage-body">
+          <p>Achebe's critique of the Western literary tradition — of Conrad's <em>Heart of Darkness</em>, of Joyce Cary's <em>Mister Johnson</em> — was that Africa existed in those books without interiority, without history, without a functioning civilization whose disruption could be experienced as genuine loss.<span class="tfa-more"> The pre-colonial world was rendered as absence, as darkness, as the condition colonialism was correcting. Achebe renders the pre-colonial world as presence: a functional cultural system, however imperfect, that is being destroyed by hostile encroachment.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">From the inside<span class="tfa-note-sub">loss, not progress</span></p>
+        <div class="tfa-passage-body">
+          <p>The reader who has lived inside Umuofia's justice system — who has watched the egwugwu adjudicate a dispute, understood the Oracle's authority, witnessed the Week of Peace as a genuine communal obligation — experiences the colonial disruption of those institutions as tragic loss rather than civilizing progress. That experience is the structural argument of the novel, built into the sequence of what we are shown and when.</p>
+        </div>
+      </div>
+
+      <div class="tfa-c-diagram-block">
+        <span class="tfa-diagram-eyebrow">The novel, measured</span>
+        <svg data-novel-structure role="img" aria-label="A horizontal bar standing for the length of the novel. The first and largest segment, warm, is Part One — the wrestling match, governance, cosmology, the harvest, the egwugwu — a world built from the inside. A dashed seam late along the bar marks where the missionaries first arrive. The short final segment cools to umber: Parts Two and Three, the disruption and the closing paragraph."></svg>
+        <p class="tfa-diagram-cap">Most of the reader's experience is the intact world, lived from the inside, <b>before any British presence appears</b>. The disruption — and the administrator's closing paragraph — arrive only at the end. The order is the argument.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 3 — Okonkwo's Values · ground · still · tinted
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§3 Okonkwo's Values">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="The Hero and His Flaw" heading="Okonkwo's Values" background="tinted" motifIdx={4} />
+
+      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull">
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+        <blockquote class="sr-pullquote-body"><p>"His whole life was dominated by fear, the fear of failure and of weakness… It was not external but lay deep within himself. It was the fear of himself, lest he should be found to resemble his father."</p></blockquote>
+        <figcaption class="sr-pullquote-attribution">— Things Fall Apart, Chinua Achebe</figcaption>
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">The ideal, amplified</p>
+        <div class="tfa-passage-body tfa-passage-body--lede">
+          <p>Okonkwo is a man who has internalized the Igbo achievement ethic completely and amplified it to a pathological extreme.<span class="tfa-more"> His insistence on masculine strength, his contempt for weakness, his emotional repression, his violence: these are not personal pathologies in a cultural vacuum. They are the Igbo masculine ideal operating at maximum intensity. The title system rewards demonstrated achievement. The community's judgment falls on those, like Unoka, who fail to meet their obligations. Okonkwo has absorbed all of this — and then amplified it, driven by a terror that he will become his father.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <figure class="tfa-seq" aria-label="The killing of Ikemefuna — a four-beat sequence with quotations from Things Fall Apart, chapters 7 and 8">
+        <figcaption class="tfa-seq-head">
+          <span class="tfa-seq-eyebrow">The killing of Ikemefuna · a sequence</span>
+          <span class="tfa-seq-eyebrow tfa-seq-eyebrow--muted">Chinua Achebe · ch. 7–8</span>
+        </figcaption>
+        <div class="tfa-seq-track">
+          <div class="tfa-seq-phase">The act</div>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The warning</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A balance tilts: a light ring rises, a heavy dark disc sinks.">
+                <line x1="74" y1="120" x2="126" y2="120" stroke="var(--color-rule)" stroke-width="2" stroke-linecap="round"></line>
+                <path d="M86 120 L114 120 L100 78 Z" fill="none" stroke="var(--color-muted)" stroke-width="2" stroke-linejoin="round"></path>
+                <line x1="50" y1="62" x2="150" y2="96" stroke="var(--t-umber)" stroke-width="3" stroke-linecap="round"></line>
+                <circle cx="100" cy="79" r="4" fill="var(--t-umber)"></circle>
+                <line x1="50" y1="62" x2="50" y2="78" stroke="var(--color-muted)" stroke-width="1.5"></line>
+                <circle cx="50" cy="86" r="8.5" fill="none" stroke="var(--t-terra)" stroke-width="2.6"></circle>
+                <line x1="150" y1="96" x2="150" y2="110" stroke="var(--color-muted)" stroke-width="1.5"></line>
+                <circle cx="150" cy="124" r="13" fill="var(--t-umber)"></circle>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"That boy calls you father. Do not bear a hand in his death." Okonkwo was surprised, and was about to say something when the old man continued: "Yes, Umuofia has decided to kill him. The Oracle of the Hills and the Caves has pronounced it… But I want you to have nothing to do with it. He calls you his father."</blockquote>
+          </article>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The blow</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A heavy diagonal stroke drives down to a point and shatters it into sharp, irregular shards.">
+                <line x1="40" y1="48" x2="54" y2="62" stroke="var(--t-terra)" stroke-width="1.6" stroke-linecap="round" opacity="0.28"></line>
+                <line x1="50" y1="36" x2="64" y2="50" stroke="var(--t-terra)" stroke-width="1.6" stroke-linecap="round" opacity="0.22"></line>
+                <line x1="100" y1="94" x2="144" y2="88" stroke="var(--t-terra)" stroke-width="2.6" stroke-linecap="round"></line>
+                <line x1="100" y1="94" x2="138" y2="120" stroke="var(--t-terra)" stroke-width="2.2" stroke-linecap="round" opacity="0.85"></line>
+                <line x1="100" y1="94" x2="106" y2="138" stroke="var(--t-umber)" stroke-width="2.8" stroke-linecap="round"></line>
+                <line x1="100" y1="94" x2="72" y2="130" stroke="var(--t-terra)" stroke-width="2.2" stroke-linecap="round" opacity="0.85"></line>
+                <line x1="100" y1="94" x2="60" y2="100" stroke="var(--t-terra)" stroke-width="2.6" stroke-linecap="round"></line>
+                <line x1="100" y1="94" x2="130" y2="64" stroke="var(--t-terra)" stroke-width="2.2" stroke-linecap="round" opacity="0.7"></line>
+                <line x1="100" y1="94" x2="96" y2="62" stroke="var(--t-umber)" stroke-width="2.4" stroke-linecap="round"></line>
+                <line x1="152" y1="82" x2="160" y2="78" stroke="var(--t-terra)" stroke-width="2" stroke-linecap="round" opacity="0.7"></line>
+                <line x1="114" y1="146" x2="119" y2="155" stroke="var(--t-terra)" stroke-width="2" stroke-linecap="round" opacity="0.6"></line>
+                <line x1="56" y1="114" x2="48" y2="120" stroke="var(--t-terra)" stroke-width="1.8" stroke-linecap="round" opacity="0.6"></line>
+                <line x1="46" y1="38" x2="110" y2="104" stroke="var(--t-umber)" stroke-width="7.5" stroke-linecap="round"></line>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"As the man who had cleared his throat drew up and raised his machete, Okonkwo looked away. He heard the blow. The pot fell and broke in the sand. He heard Ikemefuna cry, 'My father, they have killed me!' as he ran towards him. Dazed with fear, Okonkwo drew his machete and cut him down."</blockquote>
+          </article>
+          <div class="tfa-seq-phase">The aftermath</div>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The numbing</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A gourd cup of palm wine; rings of awareness beside it dissolve into faint dashes.">
+                <path d="M120 74 A30 30 0 0 1 120 122" fill="none" stroke="var(--t-terra)" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round" opacity="0.4"></path>
+                <path d="M120 62 A42 42 0 0 1 120 134" fill="none" stroke="var(--t-terra)" stroke-width="1.6" stroke-dasharray="2 10" stroke-linecap="round" opacity="0.26"></path>
+                <ellipse cx="80" cy="72" rx="20" ry="6" fill="none" stroke="var(--t-umber)" stroke-width="2"></ellipse>
+                <path d="M60 72 C58 100 68 126 80 126 C92 126 102 100 100 72" fill="none" stroke="var(--t-umber)" stroke-width="2.4" stroke-linecap="round"></path>
+                <path d="M64 98 C72 104 88 104 96 98 C95 112 88 119 80 119 C72 119 65 112 64 98 Z" fill="var(--t-terra)" opacity="0.5"></path>
+                <circle cx="80" cy="136" r="3" fill="var(--t-terra)" opacity="0.6"></circle>
+                <circle cx="80" cy="146" r="2" fill="var(--t-terra)" opacity="0.35"></circle>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"Okonkwo did not taste any food for two days after the death of Ikemefuna. He drank palm wine from morning till night, and his eyes were red and fierce like the eyes of a rat when it was caught by the tail and dashed against the floor. He called his son, Nwoye, to sit with him in his obi. But the boy was afraid of him and slipped out of the hut as soon as he noticed him dozing."</blockquote>
+          </article>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The night</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A spiral coiled inward to a sealed centre, a crescent moon above.">
+                <path d="M117.6 58.3 L121.6 61.7 L125.2 65.5 L128.2 69.6 L130.6 74.2 L132.3 78.9 L133.5 83.8 L133.9 88.8 L133.7 93.8 L132.9 98.6 L131.5 103.3 L129.4 107.7 L126.9 111.8 L123.8 115.5 L120.3 118.7 L116.4 121.4 L112.3 123.6 L107.9 125.2 L103.5 126.2 L98.9 126.6 L94.4 126.4 L89.9 125.6 L85.7 124.3 L81.7 122.4 L78.0 120.0 L74.7 117.2 L71.8 114.1 L69.3 110.5 L67.4 106.8 L65.9 102.8 L65.1 98.7 L64.7 94.6 L64.9 90.5 L65.7 86.5 L66.9 82.7 L68.6 79.1 L70.8 75.8 L73.3 72.8 L76.2 70.2 L79.4 68.0 L82.8 66.3 L86.3 65.1 L90.0 64.3 L93.7 64.0 L97.3 64.3 L100.9 64.9 L104.3 66.1 L107.5 67.6 L110.4 69.6 L113.0 71.8 L115.3 74.4 L117.2 77.3 L118.7 80.3 L119.8 83.4 L120.4 86.7 L120.6 89.9 L120.4 93.2 L119.8 96.3 L118.8 99.3 L117.4 102.1 L115.6 104.6 L113.6 106.9 L111.3 108.8 L108.8 110.5 L106.2 111.7 L103.4 112.6 L100.6 113.2 L97.8 113.3 L95.0 113.1 L92.3 112.5 L89.7 111.6 L87.4 110.3 L85.2 108.8 L83.3 107.1 L81.6 105.1 L80.3 102.9 L79.2 100.7 L78.5 98.3 L78.1 95.9 L78.0 93.5 L78.2 91.2 L78.8 88.9 L79.6 86.8 L80.7 84.8 L82.0 83.0 L83.5 81.4 L85.2 80.1 L87.0 79.0 L88.9 78.2 L90.8 77.6 L92.8 77.3 L94.8 77.3 L96.7 77.6 L98.5 78.1 L100.2 78.8 L101.8 79.7 L103.2 80.8 L104.4 82.0 L105.5 83.4 L106.3 84.9 L106.9 86.4 L107.2 88.0 L107.4 89.5 L107.3 91.0 L107.1 92.5 L106.7 93.9 L106.1 95.2 L105.3 96.4 L104.4 97.4 L103.4 98.3 L102.4 99.0 L101.2 99.5 L100.1 99.9 L98.9 100.1 L97.8 100.1 L96.7 100.0 L95.6 99.8 L94.7 99.4 L93.8 98.9 L93.0 98.3 L92.4 97.6 L91.9 96.9 L91.5 96.1 L91.2 95.3 L91.1 94.5 L91.0 93.8 L91.1 93.1 L91.3 92.4 L91.6 91.8 L91.9 91.3 L92.3 90.8 L92.7 90.5 L93.2 90.2 L93.7 90.0 L94.1 89.9 L94.6 89.9 L95.0 90.0 L95.3 90.2 L95.6 90.4 L95.9 90.6 L96.1 90.9 L96.1 91.2 L96.2 91.5 L96.1 91.7 L96.0 92.0" fill="none" stroke="var(--t-umber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="164" cy="34" r="14" fill="var(--t-umber)"></circle>
+                <circle cx="171" cy="29" r="12" fill="var(--color-card)"></circle>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"He did not sleep at night. He tried not to think about Ikemefuna, but the more he tried the more he thought about him. Once he got up from bed and walked about his compound. But he was so weak that his legs could hardly carry him. He felt like a drunken giant walking with the limbs of a mosquito."</blockquote>
+          </article>
+        </div>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Ikemefuna<span class="tfa-note-sub">"afraid of being thought weak"</span></p>
+        <div class="tfa-passage-body">
+          <p>The killing of Ikemefuna is the hinge of this strand of the novel's meaning. The Oracle decrees Ikemefuna must die. Obierika tells Okonkwo he has no obligation to participate — but he participates anyway, "because he was afraid of being thought weak." He strikes the killing blow on a boy who called him "father" because his definition of strength has no space for the act of stepping aside.</p>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">The cost<span class="tfa-note-sub">personal and cultural at once</span></p>
+        <div class="tfa-passage-body">
+          <p>In the night that follows — unable to sleep, thinking of Ezinma as the daughter who "should have been a boy," yet unable to grieve for Ikemefuna — this is the novel's earliest and most precise measurement of what the masculine ideal extracts from the men who embody it.<span class="tfa-more"> His tragedy is simultaneously personal and cultural: the novel suggests that the same values that made Igbo civilization great also produced a structure with built-in vulnerabilities that colonialism could exploit.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <figure class="tfa-seq" aria-label="The death of Okonkwo — a four-beat sequence with quotations from Things Fall Apart, chapters 24 and 25">
+        <figcaption class="tfa-seq-head">
+          <span class="tfa-seq-eyebrow">The death of Okonkwo · a sequence</span>
+          <span class="tfa-seq-eyebrow tfa-seq-eyebrow--muted">Chinua Achebe · ch. 24–25</span>
+        </figcaption>
+        <div class="tfa-seq-track">
+          <div class="tfa-seq-phase">The act</div>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The confrontation</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="Okonkwo, a terracotta mark trembling with hate, faces a line of four dark uniformed messengers and the order they carry.">
+                <circle cx="52" cy="86" r="8" fill="none" stroke="var(--t-terra)" stroke-width="2.4"></circle>
+                <g stroke="var(--t-terra)" stroke-width="2" stroke-linecap="round">
+                  <line x1="40" y1="70" x2="33" y2="62"></line>
+                  <line x1="52" y1="66" x2="52" y2="56"></line>
+                  <line x1="64" y1="70" x2="71" y2="62"></line>
+                  <line x1="52" y1="98" x2="52" y2="120"></line>
+                </g>
+                <line x1="118" y1="86" x2="82" y2="86" stroke="var(--t-umber)" stroke-width="1.6" stroke-dasharray="3 4" stroke-linecap="round"></line>
+                <path d="M88 81 L80 86 L88 91" fill="none" stroke="var(--t-umber)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g stroke="var(--t-umber)" stroke-width="3" stroke-linecap="round">
+                  <line x1="130" y1="70" x2="130" y2="110"></line>
+                  <line x1="146" y1="70" x2="146" y2="110"></line>
+                  <line x1="162" y1="70" x2="162" y2="110"></line>
+                  <line x1="178" y1="70" x2="178" y2="110"></line>
+                </g>
+                <g stroke="var(--t-umber)" stroke-width="2" stroke-linecap="round">
+                  <line x1="124" y1="64" x2="136" y2="64"></line>
+                  <line x1="140" y1="64" x2="152" y2="64"></line>
+                  <line x1="156" y1="64" x2="168" y2="64"></line>
+                  <line x1="172" y1="64" x2="184" y2="64"></line>
+                </g>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"What do you want here?" "The white man whose power you know too well has ordered this meeting to stop."</blockquote>
+          </article>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">The blow</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="Two heavy dark machete strokes descend; a severed round head lies beside a short uniformed body.">
+                <g stroke="var(--t-terra)" stroke-linecap="round">
+                  <line x1="110" y1="92" x2="126" y2="88" stroke-width="2.2"></line>
+                  <line x1="108" y1="98" x2="120" y2="106" stroke-width="2" opacity="0.8"></line>
+                </g>
+                <line x1="70" y1="44" x2="104" y2="92" stroke="var(--t-umber)" stroke-width="6.5" stroke-linecap="round"></line>
+                <line x1="84" y1="38" x2="118" y2="86" stroke="var(--t-umber)" stroke-width="6.5" stroke-linecap="round"></line>
+                <circle cx="138" cy="104" r="8" fill="none" stroke="var(--t-umber)" stroke-width="2.6"></circle>
+                <line x1="150" y1="120" x2="178" y2="120" stroke="var(--t-umber)" stroke-width="5" stroke-linecap="round"></line>
+                <line x1="156" y1="113" x2="156" y2="120" stroke="var(--t-umber)" stroke-width="2" stroke-linecap="round"></line>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"In a flash Okonkwo drew his machete. The messenger crouched to avoid the blow. It was useless. Okonkwo's machete descended twice and the man's head lay beside his uniformed body."</blockquote>
+          </article>
+          <div class="tfa-seq-phase">The aftermath</div>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">He stood alone</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A single terracotta figure stands at the centre while a ring of grey figures scatters outward, leaving a gap.">
+                <g stroke="var(--color-muted)" stroke-linecap="round" opacity="0.6">
+                  <g><circle cx="100" cy="22" r="3" fill="var(--color-muted)" stroke="none"></circle><line x1="100" y1="18" x2="100" y2="9" stroke-width="1.4"></line></g>
+                  <g><circle cx="150" cy="40" r="3" fill="var(--color-muted)" stroke="none"></circle><line x1="153" y1="37" x2="161" y2="29" stroke-width="1.4"></line></g>
+                  <g><circle cx="172" cy="84" r="3" fill="var(--color-muted)" stroke="none" opacity="0.85"></circle><line x1="176" y1="84" x2="186" y2="84" stroke-width="1.4"></line></g>
+                  <g><circle cx="150" cy="128" r="3" fill="var(--color-muted)" stroke="none" opacity="0.7"></circle><line x1="153" y1="131" x2="161" y2="139" stroke-width="1.4"></line></g>
+                  <g><circle cx="50" cy="40" r="3" fill="var(--color-muted)" stroke="none"></circle><line x1="47" y1="37" x2="39" y2="29" stroke-width="1.4"></line></g>
+                  <g><circle cx="28" cy="84" r="3" fill="var(--color-muted)" stroke="none" opacity="0.85"></circle><line x1="24" y1="84" x2="14" y2="84" stroke-width="1.4"></line></g>
+                  <g><circle cx="50" cy="128" r="3" fill="var(--color-muted)" stroke="none" opacity="0.7"></circle><line x1="47" y1="131" x2="39" y2="139" stroke-width="1.4"></line></g>
+                </g>
+                <circle cx="100" cy="74" r="6" fill="none" stroke="var(--t-terra)" stroke-width="2.4"></circle>
+                <line x1="100" y1="80" x2="100" y2="104" stroke="var(--t-terra)" stroke-width="2.4" stroke-linecap="round"></line>
+                <line x1="88" y1="90" x2="112" y2="90" stroke="var(--t-terra)" stroke-width="2.2" stroke-linecap="round"></line>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"He knew that Umuofia would not go to war. He knew because they had let the other messengers escape. They had broken into tumult instead of action. He heard voices asking: 'Why did he do it?'"</blockquote>
+          </article>
+          <article class="tfa-seq-beat">
+            <span class="tfa-seq-kicker">Against the earth</span>
+            <div class="tfa-seq-glyph">
+              <svg viewBox="0 0 200 168" class="tfa-seq-svg" role="img" aria-label="A body hangs by a rope from a branch; below it a dashed terracotta earth-line it does not reach, the gap barred.">
+                <line x1="60" y1="28" x2="140" y2="28" stroke="var(--t-umber)" stroke-width="3" stroke-linecap="round"></line>
+                <path d="M122 28 q6 -8 13 -6" fill="none" stroke="var(--t-umber)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"></path>
+                <path d="M78 28 q-5 -7 -12 -5" fill="none" stroke="var(--t-umber)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"></path>
+                <line x1="100" y1="28" x2="100" y2="96" stroke="var(--t-umber)" stroke-width="2.6" stroke-linecap="round"></line>
+                <circle cx="100" cy="104" r="7" fill="none" stroke="var(--t-umber)" stroke-width="2.4"></circle>
+                <line x1="100" y1="114" x2="100" y2="130" stroke="var(--color-muted)" stroke-width="1.3" stroke-dasharray="2 4" opacity="0.6"></line>
+                <line x1="92" y1="123" x2="108" y2="123" stroke="var(--color-muted)" stroke-width="1.3" opacity="0.6"></line>
+                <line x1="34" y1="144" x2="166" y2="144" stroke="var(--t-terra)" stroke-width="1.6" stroke-dasharray="5 4"></line>
+              </svg>
+            </div>
+            <div class="tfa-seq-rail"><span class="tfa-seq-dot"></span></div>
+            <blockquote class="tfa-seq-quote">"That man was one of the greatest men in Umuofia. You drove him to kill himself; and now he will be buried like a dog…" He could not say any more. His voice trembled and choked his words.</blockquote>
+          </article>
+        </div>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Two levels<span class="tfa-note-sub">the man and the world</span></p>
+        <div class="tfa-passage-body">
+          <p>Okonkwo's tragedy operates on two levels that the novel refuses to separate. At the personal level, he is a man whose values served him in the traditional world of Umuofia but become lethal liabilities in the world colonialism has made.<span class="tfa-more"> At the cultural level, his death represents the impossibility of resistance on Igbo cultural terms. He kills a court messenger and looks around to find that no one is following him. The world that made those values coherent has already fallen apart before Okonkwo acts. His suicide by hanging is itself an offense against Ala — he dies in a way that denies him proper burial in the earth he spent his life honoring. The Igbo world that Okonkwo once embodied cannot accommodate the manner of his dying.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">What survives<span class="tfa-note-sub">the history itself</span></p>
+        <div class="tfa-passage-body">
+          <p>What falls apart is specific: village autonomy, the egwugwu courts, the Oracle's judicial authority, the binding force of Ala, the communal solidarity between converts and non-converts. What survives — implicitly, through the act of writing — is the history itself.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 4 — The Attractions of the Church · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§4 The Attractions of the Church">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="Conversion" heading="The Attractions of the Church" background="cream" motifIdx={4} />
+
+      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull">
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+        <blockquote class="sr-pullquote-body"><p>"It was not the mad logic of the Trinity that captivated him. It was the poetry of the new religion, something felt in the marrow."</p></blockquote>
+        <figcaption class="sr-pullquote-attribution">— Things Fall Apart, Chinua Achebe</figcaption>
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Not irrational</p>
+        <div class="tfa-passage-body tfa-passage-body--lede">
+          <p>The arrival of the missionaries in Umuofia is often read as straightforwardly destructive, but Achebe's rendering of their insinuation into Umuofian society is more uncomfortable than that. The church does dismantle Igbo governance and cosmology systematically, but it begins with personal conversions, and those conversions are not irrational.</p>
+        </div>
+      </div>
+
+      <figure class="tfa-margin-fig" aria-label="An ideogram of the church and the margins: the clan, a closed terracotta ring around its titled centre, pushes three small rings to its edge; the open green ring beside it, marked with a cross, receives them.">
+        <svg viewBox="0 0 240 200" class="tfa-margin-svg" role="img" aria-label="A closed terracotta ring around a titled centre of three dots in a small ring holds three small rings at its edge; an open green ring on the right, holding a cross, receives them.">
+          <circle cx="80" cy="100" r="44" fill="none" stroke="var(--t-terra)" stroke-width="2.4"></circle>
+          <circle cx="80" cy="100" r="9.5" fill="none" stroke="var(--t-terra)" stroke-width="1.3" opacity="0.6"></circle>
+          <circle cx="77" cy="102" r="1.9" fill="var(--t-terra)"></circle>
+          <circle cx="83" cy="102" r="1.9" fill="var(--t-terra)"></circle>
+          <circle cx="80" cy="96.5" r="1.9" fill="var(--t-terra)"></circle>
+          <circle cx="122" cy="74" r="8" fill="none" stroke="var(--t-terra)" stroke-width="2.2"></circle>
+          <circle cx="128" cy="100" r="8" fill="none" stroke="var(--t-terra)" stroke-width="2.2"></circle>
+          <circle cx="122" cy="126" r="8" fill="none" stroke="var(--t-terra)" stroke-width="2.2"></circle>
+          <path d="M136.1 81.4 A44 44 0 1 1 136.1 118.6" fill="none" stroke="var(--t-forest)" stroke-width="3" stroke-linecap="round"></path>
+          <line x1="180" y1="84" x2="180" y2="118" stroke="var(--t-forest)" stroke-width="3" stroke-linecap="round"></line>
+          <line x1="170" y1="94" x2="190" y2="94" stroke="var(--t-forest)" stroke-width="3" stroke-linecap="round"></line>
+        </svg>
+        <figcaption class="tfa-margin-cap">
+          <span class="tfa-margin-key">The clan · the margins · the church</span>
+          The clan closes around its titled centre and pushes others to its edge. The church is the open ring — marked by the cross — that receives exactly those the circle excluded: <em>Nwoye, the osu, the mothers of twins.</em>
+        </figcaption>
+      </figure>
+
+      <div class="tfa-passage">
+        <p class="tfa-passage-note">Who the church reached<span class="tfa-note-sub">Nwoye · the osu · mothers of twins</span></p>
+        <div class="tfa-passage-body">
+          <p>Nwoye hears a Christian hymn and feels something yield inside him — the poetry of the new religion. He cannot meet the demands of Igbo masculine achievement; his father's version of what a man is has been a crushing weight since childhood.<span class="tfa-more"> The church offers him a different set of values and a community that does not judge him by his father's standards. His conversion is as much an escape from Okonkwo as it is an embrace of Christianity. The <em>osu</em> — the outcast class — find in the church the offer of inclusion they have never experienced. So do the mothers of twins, whose children were left to die in the Evil Forest. The church welcomes those the Igbo system has excluded.</span></p>
+          <button class="tfa-more-toggle" aria-expanded="false">Continue</button>
+        </div>
+      </div>
+
+      <div class="tfa-pivot" data-screen-label="§4 pivot sentence">
+        <p>Colonialism succeeded in Igboland partly by embracing the people that Igbo culture had already marginalized. The disruption worked through existing fault lines, and some of those fault lines were real moral failures.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 5 — A Reasonable Paragraph · book · driving · tinted
+       The spoke's single earned visual: cover → paragraph → response.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone tfa-zone--book" data-field="book" data-tempo="driving" data-ground="tinted" data-text="tfa" data-screen-label="§5 A Reasonable Paragraph">
+
+    <div class="tfa-z4-intro">
+      <SectionOpener text="tfa" eyebrow="The Last Page" heading="A Reasonable Paragraph" background="tinted" motifIdx={4} />
+    </div>
+
+    <div class="sr-zone-field tfa-book-field" data-reveal="exclusive">
+      <div class="tfa-book-layer" data-show-from="book-cover">
+        <svg data-book-cover xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A plain, institutional colonial-era book, its cover facing the reader. The title reads, in full: The Pacification of the Primitive Tribes of the Lower Niger, by the District Commissioner."></svg>
+      </div>
+      <div class="tfa-book-layer" data-show-from="book-paragraph">
+        <svg data-book-paragraph xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The same book, open. Both pages are dense with indistinct administrative prose. One small paragraph on the right page is marked; the only legible words in it read 'a reasonable paragraph'."></svg>
+      </div>
+      <div class="tfa-book-layer" data-show-from="book-response">
+        <svg data-book-response xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Commissioner's volume now stands beside a second book, the same size: Things Fall Apart, by Chinua Achebe. The two covers face the reader together, unlabeled. The juxtaposition is the argument."></svg>
+      </div>
+      <div class="tfa-book-caption"><em>The Pacification of the Primitive Tribes of the Lower Niger</em> — the title of the District Commissioner's book, as recorded on the final page of <em>Things Fall Apart</em>. The book does not exist. Achebe invented it to show what the colonial archive does to a human life.</div>
+    </div>
+
+    <div class="sr-zone-beats">
+      <div class="sr-zone-beat sr-zone-beat--left" data-beat data-activates="book-cover">
+        <div class="sr-beat-card"><p>The novel's last page is one of the most precisely calibrated endings in twentieth-century fiction. The District Commissioner walks away from Okonkwo's hanging body. He will not cut it down himself — a district commissioner does not attend to such undignified details. He thinks about his book. Every day in Africa brings him material. Okonkwo's story is interesting. One could almost write a whole chapter about him. "Perhaps not a whole chapter but a reasonable paragraph, at any rate."</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--center" data-beat data-activates="book-paragraph">
+        <div class="sr-beat-card"><p>Achebe has given the reader two hundred pages of Okonkwo's life: his wrestling match at eighteen, his yam barns, his three wives, his love for Ezinma, his killing of Ikemefuna, his exile, his return, his inability to find anyone to fight alongside him, his death. The District Commissioner will give it a paragraph.</p></div>
+      </div>
+      <div class="sr-zone-beat sr-zone-beat--right" data-beat data-activates="book-response">
+        <div class="sr-beat-card"><p>The contrast is the argument. This is what the colonial gaze does to human life: reduces it to administrative material, strips it of interiority and history and tragedy, files it under a title that encodes every assumption the novel has spent two hundred pages dismantling. The District Commissioner is not cruel in any obvious personal sense. That is precisely the point. He considers himself a reasonable man doing important work. <strong>Achebe wrote the novel to give Okonkwo back his two hundred pages.</strong></p></div>
+      </div>
+    </div>
+
+  </section>
+
 </SummerLayout>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ═══════════ Body display modes (production defaults) ═══════════ */
+  document.body.classList.add('tfa-pivot-isolated', 'tfa-dens-glosses');
+
+  /* ═══════════ Novel-structure bar ═══════════ */
+  function buildNovelStructure() {
+    var svg = document.querySelector('[data-novel-structure]');
+    if (!svg) return;
+    var x0 = 40, x1 = 720, top = 84, h = 30, seam = 470;
+    var p = [];
+    p.push('<rect class="ns-part1" x="' + x0 + '" y="' + top + '" width="' + (seam - x0) + '" height="' + h + '"/>');
+    var items = [
+      [90, 'the wrestling match'], [186, 'governance'], [282, 'cosmology'],
+      [366, 'the harvest'], [440, 'the egwugwu']
+    ];
+    items.forEach(function (it) {
+      p.push('<line class="ns-tick" x1="' + it[0] + '" y1="' + (top - 8) + '" x2="' + it[0] + '" y2="' + top + '"/>');
+      p.push('<circle class="ns-node" cx="' + it[0] + '" cy="' + (top - 8) + '" r="3.2"/>');
+    });
+    p.push('<text class="ns-content" x="' + x0 + '" y="' + (top - 22) + '">' +
+      'governance · cosmology · the agricultural year · the egwugwu courts · the Week of Peace</text>');
+    p.push('<defs><linearGradient id="ns-grad" x1="0" y1="0" x2="1" y2="0">' +
+      '<stop offset="0" stop-color="#C4722A" stop-opacity="0.18"/><stop offset="1" stop-color="#2C1A08" stop-opacity="0.20"/></linearGradient></defs>');
+    p.push('<rect x="' + seam + '" y="' + top + '" width="' + (x1 - seam) + '" height="' + h + '" fill="url(#ns-grad)" stroke="#2C1A08" stroke-width="1.2" stroke-opacity="0.5"/>');
+    p.push('<rect class="ns-cool" x="' + (x1 - 16) + '" y="' + top + '" width="16" height="' + h + '" opacity="0.85"/>');
+    p.push('<line class="ns-seam" x1="' + seam + '" y1="' + (top - 34) + '" x2="' + seam + '" y2="' + (top + h + 10) + '"/>');
+    p.push('<circle class="ns-seam-dot" cx="' + seam + '" cy="' + (top - 34) + '" r="3"/>');
+    p.push('<text class="ns-lbl ns-lbl--umber" x="' + (seam + 8) + '" y="' + (top - 30) + '">the missionaries arrive</text>');
+    p.push('<text class="ns-sub" x="' + (seam + 8) + '" y="' + (top - 16) + '">— not until here</text>');
+    var by = top + h + 16;
+    p.push('<path class="ns-brace" d="M' + x0 + ' ' + by + ' L' + x0 + ' ' + (by + 6) + ' L' + seam + ' ' + (by + 6) + ' L' + seam + ' ' + by + '"/>');
+    p.push('<text class="ns-lbl ns-lbl--terra" x="' + ((x0 + seam) / 2) + '" y="' + (by + 22) + '" text-anchor="middle">PART ONE</text>');
+    p.push('<text class="ns-sub" x="' + ((x0 + seam) / 2) + '" y="' + (by + 38) + '" text-anchor="middle">a world built from the inside</text>');
+    p.push('<path class="ns-brace ns-brace--umber" d="M' + seam + ' ' + by + ' L' + seam + ' ' + (by + 6) + ' L' + x1 + ' ' + (by + 6) + ' L' + x1 + ' ' + by + '"/>');
+    p.push('<text class="ns-lbl ns-lbl--umber" x="' + ((seam + x1) / 2) + '" y="' + (by + 22) + '" text-anchor="middle">PARTS TWO &amp; THREE</text>');
+    p.push('<text class="ns-sub" x="' + ((seam + x1) / 2) + '" y="' + (by + 38) + '" text-anchor="middle">disruption, and the closing paragraph</text>');
+    p.push('<text class="ns-tag" x="' + x0 + '" y="' + (top - 44) + '">THE READER’S EXPERIENCE, IN ORDER</text>');
+    svg.setAttribute('viewBox', '0 24 760 188');
+    svg.innerHTML = p.join('');
+  }
+
+  /* ═══════════ District Commissioner's book ═══════════ */
+  function poly(pts, cls) {
+    return '<polygon class="' + cls + '" points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') + '"/>';
+  }
+
+  function closedBook(x, y, w, h, o) {
+    o = o || {};
+    var d = o.depth || 10, cx = x + w / 2, fs = o.fontSize || 12, lh = fs + 5;
+    var cov = o.coverClass || 'bk-cover', edge = o.edgeClass || 'bk-cover-edge', spn = o.spineClass || 'bk-spine';
+    var tc = o.titleClass || 'bk-title', byc = o.byClass || 'bk-by';
+    var s = [];
+    s.push('<ellipse class="bk-shadow" cx="' + (cx + 3) + '" cy="' + (y + h + d + 8) + '" rx="' + (w * 0.52) + '" ry="6"/>');
+    s.push(poly([[x + w, y + 4], [x + w + d, y + 4 + d], [x + w + d, y + h + d], [x + w, y + h]], edge));
+    s.push(poly([[x + 4, y + h], [x + 4 + d, y + h + d], [x + w + d, y + h + d], [x + w, y + h]], edge));
+    s.push('<rect class="' + cov + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="2"/>');
+    s.push('<rect class="' + spn + '" x="' + x + '" y="' + y + '" width="9" height="' + h + '" rx="1"/>');
+    s.push('<rect class="bk-rule" x="' + (x + 18) + '" y="' + (y + 18) + '" width="' + (w - 30) + '" height="' + (h - 36) + '" fill="none"/>');
+    s.push('<rect class="bk-rule--thin" x="' + (x + 22) + '" y="' + (y + 22) + '" width="' + (w - 38) + '" height="' + (h - 44) + '" fill="none"/>');
+    var lines = o.titleLines || [];
+    var startY = y + h * 0.40 - (lines.length - 1) * lh / 2;
+    lines.forEach(function (ln, i) {
+      s.push('<text class="' + tc + '" x="' + (cx + 4) + '" y="' + (startY + i * lh) + '" text-anchor="middle" style="font-size:' + fs + 'px">' + ln + '</text>');
+    });
+    var ry = y + h * 0.40 + lines.length * lh / 2 + 14;
+    s.push('<line class="' + (o.titleClass ? 'bk-mark-line' : 'bk-rule') + '" x1="' + (cx - 22) + '" y1="' + ry + '" x2="' + (cx + 30) + '" y2="' + ry + '" opacity="0.6"/>');
+    if (o.by) {
+      o.by.forEach(function (bl, i) {
+        s.push('<text class="' + byc + '" x="' + (cx + 4) + '" y="' + (ry + 18 + i * 11) + '" text-anchor="middle">' + bl + '</text>');
+      });
+    }
+    if (o.uli) {
+      s.push('<path class="bk-uli" d="M' + (cx - 18) + ' ' + (y + h - 26) + ' q 9 -10 18 0 q 9 10 18 0" transform="translate(-9,0)"/>');
+    }
+    return s.join('');
+  }
+
+  function buildBookCover() {
+    var el = document.querySelector('[data-book-cover]');
+    if (!el) return;
+    el.setAttribute('viewBox', '0 0 300 380');
+    el.innerHTML = closedBook(66, 44, 168, 292, {
+      fontSize: 12,
+      titleLines: ['THE', 'PACIFICATION', 'OF THE PRIMITIVE', 'TRIBES OF THE', 'LOWER NIGER'],
+      by: ['BY THE', 'DISTRICT COMMISSIONER']
+    });
+  }
+
+  function buildBookParagraph() {
+    var el = document.querySelector('[data-book-paragraph]');
+    if (!el) return;
+    var p = [];
+    p.push('<ellipse class="bk-shadow" cx="184" cy="300" rx="150" ry="7"/>');
+    p.push(poly([[30, 56], [180, 46], [330, 56], [332, 286], [180, 296], [28, 286]], 'bk-cover'));
+    p.push(poly([[40, 60], [180, 50], [180, 288], [40, 280]], 'bk-leaf'));
+    p.push(poly([[180, 50], [320, 60], [320, 280], [180, 288]], 'bk-leaf'));
+    p.push('<line class="bk-gutter" x1="180" y1="50" x2="180" y2="288"/>');
+    function lines(xl, xrBase, yTop, n, seed) {
+      var out = '', s = seed;
+      for (var i = 0; i < n; i++) {
+        s = (s * 9301 + 49297) % 233280; var r = s / 233280;
+        var y = yTop + i * 13.5;
+        var w = (xrBase - xl) * (0.66 + r * 0.34);
+        out += '<line class="bk-textline" x1="' + xl + '" y1="' + y.toFixed(1) + '" x2="' + (xl + w).toFixed(1) + '" y2="' + y.toFixed(1) + '"/>';
+      }
+      return out;
+    }
+    p.push(lines(54, 168, 74, 14, 7));
+    p.push(lines(192, 306, 74, 6, 19));
+    p.push('<rect class="bk-mark" x="190" y="160" width="120" height="58" rx="2"/>');
+    p.push('<line class="bk-mark-line" x1="190" y1="160" x2="190" y2="218"/>');
+    p.push('<line class="bk-textline" x1="196" y1="170" x2="300" y2="170"/>');
+    p.push('<text class="bk-readable" x="250" y="193" text-anchor="middle" style="font-size:12px">“a reasonable</text>');
+    p.push('<text class="bk-readable" x="250" y="209" text-anchor="middle" style="font-size:12px">paragraph”</text>');
+    p.push(lines(192, 306, 230, 4, 41));
+    p.push('<text class="bk-folio" x="160" y="278" text-anchor="end">208</text>');
+    p.push('<text class="bk-folio" x="200" y="278">209</text>');
+    el.setAttribute('viewBox', '0 30 360 290');
+    el.innerHTML = p.join('');
+  }
+
+  function buildBookResponse() {
+    var el = document.querySelector('[data-book-response]');
+    if (!el) return;
+    el.setAttribute('viewBox', '0 0 420 360');
+    var left = closedBook(30, 70, 150, 250, {
+      fontSize: 9.5,
+      titleLines: ['THE PACIFICATION', 'OF THE PRIMITIVE', 'TRIBES OF THE', 'LOWER NIGER'],
+      by: ['DISTRICT', 'COMMISSIONER']
+    });
+    var right = closedBook(232, 70, 150, 250, {
+      fontSize: 11.5,
+      coverClass: 'bk-cover--achebe', edgeClass: 'bk-cover-edge--achebe', spineClass: 'bk-spine--achebe',
+      titleClass: 'bk-title bk-title--achebe', byClass: 'bk-by bk-by--achebe',
+      titleLines: ['THINGS', 'FALL APART'],
+      by: ['CHINUA ACHEBE'],
+      uli: true
+    });
+    el.innerHTML = left + right;
+  }
+
+  function buildBook() {
+    buildBookCover();
+    buildBookParagraph();
+    buildBookResponse();
+  }
+
+  /* ═══════════ Position-driven scrolly sweep (book zone) ═══════════ */
+  var sweeps = [];
+
+  var revealTween = null;
+  var nextFrame = function (fn) { return document.hidden ? setTimeout(fn, 16) : requestAnimationFrame(fn); };
+
+  function setFieldReveal(field, revealed) {
+    var changed = false;
+    field.querySelectorAll('[data-show-from]').forEach(function (g) {
+      var target = revealed[g.getAttribute('data-show-from')] ? 1 : 0;
+      if (g.__c === undefined) g.__c = parseFloat(getComputedStyle(g).opacity) || 0;
+      if (g.__t !== target) { g.__t = target; changed = true; }
+    });
+    if (changed && !revealTween) revealTween = nextFrame(tickReveal);
+  }
+
+  function tickReveal() {
+    revealTween = null;
+    var moving = false;
+    document.querySelectorAll('.tfa-book-field [data-show-from]').forEach(function (g) {
+      if (g.__t === undefined) return;
+      var cur = g.__c === undefined ? 0 : g.__c;
+      var diff = g.__t - cur;
+      if (Math.abs(diff) < 0.02) cur = g.__t; else { cur += diff * 0.16; moving = true; }
+      g.__c = cur;
+      g.style.opacity = String(cur);
+    });
+    if (moving) revealTween = nextFrame(tickReveal);
+  }
+
+  function initZones() {
+    sweeps = [];
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var w = window.innerWidth;
+    if (reduced || (w > 0 && w < 768)) return;
+
+    document.querySelectorAll('.sr-scrolly-zone[data-field="book"]').forEach(function (zoneEl) {
+      var field = zoneEl.querySelector('.sr-zone-field');
+      var beats = Array.prototype.slice.call(zoneEl.querySelectorAll('[data-beat]'));
+      if (!beats.length) return;
+
+      function sweep() {
+        var line = window.innerHeight * 0.5;
+        var bestIdx = 0, bestDist = Infinity;
+        beats.forEach(function (el, i) {
+          var rect = el.getBoundingClientRect();
+          var mid = rect.top + rect.height / 2;
+          var dist = Math.abs(mid - line);
+          if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+        });
+        beats.forEach(function (el, i) { el.classList.toggle('is-active', i === bestIdx); });
+        if (field && field.querySelector('[data-show-from]')) {
+          var revealed = {};
+          var cur = beats[bestIdx] && beats[bestIdx].dataset.activates;
+          if (cur) revealed[cur] = 1;
+          setFieldReveal(field, revealed);
+          field.querySelectorAll('[data-show-from]').forEach(function (g) {
+            g.classList.toggle('is-current', !!cur && g.getAttribute('data-show-from') === cur);
+          });
+        }
+      }
+      sweeps.push(sweep);
+      sweep();
+    });
+  }
+
+  var queued = false;
+  function runSweeps() {
+    if (queued || !sweeps.length) return;
+    queued = true;
+    nextFrame(function () { queued = false; sweeps.forEach(function (fn) { fn(); }); });
+  }
+
+  /* ═══════════ Progressive disclosure ═══════════ */
+  function initDisclosure() {
+    document.querySelectorAll('.tfa-more-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var body = btn.closest('.tfa-passage-body');
+        if (body) { body.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+  }
+
+  /* ═══════════ Init ═══════════ */
+  function init() {
+    buildNovelStructure();
+    buildBook();
+    initDisclosure();
+    initZones();
+    window.addEventListener('scroll', runSweeps, { passive: true });
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { initZones(); runSweeps(); }, 160);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

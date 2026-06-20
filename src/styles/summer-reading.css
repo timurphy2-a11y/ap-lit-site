@@ -8,6 +8,7 @@
 @import './tfa-culture.css';
 @import './tfa-world.css';
 @import './tfa-colonialism.css';
+@import './tfa-connections.css';
 
 /* ── Legacy aliases (keep for backward compat with Phase 1 content) ─── */
 :root {
