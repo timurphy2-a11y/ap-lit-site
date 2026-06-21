@@ -266,6 +266,14 @@
   .tfa-passage-note .tfa-note-sub { display: inline; margin-left: 0.4em; }
 }
 
+/* density = "clean": single centered prose column, no margin glosses, no toggles */
+body.tfa-dens-clean .tfa-passage {
+  grid-template-columns: minmax(0, var(--content-prose));
+}
+body.tfa-dens-clean .tfa-passage-note,
+body.tfa-dens-clean .tfa-more-toggle { display: none; }
+body.tfa-dens-clean .tfa-more { display: inline; }
+
 /* ════════════════════════════════════════════════════════════════
    4 · Pull-quote extra spacing inside still flow
    ════════════════════════════════════════════════════════════════ */
