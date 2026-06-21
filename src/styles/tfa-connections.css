@@ -281,6 +281,11 @@ body.tfa-dens-clean .tfa-more { display: inline; }
   max-width: var(--content-prose);
   margin: var(--s-16) auto;
 }
+/* type+class specificity (0,1,1) beats .sr-pullquote (0,1,0) regardless of cascade order */
+figure.tfa-zone-pull {
+  margin-left: auto;
+  margin-right: auto;
+}
 .tfa-zone-pull .sr-pullquote-body p { margin-bottom: var(--s-3); }
 .tfa-verse .sr-pullquote-body p {
   font-size: var(--t-h3);
