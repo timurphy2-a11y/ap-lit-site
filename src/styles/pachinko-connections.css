@@ -320,7 +320,7 @@
 /* ════════════════════════════════════════════════════════════════
    3 · Pull-quote spacing inside still flow (floral scroll brackets)
    ════════════════════════════════════════════════════════════════ */
-.pk-zone-pull {
+.sr-pullquote.pk-zone-pull {
   max-width: var(--content-prose);
   margin: var(--s-16) auto;
 }
