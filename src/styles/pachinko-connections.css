@@ -98,14 +98,9 @@
    as a scent/anchor; the prose runs in a measured column beside it.
    ════════════════════════════════════════════════════════════════ */
 .pk-passage {
-  max-width: var(--content-wide);
+  max-width: var(--content-prose);
   margin: var(--s-10) auto;
   padding: 0 var(--gutter-lg);
-  display: grid;
-  grid-template-columns: 11rem minmax(0, var(--content-prose));
-  gap: clamp(var(--s-5), 3vw, var(--s-10));
-  justify-content: center;
-  align-items: start;
 }
 .pk-passage-note {
   font-family: var(--font-mono);
@@ -176,26 +171,7 @@
 .pk-more-toggle:hover { color: var(--color-ink); border-color: var(--color-rule); }
 .pk-passage-body.is-open .pk-more-toggle { display: none; }
 
-/* mobile / clean-density single column: gloss folds above the prose */
-@media (max-width: 760px) {
-  .pk-passage { grid-template-columns: minmax(0, var(--content-prose)); }
-  .pk-passage-note {
-    text-align: left;
-    border-top: none;
-    padding-top: 0;
-    margin-bottom: var(--s-3);
-  }
-  .pk-passage-note .pk-note-sub { display: inline; margin-left: 0.4em; }
-}
-
-/* density tweak = "clean": faithful still-zone centered prose, no aids */
-body.pk-dens-clean .pk-passage {
-  grid-template-columns: minmax(0, var(--content-prose));
-}
-body.pk-dens-clean .pk-passage-note,
-body.pk-dens-clean .pk-more-toggle { display: none; }
-body.pk-dens-clean .pk-more { display: inline; }
-body.pk-dens-clean .pk-center .pk-more { display: inline; }
+/* density tweak = "clean": no-op now that notes are removed */
 
 /* centered framing beats inside a still zone (intro / summary / pivot) —
    used where the prose is a framing move rather than analysis */
@@ -278,15 +254,8 @@ body.pk-dens-clean .pk-center .pk-more { display: inline; }
   margin: 0;
 }
 
-/* mirror variant — gloss flips to the right margin (honors align-right beats) */
-.pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)) 11rem; }
-.pk-passage--mirror .pk-passage-note { order: 2; text-align: left; }
-.pk-passage--mirror .pk-passage-body { order: 1; }
-@media (max-width: 760px) {
-  .pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)); }
-  .pk-passage--mirror .pk-passage-note { order: 0; }
-}
-body.pk-dens-clean .pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)); }
+/* mirror variant — no-op now that gloss notes are removed */
+.pk-passage--mirror { }
 
 /* ── Book plate — the epigraph triptych ideogram ── */
 .pk-plate {
