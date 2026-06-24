@@ -1,0 +1,1139 @@
+/* Pachinko · Connections to the Novel (Spoke 5) — design-iteration deltas
+ * Layered ON TOP of summer-reading.css / scrolly-zones.css / tokens.css.
+ *
+ * The most argument-forward Pachinko spoke: four `still` text zones and one
+ * `driving` generational-thread zone. Visual interest is carried by
+ *   (a) an editorial margin-gloss reading layout (manages prose density),
+ *   (b) two bespoke Zone-3 figures — the Noa-confrontation frieze and the
+ *       two-strategies comparison figure (ported in structure from the TFA 5
+ *       seq/margin patterns, redrawn entirely in Pachinko motif vocabulary),
+ *   (c) the single earned moment — the four-generation thread (Zone 5).
+ * Everything here is a candidate delta to port back into the Astro build.
+ */
+
+/* The new figures use the in-palette Pachinko accents (teal / burnt orange /
+   gold). Per the beat sheet, Pachinko 5 has no "outside reference" moment, so
+   no out-of-palette register is introduced. */
+
+/* ════════════════════════════════════════════════════════════════
+   0 · Spoiler banner — full-width, restrained, before Zone 1
+   ════════════════════════════════════════════════════════════════ */
+.pk-spoiler {
+  background: var(--color-card);
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+.pk-spoiler-inner {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding: var(--s-5) var(--gutter-lg);
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-5);
+}
+.pk-spoiler-tag {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  padding-top: 2px;
+}
+.pk-spoiler-text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  max-width: 56ch;
+}
+.pk-spoiler-text em { font-style: italic; color: var(--color-ink); }
+@media (max-width: 600px) {
+  .pk-spoiler-inner { flex-direction: column; gap: var(--s-2); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   1 · Opening orientation — held, centered, no section opener
+   ════════════════════════════════════════════════════════════════ */
+.pk-orient {
+  max-width: var(--content-prose);
+  margin-inline: auto;
+  padding: clamp(var(--s-12), 9vh, var(--s-20)) var(--gutter-lg) var(--s-12);
+  text-align: center;
+}
+.pk-orient-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  display: block;
+  margin-bottom: var(--s-6);
+}
+.pk-orient p {
+  font-family: var(--font-body);
+  font-size: var(--t-passage);
+  line-height: var(--lh-pull);
+  color: var(--color-ink);
+  margin: 0 auto;
+  max-width: 46ch;
+}
+.pk-orient p + p { margin-top: var(--s-6); }
+.pk-orient .pk-orient-lead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+.pk-orient-rule {
+  display: flex; justify-content: center;
+  margin-top: var(--s-10);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   2 · Editorial passage — margin gloss + prose spine
+   The default density treatment. A short mono gloss sits in the left margin
+   as a scent/anchor; the prose runs in a measured column beside it.
+   ════════════════════════════════════════════════════════════════ */
+.pk-passage {
+  max-width: var(--content-wide);
+  margin: var(--s-10) auto;
+  padding: 0 var(--gutter-lg);
+  display: grid;
+  grid-template-columns: 11rem minmax(0, var(--content-prose));
+  gap: clamp(var(--s-5), 3vw, var(--s-10));
+  justify-content: center;
+  align-items: start;
+}
+.pk-passage-note {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1.75;
+  color: var(--p-teal);
+  text-align: right;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-rule);
+}
+.pk-passage-note .pk-note-sub {
+  display: block;
+  margin-top: var(--s-2);
+  font-family: var(--font-body);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-muted);
+  font-size: var(--t-meta);
+}
+.pk-passage-body p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-4);
+}
+.pk-passage-body p:last-child { margin-bottom: 0; }
+.pk-passage-body strong { font-weight: 600; }
+.pk-passage-body em { font-style: italic; }
+
+/* drop initial — opens the first beat of each zone */
+.pk-passage-body--lede > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 3.4em;
+  line-height: 0.78;
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--p-orange);
+}
+
+/* progressive disclosure — keep the visible spine short, the rest one click away */
+.pk-more { display: none; }
+.pk-passage-body.is-open .pk-more { display: inline; }
+.pk-more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0 0 2px;
+  cursor: pointer;
+  transition: color var(--dur-quick) var(--ease-out), border-color var(--dur-quick) var(--ease-out);
+}
+.pk-more-toggle::after { content: '▾'; font-size: 0.85em; transition: transform var(--dur-base) var(--ease-out); }
+.pk-passage-body.is-open .pk-more-toggle::after { transform: rotate(180deg); }
+.pk-more-toggle:hover { color: var(--color-ink); border-color: var(--color-rule); }
+.pk-passage-body.is-open .pk-more-toggle { display: none; }
+
+/* mobile / clean-density single column: gloss folds above the prose */
+@media (max-width: 760px) {
+  .pk-passage { grid-template-columns: minmax(0, var(--content-prose)); }
+  .pk-passage-note {
+    text-align: left;
+    border-top: none;
+    padding-top: 0;
+    margin-bottom: var(--s-3);
+  }
+  .pk-passage-note .pk-note-sub { display: inline; margin-left: 0.4em; }
+}
+
+/* density tweak = "clean": faithful still-zone centered prose, no aids */
+body.pk-dens-clean .pk-passage {
+  grid-template-columns: minmax(0, var(--content-prose));
+}
+body.pk-dens-clean .pk-passage-note,
+body.pk-dens-clean .pk-more-toggle { display: none; }
+body.pk-dens-clean .pk-more { display: inline; }
+body.pk-dens-clean .pk-center .pk-more { display: inline; }
+
+/* centered framing beats inside a still zone (intro / summary / pivot) —
+   used where the prose is a framing move rather than analysis */
+.pk-center {
+  max-width: var(--content-prose);
+  margin: var(--s-10) auto;
+  padding: 0 var(--gutter-lg);
+  text-align: center;
+}
+.pk-center p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 auto var(--s-4);
+  max-width: 56ch;
+}
+.pk-center p:last-child { margin-bottom: 0; }
+.pk-center .pk-more { display: none; }
+.pk-center.is-open .pk-more { display: inline; }
+.pk-center--lead p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.18rem, 1rem + 0.85vw, 1.46rem);
+  line-height: 1.46;
+  max-width: 48ch;
+}
+.pk-center--coda p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.08rem, 1rem + 0.5vw, 1.28rem);
+  line-height: 1.5;
+  color: var(--color-muted);
+  max-width: 44ch;
+}
+.pk-center--coda p em, .pk-center--coda p b { color: var(--color-ink); font-weight: 500; font-style: italic; }
+.pk-center .pk-more-toggle { margin-top: var(--s-3); }
+.pk-center.is-open .pk-more-toggle { display: none; }
+
+/* left-justified framing block (overrides the centered default) + optional drop cap,
+   for centered passages that read better as analytical left-aligned prose */
+.pk-center--left { text-align: left; }
+.pk-center--left p { margin-left: 0; margin-right: auto; }
+.pk-center--cap > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 3.4em;
+  line-height: 0.78;
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--p-orange);
+}
+
+/* a lighter mid-zone "breath" opener — a coda-style divider, not a hard seam.
+   Used to pivot Zone 1 from the three epigraphs to the novel's opening line. */
+.pk-breath {
+  max-width: var(--content-prose);
+  margin: var(--s-16) auto var(--s-2);
+  padding: 0 var(--gutter-lg);
+  text-align: center;
+}
+.pk-breath-rule { display: flex; justify-content: center; margin-bottom: var(--s-5); opacity: 0.8; }
+.pk-breath-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  margin-bottom: var(--s-3);
+}
+.pk-breath-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+  line-height: var(--lh-tight);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* mirror variant — gloss flips to the right margin (honors align-right beats) */
+.pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)) 11rem; }
+.pk-passage--mirror .pk-passage-note { order: 2; text-align: left; }
+.pk-passage--mirror .pk-passage-body { order: 1; }
+@media (max-width: 760px) {
+  .pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)); }
+  .pk-passage--mirror .pk-passage-note { order: 0; }
+}
+body.pk-dens-clean .pk-passage--mirror { grid-template-columns: minmax(0, var(--content-prose)); }
+
+/* ── Book plate — the epigraph triptych ideogram ── */
+.pk-plate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--s-10) auto var(--s-6);
+  padding: 0 var(--gutter-lg);
+}
+.pk-plate-art { width: clamp(150px, 22vw, 196px); }
+.pk-plate-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pk-plate-cap {
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-align: center;
+}
+.pk-plate-cap b { color: var(--p-teal); font-weight: 500; }
+
+/* ── Book index — roman numeral + era, in the section opener ── */
+.pk-book-index {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+}
+.pk-book-pips { display: inline-flex; gap: 5px; }
+.pk-book-pip { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--p-teal); }
+.pk-book-pip.is-on { background: var(--p-teal); }
+.pk-book-roman {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+}
+
+/* ── Long multi-paragraph epigraph (Anderson, full) ── */
+.pk-pull-long .sr-pullquote-body { max-width: 56ch; margin-inline: auto; }
+.pk-pull-long .sr-pullquote-body p {
+  font-size: clamp(0.98rem, 0.92rem + 0.4vw, 1.18rem) !important;
+  line-height: 1.62 !important;
+  text-align: left;
+  text-wrap: pretty;
+}
+.pk-pull-long .sr-pullquote-body p + p { margin-top: var(--s-4); }
+
+/* a book-epigraph attribution gets two registers: author line + book/era */
+.pk-epigraph-src {
+  display: block;
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   3 · Pull-quote spacing inside still flow (floral scroll brackets)
+   ════════════════════════════════════════════════════════════════ */
+.pk-zone-pull {
+  max-width: var(--content-prose);
+  margin: var(--s-16) auto;
+}
+.pk-zone-pull .sr-pullquote-body p { margin-bottom: var(--s-3); }
+.pk-zone-pull .sr-pullquote-bracket { color: var(--p-orange); }
+
+/* ════════════════════════════════════════════════════════════════
+   4 · ZONE 3 — the Noa-confrontation frieze
+        Four ideogram beats (the watching · the calling · the confession ·
+        the collapse), grouped "the construction" / "the collapse", each with
+        a Pachinko line-glyph and a verbatim (or draft) quotation.
+   ════════════════════════════════════════════════════════════════ */
+.pk-seq {
+  max-width: 78rem;
+  margin: var(--s-12) auto var(--s-6);
+  padding: 0 var(--gutter-lg);
+}
+.pk-seq-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-5);
+  border-bottom: 1px solid var(--color-rule);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-8);
+}
+.pk-seq-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+}
+.pk-seq-eyebrow--muted { color: var(--color-muted); }
+
+/* the draft-verification flag (frieze quotes pending confirmation) */
+.pk-seq-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-orange);
+  border: 1px dashed color-mix(in srgb, var(--p-orange) 55%, transparent);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+body.pk-frieze-paraphrase .pk-seq-flag { display: none; }
+
+/* Horizontal frieze — four beats across one row, with the two phase headers
+   spanning their pairs above. The verbatim passages are set small and tight so
+   the full quotations fit their columns intact. */
+.pk-seq-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: clamp(var(--s-4), 2.4vw, var(--s-8));
+  align-items: start;
+}
+.pk-seq-track > :nth-child(1) { grid-area: 1 / 1 / 2 / 3; }
+.pk-seq-track > :nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
+.pk-seq-track > :nth-child(3) { grid-area: 2 / 2 / 3 / 3; }
+.pk-seq-track > :nth-child(4) { grid-area: 1 / 3 / 2 / 5; }
+.pk-seq-track > :nth-child(5) { grid-area: 2 / 3 / 3 / 4; }
+.pk-seq-track > :nth-child(6) { grid-area: 2 / 4 / 3 / 5; }
+
+.pk-seq-phase {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-rule);
+  padding-bottom: var(--s-2);
+  margin: 0 var(--s-2) var(--s-6);
+}
+
+/* each beat is a centered vertical column: glyph · rail · kicker · quote */
+.pk-seq-beat { display: flex; flex-direction: column; align-items: stretch; }
+.pk-seq-beat--mirror { /* inert in the horizontal layout */ }
+
+.pk-seq-figcol { display: flex; flex-direction: column; align-items: center; }
+.pk-seq-glyph {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pk-seq-svg { height: 100%; width: auto; max-width: 100%; overflow: visible; }
+.pk-seq-rail {
+  width: 100%;
+  height: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--p-teal) 32%, transparent);
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-2);
+}
+.pk-seq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p-teal); margin-top: -3.5px; }
+
+.pk-seq-textcol { padding-top: var(--s-2); }
+.pk-seq-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  text-align: center;
+  margin-bottom: var(--s-2);
+}
+.pk-seq-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.7rem, 0.64rem + 0.28vw, 0.8rem);
+  line-height: 1.46;
+  color: var(--color-ink);
+  text-align: left;
+  margin: 0;
+  white-space: pre-line;
+  text-wrap: pretty;
+}
+.pk-seq-para { display: none; }
+body.pk-frieze-paraphrase .pk-seq-quote { display: none; }
+body.pk-frieze-paraphrase .pk-seq-para {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: clamp(0.74rem, 0.68rem + 0.3vw, 0.84rem);
+  line-height: 1.5;
+  color: var(--color-muted);
+  text-align: left;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* tablet: 2×2 */
+@media (max-width: 860px) {
+  .pk-seq-track { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-8); }
+  .pk-seq-track > :nth-child(1) { grid-area: 1 / 1 / 2 / 3; }
+  .pk-seq-track > :nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
+  .pk-seq-track > :nth-child(3) { grid-area: 2 / 2 / 3 / 3; }
+  .pk-seq-track > :nth-child(4) { grid-area: 3 / 1 / 4 / 3; }
+  .pk-seq-track > :nth-child(5) { grid-area: 4 / 1 / 5 / 2; }
+  .pk-seq-track > :nth-child(6) { grid-area: 4 / 2 / 5 / 3; }
+  .pk-seq-quote, body.pk-frieze-paraphrase .pk-seq-para { font-size: 0.84rem; }
+  .pk-seq-glyph { height: 100px; }
+}
+/* mobile: single column */
+@media (max-width: 560px) {
+  .pk-seq-track { display: flex; flex-direction: column; gap: var(--s-8); }
+  .pk-seq-track > * { grid-area: auto !important; }
+  .pk-seq-phase { margin: var(--s-4) 0 0; text-align: left; }
+  .pk-seq-quote, body.pk-frieze-paraphrase .pk-seq-para { font-size: 0.94rem; line-height: 1.6; max-width: 42rem; }
+  .pk-seq-glyph { height: 108px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   5 · ZONE 3 — the "Two Strategies" comparison figure
+        Toggleable via Variations. A sealed medallion (Noa: assimilation as
+        a closed container) beside an open rosette marked with a stigma pip
+        (Mozasu: visibility without full acceptance). Neither resolves.
+   ════════════════════════════════════════════════════════════════ */
+.pk-compare-fig {
+  max-width: 38rem;
+  margin: var(--s-12) auto var(--s-6);
+  padding: var(--s-8) clamp(var(--s-4), 4vw, var(--s-10)) var(--s-6);
+  background: rgba(244, 237, 223, 0.5);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--p-teal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.sr-scrolly-zone[data-ground="tinted"] .pk-compare-fig { background: rgba(237, 232, 220, 0.55); }
+.pk-compare-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  margin-bottom: var(--s-5);
+}
+.pk-compare-svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  overflow: visible;
+}
+.pk-compare-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  margin: var(--s-5) 0 0;
+  max-width: 34rem;
+  text-wrap: pretty;
+}
+.pk-compare-cap em { font-style: italic; color: var(--color-ink); }
+.pk-compare-cap b { color: var(--p-teal); font-weight: 600; font-style: normal; }
+/* figure label type inside the SVG */
+.pkc-name { font-family: var(--font-display); font-style: italic; font-size: 16px; fill: var(--color-ink); }
+.pkc-sub  { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--color-muted); }
+.pkc-key  { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--p-orange); }
+
+/* the Variations OFF state */
+body.pk-figure-off .pk-compare-fig { display: none; }
+
+/* ════════════════════════════════════════════════════════════════
+   4b · Single-panel section ideogram (§4 Migration, §7 Kyunghee)
+   ════════════════════════════════════════════════════════════════ */
+.pk-figure {
+  max-width: 30rem;
+  margin: var(--s-10) auto var(--s-6);
+  padding: var(--s-6) var(--gutter-lg) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.pk-figure-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  margin-bottom: var(--s-4);
+}
+.pk-figure-art { width: clamp(150px, 23vw, 196px); }
+.pk-figure-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pk-figure-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  margin: var(--s-5) auto 0;
+  max-width: 32rem;
+  text-wrap: pretty;
+}
+.pk-figure-cap b { color: var(--p-teal); font-weight: 600; }
+.pk-figure-cap em { font-style: italic; color: var(--color-ink); }
+
+/* ════════════════════════════════════════════════════════════════
+   5b · SOLOMON — before/after two-track layout (#4: density restructure)
+   ════════════════════════════════════════════════════════════════ */
+.pk-tracks {
+  max-width: var(--content-wide);
+  margin: var(--s-10) auto;
+  padding: 0 var(--gutter-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--s-5), 3.5vw, var(--s-12));
+  align-items: start;
+}
+.pk-track { display: flex; flex-direction: column; }
+.pk-track--before { --spk: var(--p-teal); }
+.pk-track--after  { --spk: var(--p-orange); }
+.pk-track-head {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-top: 2px solid var(--spk);
+  padding-top: var(--s-3);
+}
+.pk-track-head b { color: var(--spk); font-weight: 500; }
+.pk-track-quote {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 0.94rem + 0.45vw, 1.22rem);
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin: var(--s-5) 0 var(--s-2);
+  padding-left: var(--s-4);
+}
+.pk-track-quote::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.15em; bottom: 0.15em;
+  width: 2px;
+  background: var(--spk);
+  opacity: 0.5;
+}
+.pk-track-quote cite {
+  display: block;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: var(--s-2);
+}
+.pk-track-beat { margin-top: var(--s-5); }
+.pk-track-beat-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--spk);
+  margin-bottom: var(--s-2);
+}
+.pk-track-beat p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}
+.pk-track-beat .pk-more { display: none; }
+.pk-track-beat.is-open .pk-more { display: inline; }
+.pk-track-beat.is-open .pk-more-toggle { display: none; }
+body.pk-dens-clean .pk-track-beat .pk-more { display: inline; }
+body.pk-dens-clean .pk-track-beat .pk-more-toggle { display: none; }
+@media (max-width: 760px) {
+  .pk-tracks { grid-template-columns: 1fr; gap: var(--s-8); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   5c · SOLOMON — the "Two Registers" diptych (#1: the same fact, twice)
+        Left: a fingerprint built from pachinko pins, gold ball pressed in.
+        Right: a medallion ring expelling that same ball. registered ↦ discarded.
+   ════════════════════════════════════════════════════════════════ */
+.pk-registers {
+  max-width: 40rem;
+  margin: var(--s-12) auto var(--s-6);
+  padding: var(--s-8) clamp(var(--s-4), 4vw, var(--s-10)) var(--s-6);
+  background: rgba(237, 232, 220, 0.55);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--p-teal);
+  text-align: center;
+}
+.pk-registers-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p-teal);
+  margin-bottom: var(--s-6);
+}
+.pk-registers-pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(var(--s-2), 2vw, var(--s-5));
+}
+.pk-register { display: flex; flex-direction: column; align-items: center; }
+.pk-register-art { width: clamp(116px, 17vw, 150px); }
+.pk-register-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pk-register-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  margin-top: var(--s-3);
+}
+.pk-register-sub {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+.pk-register-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-gold);
+}
+.pk-register-link svg { display: block; }
+.pk-registers-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  margin: var(--s-6) auto 0;
+  max-width: 36rem;
+  text-wrap: pretty;
+}
+.pk-registers-cap b { color: var(--p-teal); font-weight: 600; }
+@media (max-width: 600px) {
+  .pk-registers-pair { grid-template-columns: 1fr; gap: var(--s-5); }
+  .pk-register-link { flex-direction: row; gap: 8px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   6 · ZONE 5 — the four-generation thread (driving · thread field)
+        The spoke's single earned visual. A vertical thread with four markers
+        (Issei · Nisei · Sansei · Yonsei). States accumulate as the reader
+        scrolls; the Yonsei marker is drawn but never lit — that absence is
+        the argument.  Layer visibility resolves in CSS off field[data-state].
+   ════════════════════════════════════════════════════════════════ */
+.pk-z5-intro {
+  max-width: var(--content-prose);
+  margin: 0 auto;
+  padding: var(--s-12) var(--gutter-lg) var(--s-6);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.pk-z5-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
+.pk-z5-lead {
+  max-width: 42ch;
+  margin: var(--s-6) auto 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--color-ink);
+  text-align: center;
+}
+.pk-z5-coda-beat { margin-top: var(--s-12); }
+.pk-z5-coda {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.4rem) !important;
+  line-height: 1.5 !important;
+  color: var(--color-ink) !important;
+  text-align: center;
+}
+
+.pk-zone--thread .sr-zone-field {
+  width: clamp(300px, 40%, 480px);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pk-thread-field { padding: clamp(var(--s-4), 4vh, var(--s-10)) var(--s-4); }
+.pk-thread-svg { width: 100%; height: 100%; max-height: 82vh; overflow: visible; }
+
+/* thread element styling — all driven by [data-state] on the field */
+.pkt-seg { stroke-linecap: round; transition: opacity 0.5s ease, stroke 0.5s ease; }
+.pkt-origin-line { stroke: var(--p-teal); stroke-width: 2.4; opacity: 0; transition: opacity 0.5s ease; }
+.pkt-origin-dot  { fill: var(--p-teal); opacity: 0; transition: opacity 0.5s ease; }
+.pkt-origin-label{ font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--p-teal); opacity: 0; transition: opacity 0.5s ease; }
+.pkt-origin-kr   { font-family: var(--font-display); font-style: italic; font-size: 15px; fill: var(--color-ink); opacity: 0; transition: opacity 0.5s ease; }
+
+/* a generation group: ring + core + labels */
+.pkt-gen { transition: opacity 0.5s ease; }
+.pkt-ring { fill: none; stroke: var(--color-rule); stroke-width: 2; transition: stroke 0.5s ease, stroke-width 0.5s ease; }
+.pkt-core { fill: var(--color-cream); stroke: var(--color-rule); stroke-width: 1.4; transition: fill 0.5s ease, stroke 0.5s ease; }
+.pkt-gen-roman { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--color-muted); transition: fill 0.5s ease; }
+.pkt-gen-people { font-family: var(--font-display); font-style: italic; font-size: 19px; fill: var(--color-ink); transition: fill 0.5s ease; }
+.pkt-gen-home { font-family: var(--font-body); font-size: 11.5px; fill: var(--color-muted); transition: fill 0.5s ease; }
+.pkt-gen-gold { fill: var(--p-gold); opacity: 0; transition: opacity 0.5s ease; }
+
+/* the unresolved continuation past Sansei */
+.pkt-tail { stroke: var(--p-teal); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; opacity: 0; transition: opacity 0.6s ease; }
+.pkt-tail-dot { fill: var(--p-teal); opacity: 0; transition: opacity 0.6s ease; }
+.pkt-unresolved-label {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  fill: var(--p-orange); opacity: 0; transition: opacity 0.6s ease;
+}
+
+/* ── State machine (accumulate). A marker, once lit, stays lit. ──
+   Lighting = warm/teal ring + filled core + ink labels + gold seam pip. */
+/* issei lit */
+.pk-thread-field[data-state="thread-issei"] .pkt-origin-line,
+.pk-thread-field[data-state="thread-issei"] .pkt-origin-dot,
+.pk-thread-field[data-state="thread-issei"] .pkt-origin-label,
+.pk-thread-field[data-state="thread-issei"] .pkt-origin-kr,
+.pk-thread-field[data-state="thread-nisei"] .pkt-origin-line,
+.pk-thread-field[data-state="thread-nisei"] .pkt-origin-dot,
+.pk-thread-field[data-state="thread-nisei"] .pkt-origin-label,
+.pk-thread-field[data-state="thread-nisei"] .pkt-origin-kr,
+.pk-thread-field[data-state="thread-sansei"] .pkt-origin-line,
+.pk-thread-field[data-state="thread-sansei"] .pkt-origin-dot,
+.pk-thread-field[data-state="thread-sansei"] .pkt-origin-label,
+.pk-thread-field[data-state="thread-sansei"] .pkt-origin-kr,
+.pk-thread-field[data-state="thread-unresolved"] .pkt-origin-line,
+.pk-thread-field[data-state="thread-unresolved"] .pkt-origin-dot,
+.pk-thread-field[data-state="thread-unresolved"] .pkt-origin-label,
+.pk-thread-field[data-state="thread-unresolved"] .pkt-origin-kr { opacity: 1; }
+
+/* helper: a lit generation (applied by id below) */
+.pkt-gen.is-lit .pkt-ring { stroke: var(--p-teal); stroke-width: 3; }
+.pkt-gen.is-lit .pkt-core { fill: var(--p-orange); stroke: var(--p-orange); }
+.pkt-gen.is-lit .pkt-gen-roman { fill: var(--p-teal); }
+.pkt-gen.is-lit .pkt-gen-people { fill: var(--color-ink); }
+.pkt-gen.is-lit .pkt-gen-home { fill: var(--color-ink); }
+.pkt-gen.is-lit .pkt-gen-gold { opacity: 1; }
+/* a "split / dim" lit generation — ambiguity (Nisei onward): teal ring but
+   the connecting segment runs split, the core only half-filled */
+.pkt-gen.is-split .pkt-core { fill: color-mix(in srgb, var(--p-orange) 45%, var(--color-cream)); stroke: var(--p-teal); }
+
+/* Yonsei (g4) — drawn but never lit: empty core, faint ring */
+#pkt-g4 .pkt-core { fill: none; stroke: var(--color-rule); }
+#pkt-g4 .pkt-ring { stroke: var(--color-rule); opacity: 0.7; }
+
+/* connecting segments light per state (bright above issei; split below) */
+.pkt-seg { opacity: 0; }
+.pkt-seg--origin { stroke: var(--p-teal); stroke-width: 2.6; }
+.pkt-seg--split { stroke: var(--p-teal); stroke-width: 1.4; }
+.pkt-seg.is-shown { opacity: 1; }
+.pkt-seg--split.is-shown { opacity: 0.55; }
+.pkt-tail.is-shown { opacity: 0.7; }
+.pkt-tail-dot.is-shown { opacity: 0.55; }
+
+/* explicit-vs-subtle unresolved cue (Variations). default = subtle. */
+body.pk-cue-explicit .pk-thread-field[data-state="thread-unresolved"] .pkt-unresolved-label { opacity: 1; }
+body.pk-cue-subtle .pkt-unresolved-label { display: none; }
+
+/* desktop driving: field is full-height sticky */
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+  .pk-thread-field { height: 100vh; }
+}
+.pk-zone--thread .sr-zone-beat[data-activates] .sr-beat-card {
+  max-width: clamp(240px, 30%, 380px);
+  background: rgba(244, 237, 223, 0.95);
+}
+
+/* mobile / reduced-motion: pin to final unresolved state, static */
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+  .pk-zone--thread .sr-zone-field { position: static; height: auto; width: min(460px, 92%); margin-inline: auto; }
+  .pk-thread-field { position: static; }
+  .pk-zone--thread .sr-zone-beat[data-activates] .sr-beat-card { max-width: 100%; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   7 · End signature
+   ════════════════════════════════════════════════════════════════ */
+.pk-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-16) 0 var(--s-12);
+}
+.pk-end-coda {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  text-align: center;
+  max-width: 36ch;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   8 · Landing carry-through — back-link, spoke-switcher, header band
+        Parallel to the TFA spokes' landing carry-through, in Pachinko's
+        register: deep-teal header band, gold eyebrow, cream title, the
+        Cascade Crest super-motif as a faint watermark.
+   ════════════════════════════════════════════════════════════════ */
+:root { --p-teal-deep: #1E7A74; --p-cream: #F0E4CF; }
+
+/* (a) top bar — back-link + spoke ideogram badge */
+.pk-topbar-back { display: inline-flex; align-items: center; gap: var(--s-2); }
+.pk-back-arrow { color: var(--p-teal); }
+.pk-topbar-context { display: inline-flex; align-items: center; gap: var(--s-2); }
+.pk-topbar-badge { display: inline-flex; }
+.pk-topbar-badge svg { display: block; }
+
+/* (b) persistent spoke-switcher */
+.pk-switcher {
+  background: var(--color-warm);
+  border-bottom: var(--rule-thin);
+  padding: var(--s-3) var(--gutter-lg);
+}
+.pk-switcher-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--s-2);
+}
+.pk-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-2);
+}
+.pk-mini {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 50px;
+  padding: 9px 12px;
+  box-sizing: border-box;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--spk, var(--p-teal));
+  text-decoration: none;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+}
+.pk-mini:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(44, 40, 32, 0.12); }
+.pk-mini-glyph { flex: none; display: flex; }
+.pk-mini-glyph svg { display: block; }
+.pk-mini-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.pk-mini-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+.pk-mini-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+.pk-mini.is-active { background: var(--spk); border-top-color: var(--spk); }
+.pk-mini.is-active .pk-mini-num { color: rgba(240, 228, 207, 0.85); }
+.pk-mini.is-active .pk-mini-title { color: var(--p-cream); }
+
+@media (max-width: 760px) {
+  .pk-mini { flex-direction: column; gap: 6px; text-align: center; align-items: center; padding: 8px 6px; }
+  .pk-mini-text { align-items: center; }
+}
+
+/* (c) spoke header — deep-teal band, ideogram badge, Cascade Crest watermark */
+.pk-spoke-header {
+  position: relative;
+  overflow: hidden;
+  background: var(--p-teal-deep);
+  padding: clamp(var(--s-10), 7vh, var(--s-16)) var(--gutter-lg) clamp(var(--s-8), 5vh, var(--s-12));
+}
+.pk-spoke-header-watermark {
+  position: absolute;
+  top: -140px;
+  right: -150px;
+  pointer-events: none;
+  z-index: 0;
+}
+.pk-spoke-header-inner { position: relative; z-index: 1; max-width: var(--content-wide); margin-inline: auto; text-align: center; }
+.pk-spoke-header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--p-gold);
+  display: block;
+  margin-bottom: var(--s-5);
+}
+.pk-spoke-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin: 0 auto var(--s-5);
+}
+.pk-spoke-badge {
+  flex: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--p-gold);
+  border-radius: 50%;
+}
+.pk-spoke-badge svg { display: block; }
+.pk-spoke-header-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-page-title);
+  line-height: var(--lh-tight);
+  color: var(--p-cream);
+  margin: 0;
+}
+.pk-spoke-header-deck {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: rgba(240, 228, 207, 0.78);
+  max-width: 54ch;
+  margin: var(--s-5) auto 0;
+}
+.pk-spoke-header-deck em { font-style: italic; color: var(--p-cream); }
+
+@media (max-width: 560px) {
+  .pk-spoke-badge-row { flex-direction: column; gap: var(--s-3); }
+}
+
+/* section openers carry the page's medallion ideogram (already centered) */
+.sr-section-opener-motif svg { display: block; margin-inline: auto; }
+
+/* ════════════════════════════════════════════════════════════════
+   9 · Variations panel (prototype-only — excluded from production)
+   ════════════════════════════════════════════════════════════════ */
+.pk-tweaks {
+  position: fixed;
+  right: var(--s-5);
+  bottom: var(--s-5);
+  z-index: 50;
+  width: 268px;
+  font-family: var(--font-body);
+}
+.pk-tweaks-tab {
+  display: block;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p-cream);
+  background: var(--p-teal-deep);
+  border: none;
+  padding: 9px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px -8px rgba(44, 40, 32, 0.5);
+}
+.pk-tweaks-body {
+  margin-top: var(--s-2);
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 3px solid var(--p-teal);
+  border-radius: 4px;
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  box-shadow: 0 14px 40px -16px rgba(44, 40, 32, 0.45);
+}
+.pk-tweaks.is-collapsed .pk-tweaks-body { display: none; }
+.pk-tweaks-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  margin-bottom: 2px;
+}
+.pk-tweaks-note {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--s-4);
+}
+.pk-tweaks-row { margin-bottom: var(--s-4); }
+.pk-tweaks-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--s-2);
+}
+.pk-seg { display: flex; gap: 4px; }
+.pk-opt {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  padding: 6px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--dur-quick) var(--ease-out);
+}
+.pk-opt:hover { color: var(--color-ink); }
+.pk-opt.is-on {
+  background: var(--p-teal);
+  border-color: var(--p-teal);
+  color: var(--p-cream);
+}
+.pk-reset {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: none;
+  border: none;
+  padding: 4px 0 0;
+  cursor: pointer;
+}
+.pk-reset:hover { color: var(--p-teal); }
