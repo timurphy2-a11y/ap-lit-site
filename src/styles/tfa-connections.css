@@ -6,7 +6,7 @@
  */
 
 /* ── BUGFIX: --t-ochre self-references upstream; resolved value here ── */
-:root { --t-ochre: #D4A840; }
+:root { --t-ochre: #D4A840; --slate: #41525E; }
 
 [data-section="tfa"] .sr-section-opener-eyebrow { color: var(--t-terra); }
 
@@ -95,13 +95,6 @@
   max-width: 46ch;
 }
 .tfa-orient p + p { margin-top: var(--s-6); }
-.tfa-orient .tfa-orient-lead {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.6rem);
-  line-height: 1.4;
-  color: var(--color-ink);
-}
 .tfa-orient-rule {
   display: flex;
   justify-content: center;
@@ -133,13 +126,13 @@
 }
 .tfa-cover {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
-  gap: var(--s-4);
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: var(--s-5);
   align-items: start;
 }
 .tfa-cover img {
   display: block;
-  width: 80px;
+  width: 132px;
   height: auto;
   border: 1px solid var(--color-rule);
   box-shadow: 0 14px 32px -20px rgba(44, 40, 32, 0.5);
@@ -148,7 +141,7 @@
 .tfa-cover-title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1.2;
   color: var(--color-ink);
   margin: 0;
@@ -160,11 +153,11 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-muted);
-  margin: var(--s-1) 0 var(--s-2);
+  margin: var(--s-1) 0 var(--s-3);
 }
 .tfa-cover-note {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   line-height: 1.5;
   color: var(--color-muted);
   margin: 0;
@@ -231,30 +224,6 @@
   color: var(--t-terra);
 }
 
-/* progressive disclosure */
-.tfa-more { display: none; }
-.tfa-passage-body.is-open .tfa-more { display: inline; }
-.tfa-more-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  margin-top: var(--s-3);
-  font-family: var(--font-mono);
-  font-size: var(--t-tag);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--t-terra);
-  background: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  padding: 0 0 2px;
-  cursor: pointer;
-  transition: color 140ms ease-out, border-color 140ms ease-out;
-}
-.tfa-more-toggle::after { content: '▾'; font-size: 0.85em; }
-.tfa-more-toggle:hover { color: var(--color-ink); border-color: var(--color-rule); }
-.tfa-passage-body.is-open .tfa-more-toggle { display: none; }
-
 @media (max-width: 760px) {
   .tfa-passage { grid-template-columns: minmax(0, var(--content-prose)); }
   .tfa-passage-note {
@@ -266,12 +235,11 @@
   .tfa-passage-note .tfa-note-sub { display: inline; margin-left: 0.4em; }
 }
 
-/* density = "clean": single centered prose column, no margin glosses, no toggles */
+/* density = "clean": single centered prose column, no margin glosses */
 body.tfa-dens-clean .tfa-passage {
   grid-template-columns: minmax(0, var(--content-prose));
 }
-body.tfa-dens-clean .tfa-passage-note,
-body.tfa-dens-clean .tfa-more-toggle { display: none; }
+body.tfa-dens-clean .tfa-passage-note { display: none; }
 body.tfa-dens-clean .tfa-more { display: inline; }
 
 /* ════════════════════════════════════════════════════════════════
@@ -281,7 +249,6 @@ body.tfa-dens-clean .tfa-more { display: inline; }
   max-width: var(--content-prose);
   margin: var(--s-16) auto;
 }
-/* type+class specificity (0,1,1) beats .sr-pullquote (0,1,0) regardless of cascade order */
 figure.tfa-zone-pull {
   margin-left: auto;
   margin-right: auto;
@@ -291,6 +258,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-h3);
   line-height: 1.5;
 }
+.tfa-verse .sr-pullquote-body p br { line-height: inherit; }
 
 /* ════════════════════════════════════════════════════════════════
    5 · The pivot sentence — isolated treatment (Zone 4)
@@ -323,10 +291,9 @@ figure.tfa-zone-pull {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   6 · Connections micro-diagram block
-   (uses .tfa-c-diagram-block to avoid clash with tfa-world.css)
+   6 · Micro-diagram block
    ════════════════════════════════════════════════════════════════ */
-.tfa-c-diagram-block {
+.tfa-diagram-block {
   max-width: 44rem;
   margin: var(--s-12) auto var(--s-4);
   padding: var(--s-8) clamp(var(--s-4), 4vw, var(--s-10)) var(--s-6);
@@ -334,9 +301,9 @@ figure.tfa-zone-pull {
   border: 1px solid var(--color-rule);
   border-top: 2px solid var(--t-terra);
 }
-.sr-scrolly-zone[data-ground="tinted"] .tfa-c-diagram-block { background: rgba(246, 241, 232, 0.5); }
-.tfa-c-diagram-block svg { display: block; width: 100%; height: auto; overflow: visible; }
-.tfa-c-diagram-eyebrow {
+.sr-scrolly-zone[data-ground="tinted"] .tfa-diagram-block { background: rgba(246, 241, 232, 0.5); }
+.tfa-diagram-block svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-diagram-eyebrow {
   display: block;
   font-family: var(--font-mono);
   font-size: var(--t-tag);
@@ -346,7 +313,7 @@ figure.tfa-zone-pull {
   text-align: center;
   margin-bottom: var(--s-5);
 }
-.tfa-c-diagram-cap {
+.tfa-diagram-cap {
   margin-top: var(--s-5);
   font-family: var(--font-body);
   font-size: var(--t-meta);
@@ -356,8 +323,8 @@ figure.tfa-zone-pull {
   max-width: 42rem;
   margin-inline: auto;
 }
-.tfa-c-diagram-cap em { font-style: italic; }
-.tfa-c-diagram-cap b { color: var(--t-terra); font-weight: 600; font-style: normal; }
+.tfa-diagram-cap em { font-style: italic; }
+.tfa-diagram-cap b { color: var(--t-terra); font-weight: 600; font-style: normal; }
 
 /* novel-structure bar SVG classes */
 .ns-axis { stroke: var(--color-rule); stroke-width: 1; }
@@ -390,6 +357,7 @@ figure.tfa-zone-pull {
   position: relative;
   z-index: 2;
 }
+.tfa-z4-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
 
 .tfa-zone--book .sr-zone-field {
   width: clamp(320px, 42%, 560px);
@@ -415,7 +383,7 @@ figure.tfa-zone-pull {
   left: 0; right: 0; bottom: 0;
   z-index: 3;
   padding: var(--s-3) clamp(var(--s-4), 4vw, var(--s-8));
-  background: linear-gradient(to top, rgba(237,232,220,0.96), rgba(237,232,220,0));
+  background: linear-gradient(to top, rgba(244,237,223,0.97), rgba(244,237,223,0));
   font-family: var(--font-body);
   font-size: var(--t-meta);
   line-height: var(--lh-meta);
@@ -429,24 +397,24 @@ figure.tfa-zone-pull {
   background: rgba(246, 241, 232, 0.95);
 }
 
-/* book SVG element styles */
-.bk-shadow { fill: rgba(44, 40, 32, 0.16); }
-.bk-cover { fill: #D9D2C2; stroke: var(--color-ink); stroke-width: 1.2; }
-.bk-cover-edge { fill: #C7BFAD; }
+/* book SVG element styles — tuned for cream ground */
+.bk-shadow { fill: rgba(44, 40, 32, 0.24); }
+.bk-cover { fill: #CBC2AD; stroke: var(--color-ink); stroke-width: 1.3; }
+.bk-cover-edge { fill: #B9B098; }
 .bk-spine { fill: var(--t-umber); }
 .bk-rule { stroke: var(--color-ink); stroke-width: 1; opacity: 0.55; }
 .bk-rule--thin { stroke-width: 0.7; opacity: 0.4; }
 .bk-title { font-family: var(--font-display); font-weight: 500; fill: var(--color-ink); text-transform: uppercase; letter-spacing: 0.04em; }
 .bk-by { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--color-muted); }
-.bk-leaf { fill: #F3EEE2; stroke: var(--color-rule); stroke-width: 1; }
+.bk-leaf { fill: #EFE8D8; stroke: var(--color-rule); stroke-width: 1; }
 .bk-gutter { stroke: var(--color-rule); stroke-width: 1; opacity: 0.7; }
 .bk-textline { stroke: var(--color-muted); stroke-width: 1.3; opacity: 0.42; stroke-linecap: round; }
 .bk-mark { fill: rgba(196, 114, 42, 0.14); stroke: var(--t-terra); stroke-width: 1; }
 .bk-mark-line { stroke: var(--t-terra); stroke-width: 1.3; opacity: 0.8; stroke-linecap: round; }
 .bk-readable { font-family: var(--font-display); font-style: italic; fill: var(--color-ink); }
 .bk-folio { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em; fill: var(--color-muted); }
-.bk-cover--achebe { fill: #ECD9B8; stroke: var(--t-umber); stroke-width: 1.2; }
-.bk-cover-edge--achebe { fill: #DCC59C; }
+.bk-cover--achebe { fill: #E7D2AC; stroke: var(--t-umber); stroke-width: 1.3; }
+.bk-cover-edge--achebe { fill: #D4BC91; }
 .bk-spine--achebe { fill: var(--t-terra); }
 .bk-title--achebe { fill: var(--t-umber); }
 .bk-by--achebe { fill: var(--t-terra); }
@@ -606,7 +574,7 @@ figure.tfa-zone-pull {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   10 · Yeats's widening gyre (Zone 1 — cool slate, non-Igbo register)
+   10 · Yeats's widening gyre (Zone 6)
    ════════════════════════════════════════════════════════════════ */
 .tfa-gyre-fig {
   max-width: 30rem;
@@ -641,3 +609,375 @@ figure.tfa-zone-pull {
    11 · Section opener motif: kola nut svg centred
    ════════════════════════════════════════════════════════════════ */
 .sr-section-opener-motif svg { display: block; margin-inline: auto; }
+
+/* ════════════════════════════════════════════════════════════════
+   12 · End signature / section terminator
+   ════════════════════════════════════════════════════════════════ */
+.tfa-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding-top: var(--s-12);
+}
+.sr-section-terminator { display: flex; justify-content: center; }
+
+/* ════════════════════════════════════════════════════════════════
+   13 · Zone 1 — An Epic Beginning (new)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── The Invocations diptych (Iliad / Odyssey) ── */
+.tfa-invoke {
+  max-width: 60rem;
+  margin: var(--s-16) auto var(--s-12);
+  padding: 0 var(--gutter-lg);
+  text-align: center;
+}
+.tfa-invoke-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  text-align: center;
+  margin-bottom: var(--s-10);
+}
+.tfa-invoke-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(var(--s-6), 4vw, var(--s-12));
+}
+.tfa-invoke-col {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 2px solid var(--color-ink);
+}
+.tfa-invoke-col--iliad { border-top-color: var(--t-terra); }
+.tfa-invoke-col--odyssey { border-top-color: var(--slate); }
+.tfa-invoke-cover {
+  width: clamp(132px, 16vw, 172px);
+  height: auto;
+  border: 1px solid var(--color-rule);
+  box-shadow: 2px 6px 18px rgba(44, 40, 32, 0.2);
+}
+.tfa-invoke-id {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+}
+.tfa-invoke-word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3rem);
+  line-height: 0.95;
+}
+.tfa-invoke-col--iliad .tfa-invoke-word { color: var(--t-terra); }
+.tfa-invoke-col--odyssey .tfa-invoke-word { color: var(--slate); }
+.tfa-invoke-gloss {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--color-muted);
+}
+.tfa-invoke-verse {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(0.78rem, 0.66rem + 0.5vw, 0.92rem);
+  line-height: 1.7;
+  color: var(--color-ink);
+  white-space: nowrap;
+  text-align: left;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.tfa-invoke-verse p { margin: 0; }
+.tfa-invoke-first { font-style: italic; font-weight: 500; }
+.tfa-invoke-col--iliad .tfa-invoke-first { color: var(--t-terra); }
+.tfa-invoke-col--odyssey .tfa-invoke-first { color: var(--slate); }
+.tfa-invoke-cap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--color-rule);
+}
+.tfa-invoke-tag {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  font-style: italic;
+  color: var(--color-ink);
+}
+.tfa-invoke-tr {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+@media (max-width: 600px) {
+  .tfa-invoke-grid { grid-template-columns: 1fr; gap: var(--s-10); }
+  .tfa-invoke-verse { white-space: normal; font-size: 0.9rem; }
+}
+
+/* ── The Unseasonal Hero subsection ── */
+.tfa-subsection {
+  max-width: 40rem;
+  margin: var(--s-16) auto var(--s-12);
+  padding: 0 var(--gutter-lg);
+}
+.tfa-subsection-head {
+  margin-bottom: var(--s-6);
+}
+.tfa-subsection-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-3);
+}
+.tfa-subsection-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.4rem);
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+.tfa-subsection-title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: var(--s-4);
+  background: var(--t-terra);
+}
+.tfa-subsection .tfa-passage-body { max-width: none; }
+
+.tfa-herakles-fig {
+  margin: var(--s-6) 0 var(--s-8);
+}
+.tfa-herakles-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-rule);
+  background: var(--color-cream);
+  mix-blend-mode: multiply;
+}
+.tfa-herakles-cap {
+  margin-top: var(--s-5);
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+}
+.tfa-herakles-cap strong { color: var(--color-ink); font-weight: 600; }
+.tfa-herakles-cap em { font-style: italic; }
+.tfa-herakles-credit {
+  display: block;
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  opacity: 0.8;
+}
+
+/* ── The Descent graphic ── */
+.tfa-descent {
+  max-width: 46rem;
+  margin: var(--s-12) auto var(--s-10);
+  padding: 0 var(--gutter-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tfa-descent-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-7);
+}
+.tfa-descent svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-descent-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: center;
+  max-width: 44rem;
+  margin: var(--s-7) auto 0;
+}
+.tfa-descent-cap em { font-style: italic; color: var(--color-ink); }
+.tfa-descent-cap b { color: var(--t-terra); font-weight: 600; font-style: normal; }
+
+/* emblem element styles */
+.dg-ok-h, .dg-ok-b { fill: var(--t-terra); }
+.dg-ok-line { stroke: var(--t-terra); stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.dg-flame { fill: rgba(196,114,42,0.07); stroke: var(--t-terra); stroke-width: 1.5; opacity: 0.9; stroke-linejoin: round; stroke-linecap: round; }
+.dg-title { stroke: var(--t-terra); stroke-width: 1.6; stroke-linecap: round; }
+.dg-mid-h, .dg-mid-b { fill: #97602e; }
+.dg-mid-line { stroke: #97602e; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+/* scene chrome */
+.dsc-ground { stroke: var(--color-rule); stroke-width: 1.2; opacity: 0.75; }
+.dsc-ground--barn { stroke: var(--t-terra); opacity: 0.55; }
+.dsc-barn { stroke: var(--t-terra); stroke-width: 1.3; fill: none; stroke-linejoin: round; opacity: 0.6; }
+.dsc-frontier { stroke: var(--t-umber); stroke-width: 1.3; stroke-dasharray: 3 4; stroke-linecap: round; opacity: 0.8; fill: none; }
+.dsc-cross { stroke: var(--t-umber); stroke-width: 1.7; stroke-linecap: round; }
+.dsc-haze { fill: var(--slate); opacity: 0.06; }
+.dsc-book-cover { fill: #E7DCC4; stroke: var(--t-umber); stroke-width: 1.3; }
+.dsc-book-edge { fill: #CFC2A2; }
+.dsc-book-line { stroke: var(--t-umber); stroke-width: 1; opacity: 0.4; }
+.dsc-rec-h, .dsc-rec-b { fill: var(--t-umber); }
+.dsc-song { fill: none; stroke: var(--t-terra); stroke-width: 1.2; opacity: 0.4; stroke-linecap: round; }
+.dsc-strike { stroke: var(--t-umber); stroke-width: 1.7; stroke-linecap: round; opacity: 0.8; }
+.dsc-lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.dsc-lbl--terra { fill: var(--t-terra); }
+.dsc-lbl--mid { fill: #97602e; }
+.dsc-lbl--umber { fill: var(--t-umber); }
+.dsc-sub { font-family: var(--font-display); font-style: italic; font-size: 12px; fill: var(--color-muted); }
+.dsc-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--t-umber); opacity: 0.85; }
+
+/* glowing coals — banked fire under the displaced figure */
+.tfa-coal-bed { transform-box: fill-box; transform-origin: center; animation: tfa-coal-breathe 3.4s ease-in-out infinite; }
+.tfa-ember { fill: #F0A93C; animation: tfa-ember-glow 2.2s ease-in-out infinite; }
+.tfa-ember--1 { animation-duration: 1.9s; animation-delay: 0.0s; }
+.tfa-ember--2 { animation-duration: 2.6s; animation-delay: 0.4s; }
+.tfa-ember--3 { animation-duration: 2.1s; animation-delay: 0.9s; }
+.tfa-ember--4 { animation-duration: 2.9s; animation-delay: 0.2s; }
+.tfa-ember--5 { animation-duration: 1.7s; animation-delay: 1.3s; }
+.tfa-flame-lick {
+  fill: rgba(232,146,58,0.18);
+  stroke: #D4762A;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: tfa-lick-flicker 1.5s ease-in-out infinite;
+}
+.tfa-flame-lick--a { opacity: 0.85; }
+.tfa-flame-lick--b { opacity: 0.7; animation-duration: 1.25s; }
+.tfa-flame-lick--c { opacity: 0.55; animation-duration: 1.85s; }
+
+@keyframes tfa-coal-breathe {
+  0%, 100% { opacity: 0.55; transform: scaleX(0.96); }
+  50%      { opacity: 1;    transform: scaleX(1.04); }
+}
+@keyframes tfa-ember-glow {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+@keyframes tfa-lick-flicker {
+  0%, 100% { transform: scaleY(0.82) skewX(-3deg); opacity: 0.55; }
+  35%      { transform: scaleY(1.12) skewX(4deg);  opacity: 0.95; }
+  65%      { transform: scaleY(0.92) skewX(-2deg); opacity: 0.7; }
+}
+
+/* roaring flame — the "in season" emblem fully alight */
+.tfa-roar-body { transform-box: fill-box; transform-origin: center bottom; animation: tfa-roar-breathe 3s ease-in-out infinite; }
+.tfa-roar-lick { fill: url(#tfa-roar-grad); transform-box: fill-box; transform-origin: center bottom; animation: tfa-roar-flicker 1.3s ease-in-out infinite; }
+.tfa-roar-lick--a { animation-duration: 1.15s; animation-delay: -0.2s; }
+.tfa-roar-lick--b { animation-duration: 1.45s; animation-delay: -0.7s; }
+.tfa-roar-lick--c { animation-duration: 0.95s; animation-delay: -0.4s; }
+.tfa-roar-spark { fill: #F0A93C; transform-box: fill-box; transform-origin: center; animation: tfa-roar-spark 2.3s ease-out infinite; }
+.tfa-roar-spark--1 { animation-duration: 2.5s; animation-delay: 0s; }
+.tfa-roar-spark--2 { animation-duration: 1.9s; animation-delay: 0.7s; }
+.tfa-roar-spark--3 { animation-duration: 2.8s; animation-delay: 1.3s; }
+
+@keyframes tfa-roar-breathe {
+  0%, 100% { transform: scaleY(0.97) scaleX(1.01); }
+  50%      { transform: scaleY(1.05) scaleX(0.98); }
+}
+@keyframes tfa-roar-flicker {
+  0%, 100% { transform: scaleY(0.88) scaleX(1.03) skewX(-3deg); opacity: 0.72; }
+  30%      { transform: scaleY(1.18) scaleX(0.93) skewX(4deg);  opacity: 1; }
+  60%      { transform: scaleY(0.96) scaleX(1.05) skewX(-5deg); opacity: 0.82; }
+  82%      { transform: scaleY(1.22) scaleX(0.9)  skewX(3deg);  opacity: 1; }
+}
+@keyframes tfa-roar-spark {
+  0%   { transform: translateY(0) scale(1);   opacity: 0; }
+  18%  { opacity: 0.95; }
+  100% { transform: translateY(-44px) scale(0.35); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tfa-coal-bed, .tfa-ember, .tfa-flame-lick { animation: none; }
+  .tfa-roar-body, .tfa-roar-lick, .tfa-roar-spark { animation: none; }
+  .tfa-roar-spark { opacity: 0.8; }
+  .tfa-coal-bed { opacity: 0.8; }
+  .tfa-ember { opacity: 0.85; }
+  .tfa-flame-lick--a { opacity: 0.8; }
+  .tfa-flame-lick--b { opacity: 0.6; }
+  .tfa-flame-lick--c { opacity: 0.45; }
+}
+
+/* ── Obierika weighs it — mourning figure + scale of Ala ── */
+.tfa-obierika {
+  max-width: 54rem;
+  margin: var(--s-12) auto var(--s-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tfa-obierika-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t-terra);
+  margin-bottom: var(--s-6);
+}
+.tfa-obierika svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-obierika-cap {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-align: center;
+  max-width: 42rem;
+  margin: var(--s-6) auto 0;
+}
+.tfa-obierika-cap b { color: var(--t-terra); font-weight: 600; }
+.tfa-obierika-cap em { font-style: italic; color: var(--color-ink); }
+
+.ob-terra { fill: var(--t-terra); }
+.ob-terra-s { fill: none; stroke: var(--t-terra); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ob-umber { fill: #7A4A20; }
+.ob-umber-s { fill: none; stroke: #7A4A20; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ob-rule { stroke: var(--color-rule); stroke-width: 1.2; }
+.ob-dash { fill: none; stroke: #7A4A20; stroke-width: 1.3; stroke-dasharray: 3 4; stroke-linecap: round; opacity: 0.75; }
+.ob-lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.ob-lbl--terra { fill: var(--t-terra); }
+.ob-lbl--umber { fill: #7A4A20; }
+.ob-qmark { font-family: var(--font-display); font-style: italic; font-weight: 400; fill: var(--t-terra); }
+.ob-dot { fill: var(--t-terra); opacity: 0.7; }
+.ob-sub { font-family: var(--font-display); font-style: italic; font-size: 12px; fill: var(--color-muted); }
+.ob-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--color-muted); }
+
+.ob-tremor { transform-box: fill-box; transform-origin: center bottom; animation: ob-tremor 4.6s ease-in-out infinite; }
+.ob-tremor--b { animation-duration: 5.6s; animation-delay: -1.3s; }
+@keyframes ob-tremor { 0%, 100% { transform: rotate(-0.8deg) translateY(0); } 50% { transform: rotate(1.1deg) translateY(-1.5px); } }
+@media (prefers-reduced-motion: reduce) { .ob-tremor { animation: none; } }
