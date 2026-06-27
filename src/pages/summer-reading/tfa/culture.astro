@@ -414,16 +414,52 @@ import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
 
       <div class="tfa-still">
         <div class="sr-prose-block sr-prose-block--center">
-          <p>Three practices in the novel require contextual explanation to be understood from the inside: the Week of Peace, the bride price, and the <em>osu</em> system. Each one reflects the Igbo world's internal coherence — its logic, its values, and its genuine moral complexity — more clearly than any summary of Igbo culture can.</p>
+          <p>Several practices in the novel reward contextual explanation, because each is doing cultural work a first-time reader is likely to miss. The kola nut ceremony, the Week of Peace, and the bride price show the Igbo world's daily forms of hospitality, peace, and kinship. The osu system, the abandonment of twins, and the ogbanje child show that same world at its most difficult — where its cosmological logic produced suffering the novel neither hides nor excuses. Each reflects the Igbo world's internal coherence; the hardest of them also reflect its genuine moral complexity.</p>
         </div>
       </div>
 
-      <div class="tfa-triptych" role="group" aria-label="Three key practices of Igbo life">
+      <!-- Sub-cluster A — "Forms of Life": ọjị, Izu Eke, Ika-Akalika -->
+      <div class="tfa-triptych" role="group" aria-label="Forms of life — three everyday practices of Igbo life">
         <div class="tfa-triptych-head">
           <span>Ọmenala · the moral order</span>
-          <span class="is-accent">three practices, one ground</span>
+          <span class="is-accent">forms of life</span>
         </div>
         <div class="tfa-triptych-cols">
+
+          <!-- ọjị — the kola nut ceremony -->
+          <div class="tfa-tri-col" data-practice="oji">
+            <div class="tfa-tri-glyph" aria-hidden="true">
+              <svg viewBox="0 0 76 78" fill="none">
+                <circle cx="38" cy="38" r="25" fill="none" stroke="#C4722A" stroke-width="1.5" stroke-dasharray="3.5 4" opacity="0.5" />
+                <circle cx="38" cy="38" r="15" fill="none" stroke="#C4722A" stroke-width="2.2" />
+                <line x1="38" y1="38" x2="38" y2="23" stroke="#C4722A" stroke-width="1.6" />
+                <line x1="38" y1="38" x2="51" y2="46" stroke="#C4722A" stroke-width="1.6" />
+                <line x1="38" y1="38" x2="25" y2="46" stroke="#C4722A" stroke-width="1.6" />
+                <circle cx="38" cy="38" r="3" fill="#C4722A" />
+                <circle cx="38" cy="13" r="2.6" fill="#C4722A" />
+                <circle cx="60" cy="50" r="2.6" fill="#C4722A" />
+                <circle cx="16" cy="50" r="2.6" fill="#C4722A" />
+              </svg>
+            </div>
+            <h3 class="tfa-tri-term">ọjị</h3>
+            <div class="tfa-tri-gloss">the welcome</div>
+            <p class="tfa-tri-essence">Presented, broken, and shared before any serious word — to offer kola is to wish life on one another.</p>
+            <button type="button" class="tfa-tri-more" aria-expanded="false" aria-controls="detail-oji">
+              <span>Read the full account</span><span class="tfa-tri-more-mark" aria-hidden="true">→</span>
+            </button>
+            <div class="tfa-tri-detail" id="detail-oji" role="note" aria-label="ọjị — the full account">
+              <button type="button" class="tfa-tri-detail-close" aria-label="Close">×</button>
+              <div class="tfa-tri-detail-body">
+                <div class="tfa-tri-detail-head">
+                  <span class="tfa-tri-detail-term">ọjị (kola nut)</span>
+                  <span class="tfa-tri-detail-gloss">the ritual offering that opens nearly every formal Igbo gathering — hospitality, prayer, and covenant in a single act</span>
+                </div>
+                <p>Before any serious conversation begins — a visit, a negotiation, a feast, a meeting of kinsmen — kola is presented, blessed, broken, and shared. The host offers it; the guest, by custom, returns it for the host to break, and a brief, courteous contest can follow over who holds the honor. The one who breaks it prays over it, and the lobes are passed and eaten together. "He who brings kola brings life," the novel tells us in its first social scene — and the ceremony means roughly what the proverb says: to share kola is to wish life on one another and to bind the people present into a single fellowship.</p>
+                <p>The ritual carries the whole Igbo social order in miniature. It enacts hospitality (the host provides), reciprocity and respect for age (the back-and-forth over who breaks it is a courteous negotiation of status, and the lobes are shared beginning with the eldest), and the presence of the ancestors (the breaker prays to them, and a lobe may be thrown to the ground for the dead). The kola is rarely alone: it arrives with alligator pepper, and white chalk belongs to the same welcome — a guest draws lines on the floor with it, a sign of a clean heart and peaceful intent, before the kola is eaten. To break kola together is to be, for that moment, at peace.</p>
+                <p>This is why a refusal of kola is a rupture, not a discourtesy. When the priest of the earth goddess comes to Okonkwo after he has violated the Week of Peace, Okonkwo offers him kola — and the priest refuses it: he will not eat in the house of a man who has shown disrespect to the gods. To decline the kola is to decline the covenant. The novel never stops to explain the gesture, because in Umuofia no explanation is needed; recognizing its weight is part of reading the book from the inside.</p>
+              </div>
+            </div>
+          </div>
 
           <!-- Izu Eke — the Week of Peace -->
           <div class="tfa-tri-col" data-practice="izu-eke">
@@ -494,6 +530,33 @@ import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <PullQuote text="tfa" attribution="— Things Fall Apart, Chinua Achebe">
+        "We shall all live. We pray for life, children, a good harvest and happiness. You will have what is good for you and I will have what is good for me. Let the kite perch and let the eagle perch too. If one says no to the other, let his wing break."
+      </PullQuote>
+
+      <!-- intra-section seam: tonal turn from everyday to hardest cases -->
+      <div class="tfa-breath tfa-breath--label">
+        <UliDotCluster width={54} />
+        <span class="tfa-breath-text">The everyday forms above — the hardest cases below</span>
+      </div>
+
+      <div class="tfa-still">
+        <div class="sr-prose-block sr-prose-block--center">
+          <p>The hardest practices ask the reader to hold two truths at once. The osu system set human beings permanently outside the community; harder still are the two that concern the death of infants. Twins were abandoned at birth; a child who died young and seemed to die again and again was understood as an ogbanje, a spirit-child returning to torment its mother. To a modern reader these are among the most painful pages in the novel. Achebe does not present them so that the reader will approve. He presents them because they were part of the world as it was, and because the novel's deepest subject is the cost, borne first by the most vulnerable, of a cosmology under which a community believed its own survival depended on these acts.</p>
+        </div>
+      </div>
+
+      <!-- Sub-cluster B — "The Hardest Cases": osu, twins, ogbanje -->
+      <div class="tfa-triptych" role="group" aria-label="The hardest cases — three of the most difficult practices in the novel">
+        <div class="tfa-triptych-head">
+          <span>Ọmenala · the moral order</span>
+          <span class="is-accent">the hardest cases</span>
+        </div>
+        <div class="tfa-triptych-cols">
+
           <!-- osu — the dedicated and excluded -->
           <div class="tfa-tri-col" data-practice="osu">
             <div class="tfa-tri-glyph tfa-tri-glyph--tall" aria-hidden="true">
@@ -534,12 +597,76 @@ import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
             </div>
           </div>
 
+          <!-- twins — abandonment at birth -->
+          <div class="tfa-tri-col" data-practice="twins">
+            <div class="tfa-tri-glyph" aria-hidden="true">
+              <svg viewBox="0 0 76 78" fill="none">
+                <line x1="33" y1="10" x2="33" y2="68" stroke="#2C2820" stroke-width="1.3" stroke-dasharray="2 4" opacity="0.55" />
+                <circle cx="18" cy="39" r="2.6" fill="#C4722A" />
+                <circle cx="54" cy="39" r="18" fill="none" stroke="#C4722A" stroke-width="1.5" stroke-dasharray="3.5 4" opacity="0.5" />
+                <circle cx="49" cy="39" r="2.4" fill="#6B6355" />
+                <circle cx="59" cy="39" r="2.4" fill="#6B6355" />
+              </svg>
+            </div>
+            <h3 class="tfa-tri-term">twins</h3>
+            <div class="tfa-tri-gloss">the cast-out</div>
+            <p class="tfa-tri-essence">Taken as an offence to the earth and left in the Evil Forest — a practice even a loving father could not justify to himself.</p>
+            <button type="button" class="tfa-tri-more" aria-expanded="false" aria-controls="detail-twins">
+              <span>Read the full account</span><span class="tfa-tri-more-mark" aria-hidden="true">→</span>
+            </button>
+            <div class="tfa-tri-detail" id="detail-twins" role="note" aria-label="The abandonment of twins — the full account">
+              <button type="button" class="tfa-tri-detail-close" aria-label="Close">×</button>
+              <div class="tfa-tri-detail-body">
+                <div class="tfa-tri-detail-head">
+                  <span class="tfa-tri-detail-term">Abandonment of twins</span>
+                  <span class="tfa-tri-detail-gloss">twins were regarded as an offence against Ala and left in the Evil Forest at birth</span>
+                </div>
+                <p>In Umuofia, the birth of twins was an <em>alu</em> — an abomination against the earth goddess. The infants were placed in earthenware pots and left in the Evil Forest, the tract of land outside the village set aside for whatever the community believed Ala had rejected. (This is the same Evil Forest that gives the fearsome lead <em>egwugwu</em> his name: the judge who casts out is named for the ground the cast-out are sent to.) The belief was not casual cruelty. It rested on the conviction that an abomination left unanswered would loose the goddess's wrath not on the offender alone but on the whole clan — "if one finger brought oil it soiled the others."</p>
+                <p>Achebe renders the practice most powerfully not through the act but through its cost to those who carried it out. Obierika — the novel's most reflective man, Okonkwo's closest friend — sits alone and remembers the twin children his own wife bore and he threw away. <em>What crime had they committed?</em> He finds no answer; he is "merely led into greater complexities." That a thoughtful, loving man performs this and cannot justify it to himself is the point. The novel locates the practice's horror exactly where it belongs: not in the supposed savagery of a people, but in the grief of ordinary parents bound by a cosmology that gave them no other choice they could see.</p>
+                <p>It is no accident that the abandonment of twins is one of the two things — with the killing of Ikemefuna — that breaks Nwoye and turns him toward the church. When the missionaries take in the rescued twins, they answer "the question of the twins crying in the bush" that haunts him. The practice the clan cannot defend to its own gentlest members becomes one of the openings through which the new religion enters.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ogbanje — the spirit-child -->
+          <div class="tfa-tri-col" data-practice="ogbanje">
+            <div class="tfa-tri-glyph" aria-hidden="true">
+              <svg viewBox="0 0 76 78" fill="none">
+                <circle cx="33" cy="39" r="22" fill="none" stroke="#C4722A" stroke-width="1.8" stroke-dasharray="5 5" />
+                <circle cx="33" cy="17" r="2.2" fill="#6B6355" />
+                <circle cx="55" cy="39" r="2.2" fill="#6B6355" />
+                <circle cx="33" cy="61" r="2.2" fill="#6B6355" />
+                <circle cx="11" cy="39" r="2.2" fill="#6B6355" />
+                <line x1="55" y1="39" x2="67" y2="39" stroke="#C4722A" stroke-width="1.3" stroke-dasharray="2 3" />
+                <circle cx="69" cy="39" r="3.2" fill="none" stroke="#C4722A" stroke-width="1.6" />
+                <line x1="66.5" y1="36.5" x2="71.5" y2="41.5" stroke="#C4722A" stroke-width="1.4" />
+              </svg>
+            </div>
+            <h3 class="tfa-tri-term"><em>ogbanje</em></h3>
+            <div class="tfa-tri-gloss">the returning</div>
+            <p class="tfa-tri-essence">A child believed to die and return again and again — the shape a community gave to repeated, unbearable infant loss.</p>
+            <button type="button" class="tfa-tri-more" aria-expanded="false" aria-controls="detail-ogbanje">
+              <span>Read the full account</span><span class="tfa-tri-more-mark" aria-hidden="true">→</span>
+            </button>
+            <div class="tfa-tri-detail" id="detail-ogbanje" role="note" aria-label="ogbanje — the full account">
+              <button type="button" class="tfa-tri-detail-close" aria-label="Close">×</button>
+              <div class="tfa-tri-detail-body">
+                <div class="tfa-tri-detail-head">
+                  <span class="tfa-tri-detail-term"><em>ogbanje</em></span>
+                  <span class="tfa-tri-detail-gloss">a "changeling" — a child believed to die and return to its mother's womb to be born again, repeatedly</span>
+                </div>
+                <p>Achebe glosses the word himself: an <em>ogbanje</em> is "a child who repeatedly dies and returns to its mother to be reborn." When a woman lost infant after infant, the deaths were understood as a single malicious spirit-child cycling through birth and death to torment her. The condition could be ended only by finding and destroying the child's <em>iyi-uwa</em> — in Achebe's words, "a special kind of stone which forms the link between an <em>ogbanje</em> and the spirit world." This was the work of the <em>dibia</em>, the diviner-healer who read the spirit world and intervened in it.</p>
+                <p>The novel gives this belief its fullest and most humane treatment through Ekwefi, Okonkwo's second wife, who buried nine of her ten children. Each loss is understood as the same <em>ogbanje</em> returning. Her surviving daughter, Ezinma, is believed to be one too — and the long episode in which the <em>dibia</em> Okagbue locates and digs up Ezinma's <em>iyi-uwa</em> is, beneath its strangeness, a portrait of a mother's terror and love. Ekwefi believes Ezinma has "come to stay," the text says, "because it was that faith alone that gave her own life any kind of meaning." The <em>ogbanje</em> belief is not presented as a quaint superstition. It is the framework within which a grief-stricken woman makes sense of unbearable, repeated loss — the way a community with no germ theory of infant mortality gave catastrophe a shape, a cause, and the hope of a remedy.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
       <div class="tfa-still">
         <div class="sr-prose-block sr-prose-block--center sr-prose-block--lede">
-          <p>The Igbo world that Achebe renders is not a simple or idealized world. It contains the <em>osu</em> system, the exile of twins, the killing of Ikemefuna, the subordination of women. Achebe does not sanitize any of this. What he insists on is that this world has internal coherence — that its practices, however difficult, follow from a consistent set of values and cosmological commitments. Understanding this coherence is not the same as endorsing every practice it generates. But it is the prerequisite for understanding Achebe's fundamental assertion: that pre-colonial Igboland was a world with philosophical depth, political sophistication, and genuine human achievement — not a darkness awaiting European light.</p>
+          <p>The Igbo society that Achebe renders is not a simple or idealized world. It contains the <em>osu</em> system, the abandonment of twins, the <em>ogbanje</em> child, the killing of Ikemefuna, the subordination of women. Achebe does not sanitize any of this, and he sets it beside the world's real philosophical depth and genuine human achievement, asking the reader to hold both ideas at once. To understand why Obierika threw away his twins, or why Ekwefi submitted to the <em>dibia</em>, is not to endorse it; it is to see these as the acts of fully human people inside a coherent world, rather than as evidence that the world was a darkness awaiting European correction. That double vision is the novel's central demand, and it is nowhere harder to meet than here.</p>
         </div>
       </div>
 

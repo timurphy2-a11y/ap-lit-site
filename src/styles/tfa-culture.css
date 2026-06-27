@@ -604,9 +604,9 @@
   border-radius: 50%;
   background: var(--t-terra);
 }
-.tfa-tri-glyph { width: 92px; margin-bottom: var(--s-4); }
+.tfa-tri-glyph { width: 92px; height: 104px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--s-4); }
 .tfa-tri-glyph--tall { width: 84px; }
-.tfa-tri-glyph svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tfa-tri-glyph svg { display: block; width: 100%; height: auto; max-height: 100%; overflow: visible; }
 .tfa-tri-term {
   font-family: var(--font-display);
   font-style: italic;
