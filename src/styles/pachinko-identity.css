@@ -426,3 +426,111 @@
 .pw-reset { font-family: var(--font-mono); font-size: var(--t-tag); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); background: transparent; border: 1px solid var(--color-rule); border-radius: 5px; padding: 6px 10px; cursor: pointer; }
 .pw-reset:hover { color: var(--color-ink); border-color: var(--color-ink); }
 @media (max-width: 767px) { .pw-tweaks { right: 10px; bottom: 10px; width: 212px; } }
+
+/* ═══════════════════════════════════════════════════════════
+   ZONE 5 — CODA · What Remained · jesa
+   ═══════════════════════════════════════════════════════════ */
+.sr-scrolly-zone--coda { display: block; background: var(--color-cream); }
+.sr-scrolly-zone--coda .sr-section-opener { max-width: 34rem; margin-inline: auto; }
+
+.coda-stage {
+  display: flex; flex-direction: column; align-items: center;
+  padding-block: clamp(44px, 10vh, 116px);
+}
+.coda-field { width: min(340px, 80vw); }
+.coda-field svg { display: block; width: 100%; height: auto; }
+
+.coda-field-cap {
+  margin: var(--s-6) auto 0; max-width: 30ch; text-align: center;
+  font-family: var(--font-mono); font-size: var(--t-meta); line-height: var(--lh-meta);
+  letter-spacing: 0.04em; color: var(--color-muted);
+}
+
+.coda-bloom { width: min(264px, 72vw); margin-inline: auto; }
+.coda-bloom svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.coda-field.coda-motion .coda-bloom svg {
+  opacity: 0; transform: scale(0.6); transform-origin: center;
+  transition: opacity 0.9s var(--ease-out), transform 1.15s var(--ease-out);
+}
+.coda-field.coda-motion.is-revealed .coda-bloom svg { opacity: 1; transform: none; }
+
+.coda-prose {
+  max-width: 40rem; margin-inline: auto;
+  padding-inline: clamp(var(--s-4), 4vw, var(--s-12));
+  padding-bottom: clamp(48px, 9vh, 104px);
+}
+.coda-prose .coda-lead { max-width: none; }
+.coda-prose .coda-lead p { font-size: var(--t-body); line-height: var(--lh-body); }
+.coda-prose .coda-termcard { max-width: none; margin: var(--s-12) 0; }
+
+.id-pullquote--gold {
+  position: relative; max-width: 36rem; margin: var(--s-16) auto var(--s-10);
+  padding: var(--s-6) var(--s-10);
+}
+.id-pullquote--gold::before,
+.id-pullquote--gold::after {
+  position: absolute; font-family: var(--font-display); font-style: italic;
+  font-size: 4.2rem; line-height: 1; color: var(--p-gold);
+}
+.id-pullquote--gold::before { content: '\201C'; left: -2px; top: -6px; }
+.id-pullquote--gold::after  { content: '\201D'; right: 6px; bottom: -38px; }
+.id-pullquote--gold .id-pullquote-line { font-size: 1.42rem; line-height: 1.46; }
+.id-pullquote--gold .id-pullquote-cite { margin-top: var(--s-6); }
+
+/* ── jdx figure styles (jesa diagrams) ── */
+.jdx {
+  --cream: var(--color-cream); --card: var(--color-card); --ink: var(--color-ink);
+  --muted: var(--color-muted); --rule: var(--color-rule); --gold: var(--p-gold);
+  --disp: var(--font-display); --body: var(--font-body); --mono: var(--font-mono);
+  --kr: "Noto Serif KR", serif;
+  margin: var(--s-12, 2.5rem) 0; max-width: none;
+}
+.jdx.jdx-solo { margin: var(--s-10, 2rem) auto; }
+.jdx-solo .jdx-eyebrow { justify-content: center; text-align: center; }
+.jdx-solo .jdx-eyebrow::after { display: none; }
+.jdx-solo .jdx-title, .jdx-solo .jdx-kr { text-align: center; }
+.jdx-solo .jdx-art { margin: 8px auto 0; }
+.jdx-table .jdx-art { max-width: 680px; }
+.jdx-grave .jdx-art { max-width: 560px; }
+.jdx-solo .jdx-cap { margin: 16px auto 0; max-width: 40rem; text-align: center; }
+.jdx .jdx-eyebrow {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 7px;
+  display: flex; align-items: center; gap: 10px;
+}
+.jdx .jdx-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.jdx .jdx-title {
+  font-family: var(--disp); font-style: italic; font-weight: 500;
+  font-size: clamp(19px, 2.4vw, 24px); line-height: 1.1; margin: 0 0 3px; color: var(--ink);
+}
+.jdx .jdx-kr { font-family: var(--kr); font-size: 14px; color: var(--warm-name); }
+.jdx .jdx-kr .rom { font-family: var(--mono); font-size: 10px; letter-spacing: .13em; color: var(--muted); margin-left: 8px; }
+.jdx .jdx-art { display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+.jdx .jdx-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.jdx .jdx-cap {
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.62;
+  letter-spacing: .02em; color: var(--muted); margin: 10px 2px 0; text-wrap: pretty;
+}
+.jdx .jdx-cap b { color: var(--ink); font-weight: 500; }
+.jdx .jdx-cap .warm { color: var(--warm-deep); font-weight: 500; }
+.jdx .ln { fill: none; stroke: var(--warm-name); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.jdx .ln-fine { fill: none; stroke: var(--warm-name); stroke-width: 1.2; stroke-linecap: round; }
+.jdx .ln-deep { fill: none; stroke: var(--warm-deep); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.jdx .fill-warm { fill: var(--warm-name); }
+.jdx .fill-deep { fill: var(--warm-deep); }
+.jdx .ground { stroke: var(--rule); stroke-width: 1.4; }
+.jdx .ghost { fill: none; stroke: var(--cold-name); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 4 3; opacity: .5; }
+.jdx .strike { stroke: var(--cold-name); stroke-width: 1.8; opacity: .85; stroke-linecap: round; }
+.jdx .leader { stroke: var(--rule); stroke-width: 1; }
+.jdx .dot { fill: var(--warm-name); }
+.jdx .speech { fill: none; stroke: var(--warm-name); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1.5 6; }
+.jdx .t-kr { font-family: var(--kr); font-size: 15px; fill: var(--warm-name); }
+.jdx .t-rom { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; fill: var(--warm-deep); }
+.jdx .t-en { font-family: var(--mono); font-size: 8.5px; letter-spacing: .04em; fill: var(--muted); }
+.jdx .t-en-cold { font-family: var(--mono); font-size: 8.5px; letter-spacing: .04em; fill: var(--cold-name); opacity: .8; }
+
+@media (max-width: 767px) {
+  .coda-stage { padding-block: clamp(36px, 7vh, 72px); }
+  .id-pullquote--gold { padding-inline: var(--s-6); }
+}
