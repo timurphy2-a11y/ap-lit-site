@@ -1,0 +1,500 @@
+/* Pachinko — Spoke 4 · Key Figures
+ * Layered ON TOP of summer-reading.css (which @imports tokens.css).
+ * Card-grid reference page with click-to-expand bio modals.
+ * No scrollytelling; the grid itself is the rhythm.
+ */
+
+/* ── Page container ─────────────────────────────────────────────────────── */
+.fig-main {
+  max-width: var(--content-page);
+  margin-inline: auto;
+  padding: 0 var(--gutter-lg) var(--s-16);
+}
+
+.fig-intro {
+  max-width: 40rem;
+  margin: 0 auto var(--s-12);
+  text-align: center;
+}
+.fig-intro-lead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.4rem);
+  line-height: var(--lh-pull);
+  color: var(--color-ink);
+  text-wrap: pretty;
+  margin: var(--s-4) auto 0;
+}
+.fig-intro-lead em { font-style: normal; }
+
+/* ── Portrait images ─────────────────────────────────────────────────────── */
+.fig-card-portrait {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  display: block;
+}
+.fig-card-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Portrait placeholder (for unsourced images) ────────────────────────── */
+.fig-card-portrait--ph {
+  background:
+    repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fig-card-portrait--ph::after {
+  content: attr(data-ph);
+  white-space: pre-line;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  background: rgba(246, 241, 232, 0.88);
+  padding: 7px 10px;
+  border: 1px solid var(--color-rule);
+  max-width: 84%;
+}
+
+/* ── Institutional tile (no portrait — typographic) ─────────────────────── */
+.fig-card-portrait--org {
+  background: var(--color-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  border: 1px solid var(--color-rule);
+}
+.fig-card-portrait--org .fig-org-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-align: center;
+  line-height: var(--lh-tight);
+}
+.fig-card-portrait--org .fig-org-est {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ── Grid rows (asymmetric rhythm) ─────────────────────────────────────── */
+.fig-row {
+  display: grid;
+  gap: var(--s-6);
+  margin-bottom: var(--s-6);
+}
+.fig-row--triple { grid-template-columns: repeat(3, 1fr); }
+.fig-row--pair   { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Card ──────────────────────────────────────────────────────────────── */
+.fig-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.fig-card:hover,
+.fig-card:focus-within {
+  border-color: color-mix(in srgb, var(--p-teal) 55%, var(--color-rule));
+  box-shadow: 0 22px 48px -26px rgba(44, 40, 32, 0.55);
+  transform: translateY(-2px);
+}
+
+/* std: upright portrait with 4:5 aspect */
+.fig-card--std .fig-card-portrait { aspect-ratio: 4 / 5; }
+
+/* ── Medallion seal ─────────────────────────────────────────────────────── */
+.fig-card-seal {
+  position: absolute;
+  top: var(--s-3);
+  left: var(--s-3);
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-cream);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px -4px rgba(44, 40, 32, 0.5);
+  z-index: 2;
+}
+
+/* ── Card body ──────────────────────────────────────────────────────────── */
+.fig-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  flex: 1;
+}
+.fig-card-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--p-orange);
+}
+.fig-card-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: var(--lh-tight);
+  color: var(--color-ink);
+  margin: 0;
+}
+.fig-card-orig {
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--color-muted);
+  margin-left: 0.25em;
+}
+.fig-card-dates {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-top: -2px;
+}
+.fig-card-role {
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-meta);
+  color: var(--color-ink);
+  margin: var(--s-1) 0 0;
+}
+.fig-card-teaser {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+.fig-card-cue {
+  margin-top: auto;
+  padding-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--p-teal);
+}
+
+/* ── Stretched-button trigger ───────────────────────────────────────────── */
+.fig-card-trigger {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.fig-card-trigger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+.fig-card-trigger:focus-visible { outline: none; }
+.fig-card-trigger:focus-visible::after {
+  outline: 2px solid var(--p-teal);
+  outline-offset: -3px;
+}
+
+/* ── Paired-figure card (Row B) ─────────────────────────────────────────── */
+.fig-card--pair .fig-card-portrait-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.fig-card--pair .fig-card-portrait-row .fig-card-portrait { aspect-ratio: 1 / 1; }
+.fig-card--pair .fig-card-portrait-row .fig-card-portrait + .fig-card-portrait {
+  border-left: 0;
+}
+
+/* ── Feature band (author, full width) ─────────────────────────────────── */
+.fig-card--feature {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) 1.4fr;
+}
+.fig-card--feature .fig-card-portrait {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 280px;
+}
+.fig-card--feature .fig-card-body {
+  padding: var(--s-8) var(--s-10);
+  justify-content: center;
+  gap: var(--s-3);
+}
+.fig-card--feature .fig-card-name { font-size: 1.7rem; }
+.fig-card--feature .fig-card-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: var(--lh-pull);
+  color: var(--color-ink);
+  margin: var(--s-2) 0 0;
+  text-wrap: pretty;
+}
+.fig-card--feature .fig-card-quote-attr {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+/* ── Modal overlay ──────────────────────────────────────────────────────── */
+.fig-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(var(--s-4), 5vh, var(--s-16)) var(--gutter);
+  background: rgba(27, 23, 20, 0.46);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.fig-modal-overlay[hidden] { display: none; }
+.fig-modal-overlay.is-open { opacity: 1; }
+
+.fig-modal {
+  position: relative;
+  width: min(640px, 100%);
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  box-shadow: 0 40px 90px -30px rgba(27, 23, 20, 0.7);
+  padding: 0 0 var(--s-10);
+  transform: translateY(14px);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.fig-modal-overlay.is-open .fig-modal { transform: translateY(0); }
+
+.fig-modal-close {
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-3);
+  z-index: 4;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(246, 241, 232, 0.9);
+  border: 1px solid var(--color-rule);
+  border-radius: 50%;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background var(--dur-quick) var(--ease-out), color var(--dur-quick) var(--ease-out);
+}
+.fig-modal-close:hover { background: var(--p-teal); color: #fff; border-color: var(--p-teal); }
+
+/* ── Modal portrait strip ───────────────────────────────────────────────── */
+.fig-modal-portraits {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+.fig-modal-portraits .fig-modal-portrait-cell {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-rule);
+}
+.fig-modal-portraits .fig-modal-portrait-cell + .fig-modal-portrait-cell {
+  border-left: 1px solid var(--color-rule);
+}
+.fig-modal-portraits .fig-modal-portrait-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--ph {
+  background:
+    repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--ph::after {
+  content: attr(data-ph);
+  white-space: pre-line;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  background: rgba(246, 241, 232, 0.88);
+  padding: 7px 10px;
+  border: 1px solid var(--color-rule);
+  max-width: 84%;
+}
+.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--org {
+  background: var(--color-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+}
+.fig-modal-portrait-cell .fig-org-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-align: center;
+}
+.fig-modal-portrait-cell .fig-org-est {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ── Modal seal ─────────────────────────────────────────────────────────── */
+.fig-modal-seal {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  margin: calc(-24px) auto var(--s-3);
+  background: var(--color-cream);
+  border-radius: 50%;
+  box-shadow: 0 3px 14px -5px rgba(44, 40, 32, 0.55);
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Modal head ─────────────────────────────────────────────────────────── */
+.fig-modal-head {
+  text-align: center;
+  padding: 0 clamp(var(--s-5), 6vw, var(--s-12));
+  margin-bottom: var(--s-6);
+}
+.fig-modal-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--p-orange);
+  margin-bottom: var(--s-2);
+}
+.fig-modal-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.1rem);
+  line-height: var(--lh-tight);
+  color: var(--color-ink);
+  margin: 0;
+}
+.fig-modal-name .fig-card-orig { font-size: 0.7em; }
+.fig-modal-dates {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin-top: var(--s-2);
+}
+.fig-modal-role {
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: var(--s-3) auto 0;
+  max-width: 30rem;
+}
+
+/* ── Modal bio body ─────────────────────────────────────────────────────── */
+.fig-modal-bio {
+  padding: 0 clamp(var(--s-5), 6vw, var(--s-12));
+}
+.fig-modal-bio p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0 0 var(--s-4);
+  text-wrap: pretty;
+}
+.fig-modal-bio p:last-child { margin-bottom: 0; }
+.fig-modal-bio em,
+.fig-card em { font-style: italic; }
+
+/* ── "In the novel" note ────────────────────────────────────────────────── */
+.fig-note {
+  margin-top: var(--s-6);
+  padding: var(--s-4) var(--s-5);
+  background: var(--sr-tint);
+  border-left: 3px solid var(--p-teal);
+}
+.fig-note-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--p-teal);
+  margin-bottom: var(--s-2);
+}
+.fig-note p {
+  margin: 0;
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-prose);
+}
+
+/* ── End signature ──────────────────────────────────────────────────────── */
+.fig-end-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-12);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .fig-card--feature { grid-template-columns: 1fr; }
+  .fig-card--feature .fig-card-portrait { aspect-ratio: 16 / 9; min-height: 0; height: auto; }
+  .fig-card--feature .fig-card-body { padding: var(--s-6) var(--s-6) var(--s-8); }
+}
+@media (max-width: 720px) {
+  .fig-row--triple { grid-template-columns: 1fr 1fr; }
+  .fig-row--triple > .fig-card:nth-child(3) { grid-column: 1 / -1; }
+  .fig-row--triple > .fig-card:nth-child(3) .fig-card-portrait { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 560px) {
+  .fig-main { padding-inline: var(--gutter); }
+  .fig-row--triple,
+  .fig-row--pair { grid-template-columns: 1fr; }
+  .fig-row--triple > .fig-card:nth-child(3) .fig-card-portrait { aspect-ratio: 4 / 5; }
+  .fig-card--pair .fig-card-portrait-row .fig-card-portrait { aspect-ratio: 3 / 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fig-card,
+  .fig-modal,
+  .fig-modal-overlay { transition: none; }
+  .fig-card:hover,
+  .fig-card:focus-within { transform: none; }
+}

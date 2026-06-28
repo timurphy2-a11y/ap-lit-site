@@ -1,16 +1,395 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import EndSignature from '../../../components/summer-reading/EndSignature.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
+import Medallion from '../../../components/summer-reading/Medallion.astro';
+import '../../../styles/pachinko-figures.css';
 
-const entry = await getEntry('summerReading', 'pachinko/figures');
-const { Content } = await render(entry);
+const imgBase = '/images/summer-reading/pachinko';
 ---
-<SummerLayout title={entry.data.title} section="pachinko" spoke="figures">
-  <Content />
+
+<SummerLayout title="Key Figures — Pachinko · The Living Atlas" section="pachinko" spoke="figures">
+
+  <SectionOpener text="pachinko" eyebrow="PACHINKO" heading="Key Figures" />
+
+  <div class="fig-main">
+
+    <div class="fig-intro">
+      <p class="fig-intro-lead">The figures on this page are not characters in <em>Pachinko</em> — they are the people whose decisions shaped the world the novel's characters inhabit.</p>
+    </div>
+
+    <!-- ── Row A · the colonial era (three uprights, chronological) ── -->
+    <div class="fig-row fig-row--triple">
+
+      <!-- Yi Wan-yong -->
+      <article class="fig-card fig-card--std" id="fig-yi" data-seal="cold">
+        <div class="fig-card-portrait">
+          <img src={`${imgBase}/p4-yi-wan-yong.jpg`} alt="Yi Wan-yong, photograph c. 1900s" />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Collaborator · The Signature</span>
+          <h3 class="fig-card-name">Yi Wan-yong <span class="fig-card-orig">이완용</span></h3>
+          <span class="fig-card-dates">1858–1926</span>
+          <p class="fig-card-role">Prime Minister of Korea; signatory of the Japan–Korea Annexation Treaty</p>
+          <p class="fig-card-teaser">The signature that ceded Korea's sovereignty — and the name that became the Korean word for collaborator.</p>
+          <button class="fig-card-trigger" data-fig="fig-yi">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Yi Wan-yong</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Yi Wan-yong signed the Japan–Korea Annexation Treaty on August 22, 1910 — not because he was the Korean emperor, but because Japan installed him in a position to sign it. His signature on the treaty's first article — declaring that Korea's emperor "completely and permanently" ceded all sovereignty to Japan — made him the most despised figure in modern Korean history. The Korean word for collaborator, <em>chinilpa</em>, is inseparable from his name.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>He never appears in <em>Pachinko</em>. But his act is the premise of everything that follows: the annexation he signed into existence is the historical fact that sends Sunja's family into poverty, drives her migration to Japan, and sets in motion the eighty-year history the novel traces. He is also a reminder that colonial history required Korean collaborators as much as Japanese administrators — a moral complexity that runs through the novel even when it is not named directly.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Yu Gwan-sun -->
+      <article class="fig-card fig-card--std" id="fig-yu" data-seal="warm">
+        <div class="fig-card-portrait">
+          <img src={`${imgBase}/p4-yu-gwan-sun.jpg`} alt="Yu Gwan-sun, prison record photograph, 1919" />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="var(--p-teal)" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Martyr · The Resistance</span>
+          <h3 class="fig-card-name">Yu Gwan-sun <span class="fig-card-orig">유관순</span></h3>
+          <span class="fig-card-dates">1902–1920</span>
+          <p class="fig-card-role">Student activist; martyr of the March First Movement</p>
+          <p class="fig-card-teaser">Seventeen when she was arrested, eighteen when she died in prison — the symbolic martyr of Korean independence.</p>
+          <button class="fig-card-trigger" data-fig="fig-yu">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Yu Gwan-sun</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Yu Gwan-sun was seventeen when Japanese authorities arrested her for organizing independence demonstrations in her home province after the March First Movement's outbreak. She had already been expelled from her school in Seoul when Japan closed schools in response to the protests. She organized local demonstrations, was arrested, tried before a military tribunal, and sentenced to three years in Seodaemun Prison. She continued to protest inside the prison on the anniversary of March 1, 1920, was tortured in response, and died on September 28, 1920, at eighteen. Prison records listed the cause of death as "illness."</p>
+          <p>She became the symbolic martyr of the Korean independence movement, a figure comparable in Korean national memory to Joan of Arc. She is now commemorated as a national hero in South Korea.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>The world Sunja's family inhabits in the novel's early sections is defined by what happened to people like Yu Gwan-sun — the violent suppression of the March First Movement, the arrests of Christian leaders, the crushing of organized resistance. Isak's brother Sameol dies in connection with these events.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Minami Jirō -->
+      <article class="fig-card fig-card--std" id="fig-minami" data-seal="cold">
+        <div class="fig-card-portrait">
+          <img src={`${imgBase}/p4-minami-jiro.jpg`} alt="Minami Jirō, photograph c. 1930s" />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Administrator · The Architect</span>
+          <h3 class="fig-card-name">Minami Jirō <span class="fig-card-orig">南 次郎</span></h3>
+          <span class="fig-card-dates">1874–1955</span>
+          <p class="fig-card-role">Governor-General of Korea, 1936–1942</p>
+          <p class="fig-card-teaser">The Governor-General who erased the Korean language, the Korean name, and the right to worship freely.</p>
+          <button class="fig-card-trigger" data-fig="fig-minami">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Minami Jirō</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Minami Jirō governed Korea during the most aggressive phase of cultural suppression — the period the novel's characters experience directly. Under his administration, Korean-language instruction was discontinued entirely; Korean-language newspapers were shut down; the <em>naisen ittai</em> ideology was implemented as official policy; Shinto shrine worship was enforced; and the <em>sōshi-kaimei</em> name-change campaign was launched in 1940.</p>
+          <p>He was convicted of war crimes by the Tokyo Trials in 1948 and sentenced to life imprisonment. He was paroled in 1954 and died the following year.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>He is the administrative architect of the system that Isak is arrested for resisting. When Isak refuses to bow at a Shinto shrine and is taken by Japanese police, the policy he is refusing is Minami's policy.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ── Row B · the postwar division (two paired tiles) ── -->
+    <div class="fig-row fig-row--pair">
+
+      <!-- Syngman Rhee & Kim Il-sung -->
+      <article class="fig-card fig-card--pair" id="fig-states" data-seal="warm">
+        <div class="fig-card-portrait-row">
+          <div class="fig-card-portrait">
+            <img src={`${imgBase}/p4-syngman-rhee.jpg`} alt="Syngman Rhee, official presidential portrait, 1948. Public domain, South Korea National Archives." />
+          </div>
+          <div class="fig-card-portrait">
+            <img src={`${imgBase}/p4-kim-il-sung.jpg`} alt="Kim Il-sung, c. 1950. Public domain." />
+          </div>
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="var(--p-teal)" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Two States · The Division</span>
+          <h3 class="fig-card-name">Syngman Rhee &amp; Kim Il-sung</h3>
+          <span class="fig-card-dates">이승만 1875–1965 · 김일성 1912–1994</span>
+          <p class="fig-card-role">First president of South Korea · Founding leader of North Korea</p>
+          <p class="fig-card-teaser">Two presidents, one divided peninsula — and the home Sunja's generation could no longer return to.</p>
+          <button class="fig-card-trigger" data-fig="fig-states">
+            <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Syngman Rhee and Kim Il-sung</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Syngman Rhee (이승만, 1875–1965) became the first president of the Republic of Korea when a separate southern government was declared in 1948. US-educated and fiercely anti-communist, he led an authoritarian, American-aligned state until mass protests forced him from office in 1960; he died in exile in Hawaii. The South he built was the home Sunja's generation had left — but it was no longer the country they remembered, and for most of them it was no longer a place they could simply return to.</p>
+          <p>Kim Il-sung (김일성, 1912–1994) founded the Democratic People's Republic of Korea the same year and ruled it until his death. His state is the one Chongryon represented inside Japan, and it was the destination of the repatriation campaign of 1959–1984, which carried roughly 90,000 people from Japan to a North promised as a workers' paradise and which proved, for most, impossible to leave.</p>
+          <p>Korea was divided at the 38th parallel in 1945 and hardened into two opposed states in 1948; the Korean War (1950–1953) made the split permanent.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>Neither leader appears in <em>Pachinko</em>, but the line they drew runs through it. The division is why "home" becomes a question with no recoverable answer for the Issei generation, and why the Zainichi community in Japan was forced to choose a side at all. It is the biographical anchor beneath the Two Associations: when Hansu dismisses both Chongryon and Mindan, he is dismissing the politics of two men who turned one homeland into two states — and a diaspora into a choice between them.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- The Two Associations -->
+      <article class="fig-card fig-card--pair" id="fig-assoc" data-seal="warm">
+        <div class="fig-card-portrait-row">
+          <div class="fig-card-portrait fig-card-portrait--org">
+            <span class="fig-org-name">Mindan</span>
+            <span class="fig-org-est">Est. 1946 · South Korea</span>
+          </div>
+          <div class="fig-card-portrait fig-card-portrait--org">
+            <span class="fig-org-name">Chongryon</span>
+            <span class="fig-org-est">Est. 1955 · North Korea</span>
+          </div>
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="var(--p-teal)" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Institutions · The Diaspora Split</span>
+          <h3 class="fig-card-name">The Two Associations</h3>
+          <span class="fig-card-dates">Chongryon · Mindan</span>
+          <p class="fig-card-role">The two organizations that divided Zainichi life in postwar Japan</p>
+          <p class="fig-card-teaser">Chongryon and Mindan — the diaspora split along the same line that split the peninsula.</p>
+          <button class="fig-card-trigger" data-fig="fig-assoc">
+            <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Chongryon and Mindan</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Mindan (Korean Residents Union in Japan, founded 1946) is affiliated with South Korea. It provided legal assistance, community services, Korean-language education, and political representation to Zainichi Koreans aligned with the Republic of Korea. After the 1965 normalization treaty, Mindan-affiliated Koreans gained a pathway to special permanent residency.</p>
+          <p>Chongryon (General Association of Korean Residents in Japan, founded 1955) operates as North Korea's <em>de facto</em> diplomatic representation in Japan. In the 1950s and 1960s, when North Korea's economy outperformed South Korea's, Chongryon was the dominant Zainichi organization. It ran Korean-language schools, provided community loans, and organized the mass repatriation campaign of 1959–1984 that sent approximately 90,000 people to North Korea — most of whom found conditions far worse than promised and were unable to leave.</p>
+          <p>For a Zainichi Korean family in the 1950s and 1960s, affiliation with one organization or the other determined which schools your children attended, which banks would lend to your business, and what legal assistance you could access. The division was imposed not by Zainichi Koreans themselves but by Cold War geopolitics that split the Korean peninsula and forced the diaspora to choose sides.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>Hansu's dismissal of both organizations — his observation that neither group's leadership ever actually intends to return to Korea — reflects something Lee found in her research: the Zainichi community was often clear-eyed about the gap between organizational political rhetoric and the reality of people's lives.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ── Row C · the author (full-width closing band) ── -->
+    <div class="fig-row">
+      <article class="fig-card fig-card--feature" id="fig-lee" data-seal="warm">
+        <div class="fig-card-portrait">
+          <img src={`${imgBase}/p4-min-jin-lee.jpg`} alt="Min Jin Lee, author photograph, 2017. Credit: Larry D. Moore, CC BY 4.0." />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <Medallion size={34} color="var(--p-teal)" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Author</span>
+          <h3 class="fig-card-name">Min Jin Lee <span class="fig-card-orig">이민진</span></h3>
+          <span class="fig-card-dates">1968–</span>
+          <p class="fig-card-role">Author of <em>Pachinko</em>; National Book Award finalist, 2017</p>
+          <p class="fig-card-quote">"My sense of outrage is triggered again and again."</p>
+          <p class="fig-card-quote-attr">— Min Jin Lee, on the writing of <em>Pachinko</em></p>
+          <button class="fig-card-trigger" data-fig="fig-lee">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Min Jin Lee</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Lee was born in Seoul, emigrated with her family to the United States as a child, grew up in New York, attended Yale University and Yale Law School, and practiced briefly as a lawyer before turning to writing. She encountered the story that became <em>Pachinko</em> at nineteen, at a Yale lecture by an American missionary working with Koreans in Japan. It stayed with her for nearly thirty years.</p>
+          <p>She spent much of that time working on what became the novel — first as a short story, then as an early draft focused on a single generation, then as a complete restart after moving to Tokyo with her husband in 2007. Living in Japan gave her direct access to the community she was writing about. She conducted hundreds of interviews — with Zainichi Koreans across multiple generations, pachinko industry workers and owners, community organizers, and historians. Nearly every family she interviewed had some connection to the pachinko industry at some point.</p>
+          <p>Lee has described her motivations with unusual directness. "My sense of outrage is triggered again and again," she has said, about how the Zainichi community has been excluded from Japanese society and ignored by the broader world. Describing the writing of <em>Pachinko</em> as an act of activism, she has drawn explicit connections between the Zainichi experience and the experience of Asian minorities elsewhere who exist in societies that claim not to see race while organizing themselves around it. The novel was a finalist for the National Book Award for Fiction in 2017.</p>
+          <p class="fig-note-label" style="margin-top: var(--s-4);">Photo credit</p>
+          <p style="font-size: var(--t-meta); color: var(--color-muted);">Larry D. Moore, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, via Wikimedia Commons.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="fig-end-row">
+      <EndSignature text="pachinko" />
+    </div>
+
+  </div>
+
+  <!-- ── Bio modal ── -->
+  <div class="fig-modal-overlay" id="figModal" hidden>
+    <div class="fig-modal" role="dialog" aria-modal="true" aria-labelledby="figModalName">
+      <button class="fig-modal-close" id="figModalClose" aria-label="Close figure">&times;</button>
+      <div class="fig-modal-portraits" id="figModalPortraits"></div>
+      <div class="fig-modal-seal" id="figModalSeal" aria-hidden="true"></div>
+      <div class="fig-modal-head">
+        <span class="fig-modal-eyebrow" id="figModalEyebrow"></span>
+        <h2 class="fig-modal-name" id="figModalName"></h2>
+        <span class="fig-modal-dates" id="figModalDates"></span>
+        <p class="fig-modal-role" id="figModalRole"></p>
+      </div>
+      <div class="fig-modal-bio" id="figModalBio"></div>
+    </div>
+  </div>
+
   <SpokePagination
     section="pachinko"
     prev={{ slug: 'history', title: 'Zainichi', number: 3 }}
     next={{ slug: 'novel', title: 'Connections', number: 5 }}
   />
+
 </SummerLayout>
+
+<script is:inline>
+(function () {
+  'use strict';
+
+  /* ── Medallion SVG for modal seal ──────────────────────────────────────── */
+  function medallionSVG(size, color) {
+    var c = size / 2, outer = size * 0.44, inner = size * 0.30, dot = size * 0.07;
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true">' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + outer + '" stroke="' + color + '" stroke-width="1.5"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + inner + '" stroke="' + color + '" stroke-width="1"/>' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + dot + '" fill="var(--p-gold)"/></svg>';
+  }
+
+  /* ── Modal ─────────────────────────────────────────────────────────────── */
+  var overlay, dialog, lastFocus = null;
+
+  function byId(id) { return document.getElementById(id); }
+
+  function fill(card) {
+    var grab = function (sel) {
+      var n = card.querySelector(sel);
+      return n ? n.innerHTML : '';
+    };
+
+    byId('figModalEyebrow').innerHTML = grab('.fig-card-eyebrow');
+    byId('figModalName').innerHTML    = grab('.fig-card-name');
+    byId('figModalDates').innerHTML   = grab('.fig-card-dates');
+    byId('figModalRole').innerHTML    = grab('.fig-card-role');
+
+    /* Seal color: cold for colonial architects, warm for others */
+    var sealEl = byId('figModalSeal');
+    var isCold = card.getAttribute('data-seal') === 'cold';
+    sealEl.innerHTML = medallionSVG(44, isCold ? '#49545F' : 'var(--p-teal)');
+
+    /* Portraits: clone from card */
+    var pWrap = byId('figModalPortraits');
+    pWrap.innerHTML = '';
+
+    /* Feature card: single portrait */
+    var featurePortrait = card.querySelector('.fig-card--feature .fig-card-portrait, .fig-card.fig-card--feature > .fig-card-portrait');
+    if (card.classList.contains('fig-card--feature')) {
+      featurePortrait = card.querySelector('.fig-card-portrait');
+    }
+
+    if (card.classList.contains('fig-card--feature')) {
+      var fp = card.querySelector('.fig-card-portrait');
+      if (fp) {
+        var cell = document.createElement('div');
+        cell.className = 'fig-modal-portrait-cell';
+        var img = fp.querySelector('img');
+        if (img) {
+          var clone = img.cloneNode(true);
+          cell.appendChild(clone);
+        }
+        pWrap.appendChild(cell);
+      }
+    } else if (card.classList.contains('fig-card--pair')) {
+      /* Pair card: two portrait cells */
+      card.querySelectorAll('.fig-card-portrait').forEach(function (p) {
+        var cell = document.createElement('div');
+        var img = p.querySelector('img');
+        if (img) {
+          cell.className = 'fig-modal-portrait-cell';
+          cell.appendChild(img.cloneNode(true));
+        } else if (p.classList.contains('fig-card-portrait--ph')) {
+          cell.className = 'fig-modal-portrait-cell fig-modal-portrait--ph';
+          cell.setAttribute('data-ph', p.getAttribute('data-ph') || '');
+        } else if (p.classList.contains('fig-card-portrait--org')) {
+          cell.className = 'fig-modal-portrait-cell fig-modal-portrait--org';
+          var orgName = p.querySelector('.fig-org-name');
+          var orgEst  = p.querySelector('.fig-org-est');
+          if (orgName) { var n = orgName.cloneNode(true); cell.appendChild(n); }
+          if (orgEst)  { var e = orgEst.cloneNode(true);  cell.appendChild(e); }
+        }
+        pWrap.appendChild(cell);
+      });
+    } else {
+      /* Std card: single portrait */
+      var sp = card.querySelector('.fig-card-portrait');
+      if (sp) {
+        var cell2 = document.createElement('div');
+        var img2 = sp.querySelector('img');
+        if (img2) {
+          cell2.className = 'fig-modal-portrait-cell';
+          cell2.appendChild(img2.cloneNode(true));
+        }
+        pWrap.appendChild(cell2);
+      }
+    }
+
+    /* Bio body */
+    var detail = card.querySelector('.fig-card-detail');
+    byId('figModalBio').innerHTML = detail ? detail.innerHTML : '';
+
+    dialog.scrollTop = 0;
+    overlay.scrollTop = 0;
+  }
+
+  function open(card, trigger) {
+    lastFocus = trigger || document.activeElement;
+    fill(card);
+    overlay.hidden = false;
+    void overlay.offsetWidth; /* force reflow for transition */
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    byId('figModalClose').focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    var done = function () {
+      overlay.hidden = true;
+      overlay.removeEventListener('transitionend', done);
+    };
+    overlay.addEventListener('transitionend', done);
+    setTimeout(function () { if (!overlay.classList.contains('is-open')) overlay.hidden = true; }, 360);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function init() {
+    overlay = byId('figModal');
+    if (!overlay) return;
+    dialog = overlay.querySelector('.fig-modal');
+
+    document.querySelectorAll('.fig-card-trigger').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = document.getElementById(btn.getAttribute('data-fig'));
+        if (card) open(card, btn);
+      });
+    });
+
+    byId('figModalClose').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !overlay.hidden) close();
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
