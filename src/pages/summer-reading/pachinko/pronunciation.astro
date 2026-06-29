@@ -17,6 +17,7 @@ interface NameEntry {
   nameTag?: string;
   respell: Part[];
   surnameNote?: string;
+  audioSrc?: string;
   desc: string;
 }
 
@@ -25,6 +26,7 @@ interface TermEntry {
   scriptLang: 'ko' | 'ja';
   name: string;
   respell: Part[];
+  audioSrc?: string;
   desc: string;
 }
 
@@ -37,18 +39,21 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         script: '선자', scriptLang: 'ko',
         name: 'Sunja',
         respell: [{t:'SOON', s:true},{t:'-jah'}],
+        audioSrc: '/audio/pachinko/names/sunja.mp3',
         desc: 'Daughter of a Busan boardinghouse keeper; the figure the novel follows across its generations.',
       },
       {
         script: '훈이', scriptLang: 'ko',
         name: 'Hoonie',
         respell: [{t:'HOON', s:true},{t:'-ee'}],
+        audioSrc: '/audio/pachinko/names/hoonie.mp3',
         desc: 'Sunja’s father; a gentle fisherman’s son born with a cleft palate and a twisted foot.',
       },
       {
         script: '양진', scriptLang: 'ko',
         name: 'Yangjin',
         respell: [{t:'YANG', s:true},{t:'-jin'}],
+        audioSrc: '/audio/pachinko/names/yangjin.mp3',
         desc: 'Sunja’s mother, who runs the family boardinghouse after her husband.',
       },
     ],
@@ -63,18 +68,21 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         nameTag: '(Baek Isak)',
         respell: [{t:'EE', s:true},{t:'-sahk'}],
         surnameNote: 'surname BEHK',
+        audioSrc: '/audio/pachinko/names/isak.mp3',
         desc: 'A young Protestant minister from Pyongyang who lodges with the Busan family.',
       },
       {
         script: '요셉', scriptLang: 'ko',
         name: 'Yoseb',
         respell: [{t:'YO', s:true},{t:'-sep'}],
+        audioSrc: '/audio/pachinko/names/yoseb.mp3',
         desc: 'Isak’s older brother, already settled and working in Osaka.',
       },
       {
         script: '경희', scriptLang: 'ko',
         name: 'Kyunghee',
         respell: [{t:'KYUNG', s:true},{t:'-hee'}],
+        audioSrc: '/audio/pachinko/names/kyunghee.mp3',
         desc: 'Yoseb’s wife; warm, devout, and childless.',
       },
     ],
@@ -89,12 +97,14 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         nameTag: '(Koh Hansu)',
         respell: [{t:'HAHN', s:true},{t:'-soo'}],
         surnameNote: 'surname KOH',
+        audioSrc: '/audio/pachinko/names/hansu.mp3',
         desc: 'A worldly, well-connected businessman originally from Jeju Island.',
       },
       {
         script: '김창호', scriptLang: 'ko',
         name: 'Kim Changho',
         respell: [{t:'kim '},{t:'CHANG', s:true},{t:'-ho'}],
+        audioSrc: '/audio/pachinko/names/kim-changho.mp3',
         desc: 'A restaurant manager in Osaka who becomes important to the family’s livelihood.',
       },
     ],
@@ -107,18 +117,21 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         script: '노아', scriptLang: 'ko',
         name: 'Noa',
         respell: [{t:'NOH', s:true},{t:'-ah'}],
+        audioSrc: '/audio/pachinko/names/noa.mp3',
         desc: 'Sunja’s elder son; studious, reserved, and anxious to belong.',
       },
       {
         script: 'モーザス', scriptLang: 'ja',
         name: 'Mozasu',
         respell: [{t:'MOH', s:true},{t:'-zah-soo'}],
+        audioSrc: '/audio/pachinko/names/mozasu.mp3',
         desc: 'Sunja’s younger son; spirited and practical. The name renders the biblical Moses.',
       },
       {
         script: 'ユミ', scriptLang: 'ja',
         name: 'Yumi',
         respell: [{t:'YOO', s:true},{t:'-mee'}],
+        audioSrc: '/audio/pachinko/names/yumi.mp3',
         desc: 'A skilled seamstress in Osaka; part of Mozasu’s adult life.',
       },
     ],
@@ -133,24 +146,28 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         nameTag: '(Baek)',
         respell: [{t:'SOL', s:true},{t:'-oh-mun'}],
         surnameNote: 'surname BEHK',
+        audioSrc: '/audio/pachinko/names/solomon.mp3',
         desc: 'Mozasu’s son, raised in comfort the earlier generations never knew.',
       },
       {
         script: '', scriptLang: null,
         name: 'Phoebe',
         respell: [{t:'FEE', s:true},{t:'-bee'}],
+        audioSrc: '/audio/pachinko/names/phoebe.mp3',
         desc: 'A Korean American woman in Solomon’s adult life.',
       },
       {
         script: 'エツコ', scriptLang: 'ja',
         name: 'Etsuko',
         respell: [{t:'EH', s:true},{t:'-tsoo-koh'}],
+        audioSrc: '/audio/pachinko/names/etsuko.mp3',
         desc: 'A Japanese woman close to Mozasu in the later sections.',
       },
       {
         script: 'ハナ', scriptLang: 'ja',
         name: 'Hana',
         respell: [{t:'HAH', s:true},{t:'-nah'}],
+        audioSrc: '/audio/pachinko/names/hana.mp3',
         desc: 'Etsuko’s teenage daughter.',
       },
     ],
@@ -163,12 +180,14 @@ const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
         script: 'ゴロー', scriptLang: 'ja',
         name: 'Goro',
         respell: [{t:'GOH', s:true},{t:'-roh'}],
+        audioSrc: '/audio/pachinko/names/goro.mp3',
         desc: 'A successful, generous pachinko-parlor owner who employs Mozasu.',
       },
       {
         script: '春樹', scriptLang: 'ja',
         name: 'Haruki Totoyama',
         respell: [{t:'hah-'},{t:'ROO', s:true},{t:'-kee toh-toh-'},{t:'YAH', s:true},{t:'-mah'}],
+        audioSrc: '/audio/pachinko/names/haruki-totoyama.mp3',
         desc: 'A childhood friend of Mozasu’s from the uniform shop, later a police detective.',
       },
     ],
@@ -180,48 +199,56 @@ const TERMS: TermEntry[] = [
     script: '在日', scriptLang: 'ja',
     name: 'Zainichi',
     respell: [{t:'zah-'},{t:'EE', s:true},{t:'-nee-chee'}],
+    audioSrc: '/audio/pachinko/terms/zainichi.mp3',
     desc: 'Literally “residing in Japan”; the term for Koreans in Japan and their descendants.',
   },
   {
     script: 'パチンコ', scriptLang: 'ja',
     name: 'pachinko',
     respell: [{t:'pah-'},{t:'CHEEN', s:true},{t:'-koh'}],
+    audioSrc: '/audio/pachinko/terms/pachinko-term.mp3',
     desc: 'A pinball-like arcade gambling game; the parlor industry many Zainichi entered.',
   },
   {
     script: '創氏改名', scriptLang: 'ja',
     name: 'sōshi-kaimei',
     respell: [{t:'SOH', s:true},{t:'-shee '},{t:'KY', s:true},{t:'-may'}],
+    audioSrc: '/audio/pachinko/terms/soshi-kaimei.mp3',
     desc: 'The colonial-era policy pressuring Koreans to adopt Japanese-style names.',
   },
   {
     script: '通名', scriptLang: 'ja',
     name: 'tsūmei',
     respell: [{t:'TSOO', s:true},{t:'-may'}],
+    audioSrc: '/audio/pachinko/terms/tsumei.mp3',
     desc: 'A Japanese “pass-name” used in daily life in place of one’s Korean name.',
   },
   {
     script: '猪飼野', scriptLang: 'ja',
     name: 'Ikaino',
     respell: [{t:'ee-'},{t:'KY', s:true},{t:'-noh'}],
+    audioSrc: '/audio/pachinko/terms/ikaino.mp3',
     desc: 'The Korean neighborhood in Osaka where much of the novel is set.',
   },
   {
     script: '제사', scriptLang: 'ko',
     name: 'jesa',
     respell: [{t:'JEH', s:true},{t:'-sah'}],
+    audioSrc: '/audio/pachinko/terms/jesa.mp3',
     desc: 'The Korean ancestral memorial rite honoring the family dead.',
   },
   {
     script: '한', scriptLang: 'ko',
     name: 'han',
     respell: [{t:'hahn'}],
+    audioSrc: '/audio/pachinko/terms/han.mp3',
     desc: 'A Korean concept of deep, accumulated sorrow and endurance.',
   },
   {
     script: '한복', scriptLang: 'ko',
     name: 'hanbok',
     respell: [{t:'HAHN', s:true},{t:'-bok'}],
+    audioSrc: '/audio/pachinko/terms/hanbok.mp3',
     desc: 'Traditional Korean dress.',
   },
 ];
@@ -335,7 +362,7 @@ const SPOKES = [
         </div>
         <div class="pg-grid">
           {group.cards.map((card) => (
-            <div class="pg-card">
+            <div class="pg-card" data-audio={card.audioSrc}>
               {/* Script specimen */}
               {card.scriptLang && card.script ? (
                 <p class="pg-card-script" lang={card.scriptLang}>{card.script}</p>
@@ -377,7 +404,7 @@ const SPOKES = [
       </div>
       <div class="pg-grid">
         {TERMS.map((term) => (
-          <div class="pg-card pg-term">
+          <div class="pg-card pg-term" data-audio={term.audioSrc}>
             <p class="pg-card-script" lang={term.scriptLang}>{term.script}</p>
             <p class="pg-card-name">{term.name}</p>
             <div class="pg-card-respell-row">
@@ -401,5 +428,61 @@ const SPOKES = [
   </main>
 
 </div>
+
+<script>
+(function wireAudio() {
+  var SPEAKER_SVG = '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.5 2L4 5H1v5h3l3.5 3V2z" fill="currentColor"/><path d="M10 5.5a3 3 0 0 1 0 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.5 3.5a5.5 5.5 0 0 1 0 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  var current = null;
+  var currentBtn = null;
+
+  document.querySelectorAll('[data-audio]').forEach(function(card) {
+    var src = card.dataset.audio;
+    if (!src) return;
+    var row = card.querySelector('.pg-card-respell-row');
+    if (!row) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'pg-audio';
+    btn.setAttribute('aria-label', 'Play pronunciation');
+    btn.innerHTML = SPEAKER_SVG;
+
+    var audio = null;
+
+    btn.addEventListener('click', function() {
+      if (current && current !== audio) {
+        current.pause();
+        current.currentTime = 0;
+        if (currentBtn) {
+          currentBtn.classList.remove('is-playing');
+          currentBtn.setAttribute('aria-label', 'Play pronunciation');
+        }
+      }
+      if (!audio) audio = new Audio(src);
+      if (btn.classList.contains('is-playing')) {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.classList.remove('is-playing');
+        btn.setAttribute('aria-label', 'Play pronunciation');
+        current = null;
+        currentBtn = null;
+      } else {
+        audio.play();
+        btn.classList.add('is-playing');
+        btn.setAttribute('aria-label', 'Stop pronunciation');
+        current = audio;
+        currentBtn = btn;
+        audio.onended = function() {
+          btn.classList.remove('is-playing');
+          btn.setAttribute('aria-label', 'Play pronunciation');
+          current = null;
+          currentBtn = null;
+        };
+      }
+    });
+
+    row.appendChild(btn);
+  });
+})();
+</script>
 </body>
 </html>
