@@ -10,6 +10,7 @@
 @import './tfa-colonialism.css';
 @import './tfa-connections.css';
 @import './pachinko-connections.css';
+@import './pachinko-pronunciation.css';
 
 /* ── Legacy aliases (keep for backward compat with Phase 1 content) ─── */
 :root {

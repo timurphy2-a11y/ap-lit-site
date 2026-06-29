@@ -1,0 +1,405 @@
+---
+// Pachinko — Pronunciation Guide
+// Standalone page (not one of the 5 spokes) linked from the landing panel.
+// Design spec: design_handoff_pachinko_pronunciation/README.md
+
+import '../../../styles/summer-reading.css';
+import PSpokeGlyph from '../../../components/summer-reading/PSpokeGlyph.astro';
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import ButterflyMark from '../../../components/summer-reading/ButterflyMark.astro';
+
+type Part = { t: string; s?: true };
+
+interface NameEntry {
+  script: string;
+  scriptLang: 'ko' | 'ja' | null;
+  name: string;
+  nameTag?: string;
+  respell: Part[];
+  surnameNote?: string;
+  desc: string;
+}
+
+interface TermEntry {
+  script: string;
+  scriptLang: 'ko' | 'ja';
+  name: string;
+  respell: Part[];
+  desc: string;
+}
+
+const GROUPS: { eyebrow: string; title: string; cards: NameEntry[] }[] = [
+  {
+    eyebrow: 'First generation',
+    title: 'The Busan family',
+    cards: [
+      {
+        script: '선자', scriptLang: 'ko',
+        name: 'Sunja',
+        respell: [{t:'SOON', s:true},{t:'-jah'}],
+        desc: 'Daughter of a Busan boardinghouse keeper; the figure the novel follows across its generations.',
+      },
+      {
+        script: '훈이', scriptLang: 'ko',
+        name: 'Hoonie',
+        respell: [{t:'HOON', s:true},{t:'-ee'}],
+        desc: 'Sunja’s father; a gentle fisherman’s son born with a cleft palate and a twisted foot.',
+      },
+      {
+        script: '양진', scriptLang: 'ko',
+        name: 'Yangjin',
+        respell: [{t:'YANG', s:true},{t:'-jin'}],
+        desc: 'Sunja’s mother, who runs the family boardinghouse after her husband.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'The move to Osaka',
+    title: 'The Baek family',
+    cards: [
+      {
+        script: '백이삭', scriptLang: 'ko',
+        name: 'Isak',
+        nameTag: '(Baek Isak)',
+        respell: [{t:'EE', s:true},{t:'-sahk'}],
+        surnameNote: 'surname BEHK',
+        desc: 'A young Protestant minister from Pyongyang who lodges with the Busan family.',
+      },
+      {
+        script: '요셉', scriptLang: 'ko',
+        name: 'Yoseb',
+        respell: [{t:'YO', s:true},{t:'-sep'}],
+        desc: 'Isak’s older brother, already settled and working in Osaka.',
+      },
+      {
+        script: '경희', scriptLang: 'ko',
+        name: 'Kyunghee',
+        respell: [{t:'KYUNG', s:true},{t:'-hee'}],
+        desc: 'Yoseb’s wife; warm, devout, and childless.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Around the family',
+    title: 'Connected to the family',
+    cards: [
+      {
+        script: '고한수', scriptLang: 'ko',
+        name: 'Hansu',
+        nameTag: '(Koh Hansu)',
+        respell: [{t:'HAHN', s:true},{t:'-soo'}],
+        surnameNote: 'surname KOH',
+        desc: 'A worldly, well-connected businessman originally from Jeju Island.',
+      },
+      {
+        script: '김창호', scriptLang: 'ko',
+        name: 'Kim Changho',
+        respell: [{t:'kim '},{t:'CHANG', s:true},{t:'-ho'}],
+        desc: 'A restaurant manager in Osaka who becomes important to the family’s livelihood.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'The sons',
+    title: 'The second generation',
+    cards: [
+      {
+        script: '노아', scriptLang: 'ko',
+        name: 'Noa',
+        respell: [{t:'NOH', s:true},{t:'-ah'}],
+        desc: 'Sunja’s elder son; studious, reserved, and anxious to belong.',
+      },
+      {
+        script: 'モーザス', scriptLang: 'ja',
+        name: 'Mozasu',
+        respell: [{t:'MOH', s:true},{t:'-zah-soo'}],
+        desc: 'Sunja’s younger son; spirited and practical. The name renders the biblical Moses.',
+      },
+      {
+        script: 'ユミ', scriptLang: 'ja',
+        name: 'Yumi',
+        respell: [{t:'YOO', s:true},{t:'-mee'}],
+        desc: 'A skilled seamstress in Osaka; part of Mozasu’s adult life.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Later generations',
+    title: 'The third & fourth generations',
+    cards: [
+      {
+        script: 'ソロモン', scriptLang: 'ja',
+        name: 'Solomon',
+        nameTag: '(Baek)',
+        respell: [{t:'SOL', s:true},{t:'-oh-mun'}],
+        surnameNote: 'surname BEHK',
+        desc: 'Mozasu’s son, raised in comfort the earlier generations never knew.',
+      },
+      {
+        script: '', scriptLang: null,
+        name: 'Phoebe',
+        respell: [{t:'FEE', s:true},{t:'-bee'}],
+        desc: 'A Korean American woman in Solomon’s adult life.',
+      },
+      {
+        script: 'エツコ', scriptLang: 'ja',
+        name: 'Etsuko',
+        respell: [{t:'EH', s:true},{t:'-tsoo-koh'}],
+        desc: 'A Japanese woman close to Mozasu in the later sections.',
+      },
+      {
+        script: 'ハナ', scriptLang: 'ja',
+        name: 'Hana',
+        respell: [{t:'HAH', s:true},{t:'-nah'}],
+        desc: 'Etsuko’s teenage daughter.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Osaka',
+    title: 'Community & workplace',
+    cards: [
+      {
+        script: 'ゴロー', scriptLang: 'ja',
+        name: 'Goro',
+        respell: [{t:'GOH', s:true},{t:'-roh'}],
+        desc: 'A successful, generous pachinko-parlor owner who employs Mozasu.',
+      },
+      {
+        script: '春樹', scriptLang: 'ja',
+        name: 'Haruki Totoyama',
+        respell: [{t:'hah-'},{t:'ROO', s:true},{t:'-kee toh-toh-'},{t:'YAH', s:true},{t:'-mah'}],
+        desc: 'A childhood friend of Mozasu’s from the uniform shop, later a police detective.',
+      },
+    ],
+  },
+];
+
+const TERMS: TermEntry[] = [
+  {
+    script: '在日', scriptLang: 'ja',
+    name: 'Zainichi',
+    respell: [{t:'zah-'},{t:'EE', s:true},{t:'-nee-chee'}],
+    desc: 'Literally “residing in Japan”; the term for Koreans in Japan and their descendants.',
+  },
+  {
+    script: 'パチンコ', scriptLang: 'ja',
+    name: 'pachinko',
+    respell: [{t:'pah-'},{t:'CHEEN', s:true},{t:'-koh'}],
+    desc: 'A pinball-like arcade gambling game; the parlor industry many Zainichi entered.',
+  },
+  {
+    script: '創氏改名', scriptLang: 'ja',
+    name: 'sōshi-kaimei',
+    respell: [{t:'SOH', s:true},{t:'-shee '},{t:'KY', s:true},{t:'-may'}],
+    desc: 'The colonial-era policy pressuring Koreans to adopt Japanese-style names.',
+  },
+  {
+    script: '通名', scriptLang: 'ja',
+    name: 'tsūmei',
+    respell: [{t:'TSOO', s:true},{t:'-may'}],
+    desc: 'A Japanese “pass-name” used in daily life in place of one’s Korean name.',
+  },
+  {
+    script: '猪飼野', scriptLang: 'ja',
+    name: 'Ikaino',
+    respell: [{t:'ee-'},{t:'KY', s:true},{t:'-noh'}],
+    desc: 'The Korean neighborhood in Osaka where much of the novel is set.',
+  },
+  {
+    script: '제사', scriptLang: 'ko',
+    name: 'jesa',
+    respell: [{t:'JEH', s:true},{t:'-sah'}],
+    desc: 'The Korean ancestral memorial rite honoring the family dead.',
+  },
+  {
+    script: '한', scriptLang: 'ko',
+    name: 'han',
+    respell: [{t:'hahn'}],
+    desc: 'A Korean concept of deep, accumulated sorrow and endurance.',
+  },
+  {
+    script: '한복', scriptLang: 'ko',
+    name: 'hanbok',
+    respell: [{t:'HAHN', s:true},{t:'-bok'}],
+    desc: 'Traditional Korean dress.',
+  },
+];
+
+const SPOKES = [
+  { n: '01', title: 'World',       href: '/summer-reading/pachinko/world',   idx: 0 as const, accent: 'var(--p-teal)'   },
+  { n: '02', title: 'Identity',    href: '/summer-reading/pachinko/culture', idx: 1 as const, accent: 'var(--p-orange)' },
+  { n: '03', title: 'Zainichi',    href: '/summer-reading/pachinko/history', idx: 2 as const, accent: 'var(--p-gold)'   },
+  { n: '04', title: 'Key Figures', href: '/summer-reading/pachinko/figures', idx: 3 as const, accent: 'var(--p-coral)'  },
+  { n: '05', title: 'Connections', href: '/summer-reading/pachinko/novel',   idx: 4 as const, accent: 'var(--p-teal)'   },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <title>Pronunciation Guide — Pachinko · AP Literature Summer Reading</title>
+</head>
+<body>
+
+<div class="sr-page" data-section="pachinko">
+
+  <!-- ── Topbar ────────────────────────────────────────────────────────── -->
+  <header class="sr-topbar">
+    <a href="/summer-reading" class="pg-topbar-back">
+      <span class="pg-back-arrow">←</span> The World Was All Before Them
+    </a>
+    <div class="pg-topbar-right">
+      <PSpokeGlyph idx={5} size={20} color="var(--color-ink)" />
+      <span class="sr-topbar-context">Pachinko &middot; Pronunciation Guide</span>
+    </div>
+  </header>
+
+  <!-- ── 6-col switcher: Pronunciation (active) + 5 spokes ────────────── -->
+  <nav class="pk-switcher" aria-label="Pachinko sections">
+    <div class="pk-switcher-eyebrow">Pachinko &middot; Pronunciation &amp; five ways in</div>
+    <div class="pk-switcher-grid">
+      <!-- Current page: Pronunciation -->
+      <a href="#" class="pk-mini is-active" aria-current="page" style="--spk: var(--p-teal);">
+        <span class="pk-mini-glyph">
+          <PSpokeGlyph idx={5} size={26} color="var(--color-cream)" gold="var(--p-gold)" />
+        </span>
+        <span class="pk-mini-text">
+          <span class="pk-mini-num">Guide</span>
+          <span class="pk-mini-title">Pronunciation</span>
+        </span>
+      </a>
+      <!-- Five spokes -->
+      {SPOKES.map((s) => (
+        <a href={s.href} class="pk-mini" style={`--spk: ${s.accent};`}>
+          <span class="pk-mini-glyph">
+            <PSpokeGlyph idx={s.idx} size={26} color="var(--color-ink)" />
+          </span>
+          <span class="pk-mini-text">
+            <span class="pk-mini-num">{s.n}</span>
+            <span class="pk-mini-title">{s.title}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- ── Main content ──────────────────────────────────────────────────── -->
+  <main class="pg-main">
+
+    <!-- Section opener: medallion + eyebrow + heading -->
+    <SectionOpener
+      text="pachinko"
+      eyebrow="Pachinko"
+      heading="Pronunciation Guide"
+    />
+
+    <!-- Intro -->
+    <div class="pg-intro">
+      <p class="pg-intro-lead">
+        Names in <em>Pachinko</em> are romanized from Korean or Japanese, depending
+        on the world a character moves through. The respellings below approximate
+        the sounds for English readers; the <strong>stressed syllable</strong> is
+        marked in teal.
+      </p>
+
+      <!-- Surname callout -->
+      <div class="pg-callout">
+        <span class="pg-callout-label">One surname, often hidden</span>
+        <p>
+          The family surname <strong>Baek (백)</strong> runs through Isak, Noa,
+          Mozasu, and Solomon. Japanese society and the use of pass-names
+          (<em>tsūmei</em>) repeatedly obscure it, which is ultimately part of
+          its thematic significance in the novel as a whole.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Character groups ─────────────────────────────────────────────── -->
+    {GROUPS.map((group) => (
+      <div class="pg-group">
+        <div class="pg-group-head">
+          <span class="pg-group-eyebrow">{group.eyebrow}</span>
+          <h2 class="pg-group-title">{group.title}</h2>
+        </div>
+        <div class="pg-grid">
+          {group.cards.map((card) => (
+            <div class="pg-card">
+              {/* Script specimen */}
+              {card.scriptLang && card.script ? (
+                <p class="pg-card-script" lang={card.scriptLang}>{card.script}</p>
+              ) : (
+                <p class="pg-card-script pg-card-script--none" aria-hidden="true">&mdash;</p>
+              )}
+
+              {/* Name */}
+              <p class="pg-card-name">
+                {card.name}
+                {card.nameTag && <span class="pg-card-surname">{card.nameTag}</span>}
+              </p>
+
+              {/* Respelling row */}
+              <div class="pg-card-respell-row">
+                <span class="pg-card-respell">
+                  {card.respell.map((p) =>
+                    p.s ? <span class="pg-stress">{p.t}</span> : p.t
+                  )}
+                </span>
+                {card.surnameNote && (
+                  <span class="pg-card-surname">{card.surnameNote}</span>
+                )}
+              </div>
+
+              {/* Description */}
+              <p class="pg-card-desc">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- ── Key terms glossary ───────────────────────────────────────────── -->
+    <div class="pg-terms">
+      <div class="pg-group-head">
+        <span class="pg-group-eyebrow">Glossary</span>
+        <h2 class="pg-group-title">Key terms &mdash; Korean &amp; Japanese</h2>
+      </div>
+      <div class="pg-grid">
+        {TERMS.map((term) => (
+          <div class="pg-card pg-term">
+            <p class="pg-card-script" lang={term.scriptLang}>{term.script}</p>
+            <p class="pg-card-name">{term.name}</p>
+            <div class="pg-card-respell-row">
+              <span class="pg-card-respell">
+                {term.respell.map((p) =>
+                  p.s ? <span class="pg-stress">{p.t}</span> : p.t
+                )}
+              </span>
+            </div>
+            <p class="pg-card-desc">{term.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- End signature -->
+    <div class="pg-end-signature">
+      <ButterflyMark size={48} />
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+/* Pachinko — Pronunciation Guide
+ * Layered on top of summer-reading.css (which @imports tokens.css).
+ * Standalone page linked from the landing — not one of the 5 spokes.
+ * Class prefix pg- is novel-agnostic; accent vars are bound per data-section.
+ */
+
+[data-section="pachinko"] {
+  --pg-accent:      var(--p-teal);
+  --pg-accent-soft: color-mix(in srgb, var(--p-teal) 16%, var(--color-cream));
+  --pg-eyebrow:     var(--p-orange);
+  --pg-script-ink:  color-mix(in srgb, var(--p-teal) 42%, var(--color-ink));
+}
+
+/* CJK specimen — system serif stack kept off the web-font budget */
+.pg-card-script {
+  font-family: "Nanum Myeongjo", "Apple SD Gothic Neo", "Noto Serif KR",
+               "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho",
+               var(--font-display), serif;
+}
+
+/* ── Topbar overrides for the pronunciation page ────────────────────────── */
+.pg-topbar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--dur-quick) var(--ease-out);
+}
+.pg-topbar-back:hover { color: var(--color-ink); }
+.pg-back-arrow { color: var(--p-teal); }
+
+.pg-topbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* ── 6-col switcher nav ─────────────────────────────────────────────────── */
+.pk-switcher {
+  background: var(--color-warm);
+  border-bottom: var(--rule-thin);
+  padding: var(--s-3) var(--gutter-lg);
+}
+.pk-switcher-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-muted);
+  margin-bottom: var(--s-2);
+}
+.pk-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--s-2);
+}
+.pk-mini {
+  --spk: var(--p-teal);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 50px;
+  padding: 9px 12px;
+  box-sizing: border-box;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--spk);
+  text-decoration: none;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+}
+.pk-mini:hover:not(.is-active) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(44, 40, 32, 0.12);
+}
+.pk-mini-glyph { flex: none; display: flex; }
+.pk-mini-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.pk-mini-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  display: block;
+}
+.pk-mini-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  display: block;
+}
+.pk-mini.is-active {
+  background: var(--spk);
+  border-top-color: var(--spk);
+  border-color: var(--spk);
+}
+.pk-mini.is-active .pk-mini-num  { color: rgba(240, 228, 207, 0.85); }
+.pk-mini.is-active .pk-mini-title { color: var(--color-cream); }
+
+@media (max-width: 900px) {
+  .pk-switcher-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px) {
+  .pk-mini {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    align-items: center;
+    padding: 8px 6px;
+  }
+  .pk-mini-text { align-items: center; }
+}
+@media (max-width: 480px) {
+  .pk-switcher-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Page shell ─────────────────────────────────────────────────────────── */
+.pg-main {
+  max-width: var(--content-page);
+  margin-inline: auto;
+  padding: 0 var(--gutter-lg) var(--s-16);
+}
+
+/* ── Intro ──────────────────────────────────────────────────────────────── */
+.pg-intro {
+  max-width: 44rem;
+  margin: 0 auto var(--s-10);
+  text-align: center;
+}
+.pg-intro-lead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.4rem);
+  line-height: var(--lh-pull);
+  color: var(--color-ink);
+  text-wrap: pretty;
+  margin: 0 auto;
+}
+.pg-intro-lead em { font-style: normal; }
+
+/* Surname / pass-name callout */
+.pg-callout {
+  max-width: 40rem;
+  margin: var(--s-8) auto 0;
+  padding: var(--s-4) var(--s-6);
+  background: var(--sr-tint);
+  border-left: 3px solid var(--pg-accent);
+  text-align: left;
+}
+.pg-callout-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--pg-accent);
+  margin-bottom: var(--s-2);
+}
+.pg-callout p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-body-sm);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+.pg-callout em { font-style: italic; }
+
+/* ── Character group ────────────────────────────────────────────────────── */
+.pg-group { margin-bottom: var(--s-12); }
+
+.pg-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+  margin-bottom: var(--s-6);
+  border-bottom: 1px solid var(--color-rule);
+}
+.pg-group-eyebrow {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--pg-eyebrow);
+  white-space: nowrap;
+}
+.pg-group-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: var(--lh-tight);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* ── Card grid ──────────────────────────────────────────────────────────── */
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+
+/* ── Name card ──────────────────────────────────────────────────────────── */
+.pg-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid color-mix(in srgb, var(--pg-accent) 38%, var(--color-rule));
+  padding: var(--s-5);
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.pg-card:hover,
+.pg-card:focus-within {
+  border-color: color-mix(in srgb, var(--pg-accent) 55%, var(--color-rule));
+  border-top-color: var(--pg-accent);
+  box-shadow: 0 20px 44px -28px rgba(44, 40, 32, 0.55);
+  transform: translateY(-2px);
+}
+
+.pg-card-script {
+  font-size: 2.5rem;
+  line-height: 1.05;
+  color: var(--pg-script-ink);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.pg-card-script--none {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  color: var(--color-rule);
+}
+
+.pg-card-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: var(--lh-tight);
+  color: var(--color-ink);
+  margin: var(--s-1) 0 0;
+}
+
+.pg-card-respell-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.pg-card-respell {
+  font-family: var(--font-mono);
+  font-size: var(--t-body-sm);
+  letter-spacing: 0.01em;
+  color: var(--color-muted);
+  margin: 0;
+}
+.pg-stress {
+  color: var(--pg-accent);
+  font-weight: 600;
+}
+.pg-card-surname {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  opacity: 0.85;
+}
+
+.pg-card-desc {
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-ink);
+  margin: var(--s-2) 0 0;
+  text-wrap: pretty;
+}
+
+/* ── Key terms section ──────────────────────────────────────────────────── */
+.pg-terms { margin-top: var(--s-8); }
+.pg-terms .pg-grid { gap: var(--s-4); }
+
+.pg-term {
+  background: var(--sr-tint);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid color-mix(in srgb, var(--pg-eyebrow) 42%, var(--color-rule));
+}
+.pg-term:hover,
+.pg-term:focus-within {
+  border-color: color-mix(in srgb, var(--pg-eyebrow) 55%, var(--color-rule));
+  border-top-color: var(--pg-eyebrow);
+}
+.pg-term .pg-card-script {
+  color: color-mix(in srgb, var(--pg-eyebrow) 50%, var(--color-ink));
+}
+.pg-term .pg-stress { color: var(--pg-eyebrow); }
+.pg-term .pg-card-name {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ── End signature ──────────────────────────────────────────────────────── */
+.pg-end-signature {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-16);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .pg-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .pg-main { padding-inline: var(--gutter); }
+  .pg-grid { grid-template-columns: 1fr; }
+  .pg-group-head { flex-direction: column; gap: var(--s-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-card { transition: none; }
+  .pg-card:hover,
+  .pg-card:focus-within { transform: none; }
+  .pk-mini { transition: none; }
+}
