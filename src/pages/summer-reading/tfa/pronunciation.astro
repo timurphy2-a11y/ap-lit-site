@@ -1,0 +1,419 @@
+---
+// Things Fall Apart — Pronunciation Guide
+// Standalone page (not one of the 5 spokes) linked from the landing panel.
+// Design spec: design_handoff_tfa_pronunciation/README.md
+
+import '../../../styles/summer-reading.css';
+import TSpokeGlyph from '../../../components/summer-reading/TSpokeGlyph.astro';
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import UliTendril from '../../../components/summer-reading/UliTendril.astro';
+
+type Part = { t: string; s?: true };
+
+interface CharEntry {
+  name: string;
+  nameTag?: string;
+  onwu?: string;
+  onwuNone?: string;
+  descOnly?: boolean;
+  respell?: Part[];
+  desc: string;
+}
+
+interface TermEntry {
+  name: string;
+  nameTag?: string;
+  onwu: string;
+  respell: Part[];
+  desc: string;
+}
+
+const GROUPS: { eyebrow: string; title: string; cards: CharEntry[] }[] = [
+  {
+    eyebrow: 'The compound',
+    title: "Okonkwo's household",
+    cards: [
+      {
+        name: 'Okonkwo',
+        onwu: 'Ọkọnkwọ',
+        respell: [{t:'oh-'},{t:'KAWN',s:true},{t:'-kwoh'}],
+        desc: 'A respected wrestler, farmer, and titled man of Umuofia, driven by a fear of resembling his father.',
+      },
+      {
+        name: 'Unoka',
+        onwu: 'Unoka',
+        respell: [{t:'oo-'},{t:'NOH',s:true},{t:'-kah'}],
+        desc: "Okonkwo's late father; a gifted flute-player and a poor, indebted provider.",
+      },
+      {
+        name: 'Nwoye',
+        onwu: 'Nwoye',
+        respell: [{t:'NWOH',s:true},{t:'-yeh'}],
+        desc: "Okonkwo's eldest son; sensitive and quietly questioning.",
+      },
+      {
+        name: 'Ekwefi',
+        onwu: 'Ekwefi',
+        respell: [{t:'eh-'},{t:'KWEH',s:true},{t:'-fee'}],
+        desc: "Okonkwo's second wife, who left a previous husband for him.",
+      },
+      {
+        name: 'Ezinma',
+        onwu: 'Ezinma',
+        respell: [{t:'eh-'},{t:'ZEEN',s:true},{t:'-mah'}],
+        desc: "Ekwefi's only surviving child; sharp, spirited, and her father's favorite.",
+      },
+      {
+        name: 'Ikemefuna',
+        onwu: 'Ikemefuna',
+        respell: [{t:'ee-keh-meh-'},{t:'FOO',s:true},{t:'-nah'}],
+        desc: "A boy from a neighboring village who comes to live in Okonkwo's compound.",
+      },
+      {
+        name: 'Obiageli',
+        onwu: 'Obiageli',
+        respell: [{t:'oh-bee-ah-'},{t:'GEH',s:true},{t:'-lee'}],
+        desc: "A girl of Okonkwo's household.",
+      },
+    ],
+  },
+  {
+    eyebrow: 'Umuofia',
+    title: 'Kin & community',
+    cards: [
+      {
+        name: 'Obierika',
+        onwu: 'Obierika',
+        respell: [{t:'oh-bee-'},{t:'EH',s:true},{t:'-ree-kah'}],
+        desc: "Okonkwo's closest friend; a thoughtful man who weighs custom against conscience.",
+      },
+      {
+        name: 'Ezeudu',
+        onwu: 'Ezeudu',
+        respell: [{t:'eh-zeh-'},{t:'OO',s:true},{t:'-doo'}],
+        desc: "The oldest and one of the most honored men in Okonkwo's village.",
+      },
+      {
+        name: 'Nwakibie',
+        onwu: 'Nwakibie',
+        respell: [{t:'nwah-'},{t:'KEE',s:true},{t:'-bee-eh'}],
+        desc: 'A wealthy, titled man of Umuofia who helps Okonkwo get his start.',
+      },
+      {
+        name: 'Chielo',
+        onwu: 'Chielo',
+        respell: [{t:'CHEE',s:true},{t:'-eh-loh'}],
+        desc: 'A village woman who serves as priestess of the Oracle, Agbala.',
+      },
+      {
+        name: 'Uchendu',
+        onwu: 'Uchendu',
+        respell: [{t:'oo-'},{t:'CHEN',s:true},{t:'-doo'}],
+        desc: "Okonkwo's maternal uncle; an elder who offers hard-won counsel.",
+      },
+    ],
+  },
+  {
+    eyebrow: 'Church & colony',
+    title: 'The mission',
+    cards: [
+      {
+        name: 'Enoch',
+        onwuNone: 'biblical loan-name',
+        respell: [{t:'EE',s:true},{t:'-nuhk'}],
+        desc: 'A zealous Igbo convert to the new church.',
+      },
+      {
+        name: 'Mr. Kiaga',
+        onwu: 'Kiaga',
+        respell: [{t:'kee-'},{t:'AH',s:true},{t:'-gah'}],
+        desc: 'The Igbo interpreter and catechist who leads the mission congregation.',
+      },
+      {
+        name: 'Mr. Brown',
+        descOnly: true,
+        desc: 'The first missionary in the Umuofia district; favors patience and accommodation over confrontation.',
+      },
+      {
+        name: 'Mr. Smith',
+        descOnly: true,
+        desc: "Mr. Brown's uncompromising successor, whose approach sharpens the conflict between the church and the clan.",
+      },
+    ],
+  },
+];
+
+const TERMS: TermEntry[] = [
+  {
+    name: 'chi',
+    onwu: 'chi',
+    respell: [{t:'chee'}],
+    desc: "A person's personal god or spirit, assigned at birth.",
+  },
+  {
+    name: 'Agbala',
+    onwu: 'Agbala',
+    respell: [{t:'ahg-'},{t:'BAH',s:true},{t:'-lah'}],
+    desc: 'The Oracle of the Hills and the Caves; also a word for a man who has taken no title.',
+  },
+  {
+    name: 'egwugwu',
+    onwu: 'egwugwu',
+    respell: [{t:'eh-'},{t:'GWOO',s:true},{t:'-gwoo'}],
+    desc: 'A masked dancer who embodies an ancestral spirit of the village.',
+  },
+  {
+    name: 'Ala',
+    nameTag: '(Ani)',
+    onwu: 'Ala / Ana',
+    respell: [{t:'AH',s:true},{t:'-lah ('},{t:'AH',s:true},{t:'-nee)'}],
+    desc: 'The earth goddess, source of morality and law; offences against her are the gravest.',
+  },
+  {
+    name: 'osu',
+    onwu: 'osu',
+    respell: [{t:'OH',s:true},{t:'-soo'}],
+    desc: 'An outcast dedicated to a god, set apart from the freeborn.',
+  },
+  {
+    name: 'obi',
+    onwu: 'obi',
+    respell: [{t:'OH',s:true},{t:'-bee'}],
+    desc: 'The large living quarters of the head of a family.',
+  },
+  {
+    name: 'ndichie',
+    onwu: 'ndichie',
+    respell: [{t:'n-'},{t:'DEE',s:true},{t:'-chee-eh'}],
+    desc: 'The elders of the village.',
+  },
+  {
+    name: 'ogbanje',
+    onwu: 'ọgbanje',
+    respell: [{t:'ohg-'},{t:'BAHN',s:true},{t:'-jeh'}],
+    desc: 'A child believed to die and return to its mother to be born again and again.',
+  },
+  {
+    name: 'iyi-uwa',
+    onwu: 'iyi-ụwa',
+    respell: [{t:'ee-yee-'},{t:'OO',s:true},{t:'-wah'}],
+    desc: 'The buried stone linking an ogbanje to the spirit world.',
+  },
+  {
+    name: 'ọjị',
+    nameTag: '(kola)',
+    onwu: 'ọjị',
+    respell: [{t:'OH',s:true},{t:'-jee'}],
+    desc: 'The kola nut, broken and shared as a rite of welcome and communion.',
+  },
+  {
+    name: 'ozo',
+    onwu: 'ọzọ',
+    respell: [{t:'OH',s:true},{t:'-zoh'}],
+    desc: 'One of the titles a man may take; a mark of rank and achievement.',
+  },
+  {
+    name: 'Umuofia',
+    onwu: 'Ụmụọfia',
+    respell: [{t:'oo-moo-'},{t:'OH',s:true},{t:'-fee-ah'}],
+    desc: "Okonkwo's clan — the union of nine villages where the novel is set.",
+  },
+];
+
+const SPOKES = [
+  { n: '01', title: 'World',       href: '/summer-reading/tfa/world',   idx: 0 as const, spk: 'var(--t-terra)'  },
+  { n: '02', title: 'Society',     href: '/summer-reading/tfa/culture', idx: 1 as const, spk: 'var(--t-forest)' },
+  { n: '03', title: 'Colonialism', href: '/summer-reading/tfa/history', idx: 2 as const, spk: 'var(--t-ochre)'  },
+  { n: '04', title: 'Key Figures', href: '/summer-reading/tfa/figures', idx: 3 as const, spk: 'var(--t-terra)'  },
+  { n: '05', title: 'Connections', href: '/summer-reading/tfa/novel',   idx: 4 as const, spk: 'var(--t-forest)' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <title>Pronunciation Guide — Things Fall Apart · AP Literature Summer Reading</title>
+</head>
+<body>
+
+<div class="sr-page" data-section="tfa">
+
+  <!-- ── Topbar ─────────────────────────────────────────────────────────── -->
+  <header class="sr-topbar">
+    <a href="/summer-reading" class="tfa-topbar-back">
+      <span class="tfa-back-arrow">←</span> The World Was All Before Them
+    </a>
+    <div class="tfa-topbar-context">
+      <span class="tfa-topbar-badge">
+        <TSpokeGlyph idx={5} size={20} color="var(--color-ink)" />
+      </span>
+      <span class="sr-topbar-context">Things Fall Apart &middot; Pronunciation Guide</span>
+    </div>
+  </header>
+
+  <!-- ── 6-col switcher: Pronunciation (active) + 5 spokes ─────────────── -->
+  <nav class="tfa-switcher" aria-label="Things Fall Apart sections">
+    <div class="tfa-switcher-eyebrow">Things Fall Apart &middot; Pronunciation &amp; five ways in</div>
+    <div class="tfa-switcher-grid">
+      <!-- Current page: Pronunciation -->
+      <a href="#" class="spk-mini is-active" aria-current="page" style="--spk: var(--t-terra);">
+        <span class="spk-mini-glyph">
+          <TSpokeGlyph idx={5} size={26} color="var(--t-cream)" />
+        </span>
+        <span class="spk-mini-text">
+          <span class="spk-mini-num">Guide</span>
+          <span class="spk-mini-title">Pronunciation</span>
+        </span>
+      </a>
+      <!-- Five spokes -->
+      {SPOKES.map((s) => (
+        <a href={s.href} class="spk-mini" style={`--spk: ${s.spk};`}>
+          <span class="spk-mini-glyph">
+            <TSpokeGlyph idx={s.idx} size={26} color="var(--color-ink)" />
+          </span>
+          <span class="spk-mini-text">
+            <span class="spk-mini-num">{s.n}</span>
+            <span class="spk-mini-title">{s.title}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- ── Main content ──────────────────────────────────────────────────── -->
+  <main class="pg-main">
+
+    <SectionOpener
+      text="tfa"
+      eyebrow="THINGS FALL APART"
+      heading="Pronunciation Guide"
+    />
+
+    <!-- Intro -->
+    <div class="pg-intro">
+      <p class="pg-intro-lead">
+        Names follow Achebe's spelling — the form in your book. Each entry also
+        shows the name in modern Ọnwụ orthography, which marks open vowels with
+        an underdot (<span class="pg-dotted">ị ọ ụ</span>). The respelling below
+        uses everyday English syllables; the <span class="pg-stress">stressed syllable</span> is
+        marked in terra.
+      </p>
+
+      <!-- Tonal-language note -->
+      <div class="pg-note">
+        <span class="pg-note-label">On tone</span>
+        <p>
+          Igbo is a tonal language: the pitch of a syllable can change a word's
+          meaning. The respellings below approximate the <em>sounds</em> and
+          stress for English readers, but they cannot capture tone. Where audio
+          is available, trust the recording over the respelling.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Character groups ──────────────────────────────────────────────── -->
+    {GROUPS.map((group) => (
+      <div class="pg-group">
+        <div class="pg-group-head">
+          <span class="pg-group-eyebrow">{group.eyebrow}</span>
+          <h2 class="pg-group-title">{group.title}</h2>
+        </div>
+        <div class="pg-grid">
+          {group.cards.map((card) => (
+            <div class="pg-card">
+              {/* Name */}
+              <p class="pg-card-name">
+                {card.name}
+                {card.nameTag && <span class="pg-card-name-tag">{card.nameTag}</span>}
+              </p>
+
+              {/* Ọnwụ line — normal form, none (biblical), or omitted (descOnly) */}
+              {!card.descOnly && (
+                card.onwu ? (
+                  <div class="pg-card-onwu">
+                    <span class="pg-onwu-label">Ọnwụ</span>
+                    <span class="pg-onwu-form">{card.onwu}</span>
+                  </div>
+                ) : card.onwuNone ? (
+                  <div class="pg-card-onwu pg-card-onwu--none">
+                    <span class="pg-onwu-label">Ọnwụ</span>
+                    <span class="pg-onwu-form">{card.onwuNone}</span>
+                  </div>
+                ) : null
+              )}
+
+              {/* Description-only tag (English missionaries) */}
+              {card.descOnly && (
+                <span class="pg-card-tag">English missionary &middot; no respelling needed</span>
+              )}
+
+              {/* Respelling row */}
+              {!card.descOnly && card.respell && (
+                <div class="pg-card-respell-row">
+                  <span class="pg-card-respell">
+                    {card.respell.map((p) =>
+                      p.s ? <span class="pg-stress">{p.t}</span> : p.t
+                    )}
+                  </span>
+                </div>
+              )}
+
+              {/* Description */}
+              <p class="pg-card-desc">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- ── Key terms ──────────────────────────────────────────────────────── -->
+    <div class="pg-group pg-terms">
+      <div class="pg-group-head">
+        <span class="pg-group-eyebrow">Glossary</span>
+        <h2 class="pg-group-title">Key terms — Igbo</h2>
+      </div>
+      <div class="pg-grid">
+        {TERMS.map((term) => (
+          <div class="pg-card pg-term">
+            <p class="pg-card-name">
+              {term.name}
+              {term.nameTag && <span class="pg-card-name-tag">{term.nameTag}</span>}
+            </p>
+            <div class="pg-card-onwu">
+              <span class="pg-onwu-label">Ọnwụ</span>
+              <span class="pg-onwu-form">{term.onwu}</span>
+            </div>
+            <div class="pg-card-respell-row">
+              <span class="pg-card-respell">
+                {term.respell.map((p) =>
+                  p.s ? <span class="pg-stress">{p.t}</span> : p.t
+                )}
+              </span>
+            </div>
+            <p class="pg-card-desc">{term.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- End signature -->
+    <div class="pg-end-signature">
+      <UliTendril width={80} color="var(--t-terra)" opacity={0.55} />
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>

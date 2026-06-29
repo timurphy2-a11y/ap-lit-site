@@ -1,0 +1,233 @@
+/* Things Fall Apart — Pronunciation Guide
+ * Layered on top of pachinko-pronunciation.css (which defines the shared
+ * pg- component system). This file adds TFA-specific overrides and the
+ * TFA-only elements (Ọnwụ line, tonal note, tfa-switcher/spk-mini).
+ *
+ * Igbo has no separate native script in the novel's era, so each card leads
+ * with Achebe's spelling as the hero (1.5rem) and carries the modern Ọnwụ
+ * orthography as a smaller labeled line, instead of the Hangul/kana specimen
+ * used by the Pachinko guide.
+ */
+
+/* ── TFA variable bindings (parallel to [data-section="pachinko"]) ─────── */
+[data-section="tfa"] {
+  --pg-accent:      var(--t-terra);
+  --pg-accent-soft: color-mix(in srgb, var(--t-terra) 16%, var(--color-cream));
+  --pg-eyebrow:     var(--t-forest);
+  --pg-onwu-ink:    color-mix(in srgb, var(--t-terra) 48%, var(--color-ink));
+}
+
+/* ── Screen-reader utility ──────────────────────────────────────────────── */
+.sr-visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ── Topbar ─────────────────────────────────────────────────────────────── */
+.tfa-topbar-back    { display: inline-flex; align-items: center; gap: var(--s-2); }
+.tfa-back-arrow     { color: var(--t-terra); }
+.tfa-topbar-context { display: inline-flex; align-items: center; gap: var(--s-2); }
+.tfa-topbar-badge   { display: inline-flex; }
+.tfa-topbar-badge svg { display: block; }
+
+/* ── Name hero: TFA cards have no script specimen, so name sits at 1.5rem ─ */
+[data-section="tfa"] .pg-card-name {
+  font-size: 1.5rem;
+}
+
+/* Parenthetical surname / identifier tag after the main name */
+.pg-card-name-tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  margin-left: 0.35em;
+}
+
+/* ── Ọnwụ orthography line ──────────────────────────────────────────────── */
+.pg-card-onwu {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  margin: calc(var(--s-1) * -1) 0 0;
+}
+.pg-onwu-label {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  transform: translateY(-1px);
+}
+.pg-onwu-form {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: var(--pg-onwu-ink);
+}
+.pg-card-onwu--none .pg-onwu-form {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+/* ── Description-only tag (Mr. Brown, Mr. Smith) ────────────────────────── */
+.pg-card-tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--color-muted);
+}
+
+/* ── Dotted-vowel highlight in intro text (ị ọ ụ) ───────────────────────── */
+.pg-dotted {
+  color: var(--pg-onwu-ink);
+  font-style: normal;
+}
+
+/* ── Tonal-language note ─────────────────────────────────────────────────── */
+.pg-note {
+  max-width: 38rem;
+  margin: var(--s-6) auto 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--color-rule);
+  text-align: left;
+}
+.pg-note-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--pg-accent);
+  margin-bottom: var(--s-2);
+}
+.pg-note p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  line-height: var(--lh-meta);
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+.pg-note em {
+  font-style: italic;
+  color: var(--color-ink);
+}
+
+/* ── TFA 6-col spoke switcher ───────────────────────────────────────────── */
+.tfa-switcher {
+  background: var(--color-warm);
+  border-bottom: var(--rule-thin);
+  padding: var(--s-3) var(--gutter-lg);
+}
+.tfa-switcher-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-muted);
+  margin-bottom: var(--s-2);
+}
+.tfa-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--s-2);
+}
+
+/* Mini spoke card (active = pronunciation guide; others = spoke links) */
+.spk-mini {
+  --spk: var(--t-terra);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 50px;
+  padding: 9px 12px;
+  box-sizing: border-box;
+  background: var(--color-cream);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--spk);
+  text-decoration: none;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+}
+.spk-mini:hover:not(.is-active) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(44, 40, 32, 0.12);
+}
+.spk-mini-glyph { flex: none; display: flex; }
+.spk-mini-glyph svg { display: block; }
+.spk-mini-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.spk-mini-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  display: block;
+}
+.spk-mini-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  display: block;
+}
+.spk-mini.is-active {
+  background: var(--spk);
+  border-color: var(--spk);
+  border-top-color: var(--spk);
+}
+.spk-mini.is-active .spk-mini-num   { color: rgba(240, 228, 207, 0.8); }
+.spk-mini.is-active .spk-mini-title { color: var(--t-cream); }
+
+/* ── Term card TFA overrides (forest accent rail + Ọnwụ form color) ─────── */
+[data-section="tfa"] .pg-term {
+  border-top-color: color-mix(in srgb, var(--pg-eyebrow) 42%, var(--color-rule));
+}
+[data-section="tfa"] .pg-term:hover,
+[data-section="tfa"] .pg-term:focus-within {
+  border-top-color: var(--pg-eyebrow);
+}
+[data-section="tfa"] .pg-term .pg-card-name  { font-style: italic; font-weight: 400; }
+[data-section="tfa"] .pg-term .pg-onwu-form  { color: color-mix(in srgb, var(--pg-eyebrow) 55%, var(--color-ink)); }
+[data-section="tfa"] .pg-term .pg-stress     { color: var(--pg-eyebrow); }
+[data-section="tfa"] .pg-term .pg-audio {
+  background: color-mix(in srgb, var(--pg-eyebrow) 16%, var(--color-cream));
+  border-color: color-mix(in srgb, var(--pg-eyebrow) 40%, var(--color-rule));
+  color: var(--pg-eyebrow);
+}
+[data-section="tfa"] .pg-term .pg-audio:hover,
+[data-section="tfa"] .pg-term .pg-audio.is-playing { background: var(--pg-eyebrow); color: #fff; }
+
+/* ── Switcher responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .tfa-switcher-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px) {
+  .spk-mini {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    align-items: center;
+    padding: 8px 6px;
+  }
+  .spk-mini-text { align-items: center; }
+}
+@media (max-width: 480px) {
+  .tfa-switcher-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spk-mini { transition: none; }
+}
