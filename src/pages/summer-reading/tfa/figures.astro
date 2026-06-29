@@ -1,16 +1,307 @@
 ---
 import SummerLayout from '../../../layouts/SummerLayout.astro';
+import SectionOpener from '../../../components/summer-reading/SectionOpener.astro';
+import EndSignature from '../../../components/summer-reading/EndSignature.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
-import { getEntry, render } from 'astro:content';
+import UliSeal from '../../../components/summer-reading/UliSeal.astro';
+import UliTendril from '../../../components/summer-reading/UliTendril.astro';
+import '../../../styles/tfa-figures.css';
 
-const entry = await getEntry('summerReading', 'tfa/figures');
-const { Content } = await render(entry);
+const imgBase = '/images/summer-reading/tfa';
 ---
-<SummerLayout title={entry.data.title} section="tfa" spoke="figures">
-  <Content />
+
+<SummerLayout title="Key Figures — Things Fall Apart · The Living Atlas" section="tfa" spoke="figures">
+
+  <SectionOpener text="tfa" eyebrow="THINGS FALL APART" heading="Key Figures" />
+
+  <div class="fig-main">
+
+    <div class="fig-intro">
+      <p class="fig-intro-lead">The figures on this page are not characters in <em>Things Fall Apart</em> — they are the people whose decisions shaped the historical world the novel inhabits, and the writer who made that world visible on the page.</p>
+    </div>
+
+    <!-- ── Row A · the colonial & mission apparatus (three uprights) ── -->
+    <div class="fig-row fig-row--triple">
+
+      <!-- Frederick Lugard -->
+      <article class="fig-card fig-card--std" id="fig-lugard" data-seal="cold">
+        <div class="fig-card-portrait has-img">
+          <img class="fig-card-img" src={`${imgBase}/t4-lugard-zoo.png`} alt="Frederick Lugard standing among the Sultan of Sokoto and northern emirs at the London Zoological Gardens" style="object-position: 47% 26%;" />
+          <span class="fig-card-credit">Lugard (centre), with the Sultan of Sokoto &amp; emirs · Wikimedia Commons · PD</span>
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <UliSeal size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Administrator · The Framework</span>
+          <h3 class="fig-card-name">Frederick Lugard</h3>
+          <span class="fig-card-dates">1858–1945</span>
+          <p class="fig-card-role">High Commissioner of Northern Nigeria; Governor-General of Nigeria</p>
+          <p class="fig-card-teaser">The doctrine of indirect rule that built the governance of colonial Nigeria — and, in Igboland, catastrophically failed.</p>
+          <button class="fig-card-trigger" data-fig="fig-lugard">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Frederick Lugard</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Frederick Lugard was the British military officer and colonial administrator who built the governing framework of colonial Nigeria. After service in India, Egypt, and East Africa, he was appointed High Commissioner of Northern Nigeria in 1900. His signature contribution to British colonial policy — the doctrine of <em>indirect rule</em> — was designed to govern a vast territory with minimal British presence, working through existing local authority rather than deploying officials throughout the interior.</p>
+          <p>In the hierarchical Islamic north, this worked reasonably well. In the acephalous Igbo south — a society with no kings and no chiefs to rule through — it produced the warrant-chief disaster: the British simply appointed men as "chiefs," inventing an authority that Igbo society had never granted. In 1914 Lugard amalgamated the northern and southern protectorates into a single Colony and Protectorate of Nigeria, enclosing peoples with no historical relationship — and in some cases old enmities — inside a unity that was a British administrative fiction. He served as Governor-General until 1919. He remains one of the most consequential, and most controversial, figures of British colonial Africa.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>Lugard never appears in <em>Things Fall Apart</em>, but the District Commissioner who arrives in its final chapters is the human face of his system. The court, the messengers, the prison, the hanging of the village's leaders, and the Commissioner's plan to write them up in a book — all of it is indirect rule operating exactly as designed: a thin layer of British authority laid over a society it neither understood nor recognized.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Joyce Cary -->
+      <article class="fig-card fig-card--std" id="fig-cary" data-seal="cold">
+        <div class="fig-card-portrait has-img fig-card-portrait--artifact">
+          <img class="fig-card-img" src={`${imgBase}/t4-mister-johnson-cover.jpeg`} alt="Cover of the novel Mister Johnson by Joyce Cary" />
+          <span class="fig-card-credit">Mister Johnson (1939) — the provocation · book cover, educational use</span>
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <UliSeal size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Novelist · The Provocation</span>
+          <h3 class="fig-card-name">Joyce Cary</h3>
+          <span class="fig-card-dates">1888–1957</span>
+          <p class="fig-card-role">Author of <em>Mister Johnson</em>; colonial administrator in Nigeria, 1913–1920</p>
+          <p class="fig-card-teaser">The British novelist whose "sympathetic" portrait of an African character was the immediate provocation for <em>Things Fall Apart</em>.</p>
+          <button class="fig-card-trigger" data-fig="fig-cary">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Joyce Cary</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Joyce Cary was a British novelist who served as a colonial administrator in Nigeria from 1913 to 1920. His 1939 novel <em>Mister Johnson</em> — set in colonial Nigeria, with a Nigerian protagonist who enthusiastically embraces British colonial culture — was widely praised in Britain as a sympathetic, humanizing portrait of an African.</p>
+          <p>Achebe, who read it as a student at Ibadan, found it deeply condescending. In Cary's novel, Mister Johnson's devotion to his white employer — and his ultimate willingness to be killed by him — were meant to move the reader. To Achebe they represented the precise failure of imagination he set out to correct: the inability to grant an African character a full interior life, genuine agency, and the right to be the subject rather than the object of his own story. Cary does not appear in <em>Things Fall Apart</em>. But the tradition he stands for — British literature about Africa, written by British people who had been to Africa yet could not see it on its own terms — is exactly what Achebe was writing against.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>The last paragraph of <em>Things Fall Apart</em> is Achebe's direct answer to Cary. The District Commissioner decides that Okonkwo's whole life and death are worth perhaps "a reasonable paragraph" in the book he means to write — <em>The Pacification of the Primitive Tribes of the Lower Niger</em>. The entire tragedy the reader has just lived through, reduced to colonial footnote: that reduction is the thing Achebe wrote the novel to refuse.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Archdeacon Thomas John Dennis -->
+      <article class="fig-card fig-card--std" id="fig-dennis" data-seal="cold">
+        <div class="fig-card-portrait has-img">
+          <img class="fig-card-img" src={`${imgBase}/t4-dennis.jpg`} alt="Archdeacon Thomas John Dennis, CMS missionary" />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <UliSeal size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Missionary · The Standard</span>
+          <h3 class="fig-card-name">Thomas John Dennis</h3>
+          <span class="fig-card-dates">1869–1917</span>
+          <p class="fig-card-role">Church Missionary Society; creator of "Union Igbo"</p>
+          <p class="fig-card-teaser">A devoted missionary whose standardized Bible became the written Igbo taught in every mission school — a language Achebe said could not sing.</p>
+          <button class="fig-card-trigger" data-fig="fig-dennis">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Archdeacon Thomas John Dennis</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Thomas John Dennis was a British Anglican missionary who came to Nigeria in 1894 and spent the rest of his life there. By every account he was a man of genuine commitment and considerable ability: he learned Igbo, published a grammar and a literacy primer, and undertook the immense labor of translating the entire Bible into a language he had adopted as his own. He died in 1917 when the ship carrying him home was torpedoed by a German submarine; a suitcase holding a draft of his Igbo–English dictionary washed up on a Welsh beach, where a fisherman dried the pages and returned them.</p>
+          <p>The Igbo language has many dialects, some barely mutually intelligible. To produce a single Bible, Dennis and a committee of Igbo assistants assembled, from 1906, a constructed written form he called "Union Igbo" — and because the missionaries controlled the schools, it became the standard taught across Igboland. Achebe was blunt about the result: the standard version, he said, "cannot sing… It's heavy. It's wooden. It doesn't go anywhere." The living dialects he grew up hearing were orally rich; the written form available to him belonged to no organic tradition. His decision to write in English was partly a response to that loss. He extended the charge to the scholars who codified modern Standard Igbo in 1973, calling them "disciples of Dennis."</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>The school Mr. Brown builds in Umuofia is the same apparatus Dennis served — and, the novel quietly shows, it is no neutral gift. It is the mechanism through which Igbo children are equipped to staff a colonial administration built to work around their own elders. Dennis's standardized language is the slower, longer cost of that arrival: a cultural change that outlasts every event in the book.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ── Row B · the institution (full-width band, no portrait) ── -->
+    <div class="fig-row">
+      <article class="fig-card fig-card--inst" id="fig-cms" data-seal="cold">
+        <div class="fig-card-plate">
+          <div class="fig-card-plate-mark" aria-hidden="true">
+            <UliTendril width={58} color="#49545F" opacity={0.85} />
+          </div>
+          <div class="fig-card-plate-meta">Founded London, 1799<br />Onitsha mission, 1857</div>
+          <div class="fig-card-plate-note">An institution — not a person</div>
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <UliSeal size={34} color="#49545F" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Institution · The Mission</span>
+          <h3 class="fig-card-name">The Church Missionary Society</h3>
+          <span class="fig-card-dates">CMS · Anglican · est. 1799</span>
+          <p class="fig-card-role">The dominant Protestant missionary organization in West Africa</p>
+          <p class="fig-card-teaser">Mr. Brown's patient church and school, then Mr. Smith's confrontation — the mixed face of the mission in Igboland.</p>
+          <button class="fig-card-trigger" data-fig="fig-cms">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about the Church Missionary Society</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>The Church Missionary Society was founded in London in 1799 by evangelical Anglicans and became the dominant Protestant missionary organization in West Africa, establishing its first permanent Nigerian base at Onitsha in 1857 and extending through Igboland over the following decades. The CMS trained indigenous clergy, established schools, and produced the first written materials in Igbo. These contributions were real. So were the institutional disruptions they enabled.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In the novel</span>
+            <p>The missionaries who arrive in Umuofia are never named as CMS, but their pattern mirrors the real mission: first Mr. Brown's patient approach — building a church and a school, winning converts slowly — then the stricter Mr. Smith, whose confrontational posture brings the conflict to its head. And the school Mr. Brown builds is not a neutral gift. It is the means by which Igbo children are trained to serve a colonial administration designed to work around the authority the <em>egwugwu</em> represent. Mission and administration were inseparable in practice, whatever the missionaries' stated intentions.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ── Row C · the author (full-width closing band) ── -->
+    <div class="fig-row">
+      <article class="fig-card fig-card--feature" id="fig-achebe" data-seal="warm">
+        <div class="fig-card-portrait has-img">
+          <img class="fig-card-img" src={`${imgBase}/t4-chinua-achebe.jpg`} alt="Chinua Achebe, author photograph" />
+        </div>
+        <div class="fig-card-seal" aria-hidden="true">
+          <UliSeal size={34} color="var(--t-terra)" />
+        </div>
+        <div class="fig-card-body">
+          <span class="fig-card-eyebrow">Author · The Answer</span>
+          <h3 class="fig-card-name">Chinua Achebe</h3>
+          <span class="fig-card-dates">1930–2013</span>
+          <p class="fig-card-role">Author of <em>Things Fall Apart</em> (1958), the most widely read African novel in history</p>
+          <p class="fig-card-quote">"...to help my society regain belief in itself and to put away the complexes of the years of denigration and self-abasement."</p>
+          <p class="fig-card-quote-attr">— Chinua Achebe, "The Novelist as Teacher," 1965</p>
+          <button class="fig-card-trigger" data-fig="fig-achebe">
+            <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
+            <span class="sr-visually-hidden"> about Chinua Achebe</span>
+          </button>
+        </div>
+        <div class="fig-card-detail" hidden>
+          <p>Chinua Achebe was born Albert Chinụalụmọgụ Achebe on November 16, 1930, in Ogidi, in colonial Nigeria. His father was a catechist for the Church Missionary Society, and Achebe grew up in a household that was Christian but surrounded by the traditional Igbo culture his father had left — a formation that gave him, as he later wrote, the vantage point of someone who could see both worlds from the inside. He studied English at University College, Ibadan, where reading the British novels of the curriculum crystallized what was wrong with Western writing about Africa.</p>
+          <p>Joyce Cary's <em>Mister Johnson</em> was the immediate provocation; more broadly, he saw that the whole tradition — including Conrad's <em>Heart of Darkness</em>, which he would dismantle in his 1975 essay "An Image of Africa" — rendered Africa as a backdrop for European dramas, never granting Africans interiority, history, or culture. <em>Things Fall Apart</em> was his response: an African civilization as subject, an African man's tragedy rendered with full seriousness, the colonial disruption witnessed from inside rather than narrated from above. Published by Heinemann in 1958, two years before Nigerian independence, it has been translated into more than fifty languages and sold over twenty million copies.</p>
+          <p>It began a lifelong project — <em>No Longer at Ease</em> (1960), <em>Arrow of God</em> (1964), <em>A Man of the People</em> (1966) — a panorama of Nigerian experience from the pre-colonial past to the postcolonial present. When the Igbo homeland seceded as Biafra in 1967, Achebe chose to stay and serve its cause; he kept a considered silence about the war's full horror for over forty years, breaking it only in <em>There Was a Country</em> (2012), a year before his death. A 1990 car accident left him using a wheelchair; he taught for years at Bard and then Brown. In 2007 he received the Man Booker International Prize. He died in Boston on March 21, 2013, at eighty-two.</p>
+          <div class="fig-note">
+            <span class="fig-note-label">In his own words</span>
+            <p>"I would be quite satisfied if my novels did no more than teach my African readers that their past — with all its imperfections — was not one long night of savagery from which the first Europeans acting on God's behalf delivered them."</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="fig-end-row">
+      <EndSignature text="tfa" />
+    </div>
+
+  </div>
+
+  <!-- ── Bio modal ── -->
+  <div class="fig-modal-overlay" id="figModal" hidden>
+    <div class="fig-modal" role="dialog" aria-modal="true" aria-labelledby="figModalName">
+      <button class="fig-modal-close" id="figModalClose" aria-label="Close figure">&times;</button>
+      <div class="fig-modal-portraits" id="figModalPortraits"></div>
+      <div class="fig-modal-seal" id="figModalSeal" aria-hidden="true"></div>
+      <div class="fig-modal-head">
+        <span class="fig-modal-eyebrow" id="figModalEyebrow"></span>
+        <h2 class="fig-modal-name" id="figModalName"></h2>
+        <span class="fig-modal-dates" id="figModalDates"></span>
+        <p class="fig-modal-role" id="figModalRole"></p>
+      </div>
+      <div class="fig-modal-bio" id="figModalBio"></div>
+    </div>
+  </div>
+
   <SpokePagination
     section="tfa"
     prev={{ slug: 'history', title: 'Colonialism', number: 3 }}
     next={{ slug: 'novel', title: 'Connections', number: 5 }}
   />
+
 </SummerLayout>
+
+<script is:inline>
+(function () {
+  'use strict';
+
+  /* Uli-seal SVG (warm = terra, cold = slate, ochre accent node) */
+  function uliSeal(size, color) {
+    var c = size / 2, r = size * 0.42;
+    var w = size * 0.56, x0 = (size - w) / 2, a = w * 0.20, y = c + size * 0.02;
+    var curve =
+      'M ' + x0 + ' ' + (y + a * 0.2) +
+      ' C ' + (x0 + w * 0.16) + ' ' + (y - a) + ', ' + (x0 + w * 0.34) + ' ' + (y - a) + ', ' + (x0 + w * 0.5) + ' ' + y +
+      ' C ' + (x0 + w * 0.66) + ' ' + (y + a) + ', ' + (x0 + w * 0.84) + ' ' + (y + a) + ', ' + (x0 + w) + ' ' + (y - a * 0.6);
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '" fill="none" aria-hidden="true">' +
+      '<circle cx="' + c + '" cy="' + c + '" r="' + r + '" stroke="' + color + '" stroke-width="1.3"/>' +
+      '<circle cx="' + c + '" cy="' + (c - size * 0.20) + '" r="' + (size * 0.045) + '" fill="#D4A840"/>' +
+      '<path d="' + curve + '" stroke="' + color + '" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>';
+  }
+
+  var overlay, dialog, lastFocus = null;
+
+  function byId(id) { return document.getElementById(id); }
+
+  function fill(card) {
+    var grab = function (sel) { var n = card.querySelector(sel); return n ? n.innerHTML : ''; };
+
+    byId('figModalEyebrow').innerHTML = grab('.fig-card-eyebrow');
+    byId('figModalName').innerHTML    = grab('.fig-card-name');
+    byId('figModalDates').innerHTML   = grab('.fig-card-dates');
+    byId('figModalRole').innerHTML    = grab('.fig-card-role');
+
+    /* Re-stamp modal seal in originating card's warm/cold register */
+    var sealEl = byId('figModalSeal');
+    var isCold = card.getAttribute('data-seal') === 'cold';
+    sealEl.innerHTML = uliSeal(44, isCold ? '#49545F' : 'var(--t-terra)');
+
+    /* Clone portrait(s) from the card */
+    var pWrap = byId('figModalPortraits');
+    pWrap.innerHTML = '';
+    card.querySelectorAll('.fig-card-portrait').forEach(function (p) {
+      var clone = document.createElement('div');
+      clone.className = p.className;
+      clone.setAttribute('data-ph', p.getAttribute('data-ph') || '');
+      clone.innerHTML = p.innerHTML;
+      pWrap.appendChild(clone);
+    });
+
+    byId('figModalBio').innerHTML = (card.querySelector('.fig-card-detail') || {}).innerHTML || '';
+    dialog.scrollTop  = 0;
+    overlay.scrollTop = 0;
+  }
+
+  function open(card, trigger) {
+    lastFocus = trigger || document.activeElement;
+    fill(card);
+    overlay.hidden = false;
+    void overlay.offsetWidth;
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    byId('figModalClose').focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    var done = function () {
+      if (!overlay.classList.contains('is-open')) overlay.hidden = true;
+      overlay.removeEventListener('transitionend', done);
+    };
+    overlay.addEventListener('transitionend', done);
+    setTimeout(function () { if (!overlay.classList.contains('is-open')) overlay.hidden = true; }, 360);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function init() {
+    overlay = byId('figModal');
+    if (!overlay) return;
+    dialog = overlay.querySelector('.fig-modal');
+
+    document.querySelectorAll('.fig-card-trigger').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = document.getElementById(btn.getAttribute('data-fig'));
+        if (card) open(card, btn);
+      });
+    });
+
+    byId('figModalClose').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

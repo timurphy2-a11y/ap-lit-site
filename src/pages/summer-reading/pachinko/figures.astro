@@ -360,7 +360,7 @@ const imgBase = '/images/summer-reading/pachinko';
     overlay.classList.remove('is-open');
     document.body.style.overflow = '';
     var done = function () {
-      overlay.hidden = true;
+      if (!overlay.classList.contains('is-open')) overlay.hidden = true;
       overlay.removeEventListener('transitionend', done);
     };
     overlay.addEventListener('transitionend', done);

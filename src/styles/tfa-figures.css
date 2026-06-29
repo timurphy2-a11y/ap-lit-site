@@ -1,8 +1,15 @@
-/* Pachinko — Spoke 4 · Key Figures
- * Layered ON TOP of summer-reading.css (which @imports tokens.css).
- * Card-grid reference page with click-to-expand bio modals.
- * No scrollytelling; the grid itself is the rhythm.
+/* Things Fall Apart — Spoke 4 · Key Figures
+ * Card-grid reference page: three uprights + institutional band + feature band.
+ * Layered on top of summer-reading.css (which @imports tokens.css).
+ * Accent: terra (eyebrows, warm seal) · forest (cues, hover, "In the novel" note).
  */
+
+.sr-page[data-spoke="figures"] {
+  --fig-warm:      var(--t-terra);
+  --fig-cold:      #49545F;
+  --fig-cue:       var(--t-forest);
+  --fig-note-tint: color-mix(in srgb, var(--t-forest) 9%, var(--color-cream));
+}
 
 /* ── Accessibility utility ──────────────────────────────────────────────── */
 .sr-visually-hidden {
@@ -13,7 +20,7 @@
   white-space: nowrap; border: 0;
 }
 
-/* ── Page container ─────────────────────────────────────────────────────── */
+/* ── Page intro ─────────────────────────────────────────────────────────── */
 .fig-main {
   max-width: var(--content-page);
   margin-inline: auto;
@@ -36,31 +43,18 @@
 }
 .fig-intro-lead em { font-style: normal; }
 
-/* ── Portrait images ─────────────────────────────────────────────────────── */
+/* ── Portrait: placeholder (striped, captioned) ─────────────────────────── */
 .fig-card-portrait {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  border: 1px solid var(--color-rule);
-  display: block;
-}
-.fig-card-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-
-/* ── Portrait placeholder (for unsourced images) ────────────────────────── */
-.fig-card-portrait--ph {
   background:
     repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--color-rule);
 }
-.fig-card-portrait--ph::after {
+.fig-card-portrait::after {
   content: attr(data-ph);
   white-space: pre-line;
   text-align: center;
@@ -75,42 +69,50 @@
   max-width: 84%;
 }
 
-/* ── Institutional tile (no portrait — typographic) ─────────────────────── */
-.fig-card-portrait--org {
+/* ── Portrait: sourced image ────────────────────────────────────────────── */
+.fig-card-portrait.has-img {
   background: var(--color-card);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-1);
-  border: 1px solid var(--color-rule);
 }
-.fig-card-portrait--org .fig-org-name {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--color-ink);
-  text-align: center;
-  line-height: var(--lh-tight);
+.fig-card-portrait.has-img::after { display: none; }
+.fig-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
-.fig-card-portrait--org .fig-org-est {
+/* Artifact (e.g. book cover): show whole, not cropped */
+.fig-card-portrait--artifact { background: #ece3d1; }
+.fig-card-portrait--artifact .fig-card-img {
+  object-fit: contain;
+  padding: 12px;
+}
+/* Credit chip pinned to bottom-left of portrait */
+.fig-card-credit {
+  position: absolute;
+  left: 0; bottom: 0;
+  z-index: 1;
+  max-width: 100%;
+  padding: 4px 8px;
   font-family: var(--font-mono);
   font-size: 8.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-muted);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  color: var(--color-cream, #F4EDDF);
+  background: rgba(27, 23, 20, 0.6);
 }
 
-/* ── Grid rows (asymmetric rhythm) ─────────────────────────────────────── */
+/* ── Grid rows ──────────────────────────────────────────────────────────── */
 .fig-row {
   display: grid;
   gap: var(--s-6);
   margin-bottom: var(--s-6);
 }
 .fig-row--triple { grid-template-columns: repeat(3, 1fr); }
-.fig-row--pair   { grid-template-columns: repeat(2, 1fr); }
 
-/* ── Card ──────────────────────────────────────────────────────────────── */
+/* ── Card base ──────────────────────────────────────────────────────────── */
 .fig-card {
   position: relative;
   display: flex;
@@ -118,20 +120,19 @@
   background: var(--color-cream);
   border: 1px solid var(--color-rule);
   transition: border-color var(--dur-base) var(--ease-out),
-              box-shadow var(--dur-base) var(--ease-out),
-              transform var(--dur-base) var(--ease-out);
+              box-shadow    var(--dur-base) var(--ease-out),
+              transform     var(--dur-base) var(--ease-out);
 }
 .fig-card:hover,
 .fig-card:focus-within {
-  border-color: color-mix(in srgb, var(--p-teal) 55%, var(--color-rule));
+  border-color: color-mix(in srgb, var(--fig-cue) 55%, var(--color-rule));
   box-shadow: 0 22px 48px -26px rgba(44, 40, 32, 0.55);
   transform: translateY(-2px);
 }
 
-/* std: upright portrait with 4:5 aspect */
 .fig-card--std .fig-card-portrait { aspect-ratio: 4 / 5; }
 
-/* ── Medallion seal ─────────────────────────────────────────────────────── */
+/* Uli-seal medallion disc */
 .fig-card-seal {
   position: absolute;
   top: var(--s-3);
@@ -157,7 +158,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--p-orange);
+  color: var(--fig-warm);
 }
 .fig-card-name {
   font-family: var(--font-display);
@@ -166,12 +167,6 @@
   line-height: var(--lh-tight);
   color: var(--color-ink);
   margin: 0;
-}
-.fig-card-orig {
-  font-style: italic;
-  font-size: 0.85em;
-  color: var(--color-muted);
-  margin-left: 0.25em;
 }
 .fig-card-dates {
   font-family: var(--font-mono);
@@ -202,10 +197,10 @@
   font-size: var(--t-tag);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--p-teal);
+  color: var(--fig-cue);
 }
 
-/* ── Stretched-button trigger ───────────────────────────────────────────── */
+/* Stretched-button trigger (whole card is clickable) */
 .fig-card-trigger {
   appearance: none;
   background: none;
@@ -223,21 +218,56 @@
 }
 .fig-card-trigger:focus-visible { outline: none; }
 .fig-card-trigger:focus-visible::after {
-  outline: 2px solid var(--p-teal);
+  outline: 2px solid var(--fig-cue);
   outline-offset: -3px;
 }
 
-/* ── Paired-figure card (Row B) ─────────────────────────────────────────── */
-.fig-card--pair .fig-card-portrait-row {
+/* ── Institutional band — CMS (full-width, no portrait) ─────────────────── */
+.fig-card--inst {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(200px, 0.72fr) 1.5fr;
 }
-.fig-card--pair .fig-card-portrait-row .fig-card-portrait { aspect-ratio: 1 / 1; }
-.fig-card--pair .fig-card-portrait-row .fig-card-portrait + .fig-card-portrait {
-  border-left: 0;
+.fig-card--inst .fig-card-plate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  padding: var(--s-8) var(--s-6);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--t-terra) 5%, var(--color-card)), var(--color-card) 72%);
+  border-right: 1px solid var(--color-rule);
 }
+.fig-card--inst .fig-card-plate-mark {
+  width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fig-card--inst .fig-card-plate-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-tag);
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.fig-card--inst .fig-card-plate-note {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-muted) 80%, transparent);
+}
+.fig-card--inst .fig-card-body {
+  padding: var(--s-8) var(--s-10);
+  justify-content: center;
+  gap: var(--s-3);
+}
+.fig-card--inst .fig-card-name  { font-size: 1.55rem; }
+.fig-card--inst .fig-card-seal  { top: var(--s-3); left: var(--s-3); }
 
-/* ── Feature band (author, full width) ─────────────────────────────────── */
+/* ── Feature band — Achebe (full-width closing card) ────────────────────── */
 .fig-card--feature {
   display: grid;
   grid-template-columns: minmax(220px, 0.85fr) 1.4fr;
@@ -245,7 +275,7 @@
 .fig-card--feature .fig-card-portrait {
   aspect-ratio: auto;
   height: 100%;
-  min-height: 280px;
+  min-height: 300px;
 }
 .fig-card--feature .fig-card-body {
   padding: var(--s-8) var(--s-10);
@@ -285,7 +315,7 @@
   transition: opacity var(--dur-base) var(--ease-out);
 }
 .fig-modal-overlay[hidden] { display: none; }
-.fig-modal-overlay.is-open { opacity: 1; }
+.fig-modal-overlay.is-open  { opacity: 1; }
 
 .fig-modal {
   position: relative;
@@ -316,7 +346,7 @@
   cursor: pointer;
   transition: background var(--dur-quick) var(--ease-out), color var(--dur-quick) var(--ease-out);
 }
-.fig-modal-close:hover { background: var(--p-teal); color: #fff; border-color: var(--p-teal); }
+.fig-modal-close:hover { background: var(--fig-cue); color: #fff; border-color: var(--fig-cue); }
 
 /* ── Modal portrait strip ───────────────────────────────────────────────── */
 .fig-modal-portraits {
@@ -324,63 +354,13 @@
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
 }
-.fig-modal-portraits .fig-modal-portrait-cell {
+.fig-modal-portraits .fig-card-portrait {
   aspect-ratio: 3 / 2;
-  overflow: hidden;
+  border: 0;
   border-bottom: 1px solid var(--color-rule);
 }
-.fig-modal-portraits .fig-modal-portrait-cell + .fig-modal-portrait-cell {
+.fig-modal-portraits .fig-card-portrait + .fig-card-portrait {
   border-left: 1px solid var(--color-rule);
-}
-.fig-modal-portraits .fig-modal-portrait-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--ph {
-  background:
-    repeating-linear-gradient(135deg, var(--color-card), var(--color-card) 11px, #e7e1d3 11px, #e7e1d3 22px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--ph::after {
-  content: attr(data-ph);
-  white-space: pre-line;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  line-height: 1.5;
-  letter-spacing: 0.05em;
-  color: var(--color-muted);
-  background: rgba(246, 241, 232, 0.88);
-  padding: 7px 10px;
-  border: 1px solid var(--color-rule);
-  max-width: 84%;
-}
-.fig-modal-portraits .fig-modal-portrait-cell.fig-modal-portrait--org {
-  background: var(--color-card);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-1);
-}
-.fig-modal-portrait-cell .fig-org-name {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--color-ink);
-  text-align: center;
-}
-.fig-modal-portrait-cell .fig-org-est {
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-muted);
 }
 
 /* ── Modal seal ─────────────────────────────────────────────────────────── */
@@ -394,8 +374,10 @@
   position: relative;
   z-index: 2;
 }
+/* Institution card has no portrait; seal sits in normal flow */
+.fig-modal-portraits:empty + .fig-modal-seal { margin-top: var(--s-10); }
 
-/* ── Modal head ─────────────────────────────────────────────────────────── */
+/* ── Modal head & bio ───────────────────────────────────────────────────── */
 .fig-modal-head {
   text-align: center;
   padding: 0 clamp(var(--s-5), 6vw, var(--s-12));
@@ -407,7 +389,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--p-orange);
+  color: var(--fig-warm);
   margin-bottom: var(--s-2);
 }
 .fig-modal-name {
@@ -418,7 +400,6 @@
   color: var(--color-ink);
   margin: 0;
 }
-.fig-modal-name .fig-card-orig { font-size: 0.7em; }
 .fig-modal-dates {
   display: block;
   font-family: var(--font-mono);
@@ -436,7 +417,6 @@
   max-width: 30rem;
 }
 
-/* ── Modal bio body ─────────────────────────────────────────────────────── */
 .fig-modal-bio {
   padding: 0 clamp(var(--s-5), 6vw, var(--s-12));
 }
@@ -452,12 +432,12 @@
 .fig-modal-bio em,
 .fig-card em { font-style: italic; }
 
-/* ── "In the novel" note ────────────────────────────────────────────────── */
+/* ── "In the novel" pull-out ────────────────────────────────────────────── */
 .fig-note {
   margin-top: var(--s-6);
   padding: var(--s-4) var(--s-5);
-  background: var(--sr-tint);
-  border-left: 3px solid var(--p-teal);
+  background: var(--fig-note-tint);
+  border-left: 3px solid var(--fig-cue);
 }
 .fig-note-label {
   display: block;
@@ -465,7 +445,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--p-teal);
+  color: var(--fig-cue);
   margin-bottom: var(--s-2);
 }
 .fig-note p {
@@ -483,9 +463,19 @@
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .fig-card--feature { grid-template-columns: 1fr; }
-  .fig-card--feature .fig-card-portrait { aspect-ratio: 16 / 9; min-height: 0; height: auto; }
-  .fig-card--feature .fig-card-body { padding: var(--s-6) var(--s-6) var(--s-8); }
+  .fig-card--feature,
+  .fig-card--inst { grid-template-columns: 1fr; }
+  .fig-card--feature .fig-card-portrait { aspect-ratio: 16 / 9; min-height: 0; }
+  .fig-card--feature .fig-card-body,
+  .fig-card--inst  .fig-card-body { padding: var(--s-6) var(--s-6) var(--s-8); }
+  .fig-card--inst .fig-card-plate {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-rule);
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--s-6);
+    padding: var(--s-6);
+  }
 }
 @media (max-width: 720px) {
   .fig-row--triple { grid-template-columns: 1fr 1fr; }
@@ -494,16 +484,12 @@
 }
 @media (max-width: 560px) {
   .fig-main { padding-inline: var(--gutter); }
-  .fig-row--triple,
-  .fig-row--pair { grid-template-columns: 1fr; }
+  .fig-row--triple { grid-template-columns: 1fr; }
   .fig-row--triple > .fig-card:nth-child(3) .fig-card-portrait { aspect-ratio: 4 / 5; }
-  .fig-card--pair .fig-card-portrait-row .fig-card-portrait { aspect-ratio: 3 / 2; }
+  .fig-card--inst .fig-card-plate { flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fig-card,
-  .fig-modal,
-  .fig-modal-overlay { transition: none; }
-  .fig-card:hover,
-  .fig-card:focus-within { transform: none; }
+  .fig-card, .fig-modal, .fig-modal-overlay { transition: none; }
+  .fig-card:hover, .fig-card:focus-within { transform: none; }
 }
