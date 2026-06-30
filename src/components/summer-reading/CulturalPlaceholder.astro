@@ -1,0 +1,291 @@
+---
+// CulturalPlaceholder.astro
+// "Held until September" placeholder for the Cultural Message Analysis section.
+// Spec: design_handoff_cultural_message_placeholders/README.md + cultural-placeholder.jsx
+// Reuses the Threshold super-motifs (PachinkoCrest / UliSun) and shared tokens
+// so it reads as a full member of the site, not an error page.
+
+import PachinkoCrest from './PachinkoCrest.astro';
+import UliSun from './UliSun.astro';
+
+interface Props {
+  title:    string;  // novel title, e.g. "Pachinko"
+  author:   string;  // e.g. "Min Jin Lee"
+  text:     string;  // "Text One" / "Text Two"
+  tfa?:     boolean; // selects TFA palette + UliSun motif
+  backHref: string;  // landing page route
+}
+
+const { title, author, text, tfa = false, backHref } = Astro.props;
+
+const ground = tfa ? 'var(--t-umber)' : 'var(--p-teal-deep)';
+const accent = tfa ? 'var(--t-ochre)' : 'var(--p-gold)';
+const h1Size = tfa ? 50 : 54;
+
+// Full-width foot band geometry — matches the Threshold landing panels exactly.
+const BB_W = 600, BB_H = 20, BB_N = 5;
+const bbMeds = Array.from({ length: BB_N }, (_, i) => (i + 0.5) / BB_N);
+
+const AK_W = 600, AK_H = 18, AK_UNIT = 28;
+const akCount = Math.floor(AK_W / AK_UNIT);
+const akPal = ['var(--t-terra)', 'var(--t-ochre)', 'var(--t-forest)'];
+---
+
+<section class="cm-screen" style={`background: ${ground};`} data-screen-label={`${title} — Cultural Message`}>
+
+  <!-- faint oversized echo bleeding off a lower corner — depth -->
+  <div class={`cm-echo ${tfa ? 'cm-echo--right' : 'cm-echo--left'}`} aria-hidden="true">
+    {tfa
+      ? <UliSun size={560} line="var(--t-cream)" terra="var(--t-terra)" ochre="var(--t-ochre)" forest="#9FBF6A" />
+      : <PachinkoCrest size={560} line="var(--t-cream)" gold="var(--p-gold)" accent="#7FD4CE" />
+    }
+  </div>
+
+  <!-- top bar — back link + context -->
+  <div class="cm-topbar">
+    <a href={backHref} class="cm-link">←&nbsp;&nbsp;The Threshold</a>
+    <span class="cm-context">{text} &middot; Cultural Message Analysis</span>
+  </div>
+
+  <!-- center hero -->
+  <div class="cm-hero">
+    <div class="cm-eyebrow" style={`color: ${accent};`}>{title} &middot; {author}</div>
+
+    <div class="cm-crest">
+      {tfa
+        ? <UliSun size={264} line="var(--t-cream)" terra="var(--t-terra)" ochre="var(--t-ochre)" forest="#9FBF6A" />
+        : <PachinkoCrest size={264} line="var(--t-cream)" gold="var(--p-gold)" accent="#7FD4CE" />
+      }
+    </div>
+
+    <h1 class="cm-h1" style={`font-size: ${h1Size}px;`}>Held until we read it together</h1>
+
+    <div class="cm-pill" style={`border-color: ${accent};`}>
+      <span class="cm-pill-dot" style={`background: ${accent};`}></span>
+      <span class="cm-pill-label">Opens in class &middot; September 2026</span>
+    </div>
+
+    <p class="cm-body-primary">
+      The Cultural Message analysis for <em class="cm-title-inline">{title}</em> is designed to augment our work together in class. It will be available in September.
+    </p>
+    <p class="cm-body-secondary">
+      Until then, the five contextual spokes and the pronunciation guide are open &mdash; they are the groundwork for everything this section will ask of you. Come ready.
+    </p>
+
+    <a href={backHref} class="cm-btn">Explore the contextual spokes <span class="cm-btn-arrow">&rarr;</span></a>
+  </div>
+
+  <!-- signature line -->
+  <div class="cm-signature">
+    <span>Hopkinton AP Lit &middot; Summer 2026</span>
+  </div>
+
+  <!-- motif band foot — matches the Threshold panels -->
+  {tfa ? (
+    <svg viewBox={`0 0 ${AK_W} ${AK_H}`} preserveAspectRatio="none" width="100%" height={AK_H} aria-hidden="true" style="display:block;">
+      {Array.from({ length: akCount }, (_, i) => {
+        const x = i * AK_UNIT + AK_UNIT / 2;
+        return (
+          <path
+            d={`M ${x} 2 L ${x + AK_UNIT / 2 - 1} ${AK_H / 2} L ${x} ${AK_H - 2} L ${x - AK_UNIT / 2 + 1} ${AK_H / 2} Z`}
+            fill={akPal[i % 3]}
+          />
+        );
+      })}
+    </svg>
+  ) : (
+    <svg viewBox={`0 0 ${BB_W} ${BB_H}`} preserveAspectRatio="none" width="100%" height={BB_H} aria-hidden="true" style="display:block;">
+      <line x1="0" y1={BB_H / 2} x2={BB_W} y2={BB_H / 2} stroke="var(--p-gold)" stroke-width="0.5" opacity="0.4" />
+      {bbMeds.map((t, i) => {
+        const cx = t * BB_W;
+        const big = i === Math.floor(BB_N / 2);
+        const r = big ? 8 : 6;
+        return (
+          <>
+            <circle cx={cx} cy={BB_H / 2} r={r} fill="none" stroke={big ? 'var(--t-cream)' : 'var(--p-gold)'} stroke-width="1.4" />
+            <circle cx={cx} cy={BB_H / 2} r="1.5" fill="var(--t-cream)" />
+          </>
+        );
+      })}
+      {bbMeds.slice(0, -1).map((t, i) => {
+        const cx = ((t + bbMeds[i + 1]) / 2) * BB_W;
+        return [-4, 0, 4].map((dy) => (
+          <circle cx={cx} cy={BB_H / 2 + dy} r="0.9" fill="var(--t-cream)" />
+        ));
+      })}
+    </svg>
+  )}
+
+</section>
+
+<style>
+  .cm-screen {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+  }
+
+  .cm-echo {
+    position: absolute;
+    bottom: -200px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .cm-echo--left  { left: -190px; }
+  .cm-echo--right { right: -190px; }
+
+  .cm-topbar {
+    position: relative;
+    padding: 30px 46px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .cm-link,
+  .cm-context {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.6);
+  }
+
+  .cm-link {
+    text-decoration: none;
+    transition: color 160ms ease-out;
+  }
+  .cm-link:hover {
+    color: rgba(246, 241, 232, 0.95);
+  }
+
+  .cm-hero {
+    position: relative;
+    flex: 1;
+    padding: 36px 46px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cm-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .cm-crest {
+    margin: 0 0 34px;
+    filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.28));
+    opacity: 0.9;
+  }
+
+  .cm-h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+    color: rgba(246, 241, 232, 0.95);
+    max-width: 720px;
+    margin: 0 0 24px;
+  }
+
+  .cm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid;
+    padding: 9px 17px;
+    margin-bottom: 30px;
+    background: rgba(246, 241, 232, 0.04);
+  }
+
+  .cm-pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cm-pill-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.95);
+  }
+
+  .cm-body-primary {
+    font-family: var(--font-body);
+    font-size: 1.09375rem;
+    line-height: 1.72;
+    color: rgba(246, 241, 232, 0.95);
+    max-width: 508px;
+    margin: 0;
+  }
+
+  .cm-title-inline {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+
+  .cm-body-secondary {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.72;
+    color: rgba(246, 241, 232, 0.6);
+    max-width: 508px;
+    margin-top: 16px;
+  }
+
+  .cm-btn {
+    margin-top: 38px;
+    text-decoration: none;
+    box-sizing: border-box;
+    display: inline-block;
+    background: rgba(246, 241, 232, 0.06);
+    border: 1px solid rgba(246, 241, 232, 0.30);
+    color: rgba(246, 241, 232, 0.95);
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 15px 26px;
+    transition: background 160ms ease-out, border-color 160ms ease-out;
+  }
+  .cm-btn:hover {
+    background: rgba(246, 241, 232, 0.16);
+    border-color: rgba(246, 241, 232, 0.55);
+  }
+
+  .cm-btn-arrow {
+    opacity: 0.65;
+  }
+
+  .cm-signature {
+    position: relative;
+    padding: 0 46px 26px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.59375rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.6);
+  }
+
+  @media (max-width: 700px) {
+    .cm-topbar { padding: 24px 24px 0; }
+    .cm-hero { padding: 28px 24px 24px; }
+    .cm-signature { padding: 0 24px 20px; }
+  }
+</style>

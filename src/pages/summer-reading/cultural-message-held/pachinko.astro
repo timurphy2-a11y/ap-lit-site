@@ -1,0 +1,33 @@
+---
+// Pachinko · Cultural Message Analysis — held until September.
+// Spec: design_handoff_cultural_message_placeholders/README.md
+
+import '../../../styles/tokens.css';
+import CulturalPlaceholder from '../../../components/summer-reading/CulturalPlaceholder.astro';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <title>Cultural Message: Pachinko — Held Until September</title>
+</head>
+<body style="margin:0;">
+  <CulturalPlaceholder
+    title="Pachinko"
+    author="Min Jin Lee"
+    text="Text One"
+    backHref="/summer-reading"
+  />
+</body>
+</html>
