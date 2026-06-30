@@ -17,6 +17,7 @@ interface CharEntry {
   onwuNone?: string;
   descOnly?: boolean;
   respell?: Part[];
+  audioSrc?: string;
   desc: string;
 }
 
@@ -25,6 +26,7 @@ interface TermEntry {
   nameTag?: string;
   onwu: string;
   respell: Part[];
+  audioSrc?: string;
   desc: string;
 }
 
@@ -37,42 +39,49 @@ const GROUPS: { eyebrow: string; title: string; cards: CharEntry[] }[] = [
         name: 'Okonkwo',
         onwu: 'Ọkọnkwọ',
         respell: [{t:'oh-'},{t:'KAWN',s:true},{t:'-kwoh'}],
+        audioSrc: '/audio/tfa/names/okonkwo.mp3',
         desc: 'A respected wrestler, farmer, and titled man of Umuofia, driven by a fear of resembling his father.',
       },
       {
         name: 'Unoka',
         onwu: 'Unoka',
         respell: [{t:'oo-'},{t:'NOH',s:true},{t:'-kah'}],
+        audioSrc: '/audio/tfa/names/unoka.mp3',
         desc: "Okonkwo's late father; a gifted flute-player and a poor, indebted provider.",
       },
       {
         name: 'Nwoye',
         onwu: 'Nwoye',
         respell: [{t:'NWOH',s:true},{t:'-yeh'}],
+        audioSrc: '/audio/tfa/names/nwoye.mp3',
         desc: "Okonkwo's eldest son; sensitive and quietly questioning.",
       },
       {
         name: 'Ekwefi',
         onwu: 'Ekwefi',
         respell: [{t:'eh-'},{t:'KWEH',s:true},{t:'-fee'}],
+        audioSrc: '/audio/tfa/names/ekwefi.mp3',
         desc: "Okonkwo's second wife, who left a previous husband for him.",
       },
       {
         name: 'Ezinma',
         onwu: 'Ezinma',
         respell: [{t:'eh-'},{t:'ZEEN',s:true},{t:'-mah'}],
+        audioSrc: '/audio/tfa/names/ezinma.mp3',
         desc: "Ekwefi's only surviving child; sharp, spirited, and her father's favorite.",
       },
       {
         name: 'Ikemefuna',
         onwu: 'Ikemefuna',
         respell: [{t:'ee-keh-meh-'},{t:'FOO',s:true},{t:'-nah'}],
+        audioSrc: '/audio/tfa/names/ikemefuna.mp3',
         desc: "A boy from a neighboring village who comes to live in Okonkwo's compound.",
       },
       {
         name: 'Obiageli',
         onwu: 'Obiageli',
         respell: [{t:'oh-bee-ah-'},{t:'GEH',s:true},{t:'-lee'}],
+        audioSrc: '/audio/tfa/names/obiageli.mp3',
         desc: "A girl of Okonkwo's household.",
       },
     ],
@@ -85,30 +94,35 @@ const GROUPS: { eyebrow: string; title: string; cards: CharEntry[] }[] = [
         name: 'Obierika',
         onwu: 'Obierika',
         respell: [{t:'oh-bee-'},{t:'EH',s:true},{t:'-ree-kah'}],
+        audioSrc: '/audio/tfa/names/obierika.mp3',
         desc: "Okonkwo's closest friend; a thoughtful man who weighs custom against conscience.",
       },
       {
         name: 'Ezeudu',
         onwu: 'Ezeudu',
         respell: [{t:'eh-zeh-'},{t:'OO',s:true},{t:'-doo'}],
+        audioSrc: '/audio/tfa/names/ezeudu.mp3',
         desc: "The oldest and one of the most honored men in Okonkwo's village.",
       },
       {
         name: 'Nwakibie',
         onwu: 'Nwakibie',
         respell: [{t:'nwah-'},{t:'KEE',s:true},{t:'-bee-eh'}],
+        audioSrc: '/audio/tfa/names/nwakibie.mp3',
         desc: 'A wealthy, titled man of Umuofia who helps Okonkwo get his start.',
       },
       {
         name: 'Chielo',
         onwu: 'Chielo',
         respell: [{t:'CHEE',s:true},{t:'-eh-loh'}],
+        audioSrc: '/audio/tfa/names/chielo.mp3',
         desc: 'A village woman who serves as priestess of the Oracle, Agbala.',
       },
       {
         name: 'Uchendu',
         onwu: 'Uchendu',
         respell: [{t:'oo-'},{t:'CHEN',s:true},{t:'-doo'}],
+        audioSrc: '/audio/tfa/names/uchendu.mp3',
         desc: "Okonkwo's maternal uncle; an elder who offers hard-won counsel.",
       },
     ],
@@ -148,18 +162,21 @@ const TERMS: TermEntry[] = [
     name: 'chi',
     onwu: 'chi',
     respell: [{t:'chee'}],
+    audioSrc: '/audio/tfa/terms/chi.mp3',
     desc: "A person's personal god or spirit, assigned at birth.",
   },
   {
     name: 'Agbala',
     onwu: 'Agbala',
     respell: [{t:'ahg-'},{t:'BAH',s:true},{t:'-lah'}],
+    audioSrc: '/audio/tfa/terms/agbala.mp3',
     desc: 'The Oracle of the Hills and the Caves; also a word for a man who has taken no title.',
   },
   {
     name: 'egwugwu',
     onwu: 'egwugwu',
     respell: [{t:'eh-'},{t:'GWOO',s:true},{t:'-gwoo'}],
+    audioSrc: '/audio/tfa/terms/egwugwu.mp3',
     desc: 'A masked dancer who embodies an ancestral spirit of the village.',
   },
   {
@@ -167,30 +184,35 @@ const TERMS: TermEntry[] = [
     nameTag: '(Ani)',
     onwu: 'Ala / Ana',
     respell: [{t:'AH',s:true},{t:'-lah ('},{t:'AH',s:true},{t:'-nee)'}],
+    audioSrc: '/audio/tfa/terms/ala.mp3',
     desc: 'The earth goddess, source of morality and law; offences against her are the gravest.',
   },
   {
     name: 'osu',
     onwu: 'osu',
     respell: [{t:'OH',s:true},{t:'-soo'}],
+    audioSrc: '/audio/tfa/terms/osu.mp3',
     desc: 'An outcast dedicated to a god, set apart from the freeborn.',
   },
   {
     name: 'obi',
     onwu: 'obi',
     respell: [{t:'OH',s:true},{t:'-bee'}],
+    audioSrc: '/audio/tfa/terms/obi.mp3',
     desc: 'The large living quarters of the head of a family.',
   },
   {
     name: 'ndichie',
     onwu: 'ndichie',
     respell: [{t:'n-'},{t:'DEE',s:true},{t:'-chee-eh'}],
+    audioSrc: '/audio/tfa/terms/ndichie.mp3',
     desc: 'The elders of the village.',
   },
   {
     name: 'ogbanje',
     onwu: 'ọgbanje',
     respell: [{t:'ohg-'},{t:'BAHN',s:true},{t:'-jeh'}],
+    audioSrc: '/audio/tfa/terms/ogbanje.mp3',
     desc: 'A child believed to die and return to its mother to be born again and again.',
   },
   {
@@ -204,18 +226,21 @@ const TERMS: TermEntry[] = [
     nameTag: '(kola)',
     onwu: 'ọjị',
     respell: [{t:'OH',s:true},{t:'-jee'}],
+    audioSrc: '/audio/tfa/terms/oji.mp3',
     desc: 'The kola nut, broken and shared as a rite of welcome and communion.',
   },
   {
     name: 'ozo',
     onwu: 'ọzọ',
     respell: [{t:'OH',s:true},{t:'-zoh'}],
+    audioSrc: '/audio/tfa/terms/ozo.mp3',
     desc: 'One of the titles a man may take; a mark of rank and achievement.',
   },
   {
     name: 'Umuofia',
     onwu: 'Ụmụọfia',
     respell: [{t:'oo-moo-'},{t:'OH',s:true},{t:'-fee-ah'}],
+    audioSrc: '/audio/tfa/terms/umuofia.mp3',
     desc: "Okonkwo's clan — the union of nine villages where the novel is set.",
   },
 ];
@@ -331,7 +356,7 @@ const SPOKES = [
         </div>
         <div class="pg-grid">
           {group.cards.map((card) => (
-            <div class="pg-card">
+            <div class="pg-card" data-audio={card.audioSrc}>
               {/* Name */}
               <p class="pg-card-name">
                 {card.name}
@@ -385,7 +410,7 @@ const SPOKES = [
       </div>
       <div class="pg-grid">
         {TERMS.map((term) => (
-          <div class="pg-card pg-term">
+          <div class="pg-card pg-term" data-audio={term.audioSrc}>
             <p class="pg-card-name">
               {term.name}
               {term.nameTag && <span class="pg-card-name-tag">{term.nameTag}</span>}
@@ -415,5 +440,49 @@ const SPOKES = [
   </main>
 
 </div>
+<script>
+(function wireAudio() {
+  var PLAY_SVG  = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5.5 3.5l8 4.5-8 4.5z"/></svg>';
+  var PAUSE_SVG = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1"/><rect x="9.5" y="3" width="3" height="10" rx="1"/></svg>';
+  var current = null;
+  var currentBtn = null;
+  function setPlaying(btn, playing) {
+    btn.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+    btn.classList.toggle('is-playing', playing);
+    btn.setAttribute('aria-label', playing ? 'Stop pronunciation' : 'Hear pronunciation');
+  }
+  document.querySelectorAll('[data-audio]').forEach(function(card) {
+    var src = card.dataset.audio;
+    if (!src) return;
+    var row = card.querySelector('.pg-card-respell-row');
+    if (!row) return;
+    var btn = document.createElement('button');
+    btn.className = 'pg-audio';
+    setPlaying(btn, false);
+    var audio = null;
+    btn.addEventListener('click', function() {
+      if (current && current !== audio) {
+        current.pause(); current.currentTime = 0;
+        setPlaying(currentBtn, false);
+      }
+      if (!audio) audio = new Audio(src);
+      if (btn.classList.contains('is-playing')) {
+        audio.pause(); audio.currentTime = 0;
+        setPlaying(btn, false);
+        current = null; currentBtn = null;
+      } else {
+        audio.play();
+        setPlaying(btn, true);
+        current = audio; currentBtn = btn;
+        audio.onended = function() {
+          setPlaying(btn, false);
+          current = null; currentBtn = null;
+        };
+      }
+    });
+    row.appendChild(btn);
+  });
+})();
+</script>
 </body>
 </html>
