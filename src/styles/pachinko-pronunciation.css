@@ -272,6 +272,34 @@
   color: var(--pg-accent);
   font-weight: 600;
 }
+.pg-audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: var(--pg-accent-soft);
+  border: 1.5px solid var(--pg-accent);
+  color: var(--pg-accent);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.pg-audio:hover {
+  background: var(--pg-accent);
+  color: #fff;
+}
+.pg-audio.is-playing {
+  background: var(--pg-accent);
+  color: #fff;
+}
+.pg-audio svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  display: block;
+}
 .pg-card-surname {
   display: inline-block;
   font-family: var(--font-mono);
