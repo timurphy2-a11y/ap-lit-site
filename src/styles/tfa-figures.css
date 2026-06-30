@@ -465,7 +465,7 @@
 @media (max-width: 860px) {
   .fig-card--feature,
   .fig-card--inst { grid-template-columns: 1fr; }
-  .fig-card--feature .fig-card-portrait { aspect-ratio: 16 / 9; min-height: 0; }
+  .fig-card--feature .fig-card-portrait { aspect-ratio: 4 / 5; min-height: 0; }
   .fig-card--feature .fig-card-body,
   .fig-card--inst  .fig-card-body { padding: var(--s-6) var(--s-6) var(--s-8); }
   .fig-card--inst .fig-card-plate {
