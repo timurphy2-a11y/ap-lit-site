@@ -28,7 +28,7 @@ const peopleJson = JSON.stringify(PEOPLE);
   </head>
   <body>
     <div class="topbar">
-      <a href="/" class="brand">AP Literature</a>
+      <a href="/" class="brand">Of Imagination All Compact</a>
       <nav class="nav">
         <a href="/timeline">Timeline</a>
         <a href="/people">People</a>
@@ -202,6 +202,13 @@ const peopleJson = JSON.stringify(PEOPLE);
     color: var(--ink);
     white-space: nowrap;
     flex-shrink: 0;
+  }
+  @media (max-width: 640px) {
+    .brand {
+      max-width: 46vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .nav { display: flex; gap: 24px; flex-shrink: 0; }
   .nav a:hover { color: var(--ink); transition: color 150ms ease; }
