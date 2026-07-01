@@ -104,13 +104,13 @@ const momentJson = JSON.stringify({
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>{meta.period} — AP Literature</title>
+  <title>{meta.period} — Of Imagination All Compact</title>
 </head>
 <body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355; --gold-wash:${momentColors.goldWash}; --gold-wash-hover:${momentColors.goldWashHover}; --acc-deep:${momentColors.accDeep};`}>
 
 <!-- ── Top nav ── -->
 <div class="topbar">
-  <a href="/" class="brand">AP Literature</a>
+  <a href="/" class="brand">Of Imagination All Compact</a>
   <nav class="nav">
     <a href="/timeline">Timeline</a>
     <a href="/people">People</a>
@@ -336,7 +336,7 @@ const momentJson = JSON.stringify({
 </nav>
 
 <footer>
-  <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
+  <div class="colophon">Of Imagination All Compact · AP Literature</div>
   <div>Unit {unitNumber} of 06</div>
 </footer>
 
@@ -426,8 +426,10 @@ const momentJson = JSON.stringify({
   /* ── Topbar ─────────────────────────────────────────────────── */
   .topbar {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
+    gap: 8px 24px;
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
     font-family: var(--font-ui);
@@ -444,8 +446,9 @@ const momentJson = JSON.stringify({
     color: var(--ink);
     text-transform: none;
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
-  .nav { display: flex; gap: 28px; }
+  .nav { display: flex; gap: 28px; flex-wrap: wrap; }
   .nav a:hover { color: var(--ink); }
 
   /* ── Breadcrumb ─────────────────────────────────────────────── */
@@ -626,8 +629,9 @@ const momentJson = JSON.stringify({
 
   .thread-frieze {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 24px;
+    gap: 10px 24px;
     padding: 18px 4px 14px;
   }
   .frieze-label {
@@ -640,6 +644,7 @@ const momentJson = JSON.stringify({
   }
   .frieze-band {
     flex: 1;
+    min-width: 0;
     overflow: hidden;
     height: 72px;
   }
@@ -884,7 +889,18 @@ const momentJson = JSON.stringify({
   }
   @media (max-width: 720px) {
     .moment-eyebrow { display: none; }
-    .moment-bar { grid-template-columns: auto 1fr auto; }
+    .moment-bar {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 14px;
+    }
+    .moment-glyph-box { grid-column: 1; grid-row: 1; }
+    .moment-phrase { grid-column: 2; grid-row: 1; min-width: 0; }
+    .moment-cta {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-content: center;
+    }
   }
 
   /* ── Modal ──────────────────────────────────────────────────── */

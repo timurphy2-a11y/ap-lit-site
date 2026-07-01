@@ -168,7 +168,7 @@ const nextDomain  = domainIdx < DOMAIN_ORDER.length - 1 ? DOMAIN_ORDER[domainIdx
 const prevDomainLabel = prevDomain ? (DOMAIN_LABELS[prevDomain] ?? prevDomain) : null;
 const nextDomainLabel = nextDomain ? (DOMAIN_LABELS[nextDomain] ?? nextDomain) : null;
 const domainTitle  = DOMAIN_TITLES[domain] ?? domain;
-const pageTitle    = `${meta.period}: ${currentLabel} — AP Literature`;
+const pageTitle    = `${meta.period}: ${currentLabel} — Of Imagination All Compact`;
 const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 const peopleJson   = JSON.stringify(PEOPLE);
 ---
@@ -190,7 +190,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
 
 <!-- ── Top nav ── -->
 <div class="topbar">
-  <a href="/" class="brand">AP Literature</a>
+  <a href="/" class="brand">Of Imagination All Compact</a>
   <nav class="nav">
     <a href="/timeline">Timeline</a>
     <a href="/people">People</a>
@@ -515,7 +515,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
 </nav>
 
 <footer>
-  <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
+  <div class="colophon">Of Imagination All Compact · AP Literature</div>
   <div>Unit {unitNumber} / {currentLabel}</div>
 </footer>
 
@@ -668,8 +668,10 @@ const peopleJson   = JSON.stringify(PEOPLE);
   /* ── Top bar ── */
   .topbar {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
+    gap: 8px 24px;
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
     font-family: var(--font-ui);
@@ -686,6 +688,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
     color: var(--ink);
     text-transform: none;
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
   .nav { display: flex; gap: 28px; flex-wrap: wrap; }
   .nav a:hover { color: var(--ink); }

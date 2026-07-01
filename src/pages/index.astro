@@ -16,13 +16,32 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 };
 ---
 
-<Layout title="AP Literature — Historical &amp; Aesthetic Background">
+<Layout title="Of Imagination All Compact — AP Literature">
 
 <div class="page">
 
   <!-- ── Hero ──────────────────────────────────────────────────────── -->
   <section class="hero">
-    <h1>Cultural Background Materials</h1>
+    <h1>Of Imagination All Compact</h1>
+    <div class="epigraph">
+      <div class="verse">
+        <p class="col">Lovers and madmen have such seething brains,<br>
+          Such shaping fantasies, that apprehend<br>
+          More than cool reason ever comprehends.<br>
+          The lunatic, the lover and the poet<br>
+          Are of imagination all compact:<br>
+          One sees more devils than vast hell can hold,<br>
+          That is, the madman: the lover, all as frantic,</p>
+        <p class="col">Sees Helen's beauty in a brow of Egypt:<br>
+          The poet's eye, in a fine frenzy rolling,<br>
+          Doth glance from heaven to earth, from earth to heaven;<br>
+          And as imagination bodies forth<br>
+          The forms of things unknown, the poet's pen<br>
+          Turns them to shapes and gives to airy nothing<br>
+          A local habitation and a name.</p>
+      </div>
+      <p class="attr">A Midsummer Night's Dream · 5.1 · Theseus</p>
+    </div>
     <p class="thesis">
       Six units of philosophical, visual, and musical context — from the medieval
       foundations that all later periods react against, through Modernism's crisis
@@ -195,7 +214,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 
   <!-- ── Footer ────────────────────────────────────────────────────── -->
   <footer class="pg-footer">
-    <div class="colophon">AP Literature · Historical &amp; Aesthetic Background</div>
+    <div class="colophon">Of Imagination All Compact · AP Literature</div>
     <div>A course site in six units</div>
   </footer>
 
@@ -230,13 +249,48 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     color: var(--ink);
     white-space: nowrap;
   }
+  .hero .epigraph {
+    max-width: 720px;
+    margin: 34px auto 0;
+  }
+  .hero .epigraph .verse {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 48px;
+    text-align: left;
+    justify-content: center;
+  }
+  .hero .epigraph .col {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.68;
+    color: var(--ink-soft);
+    text-wrap: nowrap;
+  }
+  .hero .epigraph .attr {
+    margin: 18px 0 0;
+    font-family: var(--font-ui);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
   .hero .thesis {
     max-width: 58ch;
-    margin: 26px auto 0;
+    margin: 32px auto 0;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
     font-size: 19px;
     line-height: 1.6;
     color: var(--ink-mute);
     text-wrap: balance;
+  }
+  @media (max-width: 680px) {
+    .hero .epigraph .verse { grid-template-columns: 1fr; gap: 0; max-width: 42ch; margin: 0 auto; }
+    .hero .epigraph .col { font-size: 14.5px; }
   }
   @media (max-width: 600px) {
     .hero { padding: 56px 0 40px; }
