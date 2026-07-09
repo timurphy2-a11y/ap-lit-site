@@ -901,7 +901,9 @@ const imgBase = '/images/summer-reading/pachinko/zainichi';
   function boot() {
     buildMotifs();
     apply();
-    buildPanel();
+    if (new URLSearchParams(window.location.search).has('debugTweaks')) {
+      buildPanel();
+    }
     initZones();
     window.addEventListener('scroll', runScrollSweeps, { passive: true });
     var rt;

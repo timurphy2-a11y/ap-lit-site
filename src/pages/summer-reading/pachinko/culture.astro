@@ -801,7 +801,9 @@ const imgBase = '/images/summer-reading/pachinko';
     buildDiagrams();
     buildJdx();
     apply();
-    buildPanel();
+    if (new URLSearchParams(window.location.search).has('debugTweaks')) {
+      buildPanel();
+    }
     initZones();
     var rt;
     window.addEventListener('resize', function () {
