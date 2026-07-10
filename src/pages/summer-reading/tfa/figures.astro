@@ -12,7 +12,14 @@ const imgBase = '/images/summer-reading/tfa';
 
 <SummerLayout title="Key Figures — Things Fall Apart · The Living Atlas" section="tfa" spoke="figures">
 
-  <SectionOpener text="tfa" eyebrow="THINGS FALL APART" heading="Key Figures" />
+  <SectionOpener text="tfa" eyebrow="THINGS FALL APART" heading="Key Figures" headingLevel="h1" />
+
+  <noscript>
+    <style>
+      .fig-card-trigger { display: none; }
+      .fig-card-detail[hidden] { display: block; }
+    </style>
+  </noscript>
 
   <div class="fig-main">
 
@@ -34,11 +41,11 @@ const imgBase = '/images/summer-reading/tfa';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Administrator · The Framework</span>
-          <h3 class="fig-card-name">Frederick Lugard</h3>
+          <h2 class="fig-card-name">Frederick Lugard</h2>
           <span class="fig-card-dates">1858–1945</span>
           <p class="fig-card-role">High Commissioner of Northern Nigeria; Governor-General of Nigeria</p>
           <p class="fig-card-teaser">The doctrine of indirect rule that built the governance of colonial Nigeria — and, in Igboland, catastrophically failed.</p>
-          <button class="fig-card-trigger" data-fig="fig-lugard">
+          <button type="button" class="fig-card-trigger" data-fig="fig-lugard" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Frederick Lugard</span>
           </button>
@@ -64,11 +71,11 @@ const imgBase = '/images/summer-reading/tfa';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Novelist · The Provocation</span>
-          <h3 class="fig-card-name">Joyce Cary</h3>
+          <h2 class="fig-card-name">Joyce Cary</h2>
           <span class="fig-card-dates">1888–1957</span>
           <p class="fig-card-role">Author of <em>Mister Johnson</em>; colonial administrator in Nigeria, 1913–1920</p>
           <p class="fig-card-teaser">The British novelist whose "sympathetic" portrait of an African character was the immediate provocation for <em>Things Fall Apart</em>.</p>
-          <button class="fig-card-trigger" data-fig="fig-cary">
+          <button type="button" class="fig-card-trigger" data-fig="fig-cary" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Joyce Cary</span>
           </button>
@@ -93,11 +100,11 @@ const imgBase = '/images/summer-reading/tfa';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Missionary · The Standard</span>
-          <h3 class="fig-card-name">Thomas John Dennis</h3>
+          <h2 class="fig-card-name">Thomas John Dennis</h2>
           <span class="fig-card-dates">1869–1917</span>
           <p class="fig-card-role">Church Missionary Society; creator of "Union Igbo"</p>
           <p class="fig-card-teaser">A devoted missionary whose standardized Bible became the written Igbo taught in every mission school — a language Achebe said could not sing.</p>
-          <button class="fig-card-trigger" data-fig="fig-dennis">
+          <button type="button" class="fig-card-trigger" data-fig="fig-dennis" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Archdeacon Thomas John Dennis</span>
           </button>
@@ -129,11 +136,11 @@ const imgBase = '/images/summer-reading/tfa';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Institution · The Mission</span>
-          <h3 class="fig-card-name">The Church Missionary Society</h3>
+          <h2 class="fig-card-name">The Church Missionary Society</h2>
           <span class="fig-card-dates">CMS · Anglican · est. 1799</span>
           <p class="fig-card-role">The dominant Protestant missionary organization in West Africa</p>
           <p class="fig-card-teaser">Mr. Brown's patient church and school, then Mr. Smith's confrontation — the mixed face of the mission in Igboland.</p>
-          <button class="fig-card-trigger" data-fig="fig-cms">
+          <button type="button" class="fig-card-trigger" data-fig="fig-cms" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about the Church Missionary Society</span>
           </button>
@@ -159,12 +166,12 @@ const imgBase = '/images/summer-reading/tfa';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Author · The Answer</span>
-          <h3 class="fig-card-name">Chinua Achebe</h3>
+          <h2 class="fig-card-name">Chinua Achebe</h2>
           <span class="fig-card-dates">1930–2013</span>
           <p class="fig-card-role">Author of <em>Things Fall Apart</em> (1958), the most widely read African novel in history</p>
           <p class="fig-card-quote">"...to help my society regain belief in itself and to put away the complexes of the years of denigration and self-abasement."</p>
           <p class="fig-card-quote-attr">— Chinua Achebe, "The Novelist as Teacher," 1965</p>
-          <button class="fig-card-trigger" data-fig="fig-achebe">
+          <button type="button" class="fig-card-trigger" data-fig="fig-achebe" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Chinua Achebe</span>
           </button>
@@ -229,9 +236,15 @@ const imgBase = '/images/summer-reading/tfa';
       '<path d="' + curve + '" stroke="' + color + '" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>';
   }
 
-  var overlay, dialog, lastFocus = null;
+  var overlay, dialog, lastFocus = null, currentTrigger = null;
 
   function byId(id) { return document.getElementById(id); }
+
+  function focusableIn(container) {
+    return Array.prototype.slice
+      .call(container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+      .filter(function (el) { return el.offsetParent !== null; });
+  }
 
   function fill(card) {
     var grab = function (sel) { var n = card.querySelector(sel); return n ? n.innerHTML : ''; };
@@ -264,6 +277,8 @@ const imgBase = '/images/summer-reading/tfa';
 
   function open(card, trigger) {
     lastFocus = trigger || document.activeElement;
+    currentTrigger = trigger || null;
+    if (currentTrigger) currentTrigger.setAttribute('aria-expanded', 'true');
     fill(card);
     overlay.hidden = false;
     void overlay.offsetWidth;
@@ -281,6 +296,10 @@ const imgBase = '/images/summer-reading/tfa';
     };
     overlay.addEventListener('transitionend', done);
     setTimeout(function () { if (!overlay.classList.contains('is-open')) overlay.hidden = true; }, 360);
+    if (currentTrigger) {
+      currentTrigger.setAttribute('aria-expanded', 'false');
+      currentTrigger = null;
+    }
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
@@ -298,7 +317,22 @@ const imgBase = '/images/summer-reading/tfa';
 
     byId('figModalClose').addEventListener('click', close);
     overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        var focusable = focusableIn(dialog);
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

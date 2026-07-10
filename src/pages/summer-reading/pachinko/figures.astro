@@ -11,7 +11,14 @@ const imgBase = '/images/summer-reading/pachinko';
 
 <SummerLayout title="Key Figures — Pachinko · The Living Atlas" section="pachinko" spoke="figures">
 
-  <SectionOpener text="pachinko" eyebrow="PACHINKO" heading="Key Figures" />
+  <SectionOpener text="pachinko" eyebrow="PACHINKO" heading="Key Figures" headingLevel="h1" />
+
+  <noscript>
+    <style>
+      .fig-card-trigger { display: none; }
+      .fig-card-detail[hidden] { display: block; }
+    </style>
+  </noscript>
 
   <div class="fig-main">
 
@@ -32,11 +39,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Collaborator · The Signature</span>
-          <h3 class="fig-card-name">Yi Wan-yong <span class="fig-card-orig">이완용</span></h3>
+          <h2 class="fig-card-name">Yi Wan-yong <span class="fig-card-orig">이완용</span></h2>
           <span class="fig-card-dates">1858–1926</span>
           <p class="fig-card-role">Prime Minister of Korea; signatory of the Japan–Korea Annexation Treaty</p>
           <p class="fig-card-teaser">The signature that ceded Korea's sovereignty — and the name that became the Korean word for collaborator.</p>
-          <button class="fig-card-trigger" data-fig="fig-yi">
+          <button type="button" class="fig-card-trigger" data-fig="fig-yi" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Yi Wan-yong</span>
           </button>
@@ -60,11 +67,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Martyr · The Resistance</span>
-          <h3 class="fig-card-name">Yu Gwan-sun <span class="fig-card-orig">유관순</span></h3>
+          <h2 class="fig-card-name">Yu Gwan-sun <span class="fig-card-orig">유관순</span></h2>
           <span class="fig-card-dates">1902–1920</span>
           <p class="fig-card-role">Student activist; martyr of the March First Movement</p>
           <p class="fig-card-teaser">Seventeen when she was arrested, eighteen when she died in prison — the symbolic martyr of Korean independence.</p>
-          <button class="fig-card-trigger" data-fig="fig-yu">
+          <button type="button" class="fig-card-trigger" data-fig="fig-yu" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Yu Gwan-sun</span>
           </button>
@@ -89,11 +96,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Administrator · The Architect</span>
-          <h3 class="fig-card-name">Minami Jirō <span class="fig-card-orig">南 次郎</span></h3>
+          <h2 class="fig-card-name">Minami Jirō <span class="fig-card-orig">南 次郎</span></h2>
           <span class="fig-card-dates">1874–1955</span>
           <p class="fig-card-role">Governor-General of Korea, 1936–1942</p>
           <p class="fig-card-teaser">The Governor-General who erased the Korean language, the Korean name, and the right to worship freely.</p>
-          <button class="fig-card-trigger" data-fig="fig-minami">
+          <button type="button" class="fig-card-trigger" data-fig="fig-minami" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Minami Jirō</span>
           </button>
@@ -128,11 +135,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Two States · The Division</span>
-          <h3 class="fig-card-name">Syngman Rhee &amp; Kim Il-sung</h3>
+          <h2 class="fig-card-name">Syngman Rhee &amp; Kim Il-sung</h2>
           <span class="fig-card-dates">이승만 1875–1965 · 김일성 1912–1994</span>
           <p class="fig-card-role">First president of South Korea · Founding leader of North Korea</p>
           <p class="fig-card-teaser">Two presidents, one divided peninsula — and the home Sunja's generation could no longer return to.</p>
-          <button class="fig-card-trigger" data-fig="fig-states">
+          <button type="button" class="fig-card-trigger" data-fig="fig-states" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Syngman Rhee and Kim Il-sung</span>
           </button>
@@ -165,11 +172,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Institutions · The Diaspora Split</span>
-          <h3 class="fig-card-name">The Two Associations</h3>
+          <h2 class="fig-card-name">The Two Associations</h2>
           <span class="fig-card-dates">Chongryon · Mindan</span>
           <p class="fig-card-role">The two organizations that divided Zainichi life in postwar Japan</p>
           <p class="fig-card-teaser">Chongryon and Mindan — the diaspora split along the same line that split the peninsula.</p>
-          <button class="fig-card-trigger" data-fig="fig-assoc">
+          <button type="button" class="fig-card-trigger" data-fig="fig-assoc" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Chongryon and Mindan</span>
           </button>
@@ -198,12 +205,12 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Author</span>
-          <h3 class="fig-card-name">Min Jin Lee <span class="fig-card-orig">이민진</span></h3>
+          <h2 class="fig-card-name">Min Jin Lee <span class="fig-card-orig">이민진</span></h2>
           <span class="fig-card-dates">1968–</span>
           <p class="fig-card-role">Author of <em>Pachinko</em>; National Book Award finalist, 2017</p>
           <p class="fig-card-quote">"My sense of outrage is triggered again and again."</p>
           <p class="fig-card-quote-attr">— Min Jin Lee, on the writing of <em>Pachinko</em></p>
-          <button class="fig-card-trigger" data-fig="fig-lee">
+          <button type="button" class="fig-card-trigger" data-fig="fig-lee" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Min Jin Lee</span>
           </button>
@@ -262,9 +269,15 @@ const imgBase = '/images/summer-reading/pachinko';
   }
 
   /* ── Modal ─────────────────────────────────────────────────────────────── */
-  var overlay, dialog, lastFocus = null;
+  var overlay, dialog, lastFocus = null, currentTrigger = null;
 
   function byId(id) { return document.getElementById(id); }
+
+  function focusableIn(container) {
+    return Array.prototype.slice
+      .call(container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+      .filter(function (el) { return el.offsetParent !== null; });
+  }
 
   function fill(card) {
     var grab = function (sel) {
@@ -348,6 +361,8 @@ const imgBase = '/images/summer-reading/pachinko';
 
   function open(card, trigger) {
     lastFocus = trigger || document.activeElement;
+    currentTrigger = trigger || null;
+    if (currentTrigger) currentTrigger.setAttribute('aria-expanded', 'true');
     fill(card);
     overlay.hidden = false;
     void overlay.offsetWidth; /* force reflow for transition */
@@ -365,6 +380,10 @@ const imgBase = '/images/summer-reading/pachinko';
     };
     overlay.addEventListener('transitionend', done);
     setTimeout(function () { if (!overlay.classList.contains('is-open')) overlay.hidden = true; }, 360);
+    if (currentTrigger) {
+      currentTrigger.setAttribute('aria-expanded', 'false');
+      currentTrigger = null;
+    }
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
@@ -385,7 +404,20 @@ const imgBase = '/images/summer-reading/pachinko';
       if (e.target === overlay) close();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !overlay.hidden) close();
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        var focusable = focusableIn(dialog);
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 

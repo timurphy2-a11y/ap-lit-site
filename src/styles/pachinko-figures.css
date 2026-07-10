@@ -157,7 +157,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--p-orange);
+  color: var(--p-orange-text);
 }
 .fig-card-name {
   font-family: var(--font-display);
@@ -202,7 +202,7 @@
   font-size: var(--t-tag);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 /* ── Stretched-button trigger ───────────────────────────────────────────── */
@@ -407,7 +407,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--p-orange);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-2);
 }
 .fig-modal-name {
@@ -465,7 +465,7 @@
   font-size: var(--t-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-bottom: var(--s-2);
 }
 .fig-note p {

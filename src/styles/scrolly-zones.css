@@ -268,7 +268,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-right: var(--s-3);
 }
 
@@ -464,7 +464,7 @@
 }
 
 .sr-cascade-entry.is-newest .sr-cascade-year {
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 .sr-cascade-event {
@@ -484,7 +484,7 @@
 
 /* ── Highlight entries (orange accent) ──────────────────────────────────── */
 .sr-cascade-entry--highlight .sr-cascade-year {
-  color: var(--p-orange);
+  color: var(--p-orange-text);
 }
 
 .sr-cascade-entry--highlight.is-revealed .sr-cascade-dot {
@@ -602,7 +602,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 .sr-gen-index em { font-style: italic; text-transform: none; letter-spacing: 0.04em; }
@@ -707,7 +707,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--p-orange);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-2);
 }
 .sr-lexicon-title {
@@ -824,6 +824,14 @@
   .sr-cascade-entry--highlight .sr-cascade-dot {
     background: var(--p-orange);
     border-color: var(--p-orange);
+  }
+
+  .sr-cascade-year {
+    transition: none;
+  }
+
+  .sr-cascade-event {
+    transition: none;
   }
 
   .sr-zone-cascade-progress { display: none; }

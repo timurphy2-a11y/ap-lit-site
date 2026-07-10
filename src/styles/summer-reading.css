@@ -31,10 +31,13 @@
 }
 
 /* ── Section-scoped accent resolution ────────────────────────────────── */
-[data-section="pachinko"]        { --sr-accent: var(--p-teal);  --sr-accent-2: var(--p-orange); }
-[data-section="tfa"]             { --sr-accent: var(--t-terra); --sr-accent-2: var(--t-ochre);  }
+/* -text variants: same hue as --sr-accent/--sr-accent-2, darkened to clear
+   4.5:1 on cream/card/warm grounds. Use for text color only — borders and
+   fills should keep the full-saturation --sr-accent/--sr-accent-2. */
+[data-section="pachinko"]        { --sr-accent: var(--p-teal);  --sr-accent-2: var(--p-orange); --sr-accent-text: var(--p-teal-text); --sr-accent-2-text: var(--p-orange-text); }
+[data-section="tfa"]             { --sr-accent: var(--t-terra); --sr-accent-2: var(--t-ochre);  --sr-accent-text: var(--p-orange-text); --sr-accent-2-text: var(--t-ochre-text); }
 [data-section="hub"],
-[data-section="cultural-message"] { --sr-accent: var(--p-teal); --sr-accent-2: var(--p-orange); }
+[data-section="cultural-message"] { --sr-accent: var(--p-teal); --sr-accent-2: var(--p-orange); --sr-accent-text: var(--p-teal-text); --sr-accent-2-text: var(--p-orange-text); }
 
 /* ── Page shell ────────────────────────────────────────────────────────── */
 .sr-page {
@@ -132,8 +135,7 @@
   font-family:    var(--font-mono);
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.08em;
-  color:          var(--sr-accent);
-  opacity:        0.8;
+  color:          var(--sr-accent-text);
 }
 
 .sr-spoke-nav-item:not(.active) .sr-spoke-nav-num {
@@ -151,7 +153,7 @@
   font-size:       var(--t-eyebrow);
   letter-spacing:  0.18em;
   text-transform:  uppercase;
-  color:           var(--sr-accent-2);
+  color:           var(--sr-accent-2-text);
   margin-bottom:   var(--s-3);
 }
 
@@ -370,7 +372,7 @@
 .sr-timeline-year {
   font-family:    var(--font-mono);
   font-size:      0.6875rem; /* 11px */
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   padding-top:    var(--s-1);
   text-align:     right;
   padding-right:  var(--s-2);
@@ -407,7 +409,7 @@
 }
 
 .sr-timeline-entry[data-highlighted] .sr-timeline-year {
-  color:       var(--sr-accent);
+  color:       var(--sr-accent-text);
   font-weight: 600;
 }
 
@@ -451,7 +453,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
   margin-bottom:  var(--s-2);
 }
 
@@ -569,7 +571,7 @@
 .sr-data-table td:first-child {
   font-family:    var(--font-mono);
   font-size:      0.75rem;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   white-space:    nowrap;
 }
 
@@ -696,7 +698,7 @@
 }
 
 .sr-cm-nav a:hover {
-  color: var(--sr-accent);
+  color: var(--sr-accent-text);
 }
 
 /* ── Hub page components ────────────────────────────────────────────────── */
@@ -722,7 +724,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--p-orange);
+  color:          var(--p-orange-text);
   margin-bottom:  var(--s-3);
   display:        block;
 }
@@ -797,7 +799,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
 }
 
 .sr-spoke-card-title {
@@ -993,7 +995,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--p-orange);
+  color:          var(--p-orange-text);
 }
 
 .sr-novel-card--tfa .sr-novel-card-eyebrow { color: var(--t-ochre); }
@@ -1033,7 +1035,7 @@
   font-size:      0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--p-teal);
+  color:          var(--p-teal-text);
   margin-top:     var(--s-2);
 }
 
@@ -1080,7 +1082,7 @@
 .sr-pronunciation-table .sr-pron-respell {
   font-family: var(--font-mono);
   font-size:   var(--t-meta);
-  color:       var(--sr-accent-2);
+  color:       var(--sr-accent-2-text);
   width:       25%;
   padding-right: var(--s-4);
   vertical-align: top;
@@ -1240,7 +1242,7 @@
 }
 
 .sr-pagination-link:hover .sr-pagination-eyebrow {
-  color: var(--sr-accent);
+  color: var(--sr-accent-text);
 }
 
 .sr-pagination-title {
@@ -1312,7 +1314,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--p-orange);
+  color:          var(--p-orange-text);
   display:        block;
   margin-bottom:  var(--s-3);
 }
@@ -1403,13 +1405,13 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   display:        block;
   margin-bottom:  var(--s-3);
 }
 
 [data-section="tfa"] .scrolly-chapter-eyebrow {
-  color: var(--t-ochre);
+  color: var(--t-ochre-text);
 }
 
 .scrolly-chapter-title {
@@ -1456,12 +1458,12 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   margin:         0 0 var(--s-3);
 }
 
 [data-section="tfa"] .scrolly-landing-eyebrow {
-  color: var(--sr-accent);
+  color: var(--sr-accent-text);
 }
 
 .scrolly-landing-title {
@@ -1502,7 +1504,7 @@
   font-size:      var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
   margin-bottom:  var(--s-2);
 }
 
@@ -1776,7 +1778,7 @@
   font-family:    var(--font-mono);
   font-size:      0.8125rem;
   letter-spacing: 0.04em;
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
   font-weight:    600;
 }
 
@@ -1833,7 +1835,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   margin-bottom:  var(--s-4);
 }
 
@@ -1882,7 +1884,7 @@
   font-size:      var(--t-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color:          var(--sr-accent-2);
+  color:          var(--sr-accent-2-text);
   margin-bottom:  var(--s-5);
 }
 
@@ -2110,7 +2112,7 @@
   font-size:        0.65rem;
   letter-spacing:   0.12em;
   text-transform:   uppercase;
-  color:            var(--sr-accent);
+  color:            var(--sr-accent-text);
   margin-bottom:    0.5rem;
 }
 
@@ -2280,7 +2282,7 @@
   font-family:  var(--font-body);
   font-size:    0.85rem;
   font-style:   italic;
-  color:        var(--sr-accent);
+  color:        var(--sr-accent-text);
 }
 
 .sr-term-card-body {
@@ -2320,7 +2322,7 @@
   font-size:      0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
   margin-top:     0.5rem;
 }
 
@@ -2347,7 +2349,7 @@
   font-family:    var(--font-display);
   font-size:      1.5rem;
   font-weight:    700;
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
   flex-shrink:    0;
   line-height:    1;
 }
@@ -2389,7 +2391,7 @@
 .sr-pin-timeline-entry:last-child { border-bottom: none; }
 
 .sr-pin-timeline-entry--highlight .sr-pin-timeline-year {
-  color:          var(--sr-accent);
+  color:          var(--sr-accent-text);
 }
 
 .sr-pin-timeline-year {

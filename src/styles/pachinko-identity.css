@@ -110,6 +110,10 @@
 .id-diagram svg { display: block; width: 100%; height: auto; max-height: 88vh; }
 .id-diagram [class*="-warm"], .id-diagram [class*="-cold"], .id-diagram [class*="-press"],
 .id-diagram [class*="dgen-"] { transition: opacity 0.6s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  .id-diagram [class*="-warm"], .id-diagram [class*="-cold"], .id-diagram [class*="-press"],
+  .id-diagram [class*="dgen-"] { transition: none; }
+}
 
 /* ── Canonical diagram layout ───────────────────────────────────────────
    Keep the system's real mechanic intact: the field is sticky & sits
@@ -454,6 +458,9 @@
   transition: opacity 0.9s var(--ease-out), transform 1.15s var(--ease-out);
 }
 .coda-field.coda-motion.is-revealed .coda-bloom svg { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .coda-field.coda-motion .coda-bloom svg { transition: none; }
+}
 
 .coda-prose {
   max-width: 40rem; margin-inline: auto;

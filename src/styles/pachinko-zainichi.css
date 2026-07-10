@@ -140,8 +140,8 @@
   box-shadow: 0 0 0 5px rgba(196, 114, 42, 0.18);
 }
 .sr-cascade-year { color: var(--cascade-date-color, #8B4A10); transition: color 0.3s ease; }
-.sr-cascade-entry.is-newest .sr-cascade-year { color: var(--p-teal); }
-.sr-cascade-entry--highlight .sr-cascade-year { color: var(--p-orange); }
+.sr-cascade-entry.is-newest .sr-cascade-year { color: var(--p-teal-text); }
+.sr-cascade-entry--highlight .sr-cascade-year { color: var(--p-orange-text); }
 .sr-cascade-event { transition: font-weight 0.3s ease; }
 .sr-cascade-entry.is-newest .sr-cascade-event { font-weight: 500; }
 .sr-cascade-text { transform: translateY(6px); transition: transform 0.5s var(--ease-out); }
@@ -161,6 +161,8 @@
   .sr-cascade-text  { transform: none; transition: none; }
   .sr-cascade-dot   { transform: scale(1); background: var(--p-teal); border-color: var(--p-teal); }
   .sr-cascade-entry--highlight .sr-cascade-dot { background: var(--p-orange); border-color: var(--p-orange); }
+  .sr-cascade-year  { transition: none; }
+  .sr-cascade-event { transition: none; }
   .sr-zone-cascade-progress { display: none; }
 }
 @media (max-width: 767px) {
@@ -482,7 +484,7 @@
 .pz-info-eyebrow {
   font-family: var(--font-mono); font-size: var(--t-eyebrow);
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--p-orange); margin-bottom: var(--s-5); display: block;
+  color: var(--p-orange-text); margin-bottom: var(--s-5); display: block;
 }
 .pz-bar-row { margin-bottom: var(--s-5); }
 .pz-bar-label {
@@ -503,7 +505,7 @@
 .pz-bar-fill--auto { width: 50%; background: var(--p-orange); opacity: 0.85; }
 .pz-info-mult {
   font-family: var(--font-display); font-style: italic; font-size: 1.125rem;
-  color: var(--p-teal); margin: var(--s-4) 0 var(--s-3);
+  color: var(--p-teal-text); margin: var(--s-4) 0 var(--s-3);
 }
 
 /* Shadow/stigma plate */

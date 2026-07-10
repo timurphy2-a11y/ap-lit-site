@@ -37,7 +37,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   padding-top: 2px;
 }
 .pk-spoiler-text {
@@ -67,7 +67,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   display: block;
   margin-bottom: var(--s-6);
 }
@@ -108,7 +108,7 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   line-height: 1.75;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   text-align: right;
   padding-top: 0.5rem;
   border-top: 1px solid var(--color-rule);
@@ -158,7 +158,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   background: none;
   border: none;
   border-bottom: 1px solid transparent;
@@ -241,7 +241,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-bottom: var(--s-3);
 }
 .pk-breath-heading {
@@ -293,7 +293,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 /* ── Long multi-paragraph epigraph (Anderson, full) ── */
@@ -314,7 +314,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -352,7 +352,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 .pk-seq-eyebrow--muted { color: var(--color-muted); }
 
@@ -365,7 +365,7 @@
   font-size: 0.5rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--p-orange);
+  color: var(--p-orange-text);
   border: 1px dashed color-mix(in srgb, var(--p-orange) 55%, transparent);
   padding: 2px 6px;
   border-radius: 2px;
@@ -429,7 +429,7 @@ body.pk-frieze-paraphrase .pk-seq-flag { display: none; }
   font-size: var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   text-align: center;
   margin-bottom: var(--s-2);
 }
@@ -505,7 +505,7 @@ body.pk-frieze-paraphrase .pk-seq-para {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-bottom: var(--s-5);
 }
 .pk-compare-svg {
@@ -550,7 +550,7 @@ body.pk-figure-off .pk-compare-fig { display: none; }
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-bottom: var(--s-4);
 }
 .pk-figure-art { width: clamp(150px, 23vw, 196px); }
@@ -666,7 +666,7 @@ body.pk-dens-clean .pk-track-beat .pk-more-toggle { display: none; }
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-bottom: var(--s-6);
 }
 .pk-registers-pair {
@@ -702,7 +702,7 @@ body.pk-dens-clean .pk-track-beat .pk-more-toggle { display: none; }
   font-size: 0.5rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--p-gold);
+  color: var(--t-ochre-text);
 }
 .pk-register-link svg { display: block; }
 .pk-registers-cap {
