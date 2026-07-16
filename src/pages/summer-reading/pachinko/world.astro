@@ -2,6 +2,7 @@
 import SummerLayout from '../../../layouts/SummerLayout.astro';
 import SpokePagination from '../../../components/summer-reading/SpokePagination.astro';
 import { getEntry, render } from 'astro:content';
+import '../../../styles/pachinko-world.css';
 
 const entry = await getEntry('summerReading', 'pachinko/world');
 const { Content } = await render(entry);

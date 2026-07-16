@@ -18,6 +18,10 @@ interface Props {
   ground?: 'cream' | 'tinted';
   text?: 'pachinko' | 'tfa';
   portrait?: boolean;
+  /** 'channel' pins the field in a center column with beats confined to the
+   *  side gutters (see pachinko-world.css); omit for the default full-width
+   *  overlay behavior. */
+  layout?: 'channel';
 }
 
 const {
@@ -30,11 +34,12 @@ const {
   ground = 'cream',
   text = 'pachinko',
   portrait = false,
+  layout,
 } = Astro.props;
 ---
 
 <section
-  class={`sr-scrolly-zone sr-scrolly-zone--${field}`}
+  class={`sr-scrolly-zone sr-scrolly-zone--${field}${layout === 'channel' ? ' sr-scrolly-zone--center' : ''}`}
   data-field={field}
   data-tempo={tempo}
   data-ground={ground}

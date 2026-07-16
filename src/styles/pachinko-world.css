@@ -1,0 +1,54 @@
+/* Pachinko World — center-channel map zones (Zone 3 · Busan–Shimonoseki,
+ * Zone 5 · Osaka/Tokyo). Same "--center" mechanic already shipped on the
+ * Identity spoke (pachinko-identity.css): the sticky map stays pinned in a
+ * mid-column channel, and beat cards are confined to the side gutters at
+ * every viewport so they never cover the map. Duplicated rather than
+ * shared because pachinko-identity.css is page-scoped to Identity, and
+ * TFA's own map zones already follow this same per-page-stylesheet
+ * convention (tfa-world.css, tfa-culture.css).
+ */
+
+.sr-scrolly-zone--center .sr-zone-beats > .sr-section-opener {
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .sr-scrolly-zone--center { --pw-channel: min(42%, 480px); }
+  .sr-scrolly-zone--center .sr-zone-field { width: var(--pw-channel); margin-inline: auto; }
+  /* Beats lane must share the field's own containing block (the section),
+     not the sitewide 1060px cap — otherwise "100%" in the gutter calc below
+     resolves against a narrower box than the field's percentage does, and
+     the two drift apart (and the card overlaps the map) on wide viewports. */
+  .sr-scrolly-zone--center .sr-zone-beats { max-width: none; }
+  .sr-scrolly-zone--center .sr-zone-beat { padding-inline: 0; }
+  .sr-scrolly-zone--center .sr-zone-beat--left   { justify-content: flex-start; }
+  .sr-scrolly-zone--center .sr-zone-beat--right  { justify-content: flex-end; }
+  .sr-scrolly-zone--center .sr-zone-beat--center { justify-content: center; }
+  /* Gutter margin is subtracted inside the max-width calc below, so the
+     card's margin + box together never exceed the gutter: border-box
+     sizing is required here so max-width caps the full visible footprint
+     (content + the card's own padding) rather than just its content area. */
+  .sr-scrolly-zone--center { --pw-gutter-margin: clamp(16px, 3vw, 48px); }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > *,
+  .sr-scrolly-zone--center .sr-zone-beat--right > * {
+    box-sizing: border-box;
+    max-width: min(19rem, calc((100% - var(--pw-channel)) / 2 - var(--pw-gutter-margin) - 16px));
+    min-width: 0;
+    width: 100%;
+  }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  var(--pw-gutter-margin); }
+  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: var(--pw-gutter-margin); }
+  .sr-scrolly-zone--center .sr-zone-beat--center > * { max-width: 30rem; width: 100%; }
+}
+
+/* mobile / reduced-motion: unstack — field rides static above its beats */
+@media (max-width: 767px) {
+  .sr-scrolly-zone--center .sr-zone-field { position: relative; height: auto; width: 100%; margin: 0; }
+  .sr-scrolly-zone--center .sr-zone-beats { margin-top: var(--s-6); }
+  .sr-scrolly-zone--center .sr-zone-beat { justify-content: center; }
+  .sr-scrolly-zone--center .sr-zone-beat > * { max-width: 32rem; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
+  .sr-scrolly-zone--center .sr-zone-field { margin-inline: auto; }
+}
