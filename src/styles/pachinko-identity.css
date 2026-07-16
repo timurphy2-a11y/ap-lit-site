@@ -133,21 +133,35 @@
 @media (min-width: 768px) {
   /* PILLARS · center channel — graphic in the middle, cards both sides.
      The card width tracks the channel at EVERY viewport: gutter is
-     (100% − channel)/2; card stops short of it by a margin + gap, and the
-     graphic's own viewBox padding adds ~100px more clearance inside. */
+     (100% − channel)/2; card stops short of it by a margin + gap. Border-box
+     sizing keeps the field's rendered footprint equal to the channel itself
+     — .sr-zone-diagram-field's own padding is content-box by default, so
+     without this override it adds outward and the field visually overflows
+     past the channel the card math assumes, overlapping the card. */
   .sr-scrolly-zone--center { --pid-channel: min(42%, 480px); }
-  .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; }
+  .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; box-sizing: border-box; }
+  /* Beats lane must share the field's own containing block (the section),
+     not the sitewide 1060px cap — otherwise "100%" in the gutter calc below
+     resolves against a narrower box than the field's percentage does, and
+     the two drift apart (card overlaps the graphic) past a 1060px viewport. */
+  .sr-scrolly-zone--center .sr-zone-beats { max-width: none; }
   .sr-scrolly-zone--center .sr-zone-beat { padding-inline: 0; }
   .sr-scrolly-zone--center .sr-zone-beat--left   { justify-content: flex-start; }
   .sr-scrolly-zone--center .sr-zone-beat--right  { justify-content: flex-end; }
   .sr-scrolly-zone--center .sr-zone-beat--center { justify-content: center; }
+  /* Gutter margin is subtracted inside the max-width calc below, so the
+     card's margin + box together never exceed the gutter: border-box
+     sizing is required here so max-width caps the full visible footprint
+     (content + the card's own padding) rather than just its content area. */
+  .sr-scrolly-zone--center { --pid-gutter-margin: clamp(16px, 3vw, 48px); }
   .sr-scrolly-zone--center .sr-zone-beat--left  > *,
   .sr-scrolly-zone--center .sr-zone-beat--right > * {
-    max-width: min(19rem, calc((100% - var(--pid-channel)) / 2 - 56px));
+    box-sizing: border-box;
+    max-width: min(19rem, calc((100% - var(--pid-channel)) / 2 - var(--pid-gutter-margin) - 16px));
     min-width: 0; width: 100%;
   }
-  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  clamp(16px, 3vw, 48px); }
-  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: clamp(16px, 3vw, 48px); }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  var(--pid-gutter-margin); }
+  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: var(--pid-gutter-margin); }
   .sr-scrolly-zone--center .sr-zone-beat--center > * { max-width: 30rem; width: 100%; }
 
   /* DESCENT & OVERWRITE · aside — graphic one side, cards on the other */
