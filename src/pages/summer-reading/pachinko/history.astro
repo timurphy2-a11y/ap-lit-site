@@ -8,7 +8,18 @@ const imgBase = '/images/summer-reading/pachinko/zainichi';
 
 <SummerLayout title="Japan and the Zainichi — Pachinko · The Living Atlas" section="pachinko" spoke="history">
 
-  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Japan and the Zainichi</h1>
+  <!-- Spoke header: deep-teal band + Cascade Crest watermark -->
+  <div class="pk-spoke-header">
+    <div class="pk-spoke-header-watermark" data-motif="pk-crest" data-w="440" data-op="0.12" data-color="var(--p-cream)" aria-hidden="true"></div>
+    <div class="pk-spoke-header-inner">
+      <span class="pk-spoke-header-eyebrow">Pachinko &middot; Spoke 03</span>
+      <div class="pk-spoke-badge-row">
+        <span class="pk-spoke-badge" data-motif="pk-glyph" data-idx="2" data-w="34" data-color="var(--p-cream)" aria-hidden="true"></span>
+        <h1 class="pk-spoke-header-title">Zainichi</h1>
+      </div>
+      <p class="pk-spoke-header-deck">Japan&rsquo;s three-decade dismantling of Korean sovereignty, and the eighty years of legal dispossession and identity erasure that followed for the Zainichi Korean community <em>Pachinko&rsquo;s</em> characters belong to.</p>
+    </div>
+  </div>
 
   <!-- ════════════════════════════════════════════════════════════
        ZONE 1 — Annexation and Dispossession · photo · steady · cream
@@ -702,13 +713,63 @@ const imgBase = '/images/summer-reading/pachinko/zainichi';
       '<circle cx="19" cy="3" r="1.5" fill="var(--color-ink)"/>' +
       '<circle cx="29" cy="3" r="1.5" fill="var(--color-ink)"/></svg>';
   }
+  var PK_GLYPHS = [
+    '<path d="M6 30 q5 -6 10 0 t10 0 t10 0 t10 0"/><path d="M6 38 q5 -6 10 0 t10 0 t10 0 t10 0" opacity="0.5"/><path d="M10 22 Q24 6 38 20" stroke-dasharray="3 3"/><circle cx="10" cy="22" r="2.4" fill="GOLD" stroke="none"/><circle cx="38" cy="20" r="2.4" fill="GOLD" stroke="none"/>',
+    '<line x1="24" y1="8" x2="24" y2="34"/><line x1="14" y1="17" x2="34" y2="17"/><line x1="10" y1="40" x2="38" y2="40" opacity="0.55"/><line x1="18" y1="40" x2="14" y2="44" opacity="0.4"/><line x1="30" y1="40" x2="34" y2="44" opacity="0.4"/>',
+    '<path d="M10 22 L24 10 L38 22"/><path d="M13 21 V40 H35 V21"/><circle cx="24" cy="31" r="6"/><circle cx="22" cy="29" r="1.4" fill="GOLD" stroke="none"/>',
+    '<circle cx="24" cy="24" r="17" opacity="0.55"/><circle cx="24" cy="20" r="5"/><path d="M15 36 C 16 28, 32 28, 33 36"/>',
+    '<circle cx="18" cy="24" r="9"/><circle cx="30" cy="24" r="9"/>'
+  ];
+
+  function pkGlyph(idx, size, color) {
+    var inner = PK_GLYPHS[idx].split('GOLD').join('var(--p-gold)');
+    return '<svg viewBox="0 0 48 48" width="' + size + '" height="' + size + '" fill="none" stroke="' + color +
+      '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block">' + inner + '</svg>';
+  }
+
+  function pkCrest(size, color, op) {
+    var C = 200, parts = [], i, a;
+    parts.push('<circle cx="200" cy="200" r="168" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.4"/>');
+    parts.push('<circle cx="200" cy="200" r="146" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>');
+    for (i = 0; i < 5; i++) {
+      a = (i / 5) * 2 * Math.PI - Math.PI / 2;
+      parts.push('<line x1="' + (C + 40 * Math.cos(a)).toFixed(1) + '" y1="' + (C + 40 * Math.sin(a)).toFixed(1) +
+        '" x2="' + (C + 162 * Math.cos(a)).toFixed(1) + '" y2="' + (C + 162 * Math.sin(a)).toFixed(1) +
+        '" stroke="' + color + '" stroke-width="1.1" opacity="0.55"/>');
+    }
+    for (i = 0; i < 5; i++) {
+      var base = (i / 5) * 2 * Math.PI - Math.PI / 2 + Math.PI / 5;
+      for (var row = 0; row < 4; row++) {
+        var rr = 64 + row * 26;
+        for (var k = -row; k <= row; k += 2) {
+          var aa = base + (k * 0.052);
+          parts.push('<circle cx="' + (C + rr * Math.cos(aa)).toFixed(1) + '" cy="' + (C + rr * Math.sin(aa)).toFixed(1) + '" r="1.7" fill="' + color + '" opacity="0.45"/>');
+        }
+      }
+    }
+    var balls = [[150, 120], [262, 150], [236, 262], [128, 236]];
+    balls.forEach(function (b) { parts.push('<circle cx="' + b[0] + '" cy="' + b[1] + '" r="4" fill="var(--p-gold)" opacity="0.7"/>'); });
+    parts.push('<circle cx="200" cy="200" r="34" fill="none" stroke="' + color + '" stroke-width="1.4" opacity="0.85"/>');
+    parts.push('<circle cx="200" cy="200" r="27" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.55"/>');
+    parts.push('<path d="M200 206 C190 206, 176 214, 176 202 C176 194, 190 198, 200 206Z" fill="' + color + '" opacity="0.5"/>');
+    parts.push('<path d="M200 206 C210 206, 224 214, 224 202 C224 194, 210 198, 200 206Z" fill="' + color + '" opacity="0.5"/>');
+    parts.push('<path d="M200 200 C194 196, 184 188, 186 184 C188 180, 196 188, 200 200Z" fill="var(--p-gold)" opacity="0.6"/>');
+    parts.push('<path d="M200 200 C206 196, 216 188, 214 184 C212 180, 204 188, 200 200Z" fill="var(--p-gold)" opacity="0.6"/>');
+    return '<svg viewBox="0 0 400 400" width="' + size + '" height="' + size + '" fill="none" aria-hidden="true" style="display:block;overflow:visible;opacity:' + op + '">' + parts.join('') + '</svg>';
+  }
+
   function buildMotifs() {
     document.querySelectorAll('[data-motif]').forEach(function (el) {
       var k = el.getAttribute('data-motif');
       var size = parseInt(el.getAttribute('data-size') || '40', 10);
+      var w = parseFloat(el.getAttribute('data-w') || '80');
+      var op = parseFloat(el.getAttribute('data-op') || '0.7');
+      var color = el.getAttribute('data-color') || 'var(--p-orange)';
       if (k === 'medallion') el.innerHTML = medallion(size, 'var(--p-teal)');
       else if (k === 'rosette') el.innerHTML = rosette(size, 'var(--p-orange)', 20);
       else if (k === 'butterfly') el.innerHTML = butterfly(size);
+      else if (k === 'pk-glyph') el.innerHTML = pkGlyph(parseInt(el.getAttribute('data-idx') || '4', 10), w, color);
+      else if (k === 'pk-crest') el.innerHTML = pkCrest(w, color, op);
     });
   }
 

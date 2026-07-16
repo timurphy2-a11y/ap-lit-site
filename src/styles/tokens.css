@@ -22,6 +22,7 @@
   --p-orange:         #C4722A;   /* eyebrow / decorative warm */
   --p-gold:           #D4A840;   /* secondary highlight */
   --p-coral:          #C4537A;   /* tertiary; reused on Cultural Message "open question" */
+  --p-cream:          #F0E4CF;   /* header text tint on deep teal (pk-spoke-header) */
 
   /* Title plate (Treatment A — locked) */
   --p-title-wash:     rgba(42, 168, 160, 0.08);   /* 8% teal on cream */
