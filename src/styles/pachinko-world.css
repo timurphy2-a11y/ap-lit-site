@@ -53,17 +53,21 @@
   .sr-scrolly-zone--center .sr-zone-field { margin-inline: auto; }
 }
 
-/* Zone 7a (The Metaphor) — bottom-anchor the photo within its sticky box
-   instead of centering it (.sr-zone-photo-field's default). Centered, the
-   image sits in the middle of the 100vh pinned box with a large empty
-   margin below it; anchoring it to the bottom means the image's own
-   bottom edge — not the sticky box's — is what the caption below lands
-   against once the pin releases, so the gap is a real, tight one instead
-   of "however much air the vertical centering happened to leave." */
+/* Zone 7a (The Metaphor) — the photo stays centered in its sticky box (the
+   "bottom-anchor" approach tried here previously left it glued to the very
+   bottom of the viewport for most of the zone's scroll, with a huge empty
+   margin above it). Instead, size the photo in vh so the empty space the
+   centering leaves above and below is a known, fixed fraction of the
+   viewport height — which means the caption below can cancel exactly that
+   fraction with a negative margin (see .pw-photo-caption) and land right
+   against the photo's real bottom edge, at any viewport height, without
+   needing to anchor the photo itself off-center. */
 @media (min-width: 768px) {
-  .sr-scrolly-zone--anchored .sr-zone-photo-field {
-    justify-content: flex-end;
-    padding-bottom: 0;
+  .sr-scrolly-zone--anchored .sr-zone-photo--portrait {
+    height: 58vh;
+    width: auto;
+    max-height: none;
+    max-width: 90%;
   }
 }
 
@@ -84,6 +88,19 @@
   padding: var(--s-5) var(--s-6);
   background: rgba(246, 241, 232, 0.93);
   text-align: center;
+}
+/* Pulls the caption up to cancel the empty space the centered, vh-sized
+   photo above (.sr-zone-photo--portrait: height 58vh) leaves below it. The
+   sticky field's content box is exactly 100vh (padding sits outside it in
+   content-box sizing), so centering a 58vh photo leaves (100vh-58vh)/2 of
+   empty space below it inside the field, plus the field's own bottom
+   padding (var(--s-8)) beyond that before the field's box actually ends.
+   Cancel both, then add back the same small gap used on mobile
+   (var(--s-2)) so the two stay in sync at every viewport height. */
+@media (min-width: 768px) {
+  .sr-scrolly-zone--anchored + .pw-photo-caption {
+    margin-top: calc(-1 * ((100vh - 58vh) / 2 + var(--s-8)) + var(--s-2));
+  }
 }
 .pw-photo-caption p {
   font-family: var(--font-body);
