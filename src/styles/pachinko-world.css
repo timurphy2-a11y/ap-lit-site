@@ -52,3 +52,28 @@
 @media (prefers-reduced-motion: reduce) and (min-width: 768px) {
   .sr-scrolly-zone--center .sr-zone-field { margin-inline: auto; }
 }
+
+/* Zone 7a (The Metaphor) — closing line as a caption under the pachinko
+   machine photo, not another fading overlay beat. The photo's sticky pin
+   (.sr-zone-field, position:sticky) releases naturally once this zone's
+   own scroll height runs out; this caption is the very next element in
+   flow, so it lands directly under the photo right as the pin lets go and
+   the two continue scrolling up the page together. Width matches the
+   zone's portrait photo (.sr-zone-photo--portrait: min(34%, 360px)) so it
+   reads as attached to it rather than as generic page copy. */
+.pw-photo-caption {
+  max-width: min(34%, 360px);
+  margin: var(--s-4) auto 0;
+  padding: 0 var(--s-4) var(--s-10);
+  text-align: center;
+}
+.pw-photo-caption p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .pw-photo-caption { max-width: 32rem; }
+}
