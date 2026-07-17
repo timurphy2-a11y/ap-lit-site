@@ -53,18 +53,28 @@
   .sr-scrolly-zone--center .sr-zone-field { margin-inline: auto; }
 }
 
-/* Zone 7a (The Metaphor) — the photo stays centered in its sticky box (the
-   "bottom-anchor" approach tried here previously left it glued to the very
-   bottom of the viewport for most of the zone's scroll, with a huge empty
-   margin above it). Instead, size the photo in vh so the empty space the
-   centering leaves above and below is a known, fixed fraction of the
-   viewport height — which means the caption below can cancel exactly that
-   fraction with a negative margin (see .pw-photo-caption) and land right
-   against the photo's real bottom edge, at any viewport height, without
-   needing to anchor the photo itself off-center. */
+/* Zone 7a (The Metaphor) — bottom-anchor the photo within its sticky box,
+   and size it large enough (84vh) that anchoring doesn't leave a big empty
+   margin above it. (A centered, vh-sized photo with a calculated negative
+   margin on the caption to cancel the centering gap was tried here first —
+   correct on paper, but that kind of cross-element computed-margin
+   coordination is exactly the sort of thing that's fragile across browsers
+   and easy to get subtly wrong. Bottom-anchoring needs no coordination at
+   all: the photo's real bottom edge simply *is* the field's bottom edge,
+   so the caption's plain, fixed margin-top below is always correct.) */
 @media (min-width: 768px) {
+  /* Both top and bottom padding must go to zero, not just bottom: the
+     field's height is a fixed 100vh content box, and content-box sizing
+     adds padding OUTSIDE it — any padding left on this box makes its
+     total rendered height exceed the 100vh viewport it's pinned against,
+     so with an image this tall (84vh) even the old default padding-top
+     was enough to push its bottom edge below the visible screen. */
+  .sr-scrolly-zone--anchored .sr-zone-photo-field {
+    justify-content: flex-end;
+    padding: 0;
+  }
   .sr-scrolly-zone--anchored .sr-zone-photo--portrait {
-    height: 58vh;
+    height: 84vh;
     width: auto;
     max-height: none;
     max-width: 90%;
@@ -88,19 +98,6 @@
   padding: var(--s-5) var(--s-6);
   background: rgba(246, 241, 232, 0.93);
   text-align: center;
-}
-/* Pulls the caption up to cancel the empty space the centered, vh-sized
-   photo above (.sr-zone-photo--portrait: height 58vh) leaves below it. The
-   sticky field's content box is exactly 100vh (padding sits outside it in
-   content-box sizing), so centering a 58vh photo leaves (100vh-58vh)/2 of
-   empty space below it inside the field, plus the field's own bottom
-   padding (var(--s-8)) beyond that before the field's box actually ends.
-   Cancel both, then add back the same small gap used on mobile
-   (var(--s-2)) so the two stay in sync at every viewport height. */
-@media (min-width: 768px) {
-  .sr-scrolly-zone--anchored + .pw-photo-caption {
-    margin-top: calc(-1 * ((100vh - 58vh) / 2 + var(--s-8)) + var(--s-2));
-  }
 }
 .pw-photo-caption p {
   font-family: var(--font-body);
