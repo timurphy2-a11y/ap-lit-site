@@ -64,8 +64,8 @@
 /* Portrait variant for tall images (e.g. pachinko machine) */
 .sr-zone-photo--portrait {
   aspect-ratio: 3 / 4;
-  width: min(34%, 360px);
-  max-height: 62vh;
+  width: min(40%, 420px);
+  max-height: 68vh;
 }
 
 /* Caption sits below the plate */
