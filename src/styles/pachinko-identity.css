@@ -170,6 +170,18 @@
      center, so confine its cards to the right half — no overlap onto the
      graphic. Scoped to this zone so descent is untouched. */
   .sr-scrolly-zone[data-field="overwrite"][data-diagram-side="left"] .sr-zone-field { margin-left: clamp(8px, 1vw, 16px); }
+  /* Field width is solved backwards from the fixed-size elements around it
+     (card max-width, both paddings, the field's own left margin) so a
+     constant 24px gap to the card survives at every viewport — the flat
+     48% above left this zone's card with 200px+ of unused slack at wide
+     widths while barely clearing it at 768px. Card math (17.5rem/31vw)
+     is unchanged; this only resizes the graphic to match it exactly. */
+  .sr-scrolly-zone[data-field="overwrite"][data-diagram-side="left"] .sr-zone-field {
+    width: min(
+      calc(100% - clamp(20px, 4vw, 64px) - min(17.5rem, 31vw) - clamp(8px, 1vw, 16px) - (2 * clamp(16px, 3vw, 56px)) - 24px),
+      700px
+    );
+  }
   .sr-scrolly-zone--split[data-field="overwrite"][data-diagram-side="left"] .sr-zone-beat > * { max-width: min(17.5rem, 31vw); min-width: 0; width: 100%; }
   .sr-scrolly-zone--split[data-diagram-side="right"] .sr-zone-field { margin-left: auto;  margin-right: clamp(8px, 2vw, 44px); }
   .sr-scrolly-zone--split[data-diagram-side="left"]  .sr-zone-field { margin-right: auto; margin-left:  clamp(8px, 2vw, 44px); }
@@ -286,7 +298,7 @@
    (scale-in seal + strike), not a crossfade.
    ════════════════════════════════════════════════════════════════ */
 .rgz {
-  position: relative; width: 100%; max-width: 600px;
+  position: relative; width: 100%; max-width: 680px;
   border: 1px solid var(--cold-name); border-radius: 3px;
   background: var(--color-cream); overflow: hidden;
   padding: 0 0 38px; box-sizing: border-box; word-break: keep-all;
