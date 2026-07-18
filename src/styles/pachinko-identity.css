@@ -138,7 +138,7 @@
      — .sr-zone-diagram-field's own padding is content-box by default, so
      without this override it adds outward and the field visually overflows
      past the channel the card math assumes, overlapping the card. */
-  .sr-scrolly-zone--center { --pid-channel: min(42%, 480px); }
+  .sr-scrolly-zone--center { --pid-channel: min(48%, 620px); }
   .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; box-sizing: border-box; }
   /* Beats lane must share the field's own containing block (the section),
      not the sitewide 1060px cap — otherwise "100%" in the gutter calc below
