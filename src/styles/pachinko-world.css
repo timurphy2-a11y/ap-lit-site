@@ -67,6 +67,23 @@
   .sr-scrolly-zone--split .sr-zone-field { margin-inline: auto; }
 }
 
+/* Zone 1 (Opening Orientation) and Zone 2 (Yeongdo, Busan) — enlarge the
+   photo beyond the sitewide default (.sr-zone-photo: min(46%,540px) width,
+   4:3 aspect-ratio, max-height 56vh, object-fit:cover). Cover plus a fixed
+   aspect ratio mean this only shows more of the same photo at a bigger
+   size — never stretches or distorts it. Desktop-only, matching every
+   other layout variant in this file: the sitewide mobile fallback already
+   shrinks the field itself, so the default (smaller) sizing is fine there. */
+@media (min-width: 768px) {
+  .sr-scrolly-zone--photo-lg .sr-zone-photo {
+    width: min(58%, 680px);
+    max-height: 68vh;
+  }
+  .sr-scrolly-zone--photo-lg .sr-zone-caption {
+    max-width: min(58%, 680px);
+  }
+}
+
 /* Zone 7a (The Metaphor) — bottom-anchor the photo within its sticky box,
    and size it large enough (84vh) that anchoring doesn't leave a big empty
    margin above it. (A centered, vh-sized photo with a calculated negative

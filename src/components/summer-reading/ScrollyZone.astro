@@ -26,6 +26,10 @@ interface Props {
   layout?: 'anchored' | 'split';
   /** Which side the field sits on when layout="split". */
   mapSide?: 'left' | 'right';
+  /** 'large' enlarges a photo field's image beyond the sitewide default
+   *  (see pachinko-world.css) — object-fit:cover keeps the same aspect
+   *  ratio, so this is a size increase only, never a stretch/distortion. */
+  imageSize?: 'large';
 }
 
 const {
@@ -40,11 +44,12 @@ const {
   portrait = false,
   layout,
   mapSide,
+  imageSize,
 } = Astro.props;
 
-const layoutClass = layout === 'anchored' ? ' sr-scrolly-zone--anchored'
+const layoutClass = (layout === 'anchored' ? ' sr-scrolly-zone--anchored'
   : layout === 'split' ? ' sr-scrolly-zone--split'
-  : '';
+  : '') + (imageSize === 'large' ? ' sr-scrolly-zone--photo-lg' : '');
 ---
 
 <section
