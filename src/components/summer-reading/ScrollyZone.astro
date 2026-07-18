@@ -18,12 +18,14 @@ interface Props {
   ground?: 'cream' | 'tinted';
   text?: 'pachinko' | 'tfa';
   portrait?: boolean;
-  /** 'channel' pins the field in a center column with beats confined to the
-   *  side gutters (see pachinko-world.css); 'anchored' bottom-aligns a photo
-   *  field's image (instead of centering it) so content placed right after
-   *  the zone lands flush against the image once the sticky pin releases.
-   *  Omit for the default full-width overlay behavior. */
-  layout?: 'channel' | 'anchored';
+  /** 'anchored' bottom-aligns a photo field's image (instead of centering
+   *  it) so content placed right after the zone lands flush against the
+   *  image once the sticky pin releases. 'split' pins the field to one
+   *  side (see mapSide) with beats confined to the other side, both in
+   *  pachinko-world.css. Omit for the default full-width overlay behavior. */
+  layout?: 'anchored' | 'split';
+  /** Which side the field sits on when layout="split". */
+  mapSide?: 'left' | 'right';
 }
 
 const {
@@ -37,10 +39,11 @@ const {
   text = 'pachinko',
   portrait = false,
   layout,
+  mapSide,
 } = Astro.props;
 
-const layoutClass = layout === 'channel' ? ' sr-scrolly-zone--center'
-  : layout === 'anchored' ? ' sr-scrolly-zone--anchored'
+const layoutClass = layout === 'anchored' ? ' sr-scrolly-zone--anchored'
+  : layout === 'split' ? ' sr-scrolly-zone--split'
   : '';
 ---
 
@@ -50,6 +53,7 @@ const layoutClass = layout === 'channel' ? ' sr-scrolly-zone--center'
   data-tempo={tempo}
   data-ground={ground}
   data-text={text}
+  data-map-side={layout === 'split' ? mapSide : undefined}
 >
 
   {/* ── Photo field ─────────────────────────────────────────────────── */}

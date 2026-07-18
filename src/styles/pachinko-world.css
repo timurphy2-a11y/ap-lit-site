@@ -1,56 +1,70 @@
-/* Pachinko World — center-channel map zones (Zone 3 · Busan–Shimonoseki,
- * Zone 5 · Osaka/Tokyo). Same "--center" mechanic already shipped on the
- * Identity spoke (pachinko-identity.css): the sticky map stays pinned in a
- * mid-column channel, and beat cards are confined to the side gutters at
- * every viewport so they never cover the map. Duplicated rather than
- * shared because pachinko-identity.css is page-scoped to Identity, and
- * TFA's own map zones already follow this same per-page-stylesheet
- * convention (tfa-world.css, tfa-culture.css).
+/* Pachinko World — split-layout map zones (Zone 3 · Busan–Shimonoseki,
+ * Zone 5 · Osaka/Tokyo). The map is pinned to one side of the screen at
+ * full available size, with beat cards scrolling down the other side in
+ * a single column — twice the room a center channel could give the map,
+ * since only one side needs to reserve space for text instead of both.
+ * Zone 3 puts the map on the left (mapSide="left"), Zone 5 on the right
+ * (mapSide="right"), so the two map zones alternate sides going down the
+ * page. Same "--split" mechanic already shipped on the Identity spoke
+ * (pachinko-identity.css, "descent/overwrite" zones), reworked here with
+ * beat-card sizing based on the beats lane's own half rather than a
+ * shared channel variable — simpler, and avoids the containing-block
+ * mismatch that caused real overlap bugs in this file's earlier
+ * center-channel version (map and beats resolving percentages against
+ * different boxes at wide viewports). Duplicated file rather than a
+ * shared one because pachinko-identity.css is page-scoped to Identity.
  */
 
-.sr-scrolly-zone--center .sr-zone-beats > .sr-section-opener {
+.sr-scrolly-zone--split .sr-zone-beats > .sr-section-opener {
   max-width: 34rem;
   margin-inline: auto;
 }
 
 @media (min-width: 768px) {
-  .sr-scrolly-zone--center { --pw-channel: min(42%, 480px); }
-  .sr-scrolly-zone--center .sr-zone-field { width: var(--pw-channel); margin-inline: auto; }
   /* Beats lane must share the field's own containing block (the section),
-     not the sitewide 1060px cap — otherwise "100%" in the gutter calc below
-     resolves against a narrower box than the field's percentage does, and
-     the two drift apart (and the card overlaps the map) on wide viewports. */
-  .sr-scrolly-zone--center .sr-zone-beats { max-width: none; }
-  .sr-scrolly-zone--center .sr-zone-beat { padding-inline: 0; }
-  .sr-scrolly-zone--center .sr-zone-beat--left   { justify-content: flex-start; }
-  .sr-scrolly-zone--center .sr-zone-beat--right  { justify-content: flex-end; }
-  .sr-scrolly-zone--center .sr-zone-beat--center { justify-content: center; }
-  /* Gutter margin is subtracted inside the max-width calc below, so the
-     card's margin + box together never exceed the gutter: border-box
-     sizing is required here so max-width caps the full visible footprint
-     (content + the card's own padding) rather than just its content area. */
-  .sr-scrolly-zone--center { --pw-gutter-margin: clamp(16px, 3vw, 48px); }
-  .sr-scrolly-zone--center .sr-zone-beat--left  > *,
-  .sr-scrolly-zone--center .sr-zone-beat--right > * {
+     not the sitewide 1060px cap — see file header note above. The channel
+     is a % (not vw): vw is relative to the viewport, not this section, and
+     the section itself is inset from the viewport by ancestor page
+     padding, so vw silently drifted from the section's actual width. %
+     is safe here specifically because .sr-zone-field and .sr-zone-beat
+     (via .sr-zone-beats, max-width:none, and this rule's padding-inline:0)
+     now share the exact same containing block with no padding on either
+     side to offset one from the other — the mismatch that caused the
+     center-channel overlap bug was two DIFFERENT containing blocks, not %
+     itself. */
+  .sr-scrolly-zone--split {
+    --pw-split-channel: min(52%, 640px);
+    --pw-split-margin:  clamp(8px, 2vw, 44px);
+    --pw-split-gutter:  clamp(20px, 4vw, 64px);
+  }
+  .sr-scrolly-zone--split .sr-zone-beats { max-width: none; }
+  .sr-scrolly-zone--split .sr-zone-field { width: var(--pw-split-channel); }
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-field { margin-right: auto; margin-left:  var(--pw-split-margin); }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-field { margin-left: auto;  margin-right: var(--pw-split-margin); }
+  /* Cards always sit on the side opposite the map, regardless of each
+     beat's own align="left"/"right" — one column, not two gutters. */
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-beat { justify-content: flex-end; }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-beat { justify-content: flex-start; }
+  .sr-scrolly-zone--split .sr-zone-beat { padding-inline: 0; }
+  .sr-scrolly-zone--split .sr-zone-beat > * {
     box-sizing: border-box;
-    max-width: min(19rem, calc((100% - var(--pw-channel)) / 2 - var(--pw-gutter-margin) - 16px));
+    max-width: min(31rem, calc(100% - var(--pw-split-channel) - var(--pw-split-margin) - var(--pw-split-gutter) - 16px));
     min-width: 0;
     width: 100%;
   }
-  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  var(--pw-gutter-margin); }
-  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: var(--pw-gutter-margin); }
-  .sr-scrolly-zone--center .sr-zone-beat--center > * { max-width: 30rem; width: 100%; }
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-beat > * { margin-right: var(--pw-split-gutter); }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-beat > * { margin-left:  var(--pw-split-gutter); }
 }
 
 /* mobile / reduced-motion: unstack — field rides static above its beats */
 @media (max-width: 767px) {
-  .sr-scrolly-zone--center .sr-zone-field { position: relative; height: auto; width: 100%; margin: 0; }
-  .sr-scrolly-zone--center .sr-zone-beats { margin-top: var(--s-6); }
-  .sr-scrolly-zone--center .sr-zone-beat { justify-content: center; }
-  .sr-scrolly-zone--center .sr-zone-beat > * { max-width: 32rem; }
+  .sr-scrolly-zone--split .sr-zone-field { position: relative; height: auto; width: 100%; margin: 0; }
+  .sr-scrolly-zone--split .sr-zone-beats { margin-top: var(--s-6); }
+  .sr-scrolly-zone--split .sr-zone-beat { justify-content: center; padding-inline: 0; }
+  .sr-scrolly-zone--split .sr-zone-beat > * { max-width: 32rem; }
 }
 @media (prefers-reduced-motion: reduce) and (min-width: 768px) {
-  .sr-scrolly-zone--center .sr-zone-field { margin-inline: auto; }
+  .sr-scrolly-zone--split .sr-zone-field { margin-inline: auto; }
 }
 
 /* Zone 7a (The Metaphor) — bottom-anchor the photo within its sticky box,
