@@ -63,6 +63,24 @@
 .sr-scrolly-zone[data-tempo="steady"]  { --beat-dwell: calc(420px * var(--dwell-scale, 1)); }
 .sr-scrolly-zone[data-tempo="driving"] { --beat-dwell: calc(230px * var(--dwell-scale, 1)); }
 
+/* Zone 1 (Living a Double Life) — same pre-existing --photo bug as the
+   Zainichi spoke's "Annexation and Dispossession" zone: the fixed 30rem
+   card overlaps the pinned photo at every normal desktop width. Same fix:
+   card max-width solved from the field's width instead of fixed, guaranteeing
+   a gap at every viewport. Only --left/--right beats are touched — the two
+   --center beats here are short italic pull-quotes meant to sit over the
+   photo as an accent, not read beside it, so they're left as-is. */
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beats { max-width: none; }
+.sr-page[data-spoke="culture"] [data-field="photo"] { --photo-field-w: min(46%, 640px); }
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-field { width: var(--photo-field-w); }
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beat--left  > *,
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beat--right > * {
+  box-sizing: border-box;
+  max-width: min(30rem, calc((100% - var(--photo-field-w)) / 2 - clamp(var(--s-4), 4vw, var(--s-12)) - 24px));
+  min-width: 0;
+  width: 100%;
+}
+
 .sr-zone-photo-stack { display: block; background: transparent; }
 .sr-photo-stage {
   position: absolute; inset: 0; margin: 0;
