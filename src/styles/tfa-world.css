@@ -147,28 +147,23 @@
 }
 .tfa-photo-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
 .tfa-zone--photo .sr-zone-field { width: clamp(320px, 56%, 720px); }
-.tfa-ph-fill { position: absolute; inset: 0; }
+.tfa-ph-fill { position: relative; width: 100%; }
 .tfa-ph-fill .sr-ph { height: 100%; border: none; }
 .tfa-ph-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  height: auto;
+  max-height: 70vh;
   display: block;
 }
-/* Caption sits over the photo at bottom of the sticky field */
+/* Caption sits directly below the framed photo, not pinned to the field's edge */
 .tfa-zone--photo .sr-zone-field .sr-zone-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  position: static;
   max-width: 100%;
+  z-index: 2;
   background: rgba(40, 24, 8, 0.62);
   color: var(--t-cream);
   padding: var(--s-3) var(--s-6);
   text-align: left;
-  backdrop-filter: blur(2px);
 }
 
 /* ════════════════════════════════════════════════════════════════
