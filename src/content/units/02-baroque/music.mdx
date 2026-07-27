@@ -23,6 +23,9 @@ featured_listening:
   duration: "First 3–4 minutes (toccata and opening of fugue)"
   listen_for: "The famous opening is the toccata — free, dramatic, improvisatory. Then the fugue begins: a single theme introduced alone, then taken up by additional voices in increasingly complex combinations. The shift from expressive freedom to intellectual structure is the Baroque in miniature."
   youtube_id: "HL0drraRHJ0"
+  analysisEyebrow: "Listen for · Freedom, then rigor"
+  analysis: "Notice the dramatic shift between the two sections. The famous opening is the toccata — free, improvisatory, almost wild, pure expressive freedom. Then the fugue begins with a single, simple theme stated alone; listen for that theme as it is picked up by additional voices, one at a time, each entry adding another layer of complexity. The contrast between the toccata's freedom and the fugue's intellectual rigor is the Baroque's central tension in miniature."
+  analysisPrompt: "One piece, two temperaments — improvisatory abandon giving way to strict counterpoint. The whole Baroque, compressed into a few minutes."
 gallery_listening:
   - title: "Messiah: 'Hallelujah Chorus'"
     composer: "George Frideric Handel"
@@ -30,29 +33,48 @@ gallery_listening:
     duration: "4 minutes"
     threads: [texture-voices, consonance-dissonance]
     youtube_id: "usfiAsWR4qU"
+    analysisEyebrow: "Listen for · Dramatic contrast"
+    analysis: "Notice how the texture shifts constantly between moments when all voices sing the same rhythm together (homophony) and moments when they overlap in polyphonic imitation. The dramatic contrasts — the full choir blazing, then suddenly thinning to a few voices — are prototypically Baroque: the sonic equivalent of chiaroscuro, brilliant light set against sudden shadow, jubilation staged as sheer opposition of forces."
+    analysisPrompt: "Baroque drama lives in the juxtapositions — loud against soft, full against sparse, all voices against one."
   - title: "The Four Seasons: 'Winter,' first movement"
     composer: "Antonio Vivaldi"
     date: 1725
     duration: "3.5 minutes"
     threads: [texture-voices]
     youtube_id: "tJAQI7PVofQ"
+    analysisEyebrow: "Listen for · The concerto principle"
+    analysis: "The concerto principle is vivid here: a solo violin set against the full string orchestra, creating dialogue, contrast, and drama. Listen for the alternation between the soloist and the ensemble — the individual voice stepping forward, then rejoining or being answered by the collective. This tension between one and many is the Baroque's defining textural innovation, and the direct ancestor of the operatic aria."
+    analysisPrompt: "Follow the solo violin as it separates from and returns to the orchestra — the individual against the collective, made audible."
   - title: "Dido and Aeneas: 'Dido's Lament'"
     composer: "Henry Purcell"
     date: 1689
     duration: "4 minutes"
     threads: [consonance-dissonance, structure-freedom]
     youtube_id: "uGQq3HcOB0Y"
+    analysisEyebrow: "Listen for · The ground bass"
+    analysis: "Listen for the ground bass: a short, chromatically descending line that repeats eleven times beneath Dido's vocal melody, unwavering as fate. The descending line is word painting for death, and the harmonic dissonances it creates — as Dido's vocal line chafes against the inexorable bass — produce an ache that has moved audiences for three hundred years. This is the passacaglia principle in action: a fixed, repeating foundation beneath freely varying human feeling, the Baroque's emotional extremity at its most concentrated."
+    analysisPrompt: "A fixed bass sustaining the chaos of mortal variation — Milton's cosmology in sonic form: God's order persists, unaltered, beneath the Fall."
 compare_back: "renaissance"
 compare_forward: "enlightenment"
 ---
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
+import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 
 
 ## Introduction
 
 *Baroque* derives from the Portuguese word for "irregular pearl" — originally a term of derision, applied to art and music considered extravagant and overwrought. Just as Baroque painting replaced Renaissance calm with dramatic chiaroscuro, Baroque music replaced Renaissance balance with contrast, drama, and emotional intensity. The era invented opera, perfected the fugue, and developed the concerto — all forms built on the principle of dramatic opposition: loud against soft, solo against ensemble, major against minor. The parallels with <BioLink id="milton">Milton</BioLink> are striking: *Paradise Lost* is itself a Baroque work, built on cosmic oppositions (heaven and hell, light and dark, obedience and rebellion) rendered in elaborate, ornamental language.
+
+<SlowDownCallout
+  kind="music"
+  sayLine="If “texture” and “counterpoint” are still only words to you, spend ten minutes in the Studio before this page."
+  links={[
+    { eyebrow: 'Foundations', label: 'The Listening Studio', href: '/guides/listening-studio' },
+    { eyebrow: 'Deeper', label: 'Fugue & ritornello', href: '/guides/listening-studio/musical-forms#baroque' },
+  ]}
+/>
 
 ## Texture & Voices
 
@@ -95,18 +117,6 @@ A related form, the **passacaglia** (or ground bass), makes that architecture ex
 ### Connection to *Paradise Lost*
 
 <BioLink id="milton">Milton</BioLink>'s blank verse — unrhymed iambic pentameter — is the literary equivalent of the fugue's strict contrapuntal framework, a demanding formal discipline that constrains and enables simultaneously. Within this framework, <BioLink id="milton">Milton</BioLink>'s language achieves an almost musical elaboration: the Latinate inversions, the extended similes, the catalogs of names and places that build like ornamental passages in a <BioLink id="bach">Bach</BioLink> fugue. The result is the same paradox that the Baroque achieves in music, a structure that feels both intellectually rigorous and sensuously overwhelming. The passacaglia's image of a fixed bass sustaining the chaos of mortal variation is <BioLink id="milton">Milton</BioLink>'s cosmology in sonic form: God's order persists, unaltered, underneath the chaos engendered by the Fall of Adam and Eve.
-
-## What to Listen For
-
-In <BioLink id="bach">Bach</BioLink>'s *Toccata and Fugue* above, notice the dramatic shift between the two sections. The toccata is free, improvisatory, and almost wild — pure expressive freedom. The fugue then begins with a single, simple theme stated alone. Listen for that theme as it is picked up by additional voices, one at a time, each entry adding another layer of complexity. The contrast between the toccata's freedom and the fugue's intellectual rigor is the Baroque's central tension in miniature.
-
-In <BioLink id="handel">Handel</BioLink>'s *Hallelujah Chorus* below, notice how the texture shifts constantly between moments when all voices sing the same rhythm together (homophony) and moments when voices overlap in polyphonic imitation. The dramatic contrasts of texture — full choir blazing, then suddenly thinning to a few voices — are prototypically Baroque. In <BioLink id="vivaldi">Vivaldi</BioLink>'s *Winter*, the concerto principle is vivid: the solo violin against the full string orchestra, creating dialogue, contrast, and drama.
-
-Purcell's "Dido's Lament" is the most immediately moving piece in this unit; it is one of the most beautiful short works in the entire Western canon. Listen for the ground bass: a short, chromatically descending line that repeats eleven times beneath Dido's vocal melody, unwavering as fate. The descending line is word painting for death, and the harmonic dissonances it creates as Dido's vocal line chafes against the inexorable bass produce an ache that has moved audiences for three hundred years. This is the passacaglia principle in action, and the Baroque's emotional extremity at its most concentrated.
-
-<YouTubeEmbed id="usfiAsWR4qU" title="Messiah: 'Hallelujah Chorus'" composer="George Frideric Handel" />
-<YouTubeEmbed id="tJAQI7PVofQ" title="The Four Seasons: 'Winter,' first movement" composer="Antonio Vivaldi" />
-<YouTubeEmbed id="uGQq3HcOB0Y" title="Dido and Aeneas: 'Dido's Lament'" composer="Henry Purcell" />
 
 ## Looking Back
 

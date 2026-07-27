@@ -6,16 +6,21 @@ interface Props {
   image?: string;
   medium?: string;
   location?: string;
+  analysisEyebrow?: string;
+  analysis?: string;
+  analysisPrompt?: string;
+  plateFor?: string;
   [key: string]: unknown; // absorb extra frontmatter fields (e.g. threads)
 }
 
-const { title, artist, date, image, medium, location } = Astro.props;
+const { title, artist, date, image, medium, location, analysisEyebrow, analysis, analysisPrompt, plateFor } = Astro.props;
 
 const metaParts = [date, medium, location].filter(Boolean);
 const metaText = metaParts.join('\n');
+const hasAnalysis = Boolean(analysis);
 ---
 
-<figure class="plate">
+<figure class="plate work-figure" data-plate-for={plateFor}>
   <div class="img">
     {image && <img src={image} alt={title} loading="lazy" />}
     <div class="stamp">{artist}</div>
@@ -26,5 +31,17 @@ const metaText = metaParts.join('\n');
       <div class="byline">{artist}</div>
     </div>
     <div class="meta">{metaText}</div>
+    {hasAnalysis && (
+      <button class="analyze-hot" type="button" aria-expanded="false" aria-label={`Read the close analysis of ${title}`}>
+        <span class="hot-dot" aria-hidden="true"></span><span class="hot-lbl">Read the analysis</span>
+      </button>
+    )}
   </figcaption>
+  {hasAnalysis && (
+    <div class="analysis-panel" hidden>
+      {analysisEyebrow && <div class="analysis-eyebrow">{analysisEyebrow}</div>}
+      <p>{analysis}</p>
+      {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
+    </div>
+  )}
 </figure>
