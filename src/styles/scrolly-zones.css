@@ -838,6 +838,22 @@
   }
 
   .sr-zone-cascade-progress { display: none; }
+
+  /* Migration/encroachment map pages: instant state changes, no fades */
+  .mm-layer,
+  .enc-layer {
+    transition: none;
+  }
+
+  .scrolly-chapter,
+  .scrolly-chapter-inner,
+  .scrolly-progress-segment {
+    transition: none;
+  }
+
+  .scrolly-chapter.is-inactive {
+    opacity: 1;
+  }
 }
 
 /* ── Mobile: sequential inline fallback (<768px) ───────────────────────── */
