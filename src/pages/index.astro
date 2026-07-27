@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { PERIOD_MOTIFS } from '../data/period-motifs';
 import Layout from '../layouts/Layout.astro';
+import StudioDiptych from '../components/StudioDiptych.astro';
 
 const artEntries = (await getCollection('units', ({ id }) => id.endsWith('/art')))
   .sort((a, b) => a.id.localeCompare(b.id));
@@ -210,6 +211,18 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
       </a>
 
     </div>
+  </section>
+
+  <!-- ── The Studios ───────────────────────────────────────────────── -->
+  <section class="studios">
+    <div class="section-label">
+      <span class="n">§ III</span>
+      <span>The Studios</span>
+      <span class="rule-line"></span>
+      <span>Learn once, use everywhere</span>
+    </div>
+    <StudioDiptych />
+    <p class="crosslink">The two studios teach the same attention. <a href="/guides">Start with whichever sense you trust less.</a></p>
   </section>
 
   <!-- ── Footer ────────────────────────────────────────────────────── -->
@@ -534,6 +547,19 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     margin: 4px 0 0;
     max-width: 42ch;
   }
+
+  /* ── Studios ───────────────────────────────────────────────────── */
+  .studios { margin-top: 8px; padding: 0 0 8px; }
+  .crosslink {
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    padding: 22px 0 0;
+  }
+  .crosslink a { border-bottom: 1px solid var(--rule-strong); }
+  .crosslink a:hover { color: var(--ink); border-color: var(--ink-mute); }
 
   /* ── Footer ──────────────────────────────────────────────────── */
   .pg-footer {
