@@ -989,12 +989,12 @@ if (isRedesignedDomain) {
   .page-head h1 {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1;
+    font-size: clamp(32px, 4.2vw, 64px);
+    line-height: 1.05;
     letter-spacing: -0.02em;
     margin: 0;
     color: var(--ink);
-    max-width: 22ch;
+    max-width: 44ch;
   }
   .page-head h1 em { font-style: italic; color: var(--ink-mute); }
 
@@ -1609,7 +1609,7 @@ if (isRedesignedDomain) {
   .prose strong { color: var(--ink); font-weight: 500; letter-spacing: 0.01em; }
   .prose a { color: var(--ink-mute); border-bottom: 1px solid var(--rule); transition: color 120ms, border-color 120ms; }
   .prose a:hover { color: var(--ink); border-color: var(--thread-acc); }
-  .prose p { margin: 0 0 22px; }
+  .prose:not(.reading) p { margin: 0 0 22px; }
 
   /* Lede: first paragraph is larger and brighter (Philosophy only — the
      redesigned reading layout has its own `.reading > p:first-of-type` rule) */
