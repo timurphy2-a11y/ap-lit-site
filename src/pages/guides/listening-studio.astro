@@ -47,7 +47,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One phrase · Long, short, and space · Even steps</span></div>
 <p class="rm-intro">The same seventeen pitches, organized two ways in time. One version stretches, snaps short, and leaves audible <em>space</em>; the other advances in equal steps. Only one plays at a time — watch the shared pulse grid underneath.</p>
 <div id="rhythm-long-short-even-motion">
-  <style>
+  <style is:global>
     #rhythm-long-short-even-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #rhythm-long-short-even-motion .shared-claim { margin:0 0 1.4rem; }
     #rhythm-long-short-even-motion .shared-claim strong { font-weight:500; }
@@ -202,7 +202,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven, Symphony No. 5 · the Charleston</span></div>
 <p class="rm-intro">Two famous rhythms crossing a fixed <em>now</em> line. Beethoven repeatedly bunches three short notes into a held landing; the Charleston keeps shifting its accents around a steady pulse. Play either clip and the stream scrolls past in real time.</p>
 <div id="rhythm-note-stream-motion">
-  <style>
+  <style is:global>
     #rhythm-note-stream-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #rhythm-note-stream-motion .clip { margin:0 0 1.5rem; }
     #rhythm-note-stream-motion .clip p { margin:0 0 .5rem; }
@@ -285,7 +285,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One theme · Compact fugue · Compact sonata form</span></div>
 <p class="rm-intro">The same four-bar theme organized two ways. The <em>fugue</em> passes one idea among independent voices; <em>sonata form</em> sends it through departure, contrast, development, and return. Only one plays at a time.</p>
 <div id="form-fugue-sonata-motion">
-  <style>
+  <style is:global>
     #form-fugue-sonata-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-fugue-sonata-motion .shared-claim { margin:0 0 1.4rem; }
     #form-fugue-sonata-motion .shared-claim strong { font-weight:500; }
@@ -521,7 +521,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Mozart · Variations on “Ah, vous dirai-je, Maman,” K. 265</span></div>
 <p class="rm-intro">Theme, Variation I, and the distant minor-key Variation VIII share one phrase framework. Variations II–VII are edited out and the map marks the cut; each row runs at its own tempo, so the quick Variation I finishes its path first.</p>
 <div id="mozart-form-distant-variation-motion">
-  <style>
+  <style is:global>
     #mozart-form-distant-variation-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #mozart-form-distant-variation-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #mozart-form-distant-variation-motion .clip-title strong { font-weight:500; }
@@ -682,7 +682,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One phrase · Flute · Trumpet · Vibraphone</span></div>
 <p class="rm-intro">The same four-measure phrase — identical pitches, rhythm, and tempo — played by three instruments. Switch between them and listen to how each one <em>attacks, sustains, and decays</em>: only the sound source changes.</p>
 <div id="timbre-material-signatures-motion">
-  <style>
+  <style is:global>
     #timbre-material-signatures-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #timbre-material-signatures-motion audio { display:block; width:100%; margin:.7rem 0 0; }
     #timbre-material-signatures-motion .selected-detail { margin:.7rem 0 0; color:var(--muted-foreground); }
@@ -864,7 +864,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Rimsky-Korsakov · Scheherazade</span></div>
 <p class="rm-intro">Rimsky-Korsakov sets a broad orchestral sound against a single solo violin. The broad field is drawn as the opening plays, then the violin traces finer gestures one at a time — the same line, an entirely different color.</p>
 <div id="scheherazade-color-direct-motion" aria-labelledby="direct-motion-label">
-  <style>
+  <style is:global>
     #scheherazade-color-direct-motion {
       color: var(--foreground);
       font-size: var(--font-size-base);
@@ -1070,7 +1070,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Pachelbel’s Canon · King Oliver, “Dippermouth Blues”</span></div>
 <p class="rm-intro">Two ways layers can stack. In Pachelbel’s Canon the lines enter one at a time over a repeating ground; in King Oliver’s <em>Dippermouth Blues</em> several independent lines move together from the start.</p>
 <div id="texture-pair-direct-motion">
-  <style>
+  <style is:global>
     #texture-pair-direct-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #texture-pair-direct-motion .clip { margin:0 0 1.5rem; }
     #texture-pair-direct-motion .clip p { margin:0 0 .5rem; }
@@ -1212,7 +1212,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven · “Ode to Joy”</span></div>
 <p class="rm-intro">A melody you likely know already. Each bar is one note — height shows how high it sits, length how long it lasts. The map scrolls in real time as the tune rises, returns, and settles lower.</p>
 <div id="ode-to-joy-motion-prototype" aria-labelledby="ode-prototype-label">
-  <style>
+  <style is:global>
     #ode-to-joy-motion-prototype {
       color: var(--foreground);
       font-size: var(--font-size-base);
@@ -1416,7 +1416,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven, “Für Elise” · Chopin, Prelude in E minor</span></div>
 <p class="rm-intro">Beethoven's <em>Für Elise</em> keeps leaving a tonal home and clearly returning to it. Chopin's <em>Prelude in E minor</em> sets the same gravity in motion — the harmony is pulled steadily farther from home and only turns partway back, never quite arriving.</p>
 <div id="fur-elise-home-motion">
-  <style>
+  <style is:global>
     #fur-elise-home-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #fur-elise-home-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #fur-elise-home-motion .clip-title strong { font-weight:500; }
@@ -1488,7 +1488,7 @@ import Layout from '../../layouts/Layout.astro';
 </div>
 <div style="height:14px"></div>
 <div id="chopin-harmony-direct-motion" aria-labelledby="chopin-harmony-heading">
-  <style>
+  <style is:global>
     #chopin-harmony-direct-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #chopin-harmony-direct-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #chopin-harmony-direct-motion .clip-title strong { font-weight:500; }
@@ -1626,7 +1626,7 @@ import Layout from '../../layouts/Layout.astro';
 </div>
 </div>
 
-<style>
+<style is:global>
 .continue-wrap{max-width:1080px;margin:64px auto 0}
 .continue{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;padding:34px 36px;background:var(--acc-soft);border-top:2px solid var(--acc);text-decoration:none}
 @media(max-width:760px){.continue{grid-template-columns:1fr}}
@@ -2036,7 +2036,7 @@ document.querySelectorAll('.guide-toggle').forEach(btn=>{
 
 </div>
 
-<style>
+<style is:global>
 .ls-page{--acc:#6F5E95;--acc-soft:#EFE9F5;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
 .ls-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .ls-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}

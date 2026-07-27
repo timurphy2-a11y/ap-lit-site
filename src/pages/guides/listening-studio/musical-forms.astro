@@ -89,7 +89,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">The solid line is the tune's contour; when you play the <em>same-shape</em> version, a dashed ghost of the original stays behind. The shape survives even as the pitches move.</p>
 <div class="viz-embed">
   <div id="form-theme-identity-motion">
-    <style>
+    <style is:global>
     #form-theme-identity-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-theme-identity-motion .clip-title strong { font-weight:500; }
     #form-theme-identity-motion .clip-title span, #form-theme-identity-motion .status { color:var(--muted-foreground); }
@@ -210,7 +210,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">The ghosted <em>shared path</em> beneath each panel is the theme's four-bar shape you just learned; the brighter surface above it is what each variation changes.</p>
 <div class="viz-embed">
   <div id="form-theme-variations-basic-motion">
-    <style>
+    <style is:global>
     #form-theme-variations-basic-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-theme-variations-basic-motion .clip-title strong { font-weight:500; }
     #form-theme-variations-basic-motion .clip-title span, #form-theme-variations-basic-motion .status { color:var(--muted-foreground); }
@@ -311,7 +311,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">First follow one unaccompanied line, with breath points rather than a beat grid. Then hear the same chant slow into a <em>held tenor</em> while a florid upper voice moves above it.</p>
 <div class="viz-embed">
   <div id="form-chant-organum-motion">
-    <style>
+    <style is:global>
     #form-chant-organum-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-chant-organum-motion .clip-title strong { font-weight:500; }
     #form-chant-organum-motion .clip-title span, #form-chant-organum-motion .status { color:var(--muted-foreground); }
@@ -399,7 +399,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Track the lower <em>talea</em> cycle even when the pitch <em>color</em> and upper voices do not restart with it. Four rhythm cycles and three pitch cycles cross at different points, then realign at the close.</p>
 <div class="viz-embed">
   <div id="form-isorhythmic-motet-motion">
-    <style>
+    <style is:global>
     #form-isorhythmic-motet-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-isorhythmic-motet-motion .clip-title strong { font-weight:500; }
     #form-isorhythmic-motet-motion .clip-title span, #form-isorhythmic-motet-motion .status { color:var(--muted-foreground); }
@@ -497,7 +497,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Follow the first melodic shape and hear it pass from voice to voice; notice that no entry becomes a permanent “lead.” The same player also carries the <em>madrigal</em> reading below — the same craft turned toward the meaning of words.</p>
 <div class="viz-embed">
 <div id="form-motet-madrigal-motion">
-  <style>
+  <style is:global>
     #form-motet-madrigal-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-motet-madrigal-motion .clip { margin:0 0 1.6rem; }
     #form-motet-madrigal-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
@@ -611,7 +611,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Listen for a recognizable source idea returning in new movement-scale contexts, rather than for one unbroken narrative.</p>
 <div class="viz-embed">
 <div id="form-cyclic-mass-motion">
-  <style>
+  <style is:global>
     #form-cyclic-mass-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-cyclic-mass-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-cyclic-mass-motion .clip-title strong { font-weight:500; }
@@ -754,7 +754,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Hear how the stable tune and phrase pattern make repeated stanzas singable by a congregation. The player also holds the organ <em>chorale prelude</em> reading — the same melody elaborated a century later.</p>
 <div class="viz-embed">
 <div id="form-chorale-prelude-motion">
-  <style>
+  <style is:global>
     #form-chorale-prelude-motion{color:var(--foreground);font-size:var(--font-size-base)}
     #form-chorale-prelude-motion .clip{margin:0 0 1.7rem}
     #form-chorale-prelude-motion .head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0 0 .5rem}
@@ -858,7 +858,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Hold the subject in memory from its first bare statement, then count its reentries as counterpoint accumulates around it. The lanes are voices, not pitches: watch one idea occupy all three.</p>
 <div class="viz-embed">
 <div id="form-fugue-only-motion">
-  <style>
+  <style is:global>
     #form-fugue-only-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-fugue-only-motion .shared-claim { margin:0 0 1.4rem; }
     #form-fugue-only-motion .shared-claim strong { font-weight:500; }
@@ -1025,7 +1025,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Keep the bass in view even when the upper layer becomes more active or emotionally charged.</p>
 <div class="viz-embed">
 <div id="form-passacaglia-motion">
-  <style>
+  <style is:global>
     #form-passacaglia-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-passacaglia-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-passacaglia-motion .clip-title strong { font-weight:500; }
@@ -1145,7 +1145,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Distinguish the returning ensemble identity from the changing solo path; hear how each return reorients the tonal journey.</p>
 <div class="viz-embed">
 <div id="form-ritornello-motion">
-  <style>
+  <style is:global>
     #form-ritornello-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-ritornello-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-ritornello-motion .clip-title strong { font-weight:500; }
@@ -1274,7 +1274,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Locate the slower chorale line and separate it from the more active surrounding voices. This is the same paired module heard in the Renaissance chapter, now framed from the Baroque side.</p>
 <div class="viz-embed">
 <div id="form-chorale-prelude-motion-baroque">
-  <style>
+  <style is:global>
     #form-chorale-prelude-motion-baroque{color:var(--foreground);font-size:var(--font-size-base)}
     #form-chorale-prelude-motion-baroque .clip{margin:0 0 1.7rem}
     #form-chorale-prelude-motion-baroque .head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0 0 .5rem}
@@ -1372,7 +1372,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Hear recitative move the story forward; then hear the aria slow time, establish contrast, and make the return newly expressive.</p>
 <div class="viz-embed">
 <div id="form-recit-aria-motion">
-  <style>
+  <style is:global>
     #form-recit-aria-motion{color:var(--foreground);font-size:var(--font-size-base)}
     #form-recit-aria-motion .clip{margin:0 0 1.7rem}
     #form-recit-aria-motion .head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0 0 .5rem}
@@ -1483,7 +1483,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Feel the shift from weighty dotted procession to quick imitative activity.</p>
 <div class="viz-embed">
 <div id="form-french-overture-motion">
-  <style>
+  <style is:global>
     #form-french-overture-motion{color:var(--foreground);font-size:var(--font-size-base)}
     #form-french-overture-motion .head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0 0 .5rem}
     #form-french-overture-motion .head strong{font-weight:500}
@@ -1556,7 +1556,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Hear each half repeat, then compare the first half's departure with the second half's return — and hear both levels at once across the suite.</p>
 <div class="viz-embed">
 <div id="form-binary-suite-motion">
-  <style>
+  <style is:global>
     #form-binary-suite-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-binary-suite-motion .clip { padding:0 0 1.7rem; }
     #form-binary-suite-motion .clip + .clip { border-top:1px solid var(--border); padding-top:1.4rem; }
@@ -1729,7 +1729,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Remember the two opening identities; notice how the development fragments them, and how the recapitulation changes the <em>meaning</em> of their return by bringing both into the home key. The lower lane traces the tonal journey — how far from home you are at any moment.</p>
 <div class="viz-embed">
 <div id="form-sonata-only-motion">
-  <style>
+  <style is:global>
     #form-sonata-only-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-sonata-only-motion .shared-claim { margin:0 0 1.4rem; }
     #form-sonata-only-motion .shared-claim strong { font-weight:500; }
@@ -1901,7 +1901,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Count the refrain's returns and notice what each contrasting episode makes you hear differently when A comes back.</p>
 <div class="viz-embed">
 <div id="form-rondo-motion">
-  <style>
+  <style is:global>
     #form-rondo-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-rondo-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-rondo-motion .clip-title strong { font-weight:500; }
@@ -2012,7 +2012,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Feel the recurring triple-meter character, then hear how the trio changes color or weight before the opening dance returns.</p>
 <div class="viz-embed">
 <div id="form-minuet-trio-motion">
-  <style>
+  <style is:global>
     #form-minuet-trio-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-minuet-trio-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-minuet-trio-motion .clip-title strong { font-weight:500; }
@@ -2225,7 +2225,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Follow how each new character adds a viewpoint without erasing the ensemble's shared momentum.</p>
 <div class="viz-embed">
 <div id="form-opera-buffa-ensemble-motion">
-  <style>
+  <style is:global>
     #form-opera-buffa-ensemble-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-opera-buffa-ensemble-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-opera-buffa-ensemble-motion .clip-title strong { font-weight:500; }
@@ -2369,7 +2369,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Don't search for one repeated section across the whole span; hear four different movement roles forming one ordered dramatic arc.</p>
 <div class="viz-embed">
 <div id="form-classical-cycle-motion">
-  <style>
+  <style is:global>
     #form-classical-cycle-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-classical-cycle-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-classical-cycle-motion .clip-title strong { font-weight:500; }
@@ -2614,7 +2614,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Ask not only “did the theme return?” but “what has this experience turned the theme into?” The same player also carries the <em>free fantasy</em> reading — form as apparent spontaneity.</p>
 <div class="viz-embed">
 <div id="form-romantic-freedom-motion">
-  <style>
+  <style is:global>
     #form-romantic-freedom-motion{color:var(--foreground);font-size:var(--font-size-base)}
     #form-romantic-freedom-motion .clip{margin:0 0 1.7rem}
     #form-romantic-freedom-motion .head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0 0 .5rem}
@@ -2720,7 +2720,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">In the strophic reading, notice how new words recolor the same music; in the through-composed reading, notice how the music changes because the story cannot stay in one frame.</p>
 <div class="viz-embed">
 <div id="form-strophic-through-motion">
-  <style>
+  <style is:global>
     #form-strophic-through-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-strophic-through-motion .clip { margin:0 0 1.6rem; }
     #form-strophic-through-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
@@ -2841,7 +2841,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Compare its returning outer frame with the Classical minuet, then notice how speed, accent, and character make the inherited form feel newly unstable.</p>
 <div class="viz-embed">
 <div id="form-scherzo-trio-motion">
-  <style>
+  <style is:global>
     #form-scherzo-trio-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-scherzo-trio-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-scherzo-trio-motion .clip-title strong { font-weight:500; }
@@ -3002,7 +3002,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">A block form juxtaposes relatively self-contained fields — a new block may interrupt rather than grow from the last. Rhythm, register, and instrumentation can define a block as strongly as melody. Identify each sound-block by its whole profile, then follow the sequence of cuts and returns rather than a smooth transition.</p>
 <div class="viz-embed">
 <div id="form-modernist-mosaic-motion">
-  <style>
+  <style is:global>
     #form-modernist-mosaic-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-modernist-mosaic-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-modernist-mosaic-motion .clip-title strong { font-weight:500; }
@@ -3148,7 +3148,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">The twelve-bar blues coordinates a recurring harmonic cycle with a three-line lyric pattern: a statement (A), a repeated or varied statement (A), and a response (B). A firm underlying structure enables extraordinary improvisatory freedom — the clearest model on this site for <em>Invisible Man</em>. Keep track of the three four-bar spans and hear how the repeated A line creates expectation for the B response.</p>
 <div class="viz-embed">
 <div id="form-blues-aab-motion">
-  <style>
+  <style is:global>
     #form-blues-aab-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-blues-aab-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-blues-aab-motion .clip-title strong { font-weight:500; }
@@ -3290,7 +3290,7 @@ import Layout from '../../../layouts/Layout.astro';
 <p class="rm-intro">Follow the recurrence and transformation of an ordered pitch identity; don't wait for a home key, and don't assume every new sound is unrelated.</p>
 <div class="viz-embed">
 <div id="form-twelve-tone-motion">
-  <style>
+  <style is:global>
     #form-twelve-tone-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #form-twelve-tone-motion .clip-title { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin:0 0 .5rem; }
     #form-twelve-tone-motion .clip-title strong { font-weight:500; }
@@ -3472,7 +3472,7 @@ document.addEventListener('play', e=>{
 
 </div>
 
-<style>
+<style is:global>
 .mf-page{--acc:#7C6A45;--acc-soft:color-mix(in oklab,#7C6A45 12%,white);--mark-primary:var(--acc);--mark-highlight:color-mix(in oklab,var(--acc) 55%,white);--mark-rule:#C8C0B0;--measure:64ch;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
 .mf-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .mf-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}

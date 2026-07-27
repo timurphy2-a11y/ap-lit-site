@@ -56,7 +56,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the element</span><span class="rm-work">Ground alone · ground beneath a changing upper line</span></div>
 <p class="rm-intro">The first example presents the low eight-note pattern by itself. The second keeps that pattern in place while a higher line enters and changes above it. Listen for persistence under change: the ostinato remains identifiable even when it is no longer the only event.</p>
 <div id="modernist-ostinato-pair-motion">
-  <style>
+  <style is:global>
     #modernist-ostinato-pair-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #modernist-ostinato-pair-motion .clip { margin:0 0 1.6rem; }
     #modernist-ostinato-pair-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -187,7 +187,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Hear it do structural work</span><span class="rm-work">Stravinsky · <em>The Rite of Spring</em> — Augurs of Spring, rehearsals 13–14</span></div>
 <p class="rm-intro">Stravinsky turns repetition into a musical ground. A forceful recurring orchestral field holds the passage together while low weight and high punctuation alter the pressure around it. The ostinato is not passive accompaniment; it makes every added event feel cumulative and drives the passage forward.</p>
 <div id="rite-augurs-ostinato-motion">
-  <style>
+  <style is:global>
     #rite-augurs-ostinato-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #rite-augurs-ostinato-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #rite-augurs-ostinato-motion .clip-title strong { font-weight:500; }
@@ -300,7 +300,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Hear it do structural work</span><span class="rm-work">Stravinsky, <em>The Rite of Spring</em> · Introduction, rehearsals 6–7</span></div>
 <p class="rm-intro">An exposed high-wind call is joined in stages by a flute thread, a low floor, a lower-wind thread, and an English-horn thread. Each is its own short repeating cell — a small ostinato — and because their cycles are different lengths, they never lock into one tune. The stacked repetitions themselves become the texture: layered ostinati rather than melody with accompaniment.</p>
 <div id="rite-wind-lattice-motion">
-  <style>
+  <style is:global>
     #rite-wind-lattice-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #rite-wind-lattice-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #rite-wind-lattice-motion .clip-title strong { font-weight:500; }
@@ -422,7 +422,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the element</span><span class="rm-work">Pulse in balance · pulse under pressure</span></div>
 <p class="rm-intro">The first example establishes a steady pulse and repeating ground. The second preserves that pulse while an upper figure groups the same span in long · long · short arcs. Its accents pull across the expected points of emphasis until the upper pattern leaves and the underlying pulse remains.</p>
 <div id="modernist-collision-pair-motion">
-  <style>
+  <style is:global>
     #modernist-collision-pair-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #modernist-collision-pair-motion .clip { margin:0 0 1.6rem; }
     #modernist-collision-pair-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -551,7 +551,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Hear it do structural work</span><span class="rm-work">Stravinsky · <em>The Rite of Spring</em> — later Augurs, rehearsals 19–21</span></div>
 <p class="rm-intro">Stravinsky keeps a persistent stamped field in place while displaced reeds, low grounding, and brass pressure points enter at competing moments. Their changing alignment makes rhythm itself a compositional process: the passage grows through entry, density, displacement, and collision.</p>
 <div id="rite-augurs-collision-motion">
-  <style>
+  <style is:global>
     #rite-augurs-collision-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #rite-augurs-collision-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #rite-augurs-collision-motion .clip-title strong { font-weight:500; }
@@ -676,7 +676,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the element</span><span class="rm-work">A center organizes the journey · relationships organize the journey</span></div>
 <p class="rm-intro">The first example, drawn from Beethoven’s <em>Für Elise</em>, is a tonal control: it establishes a stable home, moves away, and makes the return feel like arrival. It is not a Modernist example. The second example replaces that destination path with related cells A, B, C, and a recolored return of A. Recurrence still creates memory and connection, but no single pitch or chord acts as the home that explains every event.</p>
 <div id="tonal-home-and-center-withheld-motion">
-  <style>
+  <style is:global>
     #tonal-home-and-center-withheld-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #tonal-home-and-center-withheld-motion .clip { margin:0 0 1.7rem; }
     #tonal-home-and-center-withheld-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -823,7 +823,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Hear it do structural work</span><span class="rm-work">Schoenberg · <em>Farben</em> — opening, measures 1–8</span></div>
 <p class="rm-intro">Schoenberg builds continuity from a connected chordal field whose internal voices, register, instrumental balance, and color change gradually. The opening sonority remains a point of orientation, but the passage does not behave like a conventional tonal progression leaving and returning to a tonic. Its coherence comes from audible kinship and transformation among the sonorities.</p>
 <div id="schoenberg-farben-center-motion">
-  <style>
+  <style is:global>
     #schoenberg-farben-center-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #schoenberg-farben-center-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #schoenberg-farben-center-motion .clip-title strong { font-weight:500; }
@@ -952,7 +952,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the element</span><span class="rm-work">One cell, three colors · color becomes structure</span></div>
 <p class="rm-intro">The first example holds a four-note cell constant while three instruments give it different identities. This separates what is played from the sound that carries it. The second enlarges the principle: three contrasting sound fields articulate three successive formal sections. Color first transforms a cell, then helps organize a span of music.</p>
 <div id="modernist-color-blocks-pair-motion">
-  <style>
+  <style is:global>
     #modernist-color-blocks-pair-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #modernist-color-blocks-pair-motion .clip { margin:0 0 1.7rem; }
     #modernist-color-blocks-pair-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -1148,7 +1148,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 <div class="realmusic-head"><span class="rm-tag">Hear it do structural work</span><span class="rm-work">Schoenberg · <em>Farben</em> — measures 12–17</span></div>
 <p class="rm-intro">A recurring orchestral field continues while a distinct rising line emerges in the harp and is later echoed by piccolo and celesta. The change of instrumental identity is an event in its own right. Across <em>Farben</em>, gradual changes in the orchestration of a connected chordal field become a principal means of development and formal motion.</p>
 <div id="schoenberg-farben-color-motion">
-  <style>
+  <style is:global>
     #schoenberg-farben-color-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #schoenberg-farben-color-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
     #schoenberg-farben-color-motion .clip-title strong { font-weight:500; }
@@ -1513,8 +1513,8 @@ renderAll();
 
 </Layout>
 
-<style>
-.mc-page{--acc:#A03828;--acc-soft:color-mix(in oklab,#A03828 12%,white);--mark-primary:#A03828;--mark-highlight:#D49A8C;--mark-rule:#C8C0B0;--measure:64ch;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
+<style is:global>
+.mc-page{--acc:#A03828;--acc-soft:color-mix(in oklab,#A03828 12%,white);--mark-primary:#A03828;--mark-highlight:#D49A8C;--mark-rule:#C8C0B0;--mark-spot:#A07820;--mark-cream:#F6F1E8;--mark-ink:#2C2820;--measure:64ch;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
 .mc-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .mc-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
 .mc-page :focus-visible{outline:2px solid var(--acc);outline-offset:2px}

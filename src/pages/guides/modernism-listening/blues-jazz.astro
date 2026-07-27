@@ -53,7 +53,7 @@ import Layout from '../../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the relationship</span><span class="rm-work">Melody on the pulse · melody leaning around it</span></div>
 <p class="rm-intro">First hear melody attacks meet the pulse. Then hear the same pulse continue while the phrase places its energy in the surrounding spaces.</p>
 <div id="jazz-groove-pulse-lean-motion">
-  <style>
+  <style is:global>
     #jazz-groove-pulse-lean-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #jazz-groove-pulse-lean-motion .clip { margin:0 0 1.6rem; }
     #jazz-groove-pulse-lean-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -211,7 +211,7 @@ import Layout from '../../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the relationship</span><span class="rm-work">Call and answer · the exchange becomes collective</span></div>
 <p class="rm-intro">Hear one instrumental voice call and another answer; then hear the exchange grow into a collective return.</p>
 <div id="jazz-dialogue-pair-direct-motion">
-  <style>
+  <style is:global>
     #jazz-dialogue-pair-direct-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #jazz-dialogue-pair-direct-motion .intro { margin:0 0 1rem; color:var(--muted-foreground); }
     #jazz-dialogue-pair-direct-motion .clip { margin:0 0 1.6rem; }
@@ -435,7 +435,7 @@ import Layout from '../../../layouts/Layout.astro';
 <div class="realmusic-head"><span class="rm-tag">Isolate the relationship</span><span class="rm-work">Alto saxophone · trumpet, over one shared ground</span></div>
 <p class="rm-intro">An alto saxophone and a trumpet take different phrase paths through the same three-span foundation.</p>
 <div id="jazz-chorus-timbre-phrase-motion">
-  <style>
+  <style is:global>
     #jazz-chorus-timbre-phrase-motion { color:var(--foreground); font-size:var(--font-size-base); }
     #jazz-chorus-timbre-phrase-motion .clip { margin:0 0 1.6rem; }
     #jazz-chorus-timbre-phrase-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
@@ -800,7 +800,7 @@ import Layout from '../../../layouts/Layout.astro';
 
 </Layout>
 
-<style>
+<style is:global>
 .bj-page{--acc:#46566E;--acc-soft:color-mix(in oklab,#46566E 12%,white);--mark-primary:#46566E;--measure:64ch;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
 .bj-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .bj-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
