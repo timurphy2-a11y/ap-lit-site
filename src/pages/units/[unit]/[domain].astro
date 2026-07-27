@@ -7,6 +7,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
 import MusicPlate from '../../../components/MusicPlate.astro';
+import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 import { THREAD_ICONS } from '../../../components/threadIcons';
 import { PEOPLE } from '../../../components/BiographyPanel.jsx';
 import { PERIOD_MOTIFS } from '../../../data/period-motifs';
@@ -346,7 +347,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
 <div class="layout">
 
   <article class="prose">
-    <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed }} />
+    <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed, SlowDownCallout }} />
   </article>
 
   <!-- ── Column divider (role 2) ── -->
