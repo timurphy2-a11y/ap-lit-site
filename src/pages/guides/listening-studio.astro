@@ -1,0 +1,2117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="The Listening Studio: Hearing Music — Of Imagination All Compact">
+
+<div class="ls-page">
+
+<div class="ls-crumb">
+  <a href="/">Home</a><span class="sep">/</span><a href="/guides">Guides</a><span class="sep">/</span><span class="here">The Listening Studio</span>
+</div>
+
+<script is:inline src="/guides/listening-studio/viz/visualization-playback.js"></script>
+
+<div class="eyebrow-strip"><span class="dot" aria-hidden="true"></span>An Element · Listening Fundamentals</div>
+
+<section class="page-head">
+<div class="sigil-lg" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 26 A14 14 0 0 1 34 26"/><circle cx="20" cy="26" r="2" style="fill:currentColor;stroke:none"/><path d="M6 32 Q13 27 20 32 T34 32"/></svg></div>
+<div>
+<h1>The Listening Studio</h1>
+<p class="sub">One theme, six ways of hearing</p>
+</div>
+</section>
+
+<main class="reading">
+<p class="lede">This page walks through one short original theme six times, each time through a different lens — Melody, Rhythm, Timbre, Texture, Harmony, and Form. For each lens, listen once with no diagram, then replay with the simple visual guide.</p>
+<p class="measure">These six lenses are the listening skills behind three threads you'll meet throughout the music units: <strong>Texture &amp; Voices</strong>, <strong>Consonance &amp; Dissonance</strong>, and <strong>Structure &amp; Freedom</strong>.</p>
+<nav class="overview" aria-label="The six listening lenses">
+<button class="ocard" type="button" data-lens="melody" style="--acc:#6F5E95;--acc-soft:#EFE9F5"><span class="ohead"><span class="onum">01</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 A 14 14 0 0 1 34 26" fill="none" stroke="currentColor"/><circle cx="6" cy="26" r="1.4" fill="currentColor" stroke="none"/><circle cx="34" cy="26" r="1.4" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Melody</span><span class="ot">The shape of a line</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
+<button class="ocard" type="button" data-lens="harmony" style="--acc:#6F5E95;--acc-soft:#EFE9F5"><span class="ohead"><span class="onum">02</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Harmony</span><span class="ot">Tension, and where it lands</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
+<button class="ocard" type="button" data-lens="timbre" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="onum">03</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 Q 20 10, 34 24" fill="none" stroke="currentColor"/><circle cx="20" cy="14.3" r="1.3" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Timbre</span><span class="ot">The color of a sound</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
+<button class="ocard" type="button" data-lens="texture" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="onum">04</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Texture</span><span class="ot">How many voices, at once</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
+<button class="ocard" type="button" data-lens="rhythm" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="onum">05</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="30" x2="34" y2="30"/><line x1="13" y1="9" x2="13" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="27" y1="9" x2="27" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="7" y="18" width="5" height="12" style="fill:currentColor;stroke:none"/><rect x="16" y="24" width="5" height="6" style="fill:currentColor;stroke:none"/><rect x="25" y="14" width="5" height="16" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Rhythm</span><span class="ot">Sound and silence, grouped</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
+<button class="ocard" type="button" data-lens="form" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="onum">06</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="7" x2="12" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="22" y1="7" x2="22" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="5" y="16" width="6" height="12" style="fill:currentColor;stroke:none"/><rect x="14" y="16" width="6" height="12" style="fill:currentColor;stroke:none;opacity:.55"/><rect x="29" y="5" width="6" height="23" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Form</span><span class="ot">The whole shape of a piece</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
+</nav>
+<div id="lens-detail" class="lens-detail is-hidden" aria-live="polite">
+<div class="detail-bar"><span class="dthread" id="dThread"></span><button class="detail-close" id="dClose" type="button">← All lenses</button></div>
+<div class="lens-wrap is-hidden" data-lens="rhythm" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
+<section class="lens" id="lens-rhythm">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="30" x2="34" y2="30"/><line x1="13" y1="9" x2="13" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="27" y1="9" x2="27" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="7" y="18" width="5" height="12" style="fill:currentColor;stroke:none"/><rect x="16" y="24" width="5" height="6" style="fill:currentColor;stroke:none"/><rect x="25" y="14" width="5" height="16" style="fill:currentColor;stroke:none"/></svg></span>
+<div><span class="lens-idx">01 · Rhythm</span><h2 class="lens-title">Sound and silence, grouped</h2></div>
+</div>
+<p class="lens-q"><em>Are the note starts even, or grouped unevenly?</em></p>
+<p class="lens-cue">Rhythm is how a phrase divides time — which sounds are long, which are short, and where the silences fall. Listen for long sounds, quick turns, and spaces.</p>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One phrase · Long, short, and space · Even steps</span></div>
+<p class="rm-intro">The same seventeen pitches, organized two ways in time. One version stretches, snaps short, and leaves audible <em>space</em>; the other advances in equal steps. Only one plays at a time — watch the shared pulse grid underneath.</p>
+<div id="rhythm-long-short-even-motion">
+  <style>
+    #rhythm-long-short-even-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #rhythm-long-short-even-motion .shared-claim { margin:0 0 1.4rem; }
+    #rhythm-long-short-even-motion .shared-claim strong { font-weight:500; }
+    #rhythm-long-short-even-motion .clip { margin:0 0 1.2rem; }
+    #rhythm-long-short-even-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
+    #rhythm-long-short-even-motion .clip-title strong { font-weight:500; }
+    #rhythm-long-short-even-motion .clip-title span { color:var(--muted-foreground); }
+    #rhythm-long-short-even-motion audio { display:block; width:100%; }
+    #rhythm-long-short-even-motion .stage { display:block; width:100%; margin:.7rem 0 0; overflow:visible; }
+    #rhythm-long-short-even-motion .stage text { fill:var(--foreground); font-family:inherit; }
+    #rhythm-long-short-even-motion .stage .muted { fill:var(--muted-foreground); }
+    #rhythm-long-short-even-motion .pulse { stroke:var(--border); stroke-width:1; }
+    #rhythm-long-short-even-motion .pulse.measure { stroke:var(--muted-foreground); stroke-width:1.5; opacity:.62; }
+    #rhythm-long-short-even-motion .lane-guide { stroke:var(--border); stroke-width:1.25; }
+    #rhythm-long-short-even-motion .now { stroke:var(--foreground); stroke-width:2.5; opacity:.88; }
+    #rhythm-long-short-even-motion .rhythm-row { opacity:.7; transition:opacity .16s linear; }
+    #rhythm-long-short-even-motion .rhythm-row.active { opacity:1; }
+    #rhythm-long-short-even-motion .rhythm-row.inactive { opacity:.18; }
+    #rhythm-long-short-even-motion .row-label { transition:opacity .16s linear; }
+    #rhythm-long-short-even-motion .row-label.inactive { opacity:.34; }
+    #rhythm-long-short-even-motion .sound-block { opacity:.34; }
+    #rhythm-long-short-even-motion .sound-block.reached { opacity:.72; }
+    #rhythm-long-short-even-motion .sound-block.current { fill:var(--foreground); opacity:1; }
+    #rhythm-long-short-even-motion .sound-block.shaped { fill:var(--viz-series-2,var(--primary)); }
+    #rhythm-long-short-even-motion .sound-block.even { fill:var(--viz-series-1,var(--primary)); }
+    #rhythm-long-short-even-motion .ending-space { fill:var(--muted); stroke:var(--border); stroke-width:1; opacity:.62; }
+    #rhythm-long-short-even-motion .space-hatch { stroke:var(--muted-foreground); stroke-width:1.25; opacity:.3; }
+    @media (max-width:620px) {
+      #rhythm-long-short-even-motion .clip-title { display:block; }
+      #rhythm-long-short-even-motion .stage text { font-size:22px; }
+    }
+  </style>
+
+  <p class="shared-claim"><strong>Same pitches, different timing:</strong> one version stretches, snaps short, and leaves space; the other advances in equal steps.</p>
+  <p class="sr-only">Two piano versions use the same seventeen pitches. The first alternates long sounds, quick turns, and clear spaces. The second begins each sound at an even interval and retains a visible final span of silence.</p>
+
+  <section class="clip" aria-labelledby="shaped-rhythm-title">
+    <p class="clip-title" id="shaped-rhythm-title"><strong>Long, short, and space</strong><span>sound lengths shape the phrase</span></p>
+    <audio id="shaped-rhythm-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/question-answer-return--rhythm-shaped.m4a" type="audio/mp4"></audio>
+  </section>
+
+  <section class="clip" aria-labelledby="even-rhythm-title">
+    <p class="clip-title" id="even-rhythm-title"><strong>Even steps</strong><span>equal spacing makes the motion steadier</span></p>
+    <audio id="even-rhythm-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/question-answer-return--rhythm-even.m4a" type="audio/mp4"></audio>
+  </section>
+
+  <svg id="basic-rhythm-stage" class="stage" viewBox="0 0 760 306" role="img" aria-labelledby="basic-rhythm-svg-title basic-rhythm-svg-desc">
+    <title id="basic-rhythm-svg-title">Long-and-short rhythm compared with evenly spaced steps</title>
+    <desc id="basic-rhythm-svg-desc">Seventeen sounds appear in two aligned rows over a steady twenty-beat pulse. Block widths show sound length and gaps show space. The even row ends with a visibly retained span of silence. A moving now line follows the selected recording.</desc>
+    <text class="muted" x="150" y="24">steady pulse</text>
+    <g class="pulse-grid"></g>
+    <line class="lane-guide" x1="150" y1="106" x2="728" y2="106"></line>
+    <line class="lane-guide" x1="150" y1="206" x2="728" y2="206"></line>
+    <text class="row-label" data-version-label="shaped" x="16" y="101">long · short · space</text>
+    <text class="row-label" data-version-label="even" x="16" y="201">even steps</text>
+    <g class="rhythm-row" data-version="shaped"></g>
+    <g class="rhythm-row" data-version="even"></g>
+    <g class="space-region"></g>
+    <line class="now" x1="150" y1="40" x2="150" y2="240"></line>
+    <text class="muted now-label" x="150" y="258" text-anchor="middle">now</text>
+    <text class="muted" x="150" y="292">block width = sound length · gap = space</text>
+  </svg>
+
+  <p class="sr-only" data-listening-live aria-live="polite" aria-atomic="true">Both rhythm versions are ready.</p>
+
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('rhythm-long-short-even-motion');
+      const svg=root.querySelector('#basic-rhythm-stage');
+      const shapedAudio=root.querySelector('#shaped-rhythm-audio');
+      const evenAudio=root.querySelector('#even-rhythm-audio');
+      const allAudio=[shapedAudio,evenAudio];
+      const ns='http://www.w3.org/2000/svg';
+      const tempo=112,beatSeconds=60/tempo,totalBeats=20,xStart=150,xWidth=578;
+      const shapedDuration=8.571,evenDuration=10.714;
+      const xForBeat=beat=>xStart+Math.max(0,Math.min(totalBeats,beat))/totalBeats*xWidth;
+      const xForTime=time=>xForBeat(time/beatSeconds);
+      const make=(name,attrs={})=>{const node=document.createElementNS(ns,name);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node;};
+      const shaped=[
+        [0,1.45],[1.75,.25],[2.10,.25],[2.50,.78],[3.45,.40],
+        [4,1.25],[5.50,.25],[5.85,.25],[6.35,1.25],
+        [8,1.40],[9.70,.25],[10.05,.25],[10.45,1.05],[11.70,.45],
+        [12.50,.85],[13.65,.25],[14.25,1.55]
+      ];
+      const even=Array.from({length:17},(_,index)=>[index,.54]);
+
+      const pulseGrid=svg.querySelector('.pulse-grid');
+      for(let beat=0;beat<=totalBeats;beat+=1){
+        const x=xForBeat(beat);
+        pulseGrid.appendChild(make('line',{class:`pulse${beat%4===0?' measure':''}`,x1:x.toFixed(2),x2:x.toFixed(2),y1:'42',y2:'232'}));
+      }
+
+      const buildRow=(selector,events,y,className)=>{
+        const group=svg.querySelector(selector);
+        events.forEach(([start,duration])=>{
+          const x=xForBeat(start),width=Math.max(7,xForBeat(start+duration)-x);
+          group.appendChild(make('rect',{class:`sound-block ${className}`,'data-start':(start*beatSeconds).toFixed(6),'data-end':((start+duration*.94)*beatSeconds).toFixed(6),x:x.toFixed(2),y:String(y),width:width.toFixed(2),height:'38',rx:'6'}));
+        });
+      };
+      buildRow('.rhythm-row[data-version="shaped"]',shaped,78,'shaped');
+      buildRow('.rhythm-row[data-version="even"]',even,178,'even');
+
+      const spaceStartBeat=17,spaceX=xForBeat(spaceStartBeat),spaceEnd=xForBeat(20);
+      const spaceGroup=svg.querySelector('.space-region');
+      spaceGroup.appendChild(make('rect',{class:'ending-space',x:spaceX.toFixed(2),y:'174',width:(spaceEnd-spaceX).toFixed(2),height:'46',rx:'6'}));
+      for(let x=spaceX+10;x<spaceEnd;x+=14)spaceGroup.appendChild(make('line',{class:'space-hatch',x1:x.toFixed(2),x2:(x+10).toFixed(2),y1:'216',y2:'178'}));
+      const spaceLabel=make('text',{class:'muted',x:((spaceX+spaceEnd)/2).toFixed(2),y:'170','text-anchor':'middle'});spaceLabel.textContent='ending space';spaceGroup.appendChild(spaceLabel);
+
+      let activeVersion=null;
+      const setActive=version=>{
+        activeVersion=version;
+        svg.querySelectorAll('.rhythm-row').forEach(row=>{row.classList.toggle('active',row.dataset.version===version);row.classList.toggle('inactive',version&&row.dataset.version!==version);});
+        svg.querySelectorAll('[data-version-label]').forEach(label=>label.classList.toggle('inactive',version&&label.dataset.versionLabel!==version));
+        spaceGroup.style.opacity=version==='shaped'?'.24':'1';
+      };
+      const paintRow=(audio,version,duration)=>{
+        const time=Math.max(0,Math.min(duration,audio.currentTime||0));
+        const atIdleStart=audio.paused&&time===0;
+        svg.querySelectorAll(`.rhythm-row[data-version="${version}"] [data-start][data-end]`).forEach(block=>{
+          const start=Number(block.dataset.start),end=Number(block.dataset.end);
+          block.classList.toggle('reached',!atIdleStart&&time>=start);
+          block.classList.toggle('current',!atIdleStart&&time>=start&&time<end);
+        });
+        if(activeVersion===version){const x=xForTime(time);svg.querySelector('.now').setAttribute('x1',x);svg.querySelector('.now').setAttribute('x2',x);svg.querySelector('.now-label').setAttribute('x',x);}
+      };
+      const shapedStatus=time=>{
+        if(time<.938)return 'Shaped rhythm: a long opening sound.';
+        if(time<1.607)return 'Shaped rhythm: quick turns follow the opening.';
+        if(time<2.143)return 'Shaped rhythm: a clear space separates the next phrase.';
+        if(time<3.938)return 'Shaped rhythm: long sounds, quick turns, and spaces alternate.';
+        if(time<7.634)return 'Shaped rhythm: the contrasting lengths continue.';
+        return 'Shaped rhythm: the final sound is held.';
+      };
+      const evenStatus=time=>{
+        if(time<8.571)return 'Even rhythm: each pitch begins on the next equal step.';
+        if(time<9.051)return 'Even rhythm: the final step sounds and fades.';
+        return 'Even rhythm: the retained ending space remains visible.';
+      };
+      [['shaped',shapedAudio],['even',evenAudio]].forEach(([version,audio])=>{
+        audio.addEventListener('play',()=>setActive(version));
+        audio.addEventListener('seeking',()=>setActive(version));
+      });
+      window.ListeningVisual.wire({root,audio:shapedAudio,paint:()=>paintRow(shapedAudio,'shaped',shapedDuration),peers:allAudio,status:shapedStatus,initialStatus:shapedStatus(0)});
+      window.ListeningVisual.wire({root,audio:evenAudio,paint:()=>paintRow(evenAudio,'even',evenDuration),peers:allAudio,status:evenStatus,initialStatus:evenStatus(0)});
+      setActive(null);
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: both rows contain the same pitch sequence. Blocks represent sound lengths and their spacing; the vertical lines represent a steady pulse. This is not notation.</p>
+</div>
+</div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven, Symphony No. 5 · the Charleston</span></div>
+<p class="rm-intro">Two famous rhythms crossing a fixed <em>now</em> line. Beethoven repeatedly bunches three short notes into a held landing; the Charleston keeps shifting its accents around a steady pulse. Play either clip and the stream scrolls past in real time.</p>
+<div id="rhythm-note-stream-motion">
+  <style>
+    #rhythm-note-stream-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #rhythm-note-stream-motion .clip { margin:0 0 1.5rem; }
+    #rhythm-note-stream-motion .clip p { margin:0 0 .5rem; }
+    #rhythm-note-stream-motion audio { width:100%; }
+    #rhythm-note-stream-motion .stage { display:block; width:100%; margin:.5rem 0 0; }
+    #rhythm-note-stream-motion text { fill:var(--foreground); font-family:inherit; }
+    #rhythm-note-stream-motion .pulse-line { stroke:var(--border); stroke-width:2; }
+    #rhythm-note-stream-motion .pulse-rail { stroke:var(--muted-foreground); stroke-width:2; opacity:.45; }
+    #rhythm-note-stream-motion .playhead { stroke:var(--foreground); stroke-width:3; }
+    #rhythm-note-stream-motion .trace-a { fill:none; stroke:var(--viz-series-2,var(--primary)); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+    #rhythm-note-stream-motion .trace-b { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+    #rhythm-note-stream-motion .note-a { fill:var(--viz-series-2,var(--primary)); }
+    #rhythm-note-stream-motion .note-b { fill:var(--viz-series-1,var(--primary)); }
+    #rhythm-note-stream-motion .hold-a { fill:var(--viz-series-2,var(--primary)); opacity:.32; }
+    #rhythm-note-stream-motion .caption { fill:var(--muted-foreground); }
+  </style>
+  <p class="sr-only">Two scrolling note streams cross a fixed playhead at the moment each note or accent is heard. Beethoven repeatedly bunches three quick notes before a held landing. The Charleston produces a more irregular, displaced stream of accents around the pulse.</p>
+  <section class="clip" aria-labelledby="beethoven-stream-title">
+    <p id="beethoven-stream-title">Repeated shape — Beethoven’s Fifth</p>
+    <audio id="beethoven-stream-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/beethoven-5--rhythmic-motive--candidate-01.m4a" type="audio/mp4"></audio>
+    <svg class="stage" viewBox="0 0 760 230" role="img" aria-labelledby="beethoven-stream-svg-title beethoven-stream-svg-desc">
+      <title id="beethoven-stream-svg-title">Beethoven note stream</title><desc id="beethoven-stream-svg-desc">A fixed now line crosses a steady pulse rail. Groups of three closely spaced notes repeatedly approach longer landing notes as the recording plays.</desc><defs><clipPath id="beethoven-window"><rect x="30" y="35" width="700" height="150"></rect></clipPath></defs>
+      <line class="pulse-rail" x1="30" y1="145" x2="730" y2="145"></line><g id="beethoven-pulses" clip-path="url(#beethoven-window)"></g><g id="beethoven-stream" clip-path="url(#beethoven-window)"></g>
+      <line class="playhead" x1="220" y1="35" x2="220" y2="185"></line><text x="220" y="24" text-anchor="middle">now</text><text id="beethoven-stream-status" class="caption" x="30" y="215">listen for three quick notes and a held landing</text>
+    </svg>
+  </section>
+  <section class="clip" aria-labelledby="charleston-stream-title">
+    <p id="charleston-stream-title">Displaced accents — the Charleston</p>
+    <audio id="charleston-stream-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/charleston--pulse-and-lean--candidate-02.m4a" type="audio/mp4"></audio>
+    <svg class="stage" viewBox="0 0 760 230" role="img" aria-labelledby="charleston-stream-svg-title charleston-stream-svg-desc">
+      <title id="charleston-stream-svg-title">Charleston accent stream</title><desc id="charleston-stream-svg-desc">Diamond-shaped accents cross a fixed now line at uneven positions around a steady pulse rail, showing displacement without treating the stream as notation.</desc><defs><clipPath id="charleston-window"><rect x="30" y="35" width="700" height="150"></rect></clipPath></defs>
+      <line class="pulse-rail" x1="30" y1="118" x2="730" y2="118"></line><g id="charleston-pulses" clip-path="url(#charleston-window)"></g><g id="charleston-stream" clip-path="url(#charleston-window)"></g>
+      <line class="playhead" x1="220" y1="35" x2="220" y2="185"></line><text x="220" y="24" text-anchor="middle">now</text><text id="charleston-stream-status" class="caption" x="30" y="215">watch the accents keep shifting around the pulse</text>
+    </svg>
+  </section>
+  <script is:inline>
+    (() => {
+      const root = document.getElementById('rhythm-note-stream-motion');
+      const ns = 'http://www.w3.org/2000/svg';
+      const beethoven = [[.853,.07,70],[.940,.07,70],[1.022,.08,70],[1.277,.40,66],[1.451,.08,68],[1.535,.08,68],[1.637,.09,68],[1.808,.44,65],[4.319,.08,78],[4.420,.08,78],[4.522,.10,78],[4.746,.38,74],[5.018,.08,76],[5.120,.08,76],[5.248,.10,76],[5.454,.36,72],[5.822,.08,74],[5.965,.08,74],[6.118,.10,74],[6.272,.42,70],[9.424,.98,63],[10.783,.24,65],[11.131,.56,67],[11.851,.48,62],[13.328,.30,70],[13.688,.88,67],[14.997,.20,65],[15.203,.08,70],[15.375,.08,70],[15.563,.10,70],[15.955,.42,66],[16.492,.22,64],[16.710,.18,66],[17.107,.24,68],[17.441,.30,65],[17.644,.08,74],[17.842,.08,74],[17.995,.10,74],[18.231,.48,70],[19.043,.14,72],[19.229,.30,69],[19.865,.48,67],[22.538,.08,74],[22.695,.08,74],[22.959,.10,74],[23.208,.34,70],[23.330,.34,64]];
+      const charleston = [[.975,.983,.464],[1.405,.966,.514],[2.125,1,.525],[2.589,.921,.377],[3.111,.811,.824],[3.274,.844,.728],[3.727,1,.367],[4.063,.868,.622],[4.18,.964,.485],[4.435,1,.333],[4.772,.921,.502],[4.969,.919,.688],[5.236,.974,.56],[5.352,1,.369],[5.619,.933,.75],[5.944,.824,.36],[6.246,.747,.4],[6.444,.907,.384],[6.571,.818,.349],[6.745,.976,.478],[7.14,.89,.411],[7.454,.778,.325],[7.755,.882,.408],[8.034,.889,.499],[8.336,.927,.395],[8.626,.932,.426],[8.916,1,.597],[9.253,.914,.587],[9.555,.867,.503],[9.776,.865,.497],[10.043,.891,.496],[10.147,.792,.506],[10.414,1,.643],[10.704,.816,.43],[11.355,.888,.425],[11.656,.868,.465],[11.947,.863,.439],[12.167,.772,.479],[12.585,.884,.396],[12.875,.933,.405],[13.189,.794,.365],[13.491,.955,.328],[13.769,.801,.441],[14.002,.863,.443],[14.396,.768,.375],[14.71,.895,.406],[15.012,.922,.481],[15.232,.838,.42],[15.581,.774,.438],[15.836,.762,.412],[15.952,.707,.34],[16.254,.863,.398],[16.533,.94,.604],[16.834,.838,.424],[17.055,.824,.404],[17.194,.725,.362],[17.473,.899,.53],[17.786,.938,.404],[18.1,.793,.347],[18.367,.85,.483],[18.599,.782,.4],[18.704,.795,.378],[18.994,.944,.424],[19.319,.742,.361],[19.609,.828,.388],[19.841,.98,.397],[19.946,.717,.34],[20.213,.912,.399],[20.55,.832,.377],[20.84,.84,.375],[21.037,.896,.46],[21.142,.929,.366],[21.42,.903,.471],[21.676,.916,.526],[21.931,.852,.448],[22.059,.782,.425],[22.372,.905,.32],[22.663,.902,.42],[22.965,.916,.472],[23.278,.876,.396],[23.499,.882,.484],[23.893,.873,.386],[24.195,.95,.45],[24.358,.802,.48],[24.497,.907,.438],[24.799,.928,.447],[25.089,.867,.449],[25.414,.839,.413],[25.693,.951,.416],[25.925,.811,.384],[26.041,.71,.347]];
+      const xFor = (eventTime, now) => 220 + (eventTime - now) * 108;
+      const clear = node => { while (node.firstChild) node.removeChild(node.firstChild); };
+      const line = (parent, x, y1, y2) => { const node=document.createElementNS(ns,'line'); node.setAttribute('class','pulse-line'); node.setAttribute('x1',x); node.setAttribute('x2',x); node.setAttribute('y1',y1); node.setAttribute('y2',y2); parent.appendChild(node); };
+      const drawPulses = (parent, now, beat, phase) => { clear(parent); const first=Math.floor((now-1.8-phase)/beat)-1; for(let i=first;i<first+13;i+=1){const x=xFor(phase+i*beat,now); if(x>28&&x<732) line(parent,x,42,180);} };
+      const drawBeethoven = now => {
+        const group=root.querySelector('#beethoven-stream'); clear(group); const visible=beethoven.filter(e=>e[0]>now-1.8&&e[0]<now+4.8); const points=[];
+        visible.forEach(([time,duration,pitch])=>{const x=xFor(time,now), y=154-(pitch-60)*4.1; points.push(`${x.toFixed(1)},${y.toFixed(1)}`); const hold=document.createElementNS(ns,'rect'); hold.setAttribute('class','hold-a'); hold.setAttribute('x',x); hold.setAttribute('y',y-5); hold.setAttribute('width',Math.max(8,duration*108)); hold.setAttribute('height',10); hold.setAttribute('rx',5); group.appendChild(hold); const note=document.createElementNS(ns,'circle'); note.setAttribute('class','note-a'); note.setAttribute('cx',x); note.setAttribute('cy',y); note.setAttribute('r',Math.abs(time-now)<.07?9:5); group.appendChild(note);});
+        if(points.length>1){const path=document.createElementNS(ns,'polyline');path.setAttribute('class','trace-a');path.setAttribute('points',points.join(' '));group.insertBefore(path,group.firstChild);}
+      };
+      const drawCharleston = now => {
+        const group=root.querySelector('#charleston-stream'); clear(group); const visible=charleston.filter(e=>e[0]>now-1.8&&e[0]<now+4.8); const points=[]; const beat=.6037, phase=.5232;
+        visible.forEach(([time,strength,color])=>{const x=xFor(time,now); const signed=((time-phase+beat/2)%beat+beat)%beat-beat/2; const y=118-signed/beat*112-(color-.47)*24; points.push(`${x.toFixed(1)},${y.toFixed(1)}`); const size=Math.abs(time-now)<.075?10:5+strength*2; const note=document.createElementNS(ns,'path'); note.setAttribute('class','note-b'); note.setAttribute('d',`M ${x} ${y-size} L ${x+size} ${y} L ${x} ${y+size} L ${x-size} ${y} Z`); group.appendChild(note);});
+        if(points.length>1){const path=document.createElementNS(ns,'polyline');path.setAttribute('class','trace-b');path.setAttribute('points',points.join(' '));group.insertBefore(path,group.firstChild);}
+      };
+      const audios=[...root.querySelectorAll('audio')];
+      const wire = (audio, pulses, draw, beat, pulsePhase, status) => {
+        const paint=()=>{drawPulses(pulses,audio.currentTime,beat,pulsePhase);draw(audio.currentTime);};
+        window.ListeningVisual.wire({root,audio,paint,peers:audios,status,initialStatus:status(0)});
+      };
+      wire(root.querySelector('#beethoven-stream-audio'),root.querySelector('#beethoven-pulses'),drawBeethoven,.625,.03,time=>time<2.3?'Beethoven states two compact three-note-and-landing groups.':time<9?'The motive pauses before returning.':'The three-note shape continues to reappear and change.');
+      wire(root.querySelector('#charleston-stream-audio'),root.querySelector('#charleston-pulses'),drawCharleston,.6037,.5232,()=> 'Charleston accents keep shifting around the steady pulse.');
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: spacing shows approximate onset and duration around a pulse; height organizes the display and is not staff notation.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Rhythm is the pattern of long and short sounds and the silences between them — the same pulse can be grouped evenly or unevenly, and the grouping is what gives a rhythm its character.</p></div>
+</section>
+</div>
+<div class="lens-wrap is-hidden" data-lens="form" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
+<section class="lens" id="lens-form">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="7" x2="12" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="22" y1="7" x2="22" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="5" y="16" width="6" height="12" style="fill:currentColor;stroke:none"/><rect x="14" y="16" width="6" height="12" style="fill:currentColor;stroke:none;opacity:.55"/><rect x="29" y="5" width="6" height="23" style="fill:currentColor;stroke:none"/></svg></span>
+<div><span class="lens-idx">02 · Form</span><h2 class="lens-title">The whole shape of a piece</h2></div>
+</div>
+<p class="lens-q"><em>What changes, and what returns?</em></p>
+<p class="lens-cue">Form is the large-scale plan — the order in which ideas are stated, varied, departed from, and brought back. Listen across the whole clip for what returns, and for what has changed when it does.</p>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One theme · Compact fugue · Compact sonata form</span></div>
+<p class="rm-intro">The same four-bar theme organized two ways. The <em>fugue</em> passes one idea among independent voices; <em>sonata form</em> sends it through departure, contrast, development, and return. Only one plays at a time.</p>
+<div id="form-fugue-sonata-motion">
+  <style>
+    #form-fugue-sonata-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #form-fugue-sonata-motion .shared-claim { margin:0 0 1.4rem; }
+    #form-fugue-sonata-motion .shared-claim strong { font-weight:500; }
+    #form-fugue-sonata-motion .clip { margin:0 0 2rem; }
+    #form-fugue-sonata-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
+    #form-fugue-sonata-motion .clip-title strong { font-weight:500; }
+    #form-fugue-sonata-motion .clip-title span { color:var(--muted-foreground); }
+    #form-fugue-sonata-motion audio { display:block; width:100%; }
+    #form-fugue-sonata-motion .stage { display:block; width:100%; margin:.55rem 0 0; overflow:visible; }
+    #form-fugue-sonata-motion .stage text { fill:var(--foreground); font-family:inherit; }
+    #form-fugue-sonata-motion .stage .muted { fill:var(--muted-foreground); }
+    #form-fugue-sonata-motion .guide { stroke:var(--border); stroke-width:1.25; }
+    #form-fugue-sonata-motion .now { stroke:var(--foreground); stroke-width:2.25; opacity:.84; }
+    #form-fugue-sonata-motion .subject-span { fill:var(--viz-series-1,var(--primary)); opacity:.12; }
+    #form-fugue-sonata-motion .subject-path { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; opacity:.42; }
+    #form-fugue-sonata-motion .subject-entry.reached .subject-span { opacity:.2; }
+    #form-fugue-sonata-motion .subject-entry.reached .subject-path { opacity:.72; }
+    #form-fugue-sonata-motion .subject-entry.current .subject-span { opacity:.34; }
+    #form-fugue-sonata-motion .subject-entry.current .subject-path { stroke:var(--foreground); stroke-width:5; opacity:1; }
+    #form-fugue-sonata-motion .counterline { fill:none; stroke:var(--muted-foreground); stroke-width:2.5; stroke-linecap:round; opacity:.26; }
+    #form-fugue-sonata-motion .episode-fragment { fill:var(--viz-series-2,var(--primary)); opacity:.28; }
+    #form-fugue-sonata-motion .episode-fragment.reached { opacity:.62; }
+    #form-fugue-sonata-motion .episode-fragment.current { fill:var(--foreground); opacity:1; }
+    #form-fugue-sonata-motion .form-span { fill:var(--muted); stroke:var(--border); stroke-width:1; opacity:.6; }
+    #form-fugue-sonata-motion .form-span.reached { opacity:.82; }
+    #form-fugue-sonata-motion .form-span.active { fill:var(--accent); stroke:var(--primary); stroke-width:2; opacity:1; }
+    #form-fugue-sonata-motion .section-area { fill:var(--muted); opacity:.22; }
+    #form-fugue-sonata-motion .section-area.reached { opacity:.34; }
+    #form-fugue-sonata-motion .section-area.active { fill:var(--accent); opacity:.62; }
+    #form-fugue-sonata-motion .primary-shape { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; opacity:.48; }
+    #form-fugue-sonata-motion .contrast-shape { fill:none; stroke:var(--viz-series-2,var(--primary)); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; opacity:.48; }
+    #form-fugue-sonata-motion .theme-shape.reached { opacity:.78; }
+    #form-fugue-sonata-motion .theme-shape.current { stroke:var(--foreground); stroke-width:5; opacity:1; }
+    #form-fugue-sonata-motion .development-piece { fill:var(--viz-series-3,var(--primary)); opacity:.26; }
+    #form-fugue-sonata-motion .development-piece.reached { opacity:.68; }
+    #form-fugue-sonata-motion .development-piece.current { fill:var(--foreground); opacity:1; }
+    #form-fugue-sonata-motion .journey { fill:none; stroke:var(--muted-foreground); stroke-width:3; stroke-linecap:round; opacity:.58; }
+    #form-fugue-sonata-motion .home-point { fill:var(--viz-series-1,var(--primary)); }
+    @media (max-width:620px) {
+      #form-fugue-sonata-motion .clip-title { display:block; }
+      #form-fugue-sonata-motion .stage text { font-size:22px; }
+    }
+  </style>
+
+  <p class="shared-claim"><strong>One four-bar theme, two organizing logics:</strong> the fugue passes it among voices; sonata form sends it through contrast, development, and return.</p>
+  <p class="sr-only">Two compact piano miniatures use the same Question, Answer, Return theme. The fugue model layers successive subject entries in three voices. The sonata-form model presents Theme A, a modulating bridge, Theme B, development, and recapitulation.</p>
+
+  <section class="clip" aria-labelledby="fugue-clip-title">
+    <p class="clip-title" id="fugue-clip-title"><strong>Compact fugue model</strong><span>one idea passes among independent voices</span></p>
+    <audio id="fugue-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/question-answer-return--compact-fugue.m4a" type="audio/mp4"></audio>
+    <svg id="fugue-stage" class="stage" viewBox="0 0 760 366" role="img" aria-labelledby="fugue-svg-title fugue-svg-desc">
+      <title id="fugue-svg-title">Three-voice fugue model built from the shared theme</title>
+      <desc id="fugue-svg-desc">The four-bar subject first appears in voice one, then as an answer in voice two, then in voice three. A short episode breaks it into fragments. The final section brings the subject entries closer together in stretto.</desc>
+      <text class="muted" x="132" y="24">the same subject enters at different times</text>
+      <text class="muted" x="16" y="94">voice 1</text><text class="muted" x="16" y="176">voice 2</text><text class="muted" x="16" y="258">voice 3</text>
+      <line class="guide" x1="132" y1="100" x2="728" y2="100"></line>
+      <line class="guide" x1="132" y1="182" x2="728" y2="182"></line>
+      <line class="guide" x1="132" y1="264" x2="728" y2="264"></line>
+      <g class="fugue-counterlines"></g>
+      <g class="fugue-entries"></g>
+      <g class="fugue-fragments"></g>
+      <g class="fugue-form-map" transform="translate(132 310)"></g>
+      <line class="now" x1="132" y1="38" x2="132" y2="294"></line>
+      <text class="muted now-label" x="132" y="298" text-anchor="middle">now</text>
+    </svg>
+  </section>
+
+  <section class="clip" aria-labelledby="sonata-clip-title">
+    <p class="clip-title" id="sonata-clip-title"><strong>Compact sonata-form model</strong><span>Theme A · modulating bridge · Theme B · development · return</span></p>
+    <audio id="sonata-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/question-answer-return--compact-sonata.m4a" type="audio/mp4"></audio>
+    <svg id="sonata-stage" class="stage" viewBox="0 0 760 366" role="img" aria-labelledby="sonata-svg-title sonata-svg-desc">
+      <title id="sonata-svg-title">Sonata-form journey built from the shared theme</title>
+      <desc id="sonata-svg-desc">Theme A in D minor leads through a modulating bridge to Theme B, fragments during a development, and returns in the recapitulation. Theme B then returns near the home key.</desc>
+      <text class="muted" x="132" y="24">theme identity</text>
+      <text class="muted" x="16" y="142">musical ideas</text><text class="muted" x="16" y="250">tonal journey</text>
+      <line class="guide" x1="132" y1="156" x2="728" y2="156"></line>
+      <line class="guide" x1="132" y1="264" x2="728" y2="264"></line>
+      <g class="sonata-areas"></g>
+      <g class="sonata-themes"></g>
+      <path class="journey" d="M132 264 C190 264 206 230 256 224 C322 214 354 190 404 190 C454 192 476 260 528 264 C606 264 650 264 728 264"></path>
+      <circle class="home-point" cx="132" cy="264" r="7"></circle><circle class="home-point" cx="528" cy="264" r="7"></circle><circle class="home-point" cx="728" cy="264" r="7"></circle>
+      <text class="muted" x="132" y="288" text-anchor="middle">home</text><text class="muted" x="404" y="180" text-anchor="middle">most unsettled</text><text class="muted" x="728" y="288" text-anchor="end">home confirmed</text>
+      <g class="sonata-form-map" transform="translate(132 310)"></g>
+      <line class="now" x1="132" y1="38" x2="132" y2="294"></line>
+      <text class="muted now-label" x="132" y="298" text-anchor="middle">now</text>
+    </svg>
+  </section>
+
+  <p class="sr-only" data-listening-live aria-live="polite" aria-atomic="true">Both form models are ready.</p>
+
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('form-fugue-sonata-motion');
+      const fugueAudio=root.querySelector('#fugue-audio');
+      const sonataAudio=root.querySelector('#sonata-audio');
+      const allAudio=[fugueAudio,sonataAudio];
+      const duration=51.428;
+      const xStart=132,xWidth=596,ns='http://www.w3.org/2000/svg';
+      const xFor=time=>xStart+Math.max(0,Math.min(1,time/duration))*xWidth;
+      const make=(name,attrs={})=>{const node=document.createElementNS(ns,name);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node;};
+      const sharedContour=[[0,62],[1,65],[1.5,67],[2,69],[3,67],[4,64],[5,65],[6,62],[8,65],[9,69],[9.5,70],[10,72],[11,69],[12,67],[13,64],[14,62],[16,62]];
+
+      const fugueSvg=root.querySelector('#fugue-stage');
+      const fugueEntries=[
+        {start:0,end:8.571,lane:0,label:'subject'},
+        {start:8.571,end:17.143,lane:1,label:'answer'},
+        {start:17.143,end:25.714,lane:2,label:'subject'},
+        {start:34.286,end:42.857,lane:0,label:'subject returns'},
+        {start:38.571,end:47.143,lane:1,label:'answer'},
+        {start:42.857,end:51.428,lane:2,label:'subject'}
+      ];
+      const fuguePhases=[
+        [0,8.571,'first voice'],[8.571,17.143,'second voice'],[17.143,25.714,'third voice'],
+        [25.714,34.286,'episode'],[34.286,51.428,'return · stretto']
+      ];
+      const laneY=[100,182,264];
+      const entryGroup=fugueSvg.querySelector('.fugue-entries');
+      fugueEntries.forEach((entry,index)=>{
+        const group=make('g',{class:'subject-entry','data-start':entry.start,'data-end':entry.end});
+        const x=xFor(entry.start),width=xFor(entry.end)-x;
+        group.appendChild(make('rect',{class:'subject-span',x:x.toFixed(2),y:String(laneY[entry.lane]-34),width:width.toFixed(2),height:'68',rx:'8'}));
+        const points=sharedContour.map(([beat,pitch])=>{
+          const px=x+(beat/16)*width,py=laneY[entry.lane]+14-((pitch-62)/10)*36;
+          return `${px.toFixed(2)},${py.toFixed(2)}`;
+        }).join(' ');
+        group.appendChild(make('polyline',{class:'subject-path',points}));
+        const label=make('text',{class:'muted',x:(x+5).toFixed(2),y:String(laneY[entry.lane]+30)});
+        label.textContent=entry.label;
+        group.appendChild(label);
+        entryGroup.appendChild(group);
+      });
+      [[8.571,34.286,0],[17.143,38.571,1],[25.714,42.857,2]].forEach(([start,end,lane])=>{
+        const x1=xFor(start),x2=xFor(end),y=laneY[lane];
+        fugueSvg.querySelector('.fugue-counterlines').appendChild(make('path',{class:'counterline',d:`M${x1.toFixed(2)} ${y} C${(x1+(x2-x1)*.32).toFixed(2)} ${y-18} ${(x1+(x2-x1)*.68).toFixed(2)} ${y+18} ${x2.toFixed(2)} ${y}`}));
+      });
+      [26.4,28.2,30.1,32.2].forEach((time,index)=>{
+        laneY.forEach((y,lane)=>{
+          const shifted=time+lane*.42,x=xFor(shifted),node=make('polygon',{class:'episode-fragment','data-start':shifted,'data-end':shifted+1.2,points:`${x.toFixed(2)},${y-8} ${(x+8).toFixed(2)},${y} ${x.toFixed(2)},${y+8} ${(x-8).toFixed(2)},${y}`});
+          fugueSvg.querySelector('.fugue-fragments').appendChild(node);
+        });
+      });
+      const fugueMap=fugueSvg.querySelector('.fugue-form-map');
+      fuguePhases.forEach(([start,end,label],index)=>{
+        const x=(start/duration)*xWidth,width=((end-start)/duration)*xWidth;
+        fugueMap.appendChild(make('rect',{class:'form-span','data-phase':index,x:x.toFixed(2),y:'0',width:Math.max(1,width-3).toFixed(2),height:'28',rx:'6'}));
+        const text=make('text',{x:(x+width/2).toFixed(2),y:'19','text-anchor':'middle'});text.textContent=label;fugueMap.appendChild(text);
+      });
+      const fuguePaint=()=>{
+        const time=Math.max(0,Math.min(duration,fugueAudio.currentTime||0));
+        fugueSvg.querySelectorAll('[data-start][data-end]').forEach(node=>{
+          const start=Number(node.dataset.start),end=Number(node.dataset.end);
+          node.classList.toggle('reached',time>=start);
+          node.classList.toggle('current',time>=start&&time<end);
+        });
+        const foundPhase=fuguePhases.findIndex(([,end])=>time<end);
+        const phase=foundPhase===-1?fuguePhases.length-1:foundPhase;
+        fugueSvg.querySelectorAll('[data-phase]').forEach((span,index)=>{span.classList.toggle('reached',index<phase);span.classList.toggle('active',index===phase);});
+        const x=xFor(time);fugueSvg.querySelector('.now').setAttribute('x1',x);fugueSvg.querySelector('.now').setAttribute('x2',x);fugueSvg.querySelector('.now-label').setAttribute('x',x);
+      };
+      const fugueStatus=time=>{
+        if(time<8.571)return 'Fugue model: the subject begins in voice one.';
+        if(time<17.143)return 'Fugue model: voice two enters with the answer.';
+        if(time<25.714)return 'Fugue model: voice three completes the opening entries.';
+        if(time<34.286)return 'Fugue model: the episode breaks the subject into fragments.';
+        return 'Fugue model: returning subject entries overlap in stretto.';
+      };
+
+      const sonataSvg=root.querySelector('#sonata-stage');
+      const sonataPhases=[
+        [0,8.571,['Theme A']],[8.571,12.857,['modulating','bridge']],[12.857,21.429,['Theme B']],[21.429,25.714,['closing']],
+        [25.714,34.286,['development']],[34.286,42.857,['Theme A','returns']],[42.857,51.428,['Theme B','at home']]
+      ];
+      const sonataLargePhases=[
+        [0,25.714,'exposition'],[25.714,34.286,'development'],[34.286,51.428,'recapitulation']
+      ];
+      const sonataAreas=sonataSvg.querySelector('.sonata-areas'),sonataMap=sonataSvg.querySelector('.sonata-form-map');
+      sonataPhases.forEach(([start,end,labelLines],index)=>{
+        const x=xFor(start),width=xFor(end)-x;
+        sonataAreas.appendChild(make('rect',{class:'section-area','data-sonata-phase':index,x:x.toFixed(2),y:'42',width:Math.max(1,width-2).toFixed(2),height:'244',rx:'5'}));
+        const center=(x+width/2).toFixed(2);
+        const text=make('text',{x:center,y:labelLines.length>1?'52':'58','text-anchor':'middle'});
+        labelLines.forEach((line,lineIndex)=>{const tspan=make('tspan',{x:center,dy:lineIndex===0?'0':'17'});tspan.textContent=line;text.appendChild(tspan);});
+        sonataSvg.querySelector('.sonata-themes').appendChild(text);
+      });
+      sonataLargePhases.forEach(([start,end,label],index)=>{
+        const x=(start/duration)*xWidth,width=((end-start)/duration)*xWidth;
+        sonataMap.appendChild(make('rect',{class:'form-span','data-sonata-large-phase':index,x:x.toFixed(2),y:'0',width:Math.max(1,width-3).toFixed(2),height:'28',rx:'6'}));
+        const text=make('text',{x:(x+width/2).toFixed(2),y:'19','text-anchor':'middle'});text.textContent=label;sonataMap.appendChild(text);
+      });
+      const themeShape=(start,end,type,startPitch=62)=>{
+        const x=xFor(start),width=xFor(end)-x;
+        const points=(type==='primary'?sharedContour:[[0,65],[2,69],[4,67],[6,72],[8,69],[10,65],[12,69],[14,67],[16,65]]).map(([beat,pitch])=>`${(x+beat/16*width).toFixed(2)},${(148-((pitch-startPitch)/10)*58).toFixed(2)}`).join(' ');
+        const node=make('polyline',{class:`theme-shape ${type==='primary'?'primary-shape':'contrast-shape'}`,'data-start':start,'data-end':end,points});
+        sonataSvg.querySelector('.sonata-themes').appendChild(node);
+      };
+      themeShape(0,8.571,'primary',62);
+      themeShape(12.857,21.429,'contrast',65);
+      themeShape(34.286,42.857,'primary',62);
+      themeShape(42.857,51.428,'contrast',62);
+      [26.4,28.3,30.4,32.5].forEach((time,index)=>{
+        const x=xFor(time),y=108+(index%2)*35;
+        sonataSvg.querySelector('.sonata-themes').appendChild(make('polygon',{class:'development-piece','data-start':time,'data-end':time+1.6,points:`${x.toFixed(2)},${y-8} ${(x+10).toFixed(2)},${y} ${x.toFixed(2)},${y+8} ${(x-10).toFixed(2)},${y}`}));
+      });
+      const sonataPaint=()=>{
+        const time=Math.max(0,Math.min(duration,sonataAudio.currentTime||0));
+        const foundPhase=sonataPhases.findIndex(([,end])=>time<end);
+        const phase=foundPhase===-1?sonataPhases.length-1:foundPhase;
+        const foundLargePhase=sonataLargePhases.findIndex(([,end])=>time<end);
+        const largePhase=foundLargePhase===-1?sonataLargePhases.length-1:foundLargePhase;
+        sonataSvg.querySelectorAll('[data-sonata-phase]').forEach((area,index)=>{area.classList.toggle('reached',index<phase);area.classList.toggle('active',index===phase);});
+        sonataSvg.querySelectorAll('[data-sonata-large-phase]').forEach((span,index)=>{span.classList.toggle('reached',index<largePhase);span.classList.toggle('active',index===largePhase);});
+        sonataSvg.querySelectorAll('[data-start][data-end]').forEach(node=>{const start=Number(node.dataset.start),end=Number(node.dataset.end);node.classList.toggle('reached',time>=start);node.classList.toggle('current',time>=start&&time<end);});
+        const x=xFor(time);sonataSvg.querySelector('.now').setAttribute('x1',x);sonataSvg.querySelector('.now').setAttribute('x2',x);sonataSvg.querySelector('.now-label').setAttribute('x',x);
+      };
+      const sonataStatus=time=>{
+        if(time<8.571)return 'Sonata-form model: Theme A establishes home.';
+        if(time<12.857)return 'Sonata-form model: the modulating bridge moves away from home.';
+        if(time<21.429)return 'Sonata-form model: Theme B appears in a new area.';
+        if(time<25.714)return 'Sonata-form model: the exposition closes away from home.';
+        if(time<34.286)return 'Sonata-form model: the development fragments and unsettles the theme.';
+        if(time<42.857)return 'Sonata-form model: Theme A returns home.';
+        return 'Sonata-form model: Theme B also returns near home.';
+      };
+
+      window.ListeningVisual.wire({root,audio:fugueAudio,paint:fuguePaint,peers:allAudio,status:fugueStatus,initialStatus:fugueStatus(0)});
+      window.ListeningVisual.wire({root,audio:sonataAudio,paint:sonataPaint,peers:allAudio,status:sonataStatus,initialStatus:sonataStatus(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening models: the fugue map emphasizes subject entries and contrapuntal overlap; the sonata map emphasizes Theme A, a modulating bridge, Theme B, development, tonal departure, and return. Neither is a complete rulebook or literal score.</p>
+</div>
+</div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Mozart · Variations on “Ah, vous dirai-je, Maman,” K. 265</span></div>
+<p class="rm-intro">Theme, Variation I, and the distant minor-key Variation VIII share one phrase framework. Variations II–VII are edited out and the map marks the cut; each row runs at its own tempo, so the quick Variation I finishes its path first.</p>
+<div id="mozart-form-distant-variation-motion">
+  <style>
+    #mozart-form-distant-variation-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #mozart-form-distant-variation-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
+    #mozart-form-distant-variation-motion .clip-title strong { font-weight:500; }
+    #mozart-form-distant-variation-motion .clip-title span,
+    #mozart-form-distant-variation-motion .muted { color:var(--muted-foreground); fill:var(--muted-foreground); }
+    #mozart-form-distant-variation-motion audio { width:100%; }
+    #mozart-form-distant-variation-motion .viz-controls { margin:.65rem 0 .35rem; }
+    #mozart-form-distant-variation-motion .edit-note { margin:.25rem 0 .1rem; color:var(--muted-foreground); }
+    #mozart-form-distant-variation-motion .stage { display:block; width:100%; margin:.25rem 0 0; overflow:visible; }
+    #mozart-form-distant-variation-motion text { fill:var(--foreground); font-family:inherit; }
+    #mozart-form-distant-variation-motion .section-band { fill:var(--muted); stroke:var(--border); stroke-width:1.5; }
+    #mozart-form-distant-variation-motion .section[data-index="1"] .section-band { fill:var(--accent); }
+    #mozart-form-distant-variation-motion .section[data-index="2"] .section-band { fill:var(--secondary); }
+    #mozart-form-distant-variation-motion .section.active .section-band { stroke:var(--primary); stroke-width:3; }
+    #mozart-form-distant-variation-motion .cut-line { stroke:var(--foreground); stroke-width:2; stroke-dasharray:5 5; }
+    #mozart-form-distant-variation-motion .cut-dot { fill:var(--background); stroke:var(--foreground); stroke-width:2; }
+    #mozart-form-distant-variation-motion .phrase { opacity:.62; }
+    #mozart-form-distant-variation-motion .phrase.past { opacity:.34; }
+    #mozart-form-distant-variation-motion .phrase.current { opacity:1; }
+    #mozart-form-distant-variation-motion .phrase-frame { fill:none; stroke:var(--border); stroke-width:1; }
+    #mozart-form-distant-variation-motion .phrase.current .phrase-frame { stroke:var(--primary); stroke-width:2.5; }
+    #mozart-form-distant-variation-motion .memory-line { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:3.8; stroke-linecap:round; stroke-linejoin:round; }
+    #mozart-form-distant-variation-motion .surface-one { stroke:var(--viz-series-2,var(--accent)); stroke-width:2.2; stroke-linecap:round; opacity:.8; }
+    #mozart-form-distant-variation-motion .surface-eight { fill:var(--viz-series-4,var(--secondary)); opacity:.34; }
+    #mozart-form-distant-variation-motion .surface-eight-line { fill:none; stroke:var(--viz-series-4,var(--secondary)); stroke-width:2.7; stroke-linejoin:round; opacity:.88; }
+    #mozart-form-distant-variation-motion .now { stroke:var(--foreground); stroke-width:2.5; }
+    #mozart-form-distant-variation-motion .now-dot { fill:var(--foreground); }
+    #mozart-form-distant-variation-motion .row-now { stroke:var(--foreground); stroke-width:2; opacity:0; }
+    #mozart-form-distant-variation-motion .row-now.active { opacity:.82; }
+    #mozart-form-distant-variation-motion .status-copy { margin:.2rem 0 0; color:var(--muted-foreground); }
+    @media (max-width:620px) {
+      #mozart-form-distant-variation-motion .clip-title,
+      #mozart-form-distant-variation-motion .clip-title strong,
+      #mozart-form-distant-variation-motion .clip-title span { display:block; }
+      #mozart-form-distant-variation-motion .clip-title span { margin-top:.15rem; }
+      #mozart-form-distant-variation-motion .stage text { font-size:26px; }
+      #mozart-form-distant-variation-motion .stage .axis-label,
+      #mozart-form-distant-variation-motion .stage .section-note,
+      #mozart-form-distant-variation-motion .stage .row-note { display:none; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      #mozart-form-distant-variation-motion * { scroll-behavior:auto !important; transition:none !important; }
+    }
+  </style>
+
+  <p class="sr-only">A synchronized form map of Mozart's theme, Variation One, and the later Variation Eight in C minor. Each row uses its own recording duration, so the faster Variation One completes its path sooner. An edit marker shows that Variations Two through Seven are omitted before Variation Eight.</p>
+  <p class="clip-title"><strong>One form, a distant transformation</strong><span>theme → variation I → variation VIII</span></p>
+  <audio id="mozart-form-audio" controls preload="metadata" aria-describedby="mozart-form-status-live">
+    <source src="/guides/listening-studio/audio/viz/mozart-k265-theme-var1-var8.m4a" type="audio/mp4">
+  </audio>
+  <div class="viz-controls" aria-label="Replay a complete section">
+    <button class="btn" type="button" data-seek="0.05">Play theme</button>
+    <button class="btn" type="button" data-seek="43.083">Play variation I</button>
+    <button class="btn" type="button" data-seek="65.688">Play variation VIII</button>
+  </div>
+  <p class="edit-note text-small">Edited comparison: Variations II–VII are omitted at 1:05.7.</p>
+
+  <svg class="stage" viewBox="0 0 760 510" role="img" aria-labelledby="mozart-map-title mozart-map-desc">
+    <title id="mozart-map-title">Mozart theme, Variation One, and Variation Eight form map</title>
+    <desc id="mozart-map-desc">A one-minute-forty-eight-second edited timeline contains the complete theme, complete Variation One, and complete Variation Eight. Variation One lasts about twenty-three seconds, much less than the theme's forty-three seconds. A dashed edit marker precedes Variation Eight. Three aligned rows repeat the same six-part phrase path while the later minor variation uses a more angular, shadowed surface.</desc>
+
+    <text class="muted axis-label" x="18" y="86">recording</text>
+    <text class="muted axis-label" x="18" y="105">time</text>
+    <g class="section" data-index="0" data-start="0" data-end="43.083">
+      <rect class="section-band" x="110" y="54" width="244" height="76" rx="12"></rect>
+      <text x="124" y="82">THEME</text><text class="muted section-note" x="124" y="108">0:00–0:43 · 43 sec</text>
+    </g>
+    <g class="section" data-index="1" data-start="43.083" data-end="65.688">
+      <rect class="section-band" x="354" y="54" width="128" height="76" rx="12"></rect>
+      <text x="368" y="82">VAR I</text><text class="muted section-note" x="368" y="108">23 sec · faster</text>
+    </g>
+    <g class="section" data-index="2" data-start="65.688" data-end="107.732">
+      <rect class="section-band" x="482" y="54" width="238" height="76" rx="12"></rect>
+      <text x="500" y="82">VAR VIII · MINOR</text><text class="muted section-note" x="500" y="108">1:06–1:48 · 42 sec</text>
+    </g>
+    <line class="cut-line" x1="482" y1="42" x2="482" y2="138"></line>
+    <circle class="cut-dot" cx="482" cy="42" r="5"></circle>
+    <text class="muted section-note" x="489" y="45">EDIT · II–VII OMITTED</text>
+    <line class="now" x1="110" y1="41" x2="110" y2="137"></line><circle class="now-dot" cx="110" cy="41" r="5"></circle>
+
+    <text class="muted axis-label" x="18" y="225">same phrase</text><text class="muted axis-label" x="18" y="244">framework</text>
+    <text x="24" y="184">THEME</text><text class="muted row-note" x="24" y="204">clear path</text>
+    <g class="section-row" data-model="theme" data-start="0" data-end="43.083" transform="translate(110 165)"></g>
+    <line class="row-now" data-row-now="theme" x1="110" y1="165" x2="110" y2="237"></line>
+
+    <text x="24" y="305">VAR I</text><text class="muted row-note" x="24" y="325">quick surface</text>
+    <g class="section-row" data-model="one" data-start="43.083" data-end="65.688" transform="translate(110 286)"></g>
+    <line class="row-now" data-row-now="one" x1="110" y1="286" x2="110" y2="358"></line>
+
+    <text x="24" y="426">VAR VIII</text><text class="muted row-note" x="24" y="446">minor contrast</text>
+    <g class="section-row" data-model="eight" data-start="65.688" data-end="107.732" transform="translate(110 407)"></g>
+    <line class="row-now" data-row-now="eight" x1="110" y1="407" x2="110" y2="479"></line>
+
+    <text class="muted" x="110" y="501">opening</text><text class="muted" x="313" y="501">middle</text><text class="muted" x="517" y="501">opening returns</text>
+  </svg>
+  <p class="status-copy" aria-hidden="true">The theme begins as a clear six-part phrase path.</p>
+  <p class="sr-only" id="mozart-form-status-live" aria-live="polite">The theme begins as a clear six-part phrase path.</p>
+
+  <script is:inline>
+    (()=>{
+      const root=document.getElementById('mozart-form-distant-variation-motion'),ns='http://www.w3.org/2000/svg';
+      const audio=root.querySelector('#mozart-form-audio'),duration=107.732,x0=110,mapWidth=610;
+      const sectionData=[{model:'theme',start:0,end:43.083},{model:'one',start:43.083,end:65.688},{model:'eight',start:65.688,end:107.732}];
+      const shapes=[[45,45,20,20,34],[20,20,34,34,53],[14,14,28,28,43],[14,14,28,28,43],[45,45,20,20,34],[20,20,34,34,53]];
+      const make=(name,attrs={})=>{const node=document.createElementNS(ns,name);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node;};
+      const linePath=values=>values.map((y,index)=>`${index?'L':'M'}${[12,30,49,68,90][index]} ${y}`).join(' ');
+      root.querySelectorAll('.section-row').forEach(row=>{
+        const model=row.dataset.model,start=Number(row.dataset.start),end=Number(row.dataset.end),phraseDuration=(end-start)/6,cellWidth=mapWidth/6;
+        shapes.forEach((shape,index)=>{
+          const group=make('g',{class:'phrase','data-start':(start+index*phraseDuration).toFixed(3),'data-end':(start+(index+1)*phraseDuration).toFixed(3),transform:`translate(${(index*cellWidth).toFixed(2)} 0)`});
+          group.appendChild(make('rect',{class:'phrase-frame',x:0,y:0,width:(cellWidth-.8).toFixed(2),height:72,rx:7}));
+          group.appendChild(make('path',{class:'memory-line',d:linePath(shape)}));
+          if(model==='one')for(let n=0;n<9;n+=1){const x=9+n*10,y=shape[Math.min(4,Math.floor(n/2))];group.appendChild(make('line',{class:'surface-one',x1:x,y1:Math.min(62,y+18),x2:x+5,y2:Math.max(7,y-15-(n%2)*7)}));}
+          if(model==='eight'){
+            group.appendChild(make('path',{class:'surface-eight',d:'M7 62 L19 19 L31 54 L44 12 L57 58 L70 23 L84 63 L96 39 L96 69 L7 69 Z'}));
+            group.appendChild(make('path',{class:'surface-eight-line',d:'M7 62 L19 19 L31 54 L44 12 L57 58 L70 23 L84 63 L96 39'}));
+          }
+          row.appendChild(group);
+        });
+      });
+      const sections=[...root.querySelectorAll('.section')],phrases=[...root.querySelectorAll('.phrase')];
+      const playhead=root.querySelector('.now'),playheadDot=root.querySelector('.now-dot'),statusCopy=root.querySelector('.status-copy'),live=root.querySelector('#mozart-form-status-live');
+      const clamp=value=>Math.min(1,Math.max(0,value));
+      const statusFor=time=>{
+        if(time<43.083)return 'The theme establishes the phrase path over forty-three seconds.';
+        if(time<65.688)return 'Variation One traverses the same path much faster, completing it in about twenty-three seconds.';
+        if(time<107.6)return 'After the marked edit, Variation Eight preserves the framework while shifting into a dramatically darker minor-mode surface.';
+        return 'Variation Eight completes the same opening, middle, and return framework.';
+      };
+      const paint=()=>{
+        const time=Math.min(duration,audio.currentTime||0),topX=x0+clamp(time/duration)*mapWidth;
+        playhead.setAttribute('x1',topX.toFixed(2));playhead.setAttribute('x2',topX.toFixed(2));playheadDot.setAttribute('cx',topX.toFixed(2));
+        sections.forEach(section=>section.classList.toggle('active',time>=Number(section.dataset.start)&&time<Number(section.dataset.end)));
+        phrases.forEach(phrase=>{const start=Number(phrase.dataset.start),end=Number(phrase.dataset.end);phrase.classList.toggle('past',time>=end);phrase.classList.toggle('current',time>=start&&time<end);});
+        sectionData.forEach(section=>{const line=root.querySelector(`[data-row-now="${section.model}"]`),active=time>=section.start&&time<section.end,rowX=x0+clamp((time-section.start)/(section.end-section.start))*mapWidth;line.classList.toggle('active',active);line.setAttribute('x1',rowX.toFixed(2));line.setAttribute('x2',rowX.toFixed(2));});
+        statusCopy.textContent=statusFor(time);
+      };
+      const seekAndPlay=target=>{audio.pause();audio.currentTime=target;paint();audio.play().then(()=>{if(Math.abs(audio.currentTime-target)>.5)audio.currentTime=target;paint();}).catch(()=>{});};
+      root.querySelectorAll('[data-seek]').forEach(button=>button.addEventListener('click',()=>seekAndPlay(Number(button.dataset.seek))));
+      window.ListeningVisual.wire({root,audio,paint,status:statusFor,initialStatus:statusFor(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: the repeated path represents broad phrase relationships while surface marks suggest changing musical character, not exact notes.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Form is a pattern of presentation — how ideas are stated, varied, left, and returned to across a whole piece. Hearing form means hearing memory at work: recognizing return, and noticing what has changed.</p></div>
+</section>
+</div>
+<div class="lens-wrap is-hidden" data-lens="timbre" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)">
+<section class="lens" id="lens-timbre">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 Q 20 10, 34 24" fill="none" stroke="currentColor"/><circle cx="20" cy="14.3" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+<div><span class="lens-idx">03 · Timbre</span><h2 class="lens-title">The color of a sound</h2></div>
+</div>
+<p class="lens-q"><em>Who — or what — is making the sound?</em></p>
+<p class="lens-cue">Timbre is tone color — the quality that lets you tell instruments apart even when they play the exact same line. The line stays the same; notice how each sound begins, holds, rings, and fades.</p>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">Basic concept</span><span class="rm-work">One phrase · Flute · Trumpet · Vibraphone</span></div>
+<p class="rm-intro">The same four-measure phrase — identical pitches, rhythm, and tempo — played by three instruments. Switch between them and listen to how each one <em>attacks, sustains, and decays</em>: only the sound source changes.</p>
+<div id="timbre-material-signatures-motion">
+  <style>
+    #timbre-material-signatures-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #timbre-material-signatures-motion audio { display:block; width:100%; margin:.7rem 0 0; }
+    #timbre-material-signatures-motion .selected-detail { margin:.7rem 0 0; color:var(--muted-foreground); }
+    #timbre-material-signatures-motion .selected-detail strong { color:var(--foreground); font-weight:500; }
+    #timbre-material-signatures-motion .stage { display:block; width:100%; margin:.65rem 0 0; overflow:visible; }
+    #timbre-material-signatures-motion .stage text { fill:var(--foreground); font-family:inherit; }
+    #timbre-material-signatures-motion .stage .muted { fill:var(--muted-foreground); }
+    #timbre-material-signatures-motion .guide { stroke:var(--border); stroke-width:1.25; }
+    #timbre-material-signatures-motion .measure-guide { stroke:var(--border); stroke-width:1; opacity:.65; }
+    #timbre-material-signatures-motion .now { stroke:var(--foreground); stroke-width:2.25; opacity:.82; }
+    #timbre-material-signatures-motion .lane { opacity:.22; transition:opacity 140ms linear; }
+    #timbre-material-signatures-motion .lane.active { opacity:1; }
+    #timbre-material-signatures-motion .flute-halo { stroke:var(--viz-series-1,var(--primary)); stroke-width:13; stroke-linecap:round; opacity:.16; }
+    #timbre-material-signatures-motion .flute-core { stroke:var(--viz-series-1,var(--primary)); stroke-width:6; stroke-linecap:round; opacity:.8; transform-box:fill-box; transform-origin:center; }
+    #timbre-material-signatures-motion .breath { fill:var(--viz-series-1,var(--primary)); opacity:.3; }
+    #timbre-material-signatures-motion .trumpet-mark { fill:var(--viz-series-2,var(--primary)); opacity:.78; transform-box:fill-box; transform-origin:left center; }
+    #timbre-material-signatures-motion .trumpet-ray { stroke:var(--viz-series-2,var(--primary)); stroke-width:2; opacity:.34; }
+    #timbre-material-signatures-motion .vibraphone-head { fill:var(--viz-series-3,var(--primary)); transform-box:fill-box; transform-origin:center; }
+    #timbre-material-signatures-motion .vibraphone-tail { fill:var(--viz-series-3,var(--primary)); opacity:.35; }
+    #timbre-material-signatures-motion .resonance { fill:none; stroke:var(--viz-series-3,var(--primary)); stroke-width:2; opacity:.22; transform-box:fill-box; transform-origin:center; }
+    #timbre-material-signatures-motion .flute-core.current { stroke-width:9; opacity:1; }
+    #timbre-material-signatures-motion .trumpet-mark.current { opacity:1; stroke:var(--foreground); stroke-width:1.5; }
+    #timbre-material-signatures-motion .vibraphone-head.current { stroke:var(--foreground); stroke-width:2.5; }
+    @media (prefers-reduced-motion:reduce) {
+      #timbre-material-signatures-motion .lane { transition:none; }
+    }
+    @media (max-width:620px) {
+      #timbre-material-signatures-motion .stage text { font-size:24px; }
+    }
+  </style>
+
+  <p class="sr-only">The same four-measure melody is performed by flute, trumpet, and vibraphone. Select an instrument to hear how its attack, sustain, and decay change the character of otherwise identical music.</p>
+  <div class="viz-controls" role="group" aria-label="Choose an instrument playing the shared phrase">
+    <button class="btn" type="button" data-select="flute" aria-pressed="true">Flute</button>
+    <button class="btn" type="button" data-select="trumpet" aria-pressed="false">Trumpet</button>
+    <button class="btn" type="button" data-select="vibraphone" aria-pressed="false">Vibraphone</button>
+  </div>
+  <audio controls preload="metadata" aria-label="Selected instrument playing the shared phrase">
+    <source src="/guides/listening-studio/audio/viz/question-answer-return--flute.m4a" type="audio/mp4">
+  </audio>
+  <p class="selected-detail"><strong>Flute</strong> · airy entrance · light, continuous sustain</p>
+  <p class="sr-only" data-listening-live aria-live="polite" aria-atomic="true">Flute selected. The shared phrase is ready.</p>
+
+  <svg class="stage" viewBox="0 0 760 350" role="img" aria-labelledby="timbre-signatures-title timbre-signatures-desc">
+    <title id="timbre-signatures-title">Three material signatures for one shared melody</title>
+    <desc id="timbre-signatures-desc">The same note positions, pitch contour, and durations are aligned in three lanes. Flute notes have soft breath halos and slender continuous centers; trumpet notes project as angular beams; vibraphone notes begin with struck points and fade through resonance rings.</desc>
+    <text class="muted" x="132" y="24">same melody · same timing</text>
+    <text class="muted" x="728" y="24" text-anchor="end">only the instrument changes</text>
+    <line class="guide" x1="132" y1="40" x2="728" y2="40"></line>
+    <line class="guide" x1="132" y1="128" x2="728" y2="128"></line>
+    <line class="guide" x1="132" y1="216" x2="728" y2="216"></line>
+    <line class="guide" x1="132" y1="304" x2="728" y2="304"></line>
+    <g class="measure-guides"></g>
+
+    <g class="lane active" data-lane="flute">
+      <text x="16" y="72">flute</text><text class="muted" x="16" y="96">airy · light</text>
+      <g data-marks="flute"></g>
+    </g>
+    <g class="lane" data-lane="trumpet">
+      <text x="16" y="160">trumpet</text><text class="muted" x="16" y="184">direct · focused</text>
+      <g data-marks="trumpet"></g>
+    </g>
+    <g class="lane" data-lane="vibraphone">
+      <text x="16" y="248">vibraphone</text><text class="muted" x="16" y="272">struck · ringing</text>
+      <g data-marks="vibraphone"></g>
+    </g>
+
+    <line class="now" x1="132" y1="34" x2="132" y2="310"></line>
+    <text class="muted now-label" x="132" y="336" text-anchor="middle">now</text>
+  </svg>
+
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('timbre-material-signatures-motion');
+      const audio=root.querySelector('audio');
+      const source=audio.querySelector('source');
+      const detail=root.querySelector('.selected-detail');
+      const buttons=[...root.querySelectorAll('[data-select]')];
+      const now=root.querySelector('.now');
+      const nowLabel=root.querySelector('.now-label');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+      const ns='http://www.w3.org/2000/svg';
+      const clipDuration=8.571;
+      const secondsPerBeat=60/112;
+      const noteMap=[
+        [0,1.45,62],[1.75,.25,65],[2.1,.25,67],[2.5,.78,69],[3.45,.4,67],
+        [4,1.25,64],[5.5,.25,65],[5.85,.25,64],[6.35,1.25,62],
+        [8,1.4,65],[9.7,.25,69],[10.05,.25,70],[10.45,1.05,72],[11.7,.45,69],
+        [12.5,.85,67],[13.65,.25,64],[14.25,1.55,62]
+      ];
+      const events=noteMap.map(([start,length,pitch],index)=>({index,pitch,start:start*secondsPerBeat,end:(start+length)*secondsPerBeat}));
+      const files={
+        flute:'question-answer-return--flute.m4a',
+        trumpet:'question-answer-return--trumpet.m4a',
+        vibraphone:'question-answer-return--vibraphone.m4a'
+      };
+      const names={flute:'Flute',trumpet:'Trumpet',vibraphone:'Vibraphone'};
+      const descriptions={
+        flute:'airy entrance · light, continuous sustain',
+        trumpet:'immediate entrance · focused, projecting sustain',
+        vibraphone:'clear strike · resonance that blooms and fades'
+      };
+      const laneCenters={flute:92,trumpet:180,vibraphone:268};
+      let selected='flute';
+      const make=(name,attrs={})=>{const element=document.createElementNS(ns,name);Object.entries(attrs).forEach(([key,value])=>element.setAttribute(key,value));return element;};
+      const xFor=time=>132+Math.max(0,Math.min(1,time/clipDuration))*596;
+      const yFor=(instrument,pitch)=>laneCenters[instrument]-((pitch-62)/10)*34;
+
+      [2.143,4.286,6.429].forEach(time=>{
+        const x=xFor(time);
+        root.querySelector('.measure-guides').appendChild(make('line',{class:'measure-guide',x1:x.toFixed(2),y1:'40',x2:x.toFixed(2),y2:'304'}));
+      });
+
+      events.forEach(event=>{
+        const x=xFor(event.start),end=xFor(Math.min(clipDuration,event.end)),width=Math.max(5,end-x);
+
+        const fluteY=yFor('flute',event.pitch),flute=root.querySelector('[data-marks="flute"]');
+        flute.appendChild(make('line',{class:'flute-halo',x1:(x+3).toFixed(2),y1:fluteY.toFixed(2),x2:end.toFixed(2),y2:fluteY.toFixed(2)}));
+        flute.appendChild(make('line',{class:'flute-core','data-event':event.index,x1:(x+3).toFixed(2),y1:fluteY.toFixed(2),x2:end.toFixed(2),y2:fluteY.toFixed(2)}));
+        flute.appendChild(make('circle',{class:'breath',cx:(x-1).toFixed(2),cy:(fluteY-7).toFixed(2),r:'2.4'}));
+        flute.appendChild(make('circle',{class:'breath',cx:(x+4).toFixed(2),cy:(fluteY+8).toFixed(2),r:'1.8'}));
+
+        const trumpetY=yFor('trumpet',event.pitch),trumpet=root.querySelector('[data-marks="trumpet"]');
+        trumpet.appendChild(make('path',{class:'trumpet-mark','data-event':event.index,d:`M${x.toFixed(2)} ${trumpetY.toFixed(2)} L${(x+8).toFixed(2)} ${(trumpetY-9).toFixed(2)} L${end.toFixed(2)} ${(trumpetY-6).toFixed(2)} L${end.toFixed(2)} ${(trumpetY+6).toFixed(2)} L${(x+8).toFixed(2)} ${(trumpetY+9).toFixed(2)} Z`}));
+        trumpet.appendChild(make('line',{class:'trumpet-ray',x1:(x+4).toFixed(2),y1:(trumpetY-13).toFixed(2),x2:Math.min(728,end+7).toFixed(2),y2:(trumpetY-11).toFixed(2)}));
+
+        const vibraphoneY=yFor('vibraphone',event.pitch),vibraphone=root.querySelector('[data-marks="vibraphone"]');
+        vibraphone.appendChild(make('path',{class:'vibraphone-tail',d:`M${x.toFixed(2)} ${(vibraphoneY-5).toFixed(2)} L${end.toFixed(2)} ${(vibraphoneY-2).toFixed(2)} L${end.toFixed(2)} ${(vibraphoneY+2).toFixed(2)} L${x.toFixed(2)} ${(vibraphoneY+5).toFixed(2)} Z`}));
+        vibraphone.appendChild(make('circle',{class:'vibraphone-head','data-event':event.index,cx:x.toFixed(2),cy:vibraphoneY.toFixed(2),r:'6.5'}));
+        vibraphone.appendChild(make('circle',{class:'resonance','data-ring':event.index,cx:x.toFixed(2),cy:vibraphoneY.toFixed(2),r:'12'}));
+      });
+
+      const activeEvent=time=>events.find(event=>time>=event.start&&time<=event.end);
+      const phrase=time=>time<2.143?'the first rise':time<4.286?'the return toward the starting pitch':time<6.429?'the higher answering arch':'the final descent';
+      const paint=()=>{
+        const time=Math.max(0,Math.min(clipDuration,audio.currentTime||0)),x=xFor(time),current=activeEvent(time);
+        root.querySelectorAll('.lane').forEach(lane=>lane.classList.toggle('active',lane.dataset.lane===selected));
+        root.querySelectorAll('[data-event]').forEach(mark=>mark.classList.toggle('current',Boolean(current)&&Number(mark.dataset.event)===current.index));
+        root.querySelectorAll('.flute-core').forEach(mark=>{
+          if(!mark.classList.contains('current')||selected!=='flute'){mark.style.transform='';return;}
+          const breath=reduced.matches?1.08:1.08+Math.sin(time*6)*.045;
+          mark.style.transform=`scaleY(${breath.toFixed(3)})`;
+        });
+        root.querySelectorAll('.trumpet-mark').forEach(mark=>{
+          if(!mark.classList.contains('current')||selected!=='trumpet'){mark.style.transform='';return;}
+          const projection=reduced.matches?1.03:1.03+Math.sin(time*9)*.025;
+          mark.style.transform=`scaleX(${projection.toFixed(3)})`;
+        });
+        root.querySelectorAll('[data-ring]').forEach(ring=>{
+          const event=events[Number(ring.dataset.ring)],age=time-event.start;
+          if(selected!=='vibraphone'||age<0||age>.9){ring.style.transform='';ring.style.opacity='.16';return;}
+          const bloom=1+Math.min(1,age/.9)*.9;
+          ring.style.transform=`scale(${bloom.toFixed(3)})`;
+          ring.style.opacity=String(Math.max(.08,.62-age*.58));
+        });
+        now.setAttribute('x1',x.toFixed(2));
+        now.setAttribute('x2',x.toFixed(2));
+        nowLabel.setAttribute('x',x.toFixed(2));
+      };
+      const status=time=>`${names[selected]} selected. The shared phrase is in ${phrase(time)}.`;
+      const controller=window.ListeningVisual.wire({root,audio,paint,status,initialStatus:status(0)});
+      const choose=instrument=>{
+        selected=instrument;
+        controller.stop();
+        audio.pause();
+        source.src="/guides/listening-studio/audio/viz/"+files[instrument];
+        audio.load();
+        buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.select===instrument)));
+        detail.innerHTML=`<strong>${names[instrument]}</strong> · ${descriptions[instrument]}`;
+        controller.render();
+      };
+      buttons.forEach(button=>button.addEventListener('click',()=>choose(button.dataset.select)));
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: vertical position shows the shared pitch direction; shapes suggest contrasting attack, sustain, and decay rather than literal sound waves.</p>
+</div>
+</div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Rimsky-Korsakov · Scheherazade</span></div>
+<p class="rm-intro">Rimsky-Korsakov sets a broad orchestral sound against a single solo violin. The broad field is drawn as the opening plays, then the violin traces finer gestures one at a time — the same line, an entirely different color.</p>
+<div id="scheherazade-color-direct-motion" aria-labelledby="direct-motion-label">
+  <style>
+    #scheherazade-color-direct-motion {
+      color: var(--foreground);
+      font-size: var(--font-size-base);
+    }
+    #scheherazade-color-direct-motion .stage {
+      display: block;
+      width: 100%;
+    }
+    #scheherazade-color-direct-motion text {
+      fill: var(--foreground);
+      font-family: inherit;
+    }
+    #scheherazade-color-direct-motion .guide {
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+    #scheherazade-color-direct-motion .orchestra-field {
+      fill: var(--viz-series-2, currentColor);
+      opacity: 0;
+      transition: opacity 140ms linear;
+    }
+    #scheherazade-color-direct-motion .orchestra-thread {
+      fill: none;
+      stroke: var(--viz-series-2, currentColor);
+      stroke-width: 7;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: opacity 100ms linear;
+    }
+    #scheherazade-color-direct-motion .violin-gesture {
+      opacity: 0;
+      transition: opacity 100ms linear;
+    }
+    #scheherazade-color-direct-motion .violin-line {
+      fill: none;
+      stroke: var(--viz-series-1, currentColor);
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+    #scheherazade-color-direct-motion .violin-note {
+      fill: var(--viz-series-1, currentColor);
+    }
+    #scheherazade-color-direct-motion #direct-orchestra[data-state="current"] .orchestra-field {
+      opacity: 0.28;
+    }
+    #scheherazade-color-direct-motion #direct-orchestra[data-state="current"] .orchestra-thread,
+    #scheherazade-color-direct-motion .violin-gesture[data-state="current"] {
+      opacity: 1;
+    }
+    #scheherazade-color-direct-motion .violin-gesture[data-state="past"] {
+      opacity: 0.20;
+    }
+    #scheherazade-color-direct-motion .copy {
+      margin: 0.75rem 0 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #scheherazade-color-direct-motion .orchestra-field,
+      #scheherazade-color-direct-motion .orchestra-thread,
+      #scheherazade-color-direct-motion .violin-gesture {
+        transition: none;
+      }
+    }
+    @media (max-width:620px) {
+      #scheherazade-color-direct-motion .stage text { font-size:26px; }
+    }
+  </style>
+
+  <p id="direct-motion-label" class="sr-only">Scheherazade orchestral color visualization</p>
+  <audio id="direct-audio" controls preload="metadata" aria-describedby="direct-detail">
+    <source src="/guides/listening-studio/audio/viz/scheherazade--orchestral-color--candidate-01.m4a" type="audio/mp4">
+  </audio>
+
+  <svg class="stage" viewBox="0 0 760 308" role="img" aria-labelledby="direct-title direct-desc">
+    <title id="direct-title">Scheherazade color contrast visualization</title>
+    <desc id="direct-desc">Three broad orchestral lines are drawn as the opening sound begins. The violin then draws six finer gestures, with the final one lasting to the end of the recording.</desc>
+    <text x="40" y="78">broad</text>
+    <text x="40" y="238">fine</text>
+    <line class="guide" x1="104" y1="98" x2="720" y2="98"></line>
+    <line class="guide" x1="104" y1="158" x2="720" y2="158"></line>
+    <line class="guide" x1="104" y1="218" x2="720" y2="218"></line>
+    <g id="direct-orchestra" data-state="current">
+      <rect class="orchestra-field" x="104" y="72" width="616" height="128" rx="22"></rect>
+      <path class="orchestra-thread" d="M108,114 C160,74 205,164 260,112 S360,74 420,130 S550,164 616,108 S678,90 716,126"></path>
+      <path class="orchestra-thread" d="M108,148 C168,202 220,84 282,152 S380,202 446,114 S560,90 626,152 S682,178 716,142"></path>
+      <path class="orchestra-thread" d="M108,180 C170,132 226,212 290,170 S390,108 456,184 S566,208 628,164 S684,132 716,180"></path>
+    </g>
+    <g id="direct-violin">
+      <g class="violin-gesture" data-start="10.55" data-end="13.30" data-state="future">
+        <path class="violin-line" d="M108,230 C124,204 142,170 158,192 S176,164 190,140"></path>
+        <circle class="violin-note" cx="108" cy="230" r="5"></circle>
+        <circle class="violin-note" cx="158" cy="192" r="4"></circle>
+        <circle class="violin-note" cx="190" cy="140" r="4"></circle>
+      </g>
+      <g class="violin-gesture" data-start="15.05" data-end="16.95" data-state="future">
+        <path class="violin-line" d="M210,214 C224,192 236,160 248,180 S260,152 268,136"></path>
+        <circle class="violin-note" cx="210" cy="214" r="4"></circle>
+        <circle class="violin-note" cx="248" cy="180" r="4"></circle>
+        <circle class="violin-note" cx="268" cy="136" r="4"></circle>
+      </g>
+      <g class="violin-gesture" data-start="17.85" data-end="20.35" data-state="future">
+        <path class="violin-line" d="M290,218 C310,198 328,150 346,174 S362,142 374,122"></path>
+        <circle class="violin-note" cx="290" cy="218" r="4"></circle>
+        <circle class="violin-note" cx="346" cy="174" r="4"></circle>
+        <circle class="violin-note" cx="374" cy="122" r="4"></circle>
+      </g>
+      <g class="violin-gesture" data-start="20.75" data-end="24.00" data-state="future">
+        <path class="violin-line" d="M396,202 C418,152 438,182 456,126 S480,104 494,116"></path>
+        <circle class="violin-note" cx="396" cy="202" r="4"></circle>
+        <circle class="violin-note" cx="456" cy="126" r="4"></circle>
+        <circle class="violin-note" cx="494" cy="116" r="4"></circle>
+      </g>
+      <g class="violin-gesture" data-start="24.25" data-end="27.30" data-state="future">
+        <path class="violin-line" d="M516,196 C536,138 556,164 574,112 S596,130 610,102"></path>
+        <circle class="violin-note" cx="516" cy="196" r="4"></circle>
+        <circle class="violin-note" cx="574" cy="112" r="4"></circle>
+        <circle class="violin-note" cx="610" cy="102" r="4"></circle>
+      </g>
+      <g class="violin-gesture" data-start="27.30" data-end="34.00" data-state="future">
+        <path class="violin-line" d="M626,104 C642,132 654,184 670,150 S690,108 704,136 S714,168 720,112"></path>
+        <circle class="violin-note" cx="626" cy="104" r="4"></circle>
+        <circle class="violin-note" cx="670" cy="150" r="4"></circle>
+        <circle class="violin-note" cx="704" cy="136" r="4"></circle>
+        <circle class="violin-note" cx="720" cy="112" r="5"></circle>
+      </g>
+    </g>
+    <text id="direct-status" x="104" y="284">the orchestra opens in a broad field</text>
+  </svg>
+
+  <p id="direct-detail" class="copy">The image is drawn by the recording’s actual playback time: the broad field stops, then the violin’s gestures trace one at a time.</p>
+
+  <script is:inline>
+    (() => {
+      const root = document.getElementById('scheherazade-color-direct-motion');
+      const audio = root.querySelector('#direct-audio');
+      const orchestra = root.querySelector('#direct-orchestra');
+      const orchestraPaths = Array.from(orchestra.querySelectorAll('.orchestra-thread'));
+      const gestures = Array.from(root.querySelectorAll('.violin-gesture'));
+      const status = root.querySelector('#direct-status');
+      const clamp = (value) => Math.min(1, Math.max(0, value));
+      const pathLengths = new Map();
+
+      [...orchestraPaths, ...gestures.flatMap((gesture) => Array.from(gesture.querySelectorAll('.violin-line')))].forEach((path) => {
+        pathLengths.set(path, path.getTotalLength());
+      });
+
+      const draw = (paths, progress) => {
+        paths.forEach((path) => {
+          const length = pathLengths.get(path);
+          path.style.strokeDasharray = String(length);
+          path.style.strokeDashoffset = String(length * (1 - progress));
+        });
+      };
+      const update = () => {
+        const time = audio.currentTime;
+        const orchestraProgress = clamp(time / 9.5);
+        orchestra.dataset.state = time < 9.5 ? 'current' : 'past';
+        draw(orchestraPaths, orchestraProgress);
+        gestures.forEach((gesture) => {
+          const start = Number(gesture.dataset.start);
+          const end = Number(gesture.dataset.end);
+          const progress = clamp((time - start) / (end - start));
+          const paths = Array.from(gesture.querySelectorAll('.violin-line'));
+          draw(paths, progress);
+          gesture.querySelectorAll('.violin-note').forEach((note, index, notes) => {
+            note.style.opacity = String(clamp(progress * notes.length - index + 1));
+          });
+          gesture.dataset.state = time < start ? 'future' : time <= end ? 'current' : 'past';
+        });
+        if (time < 9.5) status.textContent = 'the orchestra opens in a broad field';
+        else if (time < 10.55) status.textContent = 'the field clears';
+        else if (time < 34) status.textContent = 'the solo violin traces a finer line';
+        else status.textContent = 'the violin line reaches silence';
+      };
+      const phase = time => {
+        if (time < 9.5) return 'The orchestra opens in a broad field.';
+        if (time < 10.55) return 'The orchestral field clears.';
+        if (time < 34) return 'The solo violin traces a finer line.';
+        return 'The violin line reaches silence.';
+      };
+      window.ListeningVisual.wire({root,audio,paint:update,status:phase,initialStatus:phase(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: broad and fine traces represent contrasting sound character, not exact pitches or an acoustic spectrum.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Timbre is a variable of its own — the same notes, dressed in entirely different sound.</p></div>
+</section>
+</div>
+<div class="lens-wrap is-hidden" data-lens="texture" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)">
+<section class="lens" id="lens-texture">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>
+<div><span class="lens-idx">04 · Texture</span><h2 class="lens-title">How many voices, at once</h2></div>
+</div>
+<p class="lens-q"><em>How many independent layers are active, and what does each one do?</em></p>
+<p class="lens-cue">Texture describes how many layers are sounding together and how they relate. Watch for a new role entering, not just for the music getting louder: a main melody is joined by a low sustained foundation, a plucked repeating support, and finally a high responding line that moves independently around the melody.</p>
+<div class="variants-wrap">
+<div class="variant-row"><div class="variant-label"><span class="vtag">Full</span>Complete four-layer mix</div><audio controls preload="none" src="/guides/listening-studio/audio/texture-full-flute-forward.m4a" data-lens="texture" data-variant="full" aria-label="Full texture mix, all four layers"></audio><p class="text-equiv">Text equivalent: one arcing melody over a low sustained foundation and a plucked repeating pattern; partway through, a fourth, higher voice enters with its own independent rhythm.</p></div>
+</div>
+<button class="guide-toggle" type="button" aria-expanded="false" aria-controls="guide-texture"><span class="gdot" aria-hidden="true"></span><span class="gtxt">Show visual guide</span></button>
+<div class="guide-panel" id="guide-texture"><canvas data-lens-canvas="texture" width="680" height="210"></canvas><p class="caption">Each lane lights up as its layer enters: an arc for the main line, a flat trace for the foundation, a zigzag for the pulse and support, a dashed wave for the responding line.</p><p class="event-announce" data-announce="texture" aria-live="polite"></p></div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Pachelbel’s Canon · King Oliver, “Dippermouth Blues”</span></div>
+<p class="rm-intro">Two ways layers can stack. In Pachelbel’s Canon the lines enter one at a time over a repeating ground; in King Oliver’s <em>Dippermouth Blues</em> several independent lines move together from the start.</p>
+<div id="texture-pair-direct-motion">
+  <style>
+    #texture-pair-direct-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #texture-pair-direct-motion .clip { margin:0 0 1.5rem; }
+    #texture-pair-direct-motion .clip p { margin:0 0 .5rem; }
+    #texture-pair-direct-motion audio { width:100%; }
+    #texture-pair-direct-motion .stage { display:block; width:100%; margin:.5rem 0 0; }
+    #texture-pair-direct-motion text { fill:var(--foreground); font-family:inherit; }
+    #texture-pair-direct-motion .structure { stroke:var(--border); stroke-width:2; }
+    #texture-pair-direct-motion .playhead { stroke:var(--foreground); stroke-width:3; }
+    #texture-pair-direct-motion .layer { fill:none; opacity:.18; transition:opacity .15s linear; }
+    #texture-pair-direct-motion .layer.active { opacity:1; }
+    #texture-pair-direct-motion .series-1 { stroke:var(--viz-series-1,var(--primary)); }
+    #texture-pair-direct-motion .series-2 { stroke:var(--viz-series-2,var(--primary)); }
+    #texture-pair-direct-motion .series-3 { stroke:var(--viz-series-3,var(--primary)); }
+    #texture-pair-direct-motion .series-4 { stroke:var(--viz-series-4,var(--primary)); }
+    #texture-pair-direct-motion .band-1 { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    #texture-pair-direct-motion .band-2 { fill:none; stroke:var(--viz-series-2,var(--primary)); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    #texture-pair-direct-motion .band-3 { fill:none; stroke:var(--viz-series-3,var(--primary)); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    #texture-pair-direct-motion .band-4 { fill:none; stroke:var(--viz-series-4,var(--primary)); stroke-width:7; stroke-linecap:round; stroke-linejoin:round; }
+    #texture-pair-direct-motion .caption { fill:var(--muted-foreground); }
+  
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+</style>
+  <p class="sr-only">Texture comparison. In Pachelbel's Canon, a ground begins and three additional lines enter one at a time. In Dippermouth Blues, four independently moving sound bands remain active together from the beginning.</p>
+  <section class="clip" aria-labelledby="canon-pair-title">
+    <p id="canon-pair-title">Layers accumulate — Pachelbel’s Canon</p>
+    <audio id="canon-pair-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/pachelbel-canon--layers-enter--candidate-01.m4a" type="audio/mp4"></audio>
+    <svg class="stage" viewBox="0 0 760 326" role="img" aria-labelledby="texture-canon-svg-title texture-canon-svg-desc">
+      <title id="texture-canon-svg-title">Canon layers enter one at a time</title><desc id="texture-canon-svg-desc">A repeating ground begins alone. Three separate upper contours enter successively and remain present as the recording continues.</desc>
+      <text class="caption" x="18" y="279">ground</text><text class="caption" x="18" y="216">line 1</text><text class="caption" x="18" y="150">line 2</text><text class="caption" x="18" y="84">line 3</text>
+      <line class="structure" x1="74" y1="274" x2="728" y2="274"></line>
+      <defs><clipPath id="texture-canon-progress"><rect id="texture-canon-progress-rect" x="74" y="38" width="0" height="268"></rect></clipPath></defs>
+      <path class="layer series-1 active" data-entry="0" clip-path="url(#texture-canon-progress)" stroke-width="12" stroke-linecap="round" d="M84,274 L132,274 L154,254 L202,254 L224,274 L272,274 L294,294 L342,294 L364,274 L412,274 L434,254 L482,254 L504,274 L552,274 L574,294 L622,294 L644,274 L704,274"></path>
+      <path class="layer series-2" data-entry="12.6" clip-path="url(#texture-canon-progress)" stroke-width="7" stroke-linecap="round" d="M270,210 C302,188 332,180 360,195 S420,234 450,209 S510,167 542,188 S604,231 636,207 S678,182 706,192"></path>
+      <path class="layer series-3" data-entry="18.7" clip-path="url(#texture-canon-progress)" stroke-width="7" stroke-linecap="round" d="M360,144 C390,164 418,180 446,165 S500,108 530,134 S586,178 614,156 S666,108 706,133"></path>
+      <path class="layer series-4" data-entry="24.9" clip-path="url(#texture-canon-progress)" stroke-width="7" stroke-linecap="round" d="M450,78 C478,54 506,62 534,90 S588,120 618,94 S670,48 706,72"></path>
+      <line id="texture-canon-playhead" class="playhead" x1="84" y1="42" x2="84" y2="304"></line><text id="texture-canon-status" class="caption" x="84" y="24">ground alone</text>
+    </svg>
+  </section>
+  <section class="clip" aria-labelledby="dippermouth-pair-title">
+    <p id="dippermouth-pair-title">Lines coexist — King Oliver’s Creole Jazz Band</p>
+    <audio id="dippermouth-pair-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/dippermouth-blues--collective-texture.m4a" type="audio/mp4"></audio>
+    <svg class="stage" viewBox="0 0 760 286" role="img" aria-labelledby="texture-jazz-svg-title texture-jazz-svg-desc">
+      <title id="texture-jazz-svg-title">Dippermouth Blues collective texture</title><desc id="texture-jazz-svg-desc">Four independently moving sound bands remain active at the same time in separate lanes while crossing a fixed now line.</desc><defs><clipPath id="texture-jazz-window"><rect x="88" y="34" width="640" height="214"></rect></clipPath></defs>
+      <text class="caption" x="14" y="68">bright</text><text class="caption" x="14" y="120">upper</text><text class="caption" x="14" y="172">middle</text><text class="caption" x="14" y="224">ground</text>
+      <line class="structure" x1="88" y1="64" x2="728" y2="64"></line><line class="structure" x1="88" y1="116" x2="728" y2="116"></line><line class="structure" x1="88" y1="168" x2="728" y2="168"></line><line class="structure" x1="88" y1="220" x2="728" y2="220"></line>
+      <g id="texture-jazz-lines" clip-path="url(#texture-jazz-window)"></g><line class="playhead" x1="250" y1="34" x2="250" y2="248"></line><text x="250" y="24" text-anchor="middle">now</text><text class="caption" x="88" y="274">four distinct contours remain active together</text>
+    </svg>
+  </section>
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('texture-pair-direct-motion'); const ns='http://www.w3.org/2000/svg';
+      const canonAudio=root.querySelector('#canon-pair-audio'), jazzAudio=root.querySelector('#dippermouth-pair-audio');
+      const canonRect=root.querySelector('#texture-canon-progress-rect'), canonHead=root.querySelector('#texture-canon-playhead'), canonStatus=root.querySelector('#texture-canon-status'), canonLayers=[...root.querySelectorAll('[data-entry]')];
+      const hop=.09288;
+      const bands=[[0,0,0,0,0,0,0,0,.35,.71,.53,.21,.09,.01,.43,.77,.48,.24,.12,.03,.45,1,.93,.34,.15,.05,0,.15,.53,.39,.1,0,0,0,0,0,0,0,0,0,.58,1,.9,.53,.74,.46,.32,.53,.53,.65,.9,.62,.27,.37,.34,.07,.24,.6,.24,.27,.44,.16,.05,.43,.45,.24,.43,.42,.25,.24,.59,.47,.16,.32,.29,.19,.38,.43,.27,.4,.37,.39,.87,1,1,.88,.71,.57,.35,.65,.62,.47,.82,.61,.3,.43,.53,.34,.5,.86,.62,.43,.52,.55,.54,.29,.08,.14,.58,.63,.44,.52,.47,.23,.15,.35,.43,.34,.6,.57,.32,.45,.37,.43,.41,.44,.12,.21,.54,.35,.32,.56,.42,.27,.67,.59,.34,.4,.11,.08,.32,.5,.37,.22,.06,0,.02,.11,.07,.04,.34,.51,.4,.22,.11,.36,.34,.29,.18,.57,1,.67,.36,.76,1,.76,.64,.62,.38,.6,1,.56,.32,.54,.38,.1,.15,.46,.41,.27,.34,.34,.3,.46,.18,.17,.43,.49,.34,.66,.61,.28,.43,.37,.14,.04,.05,0,.14,.46,.46,.43,.46,1,.73,.34,.47,.16,.11,.61,.43,.21,.52,.46,.11,.13,.06,0,.1,.52,.47,.24,.28,.23,0,.38,.56,.32,.37,.39,.29,.59,.93,.76,.63,.87,.2,.09,.82,.69,.21,.52,.99,.94,.93,.9,.24,.17,.38,.43,.28,.75,.65,.51,.32,.37,.32,.3,.64,.82,.95,.88,.43,.12,.56,.47,.24,.58,.69,.18,.32,.92,.64,.45,.63,.18,.05,.63,.73,.36,.27,.58,.61,.81,.96,.46,.51,.71,.45,.17,.48,1,.52,.37,.47,.18,.47,1,.59,.32,.23,.12,.01,.56,.53,.04,.14,.49,.36,.41,.46,.41,.47,.33,.29,.11,.18,.4,.37,.2,.03,.04],
+      [0,0,.05,.14,.09,0,0,0,.48,.54,.26,.07,0,0,.34,.97,.8,.06,0,0,.09,.86,1,.69,.5,.34,.39,.79,1,.91,.6,.1,0,.02,.22,.42,.42,.49,.69,.8,.96,1,.61,.59,1,.59,.29,.86,.5,.41,.84,.44,.12,.83,.84,.39,.65,.82,.37,.79,.81,.44,.85,1,.77,.54,.92,1,.39,.5,.53,0,.24,1,.69,.69,.72,.63,.77,.96,.81,.82,.84,.62,.43,.59,.59,.69,.86,.91,.68,.73,.82,.59,.38,.65,.22,.07,.83,.73,.2,.36,.35,.03,.54,.99,.8,.6,.82,.29,.18,.89,.57,.27,.61,.81,.7,.8,.9,.29,.28,.74,.2,.1,.85,.8,.61,.74,.56,.66,.89,.81,.33,.54,.88,.4,.44,.66,.4,.62,.73,.5,.39,.56,.72,.52,.41,.54,.2,.21,.48,.3,.47,.82,.53,.38,.74,.78,.61,.74,.88,.76,.76,.88,.73,.77,.92,.9,.76,.82,.65,.3,.54,.8,.54,.64,.75,.59,.45,.79,.76,.37,.74,1,.87,.85,.78,.66,.72,.88,.59,.31,.7,.71,.75,.98,.96,.5,.5,.86,.65,.62,.71,.49,.04,.39,.32,0,.03,.45,.13,0,.29,.14,.04,.6,.67,.4,.65,.86,.54,.49,.83,.64,.15,.54,.4,.18,.65,.76,.54,.73,.88,.5,.69,.82,.52,.71,.83,.5,.43,.86,.56,.33,.45,.41,.43,.68,.95,.63,.3,.47,.15,0,.21,.41,.04,.04,.08,0,.27,.69,.59,.52,.8,.46,.13,.71,.74,.39,.59,.82,.76,.82,.9,.77,.35,.48,.38,.02,.33,.84,.38,.56,.68,.18,.44,.71,.5,.35,.63,.61,.09,.36,.64,.17,.52,.84,.55,.49,.73,.67,.38,.53,.5,.09,.33,.7,.24,.38,.77,.57,.56,.82,.79,.63,.64,.68,.46,.57,.72,.57],
+      [0,.12,.25,.15,.01,.02,0,0,.22,.16,.01,.01,0,0,.45,1,.83,.08,0,0,.1,.97,1,.9,.7,.6,.6,.73,.6,.26,.05,0,0,0,.53,.84,1,1,.98,.95,.88,.8,.21,.17,.81,.23,.19,.99,.68,.23,.87,.76,.14,.8,1,.4,.55,.85,.27,.46,.94,.72,.76,.75,.51,.23,.5,.69,.38,.39,.39,0,.07,.38,.35,.8,.98,.81,.89,1,.51,.62,.82,.68,.74,.81,.92,.61,.62,.9,.54,.11,.72,.9,.75,.73,.28,0,.55,.73,.51,.68,.87,.42,.39,.94,.96,1,.87,.43,.79,.92,.52,.23,.68,.75,.49,.72,.93,.33,.11,.69,.65,.13,.43,.63,.66,.9,.42,.11,.62,.59,.28,.39,.52,.46,.62,.9,.57,.59,.84,.73,.59,.57,.63,.65,.55,.3,.01,.29,.82,.59,.61,.96,.73,.6,.73,.84,.3,.39,.96,.68,.68,.76,.61,.54,.79,.7,.43,.56,.55,.1,.22,.71,.25,.2,.69,.62,.49,.78,.59,.26,.39,.7,.44,.17,.28,.18,.21,.52,.61,.76,.88,.85,.78,.81,.74,.32,.35,.92,.46,.01,.5,.57,.38,.42,.62,.45,.51,.91,.76,.49,.7,.47,.63,.81,.46,.16,.71,.9,.34,.29,.84,.51,0,.15,.03,0,.09,.44,.49,.79,.91,.73,.77,.85,.53,.69,.78,.52,.72,.88,.82,.35,.35,.75,.4,.02,.51,.69,.62,.54,.3,0,.18,.62,.32,.57,.71,.43,.26,.72,.83,.99,.99,.69,.53,.81,.65,.44,.69,.88,.59,.57,.86,.71,.24,.37,.39,.03,.14,.5,.53,.73,.83,.46,.61,.84,.73,.46,.49,.48,.43,.7,.78,.46,.41,.73,.56,.58,.77,.68,.62,.58,.17,0,.48,.72,.42,.61,.87,.54,.5,.71,.76,.11,.4,.86,.48,.58,.8,.4],
+      [.22,.79,.76,.53,.39,.37,.2,.14,.57,.53,.36,.44,.16,0,.29,.79,.25,0,0,0,0,.56,.82,.72,.54,.48,.44,.9,1,1,.68,0,0,0,.05,.37,.76,.8,.65,.63,.91,.99,.51,.48,.99,.32,.11,.83,.84,.54,.83,.62,.28,.67,.86,.41,.62,.9,.58,.56,.57,.61,.76,.67,.45,.37,.72,.85,.49,.56,.56,0,.12,.65,.46,.74,.71,.43,.46,.87,.63,.75,1,.7,.52,.59,.54,.48,.37,.53,.48,.46,.92,.99,.69,.68,.45,.23,.48,.24,.48,.7,.43,.07,.44,1,.97,1,1,.63,.55,.67,.45,.58,.59,.52,.34,.25,.57,.48,.12,.59,.38,.13,.48,.43,.81,1,.69,.39,.61,.64,.44,.62,.72,.5,.55,.56,.32,.57,.62,.28,0,0,.14,.34,.5,.51,.32,.65,.57,.39,.56,.44,.23,.2,.41,.87,.74,.61,.85,.62,.85,.83,.59,.65,.59,.45,.24,.46,.65,.02,0,.46,.35,.63,.82,.63,.65,.55,.37,.03,.3,.51,.33,.49,.72,.73,.71,.63,.59,.6,.64,.55,.21,.46,.78,.13,0,.61,.51,.21,.57,.71,.33,.23,.44,.16,.13,.7,.56,.27,.66,.38,.58,.69,.13,.39,.64,.6,.47,.42,.57,.27,0,.25,.16,0,.25,.5,.11,.29,.4,.3,.41,.76,.69,.83,.84,.4,.49,.66,.38,.33,.54,.76,.67,.33,.83,.89,.45,.48,.54,0,.06,.57,.48,.53,.39,.29,.38,.96,.97,1,1,.79,.45,.68,.43,.47,.82,.63,.36,.48,.71,.58,0,.1,.56,.01,.12,.65,.18,.06,.5,.47,.53,.76,.62,.29,.35,.5,.28,.22,.23,.17,.18,.55,.38,.44,.64,.34,.65,.65,0,.13,.75,.43,.36,.71,.7,.43,.41,.7,.79,.42,.4,.67,.61,.77,.67,.12]];
+      const clear=node=>{while(node.firstChild)node.removeChild(node.firstChild);};
+      const updateCanon=()=>{const time=canonAudio.currentTime,duration=canonAudio.duration||42,x=84+Math.min(1,time/duration)*620;canonHead.setAttribute('x1',x);canonHead.setAttribute('x2',x);canonRect.setAttribute('width',Math.max(0,x-74));canonLayers.forEach(layer=>layer.classList.toggle('active',time>=Number(layer.dataset.entry)));const count=canonLayers.filter(layer=>time>=Number(layer.dataset.entry)).length;canonStatus.textContent=count===1?'ground alone':count===2?'first line joins':count===3?'another line joins':'four layers moving together';};
+      const updateJazz=()=>{const now=jazzAudio.currentTime,group=root.querySelector('#texture-jazz-lines');clear(group);const lanes=[220,168,116,64];bands.forEach((band,index)=>{const first=Math.max(0,Math.floor((now-1.7)/hop)),last=Math.min(band.length-1,Math.ceil((now+5)/hop));let d='';for(let i=first;i<=last;i+=1){const time=i*hop,x=250+(time-now)*96,y=lanes[index]-(band[i]-.5)*32;d+=`${d?' L':'M'}${x.toFixed(1)} ${y.toFixed(1)}`;}const path=document.createElementNS(ns,'path');path.setAttribute('class',`band-${index+1}`);path.setAttribute('d',d);group.appendChild(path);});};
+      const audios=[canonAudio,jazzAudio];
+      const wire=(audio,paint,status)=>window.ListeningVisual.wire({root,audio,paint,peers:audios,status,initialStatus:status(0)});
+      wire(canonAudio,updateCanon,()=>canonStatus.textContent);
+      wire(jazzAudio,updateJazz,()=> 'Four distinct contours remain active together.');
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: each lane represents an audible role and broad movement, not exact notes, instrumentation, or loudness.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Texture is how musical layers relate: one line, a line with support, or several independent lines together.</p></div>
+</section>
+</div>
+<div class="lens-wrap is-hidden" data-lens="melody" style="--acc:#6F5E95;--acc-soft:#EFE9F5">
+<section class="lens" id="lens-melody">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 A 14 14 0 0 1 34 26" fill="none" stroke="currentColor"/><circle cx="6" cy="26" r="1.4" fill="currentColor" stroke="none"/><circle cx="34" cy="26" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+<div><span class="lens-idx">05 · Melody</span><h2 class="lens-title">The shape of a line</h2></div>
+</div>
+<p class="lens-q"><em>What can you keep following?</em></p>
+<p class="lens-cue">Melody is the up-and-down shape a line traces over time — its <em>contour</em>. Follow the rise, turn, and return; do not worry about the exact notes.</p>
+<div class="variants-wrap">
+<div class="variant-row"><div class="variant-label"><span class="vtag">A</span>Original line</div><audio controls preload="none" src="/guides/listening-studio/audio/melody-original.m4a" data-lens="melody" data-variant="orig" aria-label="Original melody"></audio><p class="text-equiv">Text equivalent: the line begins low, rises in a small arch, returns toward its opening area, then rises higher before descending to a final note.</p></div>
+<div class="variant-row"><div class="variant-label"><span class="vtag">B</span>Changed pitches, same shape</div><audio controls preload="none" src="/guides/listening-studio/audio/melody-altered.m4a" data-lens="melody" data-variant="changed" aria-label="Melody with changed pitches but similar contour"></audio><p class="text-equiv">Text equivalent: changes several pitches but preserves that broad rise-and-return shape.</p></div>
+</div>
+<button class="guide-toggle" type="button" aria-expanded="false" aria-controls="guide-melody"><span class="gdot" aria-hidden="true"></span><span class="gtxt">Show visual guide</span></button>
+<div class="guide-panel" id="guide-melody"><canvas data-lens-canvas="melody" width="680" height="210"></canvas><p class="caption">The dots trace each note's relative height; the line is the contour. Dashed offsets mark where the changed line's inner pitches differ.</p><p class="event-announce" data-announce="melody" aria-live="polite"></p></div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven · “Ode to Joy”</span></div>
+<p class="rm-intro">A melody you likely know already. Each bar is one note — height shows how high it sits, length how long it lasts. The map scrolls in real time as the tune rises, returns, and settles lower.</p>
+<div id="ode-to-joy-motion-prototype" aria-labelledby="ode-prototype-label">
+  <style>
+    #ode-to-joy-motion-prototype {
+      color: var(--foreground);
+      font-size: var(--font-size-base);
+    }
+    #ode-to-joy-motion-prototype .melody-stage {
+      width: 100%;
+      display: block;
+      overflow: visible;
+    }
+    #ode-to-joy-motion-prototype .melody-stage text {
+      fill: var(--foreground);
+      font-family: inherit;
+    }
+    #ode-to-joy-motion-prototype .guide {
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+    #ode-to-joy-motion-prototype .note {
+      fill: var(--viz-series-1, currentColor);
+      stroke: var(--background);
+      stroke-width: 1;
+      opacity: 0.48;
+      transition: opacity 80ms linear, stroke-width 80ms linear;
+    }
+    #ode-to-joy-motion-prototype .note.is-current {
+      stroke: var(--foreground);
+      stroke-width: 1.5;
+      opacity: 1;
+    }
+    #ode-to-joy-motion-prototype .playhead {
+      stroke: var(--foreground);
+      stroke-width: 2;
+      opacity: 0.85;
+    }
+    #ode-to-joy-motion-prototype .status {
+      fill: var(--foreground);
+    }
+    #ode-to-joy-motion-prototype .note-copy {
+      margin: 0.75rem 0 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #ode-to-joy-motion-prototype .note {
+        transition: none;
+      }
+    }
+    @media (max-width:620px) {
+      #ode-to-joy-motion-prototype .melody-stage text { font-size:26px; }
+    }
+  
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+</style>
+
+  <p id="ode-prototype-label" class="sr-only">Ode to Joy melody visualization</p>
+  <audio id="ode-audio" controls preload="metadata" aria-describedby="ode-detail">
+    <source src="/guides/listening-studio/audio/viz/ode-to-joy--melody-arc--candidate-01.m4a" type="audio/mp4">
+  </audio>
+
+  <svg class="melody-stage" viewBox="0 0 760 310" role="img" aria-labelledby="ode-title ode-desc">
+    <title id="ode-title">Ode to Joy moving melody map</title>
+    <desc id="ode-desc">A recording-aligned map follows the main melody. Each horizontal bar is one audible note; vertical position suggests its relative height, and the bar length shows how long it lasts.</desc>
+    <text x="42" y="48">higher</text>
+    <text x="42" y="244">lower</text>
+    <line class="guide" x1="94" y1="68" x2="730" y2="68"></line>
+    <line class="guide" x1="94" y1="112" x2="730" y2="112"></line>
+    <line class="guide" x1="94" y1="156" x2="730" y2="156"></line>
+    <line class="guide" x1="94" y1="200" x2="730" y2="200"></line>
+    <line class="guide" x1="94" y1="244" x2="730" y2="244"></line>
+    <defs>
+      <clipPath id="ode-viewport"><rect x="94" y="48" width="636" height="216"></rect></clipPath>
+    </defs>
+    <g id="ode-notes" clip-path="url(#ode-viewport)"></g>
+    <line class="playhead" x1="300" y1="48" x2="300" y2="264"></line>
+    <text id="ode-status" class="status" x="94" y="292">the melody begins on one repeated pitch</text>
+  </svg>
+
+  <p id="ode-detail" class="note-copy">On replay, follow the bars through their rises, returns, and final settling notes.</p>
+
+  <script is:inline>
+    (() => {
+      const root = document.getElementById('ode-to-joy-motion-prototype');
+      const audio = root.querySelector('#ode-audio');
+      const notesGroup = root.querySelector('#ode-notes');
+      const status = root.querySelector('#ode-status');
+      const melodyEvents = [
+        [0.06,0.48,64],[0.60,0.50,64],[1.16,0.48,66],[1.70,0.48,68],[2.24,0.48,68],[2.78,0.48,66],[3.32,0.48,64],[3.86,0.48,62],
+        [4.39,0.50,60],[4.96,0.48,60],[5.49,0.50,62],[6.06,0.48,64],[6.59,0.70,64],[7.39,0.26,62],[7.70,1.02,62],
+        [8.83,0.52,64],[9.42,0.50,64],[9.97,0.50,66],[10.52,0.50,68],[11.07,0.48,68],[11.58,0.48,66],[12.12,0.48,64],[12.64,0.46,62],
+        [13.14,0.48,60],[13.68,0.48,60],[14.21,0.48,62],[14.73,0.48,64],[15.28,0.70,64],[16.13,0.22,62],[16.43,1.00,62],
+        [17.55,0.46,66],[18.08,0.46,66],[18.59,0.46,68],[19.12,0.42,70],[19.60,0.46,70],[20.11,0.42,68],[20.61,0.44,66],[21.11,0.42,64],
+        [21.57,0.44,62],[22.04,0.44,62],[22.56,0.42,64],[23.11,0.44,66],[23.62,0.46,66],[24.16,0.46,64],[24.69,0.96,62],
+        [25.76,0.46,64],[26.30,0.46,64],[26.82,0.46,66],[27.35,0.46,68],[27.88,0.46,68],[28.42,0.46,66],[28.93,0.46,64],[29.45,0.46,62],
+        [29.95,0.46,60],[30.48,0.46,60],[31.00,0.46,62],[31.49,0.46,64],[32.06,0.66,64],[32.80,0.26,62],[33.13,1.30,60]
+      ];
+      const rendered = melodyEvents.map(([start, duration, pitch]) => {
+        const node = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        node.setAttribute('class', 'note');
+        node.setAttribute('height', '14');
+        notesGroup.appendChild(node);
+        return { start, duration, pitch, node };
+      });
+
+      const update = () => {
+        const time = audio.currentTime;
+        const pixelsPerSecond = 70;
+        const playheadX = 300;
+        rendered.forEach((event) => {
+          const x = playheadX + (event.start - time) * pixelsPerSecond;
+          const y = 238 - ((event.pitch - 60) / 10) * 164;
+          event.node.setAttribute('x', String(x));
+          event.node.setAttribute('y', String(y));
+          event.node.setAttribute('width', String(Math.max(5, event.duration * pixelsPerSecond - 1)));
+          event.node.classList.toggle('is-current', time >= event.start && time <= event.start + event.duration);
+        });
+        if (time < 4.39) status.textContent = 'the melody begins on one repeated pitch';
+        else if (time < 8.83) status.textContent = 'it steps down, then settles';
+        else if (time < 17.55) status.textContent = 'the familiar shape returns';
+        else if (time < 25.76) status.textContent = 'the line rises farther before turning home';
+        else status.textContent = 'the opening shape returns and settles lower';
+      };
+      const phase = time => {
+        if (time < 4.39) return 'The melody begins on one repeated pitch.';
+        if (time < 8.83) return 'The melody steps down, then settles.';
+        if (time < 17.55) return 'The familiar shape returns.';
+        if (time < 25.76) return 'The melody rises farther before turning home.';
+        return 'The opening shape returns and settles lower.';
+      };
+      window.ListeningVisual.wire({root,audio,paint:update,status:phase,initialStatus:phase(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: vertical position shows broad pitch direction and bar length shows approximate duration, not exact notation.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>A melody is a connected musical line. Contour — its broad rise, fall, pause, and return — is often what makes it feel familiar.</p></div>
+</section>
+</div>
+<div class="lens-wrap is-hidden" data-lens="harmony" style="--acc:#6F5E95;--acc-soft:#EFE9F5">
+<section class="lens" id="lens-harmony">
+<div class="lens-head">
+<span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+<div><span class="lens-idx">06 · Harmony</span><h2 class="lens-title">Tension, and where it lands</h2></div>
+</div>
+<p class="lens-q"><em>Does the harmonic journey come home, or land somewhere else?</em></p>
+<p class="lens-cue">Harmony is a journey away from a home chord and (often) back to it. Both clips use the same melody and leave the same home — listen for whether the ending gets back there.</p>
+<div class="variants-wrap">
+<div class="variant-row"><div class="variant-label"><span class="vtag">A</span>Returns home</div><audio controls preload="none" src="/guides/listening-studio/audio/harmony-return-home.m4a" data-lens="harmony" data-variant="return" aria-label="Harmonic journey that returns home"></audio><p class="text-equiv">Text equivalent: D (home) → G → B-flat → A → D (home again); the final D is supported by D minor.</p></div>
+<div class="variant-row"><div class="variant-label"><span class="vtag">B</span>Misses home</div><audio controls preload="none" src="/guides/listening-studio/audio/harmony-missed-home.m4a" data-lens="harmony" data-variant="miss" aria-label="Harmonic journey that ends away from home"></audio><p class="text-equiv">Text equivalent: D (home) → G → B-flat → A → E (not home); the expected arrival is withheld.</p></div>
+</div>
+<button class="guide-toggle" type="button" aria-expanded="false" aria-controls="guide-harmony"><span class="gdot" aria-hidden="true"></span><span class="gtxt">Show visual guide</span></button>
+<div class="guide-panel" id="guide-harmony"><canvas data-lens-canvas="harmony" width="680" height="210"></canvas><p class="caption">A map of chord stops, with D always labeled "home." The current stop is highlighted; the ending stop is marked with a check (home) or a dash (not home) — never color alone.</p><p class="event-announce" data-announce="harmony" aria-live="polite"></p></div>
+<div class="realmusic viz-embed">
+<div class="realmusic-head"><span class="rm-tag">In real music</span><span class="rm-work">Beethoven, “Für Elise” · Chopin, Prelude in E minor</span></div>
+<p class="rm-intro">Beethoven's <em>Für Elise</em> keeps leaving a tonal home and clearly returning to it. Chopin's <em>Prelude in E minor</em> sets the same gravity in motion — the harmony is pulled steadily farther from home and only turns partway back, never quite arriving.</p>
+<div id="fur-elise-home-motion">
+  <style>
+    #fur-elise-home-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #fur-elise-home-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
+    #fur-elise-home-motion .clip-title strong { font-weight:500; }
+    #fur-elise-home-motion .clip-title span { color:var(--muted-foreground); }
+    #fur-elise-home-motion audio { width:100%; }
+    #fur-elise-home-motion .stage { display:block; width:100%; margin:.45rem 0 0; }
+    #fur-elise-home-motion text { fill:var(--foreground); font-family:inherit; }
+    #fur-elise-home-motion .muted { fill:var(--muted-foreground); }
+    #fur-elise-home-motion .home-ring { fill:none; stroke:var(--border); stroke-width:2; }
+    #fur-elise-home-motion .home-core { fill:var(--foreground); }
+    #fur-elise-home-motion .journey { fill:none; stroke:var(--viz-series-2,var(--primary)); stroke-width:4; stroke-linecap:round; opacity:.7; }
+    #fur-elise-home-motion .journey-drawn { fill:none; stroke:var(--viz-series-1,var(--primary)); stroke-width:5; stroke-linecap:round; }
+    #fur-elise-home-motion .traveler { fill:var(--viz-series-1,var(--primary)); stroke:var(--foreground); stroke-width:2; }
+    #fur-elise-home-motion .gravity { fill:var(--viz-series-1,var(--primary)); opacity:.14; }
+    @media (max-width:620px) { #fur-elise-home-motion .clip-title { display:block; } }
+  
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+</style>
+  <p class="clip-title"><strong>A center organizes the journey</strong><span>home → away → home</span></p>
+  <p class="sr-only">Beethoven's Für Elise. A phrase repeatedly leaves and returns to a central harmonic home.</p>
+  <audio id="fur-elise-audio" controls preload="metadata"><source src="/guides/listening-studio/audio/viz/fur-elise-home-away-home.m4a" type="audio/mp4"></audio>
+  <svg class="stage" data-view="home" viewBox="0 0 760 302" role="img" aria-labelledby="fur-elise-svg-title fur-elise-svg-desc">
+    <title id="fur-elise-svg-title">Harmony organized by departure and return</title><desc id="fur-elise-svg-desc">A fixed home point remains visible while a traveler repeatedly moves away and returns as the phrase unfolds.</desc>
+    <path class="journey" d="M188 151 C264 77 407 69 549 118 C624 144 620 208 536 224 C388 251 262 220 188 151 C267 78 418 65 565 115 C642 143 633 210 542 227 C395 252 265 219 188 151 C275 76 426 61 579 110 C651 137 648 207 556 230 C401 257 266 218 188 151"></path>
+    <path class="journey-drawn" d="M188 151 C264 77 407 69 549 118 C624 144 620 208 536 224 C388 251 262 220 188 151 C267 78 418 65 565 115 C642 143 633 210 542 227 C395 252 265 219 188 151 C275 76 426 61 579 110 C651 137 648 207 556 230 C401 257 266 218 188 151"></path>
+    <circle class="home-ring" cx="188" cy="151" r="64"></circle><circle class="home-ring" cx="188" cy="151" r="34"></circle><circle class="home-core" cx="188" cy="151" r="8"></circle>
+    <text x="188" y="245" text-anchor="middle">home</text><text class="muted" x="564" y="274" text-anchor="middle">away</text>
+    <circle class="gravity" cx="188" cy="151" r="20"></circle><circle class="traveler" cx="188" cy="151" r="10"></circle>
+    <text class="home-status muted" x="380" y="292" text-anchor="middle">the phrase begins from home</text>
+  </svg>
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('fur-elise-home-motion');
+      const audio=root.querySelector('#fur-elise-audio');
+      const clamp=value=>Math.max(0,Math.min(1,value));
+      const homePoints=[[0,188,151],[3.6,320,88],[6.8,549,118],[10.2,188,151],[13.6,330,84],[17.2,565,115],[20.8,188,151],[24.2,342,80],[27.4,579,110],[30,188,151]];
+      const homeSvg=root.querySelector('[data-view="home"]'),journey=homeSvg.querySelector('.journey-drawn'),journeyLength=journey.getTotalLength();
+      const locate=time=>{for(let i=1;i<homePoints.length;i+=1){if(time<=homePoints[i][0]){const [t0,x0,y0]=homePoints[i-1],[t1,x1,y1]=homePoints[i],mix=clamp((time-t0)/(t1-t0));return [x0+(x1-x0)*mix,y0+(y1-y0)*mix];}}return homePoints.at(-1).slice(1);};
+      function paintHome(){const time=audio.currentTime,[x,y]=locate(time),distance=Math.hypot(x-188,y-151);journey.style.strokeDasharray=journeyLength;journey.style.strokeDashoffset=journeyLength*(1-clamp(time/30));homeSvg.querySelector('.traveler').setAttribute('cx',x);homeSvg.querySelector('.traveler').setAttribute('cy',y);const field=homeSvg.querySelector('.gravity');field.setAttribute('cx',x);field.setAttribute('cy',y);field.setAttribute('r',18+distance*.12);homeSvg.querySelector('.home-status').textContent=distance<50?'the phrase settles at home':'the phrase moves away from home';}
+      const status=time=>time<3.6?'The phrase begins from home.':Math.min(...[10.2,20.8,30].map(point=>Math.abs(time-point)))<.75?'The phrase settles at home.':'The phrase moves away from home.';
+      window.ListeningVisual.wire({root,audio,paint:paintHome,status,initialStatus:status(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: the fixed home and orbiting traveler represent harmonic organization and audible return, not measured emotional tension or exact chords.</p>
+</div>
+<div style="height:14px"></div>
+<div id="chopin-harmony-direct-motion" aria-labelledby="chopin-harmony-heading">
+  <style>
+    #chopin-harmony-direct-motion { color:var(--foreground); font-size:var(--font-size-base); }
+    #chopin-harmony-direct-motion .clip-title { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:0 0 .5rem; }
+    #chopin-harmony-direct-motion .clip-title strong { font-weight:500; }
+    #chopin-harmony-direct-motion .clip-title span { color:var(--muted-foreground); }
+    #chopin-harmony-direct-motion audio { width:100%; }
+    #chopin-harmony-direct-motion .stage { display:block; width:100%; margin:.45rem 0 0; overflow:visible; }
+    #chopin-harmony-direct-motion text { fill:var(--foreground); font-family:inherit; }
+    #chopin-harmony-direct-motion .muted { fill:var(--muted-foreground); }
+    #chopin-harmony-direct-motion .home-ring { fill:none; stroke:var(--border); stroke-width:2; }
+    #chopin-harmony-direct-motion .home-core { fill:var(--foreground); }
+    #chopin-harmony-direct-motion .trace-base { fill:none; stroke:var(--border); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    #chopin-harmony-direct-motion .trace-drawn { fill:none; stroke:var(--viz-series-2,var(--primary)); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    #chopin-harmony-direct-motion .field { fill:var(--viz-series-1,var(--primary)); opacity:.15; }
+    #chopin-harmony-direct-motion .traveler { fill:var(--viz-series-1,var(--primary)); stroke:var(--foreground); stroke-width:2; }
+    #chopin-harmony-direct-motion .pressure-mark { fill:var(--border); opacity:.55; }
+    #chopin-harmony-direct-motion .pressure-mark.reached { fill:var(--viz-series-2,var(--primary)); opacity:.78; }
+    #chopin-harmony-direct-motion .status { fill:var(--muted-foreground); }
+    @media (max-width:620px) {
+      #chopin-harmony-direct-motion .clip-title { display:block; }
+      #chopin-harmony-direct-motion .stage text { font-size:25px; }
+    }
+  
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+</style>
+
+  <p class="clip-title" id="chopin-harmony-heading"><strong>Changing chords reshape the pull</strong><span>close to home → increasingly unsettled</span></p>
+  <p class="sr-only">Chopin harmony visualization. A fixed home remains visible while the changing harmonic field moves progressively farther away and only partly turns back.</p>
+  <audio id="harmony-audio" controls preload="metadata">
+    <source src="/guides/listening-studio/audio/viz/chopin-prelude--harmonic-gravity--candidate-01.m4a" type="audio/mp4">
+  </audio>
+
+  <svg class="stage" viewBox="0 0 760 320" role="img" aria-labelledby="chopin-harmony-svg-title chopin-harmony-svg-desc">
+    <title id="chopin-harmony-svg-title">Harmonic pull in Chopin's E-minor Prelude</title>
+    <desc id="chopin-harmony-svg-desc">A fixed home point remains at the left. A moving harmonic field follows a winding path farther from home as successive chords make the excerpt feel increasingly unsettled, then turns partway back without arriving home.</desc>
+    <text class="muted" x="70" y="45">close to home</text>
+    <text class="muted" x="640" y="45" text-anchor="end">stronger pull</text>
+    <line x1="116" y1="58" x2="668" y2="58" stroke="var(--border)" stroke-width="1"></line>
+    <path class="trace-base" d="M166 170 C207 151 243 137 280 120 C322 99 365 88 410 102 C461 117 513 147 560 190 C590 219 615 232 638 220 C612 242 570 232 526 205 C475 174 428 150 382 142"></path>
+    <path id="harmony-trace" class="trace-drawn" d="M166 170 C207 151 243 137 280 120 C322 99 365 88 410 102 C461 117 513 147 560 190 C590 219 615 232 638 220 C612 242 570 232 526 205 C475 174 428 150 382 142"></path>
+
+    <circle class="home-ring" cx="166" cy="170" r="62"></circle>
+    <circle class="home-ring" cx="166" cy="170" r="34"></circle>
+    <circle class="home-core" cx="166" cy="170" r="8"></circle>
+    <text x="166" y="258" text-anchor="middle">home</text>
+
+    <circle class="pressure-mark" data-cue="4.5" cx="216" cy="148" r="5"></circle>
+    <circle class="pressure-mark" data-cue="9.5" cx="271" cy="123" r="5"></circle>
+    <circle class="pressure-mark" data-cue="14" cx="326" cy="96" r="5"></circle>
+    <circle class="pressure-mark" data-cue="18.5" cx="410" cy="102" r="5"></circle>
+    <circle class="pressure-mark" data-cue="23.5" cx="487" cy="143" r="5"></circle>
+    <circle class="pressure-mark" data-cue="28" cx="560" cy="190" r="5"></circle>
+    <circle class="pressure-mark" data-cue="32" cx="638" cy="220" r="5"></circle>
+    <circle class="pressure-mark" data-cue="35" cx="526" cy="205" r="5"></circle>
+
+    <circle id="harmony-field" class="field" cx="166" cy="170" r="20"></circle>
+    <circle id="harmony-traveler" class="traveler" cx="166" cy="170" r="10"></circle>
+    <text id="harmony-status" class="status" x="380" y="302" text-anchor="middle">the harmony begins close to home</text>
+  </svg>
+
+  <script is:inline>
+    (() => {
+      const root=document.getElementById('chopin-harmony-direct-motion');
+      const audio=root.querySelector('#harmony-audio');
+      const trace=root.querySelector('#harmony-trace');
+      const field=root.querySelector('#harmony-field');
+      const traveler=root.querySelector('#harmony-traveler');
+      const status=root.querySelector('#harmony-status');
+      const marks=[...root.querySelectorAll('.pressure-mark')];
+      const cues=[
+        [0,166,170],[4.5,216,148],[9.5,271,123],[14,326,96],[18.5,410,102],
+        [23.5,487,143],[28,560,190],[32,638,220],[35,526,205],[37.4,382,142]
+      ];
+      const length=trace.getTotalLength();
+      const clamp=value=>Math.max(0,Math.min(1,value));
+      const locate=time=>{
+        for(let index=1;index<cues.length;index+=1){
+          const [end,endX,endY]=cues[index];
+          if(time<=end){
+            const [start,startX,startY]=cues[index-1],mix=clamp((time-start)/(end-start));
+            return [startX+(endX-startX)*mix,startY+(endY-startY)*mix];
+          }
+        }
+        return cues.at(-1).slice(1);
+      };
+      const phase=time=>{
+        if(time<7)return 'The harmony begins close to home.';
+        if(time<19)return 'Successive chord changes pull farther from home.';
+        if(time<32)return 'The harmonic pull grows heavier and less settled.';
+        return 'The harmony turns partway back but does not arrive home in this excerpt.';
+      };
+      const paint=()=>{
+        const time=audio.currentTime,[x,y]=locate(time),distance=Math.hypot(x-166,y-170);
+        trace.style.strokeDasharray=String(length);
+        trace.style.strokeDashoffset=String(length*(1-clamp(time/37.4)));
+        field.setAttribute('cx',x);
+        field.setAttribute('cy',y);
+        field.setAttribute('r',String(20+distance*.12));
+        traveler.setAttribute('cx',x);
+        traveler.setAttribute('cy',y);
+        marks.forEach(mark=>mark.classList.toggle('reached',time>=Number(mark.dataset.cue)));
+        status.textContent=phase(time).replace(/\.$/,'').toLowerCase();
+      };
+      window.ListeningVisual.wire({root,audio,paint,status:phase,initialStatus:phase(0)});
+    })();
+  </script>
+  <p class="model-note">Simplified listening model: distance from home represents the changing chords' audible pull, not measured dissonance, emotional weight, or an exact chord analysis.</p>
+</div>
+</div>
+<div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Harmony can establish a musical home, create departure, and either return or hold the pressure open.</p></div>
+</section>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="colophon">Of Imagination All Compact · AP Literature</div>
+<div>Elements / Hearing Music</div>
+</footer>
+
+<script is:inline>
+(function(){
+'use strict';
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---- Timing data, sourced from the delivered timing manifest ----
+const TIMING={
+  melody:{duration:8.571,
+    points:{
+      orig:[{t:0,y:0.18,label:'Line begins'},{t:1.071,y:0.58,label:'First rise turns back'},{t:2.143,y:0.32,label:'Returns toward opening area'},{t:4.286,y:0.88,label:'Higher second rise'},{t:6.429,y:0.10,label:'Final descent and arrival'},{t:8.571,y:0.10,label:'Final descent and arrival'}],
+      changed:[{t:0,y:0.18,label:'Line begins'},{t:1.071,y:0.66,label:'First rise turns back'},{t:2.143,y:0.24,label:'Returns toward opening area'},{t:4.286,y:0.96,label:'Higher second rise'},{t:6.429,y:0.10,label:'Final descent and arrival'},{t:8.571,y:0.10,label:'Final descent and arrival'}]
+    }},
+  rhythm:{
+    shaped:{duration:8.571,segments:[
+      {t0:0,t1:0.938,type:'note',label:'Long opening sound'},
+      {t0:0.938,t1:1.25,type:'note',label:'Two quick turns'},
+      {t0:1.29,t1:1.607,type:'note',label:'Two quick turns'},
+      {t0:1.607,t1:2.946,type:'space',label:'Space before the next phrase'},
+      {t0:2.946,t1:3.938,type:'note',label:'Another quick turn'},
+      {t0:3.938,t1:7.634,type:'space',label:'Space before the higher phrase'},
+      {t0:7.634,t1:8.571,type:'note',label:'Final sound is held'}
+    ]},
+    even:{duration:10.714,phraseEnd:8.571,segments:(()=>{const s=[];for(let i=0;i<8;i++)s.push({t0:i*1.0714,t1:(i+1)*1.0714-0.03,type:'note',label:'Even steps begin'});return s;})(),
+      silenceLabel:'Phrase ends; remaining time is silence'}
+  },
+  timbre:{duration:8.571},
+  texture:{duration:8.572,lanes:[
+    {key:'main',label:'Main line',start:0,announce:'Main line begins'},
+    {key:'foundation',label:'Foundation',start:0,announce:'Low foundation begins'},
+    {key:'pulse',label:'Pulse & support',start:0,announce:'Repeated pulse and support begin'},
+    {key:'response',label:'Responding line',start:4.286,announce:'Responding flute line enters'}
+  ]},
+  harmony:{
+    return:{duration:12.224,stops:[{t:0,lab:'D',label:'D: home'},{t:2.143,lab:'G',label:'G: away from home'},{t:4.286,lab:'B\u266D',label:'B-flat: farther away'},{t:6.429,lab:'A',label:'A: pull toward home'},{t:8.571,lab:'D',label:'D: return home'}],tension:[0,0.55,0.85,0.5,0]},
+    miss:{duration:12.224,stops:[{t:0,lab:'D',label:'D: home'},{t:2.143,lab:'G',label:'G: away from home'},{t:4.286,lab:'B\u266D',label:'B-flat: farther away'},{t:6.429,lab:'A',label:'A: expectation of home'},{t:8.571,lab:'E',label:'E: not home'}],tension:[0,0.55,0.85,0.5,0.7]}
+  },
+  form:{duration:34.286,sections:[
+    {id:'A',lab:'A',start:0,end:8.571,label:'A — first statement',density:1},
+    {id:'Aprime',lab:'A\u2032',start:8.571,end:17.143,label:'A\u2032 — changed statement',density:2},
+    {id:'B',lab:'B',start:17.143,end:25.714,label:'B — departure',density:0},
+    {id:'App',lab:'A\u2033',start:25.714,end:34.286,label:'A\u2033 — altered return',density:3}
+  ]}
+};
+
+// ---- Playback coordination: one clip at a time ----
+const lensLastVariant={};
+const hasPlayed={};
+document.addEventListener('play',function(e){
+  if(e.target.tagName!=='AUDIO') return;
+  document.querySelectorAll('audio').forEach(a=>{if(a!==e.target && !a.paused) a.pause();});
+  const lens=e.target.dataset.lens;
+  if(lens){ lensLastVariant[lens]=e.target.dataset.variant; hasPlayed[lens]=true; updateToggleLabel(lens); }
+  if(!REDUCED) startLoop();
+},true);
+document.querySelectorAll('audio').forEach(a=>{
+  a.addEventListener('pause',()=>drawLens(a.dataset.lens));
+  a.addEventListener('seeked',()=>drawLens(a.dataset.lens));
+  a.addEventListener('timeupdate',()=>{ if(REDUCED || a.paused) drawLens(a.dataset.lens); });
+});
+
+let rafRunning=false;
+function startLoop(){ if(rafRunning) return; rafRunning=true; step(); }
+function step(){
+  let any=false;
+  document.querySelectorAll('audio').forEach(a=>{ if(!a.paused){any=true; drawLens(a.dataset.lens);} });
+  if(any) requestAnimationFrame(step); else rafRunning=false;
+}
+
+function activeAudioFor(lens){
+  const variant=lensLastVariant[lens];
+  const list=document.querySelectorAll('audio[data-lens="'+lens+'"]');
+  if(!list.length) return null;
+  if(variant){ for(const a of list){ if(a.dataset.variant===variant) return a; } }
+  return list[0];
+}
+
+function setAnnounce(lens,text){
+  const el=document.querySelector('[data-announce="'+lens+'"]');
+  if(el) el.textContent = text ? 'Now: '+text : '';
+}
+
+function drawLens(lens){
+  if(!lens) return;
+  const canvas=document.querySelector('canvas[data-lens-canvas="'+lens+'"]');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const w=canvas.width,h=canvas.height;
+  const acc=getComputedStyle(document.body).getPropertyValue('--acc').trim()||'#6F5E95';
+  const ink=getComputedStyle(document.body).getPropertyValue('--ink-mute').trim()||'#4a4138';
+  const rule=getComputedStyle(document.body).getPropertyValue('--rule').trim()||'#C9BDA5';
+  ctx.clearRect(0,0,w,h);
+  const audio=activeAudioFor(lens);
+  const variant=lensLastVariant[lens];
+  const t = audio ? audio.currentTime : 0;
+  if(lens==='melody') drawMelody(ctx,w,h,acc,ink,rule,variant,t);
+  else if(lens==='rhythm') drawRhythm(ctx,w,h,acc,ink,rule,variant,t);
+  else if(lens==='timbre') drawTimbre(ctx,w,h,acc,ink,rule,variant,t);
+  else if(lens==='texture') drawTexture(ctx,w,h,acc,ink,rule,variant,t);
+  else if(lens==='harmony') drawHarmony(ctx,w,h,acc,ink,rule,variant,t);
+  else if(lens==='form') drawForm(ctx,w,h,acc,ink,rule,variant,t);
+}
+
+function playhead(ctx,w,h,x,acc,glow){
+  if(glow && !REDUCED){ ctx.save(); ctx.shadowColor=acc; ctx.shadowBlur=8; }
+  ctx.strokeStyle=acc; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x,6); ctx.lineTo(x,h-6); ctx.stroke();
+  ctx.beginPath(); ctx.arc(x,6,3,0,7); ctx.fillStyle=acc; ctx.fill();
+  if(glow && !REDUCED) ctx.restore();
+}
+
+function nearestLabel(list,t,keyT,keyLabel){
+  let cur=null;
+  list.forEach(item=>{ if(item[keyT]<=t+0.01) cur=item; });
+  return cur ? cur[keyLabel] : null;
+}
+
+function drawMelody(ctx,w,h,acc,ink,rule,variant,t){
+  const dur=TIMING.melody.duration;
+  const pts = TIMING.melody.points[variant]||TIMING.melody.points.orig;
+  const pad=44, top=22, bot=h-30;
+  const xOf=tt=>pad+(tt/dur)*(w-pad-16);
+  const yOf=y=>bot-(y*(bot-top));
+  ctx.font='10px IBM Plex Mono, monospace'; ctx.textAlign='right'; ctx.textBaseline='middle';
+  for(let g=0; g<=1; g+=0.25){
+    const y=yOf(g);
+    ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(w-16,y); ctx.stroke();
+  }
+  ctx.beginPath(); ctx.moveTo(xOf(pts[0].t), bot);
+  pts.forEach(p=>ctx.lineTo(xOf(p.t), yOf(p.y)));
+  ctx.lineTo(xOf(pts[pts.length-1].t), bot); ctx.closePath();
+  ctx.fillStyle='color-mix(in oklab, '+acc+' 12%, transparent)'; ctx.fill();
+  ctx.strokeStyle=ink; ctx.lineWidth=1.6; ctx.lineJoin='round'; ctx.beginPath();
+  pts.forEach((p,i)=>{ const x=xOf(p.t), y=yOf(p.y); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
+  ctx.stroke();
+  if(variant==='changed'){
+    const orig=TIMING.melody.points.orig;
+    ctx.strokeStyle='color-mix(in oklab, '+acc+' 55%, '+ink+' 15%)'; ctx.setLineDash([3,3]); ctx.lineWidth=1.2;
+    orig.forEach((p,i)=>{ if(i===0||i===orig.length-1) return; const x=xOf(p.t); ctx.beginPath(); ctx.moveTo(x,yOf(p.y)); ctx.lineTo(x,yOf(pts[i].y)); ctx.stroke(); });
+    ctx.setLineDash([]);
+  }
+  pts.forEach(p=>{
+    const x=xOf(p.t), y=yOf(p.y);
+    const near = variant && Math.abs(t-p.t)<0.18;
+    ctx.beginPath(); ctx.arc(x,y, near?6:4.5,0,7);
+    ctx.fillStyle= near? acc : 'color-mix(in oklab, '+acc+' 75%, '+ink+' 15%)'; ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=1; ctx.stroke();
+  });
+  if(variant){ playhead(ctx,w,h,xOf(Math.min(t,dur)),acc,true); setAnnounce('melody', nearestLabel(pts,t,'t','label')); }
+}
+
+function drawRhythm(ctx,w,h,acc,ink,rule,variant,t){
+  const data = variant==='even' ? TIMING.rhythm.even : TIMING.rhythm.shaped;
+  const totalDur = variant==='even' ? TIMING.rhythm.even.duration : TIMING.rhythm.shaped.duration;
+  const pad=20, top=34, bot=h-56;
+  const xOf=tt=>pad+(tt/totalDur)*(w-2*pad);
+  data.segments.forEach(seg=>{
+    const x=xOf(seg.t0), bw=Math.max(xOf(seg.t1)-x,3);
+    if(seg.type==='space'){
+      ctx.strokeStyle=rule; ctx.setLineDash([3,3]); ctx.lineWidth=1;
+      ctx.strokeRect(x,top,bw,bot-top); ctx.setLineDash([]);
+    } else {
+      const sounding = variant && t>=seg.t0 && t<seg.t1;
+      ctx.fillStyle= sounding? acc : 'color-mix(in oklab, '+acc+' 65%, white)';
+      ctx.fillRect(x,top,bw,bot-top);
+      ctx.fillStyle=ink; ctx.beginPath(); ctx.moveTo(x,top-2); ctx.lineTo(x+6,top-2); ctx.lineTo(x,top+8); ctx.closePath(); ctx.fill();
+    }
+  });
+  if(variant==='even' && data.phraseEnd<totalDur){
+    const x=xOf(data.phraseEnd), ex=xOf(totalDur);
+    ctx.strokeStyle=rule; ctx.setLineDash([2,3]); ctx.lineWidth=1; ctx.strokeRect(x,top,ex-x,bot-top); ctx.setLineDash([]);
+    ctx.font='9px IBM Plex Mono, monospace'; ctx.fillStyle=ink; ctx.globalAlpha=0.55; ctx.textAlign='center';
+    ctx.fillText('silence', (x+ex)/2, top+(bot-top)/2+3); ctx.globalAlpha=1;
+  }
+  ctx.font='9px IBM Plex Mono, monospace'; ctx.textAlign='center'; ctx.fillStyle=ink; ctx.globalAlpha=0.5;
+  for(let i=0;i*1.0<=totalDur;i++){
+    const x=xOf(i); ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x,bot+8); ctx.lineTo(x,bot+16); ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+  if(variant){
+    playhead(ctx,w,h,xOf(Math.min(t,totalDur)),acc,true);
+    let label = null;
+    if(variant==='even' && t>=data.phraseEnd) label = data.silenceLabel;
+    else label = nearestLabel(data.segments.filter(s=>s.type==='note'||true),t,'t0','label');
+    setAnnounce('rhythm', label);
+  }
+}
+
+const TIMBRE_PROFILES={
+  reedy:{cycles:6,shape:'square',bars:[1,0.08,0.62,0.05,0.42,0.04,0.3,0.04]},
+  brass:{cycles:7,shape:'brass',bars:[1,0.78,0.66,0.58,0.5,0.42,0.36,0.3]},
+  mallet:{cycles:5,shape:'decay',bars:[1,0.1,0.42,0.06,0.08,0.03,0.02,0.01]}
+};
+function drawTimbre(ctx,w,h,acc,ink,rule,variant,t){
+  const key = variant||'reedy';
+  const prof=TIMBRE_PROFILES[key];
+  const wfMid=64, wfW=w-40;
+  ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(20,wfMid); ctx.lineTo(w-20,wfMid); ctx.stroke();
+  ctx.strokeStyle= variant? acc:'color-mix(in oklab, '+acc+' 40%, white)'; ctx.lineWidth=1.8; ctx.beginPath();
+  const anim = (variant && !REDUCED)? t*4:0;
+  for(let i=0;i<=wfW;i+=2){
+    const phase=(i/wfW)*prof.cycles*2*Math.PI + anim;
+    let y;
+    if(prof.shape==='brass'){ y=Math.sin(phase)+0.3*Math.sin(2*phase)+0.15*Math.sin(3*phase); }
+    else if(prof.shape==='decay'){ y=Math.sin(phase)*Math.exp(-((i/wfW)%0.34)*2.2); }
+    else { y=Math.sign(Math.sin(phase))*0.7 + 0.3*Math.sin(phase); }
+    ctx.lineTo(20+i, wfMid - y*26);
+  }
+  ctx.stroke();
+  const specTop=110, specBot=h-16, barW=(w-60)/8;
+  ctx.font='9px IBM Plex Mono, monospace'; ctx.textAlign='center'; ctx.fillStyle=ink;
+  prof.bars.forEach((amp,i)=>{
+    const x=40+i*barW;
+    let a=amp;
+    if(!REDUCED){
+      if(key==='mallet' && variant) a*=0.7+0.3*Math.abs(Math.sin(t*6+i));
+      if(key==='brass' && variant) a*=0.85+0.15*Math.sin(t*10+i*0.5);
+    }
+    const bh=(specBot-specTop)*a;
+    ctx.fillStyle= variant? 'color-mix(in oklab, '+acc+' '+(40+a*55)+'%, white)':'color-mix(in oklab, '+acc+' 25%, white)';
+    ctx.fillRect(x,specBot-bh,barW-4,bh);
+    ctx.globalAlpha=0.6; ctx.fillText(String(i+1), x+(barW-4)/2, specBot+11); ctx.globalAlpha=1;
+  });
+  ctx.textAlign='left'; ctx.fillStyle=ink; ctx.globalAlpha=0.6; ctx.font='9px IBM Plex Mono, monospace';
+  ctx.fillText('OVERTONE SERIES', 40, 100); ctx.globalAlpha=1;
+  if(variant) playhead(ctx,w,h,20+(Math.min(t,TIMING.timbre.duration)/TIMING.timbre.duration)*wfW,acc,true);
+}
+
+function drawTexture(ctx,w,h,acc,ink,rule,variant,t){
+  const dur=TIMING.texture.duration, lanes=TIMING.texture.lanes;
+  const pad=20, laneH=(h-30)/4;
+  const xOf=tt=>pad+(tt/dur)*(w-pad-90);
+  let currentLabel=null;
+  lanes.forEach((lane,li)=>{
+    const y0=10+li*laneH;
+    const active = variant && t>=lane.start;
+    ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(pad,y0+laneH-4); ctx.lineTo(w-90,y0+laneH-4); ctx.stroke();
+    ctx.font='10px IBM Plex Sans, sans-serif'; ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillStyle= active? ink:'color-mix(in oklab, '+ink+' 35%, transparent)';
+    ctx.fillText(lane.label, w-84, y0+laneH/2-4);
+    if(!active) return;
+    if(currentLabel===null || lane.start>0) if(Math.abs(t-lane.start)<0.3) currentLabel=lane.announce;
+    const yMid=y0+laneH/2, xStart=xOf(lane.start), xEnd=xOf(dur);
+    ctx.strokeStyle=acc; ctx.lineWidth=1.6; ctx.beginPath();
+    if(lane.key==='main'){
+      for(let x=xStart;x<=xEnd;x+=4){ const p=(x-xStart)/(xEnd-xStart||1); const y=yMid-Math.sin(p*Math.PI*2)*8; if(x===xStart) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+    } else if(lane.key==='foundation'){
+      ctx.moveTo(xStart,yMid); ctx.lineTo(xEnd,yMid); ctx.lineWidth=4;
+    } else if(lane.key==='pulse'){
+      let up=true; for(let x=xStart;x<=xEnd;x+=10){ const y=up?yMid-7:yMid+7; if(x===xStart) ctx.moveTo(x,y); else ctx.lineTo(x,y); up=!up; }
+    } else {
+      ctx.setLineDash([4,3]);
+      for(let x=xStart;x<=xEnd;x+=4){ const p=(x-xStart)/(xEnd-xStart||1); const y=yMid-Math.sin(p*Math.PI*3)*9; if(x===xStart) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+    }
+    ctx.stroke(); ctx.setLineDash([]);
+  });
+  if(variant){ playhead(ctx,w,h,xOf(Math.min(t,dur)),acc,true); setAnnounce('texture', nearestLabel(lanes.map(l=>({t:l.start,label:l.announce})),t,'t','label')); }
+}
+
+function drawHarmony(ctx,w,h,acc,ink,rule,variant,t){
+  const data = TIMING.harmony[variant]||TIMING.harmony.return;
+  const stops=data.stops, tension=data.tension;
+  const pad=44, baseY=h-40, n=stops.length, arcTop=30;
+  const xOf=i=>pad+i*((w-2*pad)/(n-1));
+  const yOf=i=>baseY-tension[i]*(baseY-arcTop);
+  ctx.strokeStyle='color-mix(in oklab, '+acc+' 55%, white)'; ctx.lineWidth=2; ctx.beginPath();
+  stops.forEach((s,i)=>{ const x=xOf(i),y=yOf(i); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
+  ctx.stroke();
+  ctx.font='9px IBM Plex Mono, monospace'; ctx.textAlign='center'; ctx.fillStyle=ink; ctx.globalAlpha=0.6;
+  ctx.fillText('TENSION', pad, arcTop-12); ctx.globalAlpha=1;
+  let activeIdx=-1;
+  if(variant) stops.forEach((s,i)=>{ if(t>=s.t) activeIdx=i; });
+  stops.forEach((s,i)=>{
+    const x=xOf(i), y=baseY, isHome=s.lab==='D', isLast=i===n-1;
+    ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,yOf(i)); ctx.setLineDash([2,2]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(x,y,15,0,7);
+    ctx.fillStyle = i===activeIdx ? acc : (isHome? 'color-mix(in oklab, '+acc+' 18%, white)' : '#fff');
+    ctx.fill(); ctx.strokeStyle= isHome? acc : ink; ctx.lineWidth=isHome?2.4:1.4; ctx.stroke();
+    ctx.fillStyle= i===activeIdx? '#fff':ink; ctx.font='13px IBM Plex Mono, monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(s.lab,x,y);
+    if(isLast){ ctx.font='16px IBM Plex Sans, sans-serif'; ctx.fillStyle=ink; ctx.fillText(isHome?'\u2713':'\u2013', x, y+30); }
+    if(isHome && i===0){ ctx.font='10px IBM Plex Mono, monospace'; ctx.fillStyle=acc; ctx.fillText('HOME',x,y+34); }
+  });
+  if(variant) setAnnounce('harmony', activeIdx>=0 ? stops[activeIdx].label : null);
+}
+
+function hatch(ctx,x,y,w,h,spacing,color,angle){
+  ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
+  ctx.strokeStyle=color; ctx.lineWidth=1.2;
+  const len=Math.hypot(w,h)*2;
+  for(let d=-len;d<len;d+=spacing){
+    ctx.beginPath();
+    if(angle==='cross'){ ctx.moveTo(x+d,y-len); ctx.lineTo(x+d+len,y+len); }
+    else { ctx.moveTo(x,y+d); ctx.lineTo(x+len,y+d+len); }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+function drawForm(ctx,w,h,acc,ink,rule,variant,t){
+  const total=TIMING.form.duration, sections=TIMING.form.sections;
+  const pad=16, top=30, bot=h-56;
+  sections.forEach(sec=>{
+    const x=pad+(sec.start/total)*(w-2*pad), bw=((sec.end-sec.start)/total)*(w-2*pad);
+    const isB = sec.id==='B';
+    ctx.fillStyle='color-mix(in oklab, '+acc+' 20%, white)';
+    ctx.fillRect(x,top,bw-3,bot-top);
+    if(isB) hatch(ctx,x,top,bw-3,bot-top,7,'color-mix(in oklab, '+acc+' 55%, white)','cross');
+    else hatch(ctx,x,top,bw-3,bot-top,16-sec.density*3.5,'color-mix(in oklab, '+acc+' 60%, white)');
+    const active = variant && t>=sec.start && t<sec.end;
+    if(active){ ctx.strokeStyle=acc; ctx.lineWidth=2.5; ctx.strokeRect(x+1,top+1,bw-5,bot-top-2); }
+    ctx.fillStyle=ink; ctx.font='13px IBM Plex Sans, sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(sec.lab, x+bw/2, top-14);
+    if(sec.id==='App'){ ctx.font='9px IBM Plex Mono, monospace'; ctx.fillStyle=ink; ctx.textBaseline='alphabetic'; ctx.fillText('ALTERED ENDING', x+bw/2, bot+16); }
+  });
+  if(variant) playhead(ctx,w,h,pad+(Math.min(t,total)/total)*(w-2*pad),ink,true);
+  if(variant) setAnnounce('form', nearestLabel(sections.map(s=>({t:s.start,label:s.label})),t,'t','label'));
+}
+
+// ---- Form section seek buttons ----
+const formAudio=document.getElementById('form-audio');
+document.querySelectorAll('[data-seek-form]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const sec=TIMING.form.sections.find(s=>s.id===btn.dataset.seekForm);
+    if(!sec||!formAudio) return;
+    document.querySelectorAll('audio').forEach(a=>{if(a!==formAudio && !a.paused) a.pause();});
+    formAudio.currentTime=sec.start;
+    lensLastVariant.form='full'; hasPlayed.form=true; updateToggleLabel('form');
+    formAudio.play();
+  });
+});
+
+// ---- Toggle "show visual guide" panels ----
+function updateToggleLabel(lens){
+  const btn=document.querySelector('#lens-'+lens+' .guide-toggle');
+  if(!btn) return;
+  const open = btn.getAttribute('aria-expanded')==='true';
+  const span=btn.querySelector('.gtxt');
+  span.textContent = open ? 'Hide visual guide' : (hasPlayed[lens] ? 'Replay with the visual guide' : 'Show visual guide');
+}
+document.querySelectorAll('.guide-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const open = btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded', String(!open));
+    const panel=document.getElementById(btn.getAttribute('aria-controls'));
+    panel.classList.toggle('open', !open);
+    const lens = panel.id.replace('guide-','');
+    if(!open){ drawLens(lens); }
+    const span=btn.querySelector('.gtxt');
+    span.textContent = !open ? 'Hide visual guide' : (hasPlayed[lens] ? 'Replay with the visual guide' : 'Show visual guide');
+  });
+});
+})();
+</script>
+
+<script is:inline>
+(function(){
+  const detail=document.getElementById('lens-detail'),dThread=document.getElementById('dThread');
+  const wraps=[...document.querySelectorAll('.lens-wrap')],cards=[...document.querySelectorAll('.ocard')];
+  const threadName={rhythm:'Structure & Freedom',form:'Structure & Freedom',timbre:'Texture & Voices',texture:'Texture & Voices',melody:'Consonance & Dissonance',harmony:'Consonance & Dissonance'};
+  function stopAll(){document.querySelectorAll('audio').forEach(a=>{if(!a.paused)a.pause();});}
+  function openLens(key){stopAll();detail.classList.remove('is-hidden');wraps.forEach(w=>w.classList.toggle('is-hidden',w.dataset.lens!==key));cards.forEach(c=>{const on=c.dataset.lens===key;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on?'true':'false');});dThread.textContent=threadName[key]||'';}
+  function closeLens(){stopAll();detail.classList.add('is-hidden');wraps.forEach(w=>w.classList.add('is-hidden'));cards.forEach(c=>{c.classList.remove('on');c.setAttribute('aria-pressed','false');});}
+  cards.forEach(c=>{c.setAttribute('aria-pressed','false');c.addEventListener('click',()=>{c.classList.contains('on')?closeLens():openLens(c.dataset.lens);});});
+  document.getElementById('dClose').addEventListener('click',closeLens);
+  const h=(location.hash||'').replace('#lens-','');
+  if(threadName[h]) openLens(h);
+})();
+</script>
+
+</div>
+
+<style>
+.ls-page{--acc:#6F5E95;--acc-soft:#EFE9F5;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
+.ls-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.ls-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
+.ls-crumb{padding:20px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ls-crumb a{color:inherit;text-decoration:none}
+.ls-crumb a:hover{color:var(--ink)}
+.ls-crumb .sep{color:var(--rule-strong)}
+.ls-crumb .here{color:var(--ink-mute)}
+.eyebrow-strip{display:flex;align-items:center;gap:14px;padding:22px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.eyebrow-strip .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex:0 0 6px}
+.page-head{padding:22px 0 44px;display:grid;grid-template-columns:88px 1fr;gap:32px;align-items:start;border-bottom:1px solid var(--rule)}
+@media (max-width:720px){.page-head{grid-template-columns:1fr;gap:18px;padding:22px 0 30px}}
+.sigil-lg{width:88px;height:88px;border:1px solid var(--rule-strong);background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sigil-lg svg{width:48px;height:48px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.page-head h1{font-family:var(--font-display);font-weight:300;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 6px;color:var(--ink)}
+.page-head .sub{font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--ink-mute);margin:0}
+.reading{max-width:var(--read-wide);margin:0 auto;padding:40px 0 8px}
+.measure{max-width:var(--measure);margin-left:auto;margin-right:auto}
+.lede{max-width:var(--measure);margin:0 auto 22px;font-family:var(--font-display);font-size:20px;line-height:1.55;color:var(--ink)}
+.reading p.measure{font-size:17.5px;line-height:1.65;margin:0 auto 18px;color:var(--ink-mute)}
+.reading em{font-style:italic;color:var(--ink)}
+.thread-note{max-width:var(--measure);margin:0 auto 40px;padding:16px 20px;border:1px solid var(--rule);background:var(--bg-raised);font-family:var(--font-ui);font-size:14px;line-height:1.55;color:var(--ink-mute)}
+.thread-note strong{color:var(--ink);font-weight:600}
+.lens{max-width:var(--measure);margin:0 auto;scroll-margin-top:24px;padding-top:8px}
+.thread-group{max-width:var(--measure);margin:0 auto}
+.thread-head{display:grid;grid-template-columns:72px 1fr;column-gap:22px;align-items:center;margin:76px 0 8px;padding-top:52px;border-top:2px solid var(--rule-strong)}
+.thread-group:first-of-type .thread-head{margin-top:0;padding-top:0;border-top:none}
+.thread-sig{width:72px;height:72px;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.thread-sig svg{width:44px;height:44px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.thread-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+.thread-title{font-family:var(--font-display);font-weight:400;font-size:26px;letter-spacing:-.01em;color:var(--ink);margin:0 0 6px}
+.thread-desc{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--ink-mute);margin:0;max-width:56ch}
+.thread-group .lens-head{margin-top:40px;padding-top:34px}
+.lens-head{display:grid;grid-template-columns:56px 1fr;column-gap:20px;align-items:center;margin:64px 0 4px;padding-top:44px;border-top:1px solid var(--rule)}
+.lens-sig{width:56px;height:56px;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 40%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lens-sig svg{width:32px;height:32px}
+.lens-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;display:block}
+.lens-title{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);margin:0}
+.lens-q{font-family:var(--font-display);font-style:italic;font-size:18px;line-height:1.4;color:var(--acc);margin:18px 0 20px;max-width:54ch}
+.lens-cue{font-size:16.5px;line-height:1.6;color:var(--ink-mute);margin:0 0 24px}
+.variant-row{border:1px solid var(--rule);background:var(--bg-raised);padding:16px 20px;margin-bottom:12px}
+.variant-label{font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:.04em;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.variant-label .vtag{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:2px 7px;background:var(--acc-soft)}
+audio{width:100%;display:block;height:38px}
+.text-equiv{font-family:var(--font-ui);font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin:10px 0 0}
+.variants-wrap{margin-bottom:6px}
+.guide-toggle{display:inline-flex;align-items:center;gap:9px;margin:10px 0 22px;padding:10px 16px 10px 12px;border:1px solid var(--rule-strong);background:var(--bg-sunken);font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.guide-toggle:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.guide-toggle .gdot{width:9px;height:9px;flex:0 0 9px}
+.guide-toggle .gdot::before{content:'▾';display:block;color:var(--acc);font-size:11px;line-height:1}
+.guide-toggle[aria-expanded="true"] .gdot::before{content:'▴'}
+.guide-panel{border:1px solid var(--rule);background:var(--bg-sunken);padding:0;max-height:0;opacity:0;overflow:hidden;transition:max-height 320ms ease,opacity 240ms ease,padding 320ms ease;margin-bottom:24px}
+.guide-panel.open{max-height:520px;opacity:1;padding:20px}
+.guide-panel canvas{width:100%;height:210px;display:block;background:var(--bg);border:1px solid var(--rule)}
+.guide-panel .caption{font-family:var(--font-ui);font-size:12.5px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+.event-announce{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;color:var(--acc);margin:8px 0 0;min-height:14px}
+.takeaway{max-width:56ch;margin:0 auto 8px;padding:18px 22px;border-left:3px solid var(--acc);background:var(--acc-soft)}
+.takeaway .tk-lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.takeaway p{font-family:var(--font-display);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);margin:0}
+.seek-group{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.seek-btn{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:9px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.seek-btn:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.synth{max-width:var(--measure);margin:56px auto 0;padding-top:44px;border-top:1px solid var(--rule)}
+.synth h2{font-family:var(--font-display);font-weight:300;font-style:italic;font-size:30px;color:var(--ink);margin:0 0 14px}
+.synth p{font-size:16.5px;color:var(--ink-mute);line-height:1.6;margin:0 0 16px}
+.synth textarea{width:100%;min-height:120px;font-family:var(--font-display);font-size:16px;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule);padding:14px 16px;resize:vertical}
+.synth textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
+footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:56px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
+@media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
+
+/* --- Embedded authoritative listening modules (Codex reproduction) --- */
+.realmusic{max-width:var(--measure);margin:28px auto 6px;border:1px solid var(--rule-strong);background:var(--bg-sunken)}
+.realmusic-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--bg-raised)}
+.rm-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:3px 8px;background:var(--acc-soft);white-space:nowrap}
+.rm-work{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+.rm-intro{font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-mute);margin:0;padding:14px 18px 2px}
+.rm-intro em{font-style:italic;color:var(--ink)}
+.viz-embed{padding:8px 18px 16px;font-family:var(--font-ui);--foreground:var(--ink);--background:var(--bg-sunken);--border:var(--rule);--muted:color-mix(in oklab,var(--ink) 9%,transparent);--muted-foreground:var(--ink-soft);--card:var(--bg-raised);--accent:var(--acc-soft);--secondary:var(--bg-raised);--primary:var(--acc);--primary-foreground:#fff;--viz-series-1:var(--acc);--viz-series-2:#A6693F;--viz-series-3:#4E7C6B;--viz-series-4:#9C5A7D;--viz-series-5:#5A6BA8;--viz-series-6:#3F8079;--font-size-base:14px;--font-size-small:12px;--line-height-small:16px}
+.viz-embed .sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.viz-embed .model-note{margin:10px 0 0;color:var(--muted-foreground);font-size:var(--font-size-small);line-height:var(--line-height-small)}
+.viz-embed audio{width:100%;display:block;height:38px;margin:2px 0 4px}
+.viz-embed .text-small{font-size:var(--font-size-small)}
+.viz-embed .viz-controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 6px}
+.viz-embed .btn{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg);border:1px solid var(--rule-strong);padding:8px 13px;cursor:pointer;border-radius:0;transition:background 150ms,border-color 150ms,color 150ms}
+.viz-embed .btn:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+
+/* ===== Overview map (modular disclosure) ===== */
+.map-hint{max-width:var(--measure);margin:8px auto 0;font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-soft);text-align:center}
+.overview{max-width:var(--read-wide);margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:15px 20px 15px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
+.ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
+.ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
+.ocard .othread-sig svg{width:22px;height:22px}
+.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
+</style>
