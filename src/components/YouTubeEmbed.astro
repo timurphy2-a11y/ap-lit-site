@@ -4,13 +4,18 @@ interface Props {
   title?: string;
   composer?: string;
   note?: string;
+  analysisEyebrow?: string;
+  analysis?: string;
+  analysisPrompt?: string;
+  plateFor?: string;
 }
 
-const { id, title = '', composer, note } = Astro.props;
+const { id, title = '', composer, note, analysisEyebrow, analysis, analysisPrompt, plateFor } = Astro.props;
 const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+const hasAnalysis = Boolean(analysis);
 ---
 
-<figure class="yt-embed" data-yt-id={id} data-yt-title={title}>
+<figure class="yt-embed work-figure" data-yt-id={id} data-yt-title={title} data-plate-for={plateFor}>
   <button class="yt-preview" type="button" aria-label={`Play ${title}`}>
     <img src={thumbnail} alt={title} class="yt-thumb" loading="lazy" />
     <div class="yt-play" aria-hidden="true">
@@ -19,12 +24,24 @@ const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
       </svg>
     </div>
   </button>
-  {(title || composer || note) && (
+  {(title || composer || note || hasAnalysis) && (
     <figcaption class="yt-caption">
       {title && <div class="yt-title">{title}</div>}
       {composer && <div class="yt-composer">{composer}</div>}
       {note && <div class="yt-note">{note}</div>}
+      {hasAnalysis && (
+        <button class="analyze-hot" type="button" aria-expanded="false" aria-label={`Read what to listen for in ${title}`}>
+          <span class="hot-dot" aria-hidden="true"></span><span class="hot-lbl">What to listen for</span>
+        </button>
+      )}
     </figcaption>
+  )}
+  {hasAnalysis && (
+    <div class="analysis-panel" hidden>
+      {analysisEyebrow && <div class="analysis-eyebrow">{analysisEyebrow}</div>}
+      <p>{analysis}</p>
+      {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
+    </div>
   )}
 </figure>
 
