@@ -1,0 +1,352 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StudioDiptych from '../components/StudioDiptych.astro';
+
+const PERIOD_ACCENT_VARS = [
+  'var(--acc-medieval)',
+  'var(--acc-renaissance)',
+  'var(--acc-baroque)',
+  'var(--acc-enlightenment)',
+  'var(--acc-romanticism)',
+  'var(--acc-modernism)',
+];
+
+const SURVEYS = [
+  {
+    href: '/seeing-through-paint',
+    kind: 'Visual Art',
+    title: 'Seeing Through Paint',
+    desc: 'Gold-ground to fragmentation — the full cross-period visual survey.',
+    sig: `<svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"></rect><circle class="dot" cx="20" cy="20" r="1.5"></circle></svg>`,
+  },
+  {
+    href: '/hearing-through-form',
+    kind: 'Music',
+    title: 'Hearing Through Form',
+    desc: 'Plainchant monophony to Modernist atonality, with listening for every period.',
+    sig: `<svg viewBox="0 0 40 40"><path d="M6 24 A 14 14 0 0 1 34 24"></path><circle class="dot" cx="20" cy="24" r="2"></circle><line x1="6" y1="32" x2="34" y2="32"></line></svg>`,
+  },
+  {
+    href: '/sculpting-through-time',
+    kind: 'Sculpture',
+    title: 'Sculpting Through Time',
+    desc: 'Cathedral portals to Modernist abstraction — three threads across six periods.',
+    sig: `<svg viewBox="0 0 40 40"><path d="M20 6 L 34 14 L 34 28 L 20 36 L 6 28 L 6 14 Z"></path><path d="M6 14 L 20 22 L 34 14"></path><line x1="20" y1="22" x2="20" y2="36"></line></svg>`,
+  },
+];
+
+const PERIOD_GUIDES = [
+  {
+    period: 'Modernism',
+    accentVar: 'var(--acc-modernism)',
+    name: 'Listening: Two Paths',
+    gloss: 'concert music and blues / jazz, side by side',
+    source: 'From Modernism · Music',
+    href: '/guides',
+    soon: false,
+  },
+  {
+    period: 'Modernism',
+    accentVar: 'var(--acc-modernism)',
+    name: 'Looking at Modern Art',
+    gloss: 'when the surface stops pretending to be a window',
+    source: 'From Modernism · Painting',
+    href: '/guides',
+    soon: true,
+  },
+];
+---
+
+<Layout title="Guides to Seeing & Hearing — Of Imagination All Compact">
+
+<div class="gd-band" id="gd-band" aria-hidden="true"></div>
+
+<div class="gd-page">
+
+  <div class="gd-crumb">
+    <a href="/">Home</a><span class="sep">/</span><span class="here">Guides</span>
+  </div>
+
+  <header class="gd-head">
+    <div class="gd-sig" aria-hidden="true">
+      <svg viewBox="0 0 40 40">
+        <rect x="9" y="9" width="22" height="22" transform="rotate(45 20 20)"></rect>
+        <path d="M11 25 A 9 9 0 0 1 29 25"></path>
+        <circle class="dot" cx="20" cy="25" r="1.7"></circle>
+      </svg>
+    </div>
+    <div class="gd-lbl">§ IV · Shared Resource · All Six Periods</div>
+    <h1>Guides to Seeing &amp; <em>Hearing</em></h1>
+    <p class="gd-sub">Three kinds of help, in the order you are likely to need them: how to perceive at all, what happened across nine centuries, and what one particular period demands of you.</p>
+  </header>
+
+  <!-- § I — The Studios -->
+  <div class="section-label"><span class="n">§ I</span><span>The Studios</span><span class="rule-line"></span><span>Learn once, use everywhere</span></div>
+  <p class="tier-note">Period-agnostic. These teach the vocabulary and the attention; everything else on the site assumes them.</p>
+  <StudioDiptych />
+
+  <!-- § II — Cross-Period Surveys -->
+  <div class="section-label"><span class="n">§ II</span><span>Cross-Period Surveys</span><span class="rule-line"></span></div>
+  <p class="tier-note">One thread, six periods, in order. Use these when you want the arc rather than the technique.</p>
+  <div class="gd-resgrid">
+    {SURVEYS.map((s) => (
+      <a class="gd-res" href={s.href}>
+        <div class="gd-sigil" aria-hidden="true" set:html={s.sig} />
+        <div class="kind">{s.kind}</div>
+        <h4>{s.title}</h4>
+        <p>{s.desc}</p>
+        <span class="periods" aria-hidden="true">
+          {PERIOD_ACCENT_VARS.map((v) => <span style={`--p: ${v}`}></span>)}
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <!-- § III — Period Guides -->
+  <div class="section-label"><span class="n">§ III</span><span>Period Guides</span><span class="rule-line"></span><span>One period, one problem</span></div>
+  <p class="tier-note">Built for periods that break the ordinary rules badly enough to need their own instructions. Each one is also linked from the period page it belongs to.</p>
+  <div class="gd-apps">
+    {PERIOD_GUIDES.map((g) => (
+      <a class:list={['gd-app', g.soon && 'soon']} href={g.href} style={`--c: ${g.accentVar}`}>
+        <span class="per">{g.period}</span>
+        <span class="nm">{g.name}<em>{g.gloss}</em></span>
+        <span class="from">{g.source}</span>
+      </a>
+    ))}
+  </div>
+
+  <footer class="gd-footer">
+    <div class="colophon">Of Imagination All Compact · AP Literature</div>
+    <div>Guides · studios, surveys, period guides</div>
+  </footer>
+
+</div>
+
+</Layout>
+
+<style>
+  .gd-page {
+    padding: 0 var(--gutter);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* ── Motif band (full-bleed, alternating ear-arc / eye-diamond) ─────── */
+  .gd-band {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  /* ── Breadcrumb ───────────────────────────────────────────────────── */
+  .gd-crumb {
+    padding: 20px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .gd-crumb .sep { color: var(--rule-strong); }
+  .gd-crumb .here { color: var(--ink-mute); }
+
+  /* ── Page head ────────────────────────────────────────────────────── */
+  .gd-head {
+    padding: 44px 0 52px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .gd-sig {
+    width: 86px;
+    height: 86px;
+    margin: 0 auto 26px;
+    background: #5A4126;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gd-sig svg {
+    width: 46px;
+    height: 46px;
+    stroke: #F6F1E8;
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .gd-sig svg .dot { fill: #F6F1E8; stroke: none; }
+  .gd-lbl {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .gd-head h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(34px, 5.4vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .gd-head h1 em { font-style: italic; }
+  .gd-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.62;
+    color: var(--ink-mute);
+    margin: 22px auto 0;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  /* ── Section label / tier note (shared page vocabulary) ──────────── */
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 64px 0 28px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-label .n { font-family: var(--font-mono); color: var(--ink-mute); }
+  .rule-line { flex: 1; height: 1px; background: var(--rule); }
+  .tier-note {
+    max-width: 60ch;
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    margin: -10px 0 30px;
+    text-wrap: pretty;
+  }
+
+  /* ── § II survey cards ────────────────────────────────────────────── */
+  .gd-resgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .gd-resgrid { grid-template-columns: 1fr; } }
+
+  .gd-res {
+    background: var(--bg);
+    padding: 24px 24px 26px;
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    column-gap: 18px;
+    row-gap: 4px;
+    transition: background 160ms ease;
+  }
+  .gd-res:hover { background: var(--bg-raised); }
+  .gd-res:hover .gd-sigil { border-color: var(--ink-mute); }
+  .gd-res:hover .gd-sigil :global(svg) { stroke: var(--ink); }
+
+  .gd-sigil {
+    grid-row: 1 / 4;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--rule-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-sunken);
+    transition: border-color 200ms ease;
+  }
+  .gd-sigil :global(svg) {
+    width: 32px;
+    height: 32px;
+    stroke: var(--ink-mute);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: stroke 200ms ease;
+  }
+  .gd-sigil :global(svg .dot) { fill: var(--ink-mute); stroke: none; transition: fill 200ms ease; }
+  .gd-res:hover .gd-sigil :global(svg .dot) { fill: var(--ink); }
+
+  .gd-res .kind { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); align-self: start; }
+  .gd-res h4 { font-family: var(--font-display); font-weight: 400; font-size: 20px; line-height: 1.15; margin: 2px 0 0; color: var(--ink); }
+  .gd-res p { font-family: var(--font-display); font-size: 14.5px; line-height: 1.5; color: var(--ink-mute); margin: 4px 0 0; max-width: 42ch; }
+
+  .periods { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin-top: 18px; }
+  .periods span { height: 5px; background: var(--p); }
+
+  /* ── § III period guide list ──────────────────────────────────────── */
+  .gd-apps { border: 1px solid var(--rule); border-bottom: none; }
+  .gd-app {
+    --c: var(--acc-modernism);
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 8px 26px;
+    align-items: baseline;
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+    transition: background 160ms ease;
+  }
+  .gd-app:hover { background: var(--bg-raised); }
+  @media (max-width: 760px) { .gd-app { grid-template-columns: 1fr; gap: 6px; } }
+  .gd-app .per { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c); border-left: 2px solid var(--c); padding-left: 12px; }
+  .gd-app .nm { font-family: var(--font-display); font-size: 21px; line-height: 1.2; color: var(--ink); }
+  .gd-app .nm em { font-style: italic; color: var(--ink-soft); font-size: 16px; margin-left: 10px; }
+  .gd-app .from { font-family: var(--font-ui); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+  .gd-app.soon .nm { color: var(--ink-soft); font-style: italic; }
+
+  /* ── Footer ───────────────────────────────────────────────────────── */
+  .gd-footer {
+    margin-top: 56px;
+    padding: 32px 0 60px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .gd-footer .colophon { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink-mute); letter-spacing: 0; }
+</style>
+
+<script>
+  // Alternating ear-arc / eye-diamond header band. Count must stay odd so
+  // both ends land on an arc — a repeating <pattern> can't guarantee that.
+  (function () {
+    const band = document.getElementById('gd-band');
+    if (!band) return;
+    const UNIT = 62;
+    const ARC = '<svg width="62" height="44" viewBox="0 0 62 44"><path d="M17 31 A 14 14 0 0 1 45 31" fill="none" stroke="#3D5A6D" stroke-width="1.6" stroke-linecap="round"></path><circle cx="31" cy="31" r="2.1" fill="#3D5A6D"></circle></svg>';
+    const DIA = '<svg width="62" height="44" viewBox="0 0 62 44"><rect x="24" y="20" width="14" height="14" transform="rotate(45 31 27)" fill="none" stroke="#B07028" stroke-width="1.6"></rect><circle cx="31" cy="27" r="1.5" fill="#B07028"></circle></svg>';
+    function draw() {
+      let n = Math.floor(band.clientWidth / UNIT);
+      if (n % 2 === 0) n -= 1;
+      if (n < 3) n = 3;
+      let out = '';
+      for (let i = 0; i < n; i++) out += (i % 2 === 0 ? ARC : DIA);
+      band.innerHTML = out;
+    }
+    draw();
+    window.addEventListener('resize', draw);
+  })();
+</script>

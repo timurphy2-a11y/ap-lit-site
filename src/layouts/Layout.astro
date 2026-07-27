@@ -8,6 +8,7 @@ interface Props {
 
 const { title } = Astro.props;
 const peopleJson = JSON.stringify(PEOPLE);
+const isGuides = Astro.url.pathname === '/guides' || Astro.url.pathname.startsWith('/guides/');
 ---
 
 <!doctype html>
@@ -33,9 +34,7 @@ const peopleJson = JSON.stringify(PEOPLE);
         <a href="/timeline">Timeline</a>
         <a href="/people">People</a>
         <a href="/compare">Compare</a>
-        <a href="/seeing-through-paint">Painting</a>
-        <a href="/sculpting-through-time">Sculpture</a>
-        <a href="/hearing-through-form">Music</a>
+        <a href="/guides" class:list={['guides-link', isGuides && 'on']}>Guides</a>
       </nav>
     </div>
 
@@ -212,6 +211,7 @@ const peopleJson = JSON.stringify(PEOPLE);
   }
   .nav { display: flex; gap: 24px; flex-shrink: 0; }
   .nav a:hover { color: var(--ink); transition: color 150ms ease; }
+  .nav .on { color: var(--ink); border-bottom: 2px solid var(--acc-modernism); padding-bottom: 3px; }
 
   /* ── Bio modal ───────────────────────────────────────────────────── */
   .bio-modal {
