@@ -57,7 +57,7 @@ const PERIOD_GUIDES = [
 ];
 ---
 
-<Layout title="Guides to Seeing & Hearing — Of Imagination All Compact">
+<Layout title="Guides to Seeing & Hearing — Of Imagination All Compact" hideFooter>
 
 <div class="gd-band" id="gd-band" aria-hidden="true"></div>
 
@@ -117,6 +117,7 @@ const PERIOD_GUIDES = [
 
   <footer class="gd-footer">
     <div class="colophon">Of Imagination All Compact · AP Literature</div>
+    <div><a href="/credits">Image Credits</a></div>
     <div>Guides · studios, surveys, period guides</div>
   </footer>
 
@@ -327,6 +328,8 @@ const PERIOD_GUIDES = [
     flex-wrap: wrap;
   }
   .gd-footer .colophon { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink-mute); letter-spacing: 0; }
+  .gd-footer a { color: var(--ink-soft); }
+  .gd-footer a:hover { color: var(--ink); }
 </style>
 
 <script>

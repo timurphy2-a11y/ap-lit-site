@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 ---
 
-<Layout title="Listening to Blues & Jazz — Of Imagination All Compact">
+<Layout title="Listening to Blues & Jazz — Of Imagination All Compact" hideFooter>
 
 <div class="bj-page">
 
@@ -616,6 +616,7 @@ import Layout from '../../../layouts/Layout.astro';
 
 <footer>
 <div>Of Imagination All Compact · AP Literature</div>
+<div><a href="/credits">Image Credits</a></div>
 <div>Modernism Listening / Blues &amp; Jazz</div>
 </footer>
 
@@ -904,6 +905,8 @@ audio{width:100%;display:block;height:38px}
 .exit a{display:inline-block;padding:12px 18px;border:1px solid var(--rule-strong);font-family:var(--font-ui);font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
 .exit a:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-soft)}
 footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:56px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:var(--ink-soft)}
+footer a:hover{color:var(--ink)}
 @media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
 
 

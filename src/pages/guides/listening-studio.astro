@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="The Listening Studio: Hearing Music — Of Imagination All Compact">
+<Layout title="The Listening Studio: Hearing Music — Of Imagination All Compact" hideFooter>
 
 <div class="ls-page">
 
@@ -1664,6 +1664,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <footer>
 <div class="colophon">Of Imagination All Compact · AP Literature</div>
+<div><a href="/credits">Image Credits</a></div>
 <div>The Listening Studio / Hearing Music</div>
 </footer>
 
@@ -2105,6 +2106,8 @@ audio{width:100%;display:block;height:38px}
 .synth textarea{width:100%;min-height:120px;font-family:var(--font-display);font-size:16px;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule);padding:14px 16px;resize:vertical}
 .synth textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
 footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:56px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:var(--ink-soft)}
+footer a:hover{color:var(--ink)}
 .colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
 @media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
 

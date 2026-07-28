@@ -388,6 +388,7 @@ const PEOPLE = [
     units: ["00-medieval"],
     bio: "A Florentine painter whose frescoes for the Arena (Scrovegni) Chapel in Padua, painted around 1305, broke with the gold-ground tradition his contemporaries were still refining. Giotto set his scenes in believable architecture and landscape, gave his figures the bulk and weight of bodies that occupy space, and was willing to turn a figure away from the viewer to open depth behind it. Writing more than two centuries later, Vasari credited him with reviving painting after generations of what Vasari dismissed as the Greek manner — the Renaissance passing judgment on the Middle Ages, and worth reading as a verdict rather than a neutral description. The chapel was built by Enrico Scrovegni, whose father Reginaldo is traditionally identified with the Paduan usurer Dante consigned to the seventh circle of the Inferno.",
     significance: "Giotto is the hinge the Medieval-to-Renaissance transition actually turns on, and he sits inside the Medieval unit rather than after it. The Medieval Painting page uses him in Looking Forward to correct an impression the rest of the unit could easily leave: that nobody challenged the gold ground until the 1500s. Duccio, whose Maestà is a gallery piece on that page, softens the Byzantine paradigm from within — the drapery loosens, the faces warm. Giotto abandons the paradigm outright, six years earlier. The shift the Renaissance completes is a ramp that starts in the Middle Ages, not a cliff edge between two units.",
+    portrait: "/images/portraits/portrait-giotto.jpg",
   },
   {
     id: "perotinus",
@@ -407,6 +408,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "A goldsmith by training who became the most consequential architect of the early Renaissance. In 1401 he entered the competition to design new bronze doors for the Florence Baptistery and lost to Lorenzo Ghiberti; according to his fifteenth-century biographer he left almost immediately for Rome with Donatello, where he spent years measuring the ruins of ancient buildings. Out of that surveying came linear perspective. He is said to have demonstrated it with a small painted panel of the Baptistery, viewed through a peephole against a mirror. He later engineered the dome of Florence Cathedral, which no one had known how to build.",
     significance: "Perspective was an engineer's discovery before it was a painter's tool, and naming its inventor turns the Figure & Space thread's central claim from an assertion into an event. The 1401 competition also makes the period's origin story unexpectedly human: the losing entrant takes a consolation trip to Rome and returns with the system that will organize European painting for five hundred years. Worth noting that the peephole demonstration reaches us only through Brunelleschi's biographer Manetti, writing decades after the fact.",
+    portrait: "/images/portraits/portrait-brunelleschi-filippo.jpg",
   },
   {
     id: "masaccio",
@@ -416,6 +418,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "Tommaso di Ser Giovanni, called Masaccio — roughly \"clumsy Tom,\" a nickname contemporaries seem to have meant affectionately, about a young man indifferent to everything except painting. Born in 1401, dead before he was twenty-seven. In that short career he painted the Brancacci Chapel frescoes and the Holy Trinity at Santa Maria Novella (c. 1427), the first painting known to use systematic linear perspective. Contemporary accounts describe the effect as something close to magic: depth where there had only been a flat wall.",
     significance: "Masaccio is where Brunelleschi's geometry becomes a painter's instrument. In the Trinity, perspective is not a setting for the subject but the subject itself — the construction converges in the body of the crucified Christ, so the mathematics and the theology arrive at the same point. Every painting on the Renaissance page postdates him by seventy years or more. He is the moment at which the thing those paintings take for granted was invented.",
+    portrait: "/images/portraits/portrait-masaccio.jpg",
   },
   {
     id: "leonardo",
@@ -455,6 +458,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "Born in Augsburg and trained by his father, Holbein established himself in Basel until the Reformation there collapsed the market for religious painting. He left for England in 1526 carrying a letter of introduction from Erasmus to Thomas More, returned in 1532, and became painter to the court of Henry VIII — which is why the Tudor monarchy still looks, to us, the way Holbein saw it. He died in London in 1543, probably of plague.",
     significance: "The Ambassadors (1533) carries the Brushwork & Surface thread for Unit 01 and is the only Northern work on the Renaissance painting page. It makes two arguments at once: an oil technique so precise that silk, fur, wood, and metal are each individually convincing, and an anamorphic skull that the same technique refuses to make legible from the position the picture assigns its viewer. Holbein painted it in the hinge year of the English Reformation, which makes him the page's one direct connection to the second half of the unit's title.",
+    portrait: "/images/portraits/portrait-holbein-hans.jpg",
   },
   {
     id: "vasari",
@@ -464,6 +468,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "Painter, architect, and the first art historian. His Lives of the Most Excellent Painters, Sculptors, and Architects (1550, expanded 1568) invented the artist biography as a genre and supplied most of the anecdotes still repeated about Renaissance artists five centuries later. He designed the Uffizi. Working in Florence under Medici patronage, he wrote a history in which art declines with Rome, sleeps through the Middle Ages, and is reborn — rinascita — in Tuscany.",
     significance: "Vasari is the source of much of what this site reports and also the source of several things it corrects. The word \"Renaissance\" is his. So is \"Gothic\" as an insult, and so is the marble-and-Florence-centred account of sculpture that writes the terracotta tradition out. He recurs across units, which makes him useful for the source-criticism thread: students can watch a single sixteenth-century writer shape what the twenty-first century assumes it already knows.",
+    portrait: "/images/portraits/portrait-vasari-giorgio.jpg",
   },
   {
     id: "josquin",
@@ -766,6 +771,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "The Florentine goldsmith who won the 1401 Baptistery-doors competition against Brunelleschi, and then spent most of the next fifty years on the commission. The first set of doors took twenty-one years. The second, begun in 1425, took twenty-seven more and is traditionally said to have been called the Gates of Paradise by Michelangelo. Ghiberti also wrote the Commentarii, among the earliest autobiographies by a European artist.",
     significance: "Ghiberti is the other half of the 1401 competition — the man who won, and whose victory is what sent Brunelleschi to Rome. He also belongs to the Material & Making thread on his own terms: a craftsman who wrote his own life at a moment when most sculptors left no record at all, seventy years before Michelangelo signed the Pietà. The named maker does not begin with Michelangelo; it begins with men like this one.",
+    portrait: "/images/portraits/portrait-ghiberti-lorenzo.jpg",
   },
   {
     id: "della-robbia",
@@ -775,6 +781,7 @@ const PEOPLE = [
     units: ["01-renaissance"],
     bio: "A Florentine sculptor of Donatello's generation. His marble Cantoria — the singing gallery carved for Florence Cathedral in the 1430s — is canonical early Renaissance relief. He is better remembered for what he did next: developing a tin-glazed terracotta that held its colour permanently, and founding a family workshop that supplied glazed reliefs to churches, hospitals, and civic buildings in Tuscany for three generations.",
     significance: "Della Robbia is the evidence that Renaissance sculpture was not only marble and bronze. Glazed terracotta was prestigious in its own moment — cathedral and guild commissions, not ornament — and was filed under \"decorative\" only later. That reclassification is exactly the Vasari-inherited bias the Material & Making thread risks reproducing. Naming him lets the thread state the accurate three-part case: marble, bronze, and glazed terracotta.",
+    portrait: "/images/portraits/portrait-della-robbia-luca.jpg",
   },
   {
     id: "donatello",

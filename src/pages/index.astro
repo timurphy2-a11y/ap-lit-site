@@ -17,7 +17,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 };
 ---
 
-<Layout title="Of Imagination All Compact — AP Literature">
+<Layout title="Of Imagination All Compact — AP Literature" hideFooter>
 
 <div class="page">
 
@@ -228,6 +228,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   <!-- ── Footer ────────────────────────────────────────────────────── -->
   <footer class="pg-footer">
     <div class="colophon">Of Imagination All Compact · AP Literature</div>
+    <div><a href="/credits">Image Credits</a></div>
     <div>A course site in six units</div>
   </footer>
 
@@ -574,6 +575,8 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     justify-content: space-between;
     align-items: baseline;
   }
+  .pg-footer a { color: var(--ink-soft); }
+  .pg-footer a:hover { color: var(--ink); }
   .pg-footer .colophon {
     font-family: var(--font-display);
     font-style: italic;

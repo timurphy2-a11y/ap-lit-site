@@ -3,7 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 ---
 
-<Layout title="Modernism Listening: Two Paths — Of Imagination All Compact">
+<Layout title="Modernism Listening: Two Paths — Of Imagination All Compact" hideFooter>
 
 <div class="ml-page">
 
@@ -79,6 +79,7 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 
 <footer>
   <div>Of Imagination All Compact · AP Literature</div>
+  <div><a href="/credits">Image Credits</a></div>
   <div>Shared Resource / Modernism Listening</div>
 </footer>
 
@@ -144,4 +145,6 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 .design-notes p{font-family:var(--font-ui);font-size:13.5px;line-height:1.6;color:var(--ink-mute)}
 
 footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:56px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:var(--ink-soft)}
+footer a:hover{color:var(--ink)}
 </style>
