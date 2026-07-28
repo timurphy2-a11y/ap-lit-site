@@ -84,6 +84,7 @@ const units = defineCollection({
       date: z.union([z.number(), z.string()]),
       threads: z.array(z.string()),
       image: z.string().optional(),
+      alt: z.string().optional(),
       analysisEyebrow: z.string().optional(),
       analysis: z.string().optional(),
       analysisPrompt: z.string().optional(),

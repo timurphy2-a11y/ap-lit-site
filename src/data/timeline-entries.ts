@@ -81,6 +81,8 @@ export const ENTRIES: TimelineEntry[] = [
     note: 'Telescopic observations of Jupiter\'s moons and Venus\'s phases supply the first direct evidence for the Copernican model.' },
 
   // ── 02 · Baroque ──────────────────────────────────────────────────────────
+  { year: 1563, unit: '02', type: 'POL',   title: 'Council of Trent concludes',
+    note: 'The Catholic Church\'s response to the Reformation mandates that religious art move viewers emotionally and instruct the unlettered directly — the doctrinal root of Baroque drama, light, and theatrical staging.' },
   { year: 1610, unit: '02', type: 'paint', title: 'Caravaggio dies',
     note: 'Tenebrism passes from his hand into the European Baroque mainstream.' },
   { year: 1618, unit: '02', type: 'POL',   title: 'Thirty Years\' War begins',

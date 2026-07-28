@@ -631,6 +631,15 @@ const PEOPLE = [
     portrait: "/images/portraits/portrait-caravaggio.jpg",
   },
   {
+    id: "artemisia",
+    name: "Artemisia Gentileschi",
+    dates: "1593–1656",
+    field: "Painter",
+    units: ["02-baroque"],
+    bio: "Trained in her father Orazio's Roman workshop, Gentileschi became the first woman admitted to Florence's Accademia del Disegno and built an international career that took her from Rome to Florence, Venice, and eventually London, painting for the Medici, the Barberini, and other major patrons. She specialized in scenes of biblical and mythological women — Judith, Susanna, Cleopatra — rendered with a physical directness rare among her contemporaries. Her Judith Slaying Holofernes, of which she painted at least two versions, is now considered one of the defining images of Italian Baroque painting.",
+    significance: "Gentileschi absorbed Caravaggio's tenebrism directly — the same extreme contrasts of light and dark, the same refusal to soften violence with decorum — and turned it on female protagonists who act rather than merely appear. Where much Baroque painting stages women as objects to be looked at, her Judith is the one gripping the sword. She extends the period's larger argument that ordinary bodies, seen in extremity, can carry the weight of sacred and heroic subjects.",
+  },
+  {
     id: "rembrandt",
     name: "Rembrandt van Rijn",
     dates: "1606–1669",
@@ -639,6 +648,15 @@ const PEOPLE = [
     bio: "The greatest Dutch painter of the Golden Age, Rembrandt produced over 300 paintings, 300 etchings, and 2,000 drawings across a career that traced a remarkable arc from early fame and prosperity to financial ruin and personal loss. His late self-portraits — among the most psychologically penetrating works in the history of art — were painted after his bankruptcy, the death of his wife, and the death of his son.",
     significance: "Rembrandt's use of light — not Caravaggio's theatrical spotlight but a warmer, more diffused illumination that seems to come from within the figure — creates an effect of extraordinary psychological depth. His late work embodies Pascal's insight that human dignity consists precisely in consciousness of one's own fragility.",
     portrait: "/images/portraits/portrait-rembrandt.jpg",
+  },
+  {
+    id: "vermeer",
+    name: "Johannes Vermeer",
+    dates: "1632–1675",
+    field: "Painter",
+    units: ["02-baroque"],
+    bio: "A Delft painter who worked slowly and left fewer than forty known paintings, Vermeer supported his large family partly through his father's inn and art-dealing business while producing a small body of interior scenes prized for their luminous, almost photographic clarity. He rarely left Delft, and his reputation was largely forgotten for two centuries until 19th-century critics rediscovered him.",
+    significance: "Vermeer represents the Baroque's other pole from Caravaggio and Rembrandt: rather than thick impasto or theatrical shadow, he builds surfaces of near-invisible, glassy smoothness, using light not to dramatize but to describe — the exact fall of daylight across a wall, a sleeve, a face. His quiet Protestant interiors are the visual counterpart to the period's Southern Catholic theatricality, proof that Baroque light could serve contemplation as easily as spectacle.",
   },
   {
     id: "turner",

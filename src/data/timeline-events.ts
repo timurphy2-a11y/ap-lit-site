@@ -21,11 +21,11 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1633, title: "Galileo's trial", type: 'cultural' },
   ],
   '02-baroque': [
+    { year: 1563, title: 'Council of Trent concludes', type: 'political' },
     { year: 1642, title: 'English Civil War begins', type: 'political' },
     { year: 1649, title: 'Execution of Charles I', type: 'political' },
     { year: 1651, title: 'Hobbes publishes Leviathan', type: 'cultural' },
     { year: 1687, title: "Newton's Principia", type: 'cultural' },
-    { year: 1689, title: "Locke's Two Treatises of Government", type: 'cultural' },
   ],
   '03-enlightenment': [
     { year: 1762, title: "Rousseau's Social Contract", type: 'cultural' },
