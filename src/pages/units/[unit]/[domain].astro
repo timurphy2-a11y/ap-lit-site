@@ -241,7 +241,7 @@ if (isRedesignedDomain) {
 <section class="unit-strip">
   <div class="num">{unitNumber}</div>
   <div class="title-block">
-    <div class="meta">Unit · {meta.core_text ? 'Anchor text' : 'Foundation'}</div>
+    <div class="meta">Unit · {meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
     <h2>{meta.period}</h2>
   </div>
   <div class="dates">{meta.dates}</div>
@@ -438,6 +438,7 @@ if (isRedesignedDomain) {
             artist={item.artist}
             date={item.date}
             image={item.image}
+            alt={item.alt}
             analysisEyebrow={item.analysisEyebrow}
             analysis={item.analysis}
             analysisPrompt={item.analysisPrompt}

@@ -4,6 +4,7 @@ interface Props {
   artist: string;
   date: string | number;
   image?: string;
+  alt?: string;
   medium?: string;
   location?: string;
   analysisEyebrow?: string;
@@ -13,7 +14,7 @@ interface Props {
   [key: string]: unknown; // absorb extra frontmatter fields (e.g. threads)
 }
 
-const { title, artist, date, image, medium, location, analysisEyebrow, analysis, analysisPrompt, plateFor } = Astro.props;
+const { title, artist, date, image, alt, medium, location, analysisEyebrow, analysis, analysisPrompt, plateFor } = Astro.props;
 
 const metaParts = [date, medium, location].filter(Boolean);
 const metaText = metaParts.join('\n');
@@ -22,7 +23,7 @@ const hasAnalysis = Boolean(analysis);
 
 <figure class="plate work-figure" data-plate-for={plateFor}>
   <div class="img">
-    {image && <img src={image} alt={title} loading="lazy" />}
+    {image && <img src={image} alt={alt || title} loading="lazy" />}
     <div class="stamp">{artist}</div>
   </div>
   <figcaption class="caption">

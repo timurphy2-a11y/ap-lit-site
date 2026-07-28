@@ -42,12 +42,16 @@ export const ENTRIES: TimelineEntry[] = [
     note: 'Bubonic plague kills roughly a third of Europe\'s population within four years, destabilizing medieval institutions and reshaping cultural life.' },
   { year: 1365, unit: '00', type: 'music', title: 'Machaut: Messe de Nostre Dame',
     note: 'The first complete polyphonic Mass attributable to a single composer — the Ars Nova\'s most ambitious sacred achievement.' },
+  { year: 1378, unit: '00', type: 'POL',   title: 'The Great Schism divides the papacy',
+    note: 'Rival popes in Rome and Avignon each claim supreme authority — institutional Christianity\'s credibility fractures from within, decades before the Reformation makes the break permanent.' },
   { year: 1387, unit: '00', type: 'phil',  title: 'Chaucer begins the Canterbury Tales',
     note: 'A cross-section of medieval English society gathered under a single storytelling frame — the vernacular voice claiming the range of Latin literature.' },
   { year: 1395, unit: '00', type: 'paint', title: 'Wilton Diptych',
     note: 'Jewel-like Gothic panel painting commissioned for Richard II; devotional imagery at the threshold of the medieval-modern divide.' },
 
   // ── 01 · Renaissance & Reformation ────────────────────────────────────────
+  { year: 1440, unit: '01', type: 'POL',   title: 'Gutenberg develops the printing press',
+    note: 'Movable type makes cheap, reproducible text possible for the first time — the technology that breaks the Church\'s control over the flow of ideas and makes the Reformation\'s rapid spread possible.' },
   { year: 1501, unit: '01', type: 'music', title: 'Petrucci prints Harmonice Musices Odhecaton A',
     note: 'The first polyphonic music book set in movable type circulates Renaissance vocal technique across Europe.' },
   { year: 1503, unit: '01', type: 'paint', title: 'Leonardo begins the Mona Lisa',
