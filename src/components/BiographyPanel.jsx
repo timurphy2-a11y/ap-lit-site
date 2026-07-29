@@ -878,7 +878,7 @@ const PEOPLE = [
     field: "General & Statesman",
     units: ["03-enlightenment"],
     bio: "Commander of the Continental Army during the American Revolution and the first President of the United States, Washington was, by his own choice, the new republic's central proof that political power could be relinquished as well as won — he declined a third term and returned to private life at Mount Vernon. Jefferson arranged for Houdon to travel to Mount Vernon in 1785 to model his likeness directly from life.",
-    significance: "Houdon's standing marble figure of Washington, commissioned for the Virginia State Capitol, keeps him in his actual Continental Army uniform rather than the Roman toga convention expected of civic statues — but sets a plow and a bundle of ceremonial rods behind him, sword hung on the plowshare, arguing visually that the American Revolution's general was also its Cincinnatus, a citizen who set down power voluntarily. It is the Enlightenment's Body & Volume and Space & Setting arguments fused into a single civic monument.",
+    significance: "Houdon's standing marble figure of Washington, commissioned for the Virginia State Capitol, keeps him in his actual Continental Army uniform rather than the Roman toga convention expected of civic statues — but sets a bundle of ceremonial rods (fasces) under his arm, cloak and sword slung across it, with a plow standing behind him, arguing visually that the American Revolution's general was also its Cincinnatus, a citizen who set down power voluntarily. It is the Enlightenment's Body & Volume and Space & Setting arguments fused into a single civic monument.",
     portrait: "/images/portraits/portrait-washington-george.jpg",
   },
   {
