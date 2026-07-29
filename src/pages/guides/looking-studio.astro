@@ -165,7 +165,7 @@ import Layout from '../../layouts/Layout.astro';
 <div class="ra-body">
 <p class="look"><strong>Look first.</strong> Move your eye from the forehead and cheeks to the coat and surrounding field. Where do you mainly see a person, and where do you also notice the paint itself?</p>
 <div class="guide-unit"><div class="scene natural" data-hist style="background:#282019" role="img" aria-label="Rembrandt's 1659 Self-Portrait: the face is more brightly modeled and visibly worked than the dark coat and surrounding field."><img loading="lazy" decoding="async" src="/assets/looking-studio/v2/hist-rembrandt.jpg" alt="" /><svg class="gsvg" viewBox="0 0 3090 4000" aria-hidden="true"><path class="guide-shape" d="M1090 765 C1320 635 1755 642 2030 830 L1970 1775 C1748 1920 1330 1895 1115 1715 Z"/><path class="guide-line" d="M1305 1040 C1445 990 1605 995 1745 1050"/><path class="guide-line" d="M1510 1285 C1600 1335 1690 1418 1745 1518"/><path class="guide-line" d="M2440 1240 C2510 1320 2560 1410 2595 1510"/><circle class="marker" cx="1515" cy="1035" r="88"/><text class="marker-text" x="1515" y="1035" style="font-size:96px">1</text><circle class="marker" cx="1640" cy="1400" r="88"/><text class="marker-text" x="1640" y="1400" style="font-size:96px">2</text><circle class="marker" cx="2530" cy="1390" r="88"/><text class="marker-text" x="2530" y="1390" style="font-size:96px">3</text></svg></div>
-<figure class="details" style="display:grid;margin-top:14px" hidden><figcaption class="detail-label">A closer look at the face</figcaption><div class="detail-crop" style="aspect-ratio:2.4"><img loading="lazy" decoding="async" src="/assets/looking-studio/v2/hist-rembrandt.jpg" alt="Close view of Rembrandt's forehead, eyes, and cheek." style="width:260%;max-width:none;object-position:38% 20%" /></div></figure>
+<figure class="details" style="display:grid;margin-top:14px" hidden><figcaption class="detail-label">A closer look at the face</figcaption><div class="detail-crop" style="aspect-ratio:1.1132" data-crop-w="757" data-crop-h="680"><img loading="lazy" decoding="async" src="/assets/looking-studio/v2/hist-rembrandt.jpg" alt="Close view of Rembrandt's forehead, eyes, and cheek." style="position:absolute;left:-67.37%;top:-23.53%;right:auto;bottom:auto;width:204.1%;height:294.12%;max-width:none;object-fit:fill" /></div></figure>
 <div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
 <div class="caption" hidden><span class="cap-label">Look again at this selected view</span><p>At <strong>1</strong>, short light-and-dark marks stay distinct across the forehead. At <strong>2</strong>, a dense cluster near the nose and cheek makes it hard to ignore the paint as paint. At <strong>3</strong>, the surrounding field reads as quieter handling, letting the head advance. National Gallery of Art conservation research documents richly impasted facial highlights against thinly painted background and hands.</p></div>
 </div>
@@ -516,35 +516,30 @@ import Layout from '../../layouts/Layout.astro';
  const R=document.body;
  const lb=document.getElementById('lightbox'),lbContent=document.getElementById('lightboxContent'),lbClose=document.getElementById('lightboxClose');
  function closeLightbox(){lb.hidden=true;lbContent.innerHTML=''}
- function revealWhenLoaded(imgs){
-  const pending=imgs.filter(im=>!im.complete);
-  if(pending.length===0){lb.hidden=false;return}
-  let remaining=pending.length;
-  const done=()=>{remaining--;if(remaining<=0)lb.hidden=false};
-  pending.forEach(im=>{im.addEventListener('load',done,{once:true});im.addEventListener('error',done,{once:true})});
+ function parseRatio(str){
+  if(!str)return 0;
+  const parts=str.split('/').map(s=>parseFloat(s));
+  if(parts.length===2&&parts[1])return parts[0]/parts[1];
+  if(parts.length===1&&parts[0])return parts[0];
+  return 0;
  }
- function openLightboxImg(src,alt){
-  const img=document.createElement('img');img.loading='eager';img.src=src;img.alt=alt||'';
-  lbContent.innerHTML='';lbContent.appendChild(img);
-  revealWhenLoaded([img]);
- }
- function sizeAndRevealScene(scene,clone,clonedImgs){
-  const ar=scene.style.aspectRatio;
-  let w=0,h=0;
-  if(ar){const parts=ar.split('/').map(s=>parseFloat(s));if(parts.length===2&&parts[1]){w=parts[0];h=parts[1]}}
-  if(!(w&&h)){
-   const primary=clonedImgs[0];
-   if(primary&&primary.naturalWidth&&primary.naturalHeight){w=primary.naturalWidth;h=primary.naturalHeight}
-  }
-  const vw=window.innerWidth*0.92,vh=window.innerHeight*0.88;
-  if(w&&h){
-   let W=vw,H=vw*h/w;
-   if(H>vh){H=vh;W=vh*w/h}
+ function fitBox(clone,ratio,maxW,maxH){
+  const vw=Math.min(window.innerWidth*0.92,maxW||Infinity),vh=Math.min(window.innerHeight*0.88,maxH||Infinity);
+  clone.style.maxWidth='none';clone.style.maxHeight='none';
+  if(ratio){
+   let W=vw,H=vw/ratio;
+   if(H>vh){H=vh;W=vh*ratio}
    clone.style.width=W+'px';clone.style.height=H+'px';
   } else {
    clone.style.maxWidth=vw+'px';clone.style.maxHeight=vh+'px';clone.style.width='auto';clone.style.height='auto';
   }
-  lb.hidden=false;
+ }
+ function revealAfter(imgs,cb){
+  const pending=imgs.filter(im=>!im.complete);
+  if(pending.length===0){cb();return}
+  let remaining=pending.length;
+  const done=()=>{remaining--;if(remaining<=0)cb()};
+  pending.forEach(im=>{im.addEventListener('load',done,{once:true});im.addEventListener('error',done,{once:true})});
  }
  function openLightboxScene(scene){
   const clone=scene.cloneNode(true);
@@ -553,11 +548,27 @@ import Layout from '../../layouts/Layout.astro';
   clonedImgs.forEach(im=>{im.loading='eager'});
   clone.style.margin='0';
   lbContent.innerHTML='';lbContent.appendChild(clone);
-  const pending=clonedImgs.filter(im=>!im.complete);
-  if(pending.length===0){sizeAndRevealScene(scene,clone,clonedImgs);return}
-  let remaining=pending.length;
-  const done=()=>{remaining--;if(remaining<=0)sizeAndRevealScene(scene,clone,clonedImgs)};
-  pending.forEach(im=>{im.addEventListener('load',done,{once:true});im.addEventListener('error',done,{once:true})});
+  revealAfter(clonedImgs,()=>{
+   let ratio=parseRatio(scene.style.aspectRatio);
+   if(!ratio){
+    const primary=clonedImgs[0];
+    if(primary&&primary.naturalWidth&&primary.naturalHeight)ratio=primary.naturalWidth/primary.naturalHeight;
+   }
+   fitBox(clone,ratio);
+   lb.hidden=false;
+  });
+ }
+ function openLightboxCrop(crop){
+  const clone=crop.cloneNode(true);
+  const img=clone.querySelector('img');
+  img.loading='eager';
+  clone.style.margin='0';
+  lbContent.innerHTML='';lbContent.appendChild(clone);
+  revealAfter([img],()=>{
+   const maxW=parseFloat(crop.dataset.cropW)||0,maxH=parseFloat(crop.dataset.cropH)||0;
+   fitBox(clone,parseRatio(crop.style.aspectRatio)||1.5,maxW,maxH);
+   lb.hidden=false;
+  });
  }
  R.querySelectorAll('#lens-detail .scene').forEach(scene=>{
   scene.style.cursor='zoom-in';
@@ -565,11 +576,7 @@ import Layout from '../../layouts/Layout.astro';
  });
  R.querySelectorAll('#lens-detail .detail-crop').forEach(crop=>{
   crop.style.cursor='zoom-in';
-  crop.addEventListener('click',e=>{
-   e.stopPropagation();
-   const img=crop.querySelector('img');
-   if(img)openLightboxImg(img.currentSrc||img.src,img.alt);
-  });
+  crop.addEventListener('click',e=>{e.stopPropagation();openLightboxCrop(crop)});
  });
  lb.addEventListener('click',closeLightbox);
  lbClose.addEventListener('click',e=>{e.stopPropagation();closeLightbox()});
@@ -772,8 +779,7 @@ footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:64px;font
 #lens-detail .scene img,#lens-detail .detail-crop img{cursor:zoom-in}
 .lightbox{position:fixed;inset:0;background:rgba(18,15,11,.94);display:flex;align-items:center;justify-content:center;z-index:999;padding:44px;cursor:zoom-out}
 .lightbox[hidden]{display:none}
-.lightbox img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 24px 70px rgba(0,0,0,.55)}
-.lightbox .scene{box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lightbox .scene,.lightbox .detail-crop{box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .orange-fixed{pointer-events:none}
 .lightbox-close{position:absolute;top:18px;right:22px;width:40px;height:40px;border:1px solid rgba(244,237,223,.5);background:rgba(0,0,0,.3);color:#F4EDDF;font-size:22px;line-height:1;cursor:pointer;font-family:var(--font-ui)}
 .lightbox-close:hover{background:rgba(0,0,0,.55)}
