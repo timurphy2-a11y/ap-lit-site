@@ -516,13 +516,23 @@ import Layout from '../../layouts/Layout.astro';
  const R=document.body;
  const lb=document.getElementById('lightbox'),lbContent=document.getElementById('lightboxContent'),lbClose=document.getElementById('lightboxClose');
  function closeLightbox(){lb.hidden=true;lbContent.innerHTML=''}
+ function revealWhenLoaded(imgs){
+  const pending=imgs.filter(im=>!im.complete);
+  if(pending.length===0){lb.hidden=false;return}
+  let remaining=pending.length;
+  const done=()=>{remaining--;if(remaining<=0)lb.hidden=false};
+  pending.forEach(im=>{im.addEventListener('load',done,{once:true});im.addEventListener('error',done,{once:true})});
+ }
  function openLightboxImg(src,alt){
-  const img=document.createElement('img');img.src=src;img.alt=alt||'';
-  lbContent.innerHTML='';lbContent.appendChild(img);lb.hidden=false;
+  const img=document.createElement('img');img.loading='eager';img.src=src;img.alt=alt||'';
+  lbContent.innerHTML='';lbContent.appendChild(img);
+  revealWhenLoaded([img]);
  }
  function openLightboxScene(scene){
   const clone=scene.cloneNode(true);
   clone.querySelectorAll('.gsvg').forEach(g=>g.remove());
+  const clonedImgs=[...clone.querySelectorAll('img')];
+  clonedImgs.forEach(im=>{im.loading='eager'});
   const ar=scene.style.aspectRatio;
   let w=0,h=0;
   if(ar){const parts=ar.split('/').map(s=>parseFloat(s));if(parts.length===2&&parts[1]){w=parts[0];h=parts[1]}}
@@ -535,7 +545,8 @@ import Layout from '../../layouts/Layout.astro';
    clone.style.maxWidth=vw+'px';clone.style.maxHeight=vh+'px';clone.style.width='auto';clone.style.height='auto';
   }
   clone.style.margin='0';
-  lbContent.innerHTML='';lbContent.appendChild(clone);lb.hidden=false;
+  lbContent.innerHTML='';lbContent.appendChild(clone);
+  revealWhenLoaded(clonedImgs);
  }
  R.querySelectorAll('#lens-detail .scene').forEach(scene=>{
   scene.style.cursor='zoom-in';
