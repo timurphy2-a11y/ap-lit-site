@@ -461,7 +461,7 @@ if (isRedesignedDomain) {
     </span>
 
     <!-- ── Sidebar ── -->
-    <aside>
+    <aside class="page-sidebar">
 
       <!-- Analytical Threads -->
       <div class="card">
@@ -1841,7 +1841,7 @@ if (isRedesignedDomain) {
   }
 
   /* ── Sidebar ── */
-  aside {
+  aside.page-sidebar {
     position: sticky;
     top: 24px;
     align-self: start;
@@ -1849,7 +1849,7 @@ if (isRedesignedDomain) {
     flex-direction: column;
     gap: 24px;
   }
-  @media (max-width: 1100px) { aside { position: static; } }
+  @media (max-width: 1100px) { aside.page-sidebar { position: static; } }
 
   .card {
     border: 1px solid var(--rule);
