@@ -126,6 +126,8 @@ export const ENTRIES: TimelineEntry[] = [
     note: 'Eight serial paintings dissect the moral machinery of 18th-century London — social satire as a new form of pictorial argument.' },
   { year: 1741, unit: '03', type: 'music', title: 'Handel composes Messiah',
     note: 'Handel\'s oratorio becomes the most-performed choral work in the Western tradition; its architecture of aria, chorus, and recitative reshapes the English oratorio.' },
+  { year: 1748, unit: '03', type: 'phil',  title: 'Excavations begin at Pompeii',
+    note: 'Systematic digging at the Roman city buried by Vesuvius puts classical antiquity\'s material culture in front of European eyes for the first time, giving Neoclassicism\'s turn to Greece and Rome an archaeological foundation.' },
   { year: 1751, unit: '03', type: 'phil',  title: 'Diderot\'s Encyclopédie begins publication',
     note: 'The great Enlightenment project to systematize human knowledge — and make it accessible, secular, and critical of established authority — launches its first volume.' },
   { year: 1755, unit: '03', type: 'POL',   title: 'Lisbon earthquake',

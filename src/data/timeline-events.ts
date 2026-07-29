@@ -28,11 +28,11 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1689, title: "Locke's Two Treatises of Government", type: 'cultural' },
   ],
   '03-enlightenment': [
+    { year: 1748, title: 'Excavations begin at Pompeii', type: 'cultural' },
     { year: 1762, title: "Rousseau's Social Contract", type: 'cultural' },
     { year: 1776, title: 'American Declaration of Independence', type: 'political' },
     { year: 1789, title: 'French Revolution begins', type: 'political' },
     { year: 1793, title: 'Reign of Terror', type: 'political' },
-    { year: 1805, title: 'Battle of Trafalgar', type: 'political' },
   ],
   '04-romanticism': [
     { year: 1848, title: 'European Revolutions', type: 'political' },
@@ -112,6 +112,7 @@ export const EVENTS: TimelineEvent[] = [
   { year: 1710, title: "Statute of Anne", type: "cultural", era: "enlightenment", desc: "The first modern copyright law, reflecting the emergence of authorship as a legally recognized form of intellectual property." },
 
   // Revolution & Romanticism (Enlightenment unit)
+  { year: 1748, title: "Excavations begin at Pompeii", type: "cultural", era: "revolution", desc: "Systematic digging at the Roman city buried by Vesuvius puts classical antiquity's material culture in front of European eyes for the first time, giving Neoclassicism's turn to Greece and Rome an archaeological foundation." },
   { year: 1751, title: "Diderot's Encyclopédie begins", type: "cultural", era: "revolution", desc: "The great Enlightenment project to systematize all human knowledge, challenging the Church's monopoly on intellectual authority." },
   { year: 1755, title: "Lisbon earthquake", type: "political", era: "revolution", desc: "The catastrophic earthquake kills tens of thousands and shakes Enlightenment optimism — Voltaire's Candide is partly a response." },
   { year: 1762, title: "Rousseau's Social Contract", type: "cultural", era: "revolution", desc: "Rousseau argues that legitimate political authority rests on a social contract among citizens, not divine right — a philosophical bombshell." },
