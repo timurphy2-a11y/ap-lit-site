@@ -37,6 +37,9 @@ const units = defineCollection({
         duration: z.string(),
         listen_for: z.string(),
         youtube_id: z.string().optional(),
+        analysisEyebrow: z.string().optional(),
+        analysis: z.string().optional(),
+        analysisPrompt: z.string().optional(),
       }),
       z.array(z.object({
         title: z.string(),
@@ -45,6 +48,9 @@ const units = defineCollection({
         duration: z.string(),
         listen_for: z.string(),
         youtube_id: z.string().optional(),
+        analysisEyebrow: z.string().optional(),
+        analysis: z.string().optional(),
+        analysisPrompt: z.string().optional(),
       })),
     ]).optional(),
     gallery_listening: z.array(z.object({
@@ -54,6 +60,9 @@ const units = defineCollection({
       duration: z.string(),
       threads: z.array(z.string()),
       youtube_id: z.string().optional(),
+      analysisEyebrow: z.string().optional(),
+      analysis: z.string().optional(),
+      analysisPrompt: z.string().optional(),
     })).optional(),
 
     // Art
@@ -65,6 +74,9 @@ const units = defineCollection({
       dimensions: z.string().optional(),
       location: z.string().optional(),
       image: z.string().optional(),
+      analysisEyebrow: z.string().optional(),
+      analysis: z.string().optional(),
+      analysisPrompt: z.string().optional(),
     }).optional(),
     gallery_paintings: z.array(z.object({
       title: z.string(),
@@ -72,6 +84,10 @@ const units = defineCollection({
       date: z.union([z.number(), z.string()]),
       threads: z.array(z.string()),
       image: z.string().optional(),
+      alt: z.string().optional(),
+      analysisEyebrow: z.string().optional(),
+      analysis: z.string().optional(),
+      analysisPrompt: z.string().optional(),
     })).optional(),
 
     // Sculpture
@@ -83,6 +99,9 @@ const units = defineCollection({
       dimensions: z.string().optional(),
       location: z.string().optional(),
       image: z.string().optional(),
+      analysisEyebrow: z.string().optional(),
+      analysis: z.string().optional(),
+      analysisPrompt: z.string().optional(),
     }).optional(),
     gallery_sculptures: z.array(z.object({
       title: z.string(),
@@ -90,6 +109,10 @@ const units = defineCollection({
       date: z.union([z.number(), z.string()]),
       threads: z.array(z.string()),
       image: z.string().optional(),
+      alt: z.string().optional(),
+      analysisEyebrow: z.string().optional(),
+      analysis: z.string().optional(),
+      analysisPrompt: z.string().optional(),
     })).optional(),
 
     // Navigation

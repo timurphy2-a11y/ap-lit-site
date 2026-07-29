@@ -23,6 +23,9 @@ featured_listening:
   duration: "7 minutes"
   listen_for: "The famous four-note opening (da-da-da-DUM) is Classical sonata form being pushed to its limits by Romantic emotional force. Listen for how those four notes are developed, transformed, and built into a movement of enormous power — a single idea pursued with obsessive intensity."
   youtube_id: "7eOaIiHB58U"
+  analysisEyebrow: "Listen for · Four notes, pursued obsessively"
+  analysis: "The famous four-note opening (da-da-da-DUM) is not just a catchy phrase; it is the raw material from which the entire movement is built. Listen for the way those four notes are fragmented, transposed, extended, and combined as the movement unfolds. Classical sonata form is still the skeleton, but the flesh is Romantic intensity — a single idea pursued with obsessive, relentless developmental energy that pushes the inherited form to its limits."
+  analysisPrompt: "A single motif driving an entire movement — the sound of form being stretched by emotional force. This is Classical structure becoming Romantic argument."
 gallery_listening:
   - title: "Prelude to Tristan und Isolde"
     composer: "Richard Wagner"
@@ -30,29 +33,48 @@ gallery_listening:
     duration: "First 4–5 minutes"
     threads: [consonance-dissonance]
     youtube_id: "IaZZVRd_WeU"
+    analysisEyebrow: "Listen for · Yearning that never resolves"
+    analysis: "Listen for the sense of unresolved yearning — the music constantly reaching toward a resolution that only arrives hours later in the opera. The harmonies are richer and more ambiguous than anything in the Classical period, and the emotional tension builds without release. Every phrase seems about to settle, then slips away instead. This is dissonance pushed past the point where the inherited rules can contain it."
+    analysisPrompt: "Wait for the chord to resolve. It won't — that withholding, sustained across an entire opera, is the whole point."
   - title: "Der Erlkönig"
     composer: "Franz Schubert"
     date: 1815
     duration: "4 minutes"
     threads: [texture-voices, structure-freedom]
     youtube_id: "XoBo8dlPcQo"
+    analysisEyebrow: "Listen for · One figure, four voices"
+    analysis: "Listen for the way a single continuous, galloping, relentless piano figure conveys the experience of four characters at once: narrator, father, child, and the supernatural Elf King, whose seductive murmuring contrasts with the father's desperate reassurances and the child's mounting terror. A single sung line and a single accompanying figure carry an entire terrifying drama — the unbroken piano ostinato is the small-scale idée fixe, the relentless idea that cannot be abandoned."
+    analysisPrompt: "One galloping figure, never pausing, holding four voices and a whole night's dread together — coherence through relentless iteration."
   - title: "La Mer: 'From Dawn to Noon on the Sea' (first movement)"
     composer: "Claude Debussy"
     date: 1905
     duration: "First 4 minutes for the dawn"
     threads: [texture-voices, consonance-dissonance]
     youtube_id: "IoENgt1h4_A"
+    analysisEyebrow: "Listen for · The orchestra as a single instrument"
+    analysis: "Debussy's *La Mer* sits at the boundary between Romanticism and Modernism: the vastly expanded orchestra creates shifting, shimmering textures that evoke the sea not through representation but through a kind of sonic impressionism. Listen for how no single melodic line dominates — instead, layers of orchestral color merge and dissolve into one immersive field of sound. The connection to Melville's ocean is almost too perfect; this is the sound of \"meditation and water\" wedded together."
+    analysisPrompt: "Not a tune with accompaniment but a whole shimmering surface — the Romantic orchestra become one massive, oceanic instrument."
 compare_back: "enlightenment"
 compare_forward: "modernism"
 ---
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
+import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 
 
 ## Introduction
 
 Romantic music takes inherited structures and stretches them to accommodate emotional experiences too vast and turbulent for neat resolution. In the Classical era, form shaped expressive content; in the Romantic era, expressive content shapes form. Where Classical music values balance and proportion, Romantic music values intensity, yearning, and the overwhelming, responding to the era's philosophical imperative to pursue and express the **sublime**. Orchestras grow enormous. Compositions grow longer. Dissonances grow more extreme and take longer to resolve. The individual's emotional experience becomes the supreme subject. Romantic composers also break with the concept of a shared period style: starting with <BioLink id="beethoven">Beethoven</BioLink>, each composer cultivates a recognizably personal voice. <BioLink id="beethoven">Beethoven</BioLink>'s music is identifiable not as "Classical-era music" but as Beethoven, a distinction that would have been much less meaningful a generation earlier. If the Classical era is the soundtrack of <BioLink id="austen">Austen</BioLink>'s drawing room, the Romantic era is the thundering roar of <BioLink id="melville">Melville</BioLink>'s ocean.
+
+<SlowDownCallout
+  kind="music"
+  sayLine="If “chromaticism” and “the sublime” are still only words to you, spend ten minutes in the Studio before this page."
+  links={[
+    { eyebrow: 'Foundations', label: 'The Listening Studio', href: '/guides/listening-studio' },
+    { eyebrow: 'Deeper', label: 'Scherzo & trio', href: '/guides/listening-studio/musical-forms#romanticism' },
+  ]}
+/>
 
 ## Texture & Voices
 
@@ -91,20 +113,6 @@ One Romantic solution to this problem was the **idée fixe** — a theme associa
 ### Connection to *Moby-Dick*
 
 The white whale is Ahab's undeniable idée fixe — a fixed obsession that drives the action of the novel, accumulating meaning with each reappearance until it overwhelms the structures built to contain it. *Moby-Dick* contains chapters on cetology, philosophy, stage directions, and extended meditations on the color white because the form of the conventional novel cannot contain what <BioLink id="melville">Melville</BioLink> is trying to express. Like a Romantic symphony that bursts the boundaries of sonata form, the novel incorporates genres and modes that don't belong in a novel, yet somehow makes them essential. The first movement of <BioLink id="beethoven">Beethoven</BioLink>'s Fifth symphony demonstrates this on a smaller scale: classical sonata form is still audible, but the emotional intensity of those four obsessive notes, iterating, transforming, and driving the entire movement forward pushes the form to its limits.
-
-## What to Listen For
-
-In the first movement of <BioLink id="beethoven">Beethoven</BioLink>'s Fifth above, the famous four-note motif is not just a catchy opening phrase; it is the raw material from which the entire movement is built. Listen for the way that those four notes are fragmented, transposed, extended, and combined as the movement unfolds. The relentless developmental energy is what makes this transitional piece Romantic rather than Classical. Classical sonata form is still the skeleton, but the flesh is Romantic intensity.
-
-In <BioLink id="wagner">Wagner</BioLink>'s *Tristan* Prelude below, listen for the sense of unresolved yearning, the music constantly reaching toward a resolution that only arrives hours later in the opera. The harmonies are richer and more ambiguous than anything in the Classical period, and the emotional tension builds without release.
-
-In Schubert's *Der Erlkönig*, listen for the way that a single (continuous, galloping, relentless) piano figure conveys the experience of four characters: narrator, father, child, and the supernatural Elf King, whose seductive murmuring contrasts with the father's desperate reassurances and the child's mounting terror.
-
-<BioLink id="debussy">Debussy</BioLink>'s *La Mer* sits at the boundary between Romanticism and Modernism: the orchestra creates shifting, shimmering textures that evoke the sea not through representation but with a kind of sonic impressionism. The connection to <BioLink id="melville">Melville</BioLink>'s ocean is almost too perfect; this is the sound of "meditation and water" wedded together.
-
-<YouTubeEmbed id="IaZZVRd_WeU" title="Prelude to Tristan und Isolde" composer="Richard Wagner" />
-<YouTubeEmbed id="XoBo8dlPcQo" title="Der Erlkönig" composer="Franz Schubert" />
-<YouTubeEmbed id="IoENgt1h4_A" title="La Mer: 'From Dawn to Noon on the Sea'" composer="Claude Debussy" />
 
 ## Looking Back
 

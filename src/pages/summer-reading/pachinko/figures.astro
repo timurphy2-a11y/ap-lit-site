@@ -11,7 +11,27 @@ const imgBase = '/images/summer-reading/pachinko';
 
 <SummerLayout title="Key Figures — Pachinko · The Living Atlas" section="pachinko" spoke="figures">
 
-  <SectionOpener text="pachinko" eyebrow="PACHINKO" heading="Key Figures" />
+  <!-- Spoke header: deep-teal band + Cascade Crest watermark -->
+  <div class="pk-spoke-header">
+    <div class="pk-spoke-header-watermark" data-motif="pk-crest" data-w="440" data-op="0.12" data-color="var(--p-cream)" aria-hidden="true"></div>
+    <div class="pk-spoke-header-inner">
+      <span class="pk-spoke-header-eyebrow">Pachinko &middot; Spoke 04</span>
+      <div class="pk-spoke-badge-row">
+        <span class="pk-spoke-badge" data-motif="pk-glyph" data-idx="3" data-w="34" data-color="var(--p-cream)" aria-hidden="true"></span>
+        <h1 class="pk-spoke-header-title">Key Figures</h1>
+      </div>
+      <p class="pk-spoke-header-deck">The decision-makers behind the novel&rsquo;s fiction &mdash; the collaborator, the martyr, the colonial administrator, the two men who split a peninsula, and the author who turned their history into <em>Pachinko</em>.</p>
+    </div>
+  </div>
+
+  <SectionOpener text="pachinko" eyebrow="PACHINKO" heading="Key Figures" headingLevel="h2" />
+
+  <noscript>
+    <style>
+      .fig-card-trigger { display: none; }
+      .fig-card-detail[hidden] { display: block; }
+    </style>
+  </noscript>
 
   <div class="fig-main">
 
@@ -32,11 +52,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Collaborator · The Signature</span>
-          <h3 class="fig-card-name">Yi Wan-yong <span class="fig-card-orig">이완용</span></h3>
+          <h2 class="fig-card-name">Yi Wan-yong <span class="fig-card-orig">이완용</span></h2>
           <span class="fig-card-dates">1858–1926</span>
           <p class="fig-card-role">Prime Minister of Korea; signatory of the Japan–Korea Annexation Treaty</p>
           <p class="fig-card-teaser">The signature that ceded Korea's sovereignty — and the name that became the Korean word for collaborator.</p>
-          <button class="fig-card-trigger" data-fig="fig-yi">
+          <button type="button" class="fig-card-trigger" data-fig="fig-yi" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Yi Wan-yong</span>
           </button>
@@ -60,11 +80,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Martyr · The Resistance</span>
-          <h3 class="fig-card-name">Yu Gwan-sun <span class="fig-card-orig">유관순</span></h3>
+          <h2 class="fig-card-name">Yu Gwan-sun <span class="fig-card-orig">유관순</span></h2>
           <span class="fig-card-dates">1902–1920</span>
           <p class="fig-card-role">Student activist; martyr of the March First Movement</p>
           <p class="fig-card-teaser">Seventeen when she was arrested, eighteen when she died in prison — the symbolic martyr of Korean independence.</p>
-          <button class="fig-card-trigger" data-fig="fig-yu">
+          <button type="button" class="fig-card-trigger" data-fig="fig-yu" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Yu Gwan-sun</span>
           </button>
@@ -89,11 +109,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Administrator · The Architect</span>
-          <h3 class="fig-card-name">Minami Jirō <span class="fig-card-orig">南 次郎</span></h3>
+          <h2 class="fig-card-name">Minami Jirō <span class="fig-card-orig">南 次郎</span></h2>
           <span class="fig-card-dates">1874–1955</span>
           <p class="fig-card-role">Governor-General of Korea, 1936–1942</p>
           <p class="fig-card-teaser">The Governor-General who erased the Korean language, the Korean name, and the right to worship freely.</p>
-          <button class="fig-card-trigger" data-fig="fig-minami">
+          <button type="button" class="fig-card-trigger" data-fig="fig-minami" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Minami Jirō</span>
           </button>
@@ -128,11 +148,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Two States · The Division</span>
-          <h3 class="fig-card-name">Syngman Rhee &amp; Kim Il-sung</h3>
+          <h2 class="fig-card-name">Syngman Rhee &amp; Kim Il-sung</h2>
           <span class="fig-card-dates">이승만 1875–1965 · 김일성 1912–1994</span>
           <p class="fig-card-role">First president of South Korea · Founding leader of North Korea</p>
           <p class="fig-card-teaser">Two presidents, one divided peninsula — and the home Sunja's generation could no longer return to.</p>
-          <button class="fig-card-trigger" data-fig="fig-states">
+          <button type="button" class="fig-card-trigger" data-fig="fig-states" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Syngman Rhee and Kim Il-sung</span>
           </button>
@@ -165,11 +185,11 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Institutions · The Diaspora Split</span>
-          <h3 class="fig-card-name">The Two Associations</h3>
+          <h2 class="fig-card-name">The Two Associations</h2>
           <span class="fig-card-dates">Chongryon · Mindan</span>
           <p class="fig-card-role">The two organizations that divided Zainichi life in postwar Japan</p>
           <p class="fig-card-teaser">Chongryon and Mindan — the diaspora split along the same line that split the peninsula.</p>
-          <button class="fig-card-trigger" data-fig="fig-assoc">
+          <button type="button" class="fig-card-trigger" data-fig="fig-assoc" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figures <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Chongryon and Mindan</span>
           </button>
@@ -198,12 +218,12 @@ const imgBase = '/images/summer-reading/pachinko';
         </div>
         <div class="fig-card-body">
           <span class="fig-card-eyebrow">Author</span>
-          <h3 class="fig-card-name">Min Jin Lee <span class="fig-card-orig">이민진</span></h3>
+          <h2 class="fig-card-name">Min Jin Lee <span class="fig-card-orig">이민진</span></h2>
           <span class="fig-card-dates">1968–</span>
           <p class="fig-card-role">Author of <em>Pachinko</em>; National Book Award finalist, 2017</p>
           <p class="fig-card-quote">"My sense of outrage is triggered again and again."</p>
           <p class="fig-card-quote-attr">— Min Jin Lee, on the writing of <em>Pachinko</em></p>
-          <button class="fig-card-trigger" data-fig="fig-lee">
+          <button type="button" class="fig-card-trigger" data-fig="fig-lee" aria-haspopup="dialog" aria-controls="figModal" aria-expanded="false">
             <span class="fig-card-cue">Read the figure <span aria-hidden="true">→</span></span>
             <span class="sr-visually-hidden"> about Min Jin Lee</span>
           </button>
@@ -248,6 +268,71 @@ const imgBase = '/images/summer-reading/pachinko';
 
 </SummerLayout>
 
+<script>
+(function () {
+  'use strict';
+
+  var PK_GLYPHS = [
+    '<path d="M6 30 q5 -6 10 0 t10 0 t10 0 t10 0"/><path d="M6 38 q5 -6 10 0 t10 0 t10 0 t10 0" opacity="0.5"/><path d="M10 22 Q24 6 38 20" stroke-dasharray="3 3"/><circle cx="10" cy="22" r="2.4" fill="GOLD" stroke="none"/><circle cx="38" cy="20" r="2.4" fill="GOLD" stroke="none"/>',
+    '<line x1="24" y1="8" x2="24" y2="34"/><line x1="14" y1="17" x2="34" y2="17"/><line x1="10" y1="40" x2="38" y2="40" opacity="0.55"/><line x1="18" y1="40" x2="14" y2="44" opacity="0.4"/><line x1="30" y1="40" x2="34" y2="44" opacity="0.4"/>',
+    '<path d="M10 22 L24 10 L38 22"/><path d="M13 21 V40 H35 V21"/><circle cx="24" cy="31" r="6"/><circle cx="22" cy="29" r="1.4" fill="GOLD" stroke="none"/>',
+    '<circle cx="24" cy="24" r="17" opacity="0.55"/><circle cx="24" cy="20" r="5"/><path d="M15 36 C 16 28, 32 28, 33 36"/>',
+    '<circle cx="18" cy="24" r="9"/><circle cx="30" cy="24" r="9"/>'
+  ];
+
+  function pkGlyph(idx, size, color) {
+    var inner = PK_GLYPHS[idx].split('GOLD').join('var(--p-gold)');
+    return '<svg viewBox="0 0 48 48" width="' + size + '" height="' + size + '" fill="none" stroke="' + color +
+      '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block">' + inner + '</svg>';
+  }
+
+  function pkCrest(size, color, op) {
+    var C = 200, parts = [], i, a;
+    parts.push('<circle cx="200" cy="200" r="168" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.4"/>');
+    parts.push('<circle cx="200" cy="200" r="146" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>');
+    for (i = 0; i < 5; i++) {
+      a = (i / 5) * 2 * Math.PI - Math.PI / 2;
+      parts.push('<line x1="' + (C + 40 * Math.cos(a)).toFixed(1) + '" y1="' + (C + 40 * Math.sin(a)).toFixed(1) +
+        '" x2="' + (C + 162 * Math.cos(a)).toFixed(1) + '" y2="' + (C + 162 * Math.sin(a)).toFixed(1) +
+        '" stroke="' + color + '" stroke-width="1.1" opacity="0.55"/>');
+    }
+    for (i = 0; i < 5; i++) {
+      var base = (i / 5) * 2 * Math.PI - Math.PI / 2 + Math.PI / 5;
+      for (var row = 0; row < 4; row++) {
+        var rr = 64 + row * 26;
+        for (var k = -row; k <= row; k += 2) {
+          var aa = base + (k * 0.052);
+          parts.push('<circle cx="' + (C + rr * Math.cos(aa)).toFixed(1) + '" cy="' + (C + rr * Math.sin(aa)).toFixed(1) + '" r="1.7" fill="' + color + '" opacity="0.45"/>');
+        }
+      }
+    }
+    var balls = [[150, 120], [262, 150], [236, 262], [128, 236]];
+    balls.forEach(function (b) { parts.push('<circle cx="' + b[0] + '" cy="' + b[1] + '" r="4" fill="var(--p-gold)" opacity="0.7"/>'); });
+    parts.push('<circle cx="200" cy="200" r="34" fill="none" stroke="' + color + '" stroke-width="1.4" opacity="0.85"/>');
+    parts.push('<circle cx="200" cy="200" r="27" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.55"/>');
+    parts.push('<path d="M200 206 C190 206, 176 214, 176 202 C176 194, 190 198, 200 206Z" fill="' + color + '" opacity="0.5"/>');
+    parts.push('<path d="M200 206 C210 206, 224 214, 224 202 C224 194, 210 198, 200 206Z" fill="' + color + '" opacity="0.5"/>');
+    parts.push('<path d="M200 200 C194 196, 184 188, 186 184 C188 180, 196 188, 200 200Z" fill="var(--p-gold)" opacity="0.6"/>');
+    parts.push('<path d="M200 200 C206 196, 216 188, 214 184 C212 180, 204 188, 200 200Z" fill="var(--p-gold)" opacity="0.6"/>');
+    return '<svg viewBox="0 0 400 400" width="' + size + '" height="' + size + '" fill="none" aria-hidden="true" style="display:block;overflow:visible;opacity:' + op + '">' + parts.join('') + '</svg>';
+  }
+
+  function buildMotifs() {
+    document.querySelectorAll('[data-motif]').forEach(function (el) {
+      var k = el.getAttribute('data-motif');
+      var w = parseFloat(el.getAttribute('data-w') || '80');
+      var op = parseFloat(el.getAttribute('data-op') || '0.7');
+      var color = el.getAttribute('data-color') || 'var(--p-orange)';
+      if (k === 'pk-glyph') el.innerHTML = pkGlyph(parseInt(el.getAttribute('data-idx') || '4', 10), w, color);
+      else if (k === 'pk-crest') el.innerHTML = pkCrest(w, color, op);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildMotifs);
+  else buildMotifs();
+})();
+</script>
+
 <script is:inline>
 (function () {
   'use strict';
@@ -262,9 +347,15 @@ const imgBase = '/images/summer-reading/pachinko';
   }
 
   /* ── Modal ─────────────────────────────────────────────────────────────── */
-  var overlay, dialog, lastFocus = null;
+  var overlay, dialog, lastFocus = null, currentTrigger = null;
 
   function byId(id) { return document.getElementById(id); }
+
+  function focusableIn(container) {
+    return Array.prototype.slice
+      .call(container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+      .filter(function (el) { return el.offsetParent !== null; });
+  }
 
   function fill(card) {
     var grab = function (sel) {
@@ -348,6 +439,8 @@ const imgBase = '/images/summer-reading/pachinko';
 
   function open(card, trigger) {
     lastFocus = trigger || document.activeElement;
+    currentTrigger = trigger || null;
+    if (currentTrigger) currentTrigger.setAttribute('aria-expanded', 'true');
     fill(card);
     overlay.hidden = false;
     void overlay.offsetWidth; /* force reflow for transition */
@@ -365,6 +458,10 @@ const imgBase = '/images/summer-reading/pachinko';
     };
     overlay.addEventListener('transitionend', done);
     setTimeout(function () { if (!overlay.classList.contains('is-open')) overlay.hidden = true; }, 360);
+    if (currentTrigger) {
+      currentTrigger.setAttribute('aria-expanded', 'false');
+      currentTrigger = null;
+    }
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
@@ -385,7 +482,20 @@ const imgBase = '/images/summer-reading/pachinko';
       if (e.target === overlay) close();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !overlay.hidden) close();
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        var focusable = focusableIn(dialog);
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 

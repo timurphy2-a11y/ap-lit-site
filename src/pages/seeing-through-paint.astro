@@ -50,7 +50,7 @@ const SIGS: Record<string, string> = {
 const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/art`)));
 ---
 
-<Layout title="Seeing Through Paint — Of Imagination All Compact">
+<Layout title="Seeing Through Paint — Of Imagination All Compact" hideFooter>
 
 <div class="stp-page">
 
@@ -163,6 +163,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
       <div class="stp-siblings">
         <a href="/sculpting-through-time">Sculpting Through Time</a>
         <a href="/hearing-through-form">Hearing Through Form</a>
+        <a href="/credits">Image Credits</a>
       </div>
     </footer>
 

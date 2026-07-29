@@ -8,7 +8,7 @@
 /* ── BUGFIX: --t-ochre self-references upstream; resolved value here ── */
 :root { --t-ochre: #D4A840; --slate: #41525E; }
 
-[data-section="tfa"] .sr-section-opener-eyebrow { color: var(--t-terra); }
+[data-section="tfa"] .sr-section-opener-eyebrow { color: var(--p-orange-text); }
 
 /* ════════════════════════════════════════════════════════════════
    0 · Spoke-header watermark (Uli Sun, cream, top-right bleed)
@@ -52,7 +52,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   padding-top: 2px;
 }
 .tfa-spoiler-text {
@@ -82,7 +82,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   display: block;
   margin-bottom: var(--s-6);
 }
@@ -113,7 +113,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   text-align: center;
   padding-bottom: var(--s-4);
   margin-bottom: var(--s-6);
@@ -186,7 +186,7 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   line-height: 1.75;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   text-align: right;
   padding-top: 0.5rem;
   border-top: 1px solid var(--color-rule);
@@ -309,7 +309,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   text-align: center;
   margin-bottom: var(--s-5);
 }
@@ -456,7 +456,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
 }
 .tfa-seq-eyebrow--muted { color: var(--color-muted); }
 
@@ -490,7 +490,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   text-align: center;
 }
 .tfa-seq-glyph {
@@ -569,7 +569,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-3);
 }
 
@@ -639,7 +639,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   text-align: center;
   margin-bottom: var(--s-10);
 }
@@ -748,7 +748,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-3);
 }
 .tfa-subsection-title {
@@ -816,7 +816,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-7);
 }
 .tfa-descent svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -947,7 +947,7 @@ figure.tfa-zone-pull {
   font-size: var(--t-tag);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-6);
 }
 .tfa-obierika svg { display: block; width: 100%; height: auto; overflow: visible; }

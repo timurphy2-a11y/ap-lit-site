@@ -1,0 +1,134 @@
+---
+// One reusable "Slow Down" callout, dropped into a period page's MDX body right
+// after the intro paragraphs. --c inherits --thread-acc from the host page's
+// <body> style, so it reads as native on every period without hard-coding a color.
+interface Link {
+  eyebrow: 'This period' | 'Foundations' | 'Deeper';
+  label: string;
+  href: string;
+}
+
+interface Props {
+  kind: 'music' | 'art';
+  sayLine: string;
+  links: Link[];
+}
+
+const { kind, sayLine, links } = Astro.props;
+
+const LABELS: Record<Props['kind'], string> = {
+  music: 'Slow down and listen',
+  art: 'Slow down and look',
+};
+
+const SIGILS: Record<Props['kind'], string> = {
+  music: `<path d="M6 24 A14 14 0 0 1 34 24"></path><circle class="dot" cx="20" cy="24" r="2"></circle><line x1="6" y1="32" x2="34" y2="32"></line>`,
+  art: `<rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"></rect><circle class="dot" cx="20" cy="20" r="1.5"></circle>`,
+};
+---
+
+<aside class="slowdown not-prose">
+  <div class="sd-sig" aria-hidden="true">
+    <svg viewBox="0 0 40 40" set:html={SIGILS[kind]} />
+  </div>
+  <div class="sd-lbl">{LABELS[kind]}</div>
+  <p class="sd-say">{sayLine}</p>
+  <div class="sd-links">
+    {links.map((link) => (
+      <a class="sd-link" href={link.href}>
+        <span class="dir">{link.eyebrow}</span>
+        <span class="nm">{link.label}</span>
+      </a>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .slowdown {
+    --c: var(--thread-acc);
+    max-width: var(--measure);
+    margin: 34px auto 4px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--c);
+    background: var(--bg-raised);
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    column-gap: 18px;
+    padding: 22px 24px 20px;
+    align-items: start;
+  }
+  .slowdown .sd-sig {
+    grid-row: 1 / span 3;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slowdown .sd-sig svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--c);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .slowdown .sd-sig svg :global(.dot) { fill: var(--c); stroke: none; }
+  .sd-lbl {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c);
+  }
+  .sd-say {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 6px 0 0;
+    max-width: 46ch;
+    text-wrap: pretty;
+  }
+  .sd-links {
+    grid-column: 2;
+    display: grid;
+    gap: 0;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+  }
+  .sd-link {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 12px;
+    padding: 6px 0;
+    font-family: var(--font-ui);
+    font-size: 13.5px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .sd-link .dir {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .sd-link .nm {
+    justify-self: start;
+    border-bottom: 1px solid var(--rule-strong);
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+  .sd-link:hover .nm { color: var(--c); border-color: var(--c); }
+  @media (max-width: 600px) {
+    .slowdown { grid-template-columns: 1fr; }
+    .slowdown .sd-sig { grid-row: auto; margin-bottom: 14px; }
+    .sd-links { grid-column: 2; display: grid; gap: 0; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--rule); }
+  }
+</style>

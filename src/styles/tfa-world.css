@@ -45,7 +45,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-right: var(--s-2);
 }
 
@@ -61,7 +61,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-3);
 }
 .tfa-sbs-col p {
@@ -147,28 +147,23 @@
 }
 .tfa-photo-intro .sr-section-opener { background: none; padding-bottom: var(--s-4); }
 .tfa-zone--photo .sr-zone-field { width: clamp(320px, 56%, 720px); }
-.tfa-ph-fill { position: absolute; inset: 0; }
+.tfa-ph-fill { position: relative; width: 100%; }
 .tfa-ph-fill .sr-ph { height: 100%; border: none; }
 .tfa-ph-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 62%;
+  height: auto;
+  max-height: 70vh;
   display: block;
 }
-/* Caption sits over the photo at bottom of the sticky field */
+/* Caption sits directly below the framed photo, not pinned to the field's edge */
 .tfa-zone--photo .sr-zone-field .sr-zone-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  position: static;
   max-width: 100%;
+  z-index: 2;
   background: rgba(40, 24, 8, 0.62);
   color: var(--t-cream);
   padding: var(--s-3) var(--s-6);
   text-align: left;
-  backdrop-filter: blur(2px);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -352,7 +347,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
 }
 .tfa-stat {
   display: flex;
@@ -367,7 +362,7 @@
   font-weight: 500;
   font-size: 2.1rem;
   line-height: 0.95;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
 }
 .tfa-stat-txt {
   font-family: var(--font-body);
@@ -407,7 +402,7 @@
   font-size: var(--t-tag);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-2);
 }
 
@@ -440,7 +435,7 @@
   text-align: center;
 }
 .tfa-ideogram-cap .ig-cap-root {
-  color: var(--t-terra);
+  color: var(--p-orange-text);
   font-style: normal;
   font-family: var(--font-display);
   font-size: 1rem;

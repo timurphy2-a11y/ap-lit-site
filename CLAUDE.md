@@ -57,8 +57,8 @@ Never run `npm run deploy` from inside a worktree directory — the build will u
 src/
   content/
     units/
-      00-medieval/       philosophy.mdx, art.mdx, music.mdx
-      01-renaissance/    philosophy.mdx, art.mdx, music.mdx
+      00-medieval/       philosophy.mdx, art.mdx, sculpture.mdx, music.mdx
+      01-renaissance/    philosophy.mdx, art.mdx, sculpture.mdx, music.mdx
       02-baroque/        ...
       03-enlightenment/  ...
       04-romanticism/    ...
@@ -85,14 +85,18 @@ src/
   components/
     BiographyPanel.jsx   — PEOPLE data array + BiographyPanel modal + BioLink button + PersonCard + BiographyDemo
     BioLink.astro        — inline text link component (renders data-bio-id button)
-    ThreadIcon.astro     — SVG pictograms for the 9 analytical threads
+    ThreadIcon.astro     — SVG pictograms for the 12 analytical threads
     PullQuote.astro      — styled blockquote component
-    YouTubeEmbed.astro   — embedded YouTube player
+    YouTubeEmbed.astro   — embedded YouTube player; also renders the expandable analysis panel when `analysis` is passed
+    Plate.astro          — inline image plate (Painting/Sculpture); also renders the expandable analysis panel when `analysis` is passed
+    MusicPlate.astro     — unused inline music card (Music pages use YouTubeEmbed instead)
+    PeriodMotif.astro    — thin wrapper rendering a pre-built SVG string from `src/data/period-motifs.ts`
   layouts/
     Layout.astro         — site shell: nav, bio modal (vanilla JS), fonts
 public/
   images/
     paintings/           — painting images organized by unit (00-medieval/, etc.)
+    sculptures/          — sculpture images organized by unit (00-medieval/, etc.)
     portraits/           — 120×120px portrait JPEGs, named portrait-[lastname-firstname].jpg
 ```
 
@@ -100,16 +104,16 @@ public/
 
 ## Accent Colors (Per Unit)
 
-These are used consistently across hub pages, domain pages, timeline, and home page cards:
+Used consistently across domain pages (`ACCENTS` map in `[domain].astro`) and their decorative motifs (`MARK_VARS`). Hub pages, timeline, and home page cards may still reference an older palette — verify against the live page before assuming a value below applies everywhere.
 
 | Unit | Color |
 |------|-------|
-| 00-medieval | `#5b82c8` (blue) |
-| 01-renaissance | `#e8a820` (gold) |
-| 02-baroque | `#dc5f6c` (rose-red) |
-| 03-enlightenment | `#48a0e0` (sky blue) |
-| 04-romanticism | `#b978d2` (purple) |
-| 05-modernism | `#3aa87a` (green) |
+| 00-medieval | `#C9A24B` (gold) |
+| 01-renaissance | `#B54C3A` (oxblood/rust-red) |
+| 02-baroque | `#B07028` (burnt copper) |
+| 03-enlightenment | `#698BA1` (Wedgwood blue) |
+| 04-romanticism | `#3D5A6D` (storm indigo) |
+| 05-modernism | `#A03828` (cadmium red) |
 
 ---
 
@@ -117,13 +121,15 @@ These are used consistently across hub pages, domain pages, timeline, and home p
 
 All `.mdx` files under `src/content/units/` share one collection schema. Key fields:
 
-- `unit`, `period`, `dates`, `domain` (enum: philosophy/art/music) — always present
-- `core_text`, `author` — null for Medieval
+- `unit`, `period`, `dates`, `domain` (enum: philosophy/art/sculpture/music) — always present
+- `core_text`, `author` — null for Medieval (though inconsistently — some Medieval domain files still set a borrowed anchor text; check the specific file rather than assuming null)
 - `note` — optional string shown when no core_text (Medieval uses "Foundation unit")
 - `threads[]` — array of `{id, label, period_summary}`
 - Philosophy: `readings[]`
 - Art: `hero_painting{}`, `gallery_paintings[]`
+- Sculpture: `hero_sculpture{}`, `gallery_sculptures[]`
 - Music: `featured_listening` (object or array), `gallery_listening[]`
+- Art/Sculpture/Music hero and gallery items also accept optional `analysis` / `analysisEyebrow` / `analysisPrompt` string fields, rendered as an expandable "Read the analysis" panel — currently empty on most entries pending an editorial pass (see `Analysis_Panel_Content_Review.md`).
 
 **Important:** Always commit `src/content.config.ts` alongside any schema changes.
 
@@ -183,23 +189,25 @@ The Historical Moment modal gets content from `historical-moments.ts` passed via
 
 ## Domain Page Architecture
 
-Each domain page (`/units/[unit]/[domain]`) is `[domain].astro`. Features:
+Each domain page (`/units/[unit]/[domain]`) is `[domain].astro` — one shared template for all four domains (`philosophy`, `art`, `sculpture`, `music`), branching on `domain`.
 
-- Sticky tab bar: Philosophy · Painting · Music (3 tabs only — Science and Sculpture removed)
+- Sticky tab bar: Philosophy · Painting · Sculpture · Music (4 tabs)
 - Core Text badge in header
-- MDX body content rendered with `<Content components={{ BioLink, PullQuote }} />`
-- Sidebar: readings list (philosophy) / gallery paintings (art) / gallery listening (music)
+- MDX body content rendered with `<Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed }} />`
+- **Philosophy** keeps the original two-column layout: prose + sticky sidebar (Analytical Threads card + Readings card).
+- **Painting / Sculpture / Music** use a single-column reading layout (no sidebar): hero image/embed with an expandable "Read the analysis" panel, a thread jump-nav, then three thread `<section>`s each with an inline work-plate (image or YouTube embed, matched to the section via the gallery item's first `threads[]` tag) and a collapsible "Connection to *[Text]*" panel. Fonts: Cormorant Garamond (`--font-display`, headings/hero/pull-quotes only) + EB Garamond (`--font-text`, body prose) — matches Layout.astro's Cormorant usage elsewhere on the site.
 - Prev/next navigation links to same domain on adjacent units
 
 ---
 
-## Analytical Threads (9 total)
+## Analytical Threads (12 total)
 
 Used across all domain pages as `ThreadIcon` pictograms:
 
 **Philosophy:** `knowledge` · `authority` · `self`
 **Art:** `figure-space` · `light-shadow` · `brushwork-surface`
-**Music:** `melody-harmony` · `rhythm-time` · `texture-form`
+**Sculpture:** `body-volume` · `material-making` · `space-setting`
+**Music:** `texture-voices` · `consonance-dissonance` · `structure-freedom`
 
 ---
 
@@ -236,17 +244,19 @@ Playwright is for exploratory self-QA during implementation — not for generati
 
 ---
 
-## Current Status (March 2026)
+## Current Status (July 2026)
 
 **Completed:**
-- Full site build: home, 6 hub pages, 18 domain pages, timeline, people index, compare, art/music overviews
+- Full site build: home, 6 hub pages, 24 domain pages (Philosophy/Painting/Sculpture/Music × 6 units), timeline, people index, compare, art/music/sculpture overviews
 - Hub page redesign with era accent colors, Historical Moment modal, timeline strip
+- Sculpture sub-domain (Phase 4c) fully shipped: content, thread icons, hub Visual Art split card, Sculpting Through Time shared resource
 - Portrait system: 54 images downloaded/cropped, BiographyPanel updated with portrait field
 - BioLink system wired up site-wide via Layout.astro
 - Site Audit (March 2026) — all Priority 1 and Priority 2 items implemented
+- Painting/Sculpture/Music domain pages redesigned to a single-column reading layout with inline work-plates, expandable analysis panels, and a thread jump-nav (Philosophy unchanged); Cormorant Garamond + EB Garamond replace Spectral on these pages
 
 **Pending / future work:**
 - Editorial pass content (the `0X_*.md` files in root) not yet merged into `.mdx` files
-- Science sub-domain was scrapped; Sculpture is a future Phase 4c addition
+- Analysis-panel text for the new expandable panels is drafted in `Analysis_Panel_Content_Review.md`, pending Tim's review before it's ported into `content.config.ts` frontmatter
 - Modernism painting images (Picasso, Kandinsky, Matisse) may need copyright review before public launch
 - Medieval: Aristotelian physics reading removed from frontmatter; replacement reading TBD

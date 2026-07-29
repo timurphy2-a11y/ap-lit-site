@@ -1,0 +1,97 @@
+---
+// Shared by the homepage (§ III) and the /guides hub (§ I).
+// The Looking Studio still points at /guides — its room pages
+// (seeing-pictures-elements, etc.) ship in a later handoff.
+---
+<div class="studio-diptych">
+  <a class="studio" href="/guides/listening-studio" style="--c: var(--acc-romanticism)">
+    <div class="studio-sig" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><path d="M6 24 A 14 14 0 0 1 34 24"></path><circle class="dot" cx="20" cy="24" r="2"></circle><line x1="6" y1="32" x2="34" y2="32"></line></svg>
+    </div>
+    <div class="kind">Studio I · Ear</div>
+    <h3>The Listening<br />Studio</h3>
+    <p class="gloss">How to hear anything — texture, rhythm, timbre, line — before you know what period it is.</p>
+    <div class="prereq">No music training required</div>
+    <div class="rooms">
+      <span class="room"><span class="num">01</span><span class="nm">Hearing Music: the Elements</span></span>
+      <span class="room"><span class="num">02</span><span class="nm">Musical Forms: shape over time</span></span>
+    </div>
+  </a>
+  <a class="studio" href="/guides" style="--c: var(--acc-baroque)">
+    <div class="studio-sig" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"></rect><circle class="dot" cx="20" cy="20" r="1.5"></circle></svg>
+    </div>
+    <div class="kind">Studio II · Eye</div>
+    <h3>The Looking<br />Studio</h3>
+    <p class="gloss">How to look at anything — line, light, surface, space — before you know who painted it.</p>
+    <div class="prereq">No art history required</div>
+    <div class="rooms">
+      <span class="room soon"><span class="num">01</span><span class="nm">Seeing Pictures: the Elements</span></span>
+      <span class="room soon"><span class="num">02</span><span class="nm">Composition &amp; genre</span></span>
+    </div>
+  </a>
+</div>
+
+<style>
+  .studio-diptych {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 820px) { .studio-diptych { grid-template-columns: 1fr; } }
+
+  .studio {
+    --c: var(--acc-romanticism);
+    background: var(--bg);
+    padding: 38px 38px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: background 200ms ease;
+  }
+  .studio::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--c); }
+  .studio:hover { background: var(--bg-raised); }
+
+  .studio-sig {
+    width: 74px;
+    height: 74px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-sunken);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 26px;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  .studio:hover .studio-sig { border-color: var(--c); background: color-mix(in oklab, var(--c) 8%, var(--bg-sunken)); }
+  .studio-sig svg {
+    width: 42px;
+    height: 42px;
+    stroke: var(--ink-mute);
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: stroke 200ms ease;
+  }
+  .studio:hover .studio-sig svg { stroke: var(--c); }
+  .studio-sig svg .dot { fill: var(--ink-mute); stroke: none; transition: fill 200ms ease; }
+  .studio:hover .studio-sig svg .dot { fill: var(--c); }
+
+  .studio .kind { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); }
+  .studio h3 { font-family: var(--font-display); font-weight: 300; font-size: clamp(28px, 3vw, 38px); line-height: 1.05; letter-spacing: -0.02em; margin: 8px 0 0; color: var(--ink); }
+  .studio .gloss { font-family: var(--font-display); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--ink-mute); margin: 12px auto 0; max-width: 34ch; text-wrap: pretty; }
+  .studio .prereq { align-self: stretch; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--font-ui); font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); }
+  .studio .rooms { align-self: stretch; margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 2px; }
+
+  .room { position: relative; display: flex; align-items: baseline; justify-content: center; padding: 10px 0; border-top: 1px solid var(--rule); font-family: var(--font-ui); font-size: 13px; color: var(--ink-mute); }
+  .room .num { position: absolute; left: 0; top: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); }
+  .room .nm { color: var(--ink); border-bottom: 1px solid transparent; padding: 0 30px; }
+  .room:hover .nm { border-color: var(--rule-strong); }
+  .room.soon .nm { color: var(--ink-soft); font-style: italic; }
+  .room.soon::after { content: "in progress"; position: absolute; right: 0; top: 11px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+</style>

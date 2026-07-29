@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Credit {
+  image: string;
+  work: string;
+  artist: string;
+  photographer: string;
+  license: string;
+  licenseUrl?: string;
+  sourceUrl: string;
+  note?: string;
+}
+
+const SCULPTURE_PHOTOS: Credit[] = [
+  {
+    image: '/images/sculptures/00-medieval/gislebertus-last-judgment-tympanum.jpg',
+    work: 'Last Judgment Tympanum (Gislebertus, c. 1130)',
+    artist: 'Gislebertus',
+    photographer: 'Lamettrie',
+    license: 'CC BY-SA 3.0 / GFDL 1.2+',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Autun_St_Lazare_Tympanon.jpg',
+  },
+  {
+    image: '/images/sculptures/00-medieval/chartres-royal-portal.jpg',
+    work: 'Royal Portal, central tympanum, Chartres Cathedral',
+    artist: 'Unknown',
+    photographer: 'Guillaume Piolle',
+    license: 'CC BY 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Chartres_-_portail_royal,_tympan_central.jpg',
+  },
+  {
+    image: '/images/sculptures/01-renaissance/michelangelo-david.jpg',
+    work: 'David (Michelangelo, 1504)',
+    artist: 'Michelangelo Buonarroti',
+    photographer: 'David Gaya',
+    license: 'CC BY-SA 3.0 / GFDL 1.2+',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Michelangelos_David.jpg',
+  },
+  {
+    image: '/images/sculptures/01-renaissance/donatello-david.jpg',
+    work: 'David (Donatello, c. 1440)',
+    artist: 'Donatello',
+    photographer: 'Patrick A. Rodgers',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Donatello_-_David_-_Floren%C3%A7a.jpg',
+  },
+  {
+    image: '/images/sculptures/01-renaissance/michelangelo-pieta.jpg',
+    work: 'Pietà (Michelangelo, c. 1499)',
+    artist: 'Michelangelo Buonarroti',
+    photographer: 'Stanislav Traykov (edited by Niabot)',
+    license: 'CC BY-SA 3.0 / CC BY 2.5 / GFDL 1.2+',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Michelangelo's_Pieta_5450_cut_out_black.jpg",
+  },
+  {
+    image: '/images/sculptures/00-medieval/rottgen-pieta.jpg',
+    work: 'Röttgen Pietà (Anonymous, c. 1300–1325)',
+    artist: 'Anonymous (Middle Rhine, Germany)',
+    photographer: 'J. Vogel (LVR-LandesMuseum Bonn)',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Piet%C3%A0_Roettgen.jpg',
+    note: 'Share-alike: a derivative (cropped or altered) version of this specific photograph would need to carry the same CC BY-SA license. Embedding the unmodified image, as done here, does not extend that requirement to the surrounding page.',
+  },
+];
+
+const PAINTING_PHOTOS: Credit[] = [
+  {
+    image: '/images/paintings/01-renaissance/masaccio-holy-trinity.jpg',
+    work: 'The Holy Trinity (Masaccio, c. 1427)',
+    artist: 'Masaccio',
+    photographer: '—',
+    license: 'Public domain (PD-Art)',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Masaccio_-_Trinity_-_WGA14208.jpg',
+    note: 'A flat reproduction of a public-domain fresco; the photograph itself carries no separate copyright in the US.',
+  },
+  {
+    image: '/images/paintings/02-baroque/gentileschi-judith.jpg',
+    work: 'Judith Slaying Holofernes (Artemisia Gentileschi, c. 1620, Uffizi)',
+    artist: 'Artemisia Gentileschi',
+    photographer: '—',
+    license: 'Public domain (PD-Art)',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Artemisia_Gentileschi_-_Giuditta_decapita_Oloferne_-_Google_Art_Project.jpg',
+    note: 'A flat reproduction of a public-domain painting; the photograph itself carries no separate copyright in the US.',
+  },
+  {
+    image: '/images/paintings/02-baroque/vermeer-woman-holding-balance.jpg',
+    work: 'Woman Holding a Balance (Johannes Vermeer, c. 1664)',
+    artist: 'Johannes Vermeer',
+    photographer: '—',
+    license: 'CC0 (National Gallery of Art Open Access)',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://www.nga.gov/artworks/1236-woman-holding-balance',
+    note: 'Donated to Wikimedia Commons by the National Gallery of Art under its Open Access policy.',
+  },
+];
+
+const PORTRAITS: Credit[] = [
+  {
+    image: '/images/portraits/portrait-giotto.jpg',
+    work: 'Portrait of Giotto, detail from "Five Famous Men of the Florentine Renaissance"',
+    artist: 'Unknown Florentine painter (c. 1490–1550)',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Five_Famous_Men_of_the_Florentine_Renaissance,_Giotto_(cropped).jpg',
+  },
+  {
+    image: '/images/portraits/portrait-brunelleschi-filippo.jpg',
+    work: 'Portrait of Brunelleschi, detail from "Five Famous Men of the Florentine Renaissance"',
+    artist: 'Unknown Florentine painter (c. 1490–1550)',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Five_Famous_Men_of_the_Florentine_Renaissance,_Brunelleschi_(cropped).jpg',
+  },
+  {
+    image: '/images/portraits/portrait-masaccio.jpg',
+    work: 'Traditionally identified self-portrait, detail from the Brancacci Chapel frescoes',
+    artist: 'Masaccio',
+    photographer: '—',
+    license: 'Public domain (PD-Art)',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Masaccio_Self_Portrait.jpg',
+    note: 'Traditionally identified as Masaccio, not documented with certainty.',
+  },
+  {
+    image: '/images/portraits/portrait-ghiberti-lorenzo.jpg',
+    work: 'Portrait of Lorenzo Ghiberti, woodcut from Vasari’s "Le Vite" (1568 ed.)',
+    artist: 'Unknown 16th-century woodcut artist',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Houghton_Typ_525_68.864_-_Vasari,_Le_vite_-_Lorenzo_Ghiberti.jpg',
+  },
+  {
+    image: '/images/portraits/portrait-della-robbia-luca.jpg',
+    work: 'Portrait of Luca della Robbia, engraving from "Serie degli uomini più illustri" (1769–75)',
+    artist: 'Giovanni Battista Cecchi',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Luca_della_Robbia.jpg',
+  },
+  {
+    image: '/images/portraits/portrait-holbein-hans.jpg',
+    work: 'Self-portrait, coloured chalk (1542–43), Uffizi',
+    artist: 'Hans Holbein the Younger',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Self-Portrait_by_Hans_Holbein_d._J._-_Uffizi_Gallery.jpg',
+  },
+  {
+    image: '/images/portraits/portrait-vasari-giorgio.jpg',
+    work: 'Self-portrait, Uffizi',
+    artist: 'Giorgio Vasari',
+    photographer: '—',
+    license: 'Public domain',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Giorgio_Vasari_-_Self-Portrait_-_WGA24284.jpg',
+  },
+];
+
+---
+
+<Layout title="Image Credits — Of Imagination All Compact">
+
+<div class="cr-wrap">
+  <header class="cr-head">
+    <p class="cr-eyebrow">Shared Resource</p>
+    <h1 class="cr-title">Image <em>Credits</em></h1>
+    <p class="cr-lede">
+      Flat reproductions of public-domain paintings and prints are generally public domain
+      themselves. Photographs of three-dimensional sculpture are different: the photograph
+      carries its own copyright even when the artwork depicted is centuries old. This page
+      credits every sculpture photograph on the site, plus the other images sourced alongside
+      them, so that attribution is easy to find in one place.
+    </p>
+    <p class="cr-lede cr-lede-small">
+      This list covers the images audited so far. It will grow as more assets are reviewed.
+    </p>
+  </header>
+
+  <section class="cr-section">
+    <h2>Sculpture Photographs</h2>
+    <div class="cr-grid">
+      {SCULPTURE_PHOTOS.map((c) => (
+        <figure class="cr-card">
+          <img src={c.image} alt={c.work} loading="lazy" />
+          <figcaption>
+            <div class="cr-work">{c.work}</div>
+            <div class="cr-line">Photograph: {c.photographer}</div>
+            <div class="cr-line">
+              License: {c.licenseUrl ? <a href={c.licenseUrl}>{c.license}</a> : c.license}
+            </div>
+            <div class="cr-line"><a href={c.sourceUrl}>Source (Wikimedia Commons)</a></div>
+            {c.note && <div class="cr-note">{c.note}</div>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <h2>Painting Reproductions</h2>
+    <div class="cr-grid">
+      {PAINTING_PHOTOS.map((c) => (
+        <figure class="cr-card">
+          <img src={c.image} alt={c.work} loading="lazy" />
+          <figcaption>
+            <div class="cr-work">{c.work}</div>
+            <div class="cr-line">License: {c.license}</div>
+            <div class="cr-line"><a href={c.sourceUrl}>Source (Wikimedia Commons)</a></div>
+            {c.note && <div class="cr-note">{c.note}</div>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <h2>Biographical Portraits</h2>
+    <div class="cr-grid">
+      {PORTRAITS.map((c) => (
+        <figure class="cr-card">
+          <img src={c.image} alt={c.work} loading="lazy" />
+          <figcaption>
+            <div class="cr-work">{c.work}</div>
+            <div class="cr-line">License: {c.license}</div>
+            <div class="cr-line"><a href={c.sourceUrl}>Source (Wikimedia Commons)</a></div>
+            {c.note && <div class="cr-note">{c.note}</div>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</div>
+
+</Layout>
+
+<style>
+  .cr-wrap {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 48px var(--gutter) 80px;
+  }
+  .cr-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .cr-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .cr-title {
+    font-size: clamp(32px, 5vw, 44px);
+    margin: 0 0 20px;
+  }
+  .cr-title em { font-style: italic; color: var(--acc); }
+  .cr-lede {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    max-width: 640px;
+    margin: 0 auto 12px;
+  }
+  .cr-lede-small {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .cr-section {
+    margin-bottom: 48px;
+  }
+  .cr-section h2 {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+    margin: 0 0 24px;
+  }
+
+  .cr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .cr-card {
+    margin: 0;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .cr-card img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: var(--bg-sunken);
+  }
+  .cr-card figcaption {
+    padding: 14px 16px 16px;
+  }
+  .cr-work {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .cr-line {
+    font-family: var(--font-ui);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .cr-line a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+  }
+  .cr-line a:hover { color: var(--ink); }
+  .cr-note {
+    margin-top: 8px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+</style>

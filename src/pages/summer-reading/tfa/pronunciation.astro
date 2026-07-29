@@ -323,6 +323,7 @@ const SPOKES = [
       text="tfa"
       eyebrow="THINGS FALL APART"
       heading="Pronunciation Guide"
+      headingLevel="h1"
     />
 
     <!-- Intro -->
@@ -446,10 +447,19 @@ const SPOKES = [
   var PAUSE_SVG = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3" width="3" height="10" rx="1"/><rect x="9.5" y="3" width="3" height="10" rx="1"/></svg>';
   var current = null;
   var currentBtn = null;
+  function getPronunciationName(card) {
+    var nameEl = card.querySelector('.pg-card-name');
+    if (!nameEl) return 'this entry';
+    var first = nameEl.childNodes[0];
+    var text = (first && first.nodeType === Node.TEXT_NODE) ? first.textContent : nameEl.textContent;
+    text = (text || '').trim();
+    return text || 'this entry';
+  }
   function setPlaying(btn, playing) {
+    var label = btn.dataset.pgLabel || 'this entry';
     btn.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
     btn.classList.toggle('is-playing', playing);
-    btn.setAttribute('aria-label', playing ? 'Stop pronunciation' : 'Hear pronunciation');
+    btn.setAttribute('aria-label', (playing ? 'Stop pronunciation for ' : 'Hear pronunciation for ') + label);
   }
   document.querySelectorAll('[data-audio]').forEach(function(card) {
     var src = card.dataset.audio;
@@ -458,6 +468,8 @@ const SPOKES = [
     if (!row) return;
     var btn = document.createElement('button');
     btn.className = 'pg-audio';
+    btn.type = 'button';
+    btn.dataset.pgLabel = getPronunciationName(card);
     setPlaying(btn, false);
     var audio = null;
     btn.addEventListener('click', function() {

@@ -63,6 +63,24 @@
 .sr-scrolly-zone[data-tempo="steady"]  { --beat-dwell: calc(420px * var(--dwell-scale, 1)); }
 .sr-scrolly-zone[data-tempo="driving"] { --beat-dwell: calc(230px * var(--dwell-scale, 1)); }
 
+/* Zone 1 (Living a Double Life) — same pre-existing --photo bug as the
+   Zainichi spoke's "Annexation and Dispossession" zone: the fixed 30rem
+   card overlaps the pinned photo at every normal desktop width. Same fix:
+   card max-width solved from the field's width instead of fixed, guaranteeing
+   a gap at every viewport. Only --left/--right beats are touched — the two
+   --center beats here are short italic pull-quotes meant to sit over the
+   photo as an accent, not read beside it, so they're left as-is. */
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beats { max-width: none; }
+.sr-page[data-spoke="culture"] [data-field="photo"] { --photo-field-w: min(46%, 640px); }
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-field { width: var(--photo-field-w); }
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beat--left  > *,
+.sr-page[data-spoke="culture"] [data-field="photo"] .sr-zone-beat--right > * {
+  box-sizing: border-box;
+  max-width: min(30rem, calc((100% - var(--photo-field-w)) / 2 - clamp(var(--s-4), 4vw, var(--s-12)) - 24px));
+  min-width: 0;
+  width: 100%;
+}
+
 .sr-zone-photo-stack { display: block; background: transparent; }
 .sr-photo-stage {
   position: absolute; inset: 0; margin: 0;
@@ -110,6 +128,10 @@
 .id-diagram svg { display: block; width: 100%; height: auto; max-height: 88vh; }
 .id-diagram [class*="-warm"], .id-diagram [class*="-cold"], .id-diagram [class*="-press"],
 .id-diagram [class*="dgen-"] { transition: opacity 0.6s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  .id-diagram [class*="-warm"], .id-diagram [class*="-cold"], .id-diagram [class*="-press"],
+  .id-diagram [class*="dgen-"] { transition: none; }
+}
 
 /* ── Canonical diagram layout ───────────────────────────────────────────
    Keep the system's real mechanic intact: the field is sticky & sits
@@ -129,21 +151,35 @@
 @media (min-width: 768px) {
   /* PILLARS · center channel — graphic in the middle, cards both sides.
      The card width tracks the channel at EVERY viewport: gutter is
-     (100% − channel)/2; card stops short of it by a margin + gap, and the
-     graphic's own viewBox padding adds ~100px more clearance inside. */
-  .sr-scrolly-zone--center { --pid-channel: min(42%, 480px); }
-  .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; }
+     (100% − channel)/2; card stops short of it by a margin + gap. Border-box
+     sizing keeps the field's rendered footprint equal to the channel itself
+     — .sr-zone-diagram-field's own padding is content-box by default, so
+     without this override it adds outward and the field visually overflows
+     past the channel the card math assumes, overlapping the card. */
+  .sr-scrolly-zone--center { --pid-channel: min(48%, 620px); }
+  .sr-scrolly-zone--center .sr-zone-field { width: var(--pid-channel); margin-inline: auto; box-sizing: border-box; }
+  /* Beats lane must share the field's own containing block (the section),
+     not the sitewide 1060px cap — otherwise "100%" in the gutter calc below
+     resolves against a narrower box than the field's percentage does, and
+     the two drift apart (card overlaps the graphic) past a 1060px viewport. */
+  .sr-scrolly-zone--center .sr-zone-beats { max-width: none; }
   .sr-scrolly-zone--center .sr-zone-beat { padding-inline: 0; }
   .sr-scrolly-zone--center .sr-zone-beat--left   { justify-content: flex-start; }
   .sr-scrolly-zone--center .sr-zone-beat--right  { justify-content: flex-end; }
   .sr-scrolly-zone--center .sr-zone-beat--center { justify-content: center; }
+  /* Gutter margin is subtracted inside the max-width calc below, so the
+     card's margin + box together never exceed the gutter: border-box
+     sizing is required here so max-width caps the full visible footprint
+     (content + the card's own padding) rather than just its content area. */
+  .sr-scrolly-zone--center { --pid-gutter-margin: clamp(16px, 3vw, 48px); }
   .sr-scrolly-zone--center .sr-zone-beat--left  > *,
   .sr-scrolly-zone--center .sr-zone-beat--right > * {
-    max-width: min(19rem, calc((100% - var(--pid-channel)) / 2 - 56px));
+    box-sizing: border-box;
+    max-width: min(19rem, calc((100% - var(--pid-channel)) / 2 - var(--pid-gutter-margin) - 16px));
     min-width: 0; width: 100%;
   }
-  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  clamp(16px, 3vw, 48px); }
-  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: clamp(16px, 3vw, 48px); }
+  .sr-scrolly-zone--center .sr-zone-beat--left  > * { margin-left:  var(--pid-gutter-margin); }
+  .sr-scrolly-zone--center .sr-zone-beat--right > * { margin-right: var(--pid-gutter-margin); }
   .sr-scrolly-zone--center .sr-zone-beat--center > * { max-width: 30rem; width: 100%; }
 
   /* DESCENT & OVERWRITE · aside — graphic one side, cards on the other */
@@ -152,6 +188,18 @@
      center, so confine its cards to the right half — no overlap onto the
      graphic. Scoped to this zone so descent is untouched. */
   .sr-scrolly-zone[data-field="overwrite"][data-diagram-side="left"] .sr-zone-field { margin-left: clamp(8px, 1vw, 16px); }
+  /* Field width is solved backwards from the fixed-size elements around it
+     (card max-width, both paddings, the field's own left margin) so a
+     constant 24px gap to the card survives at every viewport — the flat
+     48% above left this zone's card with 200px+ of unused slack at wide
+     widths while barely clearing it at 768px. Card math (17.5rem/31vw)
+     is unchanged; this only resizes the graphic to match it exactly. */
+  .sr-scrolly-zone[data-field="overwrite"][data-diagram-side="left"] .sr-zone-field {
+    width: min(
+      calc(100% - clamp(20px, 4vw, 64px) - min(17.5rem, 31vw) - clamp(8px, 1vw, 16px) - (2 * clamp(16px, 3vw, 56px)) - 24px),
+      700px
+    );
+  }
   .sr-scrolly-zone--split[data-field="overwrite"][data-diagram-side="left"] .sr-zone-beat > * { max-width: min(17.5rem, 31vw); min-width: 0; width: 100%; }
   .sr-scrolly-zone--split[data-diagram-side="right"] .sr-zone-field { margin-left: auto;  margin-right: clamp(8px, 2vw, 44px); }
   .sr-scrolly-zone--split[data-diagram-side="left"]  .sr-zone-field { margin-right: auto; margin-left:  clamp(8px, 2vw, 44px); }
@@ -268,7 +316,7 @@
    (scale-in seal + strike), not a crossfade.
    ════════════════════════════════════════════════════════════════ */
 .rgz {
-  position: relative; width: 100%; max-width: 600px;
+  position: relative; width: 100%; max-width: 680px;
   border: 1px solid var(--cold-name); border-radius: 3px;
   background: var(--color-cream); overflow: hidden;
   padding: 0 0 38px; box-sizing: border-box; word-break: keep-all;
@@ -454,6 +502,9 @@
   transition: opacity 0.9s var(--ease-out), transform 1.15s var(--ease-out);
 }
 .coda-field.coda-motion.is-revealed .coda-bloom svg { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .coda-field.coda-motion .coda-bloom svg { transition: none; }
+}
 
 .coda-prose {
   max-width: 40rem; margin-inline: auto;

@@ -57,17 +57,68 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
   </section>
 
   <SectionTerminator text="tfa" />
-  <ZoneSeam text="tfa" groundFrom="cream" groundTo="cream" />
+  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
 
   <!-- ════════════════════════════════════════════════════════════
-       ZONE 1 — An Epic Beginning · ground · still · cream
+       ZONE 1 — Achebe and the Western Canon · ground · still · tinted
        ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§1 An Epic Beginning">
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§1 Achebe and Yeats">
+    <div class="sr-zone-ground-content">
+
+      <SectionOpener text="tfa" eyebrow="The Epigraph" heading="Achebe and the Western Canon" background="tinted" motifIdx={4} />
+
+      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull tfa-verse">
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+        <blockquote class="sr-pullquote-body"><p>Turning and turning in the widening gyre<br />The falcon cannot hear the falconer;<br />Things fall apart; the centre cannot hold;<br />Mere anarchy is loosed upon the world.</p></blockquote>
+        <figcaption class="sr-pullquote-attribution">— W. B. Yeats, "The Second Coming" (1919)</figcaption>
+        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
+      </figure>
+
+      <figure class="tfa-gyre-fig" aria-label="Yeats's widening gyre: a spiral that widens with every turn, leaving its fixed centre behind.">
+        <svg viewBox="0 0 240 200" class="tfa-gyre-svg" role="img" aria-label="A spiral that widens with every turn around a small fixed centre point; a small arrowhead at the open end shows it spinning outward.">
+          <path d="M125.0 100.0 L125.5 100.8 L125.8 101.7 L126.0 102.7 L126.0 103.7 L125.8 104.9 L125.4 106.0 L124.8 107.1 L124.0 108.2 L122.9 109.2 L121.7 110.0 L120.3 110.7 L118.8 111.1 L117.1 111.3 L115.4 111.3 L113.6 111.0 L111.8 110.4 L110.1 109.5 L108.4 108.3 L106.9 106.8 L105.6 105.1 L104.5 103.2 L103.7 101.0 L103.2 98.7 L103.1 96.2 L103.3 93.7 L103.9 91.2 L104.8 88.7 L106.2 86.4 L107.9 84.2 L110.0 82.2 L112.4 80.5 L115.1 79.1 L118.0 78.1 L121.1 77.5 L124.3 77.4 L127.6 77.7 L130.8 78.6 L134.0 79.9 L137.0 81.6 L139.8 83.9 L142.3 86.5 L144.5 89.6 L146.2 92.9 L147.4 96.6 L148.1 100.5 L148.3 104.5 L147.9 108.5 L146.9 112.6 L145.3 116.5 L143.2 120.2 L140.4 123.6 L137.2 126.7 L133.6 129.3 L129.5 131.4 L125.1 132.9 L120.5 133.8 L115.7 134.0 L110.8 133.6 L106.0 132.5 L101.4 130.6 L97.0 128.1 L92.9 125.0 L89.2 121.3 L86.1 117.0 L83.6 112.3 L81.7 107.2 L80.6 101.8 L80.2 96.2 L80.6 90.6 L81.9 85.0 L83.9 79.5 L86.7 74.4 L90.2 69.6 L94.4 65.4 L99.3 61.7 L104.7 58.7 L110.5 56.4 L116.6 55.0 L122.9 54.5 L129.4 54.8 L135.8 56.1 L142.0 58.3 L147.9 61.3 L153.4 65.2 L158.3 69.9 L162.6 75.3 L166.1 81.3 L168.7 87.7 L170.5 94.6 L171.2 101.7 L171.0 108.9 L169.8 116.1 L167.5 123.1 L164.2 129.8 L160.0 136.1 L154.9 141.7 L149.0 146.6 L142.4 150.6 L135.3 153.8 L127.7 155.9 L119.8 156.9 L111.8 156.9 L103.8 155.7 L96.0 153.3 L88.5 149.9 L81.5 145.4 L75.2 139.9 L69.6 133.6 L65.0 126.4 L61.3 118.7 L58.8 110.4 L57.4 101.7 L57.3 92.9 L58.4 84.1 L60.7 75.5 L64.3 67.2 L69.0 59.4 L74.8 52.3 L81.6 46.1 L89.3 40.8 L97.7 36.6 L106.6 33.6 L116.0 31.9 L125.6 31.5 L135.2 32.4 L144.7 34.7 L153.8 38.3 L162.4 43.3 L170.2 49.4 L177.2 56.5 L183.2 64.7 L188.0 73.7 L191.5 83.3 L193.6 93.4 L194.3 103.8 L193.6 114.2 L191.4 124.5 L187.7 134.4 L182.7 143.8 L176.3 152.5 L168.8 160.2 L160.1 166.9 L150.6 172.3 L140.3 176.4 L129.6 179.0" fill="none" stroke="#41525E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M120 180 L130 175 M120 180 L130 185" stroke="#41525E" stroke-width="2" stroke-linecap="round"></path>
+          <circle cx="120" cy="100" r="3" fill="var(--color-muted)"></circle>
+        </svg>
+        <figcaption class="tfa-gyre-cap">
+          <span class="tfa-gyre-key">Turning and turning · the widening gyre</span>
+          Yeats's figure for history — a spiral that widens with every turn until the centre it spun from can no longer hold it. Achebe sets the same gyre spinning over <em>Umuofia.</em>
+        </figcaption>
+      </figure>
+
+      <div class="tfa-passage">
+        <div class="tfa-passage-body tfa-passage-body--lede">
+          <p>Achebe opens his novel with four lines from Yeats's "The Second Coming," written in the immediate aftermath of World War I. Yeats's poem is a vision of civilizational collapse — order dissolving, the falcon losing contact with the falconer, the center failing to hold. By choosing this epigraph, Achebe is making a claim before his novel has even begun.</p>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <div class="tfa-passage-body">
+          <p>In Yeats, the center that cannot hold is European civilization; the collapse is the crisis of Western modernity. Achebe borrows the image and recontextualizes it entirely. In <em>Things Fall Apart</em>, the center that cannot hold is Umuofia — an African civilization, fully realized on its own terms, destroyed not by internal failure but by external force. The widening gyre is colonial encroachment. The falcon that cannot hear the falconer is Okonkwo, increasingly unable to orient himself within a world that no longer operates by its own rules.</p>
+        </div>
+      </div>
+
+      <div class="tfa-passage">
+        <div class="tfa-passage-body">
+          <p>The choice of a Yeats epigraph is itself an argument about literary authority. It is the same gesture made by the novel's epic opening, now at the scale of a single allusion. Invoking the form of the epic genre and borrowing Yeats's lines are two versions of one claim — that <em>Things Fall Apart</em> belongs in the conversation of the Western canon, on equal footing, while telling a story that canon had erased. Achebe is claiming the same weight of tragedy and civilizational stakes for Igbo civilization's collapse that Yeats assigned to the collapse of the European order. There is also a quiet irony in the choice: Yeats could not have imagined his poem about European crisis being repurposed as the frame for an African novel written in deliberate opposition to the assumptions of that same tradition. That act of appropriation is itself a form of the novel's argument — the tools of the colonial literary tradition can be used to tell the story of what that tradition erased.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <SectionTerminator text="tfa" />
+  <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       ZONE 2 — An Epic Beginning · ground · still · cream
+       ════════════════════════════════════════════════════════════ -->
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§2 An Epic Beginning">
     <div class="sr-zone-ground-content">
 
       <SectionOpener text="tfa" eyebrow="The Epic Frame" heading="An Epic Beginning" background="cream" motifIdx={4} />
 
-      <div class="tfa-invoke" data-screen-label="§1 The Invocations">
+      <div class="tfa-invoke" data-screen-label="§2 The Invocations">
         <span class="tfa-invoke-eyebrow">The Epic Invocation</span>
         <div class="tfa-invoke-grid">
 
@@ -151,7 +202,7 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
         </div>
       </div>
 
-      <div class="tfa-subsection tfa-z1-herakles" data-screen-label="§1 The Unseasonal Hero">
+      <div class="tfa-subsection tfa-z1-herakles" data-screen-label="§2 The Unseasonal Hero">
         <div class="tfa-subsection-head">
           <span class="tfa-subsection-eyebrow">Nagy · Herakles · kleos</span>
           <h3 class="tfa-subsection-title">The Unseasonal Hero</h3>
@@ -165,7 +216,7 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
         </div>
       </div>
 
-      <figure class="tfa-descent" data-screen-label="§1 The Descent" aria-label="A descending staircase of three platforms. Top left: Okonkwo's full flame-emblem in terracotta, in season, standing on a yam-barn ground. A step down, labeled exile, to a cooled mid-tone emblem standing on a bed of glowing, flickering coals — the fire nearly out but not dead. A step down, labeled the mission, marked with a cross, into a cold haze where the figure is reduced to a bare umber mark beside the closed Commissioner's book, the rising song struck through.">
+      <figure class="tfa-descent" data-screen-label="§2 The Descent" aria-label="A descending staircase of three platforms. Top left: Okonkwo's full flame-emblem in terracotta, in season, standing on a yam-barn ground. A step down, labeled exile, to a cooled mid-tone emblem standing on a bed of glowing, flickering coals — the fire nearly out but not dead. A step down, labeled the mission, marked with a cross, into a cold haze where the figure is reduced to a bare umber mark beside the closed Commissioner's book, the rising song struck through.">
         <span class="tfa-descent-eyebrow">In season → displaced → out of season</span>
         <svg viewBox="0 0 720 392" role="img" aria-hidden="true">
           <defs>
@@ -261,7 +312,7 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
             <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
           </figure>
 
-          <figure class="tfa-obierika" data-screen-label="§1 Obierika weighs it" aria-label="Obierika sits mourning in his obi at left, his bowed head wreathed in warm uli tendrils carrying his unanswerable questions. A sweeping line carries those questions rightward onto the left pan of a balance scale resting on Ala, the earth goddess. That pan holds the blameless and rides high; the right pan holds a heavy umber mass, all the land, and drags the beam down.">
+          <figure class="tfa-obierika" data-screen-label="§2 Obierika weighs it" aria-label="Obierika sits mourning in his obi at left, his bowed head wreathed in warm uli tendrils carrying his unanswerable questions. A sweeping line carries those questions rightward onto the left pan of a balance scale resting on Ala, the earth goddess. That pan holds the blameless and rides high; the right pan holds a heavy umber mass, all the land, and drags the beam down.">
             <span class="tfa-obierika-eyebrow">Anguish weighed against imperative</span>
             <svg viewBox="0 0 980 440" role="img" aria-hidden="true">
               <line class="ob-rule" x1="70" y1="362" x2="266" y2="362"></line>
@@ -325,9 +376,9 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
   <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
 
   <!-- ════════════════════════════════════════════════════════════
-       ZONE 2 — Before the Missionaries · ground · still · tinted
+       ZONE 3 — Before the Missionaries · ground · still · tinted
        ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§2 Before the Missionaries">
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§3 Before the Missionaries">
     <div class="sr-zone-ground-content">
 
       <SectionOpener text="tfa" eyebrow="The Structural Argument" heading="Before the Missionaries" background="tinted" motifIdx={4} />
@@ -392,9 +443,9 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
   <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
 
   <!-- ════════════════════════════════════════════════════════════
-       ZONE 3 — Okonkwo's Values · ground · still · cream
+       ZONE 4 — Okonkwo's Values · ground · still · cream
        ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§3 Okonkwo's Values">
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="cream" data-text="tfa" data-screen-label="§4 Okonkwo's Values">
     <div class="sr-zone-ground-content">
 
       <SectionOpener text="tfa" eyebrow="The Hero and His Flaw" heading="Okonkwo's Values" background="cream" motifIdx={4} />
@@ -509,10 +560,10 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
   <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
 
   <!-- ════════════════════════════════════════════════════════════
-       ZONE 4 — The Fault Lines of Igbo Culture · ground · still · tinted
+       ZONE 5 — The Fault Lines of Igbo Culture · ground · still · tinted
        Combines the church section with Okonkwo's death.
        ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§4 The Fault Lines of Igbo Culture">
+  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§5 The Fault Lines of Igbo Culture">
     <div class="sr-zone-ground-content">
 
       <SectionOpener text="tfa" eyebrow="Conversion and Tragedy" heading="The Fault Lines of Igbo Culture" background="tinted" motifIdx={4} />
@@ -556,7 +607,7 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
         </div>
       </div>
 
-      <div class="tfa-pivot" data-screen-label="§4 pivot sentence">
+      <div class="tfa-pivot" data-screen-label="§5 pivot sentence">
         <p>Colonialism succeeded in Igboland partly by embracing the people that Igbo culture had already marginalized. The disruption worked through existing fault lines, and some of those fault lines were real moral failures.</p>
       </div>
 
@@ -683,10 +734,10 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
   <ZoneSeam text="tfa" groundFrom="tinted" groundTo="cream" />
 
   <!-- ════════════════════════════════════════════════════════════
-       ZONE 5 — A Reasonable Paragraph · book · driving · cream
+       ZONE 6 — A Reasonable Paragraph · book · driving · cream
        The spoke's single earned visual: cover → paragraph → response.
        ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone tfa-zone--book" data-field="book" data-tempo="driving" data-ground="cream" data-text="tfa" data-screen-label="§5 A Reasonable Paragraph">
+  <section class="sr-scrolly-zone tfa-zone--book" data-field="book" data-tempo="driving" data-ground="cream" data-text="tfa" data-screen-label="§6 A Reasonable Paragraph">
 
     <div class="tfa-z4-intro">
       <SectionOpener text="tfa" eyebrow="The Last Page" heading="A Reasonable Paragraph" background="cream" motifIdx={4} />
@@ -717,61 +768,10 @@ import TriangleTerminator from '../../../components/summer-reading/TriangleTermi
       </div>
     </div>
 
-  </section>
-
-  <SectionTerminator text="tfa" />
-  <ZoneSeam text="tfa" groundFrom="cream" groundTo="tinted" />
-
-  <!-- ════════════════════════════════════════════════════════════
-       ZONE 6 — Achebe and the Western Canon · ground · still · tinted
-       ════════════════════════════════════════════════════════════ -->
-  <section class="sr-scrolly-zone sr-scrolly-zone--ground" data-field="ground" data-tempo="still" data-ground="tinted" data-text="tfa" data-screen-label="§6 Achebe and Yeats">
-    <div class="sr-zone-ground-content">
-
-      <SectionOpener text="tfa" eyebrow="The Epigraph" heading="Achebe and the Western Canon" background="tinted" motifIdx={4} />
-
-      <figure class="sr-pullquote sr-pullquote--tfa tfa-zone-pull tfa-verse">
-        <div class="sr-pullquote-bracket sr-pullquote-bracket--top" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
-        <blockquote class="sr-pullquote-body"><p>Turning and turning in the widening gyre<br />The falcon cannot hear the falconer;<br />Things fall apart; the centre cannot hold;<br />Mere anarchy is loosed upon the world.</p></blockquote>
-        <figcaption class="sr-pullquote-attribution">— W. B. Yeats, "The Second Coming" (1919)</figcaption>
-        <div class="sr-pullquote-bracket sr-pullquote-bracket--bottom" aria-hidden="true"><UliTendril width={80} color="var(--t-terra)" opacity={0.7} /></div>
-      </figure>
-
-      <figure class="tfa-gyre-fig" aria-label="Yeats's widening gyre: a spiral that widens with every turn, leaving its fixed centre behind.">
-        <svg viewBox="0 0 240 200" class="tfa-gyre-svg" role="img" aria-label="A spiral that widens with every turn around a small fixed centre point; a small arrowhead at the open end shows it spinning outward.">
-          <path d="M125.0 100.0 L125.5 100.8 L125.8 101.7 L126.0 102.7 L126.0 103.7 L125.8 104.9 L125.4 106.0 L124.8 107.1 L124.0 108.2 L122.9 109.2 L121.7 110.0 L120.3 110.7 L118.8 111.1 L117.1 111.3 L115.4 111.3 L113.6 111.0 L111.8 110.4 L110.1 109.5 L108.4 108.3 L106.9 106.8 L105.6 105.1 L104.5 103.2 L103.7 101.0 L103.2 98.7 L103.1 96.2 L103.3 93.7 L103.9 91.2 L104.8 88.7 L106.2 86.4 L107.9 84.2 L110.0 82.2 L112.4 80.5 L115.1 79.1 L118.0 78.1 L121.1 77.5 L124.3 77.4 L127.6 77.7 L130.8 78.6 L134.0 79.9 L137.0 81.6 L139.8 83.9 L142.3 86.5 L144.5 89.6 L146.2 92.9 L147.4 96.6 L148.1 100.5 L148.3 104.5 L147.9 108.5 L146.9 112.6 L145.3 116.5 L143.2 120.2 L140.4 123.6 L137.2 126.7 L133.6 129.3 L129.5 131.4 L125.1 132.9 L120.5 133.8 L115.7 134.0 L110.8 133.6 L106.0 132.5 L101.4 130.6 L97.0 128.1 L92.9 125.0 L89.2 121.3 L86.1 117.0 L83.6 112.3 L81.7 107.2 L80.6 101.8 L80.2 96.2 L80.6 90.6 L81.9 85.0 L83.9 79.5 L86.7 74.4 L90.2 69.6 L94.4 65.4 L99.3 61.7 L104.7 58.7 L110.5 56.4 L116.6 55.0 L122.9 54.5 L129.4 54.8 L135.8 56.1 L142.0 58.3 L147.9 61.3 L153.4 65.2 L158.3 69.9 L162.6 75.3 L166.1 81.3 L168.7 87.7 L170.5 94.6 L171.2 101.7 L171.0 108.9 L169.8 116.1 L167.5 123.1 L164.2 129.8 L160.0 136.1 L154.9 141.7 L149.0 146.6 L142.4 150.6 L135.3 153.8 L127.7 155.9 L119.8 156.9 L111.8 156.9 L103.8 155.7 L96.0 153.3 L88.5 149.9 L81.5 145.4 L75.2 139.9 L69.6 133.6 L65.0 126.4 L61.3 118.7 L58.8 110.4 L57.4 101.7 L57.3 92.9 L58.4 84.1 L60.7 75.5 L64.3 67.2 L69.0 59.4 L74.8 52.3 L81.6 46.1 L89.3 40.8 L97.7 36.6 L106.6 33.6 L116.0 31.9 L125.6 31.5 L135.2 32.4 L144.7 34.7 L153.8 38.3 L162.4 43.3 L170.2 49.4 L177.2 56.5 L183.2 64.7 L188.0 73.7 L191.5 83.3 L193.6 93.4 L194.3 103.8 L193.6 114.2 L191.4 124.5 L187.7 134.4 L182.7 143.8 L176.3 152.5 L168.8 160.2 L160.1 166.9 L150.6 172.3 L140.3 176.4 L129.6 179.0" fill="none" stroke="#41525E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M120 180 L130 175 M120 180 L130 185" stroke="#41525E" stroke-width="2" stroke-linecap="round"></path>
-          <circle cx="120" cy="100" r="3" fill="var(--color-muted)"></circle>
-        </svg>
-        <figcaption class="tfa-gyre-cap">
-          <span class="tfa-gyre-key">Turning and turning · the widening gyre</span>
-          Yeats's figure for history — a spiral that widens with every turn until the centre it spun from can no longer hold it. Achebe sets the same gyre spinning over <em>Umuofia.</em>
-        </figcaption>
-      </figure>
-
-      <div class="tfa-passage">
-        <div class="tfa-passage-body tfa-passage-body--lede">
-          <p>Achebe opens his novel with four lines from Yeats's "The Second Coming," written in the immediate aftermath of World War I. Yeats's poem is a vision of civilizational collapse — order dissolving, the falcon losing contact with the falconer, the center failing to hold. By choosing this epigraph, Achebe is making a claim before his novel has even begun.</p>
-        </div>
-      </div>
-
-      <div class="tfa-passage">
-        <div class="tfa-passage-body">
-          <p>In Yeats, the center that cannot hold is European civilization; the collapse is the crisis of Western modernity. Achebe borrows the image and recontextualizes it entirely. In <em>Things Fall Apart</em>, the center that cannot hold is Umuofia — an African civilization, fully realized on its own terms, destroyed not by internal failure but by external force. The widening gyre is colonial encroachment. The falcon that cannot hear the falconer is Okonkwo, increasingly unable to orient himself within a world that no longer operates by its own rules.</p>
-        </div>
-      </div>
-
-      <div class="tfa-passage">
-        <div class="tfa-passage-body">
-          <p>The choice of a Yeats epigraph is itself an argument about literary authority. It is the same gesture made by the novel's epic opening, now at the scale of a single allusion. Invoking the form of the epic genre and borrowing Yeats's lines are two versions of one claim — that <em>Things Fall Apart</em> belongs in the conversation of the Western canon, on equal footing, while telling a story that canon had erased. Achebe is claiming the same weight of tragedy and civilizational stakes for Igbo civilization's collapse that Yeats assigned to the collapse of the European order. There is also a quiet irony in the choice: Yeats could not have imagined his poem about European crisis being repurposed as the frame for an African novel written in deliberate opposition to the assumptions of that same tradition. That act of appropriation is itself a form of the novel's argument — the tools of the colonial literary tradition can be used to tell the story of what that tradition erased.</p>
-        </div>
-      </div>
-
-      <div class="tfa-end">
-        <TriangleTerminator width={240} color="var(--t-terra)" opacity={0.9} />
-      </div>
-
+    <div class="tfa-end">
+      <TriangleTerminator width={240} color="var(--t-terra)" opacity={0.9} />
     </div>
+
   </section>
 
 </SummerLayout>

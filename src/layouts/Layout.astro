@@ -4,10 +4,12 @@ import { PEOPLE } from '../components/BiographyPanel.jsx';
 
 interface Props {
   title: string;
+  hideFooter?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, hideFooter = false } = Astro.props;
 const peopleJson = JSON.stringify(PEOPLE);
+const isGuides = Astro.url.pathname === '/guides' || Astro.url.pathname.startsWith('/guides/');
 ---
 
 <!doctype html>
@@ -33,13 +35,17 @@ const peopleJson = JSON.stringify(PEOPLE);
         <a href="/timeline">Timeline</a>
         <a href="/people">People</a>
         <a href="/compare">Compare</a>
-        <a href="/seeing-through-paint">Painting</a>
-        <a href="/sculpting-through-time">Sculpture</a>
-        <a href="/hearing-through-form">Music</a>
+        <a href="/guides" class:list={['guides-link', isGuides && 'on']}>Guides</a>
       </nav>
     </div>
 
     <slot />
+
+    {!hideFooter && (
+      <footer class="site-footer">
+        <a href="/credits">Image Credits</a>
+      </footer>
+    )}
 
     <!-- Bio modal -->
     <div
@@ -52,7 +58,7 @@ const peopleJson = JSON.stringify(PEOPLE);
       <div class="bio-panel">
         <button id="bio-close" class="bio-close" aria-label="Close">×</button>
         <div class="bio-header">
-          <img id="bio-portrait" src="" alt="" class="bio-portrait hidden" />
+          <img id="bio-portrait" alt="" class="bio-portrait hidden" />
           <div class="bio-meta">
             <p id="bio-field" class="bio-field"></p>
             <h2 id="bio-name" class="bio-name"></h2>
@@ -212,6 +218,25 @@ const peopleJson = JSON.stringify(PEOPLE);
   }
   .nav { display: flex; gap: 24px; flex-shrink: 0; }
   .nav a:hover { color: var(--ink); transition: color 150ms ease; }
+  .nav .on { color: var(--ink); border-bottom: 2px solid var(--acc-modernism); padding-bottom: 3px; }
+
+  /* ── Footer ──────────────────────────────────────────────────────── */
+  .site-footer {
+    padding: 28px var(--gutter) 40px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .site-footer a {
+    color: var(--ink-soft);
+  }
+  .site-footer a:hover {
+    color: var(--ink);
+    transition: color 150ms ease;
+  }
 
   /* ── Bio modal ───────────────────────────────────────────────────── */
   .bio-modal {

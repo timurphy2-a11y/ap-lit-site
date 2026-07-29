@@ -64,8 +64,8 @@
 /* Portrait variant for tall images (e.g. pachinko machine) */
 .sr-zone-photo--portrait {
   aspect-ratio: 3 / 4;
-  width: min(34%, 360px);
-  max-height: 62vh;
+  width: min(40%, 420px);
+  max-height: 68vh;
 }
 
 /* Caption sits below the plate */
@@ -268,7 +268,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
   margin-right: var(--s-3);
 }
 
@@ -464,7 +464,7 @@
 }
 
 .sr-cascade-entry.is-newest .sr-cascade-year {
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 .sr-cascade-event {
@@ -484,7 +484,7 @@
 
 /* ── Highlight entries (orange accent) ──────────────────────────────────── */
 .sr-cascade-entry--highlight .sr-cascade-year {
-  color: var(--p-orange);
+  color: var(--p-orange-text);
 }
 
 .sr-cascade-entry--highlight.is-revealed .sr-cascade-dot {
@@ -496,11 +496,14 @@
   box-shadow: 0 0 0 5px rgba(196, 114, 42, 0.18);
 }
 
-/* Lead prose beat inside cascade content */
+/* Lead prose beat inside cascade content — static intro text, not an
+   IntersectionObserver-tracked beat (the cascade JS only activates
+   .sr-cascade-entry elements), so it must not sit at the dimmed default. */
 .sr-zone-cascade-content .sr-zone-beat {
   margin-top: 0;
   margin-bottom: var(--s-10);
   padding: 0;
+  opacity: 1;
 }
 
 .sr-zone-cascade-content .sr-beat-card {
@@ -602,7 +605,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--p-teal);
+  color: var(--p-teal-text);
 }
 
 .sr-gen-index em { font-style: italic; text-transform: none; letter-spacing: 0.04em; }
@@ -707,7 +710,7 @@
   font-size: var(--t-eyebrow);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--p-orange);
+  color: var(--p-orange-text);
   margin-bottom: var(--s-2);
 }
 .sr-lexicon-title {
@@ -826,7 +829,31 @@
     border-color: var(--p-orange);
   }
 
+  .sr-cascade-year {
+    transition: none;
+  }
+
+  .sr-cascade-event {
+    transition: none;
+  }
+
   .sr-zone-cascade-progress { display: none; }
+
+  /* Migration/encroachment map pages: instant state changes, no fades */
+  .mm-layer,
+  .enc-layer {
+    transition: none;
+  }
+
+  .scrolly-chapter,
+  .scrolly-chapter-inner,
+  .scrolly-progress-segment {
+    transition: none;
+  }
+
+  .scrolly-chapter.is-inactive {
+    opacity: 1;
+  }
 }
 
 /* ── Mobile: sequential inline fallback (<768px) ───────────────────────── */

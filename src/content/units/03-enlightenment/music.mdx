@@ -23,6 +23,9 @@ featured_listening:
   duration: "6 minutes"
   listen_for: "A textbook sonata form: the bright, confident opening theme, the contrasting second theme (more lyrical), the development section (which fragments and recombines), and the satisfying return of the opening. Balanced, witty, elegant."
   youtube_id: "UhPBT0dA_oA"
+  analysisEyebrow: "Listen for · Textbook sonata form"
+  analysis: "Listen for the bright, confident opening theme, then the shift to a more lyrical second theme — these two contrasting ideas are the *exposition*. The development section fragments and recombines them, creating harmonic instability, before the recapitulation brings back the opening material in a satisfying return. The balanced, symmetrical phrases — musical sentences that come in even, proportional groups — are the sonic equivalent of Austen's precisely balanced prose."
+  analysisPrompt: "Statement, development, resolution — the same formal control that carries an Austen novel from introduction through complication to its surprising-yet-inevitable close."
 gallery_listening:
   - title: "Piano Concerto No. 21 in C Major, K. 467, second movement (Andante)"
     composer: "Wolfgang Amadeus Mozart"
@@ -30,29 +33,48 @@ gallery_listening:
     duration: "7 minutes (or first 3 minutes for the main theme)"
     threads: [consonance-dissonance, texture-voices]
     youtube_id: "5Y4Fkxg7WcA"
+    analysisEyebrow: "Listen for · One voice, gently answered"
+    analysis: "The second movement shows how Classical music handles deep emotion within restrained formal structures: the melody is achingly beautiful but never excessive, feeling shaped by form. Notice, too, how the piano and orchestra move between collaboration and gentle contest — a single clear voice heard above and alongside the collective. This is the concerto as a sonic image of the individual in society."
+    analysisPrompt: "The soloist's line stays clearly audible above its accompaniment — Elizabeth Bennet's consciousness, with the other characters arranged around her."
   - title: "Symphony No. 94 ('Surprise'), second movement (Andante)"
     composer: "Joseph Haydn"
     date: 1791
     duration: "6 minutes"
     threads: [structure-freedom]
     youtube_id: "lLjwkamp3lI"
+    analysisEyebrow: "Listen for · A joke about expectation"
+    analysis: "This is Classical wit at its most concentrated: a gentle, predictable melody, phrased in tidy symmetrical units — and then, without warning, a single sudden fortissimo chord. The joke only works because the form has trained you to expect the opposite. Haydn plays with the listener's expectations within the very framework of cadence and phrase that gives the movement its shape."
+    analysisPrompt: "The surprise depends on the rules — you have to know what should happen for the disruption to land. Austen's deceptive cadences work exactly the same way."
   - title: "Overture to Don Giovanni, K. 527"
     composer: "Wolfgang Amadeus Mozart"
     date: 1787
     duration: "6 minutes"
     threads: [structure-freedom, consonance-dissonance]
     youtube_id: "G1YS61pu8Rc"
+    analysisEyebrow: "Listen for · Dissonance deferred, then resolved"
+    analysis: "Listen for the dramatic slow introduction — dark, foreboding, harmonically unstable — before the bright sonata-form movement that follows. The two are in violent contrast: tragedy and comedy occupying the same six minutes. That opening dissonance is not resolved here; the introduction returns, note for note, at the opera's finale, when the ghost of the murdered Commendatore arrives to drag Don Giovanni to hell. Mozart embeds the whole moral reckoning inside the overture."
+    analysisPrompt: "Tension introduced at the start, held across the entire evening, and resolved only at the very end — dissonance in the service of a larger architecture."
 compare_back: "baroque"
 compare_forward: "romanticism"
 ---
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
+import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 
 
 ## Introduction
 
 The Classical movement in music values the same qualities that <BioLink id="austen">Austen</BioLink> values in prose: clarity, proportion, balance, wit, and the elegant management of feeling within rational structures. Behind this shift is an Enlightenment conviction: the best music is that which appeals to the greatest number. Where Baroque music was elaborate, intricate, and designed for connoisseurs, Classical music deliberately strips back to clean lines and transparent textures, music that sounds *natural* to the ear of Enlightenment listeners. The dominant form is the sonata, which organizes musical ideas into a balanced, almost architectural structure — statement, development, recapitulation — much as an <BioLink id="austen">Austen</BioLink> novel moves through introduction, complication, and resolution with exquisite formal control.
+
+<SlowDownCallout
+  kind="music"
+  sayLine="If “homophony” and “sonata form” are still only words to you, spend ten minutes in the Studio before this page."
+  links={[
+    { eyebrow: 'Foundations', label: 'The Listening Studio', href: '/guides/listening-studio' },
+    { eyebrow: 'Deeper', label: 'Sonata & rondo', href: '/guides/listening-studio/musical-forms#enlightenment' },
+  ]}
+/>
 
 ## Texture & Voices
 
@@ -93,18 +115,6 @@ This cadential language made possible the Classical era's great formal invention
 ### Connection to *Pride and Prejudice*
 
 <BioLink id="austen">Austen</BioLink>'s plots follow the same grammatical logic. The novel sets up social and romantic expectations with great clarity (exposition), complicates them through misunderstanding and misdirection (development), and resolves them in ways that are both surprising and deeply satisfying (recapitulation). <BioLink id="austen">Austen</BioLink> even uses the deceptive cadence: Wickham appears to resolve Elizabeth's need for a partner, but lands in the wrong key entirely, prolonging the tension rather than ending it. The <BioLink id="haydn">Haydn</BioLink> "Surprise" Symphony, with its gentle, predictable melody punctuated by a sudden fortissimo chord, demonstrates this wit at its most concentrated. The composer plays with the listener's expectations within the same formal framework that <BioLink id="austen">Austen</BioLink> manipulates at every level of structure in her novels.
-
-## What to Listen For
-
-In <BioLink id="mozart">Mozart</BioLink>'s *Eine kleine Nachtmusik* above, listen for the bright, confident opening theme and then the shift to a more lyrical second theme — these two contrasting ideas are the "exposition." The development section fragments and recombines them, creating harmonic instability, before the recapitulation brings back the opening material in a satisfying return. The balanced, symmetrical phrases (musical sentences that come in even, proportional groups) are the sonic equivalent of <BioLink id="austen">Austen</BioLink>'s precisely balanced prose.
-
-In <BioLink id="mozart">Mozart</BioLink>'s Piano Concerto No. 21 below, the second movement shows how Classical music handles deep emotion within restrained formal structures: the melody is achingly beautiful but never excessive, feeling shaped by form. Notice also how the piano and orchestra move between collaboration and gentle contest. <BioLink id="haydn">Haydn</BioLink>'s "Surprise" Symphony demonstrates Classical wit: a gentle, predictable melody punctuated by a sudden fortissimo chord — a joke, but a formally sophisticated one.
-
-In the overture to <BioLink id="mozart">Mozart</BioLink>'s *Don Giovanni*, listen for the dramatic slow introduction — dark, foreboding, harmonically unstable — before the bright sonata-form movement that follows. The two are in violent contrast: tragedy and comedy occupying the same six minutes. The introduction returns, note for note, at the opera's finale, when the ghost of the murdered Commendatore arrives to drag Don Giovanni to hell. <BioLink id="mozart">Mozart</BioLink> embeds the opera's moral reckoning inside its overture; the opening dissonance is only resolved at the very end of the evening.
-
-<YouTubeEmbed id="5Y4Fkxg7WcA" title="Piano Concerto No. 21 in C Major, K. 467, second movement" composer="Wolfgang Amadeus Mozart" />
-<YouTubeEmbed id="lLjwkamp3lI" title="Symphony No. 94 ('Surprise'), second movement" composer="Joseph Haydn" />
-<YouTubeEmbed id="G1YS61pu8Rc" title="Overture to Don Giovanni, K. 527" composer="Wolfgang Amadeus Mozart" />
 
 ## Looking Back
 

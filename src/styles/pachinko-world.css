@@ -1,0 +1,139 @@
+/* Pachinko World — split-layout map zones (Zone 3 · Busan–Shimonoseki,
+ * Zone 5 · Osaka/Tokyo). The map is pinned to one side of the screen at
+ * full available size, with beat cards scrolling down the other side in
+ * a single column — twice the room a center channel could give the map,
+ * since only one side needs to reserve space for text instead of both.
+ * Zone 3 puts the map on the left (mapSide="left"), Zone 5 on the right
+ * (mapSide="right"), so the two map zones alternate sides going down the
+ * page. Same "--split" mechanic already shipped on the Identity spoke
+ * (pachinko-identity.css, "descent/overwrite" zones), reworked here with
+ * beat-card sizing based on the beats lane's own half rather than a
+ * shared channel variable — simpler, and avoids the containing-block
+ * mismatch that caused real overlap bugs in this file's earlier
+ * center-channel version (map and beats resolving percentages against
+ * different boxes at wide viewports). Duplicated file rather than a
+ * shared one because pachinko-identity.css is page-scoped to Identity.
+ */
+
+.sr-scrolly-zone--split .sr-zone-beats > .sr-section-opener {
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  /* Beats lane must share the field's own containing block (the section),
+     not the sitewide 1060px cap — see file header note above. The channel
+     is a % (not vw): vw is relative to the viewport, not this section, and
+     the section itself is inset from the viewport by ancestor page
+     padding, so vw silently drifted from the section's actual width. %
+     is safe here specifically because .sr-zone-field and .sr-zone-beat
+     (via .sr-zone-beats, max-width:none, and this rule's padding-inline:0)
+     now share the exact same containing block with no padding on either
+     side to offset one from the other — the mismatch that caused the
+     center-channel overlap bug was two DIFFERENT containing blocks, not %
+     itself. */
+  .sr-scrolly-zone--split {
+    --pw-split-channel: min(52%, 640px);
+    --pw-split-margin:  clamp(8px, 2vw, 44px);
+    --pw-split-gutter:  clamp(20px, 4vw, 64px);
+  }
+  .sr-scrolly-zone--split .sr-zone-beats { max-width: none; }
+  .sr-scrolly-zone--split .sr-zone-field { width: var(--pw-split-channel); }
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-field { margin-right: auto; margin-left:  var(--pw-split-margin); }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-field { margin-left: auto;  margin-right: var(--pw-split-margin); }
+  /* Cards always sit on the side opposite the map, regardless of each
+     beat's own align="left"/"right" — one column, not two gutters. */
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-beat { justify-content: flex-end; }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-beat { justify-content: flex-start; }
+  .sr-scrolly-zone--split .sr-zone-beat { padding-inline: 0; }
+  .sr-scrolly-zone--split .sr-zone-beat > * {
+    box-sizing: border-box;
+    max-width: min(31rem, calc(100% - var(--pw-split-channel) - var(--pw-split-margin) - var(--pw-split-gutter) - 16px));
+    min-width: 0;
+    width: 100%;
+  }
+  .sr-scrolly-zone--split[data-map-side="left"]  .sr-zone-beat > * { margin-right: var(--pw-split-gutter); }
+  .sr-scrolly-zone--split[data-map-side="right"] .sr-zone-beat > * { margin-left:  var(--pw-split-gutter); }
+}
+
+/* mobile / reduced-motion: unstack — field rides static above its beats */
+@media (max-width: 767px) {
+  .sr-scrolly-zone--split .sr-zone-field { position: relative; height: auto; width: 100%; margin: 0; }
+  .sr-scrolly-zone--split .sr-zone-beats { margin-top: var(--s-6); }
+  .sr-scrolly-zone--split .sr-zone-beat { justify-content: center; padding-inline: 0; }
+  .sr-scrolly-zone--split .sr-zone-beat > * { max-width: 32rem; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
+  .sr-scrolly-zone--split .sr-zone-field { margin-inline: auto; }
+}
+
+/* Zone 1 (Opening Orientation) and Zone 2 (Yeongdo, Busan) — enlarge the
+   photo beyond the sitewide default (.sr-zone-photo: min(46%,540px) width,
+   4:3 aspect-ratio, max-height 56vh, object-fit:cover). Cover plus a fixed
+   aspect ratio mean this only shows more of the same photo at a bigger
+   size — never stretches or distorts it. Desktop-only, matching every
+   other layout variant in this file: the sitewide mobile fallback already
+   shrinks the field itself, so the default (smaller) sizing is fine there. */
+@media (min-width: 768px) {
+  .sr-scrolly-zone--photo-lg .sr-zone-photo {
+    width: min(58%, 680px);
+    max-height: 68vh;
+  }
+  .sr-scrolly-zone--photo-lg .sr-zone-caption {
+    max-width: min(58%, 680px);
+  }
+}
+
+/* Zone 7a (The Metaphor) — bottom-anchor the photo within its sticky box,
+   and size it large enough (84vh) that anchoring doesn't leave a big empty
+   margin above it. (A centered, vh-sized photo with a calculated negative
+   margin on the caption to cancel the centering gap was tried here first —
+   correct on paper, but that kind of cross-element computed-margin
+   coordination is exactly the sort of thing that's fragile across browsers
+   and easy to get subtly wrong. Bottom-anchoring needs no coordination at
+   all: the photo's real bottom edge simply *is* the field's bottom edge,
+   so the caption's plain, fixed margin-top below is always correct.) */
+@media (min-width: 768px) {
+  /* Both top and bottom padding must go to zero, not just bottom: the
+     field's height is a fixed 100vh content box, and content-box sizing
+     adds padding OUTSIDE it — any padding left on this box makes its
+     total rendered height exceed the 100vh viewport it's pinned against,
+     so with an image this tall (84vh) even the old default padding-top
+     was enough to push its bottom edge below the visible screen. */
+  .sr-scrolly-zone--anchored .sr-zone-photo-field {
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .sr-scrolly-zone--anchored .sr-zone-photo--portrait {
+    height: 84vh;
+    width: auto;
+    max-height: none;
+    max-width: 90%;
+  }
+}
+
+/* Zone 7a (The Metaphor) — closing line as a card under the pachinko
+   machine photo, not another fading overlay beat. The photo's sticky pin
+   (.sr-zone-field, position:sticky) releases naturally once this zone's
+   own scroll height runs out; this card is the very next element in flow,
+   so it lands right under the photo as the pin lets go and the two
+   continue scrolling up the page together. Styled to match the other
+   beat cards in this zone (same background/padding as .sr-beat-card)
+   rather than reading as plain page copy, with a tight top margin so it
+   sits close against the photo instead of floating below it. */
+.pw-photo-caption {
+  max-width: 30rem;
+  min-width: min(20rem, 100%);
+  width: 100%;
+  margin: var(--s-2) auto var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: rgba(246, 241, 232, 0.93);
+  text-align: center;
+}
+.pw-photo-caption p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  color: var(--color-ink);
+  margin: 0;
+}

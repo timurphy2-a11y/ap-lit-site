@@ -22,6 +22,7 @@
   --p-orange:         #C4722A;   /* eyebrow / decorative warm */
   --p-gold:           #D4A840;   /* secondary highlight */
   --p-coral:          #C4537A;   /* tertiary; reused on Cultural Message "open question" */
+  --p-cream:          #F0E4CF;   /* header text tint on deep teal (pk-spoke-header) */
 
   /* Title plate (Treatment A — locked) */
   --p-title-wash:     rgba(42, 168, 160, 0.08);   /* 8% teal on cream */
@@ -33,6 +34,13 @@
   --t-ochre:          #D4A840;   /* secondary; eyebrows on umber */
   --t-umber:          #2C1A08;   /* hero/header surface ONLY */
   --t-cream:          #F0E4CF;   /* light text on umber */
+
+  /* ── Text-safe accent variants (WCAG AA, ≥4.5:1 on cream/card/warm) ──
+     Same hue/saturation as their source accent, darkened for use as small
+     text (eyebrows, captions, attributions) — never for borders/fills. */
+  --p-teal-text:       #1A6D67;   /* readable --p-teal, for text only */
+  --p-orange-text:     #8F5220;   /* readable --p-orange / --t-terra, for text only */
+  --t-ochre-text:      #7C601C;   /* readable --t-ochre, for text only */
 
   /* ── Type ── */
   --font-display:     "Fraunces", ui-serif, Georgia, serif;

@@ -93,21 +93,30 @@ Through Eden took their solitary way.</blockquote>
       <div class="thr-chips-wrap">
         <p class="thr-chips-eyebrow">Five ways in</p>
         <div class="thr-chips">
-          {PACHINKO_SPOKES.map((s) => (
-            <a href={s.href} class="thr-chip" style={`--chip-accent: ${s.accent};`}>
-              <span class="thr-chip-num">{s.n}</span>
-              <span class="thr-chip-title">{s.title}</span>
-              <span class="thr-chip-glyph">
-                <PSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
-              </span>
-            </a>
-          ))}
+          {PACHINKO_SPOKES.map((s) => {
+            const isSpoiler = s.n === '05';
+            return (
+              <a
+                href={s.href}
+                class={isSpoiler ? 'thr-chip thr-chip-spoiler' : 'thr-chip'}
+                style={`--chip-accent: ${isSpoiler ? 'var(--p-orange)' : s.accent};`}
+                data-tooltip={isSpoiler ? 'Discusses the ending — read after finishing' : undefined}
+              >
+                {isSpoiler && <span class="thr-chip-badge" aria-hidden="true">!</span>}
+                <span class="thr-chip-num">{s.n}</span>
+                <span class="thr-chip-title">{s.title}</span>
+                <span class="thr-chip-glyph">
+                  <PSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
 
       <!-- section buttons -->
       <div class="thr-btns">
-        <a href="/summer-reading/cultural-message-held/pachinko" class="thr-btn">Cultural Message Analysis <span class="thr-btn-arrow">→</span></a>
+        <a href="/summer-reading/cultural-message-held/pachinko" class="thr-btn thr-btn-deferred">Cultural Message Analysis <span class="thr-btn-deferred-suffix">— opens in September</span></a>
         <a href="/summer-reading/pachinko/pronunciation" class="thr-btn">Pronunciation Guide <span class="thr-btn-arrow">→</span></a>
       </div>
 
@@ -163,21 +172,30 @@ Through Eden took their solitary way.</blockquote>
       <div class="thr-chips-wrap">
         <p class="thr-chips-eyebrow">Five ways in</p>
         <div class="thr-chips">
-          {TFA_SPOKES.map((s) => (
-            <a href={s.href} class="thr-chip" style={`--chip-accent: ${s.accent};`}>
-              <span class="thr-chip-num">{s.n}</span>
-              <span class="thr-chip-title">{s.title}</span>
-              <span class="thr-chip-glyph">
-                <TSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
-              </span>
-            </a>
-          ))}
+          {TFA_SPOKES.map((s) => {
+            const isSpoiler = s.n === '05';
+            return (
+              <a
+                href={s.href}
+                class={isSpoiler ? 'thr-chip thr-chip-spoiler' : 'thr-chip'}
+                style={`--chip-accent: ${isSpoiler ? 'var(--p-orange)' : s.accent};`}
+                data-tooltip={isSpoiler ? 'Discusses the ending — read after finishing' : undefined}
+              >
+                {isSpoiler && <span class="thr-chip-badge" aria-hidden="true">!</span>}
+                <span class="thr-chip-num">{s.n}</span>
+                <span class="thr-chip-title">{s.title}</span>
+                <span class="thr-chip-glyph">
+                  <TSpokeGlyph idx={s.idx} size={42} color="rgba(240,228,207,0.95)" />
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
 
       <!-- section buttons -->
       <div class="thr-btns">
-        <a href="/summer-reading/cultural-message-held/tfa" class="thr-btn">Cultural Message Analysis <span class="thr-btn-arrow">→</span></a>
+        <a href="/summer-reading/cultural-message-held/tfa" class="thr-btn thr-btn-deferred">Cultural Message Analysis <span class="thr-btn-deferred-suffix">— opens in September</span></a>
         <a href="/summer-reading/tfa/pronunciation" class="thr-btn">Pronunciation Guide <span class="thr-btn-arrow">→</span></a>
       </div>
 
@@ -410,6 +428,7 @@ Through Eden took their solitary way.</blockquote>
   }
 
   .thr-chip {
+    position: relative;
     text-decoration: none;
     color: inherit;
     display: flex;
@@ -462,6 +481,78 @@ Through Eden took their solitary way.</blockquote>
     display: flex;
   }
 
+  /* ── Spoiler badge + tooltip (05 Connections chip) ── */
+  .thr-chip-badge {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--p-orange);
+    color: #251C0D;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .thr-chip-spoiler::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(4px);
+    width: 168px;
+    max-width: 168px;
+    padding: 9px 11px;
+    border-radius: 3px;
+    background: #241A0C;
+    color: #F6F1E8;
+    border: 1px solid rgba(230, 168, 86, 0.55);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 140ms ease-out, transform 140ms ease-out;
+    z-index: 20;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  .thr-chip-spoiler::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(2px);
+    border: 6px solid transparent;
+    border-top-color: #241A0C;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 140ms ease-out;
+    z-index: 20;
+  }
+
+  .thr-chip-spoiler:hover::after,
+  .thr-chip-spoiler:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .thr-chip-spoiler:hover::before,
+  .thr-chip-spoiler:focus-visible::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
   /* ── Section buttons ── */
   .thr-btns {
     position: relative;
@@ -492,6 +583,25 @@ Through Eden took their solitary way.</blockquote>
 
   .thr-btn-arrow {
     opacity: 0.65;
+  }
+
+  .thr-btn-deferred {
+    background: transparent;
+    border-style: dashed;
+    font-size: 0.84375rem;
+    font-weight: 500;
+    opacity: 0.68;
+    cursor: default;
+  }
+
+  .thr-btn-deferred:hover {
+    background: transparent;
+    border-color: rgba(246, 241, 232, 0.30);
+  }
+
+  .thr-btn-deferred-suffix {
+    opacity: 0.75;
+    font-style: italic;
   }
 
   /* ── Footer ── */

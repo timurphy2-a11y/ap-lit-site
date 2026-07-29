@@ -15,6 +15,25 @@
 .sr-scrolly-zone[data-tempo="steady"]        { --beat-dwell: calc(420px * var(--dwell-scale, 1)); }
 .sr-scrolly-zone[data-tempo="driving"]       { --beat-dwell: calc(220px * var(--dwell-scale, 1)); }
 
+/* Zone 1 (Annexation and Dispossession) pre-existing bug: the generic --photo
+   mechanic gives the beats lane (1060px) almost the same width as the section
+   itself, so a fixed 30rem card reaches past the section's center on its own
+   — it overlaps the pinned photo at every normal desktop width, regardless of
+   how large the photo is. Fix: drop the 1060 cap (so left/right math shares
+   the same 100% basis as the photo field) and solve the card's max-width from
+   the field's width, guaranteeing a 24px gap at every viewport. Scoped to
+   this spoke/zone only — other --photo zones are unaffected. */
+.sr-page[data-spoke="history"] [data-field="photo"] .sr-zone-beats { max-width: none; }
+.sr-page[data-spoke="history"] [data-field="photo"] { --photo-field-w: min(46%, 640px); }
+.sr-page[data-spoke="history"] [data-field="photo"] .sr-zone-field { width: var(--photo-field-w); }
+.sr-page[data-spoke="history"] [data-field="photo"] .sr-zone-beat--left  > *,
+.sr-page[data-spoke="history"] [data-field="photo"] .sr-zone-beat--right > * {
+  box-sizing: border-box;
+  max-width: min(30rem, calc((100% - var(--photo-field-w)) / 2 - clamp(var(--s-4), 4vw, var(--s-12)) - 24px));
+  min-width: 0;
+  width: 100%;
+}
+
 [data-img-mode="framed"] .sr-zone-photo-field {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -140,8 +159,8 @@
   box-shadow: 0 0 0 5px rgba(196, 114, 42, 0.18);
 }
 .sr-cascade-year { color: var(--cascade-date-color, #8B4A10); transition: color 0.3s ease; }
-.sr-cascade-entry.is-newest .sr-cascade-year { color: var(--p-teal); }
-.sr-cascade-entry--highlight .sr-cascade-year { color: var(--p-orange); }
+.sr-cascade-entry.is-newest .sr-cascade-year { color: var(--p-teal-text); }
+.sr-cascade-entry--highlight .sr-cascade-year { color: var(--p-orange-text); }
 .sr-cascade-event { transition: font-weight 0.3s ease; }
 .sr-cascade-entry.is-newest .sr-cascade-event { font-weight: 500; }
 .sr-cascade-text { transform: translateY(6px); transition: transform 0.5s var(--ease-out); }
@@ -161,6 +180,8 @@
   .sr-cascade-text  { transform: none; transition: none; }
   .sr-cascade-dot   { transform: scale(1); background: var(--p-teal); border-color: var(--p-teal); }
   .sr-cascade-entry--highlight .sr-cascade-dot { background: var(--p-orange); border-color: var(--p-orange); }
+  .sr-cascade-year  { transition: none; }
+  .sr-cascade-event { transition: none; }
   .sr-zone-cascade-progress { display: none; }
 }
 @media (max-width: 767px) {
@@ -482,7 +503,7 @@
 .pz-info-eyebrow {
   font-family: var(--font-mono); font-size: var(--t-eyebrow);
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--p-orange); margin-bottom: var(--s-5); display: block;
+  color: var(--p-orange-text); margin-bottom: var(--s-5); display: block;
 }
 .pz-bar-row { margin-bottom: var(--s-5); }
 .pz-bar-label {
@@ -503,7 +524,7 @@
 .pz-bar-fill--auto { width: 50%; background: var(--p-orange); opacity: 0.85; }
 .pz-info-mult {
   font-family: var(--font-display); font-style: italic; font-size: 1.125rem;
-  color: var(--p-teal); margin: var(--s-4) 0 var(--s-3);
+  color: var(--p-teal-text); margin: var(--s-4) 0 var(--s-3);
 }
 
 /* Shadow/stigma plate */
