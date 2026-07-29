@@ -35,11 +35,11 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1793, title: 'Reign of Terror', type: 'political' },
   ],
   '04-romanticism': [
-    { year: 1848, title: 'European Revolutions', type: 'political' },
+    { year: 1798, title: 'Lyrical Ballads published', type: 'cultural' },
+    { year: 1818, title: "Mary Shelley's Frankenstein", type: 'cultural' },
+    { year: 1824, title: "Beethoven's Ninth Symphony premieres", type: 'cultural' },
     { year: 1851, title: 'Great Exhibition in London', type: 'cultural' },
     { year: 1859, title: "Darwin's On the Origin of Species", type: 'cultural' },
-    { year: 1861, title: 'American Civil War begins', type: 'political' },
-    { year: 1874, title: 'First Impressionist Exhibition', type: 'cultural' },
   ],
   '05-modernism': [
     { year: 1905, title: "Einstein's special relativity", type: 'cultural' },

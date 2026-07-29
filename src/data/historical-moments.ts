@@ -52,7 +52,7 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
   },
 
   '04-romanticism': {
-    subtitle: 'Romanticism, c. 1789–1880',
+    subtitle: 'Romanticism, c. 1789–1900',
     paragraphs: [
       'In 1830, a mill owner in Manchester could send a bolt of cloth to London faster than Julius Caesar could have sent a message across Rome. The steam engine has compressed distance and time in ways that feel almost supernatural. Textile mills in the north of England employ thousands of workers — many of them children — in conditions of noise, danger, and relentless repetition that would have been unimaginable to previous generations. Manchester grows from a market town of twenty thousand in 1750 to a metropolis of three hundred thousand by 1850. The world is remaking itself at a speed no one had anticipated and no one fully understands.',
       'The Industrial Revolution is not only an economic transformation. The factory clock replaces the rhythm of seasons and daylight. The machine replaces the craftsman\'s judgment. Workers who once owned their tools and their time now sell their labor by the hour in a system they did not choose and cannot control. Marx, watching the mills of Manchester in the 1840s, sees not progress but a new kind of bondage: human beings reduced to units of production, their relationships stripped down to the "callous cash payment" of the wage.',
