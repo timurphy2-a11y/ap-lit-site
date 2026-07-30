@@ -3,6 +3,16 @@ import { useState, useEffect, useCallback } from "react";
 // ─── PEOPLE DATA ────────────────────────────────────────────────────────────
 // Each entry: id, name, dates, field, unit(s), bio, significance
 const PEOPLE = [
+  // ── ANCIENT ───────────────────────────────────────────────────────────────
+  {
+    id: "aristotle",
+    name: "Aristotle",
+    dates: "384–322 BCE",
+    field: "Philosopher & Scientist",
+    units: ["00-medieval"],
+    bio: "A student of Plato and tutor to Alexander the Great, Aristotle founded the Lyceum in Athens and systematized knowledge across an extraordinary range of fields: logic, biology, physics, ethics, politics, rhetoric, and poetics. His works were largely lost to Western Europe after the fall of Rome, transmitted through Arabic scholarship, and reintroduced in the twelfth and thirteenth centuries through translations that transformed Medieval intellectual life.",
+    significance: "Aristotle is the 'authority' the Medieval Philosophy page names as one of the two pillars of Medieval knowledge, second only to divine revelation. His physics (four elements, 'natural' places, a fixed and finite cosmos) structured how educated people understood the physical world for nearly two thousand years. When Adelard of Bath reasons from first principles about why the earth doesn't fall, he is working within an Aristotelian framework. Aquinas's entire philosophical project is the effort to reconcile Aristotle's reason with Christian faith. When Copernicus and Galileo dismantle that cosmology, they are dismantling Aristotle.",
+  },
   // ── MEDIEVAL ──────────────────────────────────────────────────────────────
   {
     id: "augustine",
@@ -168,6 +178,15 @@ const PEOPLE = [
     portrait: "/images/portraits/portrait-locke-john.jpg",
   },
   {
+    id: "voltaire",
+    name: "Voltaire (François-Marie Arouet)",
+    dates: "1694–1778",
+    field: "Writer & Philosopher",
+    units: ["03-enlightenment"],
+    bio: "Born François-Marie Arouet in Paris, Voltaire adopted his pen name after a stint in the Bastille for satirizing the Regent. He spent decades writing plays, histories, philosophical tales, and an enormous correspondence, eventually settling at Ferney, near the Swiss border, where he could flee French jurisdiction if necessary. He was the most famous writer in Europe and the most relentless prosecutor of religious intolerance, judicial corruption, and institutional cruelty the Enlightenment produced.",
+    significance: "Voltaire appears in two of the unit's threads. In Knowledge and Its Limits, Candide demolishes the Leibnizian claim that this is the best of all possible worlds: the joke is that a system designed to explain everything away can never be refuted by anything that actually happens. The remedy — 'we must cultivate our garden' — abandons system in favor of practical work. In the Individual and Authority thread, the Calas affair is his defining act. When a Protestant merchant was broken on the wheel on false charges fueled by anti-Protestant hysteria, Voltaire spent three years writing pamphlets, building alliances across Europe, and forcing the French crown to overturn the verdict. This is Kant's public use of reason before Kant named it.",
+  },
+  {
     id: "rousseau",
     name: "Jean-Jacques Rousseau",
     dates: "1712–1778",
@@ -186,6 +205,15 @@ const PEOPLE = [
     bio: "A Prussian philosopher who spent his entire life within 50 miles of his birthplace, Kant almost never traveled, never married, and was famous for the clock-like regularity of his daily walks. His three Critiques — Pure Reason, Practical Reason, and Judgment — rewrote the foundations of epistemology, ethics, and aesthetics. He claimed that reading Hume 'awakened him from his dogmatic slumber.'",
     significance: "Kant's motto for the Enlightenment — Sapere aude, 'dare to know' — captures the period's core challenge to intellectual timidity. His distinction between the public use of reason (always free) and private obedience (sometimes required) provides a framework for understanding how the Enlightenment thinks about the individual's relationship to institutions — including its central argument against Hobbes.",
     portrait: "/images/portraits/portrait-kant-immanuel.jpg",
+  },
+  {
+    id: "leibniz",
+    name: "Gottfried Wilhelm Leibniz",
+    dates: "1646–1716",
+    field: "Philosopher & Mathematician",
+    units: ["03-enlightenment"],
+    bio: "A German polymath who independently invented calculus at the same time as Newton — producing a bitter priority dispute that consumed both men's later years — Leibniz also made foundational contributions to logic, physics, and metaphysics. His philosophical system argued that God, being perfect, could only have created the most rational and harmonious universe possible. He served various German courts as diplomat, historian, and librarian, and then died largely forgotten, attended only by his secretary.",
+    significance: "Leibniz is named in the Enlightenment Philosophy page as the target of Voltaire's satire in Candide: the 'Leibnizian formula that we live in the best of all possible worlds' is the philosophical optimism that Pangloss insists on through every catastrophe. His system — logically coherent but unfalsifiable by experience — is exactly what Voltaire's satire exposes as insufficient. He is also named in the Enlightenment Historical Moment as the intellectual whose confidence the Lisbon earthquake devastates. The earthquake did not refute Leibniz's argument, but it made the argument feel indecent.",
   },
   {
     id: "smith",
@@ -710,6 +738,15 @@ const PEOPLE = [
   },
   // ── COMPOSERS ─────────────────────────────────────────────────────────────
   {
+    id: "hildegard",
+    name: "Hildegard of Bingen",
+    dates: "1098–1179",
+    field: "Abbess, Composer, Mystic & Polymath",
+    units: ["00-medieval"],
+    bio: "A German abbess who entered monastic life at age 8 and experienced visions throughout her life, Hildegard was one of the most remarkable figures of the twelfth century. She composed an extensive body of sacred music (the largest surviving body of plainchant attributed to a single composer), wrote on natural history and medicine, corresponded with popes and emperors, preached publicly across Germany, and produced the Scivias, a record of her visions. She was posthumously declared a Doctor of the Church in 2012.",
+    significance: "Hildegard is named in the Medieval Historical Moment and appears in the philosophy page as an example of the intellectual richness within Medieval culture. Her music represents the most sophisticated individual compositional voice within the plainchant tradition, demonstrating that the Medieval aesthetic of communal anonymity coexisted with genuine individual artistry. Her visions also model the Medieval epistemological claim that the deepest truths arrive through divine revelation rather than rational inquiry.",
+  },
+  {
     id: "palestrina",
     name: "Giovanni Pierluigi da Palestrina",
     dates: "c. 1525–1594",
@@ -718,6 +755,15 @@ const PEOPLE = [
     bio: "The most celebrated composer of Renaissance polyphony, Palestrina spent most of his career at various Roman churches including St. Peter's Basilica. His music was held up as the model of correct Catholic sacred style after the Council of Trent — serene, balanced, and controlled. He is the only Renaissance composer to have a legendary narrative attached to his name: the probably false but enduring story that his Missa Papae Marcelli saved polyphony from being banned by the Church.",
     significance: "Palestrina's Sicut Cervus is the course's demonstration of Renaissance polyphony: multiple independent voices woven into seamless, balanced harmony. The sonic equivalent of Renaissance perspective — individual elements, each with their own line, coexisting in rationally ordered space. The shift from this to Baroque chiaroscuro is as dramatic in music as it is in painting.",
     portrait: "/images/portraits/portrait-palestrina.jpg",
+  },
+  {
+    id: "purcell",
+    name: "Henry Purcell",
+    dates: "1659–1695",
+    field: "Composer",
+    units: ["02-baroque"],
+    bio: "The greatest English composer of the Baroque period and one of the greatest in the history of English music, Purcell served as organist at Westminster Abbey and composed prolifically for court, church, theater, and private entertainment. He died at 36, possibly from a chill contracted after being locked out of his own house by his wife. His opera Dido and Aeneas, written for a girls' school in Chelsea around 1689, contains some of the most beautiful music of the entire Baroque period.",
+    significance: "Purcell's 'Dido's Lament' is a gallery piece on the Baroque Music page, and the What to Listen For section calls it 'one of the most beautiful short works in the entire Western canon.' The lament demonstrates the passacaglia principle: a short, chromatically descending bass line that repeats eleven times beneath the vocal melody, 'unwavering as fate,' while Dido's line chafes against it in harmonic dissonances that 'produce an ache that has moved audiences for three hundred years.' It represents the Baroque's emotional extremity at its most concentrated.",
   },
   {
     id: "bach",
@@ -760,6 +806,24 @@ const PEOPLE = [
     portrait: "/images/portraits/portrait-beethoven-ludwig.jpg",
   },
   {
+    id: "schubert",
+    name: "Franz Schubert",
+    dates: "1797–1828",
+    field: "Composer",
+    units: ["04-romanticism"],
+    bio: "An Austrian composer who died at 31, probably of typhoid fever complicated by the effects of syphilis, having composed over 600 songs, nine symphonies, chamber music, and piano works of extraordinary quality and imagination. He lived in Vienna his entire life, almost entirely without institutional employment or financial stability, supported by a circle of friends who organized informal concerts (Schubertiaden) in his honor. His late works — the song cycles Winterreise and Schwanengesang, the String Quintet in C major — were largely unperformed in his lifetime.",
+    significance: "Schubert's Der Erlkönig is a gallery piece on the Romantic Music page. The What to Listen For section describes it at length: a single continuous, galloping piano figure sustaining four characters — narrator, father, child, and the supernatural Elf King — across a song that ends without comfort. The Structure & Freedom section uses it as a smaller-scale example of the idée fixe principle: 'a single galloping figure in the piano, sustained without interruption across the entire song, drives father and dying child through the night with the relentlessness of an idea that cannot be abandoned.'",
+  },
+  {
+    id: "berlioz",
+    name: "Hector Berlioz",
+    dates: "1803–1869",
+    field: "Composer & Conductor",
+    units: ["04-romanticism"],
+    bio: "A French composer who abandoned medical studies to attend the Paris Conservatoire, Berlioz became the most innovative orchestral thinker of the Romantic period. His Symphonie fantastique (1830), composed at 27 in the grip of an obsessive infatuation with the Irish actress Harriet Smithson (whom he later married, unhappily), invented the program symphony. He was also a brilliant music critic and wrote a still-valuable treatise on orchestration. His music was more admired in Germany than in France during his lifetime.",
+    significance: "Berlioz is named in two places on the site. The Medieval Music page mentions the Dies Irae chant melody appearing 'in everything from Berlioz to film scores' — the Symphonie fantastique's fifth movement parodies it grotesquely as a witches' sabbath. More substantially, the Romantic Music page uses the Symphonie fantastique as the defining example of the idée fixe: a single theme representing the composer's beloved reappears in every movement, 'transformed (tender, then mocking, then grotesque) as the young man's obsession distorted his perception of her.' The idée fixe is the Romantic solution to large-scale formal coherence — unity through obsession rather than Classical development.",
+  },
+  {
     id: "wagner",
     name: "Richard Wagner",
     dates: "1813–1883",
@@ -768,6 +832,15 @@ const PEOPLE = [
     bio: "A German composer who wrote his own libretti and developed the concept of the Gesamtkunstwerk — total artwork — fusing music, text, drama, and visual spectacle into a unified experience. His Ring Cycle runs 15 hours across four operas. He was also a virulent antisemite whose writings influenced the Nazis, and the political history of his music remains contested. He died in Venice, having just completed Parsifal.",
     significance: "Wagner's Tristan chord — a dissonance that refuses to resolve for four hours — is the musical equivalent of the Romantic sublime: tension so extreme it exceeds the structures designed to contain it. The Prelude to Tristan und Isolde is the sound of yearning without resolution, the sound of Ahab's obsession, the sound of what the Romantic era does when feeling overwhelms form.",
     portrait: "/images/portraits/portrait-wagner-richard.jpg",
+  },
+  {
+    id: "mahler",
+    name: "Gustav Mahler",
+    dates: "1860–1911",
+    field: "Composer & Conductor",
+    units: ["04-romanticism", "05-modernism"],
+    bio: "An Austrian composer and the most important conductor of his era, Mahler led the Vienna Court Opera and later the New York Philharmonic while composing ten symphonies (the tenth unfinished) of extraordinary scale and ambition. His symphonies can last ninety minutes and employ massive orchestras, offstage brass, and (building on the ground-breaking example of Beethoven's ninth symphony) vocal soloists; they range from folk-song simplicity to the edge of atonality. He died at 50 from bacterial endocarditis, having conducted his final New York Philharmonic concert from a sickbed.",
+    significance: "Mahler appears in two units on this site. The Romantic Music page names him in Looking Back as the final step in the expansion of form: 'Mahler's symphonies are twice again as long as Beethoven's.' The Modernism Music page uses him as the hinge figure in the 'abortive gesture' narrative, the composer who did the technically 'wrong' thing for expressive reasons, pushing the tonal system to the point where Schoenberg's abandonment of it was the next inevitable step. Beethoven began the Romantic revolution; Mahler exhausted it.",
   },
   {
     id: "stravinsky",
