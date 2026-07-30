@@ -12,7 +12,44 @@ const PERIODS = [
   { id: '05-modernism',     n: '05', name: 'Modernism',                  anchor: 'Invisible Man',       acc: '#A03828' },
 ];
 
-// Group people by primary unit
+// Alphabetical sort key for the biographical index -- the name a reader would
+// actually look someone up by (surname, or a first-name mononym for figures
+// conventionally known that way), not the raw display string. Most names
+// resolve correctly by stripping a parenthetical aside, a leading "St."/
+// "Saint", and a trailing "of <Place>", then taking the last word; the
+// handful that this heuristic gets wrong (mononyms like Leonardo, mid-name
+// bits like "Du Bois", tie-breaks between two same-surname entries) are
+// listed explicitly below.
+const SORT_NAME_OVERRIDES: Record<string, string> = {
+  pico: 'Pico',
+  galileo: 'Galileo',
+  shelley_mary: 'Shelley Mary',
+  shelley_pbs: 'Shelley Percy',
+  dubois: 'Du Bois',
+  duccio: 'Duccio',
+  giotto: 'Giotto',
+  leonardo: 'Leonardo',
+  michelangelo: 'Michelangelo',
+  holbein: 'Holbein',
+  josquin: 'Josquin',
+  rembrandt: 'Rembrandt',
+  'della-robbia': 'Della Robbia',
+};
+
+function defaultSortName(name: string): string {
+  const stripped = name
+    .replace(/\s*\([^)]*\)\s*$/, '')       // trailing "(Full Birth Name)"
+    .replace(/^(St\.|Saint)\s+/i, '')       // leading "St." / "Saint"
+    .replace(/\s+of\s+[A-Z][\wÀ-ÿ]+$/, ''); // trailing "of Bath" / "of Bingen"
+  const words = stripped.trim().split(/\s+/);
+  return words[words.length - 1];
+}
+
+function sortName(person: { id: string; name: string }): string {
+  return SORT_NAME_OVERRIDES[person.id] ?? defaultSortName(person.name);
+}
+
+// Group people by primary unit, then alphabetize each group by sortName
 const groups: Record<string, typeof PEOPLE> = {};
 PERIODS.forEach(p => { groups[p.id] = []; });
 (PEOPLE as Array<{ id: string; name: string; dates: string; field: string; units: string[]; bio?: string; significance?: string; portrait?: string }>)
@@ -20,6 +57,9 @@ PERIODS.forEach(p => { groups[p.id] = []; });
     const unit = person.units[0];
     if (groups[unit]) groups[unit].push(person);
   });
+PERIODS.forEach(p => {
+  groups[p.id].sort((a, b) => sortName(a).localeCompare(sortName(b)));
+});
 ---
 
 <Layout title="Biographical Index — Of Imagination All Compact">
