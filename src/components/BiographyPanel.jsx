@@ -257,6 +257,15 @@ const PEOPLE = [
   },
   // ── ROMANTICISM ───────────────────────────────────────────────────────────
   {
+    id: "burke",
+    name: "Edmund Burke",
+    dates: "1729–1797",
+    field: "Philosopher & Statesman",
+    units: ["04-romanticism"],
+    bio: "An Irish-born member of the British Parliament who spent his political career on unfashionable causes — conciliation with the American colonies, the impeachment of a colonial governor, Catholic relief in Ireland. He was not quite thirty when he published A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful, an early work he never much returned to and which outlived all his politics. Late in life his Reflections on the Revolution in France attacked the Revolution while it was still popular in England and cost him most of his friendships.",
+    significance: "Burke supplies Romanticism's central aesthetic term decades before there is a Romantic movement to use it. His distinction is the one the unit runs on: the beautiful is smooth, small, harmonious, and comprehensible; the sublime is vast, obscure, powerful, and terrifying, and its effect depends on the mind failing to take it in. That failure is the point. It is the exact experience Friedrich paints, Turner dissolves into light, and Melville puts a whale at the center of — and it explains why the white whale must remain unknowable for the novel to work.",
+  },
+  {
     id: "shelley_pbs",
     name: "Percy Bysshe Shelley",
     dates: "1792–1822",
@@ -265,6 +274,15 @@ const PEOPLE = [
     bio: "Expelled from Oxford for co-authoring a pamphlet on atheism, eloped with two women (the second was Mary Godwin, future author of Frankenstein), and spent most of his adult life in Italy, producing some of the greatest lyric poetry in English. He drowned in a sailing accident at 29. A Defence of Poetry was written in 1821 in response to a friend's essay arguing that poetry was useless in the modern age.",
     significance: "Shelley's Defence is the Romantic manifesto for the imagination's supremacy: poets are 'the unacknowledged legislators of the world' because they perceive the hidden connections and values that analytical reason misses. His distinction between reason (which enumerates) and imagination (which perceives value) is the Romantic era's core epistemological claim.",
     portrait: "/images/portraits/portrait-shelley-percy.jpg",
+  },
+  {
+    id: "shelley_mary",
+    name: "Mary Shelley",
+    dates: "1797–1851",
+    field: "Novelist",
+    units: ["04-romanticism"],
+    bio: "The daughter of Mary Wollstonecraft, who died days after her birth, and the philosopher William Godwin. She began Frankenstein at eighteen during the cold, sunless summer of 1816 — the year a volcanic eruption in Indonesia disrupted weather across the northern hemisphere — while staying near Geneva with Percy Bysshe Shelley and Byron. She published it anonymously at twenty. She outlived her husband by nearly thirty years and spent much of that time editing and defending his work.",
+    significance: "Frankenstein is the Romantic sublime turned inward and made into a warning: a man pursues knowledge past the point where he can live with what he learns, and the thing he makes destroys everyone he loves. That is Ahab's plot, told thirty-three years earlier. Shelley also gives the unit its clearest case of Romanticism as a family argument — the daughter of the Enlightenment's foremost feminist rationalist writing the century's great fable about the limits of reason.",
   },
   {
     id: "wordsworth",
@@ -637,6 +655,16 @@ const PEOPLE = [
     bio: "A French painter who died at 32 from complications of a riding accident, Géricault lived intensely and briefly. His Raft of the Medusa (1818–19) — a monumental painting depicting survivors of a real shipwreck, adrift and dying on a makeshift raft — caused a scandal at the Salon for its refusal of heroic convention and its unflinching depiction of suffering, desperation, and death. He interviewed survivors and studied corpses to get the details right.",
     significance: "The Raft of the Medusa brought contemporary political scandal into the monumental scale previously reserved for classical history painting. Géricault refused to aestheticize suffering — the bodies on the raft are dying, not posing — and this insistence on truth over beauty is the Romantic artist's political act. The connection to Melville's ocean, where bodies actually disappear beneath the waves, is direct.",
     portrait: "/images/portraits/portrait-gericault-theodore.jpg",
+  },
+  {
+    id: "bonheur",
+    name: "Rosa Bonheur",
+    dates: "1822–1899",
+    field: "Painter",
+    units: ["04-romanticism"],
+    bio: "Trained by her father after being expelled from a series of schools, Bonheur spent her working life painting animals and studying them at markets, farms, and slaughterhouses. She held a police permit allowing her to wear trousers, renewed every six months, on the grounds that skirts were impractical for the places her work required. The Horse Fair made her internationally famous, toured Britain and America to enormous crowds, and was eventually bought for the Metropolitan Museum. She was the first woman awarded the Grand Cross of the Légion d'honneur, and lived openly with her partner Nathalie Micas for over forty years.",
+    significance: "Bonheur locates the Romantic sublime in animal power rather than landscape. The horses in The Horse Fair generate the same overwhelming force as Turner's storms and Friedrich's fog, but concentrated into muscle and mass, with men visibly failing to control it — which is the whale hunt in Moby-Dick rendered on land. She also marks the seam where Romanticism hardens into Realism: the sensibility is Romantic, the observation is exact, and the combination is what the second half of the century does with the first half's ambitions.",
+    portrait: "/images/portraits/portrait-bonheur-rosa.jpg",
   },
   {
     id: "debussy",
