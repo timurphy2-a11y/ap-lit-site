@@ -178,6 +178,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
 const isRedesignedDomain = domain !== 'philosophy';
 const entryData = entry.data as any;
 const threadIds: string[] = entry.data.threads.map((t: { id: string }) => t.id);
+const threadLabels: string[] = entry.data.threads.map((t: { label: string }) => t.label);
 
 // Group each domain's gallery items into the one thread section matching their
 // first tag (matches the design handoff's placement — an item tagged
@@ -600,7 +601,7 @@ if (isRedesignedDomain) {
   });
 </script>
 
-<script define:vars={{ threadSigils, medallionSvg, threadIds }}>
+<script define:vars={{ threadSigils, medallionSvg, threadIds, threadLabels }}>
   const CONN_SIG_SVG = '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5 C13.6 15.5 10.5 20.4 10.5 25.8 C10.5 31.2 14.8 35.5 20 35.5 C25.2 35.5 29.5 31.2 29.5 25.8 C29.5 20.4 26.4 15.5 20 15.5 Z"/><path d="M20 15.5 Q19 13 20.2 10.8"/><path d="M20.6 11 Q24.4 7.7 28.4 9.4 Q26 13.8 20.6 11 Z" fill="currentColor" stroke="none"/><path d="M9.6 24.6 C13.6 19 16.6 30 21 25.6 C24.3 22.1 27.8 24 30.4 21.6"/><circle cx="30.9" cy="21" r="1.7" fill="currentColor" stroke="none"/><path d="M32.4 20.3 L34.9 19.4 M32.4 21.2 L34.9 21.9"/></svg>';
 
   function decorateSubHead(h2, i) {
@@ -742,14 +743,25 @@ if (isRedesignedDomain) {
         wrap.appendChild(toggle);
         wrap.appendChild(body);
 
-        // Move this thread's inline work-plates before the connection callout.
-        pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`).forEach((plate) => {
-          section.insertBefore(plate, wrap);
-        });
+        // Move this thread's inline work-plates before the connection callout,
+        // preceded by a small label naming the thread the plates belong to.
+        const groupPlates1 = pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`);
+        if (groupPlates1 && groupPlates1.length) {
+          const groupLabel = document.createElement('div');
+          groupLabel.className = 'gallery-group-label';
+          groupLabel.textContent = threadLabels[i];
+          section.insertBefore(groupLabel, wrap);
+          groupPlates1.forEach((plate) => section.insertBefore(plate, wrap));
+        }
       } else {
-        pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`).forEach((plate) => {
-          section.appendChild(plate);
-        });
+        const groupPlates2 = pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`);
+        if (groupPlates2 && groupPlates2.length) {
+          const groupLabel = document.createElement('div');
+          groupLabel.className = 'gallery-group-label';
+          groupLabel.textContent = threadLabels[i];
+          section.appendChild(groupLabel);
+          groupPlates2.forEach((plate) => section.appendChild(plate));
+        }
       }
     });
 
@@ -1075,6 +1087,17 @@ if (isRedesignedDomain) {
     text-align: right;
     line-height: 1.5;
     white-space: pre-line;
+  }
+
+  /* ── Label naming the thread a group of plates belongs to ── */
+  .gallery-group-label {
+    max-width: var(--read-wide);
+    margin: 32px auto 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sub-acc, var(--thread-acc));
   }
 
   /* ── In-prose image plate (Plate.astro / figure.work-plate) ── */
