@@ -210,6 +210,8 @@ export const ENTRIES: TimelineEntry[] = [
     note: 'The special theory dissolves absolute time and space; simultaneity becomes observer-relative and mass a form of energy — E = mc².' },
   { year: 1907, unit: '05', type: 'paint', title: 'Picasso paints Les Demoiselles d\'Avignon',
     note: 'Picasso fractures the picture plane and integrates African mask forms; the painting breaks with Western illusionism and opens the path to Cubism.' },
+  { year: 1913, unit: '05', type: 'paint', title: 'Armory Show (New York)',
+    note: 'The International Exhibition of Modern Art introduces European Modernism to America; Cubism, Fauvism, and Duchamp\'s Nude Descending a Staircase scandalize and fascinate a public seeing them for the first time.' },
   { year: 1913, unit: '05', type: 'music', title: 'Stravinsky\'s Rite of Spring premieres',
     note: 'The score and Nijinsky\'s choreography provoke a riot at the Théâtre des Champs-Élysées — the sound of a new century refusing old beauty.' },
   { year: 1913, unit: '05', type: 'sculp', title: 'Boccioni: Unique Forms of Continuity in Space',
