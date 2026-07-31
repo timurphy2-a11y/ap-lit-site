@@ -809,6 +809,33 @@ const PEOPLE = [
     bio: "The central figure of French Impressionism, whose Impression, Sunrise gave the movement its name after a hostile critic used the word as an insult. Monet spent the winter of 1870–71 in London, where he saw Turner's late paintings, though he played down the debt in later life. From 1883 he lived at Giverny, northwest of Paris, where he built the water garden that became his only subject for the last thirty years of his life. He painted the grandes décorations — some forty large panels, including the MoMA triptych — from 1914 until his death, working through cataracts and within earshot of the Western Front, and pledged the cycle to France the day after the 1918 Armistice as a monument to peace.",
     significance: "Monet's late water lilies are the site's clearest case of recognition arriving late and from an unexpected direction. Dismissed for roughly two decades after his death as decorative and out of step, they were re-canonized in the 1950s when the scale and allover composition of Abstract Expressionism made them suddenly legible — MoMA became the first American museum to acquire one. The work did not change; the frame for seeing it did. That is the structure of Brancusi's customs case, of Hilma af Klint's posthumous rediscovery, and of Invisible Man itself.",
   },
+  {
+    id: "pollock",
+    name: "Jackson Pollock",
+    dates: "1912–1956",
+    field: "Painter",
+    units: ["05-modernism"],
+    bio: "An American painter who developed his signature drip technique in the late 1940s, laying raw canvas on the floor of his Long Island barn and pouring, flinging, and dripping paint onto it from above rather than applying it with a brush to an upright surface. The resulting all-over compositions — Number 1A, 1948 and Autumn Rhythm among them — abandoned figure, ground, and a fixed vantage point entirely, replacing them with the record of the artist's own movement around the canvas. He died in a car accident at 44, already the most famous painter in America.",
+    significance: "Pollock is named on the Modernism painting page's Brushwork & Surface thread as the endpoint of its argument — the artist's gesture as the work's primary content — and is cited again in the Water Lilies analysis panel as the reason Monet's dismissed late panels became legible: Abstract Expressionism's scale and all-over composition retrained the eye that later saw Monet clearly.",
+  },
+  {
+    id: "mondrian",
+    name: "Piet Mondrian",
+    dates: "1872–1944",
+    field: "Painter",
+    units: ["05-modernism"],
+    bio: "A Dutch painter who arrived at total abstraction gradually, reducing landscapes and trees over successive canvases to horizontal and vertical lines before abandoning representation altogether. Working within the De Stijl movement and his own theory of Neoplasticism, he restricted his mature paintings to black grid lines and flat blocks of white, gray, and the three primary colors — a vocabulary he considered universal rather than personal. He emigrated to New York in 1940, where the city's rhythm entered his final works before his death in 1944.",
+    significance: "Mondrian's grid paintings are named on the Modernism painting page's Light & Shadow thread as one of two examples — alongside Rothko — of light produced by color relationships on the canvas rather than depicted from an external source, the thread's clearest statement of Modernist painting generating its own luminosity.",
+  },
+  {
+    id: "rothko",
+    name: "Mark Rothko",
+    dates: "1903–1970",
+    field: "Painter",
+    units: ["05-modernism"],
+    bio: "A Latvian-born American painter who arrived at his mature style around 1949: large canvases holding two or three soft-edged rectangles of color, stacked and hovering against a colored ground. He intended the scale and the color relationships to produce a direct, overwhelming emotional and near-religious experience in the viewer standing close to the canvas, not a formal exercise in color theory. The Rothko Chapel in Houston, completed shortly before his death by suicide in 1970, is the fullest realization of that ambition.",
+    significance: "Rothko's color fields are named alongside Mondrian's grids on the Modernism painting page's Light & Shadow thread as an example of light produced by the interaction of colors on the canvas rather than depicted from a lighting source — the thread's argument that painting's luminosity becomes self-generated rather than borrowed from the visible world.",
+  },
   // ── COMPOSERS ─────────────────────────────────────────────────────────────
   {
     id: "hildegard",
