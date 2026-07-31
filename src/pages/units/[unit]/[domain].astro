@@ -558,6 +558,15 @@ if (isRedesignedDomain) {
   </div>
 </div>
 
+<!-- ── Image lightbox ── -->
+<div id="img-lightbox" class="img-lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged image">
+  <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+  <figure class="lightbox-figure">
+    <img id="lightbox-img" alt="" />
+    <figcaption id="lightbox-caption" class="lightbox-caption"></figcaption>
+  </figure>
+</div>
+
 <script define:vars={{ peopleJson }}>
   const PEOPLE = JSON.parse(peopleJson);
   const modal    = document.getElementById('bio-modal');
@@ -637,31 +646,81 @@ if (isRedesignedDomain) {
     h2.appendChild(medallion);
   }
 
+  const lightboxEl = document.getElementById('img-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxCloseBtn = document.getElementById('lightbox-close');
+  let lightboxLastFocused = null;
+
+  function openLightbox(src, alt, captionText) {
+    if (!lightboxEl || !lightboxImg || !src) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    if (lightboxCaption) {
+      lightboxCaption.textContent = captionText || '';
+      lightboxCaption.hidden = !captionText;
+    }
+    lightboxLastFocused = document.activeElement;
+    lightboxEl.hidden = false;
+    document.body.classList.add('lightbox-open');
+    lightboxCloseBtn?.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightboxEl || lightboxEl.hidden) return;
+    lightboxEl.hidden = true;
+    lightboxImg.src = '';
+    document.body.classList.remove('lightbox-open');
+    if (lightboxLastFocused && lightboxLastFocused.focus) lightboxLastFocused.focus();
+  }
+
+  lightboxCloseBtn?.addEventListener('click', closeLightbox);
+  lightboxEl?.addEventListener('click', (e) => { if (e.target === lightboxEl) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxEl && !lightboxEl.hidden) closeLightbox();
+  });
+
   function wireWorkFigures(root) {
     root.querySelectorAll('.work-figure').forEach((fig) => {
       const hot = fig.querySelector('.analyze-hot');
       const panel = fig.querySelector('.analysis-panel');
-      if (!hot || !panel) return;
-      const toggle = () => {
-        const open = fig.classList.toggle('analysis-open');
-        hot.setAttribute('aria-expanded', String(open));
-        if (open) { panel.hidden = false; }
-        else {
-          panel.addEventListener('transitionend', function h() {
-            if (!fig.classList.contains('analysis-open')) panel.hidden = true;
-            panel.removeEventListener('transitionend', h);
-          });
-        }
-        const lbl = hot.querySelector('.hot-lbl');
-        if (lbl) lbl.textContent = open ? 'Hide analysis' : lbl.dataset.defaultLabel || lbl.textContent;
-      };
-      const lblEl = hot.querySelector('.hot-lbl');
-      if (lblEl && !lblEl.dataset.defaultLabel) lblEl.dataset.defaultLabel = lblEl.textContent;
-      hot.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
-      fig.querySelector('.img, .yt-preview')?.addEventListener('click', (e) => {
-        if (e.target.closest('.analyze-hot') || e.target.closest('.bio-link-btn') || e.target.closest('.yt-preview')) return;
-        toggle();
-      });
+      if (hot && panel) {
+        const toggle = () => {
+          const open = fig.classList.toggle('analysis-open');
+          hot.setAttribute('aria-expanded', String(open));
+          if (open) { panel.hidden = false; }
+          else {
+            panel.addEventListener('transitionend', function h() {
+              if (!fig.classList.contains('analysis-open')) panel.hidden = true;
+              panel.removeEventListener('transitionend', h);
+            });
+          }
+          const lbl = hot.querySelector('.hot-lbl');
+          if (lbl) lbl.textContent = open ? 'Hide analysis' : lbl.dataset.defaultLabel || lbl.textContent;
+        };
+        const lblEl = hot.querySelector('.hot-lbl');
+        if (lblEl && !lblEl.dataset.defaultLabel) lblEl.dataset.defaultLabel = lblEl.textContent;
+        hot.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+      }
+
+      // Image plates (paintings/sculptures) open an enlarged lightbox on click;
+      // the "Read the analysis" button lives outside .img and handles its own click above.
+      const imgWrap = fig.querySelector('.img');
+      const imgEl = imgWrap?.querySelector('img');
+      if (imgWrap && imgEl) {
+        imgWrap.classList.add('lightbox-trigger');
+        imgWrap.setAttribute('role', 'button');
+        imgWrap.setAttribute('tabindex', '0');
+        const titleText = fig.querySelector('.caption .title')?.textContent?.trim() || '';
+        const bylineText = fig.querySelector('.caption .byline')?.textContent?.trim() || '';
+        const captionText = [titleText, bylineText].filter(Boolean).join(' — ');
+        imgWrap.setAttribute('aria-label', titleText ? `View enlarged image: ${titleText}` : 'View enlarged image');
+        const openThisLightbox = () => openLightbox(imgEl.currentSrc || imgEl.src, imgEl.alt, captionText);
+        imgWrap.addEventListener('click', openThisLightbox);
+        imgWrap.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openThisLightbox(); }
+        });
+      }
     });
   }
 
@@ -1105,6 +1164,31 @@ if (isRedesignedDomain) {
     text-transform: uppercase;
     color: var(--sub-acc, var(--thread-acc));
   }
+
+  /* ── Lightbox affordance on clickable image plates ── */
+  .work-figure .img.lightbox-trigger { cursor: zoom-in; }
+  .img.lightbox-trigger::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+    background-color: rgba(20,17,16,.55);
+    border: 1px solid rgba(232,223,208,.5);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4EDDF' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Cline x1='14.5' y1='14.5' x2='20' y2='20'/%3E%3Cline x1='10' y1='7' x2='10' y2='13'/%3E%3Cline x1='7' y1='10' x2='13' y2='10'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  .img.lightbox-trigger:hover::after,
+  .img.lightbox-trigger:focus-visible::after { opacity: 1; }
+  .img.lightbox-trigger:focus-visible { outline: 2px solid var(--thread-acc); outline-offset: -2px; }
 
   /* ── In-prose image plate (Plate.astro / figure.work-plate) ── */
   .plate {
@@ -1596,7 +1680,64 @@ if (isRedesignedDomain) {
     .analysis-panel { max-height: none !important; opacity: 1 !important; padding: 22px 26px 24px !important; }
     .connection-wrap { grid-template-rows: 1fr !important; }
     .connection-body { border-left: 3px solid var(--thread-acc); }
+    .img.lightbox-trigger::after, .img-lightbox { display: none !important; }
   }
+
+  /* ── Image lightbox ── */
+  body.lightbox-open { overflow: hidden; }
+  .img-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: rgba(18, 15, 11, 0.94);
+    cursor: zoom-out;
+  }
+  .img-lightbox[hidden] { display: none; }
+  .lightbox-figure {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    cursor: default;
+  }
+  #lightbox-img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 160px);
+    object-fit: contain;
+    box-shadow: 0 24px 70px rgba(0,0,0,.55);
+  }
+  .lightbox-caption {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: rgba(244,237,223,.85);
+    text-align: center;
+    max-width: 640px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(244,237,223,.5);
+    background: rgba(0,0,0,.3);
+    color: #F4EDDF;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    z-index: 2;
+  }
+  .lightbox-close:hover { background: rgba(0,0,0,.55); }
 
   /* ── Two-column layout ── */
   .layout {
