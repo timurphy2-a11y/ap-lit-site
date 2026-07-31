@@ -720,10 +720,16 @@ if (isRedesignedDomain) {
         firstP.classList.add('subq');
       }
 
-      // Connection-to-text callout: h3 + following <p>.
+      // Connection-to-text callout: h3 + every contiguous following <p>.
       const h3 = section.querySelector('h3');
       if (h3) {
-        const connP = h3.nextElementSibling && h3.nextElementSibling.tagName === 'P' ? h3.nextElementSibling : null;
+        const connPs = [];
+        let sib = h3.nextElementSibling;
+        while (sib && sib.tagName === 'P') {
+          const next = sib.nextElementSibling;
+          connPs.push(sib);
+          sib = next;
+        }
         const wrap = document.createElement('div');
         wrap.className = 'connection';
         wrap.setAttribute('data-connection', '');
@@ -737,7 +743,7 @@ if (isRedesignedDomain) {
         body.className = 'connection-wrap';
         const bodyInner = document.createElement('div');
         bodyInner.className = 'connection-body';
-        if (connP) bodyInner.appendChild(connP);
+        connPs.forEach((p) => bodyInner.appendChild(p));
         body.appendChild(bodyInner);
         h3.replaceWith(wrap);
         wrap.appendChild(toggle);
