@@ -493,6 +493,8 @@ import Layout from '../../layouts/Layout.astro';
 <div>The Looking Studio / Cross-Period Comparison Lab</div>
 </footer>
 
+<div class="lightbox" id="cpl-lightbox" hidden><button class="lightbox-close" type="button" aria-label="Close enlarged image">×</button><div id="cpl-lightboxContent"></div></div>
+
 <script is:inline>
 (function(){
  // simple guide-units (controlled studies, no work-selector)
@@ -595,11 +597,8 @@ import Layout from '../../layouts/Layout.astro';
  });
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&detail&&!detail.classList.contains('is-hidden'))dClose.click();});
  // lightbox: click any scene to see a full, unmarked-guide-stripped enlargement
- var lb=document.createElement('div');
- lb.className='lightbox';lb.id='cpl-lightbox';lb.hidden=true;
- lb.innerHTML='<button class="lightbox-close" type="button" aria-label="Close enlarged image">×</button><div id="cpl-lightboxContent"></div>';
- document.body.appendChild(lb);
- var lbContent=lb.querySelector('#cpl-lightboxContent'),lbClose=lb.querySelector('.lightbox-close');
+ var lb=document.getElementById('cpl-lightbox');
+ var lbContent=document.getElementById('cpl-lightboxContent'),lbClose=lb.querySelector('.lightbox-close');
  function closeLightbox(){lb.hidden=true;lbContent.innerHTML='';}
  function openLightboxImg(src,alt){
   var img=document.createElement('img');img.src=src;img.alt=alt||'';
