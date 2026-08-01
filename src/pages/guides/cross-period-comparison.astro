@@ -604,21 +604,47 @@ import Layout from '../../layouts/Layout.astro';
   var img=document.createElement('img');img.src=src;img.alt=alt||'';
   lbContent.innerHTML='';lbContent.appendChild(img);lb.hidden=false;
  }
- function openLightboxScene(scene){
-  var clone=scene.cloneNode(true);
-  clone.querySelectorAll('.gsvg').forEach(function(g){g.remove();});
+ function parseRatio(str){
+  if(!str||str==='auto')return 0;
+  var parts=str.split('/').map(function(s){return parseFloat(s);});
+  if(parts.length===2&&parts[1])return parts[0]/parts[1];
+  if(parts.length===1&&parts[0])return parts[0];
+  return 0;
+ }
+ function fitBox(clone,ratio){
   var vw=window.innerWidth*0.92,vh=window.innerHeight*0.88;
-  var natImg=scene.querySelector('img');
-  var w=natImg?natImg.naturalWidth:0,h=natImg?natImg.naturalHeight:0;
-  if(w&&h){
-   var W=vw,H=vw*h/w;
-   if(H>vh){H=vh;W=vh*w/h;}
+  clone.style.maxWidth='none';clone.style.maxHeight='none';
+  if(ratio){
+   var W=vw,H=vw/ratio;
+   if(H>vh){H=vh;W=vh*ratio;}
    clone.style.width=W+'px';clone.style.height=H+'px';
   } else {
    clone.style.maxWidth=vw+'px';clone.style.maxHeight=vh+'px';clone.style.width='auto';clone.style.height='auto';
   }
+ }
+ function revealAfter(imgs,cb){
+  var pending=imgs.filter(function(im){return !im.complete;});
+  if(pending.length===0){cb();return;}
+  var remaining=pending.length;
+  function done(){remaining--;if(remaining<=0)cb();}
+  pending.forEach(function(im){im.addEventListener('load',done,{once:true});im.addEventListener('error',done,{once:true});});
+ }
+ function openLightboxScene(scene){
+  var clone=scene.cloneNode(true);
+  clone.querySelectorAll('.gsvg').forEach(function(g){g.remove();});
+  var clonedImgs=[].slice.call(clone.querySelectorAll('img'));
+  clonedImgs.forEach(function(im){im.loading='eager';});
   clone.style.margin='0';
-  lbContent.innerHTML='';lbContent.appendChild(clone);lb.hidden=false;
+  lbContent.innerHTML='';lbContent.appendChild(clone);
+  revealAfter(clonedImgs,function(){
+   var ratio=parseRatio(getComputedStyle(scene).aspectRatio);
+   if(!ratio){
+    var primary=clonedImgs[0];
+    if(primary&&primary.naturalWidth&&primary.naturalHeight)ratio=primary.naturalWidth/primary.naturalHeight;
+   }
+   fitBox(clone,ratio);
+   lb.hidden=false;
+  });
  }
  document.querySelectorAll('#lens-detail .scene').forEach(function(scene){
   scene.addEventListener('click',function(e){e.stopPropagation();openLightboxScene(scene);});
