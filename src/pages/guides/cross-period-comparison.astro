@@ -1,0 +1,781 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Cross-Period Comparison Lab: The Looking Studio — Of Imagination All Compact" hideFooter>
+
+<div class="cpl-page">
+
+<div class="cpl-crumb">
+<a href="/">Home</a><span class="sep">/</span><a href="/guides">Guides</a><span class="sep">/</span><a href="/guides/looking-studio">The Looking Studio</a><span class="sep">/</span><span class="here">Cross-Period Comparison Lab</span>
+</div>
+
+<div class="eyebrow-strip"><span class="dot" aria-hidden="true"></span>The Looking Studio · Cross-Period Comparison Lab</div>
+
+<section class="page-head">
+<div class="sigil-lg" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M14 8 L22 16 L14 24 L6 16 Z"/><path d="M26 16 L34 24 L26 32 L18 24 Z"/></svg></div>
+<div><h1>Comparing concepts across time</h1><p class="sub">Six comparative questions, twelve controlled-to-historical studies</p></div>
+</section>
+
+<main class="reading">
+<p class="lede">Every module opens with one created, controlled study before it turns to real artworks from different places and periods. <span>Within a module, the controlled study always comes before its historical exploration — a small rule marks that shift, not a claim that one kind of evidence supersedes the other.</span></p>
+<p class="page-note">The controlled comparison images are original studies made with OpenAI GPT Image 2 through Codex, built to model one visual relation at a time — they are teaching illustrations, not historical evidence. Historical artworks are separately identified and credited where they appear.</p>
+
+<nav class="overview" aria-label="Six cross-period comparison modules">
+<button class="ocard" type="button" data-lens="c1" style="--acc:#75435B;--acc-line:#75435B;--acc-soft:color-mix(in oklab,#75435B 12%,white)"><span class="ohead"><span class="onum">01</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">When a figure is larger, is it nearer or more important?</p><p class="ot">Rank or Distance?</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="14" cy="11" r="3.2"/><path d="M14 15 L14 28 M8 34 L14 28 L20 34"/><circle cx="27" cy="13" r="3.2"/><path d="M27 17 L27 28 M21 34 L27 28 L33 34"/></svg>Figure &amp; Space</span></button>
+<button class="ocard" type="button" data-lens="c2" style="--acc:#4F6B4D;--acc-line:#4F6B4D;--acc-soft:color-mix(in oklab,#4F6B4D 12%,white)"><span class="ohead"><span class="onum">02</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">How can a physically still body imply a moment in time?</p><p class="ot">Aftermath, Attention, Action</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="20" cy="9" r="4"/><path d="M20 13 L20 26 M20 26 L14 36 M20 26 L28 34"/></svg>Body &amp; Volume</span></button>
+<button class="ocard" type="button" data-lens="c3" style="--acc:#7C4459;--acc-line:#94586E;--acc-soft:color-mix(in oklab,#94586E 12%,white)"><span class="ohead"><span class="onum">03</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">What can light do besides describe a scene?</p><p class="ot">What Light Means</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="20" cy="20" r="6"/><line x1="20" y1="9" x2="20" y2="4"/><line x1="20" y1="31" x2="20" y2="36"/><line x1="9" y1="20" x2="4" y2="20"/><line x1="31" y1="20" x2="36" y2="20"/><line x1="12.2" y1="12.2" x2="8.7" y2="8.7"/><line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/></svg>Light &amp; Shadow</span></button>
+<button class="ocard" type="button" data-lens="c4" style="--acc:#8E5B6D;--acc-line:#B58193;--acc-soft:color-mix(in oklab,#B58193 12%,white)"><span class="ohead"><span class="onum">04</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">When does surface describe a material, the artwork itself, or both?</p><p class="ot">When Surface Speaks</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28"/><rect x="9" y="9" width="22" height="22" stroke-dasharray="1.5 2" opacity=".55"/></svg>Brushwork &amp; Surface</span></button>
+<button class="ocard" type="button" data-lens="c5" style="--acc:#4E6B50;--acc-line:#5F8060;--acc-soft:color-mix(in oklab,#5F8060 12%,white)"><span class="ohead"><span class="onum">05</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">What can evidence tell us about how a sculpture was made — and what stays unresolved?</p><p class="ot">Carved, Modelled, Cast, Constructed</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><rect x="6" y="18" width="28" height="16"/><path d="M18 6 L 22 6 L 20 14 Z"/><line x1="20" y1="14" x2="20" y2="18"/></svg>Material &amp; Making</span></button>
+<button class="ocard" type="button" data-lens="c6" style="--acc:#566F5D;--acc-line:#7B9883;--acc-soft:color-mix(in oklab,#7B9883 12%,white)"><span class="ohead"><span class="onum">06</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">How can a documented placement organize encounters among object, viewer, and site?</p><p class="ot">Object, Viewer, Site</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><path d="M8 34 L32 34 M20 34 L20 10 M12 22 L28 22"/><circle cx="20" cy="16" r="3"/></svg>Space &amp; Setting</span></button>
+</nav>
+
+<div id="lens-detail" class="lens-detail is-hidden" aria-live="polite">
+<div class="detail-bar"><span class="dthread" id="dThread"></span><button class="detail-close" id="dClose" type="button">← All modules</button></div>
+
+<div class="lens-wrap is-hidden" data-lens="c1" style="--acc:#75435B;--acc-line:#75435B;--acc-soft:color-mix(in oklab,#75435B 12%,white)">
+<section class="lens" id="lens-c1" data-screen-label="c1-rank-or-distance">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><line x1="4" y1="33" x2="36" y2="33"/><circle cx="13" cy="24" r="9"/><circle cx="31" cy="15" r="4"/></svg></span><div><span class="lens-idx">C1 · Rank or Distance?</span><h2 class="lens-title">When a figure is larger, is it nearer or more important?</h2></div></div>
+<p class="lens-cue">Seeing that one figure is larger is a visible fact. Deciding whether it seems nearer or more emphasized depends on the other relationships around it.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One size relationship · two kinds of support</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> The figure-size ratio stays the same. Notice where the figures meet the ground, where the room's lines lead, and what surrounds the larger figure. How does the larger figure read differently in the two scenes?</p>
+<div class="guide-unit" data-simple>
+<div class="comparison cols-2">
+<div><p class="scene-label">Scene A</p><div class="scene landscape" style="background:#d5cfc4 url('/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-neutral-room-v1.png') center/cover no-repeat" role="img" aria-label="Two repeated blue-gray studio maquettes appear in a shallow room. A larger maquette stands low at the left. A smaller maquette stands higher in the field with its feet at the point where floor seams meet.">
+<svg class="construction" viewBox="0 0 1000 667" aria-hidden="true"><path d="M0 667 L512 520 L1000 667" fill="rgba(228,216,195,.24)"/><path d="M55 667 L512 520 M305 667 L512 520 M720 667 L512 520 M955 667 L512 520" fill="none" stroke="rgba(91,77,60,.5)" stroke-width="3"/><path d="M95 630 L912 630 M168 598 L842 598 M255 570 L758 570 M355 544 L660 544" fill="none" stroke="rgba(91,77,60,.42)" stroke-width="3"/></svg>
+<img loading="lazy" decoding="async" class="figure" style="width:23%;left:8%;bottom:1%" src="/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-maquette-figure-cutout-v2.png" alt="" />
+<img loading="lazy" decoding="async" class="figure" style="width:9.6%;left:46.5%;bottom:20%" src="/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-maquette-figure-cutout-v2.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1000 667" aria-hidden="true"><path class="guide-line" d="M70 667 L512 520 M940 667 L512 520"/><circle class="marker" cx="512" cy="520" r="24"/><text class="marker-text" x="512" y="520">1</text><path class="guide-solid" d="M86 80 h-18 v545 h18 M500 288 h-18 v232 h18"/><circle class="marker" cx="68" cy="368" r="24"/><text class="marker-text" x="68" y="368">2</text></svg>
+</div></div>
+<div><p class="scene-label">Scene B</p><div class="scene landscape" style="background:#d5cfc4 url('/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-neutral-room-v1.png') center/cover no-repeat" role="img" aria-label="The same larger and smaller blue-gray studio maquettes meet one shared ground line in the same shallow room. The larger maquette is centered within a flat vertical color field while the smaller maquette stands to one side.">
+<svg class="construction" viewBox="0 0 1000 667" aria-hidden="true"><rect x="310" y="0" width="380" height="667" fill="rgba(206,129,65,.14)"/><path d="M85 625 H915" fill="none" stroke="rgba(91,77,60,.55)" stroke-width="4"/></svg>
+<img loading="lazy" decoding="async" class="figure" style="width:23%;left:38.5%;bottom:1%" src="/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-maquette-figure-cutout-v2.png" alt="" />
+<img loading="lazy" decoding="async" class="figure" style="width:9.6%;left:76%;bottom:3.7%" src="/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-maquette-figure-cutout-v2.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1000 667" aria-hidden="true"><rect class="guide-line" x="310" y="4" width="380" height="657"/><circle class="marker" cx="500" cy="40" r="24"/><text class="marker-text" x="500" y="40">3</text><path class="guide-line" d="M85 625 H915"/><circle class="marker" cx="820" cy="625" r="24"/><text class="marker-text" x="820" y="625">4</text></svg>
+</div></div>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1 · Recession</strong> — floor seams meet at the smaller maquette's feet.</p><p class="key-item"><strong>2 · Relative size</strong> — the larger maquette occupies more of the field.</p><p class="key-item"><strong>3 · Central field</strong> — a flat vertical color field singles out the larger maquette.</p><p class="key-item"><strong>4 · Shared ground</strong> — both maquettes meet the same ground line.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Look again</span><p>In both scenes, the larger maquette occupies more of the pictorial field. In Scene A, <strong>1 the floor seams meet at the smaller maquette's feet</strong>; this recession system and the different ground positions work with <strong>2 relative size</strong> to support a depth inference. In Scene B, <strong>3 a central color field</strong> and <strong>4 a shared ground line</strong> make the larger maquette more visually prominent without supplying the same evidence of distance. Prominence is visible; deciding that it represents social, sacred, or narrative importance would require context.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. In Scene A, locator 1 follows floor seams that meet at the smaller maquette's feet; locator 2 brackets the two maquettes' relative sizes. In Scene B, locator 3 outlines the flat vertical color field around the centered larger maquette; locator 4 follows the ground line met by both maquettes.">Unmarked state. Scene A shows two repeated blue-gray studio maquettes: a larger maquette stands low at the left, while a smaller maquette stands higher with its feet where floor seams meet. Scene B shows the same size ratio: both maquettes meet one ground line, and a flat vertical color field surrounds the centered larger maquette.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>Relative size has no automatic meaning. Receding lines and different ground positions can support a distance reading; shared ground and a central field can support visual emphasis. Claims about importance need contextual evidence.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three artworks · three ways to weigh the evidence</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="brueghel" aria-pressed="true">1 · Brueghel</button><button class="wt-btn" type="button" data-work="raemkai" aria-pressed="false">2 · Raemkai</button><button class="wt-btn" type="button" data-work="kiyomitsu" aria-pressed="false">3 · Kiyomitsu</button></nav>
+<article class="work" data-panel="brueghel" data-desc-unmarked="Brueghel selected, unmarked state. Large foreground travelers and animals overlap along a broad road. The road curves and narrows toward smaller, paler figures and a distant city." data-desc-guided="Brueghel selected, guided state. Locator 1 follows repeated travelers diminishing along the road. Locator 2 follows the road narrowing among overlapping forms. Locator 3 surrounds the paler distant field and city.">
+<p class="work-meta">National Gallery of Art · Public domain</p><h4>Jan Brueghel the Elder · Wooded Landscape with Travelers</h4><p class="object-meta">1610 · oil on panel · 37 × 58 cm · 2020.26.1</p>
+<p class="look"><strong>Look first.</strong> Follow the road from the nearest travelers toward the city. Besides size, what changes as the figures seem farther away?</p>
+<div class="scene natural" role="img" aria-label="A wooded landscape seen from above. Large travelers, animals, and carts overlap along a broad foreground road. The road curves and narrows toward smaller, paler figures and a distant city near the horizon.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c1/nga-2020.26.1-brueghel-wooded-landscape-travelers.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 4096 2587" aria-hidden="true"><path class="guide-line" d="M510 2280 Q1110 2050 1660 1860 Q2070 1680 2350 1420 Q2460 1290 2530 1180"/><path class="guide-solid" d="M1180 2490 Q1770 2050 2320 1490 M3400 2490 Q2910 2050 2520 1490"/><ellipse class="guide-line" cx="2260" cy="1190" rx="380" ry="190"/><circle class="marker" cx="500" cy="2040" r="54"/><text class="marker-text" x="500" y="2040">1</text><circle class="marker" cx="3320" cy="2200" r="54"/><text class="marker-text" x="3320" y="2200">2</text><circle class="marker" cx="2680" cy="1050" r="54"/><text class="marker-text" x="2680" y="1050">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Repeated figures</strong> — travelers and animals diminish along the curving road.</p><p class="key-item"><strong>2 · Road and overlap</strong> — nearer forms overlap as the broad road narrows inward.</p><p class="key-item"><strong>3 · Distant field</strong> — the smallest figures and city are paler and less distinct.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> figures repeat at diminishing sizes; <strong>2</strong> overlap and the narrowing road link those changes to recession; <strong>3</strong> distant forms lose contrast and detail. Relative size supports distance here because several other clues agree with it — this is converging recession, not a single size rule.</p></div>
+</article>
+<article class="work" data-panel="raemkai" hidden data-desc-unmarked="Raemkai selected, unmarked state. An orienting whole-wall photograph shows stacked registers ending at part of a much larger figure on the right. A separate detail shows the tomb owner with two small sons beside his legs." data-desc-guided="Raemkai selected, guided state. A labeled detail shows the right side of the whole wall. Locator 1 marks the owner crossing several registers at the terminal edge. Locator 2 marks adult figures in smaller register scenes. Locator 3 follows their rightward orientation toward the owner.">
+<p class="work-meta">Metropolitan Museum of Art · Public domain</p><h4>Tomb Chapel of Raemkai: East Wall</h4><p class="object-meta">Old Kingdom, Dynasty 5, ca. 2446–2389 BCE · limestone with paint · 08.201.1f</p>
+<p class="look"><strong>Look first.</strong> Begin with the whole wall, then inspect the detail. Where does the large figure sit in relation to the registers — and what can size alone establish?</p>
+<div class="raemkai-pair" role="group" aria-label="Two photographs of the same east wall: an orienting whole-wall view and a detail of the large tomb owner at the wall's right edge.">
+<figure><p class="image-label">Whole wall · orientation view</p><div class="scene natural" role="img" aria-label="The east wall arranged in stacked horizontal registers. Rows of adult figures, animals, birds, and offerings extend toward the far-right edge, where part of a much larger standing figure crosses several registers."><img loading="lazy" decoding="async" src="/assets/cross-period/historical/c1/met-577371-raemkai-east-wall-whole.jpg" alt="" /></div></figure>
+<figure><p class="image-label">Tomb owner · object-record detail</p><div class="scene natural" role="img" aria-label="A detail showing the large standing tomb owner holding a staff, with two much smaller children beside his legs."><img loading="lazy" decoding="async" src="/assets/cross-period/historical/c1/met-577371-raemkai-tomb-owner-detail.jpg" alt="" /></div></figure>
+</div>
+<div class="guided-detail" data-guided-detail hidden><figure><p class="image-label">Guided crop · right side of the whole-wall photograph</p><div class="scene natural" role="img" aria-label="A recorded crop from the whole-wall photograph. Adult figures occupy the upper and middle registers and face right. At the right edge, the tomb owner's much larger body crosses several registers."><img loading="lazy" decoding="async" src="/assets/cross-period/historical/c1/met-577371-raemkai-owner-adult-registers-crop.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1800 1500" aria-hidden="true"><rect class="guide-solid" x="1380" y="580" width="360" height="835"/><rect class="guide-line" x="30" y="150" width="1160" height="620"/><path class="guide-line" d="M300 270 H1280 M300 610 H1280"/><circle class="marker" cx="1320" cy="1010" r="48"/><text class="marker-text" x="1320" y="1010">1</text><circle class="marker" cx="90" cy="860" r="48"/><text class="marker-text" x="90" y="860">2</text><circle class="marker" cx="1240" cy="420" r="48"/><text class="marker-text" x="1240" y="420">3</text></svg>
+</div></figure></div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Exceptional scale</strong> — the owner crosses several registers at the wall's terminal edge.</p><p class="key-item"><strong>2 · Adult register figures</strong> — adults remain much smaller within the horizontal bands.</p><p class="key-item"><strong>3 · Orientation</strong> — those figures face toward the owner at the right, as the Met record confirms.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> one figure is exceptionally large and terminal; <strong>2</strong> adult figures occupy smaller register scenes; <strong>3</strong> their orientation directs attention toward the large figure. The Met identifies the large figure as the deceased tomb owner and the two figures beside his legs as his sons. The sons' smaller bodies are not independent proof of lower rank — the wall establishes prominence visually, and historical context establishes whose rank that prominence serves.</p></div>
+</article>
+<article class="work" data-panel="kiyomitsu" hidden data-desc-unmarked="Kiyomitsu selected, unmarked state. Actors vary in size and overlap at different stage levels. A long rail and boards run diagonally, while horizontal bands, repeated trees, and costume patterns remain conspicuous across the sheet." data-desc-guided="Kiyomitsu selected, guided state. Locator 1 surrounds figure-size shifts and overlapping groups. Locator 2 follows the long diagonal rail. Locator 3 follows repeated horizontal stage bands.">
+<p class="work-meta">Metropolitan Museum of Art · Public domain</p><h4>Torii Kiyomitsu · The Curfew at Dōjōji</h4><p class="object-meta">ca. 1763 · woodblock print; ink and color on paper · 31.1 × 43.2 cm · JP694</p>
+<p class="look"><strong>Look first.</strong> Follow the diagonal rail, then compare it with the horizontal bands and repeated patterns. Where do you sense depth, and where do you notice the print's surface?</p>
+<div class="scene natural" role="img" aria-label="A Japanese woodblock print of actors arranged on a striped stage. Figures vary in size and overlap at different stage levels. A rail and boards run diagonally, while bold horizontal bands, repeated trees, and costume patterns remain conspicuous across the flat sheet.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c1/met-37141-kiyomitsu-curfew-dojoji.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 3882 2779" aria-hidden="true"><ellipse class="guide-line" cx="2190" cy="1750" rx="620" ry="880"/><ellipse class="guide-line" cx="1390" cy="910" rx="1000" ry="610"/><path class="guide-solid" d="M1510 720 L3760 1680"/><path class="guide-line" d="M120 1200 H1460 M120 1505 H1700 M120 1790 H1950"/><circle class="marker" cx="2780" cy="2100" r="54"/><text class="marker-text" x="2780" y="2100">1</text><circle class="marker" cx="3380" cy="1530" r="54"/><text class="marker-text" x="3380" y="1530">2</text><circle class="marker" cx="350" cy="1380" r="54"/><text class="marker-text" x="350" y="1380">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Scale and overlap</strong> — figure sizes shift as bodies overlap at different stage levels.</p><p class="key-item"><strong>2 · Diagonal</strong> — the long rail and boards can carry the eye backward.</p><p class="key-item"><strong>3 · Surface pattern</strong> — bands, trees, and costume patterns keep attention moving across the sheet.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> size shifts and overlap can support partial recession; <strong>2</strong> the long diagonal strengthens that cue; <strong>3</strong> repeated bands and patterns keep the surface active. The cues do not settle into a clean "distance" or "importance" answer — the Met describes a tension between two- and three-dimensionality, which is a catalogue interpretation, not evidence that this spatial system is inaccurate or historically behind another one.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Brueghel selected, unmarked state. Large foreground travelers and animals overlap along a broad road. The road curves and narrows toward smaller, paler figures and a distant city.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<p class="view-limit"><strong>Comparison note:</strong> These works offer different spatial systems to examine, not stages in artistic progress.</p>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>Relative size does not explain itself. It may support distance, prominence, or both, but only when other visible relations — and sometimes historical context — make that reading persuasive.</p></div></div>
+<details class="credit"><summary>Image credits and source boundary</summary>
+<p><strong>Brueghel:</strong> National Gallery of Art, accession 2020.26.1; Open Access, public domain/CC0. <a href="https://www.nga.gov/artworks/222552-wooded-landscape-travelers">Object record</a>.</p>
+<p><strong>Raemkai:</strong> The Metropolitan Museum of Art, object 577371 / 08.201.1f; Open Access, public domain/CC0. <a href="https://www.metmuseum.org/art/collection/search/577371">Object record</a>.</p>
+<p><strong>Kiyomitsu:</strong> The Metropolitan Museum of Art, object 37141 / JP694; Open Access, public domain/CC0. <a href="https://www.metmuseum.org/art/collection/search/37141">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="c2" style="--acc:#4F6B4D;--acc-line:#4F6B4D;--acc-soft:color-mix(in oklab,#4F6B4D 12%,white)">
+<section class="lens" id="lens-c2" data-screen-label="c2-aftermath-attention-action">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="9" r="4"/><path d="M20 13 L20 26 M8 33 L20 26 L32 20 M14 33 L20 26"/></svg></span><div><span class="lens-idx">C2 · Aftermath, Attention, Action</span><h2 class="lens-title">How can a physically still body imply a moment in time?</h2></div></div>
+<p class="lens-cue">A sculpted body does not move, but visible ground contact, direction, gesture, and nearby objects can support different inferences about time.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One maquette family · three relations to time</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> Notice the feet, the body's direction, the arms, and where the same small sphere appears. Which relationships make each scene feel like a different moment?</p>
+<div class="guide-unit" data-simple>
+<div class="comparison cols-3">
+<div><p class="scene-label">Scene A</p><div class="scene landscape" style="background:#d5cfc4 url('/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-neutral-room-v1.png') center/cover no-repeat" role="img" aria-label="A blue-gray studio maquette stands upright with level shoulders, parallel legs, and lowered arms. An ochre sphere meets the ground to its right, beside the same narrow support now shown tipped diagonally.">
+<svg class="construction" viewBox="0 0 1000 667" aria-hidden="true"><path d="M90 623 H910" fill="none" stroke="rgba(91,77,60,.5)" stroke-width="4"/><ellipse cx="770" cy="623" rx="43" ry="11" fill="rgba(52,43,34,.2)"/><path d="M635 611 L728 523" fill="none" stroke="rgba(91,77,60,.58)" stroke-width="16"/><path d="M606 620 L664 620" fill="none" stroke="rgba(91,77,60,.58)" stroke-width="12"/><circle cx="770" cy="589" r="34" fill="#ce8141"/></svg>
+<img loading="lazy" decoding="async" class="figure" style="width:30%;left:35%;bottom:.6%" src="/assets/cross-period/created-illustrations-v2/cross-period-c2/c2-maquette-aftermath-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1000 667" aria-hidden="true"><ellipse class="guide-line" cx="710" cy="566" rx="126" ry="82"/><circle class="marker" cx="842" cy="498" r="34"/><text class="marker-text" x="842" y="498">1</text></svg>
+</div></div>
+<div><p class="scene-label">Scene B</p><div class="scene landscape" style="background:#d5cfc4 url('/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-neutral-room-v1.png') center/cover no-repeat" role="img" aria-label="The same blue-gray studio maquette remains upright with arms lowered, but its head and upper torso turn toward an ochre sphere resting on a narrow stand at the right while its legs form an uneven stance.">
+<svg class="construction" viewBox="0 0 1000 667" aria-hidden="true"><path d="M90 623 H910" fill="none" stroke="rgba(91,77,60,.5)" stroke-width="4"/><rect x="782" y="292" width="16" height="331" fill="rgba(91,77,60,.55)"/><ellipse cx="790" cy="623" rx="35" ry="9" fill="rgba(52,43,34,.18)"/><circle cx="790" cy="258" r="34" fill="#ce8141"/></svg>
+<img loading="lazy" decoding="async" class="figure" style="width:30%;left:35%;bottom:.1%" src="/assets/cross-period/created-illustrations-v2/cross-period-c2/c2-maquette-attention-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1000 667" aria-hidden="true"><path class="guide-line" d="M455 132 L555 225"/><circle class="guide-line" cx="790" cy="258" r="49"/><circle class="marker" cx="618" cy="170" r="34"/><text class="marker-text" x="618" y="170">2</text><path class="guide-line" d="M430 354 L392 616 M558 356 L585 616"/><circle class="marker" cx="398" cy="510" r="34"/><text class="marker-text" x="398" y="510">3</text></svg>
+</div></div>
+<div><p class="scene-label">Scene C</p><div class="scene landscape" style="background:#d5cfc4 url('/assets/cross-period/created-illustrations-v2/cross-period-c1/c1-neutral-room-v1.png') center/cover no-repeat" role="img" aria-label="The same blue-gray studio maquette stands with its feet meeting the ground far apart. One diagonal rises through a leg and torso while an opposing diagonal follows the raised arms; the directions cross, and the hands frame the same ochre sphere near one shoulder.">
+<svg class="construction" viewBox="0 0 1000 667" aria-hidden="true"><path d="M90 623 H910" fill="none" stroke="rgba(91,77,60,.5)" stroke-width="4"/><circle cx="445" cy="150" r="34" fill="#ce8141"/></svg>
+<img loading="lazy" decoding="async" class="figure" style="width:30%;left:35%;bottom:-.4%" src="/assets/cross-period/created-illustrations-v2/cross-period-c2/c2-maquette-action-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1000 667" aria-hidden="true"><path class="guide-solid" d="M340 620 H655 M340 620 v-24 M655 620 v-24"/><circle class="marker" cx="495" cy="620" r="34"/><text class="marker-text" x="495" y="620">4</text><path class="guide-line" d="M430 610 L525 195"/><path class="guide-line" d="M420 125 L510 220"/><circle class="guide-line" cx="445" cy="150" r="49"/><circle class="marker" cx="566" cy="250" r="34"/><text class="marker-text" x="566" y="250">5</text></svg>
+</div></div>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1 · Grounded sphere and tipped support</strong> — the sphere meets the ground beside the narrow support shown on its side.</p><p class="key-item"><strong>2 · Local turn</strong> — head and upper torso angle to the same side as the sphere. <strong>3 · Uneven stance</strong> — the legs do not share one symmetrical axis.</p><p class="key-item"><strong>4 · Wide ground contact</strong> — the feet meet the ground far apart. <strong>5 · Crossing directions</strong> — a leg-and-torso diagonal crosses an opposing raised-arm diagonal while the hands frame the sphere.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Look again</span><p>In Scene A, <strong>1 the sphere meets the ground beside the tipped support</strong> while the upright body's arms remain lowered — that visible consequence relation may support an inference of aftermath, but it does not prove what happened. In Scene B, <strong>2 the head and upper torso angle to the same side as the sphere</strong> while <strong>3 the legs form an uneven stance</strong>; those relations may support alert attention, not a visible gaze or decision. In Scene C, <strong>4 the feet meet the ground far apart</strong> while <strong>5 a leg-and-torso diagonal crosses an opposing raised-arm diagonal</strong> as the hands frame the sphere — that may support a moment immediately before action, without showing a release or inventing a trajectory.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. In Scene A, locator 1 surrounds the sphere meeting the ground and the tipped support beside it. In Scene B, locator 2 marks the local head/torso axis and circles the sphere on the upright support; locator 3 follows the uneven leg axes. In Scene C, locator 4 brackets the wide-set feet; locator 5 marks the crossing diagonal and circles the sphere framed by the hands.">Unmarked state. Scene A shows a maquette standing upright with lowered arms while a sphere meets the ground beside a tipped support. Scene B shows the same maquette with head and torso angled toward a sphere on an upright support and legs in an uneven stance. Scene C shows the maquette with feet far apart, crossing diagonals through leg/torso and raised arms, and hands framing the sphere.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>A still body can imply a moment in time. A grounded object beside a displaced support may suggest aftermath; a body angled toward an object may suggest alert attention; wide ground contact and crossing directions may suggest a moment before action. These are possible readings, not visible facts.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three artworks · three ways of holding time</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="nydia" aria-pressed="true">1 · Nydia</button><button class="wt-btn" type="button" data-work="archers" aria-pressed="false">2 · Archers</button><button class="wt-btn" type="button" data-work="pieta" aria-pressed="false">3 · Pietà</button></nav>
+<article class="work" data-panel="nydia" data-desc-unmarked="Nydia selected, unmarked state. The marble figure inclines forward, cups one hand beside her ear, grips a staff in the lowered hand, plants one foot more fully, and raises the heel of the other." data-desc-guided="Nydia selected, guided state. Locator 1 surrounds the hand cupped beside the ear and the inclined head. Locator 2 surrounds the lowered hand gripping the staff. Locator 3 follows the bodily incline and brackets the unequal foot contact.">
+<p class="work-meta">Metropolitan Museum of Art · Public domain</p><h4>Randolph Rogers · Nydia, the Blind Flower Girl of Pompeii</h4><p class="object-meta">1853–54; carved 1859 · marble · 137.2 × 64.1 × 94 cm · 99.7.2</p>
+<p class="look"><strong>Look first.</strong> Where do the hand, head, staff, and feet direct the body at the same time?</p>
+<div class="scene natural portrait" role="img" aria-label="A museum photograph of Randolph Rogers's marble Nydia. The figure inclines forward, cups one hand beside her ear, grips a staff in the lowered hand, plants one foot, and raises the heel of the other foot.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-11951-nydia-blind-flower-girl-pompeii.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 3008 3863" aria-hidden="true"><ellipse class="guide-line" cx="865" cy="1050" rx="285" ry="330"/><ellipse class="guide-line" cx="820" cy="1945" rx="250" ry="260"/><path class="guide-line" d="M1140 760 Q1510 1510 1870 2820"/><path class="guide-solid" d="M1255 3360 H2250 M1255 3360 v-58 M2250 3360 v-58"/><circle class="marker" cx="470" cy="860" r="58"/><text class="marker-text" x="470" y="860">1</text><circle class="marker" cx="430" cy="1945" r="58"/><text class="marker-text" x="430" y="1945">2</text><circle class="marker" cx="2385" cy="3240" r="58"/><text class="marker-text" x="2385" y="3240">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Listening hand</strong> — one hand cups beside the ear as the head inclines.</p><p class="key-item"><strong>2 · Staff hand</strong> — the lowered hand grips the staff; contact between the staff and ground is not shown.</p><p class="key-item"><strong>3 · Incline and unequal feet</strong> — the torso leans while one foot is more fully planted.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> a hand cups beside the ear; <strong>2</strong> the lowered hand grips the staff; <strong>3</strong> the forward incline and unequal foot contact continue through the body. Together, these relations can suggest listening attention within continued movement. They do not show a sound source, a stop, or an inner decision.</p></div>
+</article>
+<article class="work" data-panel="archers" hidden data-desc-unmarked="Archers selected, unmarked state. The central pair of relief figures face left with bow-holding arms extended, opposite hands drawing strings back, and arrow nocks remaining at the drawn strings." data-desc-guided="Archers selected, guided state. Locator 1 follows the extended bow-holding arms of the central pair. Locator 2 follows the visible carved strings back toward the drawing hands. Locator 3 surrounds the two points where arrow nocks remain at the drawn strings.">
+<p class="work-meta">Metropolitan Museum of Art · Public domain</p><h4>Archers</h4><p class="object-meta">Old Kingdom, Dynasty 4, ca. 2551–2494 BCE · limestone with paint · 25.4 × 37.5 cm · 22.1.23</p>
+<p class="look"><strong>Look first.</strong> What remains held between the hands? What has not happened yet?</p>
+<div class="scene natural" role="img" aria-label="A museum photograph of an ancient Egyptian limestone relief fragment. The central pair of archers face left with bow-holding arms extended, opposite hands drawing back, and arrow nocks remaining at the drawn strings.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-543895-old-kingdom-archers.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 2000 1600" aria-hidden="true"><path class="guide-line" d="M590 890 Q825 850 1045 930 M1070 935 Q1355 930 1690 975"/><path class="guide-solid" d="M800 350 L1000 867 M1190 438 L1560 908"/><ellipse class="guide-line" cx="1000" cy="867" rx="82" ry="58"/><ellipse class="guide-line" cx="1528" cy="908" rx="86" ry="60"/><circle class="marker" cx="470" cy="850" r="36"/><text class="marker-text" x="470" y="850">1</text><circle class="marker" cx="1020" cy="455" r="36"/><text class="marker-text" x="1020" y="455">2</text><circle class="marker" cx="1720" cy="760" r="36"/><text class="marker-text" x="1720" y="760">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Extended arms</strong> — the bow-holding arms of the central pair reach forward.</p><p class="key-item"><strong>2 · Drawn strings</strong> — solid lines follow the carved diagonals back toward the drawing hands.</p><p class="key-item"><strong>3 · Held nocks</strong> — dashed rings mark where the arrow nocks remain at the drawn strings.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> the central pair extend their bow-holding arms; <strong>2</strong> the visible strings remain drawn back; <strong>3</strong> the arrow nocks remain at the drawing hands. The relief can therefore suggest imminent action: tension is prepared, but release, target, path, and impact are not shown.</p></div>
+</article>
+<article class="work" data-panel="pieta" hidden data-desc-unmarked="Pietà selected, unmarked state. An upright seated figure supports a dependent body across her lap, including its head and upper torso, intact forearm, and lower limbs." data-desc-guided="Pietà selected, guided state. Locator 1 surrounds the supported head and upper torso. Locator 2 follows the supporting arms and lap. Locator 3 follows the intact dependent forearm and lower limbs, which do not bear the body.">
+<p class="work-meta">Metropolitan Museum of Art · Public domain</p><h4>Hubert Gerhard · Pietà</h4><p class="object-meta">After 1595 · bronze · 29.5 × 16.5 × 19.1 cm · 2013.966</p>
+<p class="look"><strong>Look first.</strong> Compare the supported and supporting bodies. What makes one body seem to depend on the other for support?</p>
+<div class="scene natural portrait" role="img" aria-label="A museum photograph of Hubert Gerhard's bronze Pietà. An upright seated figure supports a dependent body across her lap, including his head and upper torso, intact forearm, and lower limbs.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-627606-gerhard-pieta.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 3073 4000" aria-hidden="true"><path class="guide-line" d="M560 1720 Q585 1475 800 1435 Q1025 1445 1080 1640"/><path class="guide-line" d="M1010 1680 Q1310 1600 1620 1870"/><path class="guide-line" d="M720 2140 Q1260 2480 1900 2260"/><path class="guide-line" d="M1380 1700 Q1870 1850 2290 2040 M1590 2320 Q1980 2670 2190 3200"/><circle class="marker" cx="525" cy="1470" r="58"/><text class="marker-text" x="525" y="1470">1</text><circle class="marker" cx="1190" cy="2590" r="58"/><text class="marker-text" x="1190" y="2590">2</text><circle class="marker" cx="2390" cy="2590" r="58"/><text class="marker-text" x="2390" y="2590">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1 · Supported head and torso</strong> — the reclining body rests across the upright figure.</p><p class="key-item"><strong>2 · Supporting arms and lap</strong> — hands, arms, and lap receive its weight.</p><p class="key-item"><strong>3 · Dependent limbs</strong> — the intact forearm and lower limbs extend without bearing the body.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>1</strong> the head and upper torso recline across another body; <strong>2</strong> the upright figure's arms and lap provide support; <strong>3</strong> the intact forearm and lower limbs remain dependent rather than weight-bearing. These relations support an inference of aftermath. The title identifies Christ after death in Mary's lap; later physical damage to this object is not evidence for that represented event.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Nydia selected, unmarked state. The marble figure inclines forward, cups one hand beside her ear, grips a staff, plants one foot more fully, and raises the heel of the other.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<p class="view-limit"><strong>Comparison note:</strong> Relief and sculpture in the round offer different kinds of bodily evidence. These works are alternatives to compare, not stages in a chronology of progress.</p>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>Still bodies can place us after an event, attending within movement, or just before release. The inference comes from visible support, gesture, foot contact, bodily direction, and what remains held — not from how twisted, lifelike, or historically late a work is.</p></div></div>
+<details class="credit"><summary>Image credits and source boundary</summary>
+<p><strong>Nydia:</strong> The Metropolitan Museum of Art, object 11951; Open Access, public domain/CC0. <a href="https://www.metmuseum.org/art/collection/search/11951">Object record</a>.</p>
+<p><strong>Archers:</strong> The Metropolitan Museum of Art, object 543895; Open Access, public domain/CC0. <a href="https://www.metmuseum.org/art/collection/search/543895">Object record</a>.</p>
+<p><strong>Pietà:</strong> The Metropolitan Museum of Art, object 627606; Open Access, public domain/CC0. <a href="https://www.metmuseum.org/art/collection/search/627606">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="c3" style="--acc:#7C4459;--acc-line:#94586E;--acc-soft:color-mix(in oklab,#94586E 12%,white)">
+<section class="lens" id="lens-c3" data-screen-label="c3-what-light-means">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 34 L18 34 L18 22 Z"/><circle cx="26" cy="20" r="7"/><path d="M30 8 L36 30"/></svg></span><div><span class="lens-idx">C3 · What Light Means</span><h2 class="lens-title">What can light do besides describe a scene?</h2></div></div>
+<p class="lens-cue">A bright area does not automatically describe a lamp, sunlight, or an emotion. It can organize the surface, help a form appear to turn, or lead the eye through selected parts of a scene.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One recurring object set · three visible organizations of brightness</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> Choose one bright relation in each panel. Does it surround objects, change across a form, or cross selected objects? What might that relation help you perceive — and what meaning can it not establish by itself?</p>
+<div class="guide-unit" data-simple>
+<div class="scene wide" role="img" aria-label="Three created panels repeat a blue-gray bowl, clay-colored sphere, folded paper arch, and tabletop in comparable, not identical, views. The left has a broad warm field behind the objects. The center has gradual light-to-dark changes across the objects. The right has a diagonal bright zone crossing selected objects while surrounding space stays dark.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-c3/c3-light-field-form-path-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1536 1024" aria-hidden="true"><rect class="guide-zone" x="34" y="72" width="432" height="500" rx="8"/><ellipse class="guide-line" cx="650" cy="680" rx="110" ry="75"/><ellipse class="guide-line" cx="808" cy="730" rx="56" ry="62"/><path class="guide-line" d="M780 690 C790 565 830 515 878 524 C930 535 955 620 962 704"/><path class="guide-zone" d="M1513 55 L1513 228 L1190 760 L1075 746 Z"/><circle class="marker" cx="92" cy="126" r="28"/><text class="marker-text" x="92" y="126">1</text><circle class="marker" cx="955" cy="475" r="28"/><text class="marker-text" x="955" y="475">2</text><circle class="marker" cx="1425" cy="285" r="28"/><text class="marker-text" x="1425" y="285">3</text></svg>
+</div>
+<div class="guide-key cols-1" hidden><p class="key-item"><strong>1 · Field</strong> — a broad warm area sits behind the recurring objects on the left.</p><p class="key-item"><strong>2 · Modelling</strong> — gradual value changes are visible across the bowl, sphere, and folded arch in the center.</p><p class="key-item"><strong>3 · Path</strong> — a narrow diagonal bright zone crosses selected objects on the right while surrounding space stays dark.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Look again</span><p><strong>Visible relations:</strong> <strong>1</strong> a warm field surrounds the objects without showing a source; <strong>2</strong> light-to-dark transitions cross object surfaces; <strong>3</strong> a diagonal zone of brightness crosses selected objects amid darkness. <strong>Perceptual inferences:</strong> the field can unify the arrangement, the transitions can support a reading of turning volume, and the diagonal contrast can direct attention. <strong>Meaning boundary:</strong> none of those effects establishes sacred presence, a particular time of day, knowledge, feeling, or intent. The left-to-right order compares alternatives; it is not progress from flatness to realism.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 outlines the broad warm field behind the recurring objects on the left. Locator 2 groups the bowl, sphere, and folded paper arch whose surfaces show gradual value changes in the center. Locator 3 traces the diagonal bright zone through selected objects on the right.">Unmarked state. Three created panels repeat a bowl, sphere, folded arch, and tabletop in comparable views: a broad warm field at left, gradual value change in the center, and a diagonal bright zone crossing selected objects at right.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>Before deciding what light means, name the visible relation: broad field, value transition, or directional contrast. Then ask what it may help you perceive — unity, turning volume, or an attentional path. Larger claims need subject, material, setting, and context.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three visible relations, three historical works</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="utamaro" aria-pressed="true">1 · Utamaro</button><button class="wt-btn" type="button" data-work="daumier" aria-pressed="false">2 · Daumier</button><button class="wt-btn" type="button" data-work="fragonard" aria-pressed="false">3 · Fragonard</button></nav>
+<article class="work" data-panel="utamaro" data-desc-unmarked="Utamaro selected, unmarked state. Empty paper ground holds two black-haired figures, pale faces, and patterned robes in a broad field." data-desc-guided="Utamaro selected, guided state. Locator 1 follows open paper ground beside the larger head and robe. Locator 2 identifies open ground beside the lower figure's head.">
+<p class="work-meta">Japan · Edo period · ca. 1790 · pictorial ground</p><h4>Two Women — Kitagawa Utamaro</h4><p class="object-meta">Woodblock print; ink and color on paper · The Metropolitan Museum of Art, JP2735</p>
+<p class="look"><strong>Look first.</strong> Follow the empty paper ground around the black hair, pale faces, and patterned robes. Does it behave like a source in a depicted place — or like part of the print's visible surface?</p>
+<div class="scene natural portrait" role="img" aria-label="A Japanese woodblock print of two women. Empty paper ground surrounds black-haired figures, pale faces, and patterned robes.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-52002-utamaro-two-women.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1336 1941" aria-hidden="true"><path class="guide-shape" d="M88 120 L565 120 L565 230 M88 120 L88 1210"/><path class="guide-shape" d="M1120 540 L1235 540 L1235 1220"/><circle class="marker" cx="120" cy="180" r="38"/><text class="marker-text" x="120" y="180">1</text><circle class="marker" cx="1190" cy="600" r="38"/><text class="marker-text" x="1190" y="600">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> open paper ground beside the larger head and robe.</p><p class="key-item"><strong>2</strong> open ground beside the lower figure's head.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> empty paper ground holds the two figures, pale faces, and patterned robes in a broad field. <strong>Bounded inference:</strong> that contrast can keep the image visibly surface-like rather than making it read as one measured source in a depicted place. <strong>Meaning boundary:</strong> it does not, by itself, establish sunlight, a lamp, a real location, or either figure's identity or feeling.</p></div>
+</article>
+<article class="work" data-panel="daumier" hidden data-desc-unmarked="Daumier selected, unmarked state. Darker and lighter wash values cross the two drinkers' faces against a broader dark field." data-desc-guided="Daumier selected, guided state. Locator 1 follows shifting wash values across the nearer drinker's face. Locator 2 marks changing values across the second drinker's face.">
+<p class="work-meta">France · 1860–79 · value modelling</p><h4>Two Drinkers — Honoré Daumier</h4><p class="object-meta">Pen and ink with wash over charcoal on paper · The Metropolitan Museum of Art, 1975.1.601</p>
+<p class="look"><strong>Look first.</strong> Trace a light-to-dark change across either forehead, nose, or cheek. What makes the two heads appear to turn rather than read as a single flat wash?</p>
+<div class="scene natural portrait" role="img" aria-label="A wash drawing of two drinkers. Darker and lighter values model each head against a dark field.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-460035-daumier-two-drinkers.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 3090 3942" aria-hidden="true"><path class="guide-shape" d="M785 1340 C870 1110 1270 1060 1490 1260 C1660 1420 1615 1740 1400 1880 C1130 2070 790 1910 740 1660 C710 1520 730 1420 785 1340 Z"/><path class="guide-line" d="M900 1490 C1090 1370 1300 1380 1470 1510 M1020 1700 C1180 1810 1320 1790 1450 1670"/><path class="guide-shape" d="M1650 1410 C1780 1160 2150 1120 2370 1320 C2560 1490 2500 1840 2260 1970 C2010 2110 1700 1940 1640 1700 C1615 1580 1610 1490 1650 1410 Z"/><circle class="marker" cx="720" cy="1210" r="64"/><text class="marker-text" x="720" y="1210">1</text><circle class="marker" cx="2490" cy="1230" r="64"/><text class="marker-text" x="2490" y="1230">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> shifting wash values across the nearer drinker's face.</p><p class="key-item"><strong>2</strong> changing values across the second drinker's face.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> darker and lighter wash values cross each drinker's forehead, nose, and cheek against the broader dark field. <strong>Bounded inference:</strong> those transitions can support a reading of two faces turning in space. <strong>Meaning boundary:</strong> they do not by themselves prove a particular physical source, the drinkers' character, mood, biography, or the artist's intention.</p></div>
+</article>
+<article class="work" data-panel="fragonard" hidden data-desc-unmarked="Fragonard selected, unmarked state. Dark trees enclose a path while a small bright opening makes a fountain and nearby figures more available." data-desc-guided="Fragonard selected, guided state. Locator 1 follows dark tree enclosure at left. Locator 2 surrounds the small bright opening with fountain and figures. Locator 3 follows dark tree enclosure at right.">
+<p class="work-meta">France · ca. 1775 · selective attention path</p><h4>A Shaded Avenue — Jean Honoré Fragonard</h4><p class="object-meta">Oil on wood · The Metropolitan Museum of Art, 49.7.51</p>
+<p class="look"><strong>Look first.</strong> Follow the dark trees and low path toward the small bright opening. What makes that distant fountain and its nearby figures available before you know a narrative?</p>
+<div class="scene natural portrait" role="img" aria-label="A dark, tree-lined avenue opens onto a small bright clearing with a distant fountain and small figures.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c2-c3/met-436324-fragonard-shaded-avenue.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 3000 4000" aria-hidden="true"><path class="guide-shape" d="M210 520 C620 250 1110 410 1310 920 C1450 1280 1310 1720 950 1990"/><ellipse class="guide-shape" cx="1120" cy="3250" rx="430" ry="300"/><path class="guide-shape" d="M2650 1020 C2870 1490 2810 2200 2470 2670"/><circle class="marker" cx="250" cy="480" r="64"/><text class="marker-text" x="250" y="480">1</text><circle class="marker" cx="1500" cy="3200" r="64"/><text class="marker-text" x="1500" y="3200">2</text><circle class="marker" cx="2710" cy="960" r="64"/><text class="marker-text" x="2710" y="960">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> dark tree enclosure at left.</p><p class="key-item"><strong>2</strong> small bright opening with fountain and figures.</p><p class="key-item"><strong>3</strong> dark tree enclosure at right.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> dark trees enclose the path at both sides while a small bright opening makes the fountain and nearby figures more available. <strong>Bounded inference:</strong> the eye can connect enclosure and opening as a selective route into the scene. <strong>Meaning boundary:</strong> the route does not prove a physical beam, an exact time of day, a narrative event, or the painting's emotional meaning.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Utamaro selected, unmarked state. Empty paper ground holds two figures, pale faces, and patterned robes.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<p class="view-limit"><strong>Comparison boundary:</strong> this nonchronological order tests an evidence chain, not progress, naturalism, or expressive intensity. Each work contains other light and dark relations, and no single work represents a culture or period.</p>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>In real artworks, brightness can act as a ground, a way of turning form, or a route of attention. Begin with the visible relation, then state only the effect it can support. Subject, material, setting, and context are still needed before a larger claim.</p></div></div>
+<details class="credit"><summary>Image credits and source boundary</summary>
+<p>Kitagawa Utamaro, <em>Two Women</em>, ca. 1790, The Metropolitan Museum of Art, JP2735, public domain. <a href="https://www.metmuseum.org/art/collection/search/52002">Object record</a>.</p>
+<p>Honoré Daumier, <em>Two Drinkers</em>, 1860–79, The Metropolitan Museum of Art, 1975.1.601, public domain. <a href="https://www.metmuseum.org/art/collection/search/460035">Object record</a>.</p>
+<p>Jean Honoré Fragonard, <em>A Shaded Avenue</em>, ca. 1775, The Metropolitan Museum of Art, 49.7.51, public domain. <a href="https://www.metmuseum.org/art/collection/search/436324">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="c4" style="--acc:#8E5B6D;--acc-line:#B58193;--acc-soft:color-mix(in oklab,#B58193 12%,white)">
+<section class="lens" id="lens-c4" data-screen-label="c4-when-surface-speaks">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28"/><path d="M6 16 L20 6 M6 26 L30 6 M12 34 L34 12 M22 34 L34 22"/></svg></span><div><span class="lens-idx">C4 · When Surface Speaks</span><h2 class="lens-title">When does surface describe a material, the artwork itself, or both?</h2></div></div>
+<p class="lens-cue">A surface can describe glass, cloth, or stone inside an image. It can also be paint, paper, wood, or another material that makes an artwork a physical thing. Some artworks make both roles active at once.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One patterned-cloth motif · three surface roles</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> Follow the blue crisscross motif across the three panels. What makes it read first as a woven tablecloth, then as visible paint, and finally as both a fabric fragment and a tablecloth?</p>
+<div class="guide-unit" data-simple>
+<div class="scene wide" role="img" aria-label="Three created panels repeat an indigo textile with cream diamond-and-cross motifs. At left, a hyperrealistic still life shows the folded textile as a tablecloth beneath a cup. In the center, layered paint-like marks rebuild the textile pattern as an abstraction. At right, a collage-inspired frayed textile fragment sits beneath a cup, its edge modelling material presence.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-c4/c4-surface-textile-roles-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1624 969" aria-hidden="true"><path class="guide-zone" d="M36 354 C145 300 365 315 512 410 L516 950 L25 950Z"/><rect class="guide-zone" x="556" y="22" width="514" height="926"/><path class="guide-zone" d="M1135 180 C1260 125 1480 165 1565 250 L1575 875 C1470 946 1225 944 1100 815Z"/><circle class="marker" cx="88" cy="337" r="29"/><text class="marker-text" x="88" y="337">1</text><circle class="marker" cx="1026" cy="100" r="29"/><text class="marker-text" x="1026" y="100">2</text><circle class="marker" cx="1543" cy="210" r="29"/><text class="marker-text" x="1543" y="210">3</text></svg>
+</div>
+<div class="guide-key cols-1" hidden><p class="key-item"><strong>1 · Depicted material</strong> — woven fibers, folds, and the cup's weight make the blue motif read as a tablecloth inside a still life.</p><p class="key-item"><strong>2 · Painterly surface</strong> — the same motif is rebuilt from broad, layered-looking marks; paint-like handling becomes part of what you notice.</p><p class="key-item"><strong>3 · Both at once</strong> — a collage-inspired frayed fragment reads as a tablecloth beneath the cup while its separate edge models material presence.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Three roles</span><p><strong>1</strong> surface can describe a material in a pictured world. <strong>2</strong> painterly marks can make the surface carrying an image active in its own right. <strong>3</strong> a collage-inspired fragment can model how incorporated fabric may remain materially present while helping to make a still life. These are alternatives to compare, not stages from less to more advanced art.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 surrounds the woven cloth beneath the cup in the hyperrealistic still life. Locator 2 frames the abstract center panel, where layered-looking marks rebuild the cloth motif. Locator 3 follows the collage-inspired frayed textile beneath the cup, modelling how actual material could remain present.">Unmarked state. Three created panels repeat an indigo textile motif: as a depicted tablecloth, as painterly marks, and as a collage-inspired fragment that can read as both at once.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>When you notice texture, sheen, or pattern, ask what role it is playing. Is it describing something within the image? Is it making the artwork's own material presence noticeable? Or does it do both at once?</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three surface roles, three historical works</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="melendez" aria-pressed="true">1 · Meléndez</button><button class="wt-btn" type="button" data-work="monet" aria-pressed="false">2 · Monet</button><button class="wt-btn" type="button" data-work="tapestry" aria-pressed="false">3 · Tapestry</button></nav>
+<article class="work" data-panel="melendez" data-desc-unmarked="Meléndez selected, unmarked state. White cloth, grapes, melon, bread, and cookware are differentiated through changes in paint." data-desc-guided="Meléndez selected, guided state. Locator 1 identifies the folded white cloth. Locator 2 identifies the clustered grapes. Locator 3 identifies the netted rind and cut flesh of the melon.">
+<p class="work-meta">Spain · ca. 1772 · pictured materials</p><h4>The Afternoon Meal (La Merienda) — Luis Meléndez</h4><p class="object-meta">Oil on canvas · The Metropolitan Museum of Art, 1982.60.39</p>
+<p class="look"><strong>Look first.</strong> Move from the white cloth to the basket, grapes, melon, bread, and reflective cookware. What changes in the paint help each passage read as a different kind of thing?</p>
+<div class="scene natural" role="img" aria-label="A still life with white cloth, grapes, melon, bread, and cookware, each rendered with distinct paint handling.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/met-437053-melendez-afternoon-meal.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1200 827" aria-hidden="true"><ellipse class="guide-zone" cx="952" cy="454" rx="142" ry="113"/><ellipse class="guide-zone" cx="672" cy="336" rx="162" ry="132"/><ellipse class="guide-zone" cx="572" cy="641" rx="96" ry="126"/><circle class="marker" cx="1084" cy="390" r="27"/><text class="marker-text" x="1084" y="390">1</text><circle class="marker" cx="757" cy="221" r="27"/><text class="marker-text" x="757" y="221">2</text><circle class="marker" cx="475" cy="571" r="27"/><text class="marker-text" x="475" y="571">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> folded white cloth.</p><p class="key-item"><strong>2</strong> clustered grapes.</p><p class="key-item"><strong>3</strong> netted rind and cut flesh of the melon.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> the cloth gathers broad pale folds, the grapes collect small glints, and the melon changes from netted rind to soft exposed flesh. <strong>What this supports:</strong> changes in edge, highlight, color, and pattern can make paint describe materially different things in a pictured world. <strong>Keep looking:</strong> the same painting also makes a composition; material description alone does not settle its larger subject or meaning.</p></div>
+</article>
+<article class="work" data-panel="monet" hidden data-desc-unmarked="Monet selected, unmarked state. Short, varied marks gather into two stacks and redirect through field and sky." data-desc-guided="Monet selected, guided state. Locator 1 identifies the large stack, built from short varied marks. Locator 2 identifies the smaller stack. Locator 3 follows field passages where marks redirect across the ground.">
+<p class="work-meta">France · 1890–91 · paint made active</p><h4>Stacks of Wheat (End of Summer) — Claude Monet</h4><p class="object-meta">Oil on canvas · Art Institute of Chicago, 1985.1103</p>
+<p class="look"><strong>Look first.</strong> Let your attention move across the large stack, the smaller stack, the field, and the sky. Where do repeated, varied marks remain noticeable while also building the view?</p>
+<div class="scene natural" role="img" aria-label="Two wheat stacks in a field, painted with short, varied, visible brushmarks.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/aic-64818-monet-stacks-wheat.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1600 945" aria-hidden="true"><ellipse class="guide-zone" cx="1201" cy="511" rx="199" ry="250"/><ellipse class="guide-zone" cx="410" cy="535" rx="125" ry="120"/><path class="guide-line" d="M126 735 C375 690 612 779 873 744 C1111 713 1320 787 1510 722"/><circle class="marker" cx="1372" cy="321" r="34"/><text class="marker-text" x="1372" y="321">1</text><circle class="marker" cx="300" cy="423" r="34"/><text class="marker-text" x="300" y="423">2</text><circle class="marker" cx="129" cy="654" r="34"/><text class="marker-text" x="129" y="654">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> large stack built from short, varied marks.</p><p class="key-item"><strong>2</strong> smaller stack built differently at a distance.</p><p class="key-item"><strong>3</strong> field passages where marks redirect across the ground.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> short, layered-looking marks gather into the stacks, then spread and redirect through the field and sky. <strong>What this supports:</strong> paint does not simply disappear behind the wheat; its handling stays active while it helps make the landscape. <strong>Keep looking:</strong> noticeable marks do not by themselves tell us an artist's feeling, a single moment of weather, or the full meaning of the view.</p></div>
+</article>
+<article class="work" data-panel="tapestry" hidden data-desc-unmarked="Tapestry-Woven Fragment selected, unmarked state. Colored wool makes a horse, decorative motifs, and a patterned band while irregular edges keep the fragment present as a woven textile." data-desc-guided="Tapestry-Woven Fragment selected, guided state. Locator 1 identifies the woven horse motif. Locator 2 identifies the green patterned band. Locator 3 follows an irregular frayed woven edge.">
+<p class="work-meta">Found Egypt · possibly Iraq, Iran, or Caucasus · 8th century · material and image</p><h4>Tapestry-Woven Fragment</h4><p class="object-meta">Wool; slit-tapestry weave with eccentric wefts · The Metropolitan Museum of Art, 2001.420</p>
+<p class="look"><strong>Look first.</strong> Follow the horse, the small decorative motifs, and the green patterned band. How does the same woven material make both the fragment's physical presence and its image?</p>
+<div class="scene natural portrait" role="img" aria-label="A woven tapestry fragment depicting a horse and a green patterned band, with irregular frayed edges.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/met-454035-tapestry-woven-fragment.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 551 1200" aria-hidden="true"><ellipse class="guide-zone" cx="177" cy="602" rx="88" ry="73"/><rect class="guide-zone" x="80" y="795" width="373" height="115" rx="12"/><path class="guide-line" d="M132 138 C102 282 125 400 95 504 M454 412 C488 506 464 620 484 716"/><circle class="marker" cx="287" cy="523" r="24"/><text class="marker-text" x="287" y="523">1</text><circle class="marker" cx="451" cy="770" r="24"/><text class="marker-text" x="451" y="770">2</text><circle class="marker" cx="88" cy="111" r="24"/><text class="marker-text" x="88" y="111">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> woven horse motif.</p><p class="key-item"><strong>2</strong> green patterned band.</p><p class="key-item"><strong>3</strong> irregular, frayed woven edge.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> colored wool structures the horse and patterned band, while irregular edges and the same interlaced material keep the fragment present as a made textile. <strong>What this supports:</strong> here the material is not merely shown by an image; it is also what makes the image. <strong>Keep looking:</strong> that coexistence is one surface relation to compare, not a claim that this work is more direct, advanced, or truthful than the paintings.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Meléndez selected, unmarked state. White cloth, grapes, melon, bread, and cookware are differentiated through changes in paint.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<p class="view-limit"><strong>Comparison note:</strong> this is an analytical order, not a history of progress. Each work contains more than one surface relation, and no single work stands for an entire culture or period.</p>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>When texture, sheen, pattern, or a material edge catches your attention, ask what role it is playing. Is it describing something within an image? Is it making the artwork's own medium noticeable? Or are those two roles active together?</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p>Luis Meléndez, <em>The Afternoon Meal (La Merienda)</em>, ca. 1772, The Metropolitan Museum of Art, 1982.60.39, public domain. <a href="https://www.metmuseum.org/art/collection/search/437053">Object record</a>.</p>
+<p>Claude Monet, <em>Stacks of Wheat (End of Summer)</em>, 1890–91, Art Institute of Chicago, 1985.1103, CC0. <a href="https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer">Object record</a>.</p>
+<p><em>Tapestry-Woven Fragment</em>, 8th century, The Metropolitan Museum of Art, 2001.420, public domain. <a href="https://www.metmuseum.org/art/collection/search/454035">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="c5" style="--acc:#4E6B50;--acc-line:#5F8060;--acc-soft:color-mix(in oklab,#5F8060 12%,white)">
+<section class="lens" id="lens-c5" data-screen-label="c5-carved-modelled-cast-constructed">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 34 L8 18 L18 12 L18 34 Z"/><circle cx="27" cy="24" r="8"/><line x1="27" y1="8" x2="27" y2="16" stroke-dasharray="2 2"/></svg></span><div><span class="lens-idx">C5 · Carved, Modelled, Cast, Constructed</span><h2 class="lens-title">What can evidence tell us about how a sculpture was made — and what stays unresolved?</h2></div></div>
+<p class="lens-cue">A sculpture can hold clues about material being removed, shaped, transferred through a mold, or joined. Those clues help us ask how it came together; they do not tell its whole making story alone.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One invented form, four ways of coming together</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> Follow the same tall upright, diagonal element, and low rounded mass across the worktable. Where does the form seem to come from one mass, soft addition, a transfer through a mold, or separately joined parts?</p>
+<div class="guide-unit" data-simple>
+<div class="scene wide" role="img" aria-label="Four invented sculptures repeat a tall upright, diagonal element, and low rounded mass: a stone-like carved form, a clay-like modelled form, a bronze-like form with two mold halves, and a steel-like constructed form with joined parts.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-c5/c5-making-sequences-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1672 941" aria-hidden="true"><path class="guide-zone" d="M164 710 L164 454 L281 426 L381 575 L344 709 Z"/><path class="guide-zone" d="M503 702 C540 598 615 564 692 606 C728 632 739 700 715 748 C654 785 544 771 503 702 Z"/><rect class="guide-zone" x="808" y="300" width="505" height="490" rx="12"/><path class="guide-line" d="M1401 350 L1401 612 M1450 448 L1545 625 M1354 754 L1618 754"/><ellipse class="guide-zone" cx="1442" cy="443" rx="34" ry="31"/><ellipse class="guide-zone" cx="1547" cy="636" rx="39" ry="34"/><ellipse class="guide-zone" cx="1398" cy="622" rx="40" ry="30"/><circle class="marker" cx="152" cy="403" r="30"/><text class="marker-text" x="152" y="403">1</text><circle class="marker" cx="602" cy="525" r="30"/><text class="marker-text" x="602" y="525">2</text><circle class="marker" cx="1137" cy="262" r="30"/><text class="marker-text" x="1137" y="262">3</text><circle class="marker" cx="1584" cy="534" r="30"/><text class="marker-text" x="1584" y="534">4</text></svg>
+</div>
+<div class="guide-key cols-1" hidden><p class="key-item"><strong>1</strong> a faceted recess within a continuing stone-like mass.</p><p class="key-item"><strong>2</strong> soft clay-like volumes pressed together.</p><p class="key-item"><strong>3</strong> a bronze-like form beside two mold halves.</p><p class="key-item"><strong>4</strong> distinct steel-like rods and plates meeting at welded junctions.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Four general relations</span><p><strong>1</strong> a carved form can keep a relation to material removed and material remaining. <strong>2</strong> modelling can build a form through added, pressed, and reshaped material. <strong>3</strong> casting can transfer a model through a mold into a new material. <strong>4</strong> construction can make separately formed parts and their joins active. These visual models identify questions to take to an artwork and its sources; they do not reconstruct any particular maker's full sequence.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks a faceted recess within a continuing stone-like mass. Locator 2 marks soft clay-like volumes pressed together. Locator 3 identifies a bronze-like form beside two mold halves. Locator 4 marks steel-like rods and plates meeting at welded junctions.">Unmarked state. Four invented sculptures repeat a tall upright, diagonal element, and low rounded mass, varying as stone-like carved, clay-like modelled, bronze-like cast, and steel-like constructed forms.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>When a plane, added volume, mold relation, seam, or join catches your eye, name what you can see first. Then ask which source could connect that feature to a particular making sequence — and which parts of the story remain unresolved.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three works, three evidence chains</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="rodin" aria-pressed="true">1 · Rodin</button><button class="wt-btn" type="button" data-work="remington" aria-pressed="false">2 · Remington</button><button class="wt-btn" type="button" data-work="inca" aria-pressed="false">3 · Inca figurine</button></nav>
+<article class="work" data-panel="rodin" data-desc-unmarked="Rodin selected, unmarked state. More fully worked figures meet rougher marble that remains part of the same group." data-desc-guided="Rodin selected, guided state. Locator 1 identifies rougher marble at the right and lower edge. Locator 2 identifies more fully worked figures.">
+<p class="work-meta">France · modelled 1889, carved ca. 1908–09 · marble</p><h4>Pygmalion and Galatea — Auguste Rodin</h4><p class="object-meta">Marble · The Metropolitan Museum of Art, 10.31</p>
+<p class="look"><strong>Look first.</strong> Move from the comparatively smooth figures to the rougher marble at the right and lower edge. Where does the work keep its relation to the larger stone mass?</p>
+<div class="scene natural" role="img" aria-label="A marble sculpture group where more fully worked figures meet rougher, unfinished marble at the edges.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/met-191292-rodin-pygmalion-galatea.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 4000 3276" aria-hidden="true"><path class="guide-zone" d="M2580 1350 C2920 1240 3440 1590 3540 2130 L3440 3030 L2400 3040 L2170 2530 Z"/><path class="guide-zone" d="M1570 690 C1960 390 2550 580 2680 1050 L2580 2470 L1800 2580 L1430 1970 Z"/><circle class="marker" cx="3330" cy="1300" r="46"/><text class="marker-text" x="3330" y="1300">1</text><circle class="marker" cx="1780" cy="600" r="46"/><text class="marker-text" x="1780" y="600">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> rougher marble along the right and lower edge.</p><p class="key-item"><strong>2</strong> more fully worked figures within the group.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> more fully worked figures meet rougher, more irregular marble that remains part of the same group. <strong>What the record adds:</strong> the Met dates the work as modelled in 1889 and carved around 1908–09. <strong>What remains open:</strong> the visible contrast does not reveal every step, tool, or person involved in moving from model to marble.</p></div>
+</article>
+<article class="work" data-panel="remington" hidden data-desc-unmarked="Remington selected, unmarked state. Rider, horse, rope, and base read as one continuously shaped bronze group." data-desc-guided="Remington selected, guided state. Locator 1 follows the interconnected rider-and-horse form. Locator 2 identifies the broad bronze base.">
+<p class="work-meta">United States · 1895, cast 1918 · bronze</p><h4>The Broncho Buster — Frederic Remington</h4><p class="object-meta">Bronze; cast by Roman Bronze Works · The Metropolitan Museum of Art, 1986.81.2</p>
+<p class="look"><strong>Look first.</strong> Follow the rider's bent body, the horse's lifted head, and the broad base. What makes these separate motions read as one continuous bronze form?</p>
+<div class="scene natural portrait" role="img" aria-label="A bronze sculpture of a rider on a rearing horse, cast as one continuous form on a broad base.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/met-11860-remington-broncho-buster.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 2953 3884" aria-hidden="true"><path class="guide-zone" d="M730 720 C1120 470 1780 500 2140 850 C2400 1120 2380 1720 2100 2050 C1750 2330 1070 2250 700 1840 C490 1530 510 1020 730 720 Z"/><path class="guide-zone" d="M760 3240 C1180 3140 2110 3170 2470 3360 L2380 3630 C1890 3710 1020 3690 700 3510 Z"/><circle class="marker" cx="520" cy="720" r="46"/><text class="marker-text" x="520" y="720">1</text><circle class="marker" cx="2360" cy="3000" r="46"/><text class="marker-text" x="2360" y="3000">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> interconnected rider-and-horse form.</p><p class="key-item"><strong>2</strong> broad bronze base that gathers the action.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> the rider, horse, rope, and base read as a single, continuously shaped bronze group. <strong>What the record adds:</strong> this 1918 bronze was cast by Roman Bronze Works; the Met also documents that editions of the subject used both sand casting and later lost-wax casting. <strong>What remains open:</strong> the visible bronze surface alone does not identify a mold, distinguish those casting methods, or account for the whole edition history.</p></div>
+</article>
+<article class="work" data-panel="inca" hidden data-desc-unmarked="Inca female figurine selected, unmarked state. A vertical hair line and small changes in the gold surface organize the compact figure." data-desc-guided="Inca female figurine selected, guided state. Locator 1 follows the vertical line and engraved texture in the hair. Locator 2 identifies the compact shaped gold of the head, torso, and arms.">
+<p class="work-meta">Inca · 1400–1533 · formed and joined gold sheet</p><h4>Female figurine</h4><p class="object-meta">Gold · The Metropolitan Museum of Art, 1979.206.1058</p>
+<p class="look"><strong>Look first.</strong> Follow the vertical line down the center of the hair and the figure's compact head, torso, arms, and legs. Which lines and shifts in the gold seem important enough to investigate?</p>
+<div class="scene natural portrait" role="img" aria-label="A small gold Inca figurine with a compact head, torso, and arms, and a vertical line down the center of the hair.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/met-313251-inca-female-figurine.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 2786 4000" aria-hidden="true"><path class="guide-line" d="M1400 525 C1390 830 1420 1100 1405 1410"/><path class="guide-zone" d="M920 560 C1110 390 1690 390 1880 620 L1800 2320 L1000 2320 Z"/><circle class="marker" cx="1135" cy="480" r="42"/><text class="marker-text" x="1135" y="480">1</text><circle class="marker" cx="1860" cy="1570" r="42"/><text class="marker-text" x="1860" y="1570">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> vertical line and engraved texture in the hair.</p><p class="key-item"><strong>2</strong> compact head, torso, and arms made from shaped gold.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> a vertical hair line and small changes in the gold's raised and incised surface give the tiny figure a precise, organized form. <strong>What the technical study adds:</strong> X-radiography and other 2017 examination identified five separately formed sheet components and solder in most joined areas. <strong>What remains open:</strong> whether pressure welding was also used remains unresolved; the visible line alone does not prove the complete construction sequence.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Rodin selected, unmarked state. More fully worked figures meet rougher marble that remains part of the same group.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>A rough edge, continuous surface, hair line, or base can give you something specific to investigate. Name the visible feature first. Then ask what a museum record, technical study, or other source can add — and what questions it still cannot answer.</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p>Auguste Rodin, <em>Pygmalion and Galatea</em>, modelled 1889, carved ca. 1908–09, The Metropolitan Museum of Art, 10.31, public domain. <a href="https://www.metmuseum.org/art/collection/search/191292">Object record</a>.</p>
+<p>Frederic Remington, <em>The Broncho Buster</em>, 1895, cast 1918, The Metropolitan Museum of Art, 1986.81.2, public domain. <a href="https://www.metmuseum.org/art/collection/search/11860">Object record</a>.</p>
+<p><em>Female figurine</em>, Inca, 1400–1533, The Metropolitan Museum of Art, 1979.206.1058, public domain. <a href="https://www.metmuseum.org/art/collection/search/313251">Object record and technical note</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="c6" style="--acc:#566F5D;--acc-line:#7B9883;--acc-soft:color-mix(in oklab,#7B9883 12%,white)">
+<section class="lens" id="lens-c6" data-screen-label="c6-object-viewer-site">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M12 34 L12 8 L28 8 L28 34 M12 21 L4 21 M28 21 L36 21"/><circle cx="20" cy="21" r="3"/></svg></span><div><span class="lens-idx">C6 · Object, Viewer, Site</span><h2 class="lens-title">How can a documented placement organize encounters among object, viewer, and site?</h2></div></div>
+<p class="lens-cue">Placement is part of what we see. The same object can be framed by a threshold, raised above a pictured viewer, or seen from an oblique position in an open room.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One invented form, three placements</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> Find the same tapered form, rounded base, and diagonal plane in all three settings. Where does the doorway align a view? Where do height and distance change the relation? Where does the room make a side position available?</p>
+<div class="guide-unit" data-simple>
+<div class="scene wide" role="img" aria-label="The same invented sculpture appears three times: framed by a doorway, raised on a tall plinth above a pictured viewer, and seen obliquely from the side in an open gallery.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-c6/c6-placement-encounters-v1.png" alt="" />
+<svg class="gsvg" viewBox="0 0 1672 941" aria-hidden="true"><path class="guide-zone" d="M62 35 L471 35 L471 849 L63 849 Z"/><path class="guide-zone" d="M610 180 L996 180 L996 866 L610 866 Z"/><path class="guide-zone" d="M1178 343 C1305 315 1510 332 1618 470 L1618 782 L1180 782 Z"/><circle class="marker" cx="90" cy="92" r="31"/><text class="marker-text" x="90" y="92">1</text><circle class="marker" cx="701" cy="215" r="31"/><text class="marker-text" x="701" y="215">2</text><circle class="marker" cx="1204" cy="365" r="31"/><text class="marker-text" x="1204" y="365">3</text></svg>
+</div>
+<div class="guide-key cols-1" hidden><p class="key-item"><strong>1 · Threshold</strong> — the doorway centers the object along an approach.</p><p class="key-item"><strong>2 · Height and distance</strong> — a tall plinth separates the pictured viewer from the raised form and changes their eye-level relation.</p><p class="key-item"><strong>3 · Open room</strong> — an oblique position and space at the side make a lateral view available.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Three placement relations</span><p><strong>1</strong> a threshold can frame an object and align a particular view with an entrance. <strong>2</strong> a plinth can establish height and distance between an object and a viewer. <strong>3</strong> an open room can make an oblique or lateral view available. The represented sculpture has not changed; the object, viewer, and site are arranged differently. Each setting can make one relation more immediate without making it the only possible encounter.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 frames the doorway and its centered approach to the sculpture. Locator 2 identifies the raised sculpture, tall plinth, and pictured viewer below. Locator 3 identifies the sculpture, low plinth, and the pictured adult's oblique position in the open gallery.">Unmarked state. The same invented sculpture appears three times: through a doorway, raised on a tall plinth above a pictured viewer, and at an oblique side position in an open gallery.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>When you look at sculpture, begin with one relation: a doorway framing it, a base raising it, or room around it. Then ask how that placement organizes the encounter you are having with the object.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three works, three site states</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork and site state"><button class="wt-btn" type="button" data-work="dendur" aria-pressed="true">1 · Temple of Dendur</button><button class="wt-btn" type="button" data-work="liberty" aria-pressed="false">2 · Statue of Liberty</button><button class="wt-btn" type="button" data-work="flamingo" aria-pressed="false">3 · Flamingo</button></nav>
+<article class="work" data-panel="dendur" data-desc-unmarked="Temple of Dendur selected, unmarked state. A tall sandstone gateway frames a smaller opening deeper in the temple, surrounded by a raised gallery floor, pool, and glass wall." data-desc-guided="Temple of Dendur selected, guided state. Locator 1 identifies the tall gateway and smaller entrance beyond it. Locator 2 identifies the raised gallery platform and pool in front of the temple.">
+<p class="work-meta">Present museum-gallery state · Gallery 131</p><h4>The Temple of Dendur</h4><p class="object-meta">Roman Period · completed by 10 B.C. · Aeolian sandstone · The Metropolitan Museum of Art, 68.154</p>
+<p class="look"><strong>Look first.</strong> Move from the tall gateway at the right to the smaller entrance beyond it, then out to the pool and glass wall. Which visible parts frame an approach through the temple, and which organize its present gallery setting?</p>
+<div class="scene natural portrait" role="img" aria-label="The Temple of Dendur in its Metropolitan Museum gallery, with a tall gateway, pool, and glass wall.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/c6-object-viewer-site/met-547802-temple-dendur-gallery-131.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 2995 4000" aria-hidden="true"><path class="guide-zone" d="M650 885 L2835 885 L2835 2890 L650 2890 Z"/><path class="guide-zone" d="M80 2170 C830 2020 1700 2130 2620 2680 L2570 3920 L80 3920 Z"/><circle class="marker" cx="1590" cy="850" r="58"/><text class="marker-text" x="1590" y="850">1</text><circle class="marker" cx="205" cy="2140" r="58"/><text class="marker-text" x="205" y="2140">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> tall gateway and smaller entrance beyond it.</p><p class="key-item"><strong>2</strong> raised gallery platform and pool in front of the temple.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> the tall gateway frames a smaller opening deeper in the temple, while a broad floor, pool, and glass wall create a new surrounding setting. <strong>What the record adds:</strong> the Met identifies this as the Temple of Dendur, completed by 10 B.C. and now shown in Gallery 131. <strong>Site state:</strong> this is a present museum-gallery encounter with the temple, not its original Nubian setting.</p></div>
+</article>
+<article class="work" data-panel="liberty" hidden data-desc-unmarked="Statue of Liberty selected, 2017 photographed site state, unmarked. The raised figure and tall pedestal sit above Liberty Island, with water and boats extending around the monument." data-desc-guided="Statue of Liberty selected, guided state. Locator 1 contains the figure and tall pedestal. Locator 2 identifies the island edge, water, and boats below and beyond it.">
+<p class="work-meta">Selected photograph's setting · Liberty Island · 2017</p><h4>Liberty Enlightening the World — Frédéric Auguste Bartholdi</h4><p class="object-meta">1886 · copper sculpture and pedestal · Liberty Island, New York Harbor</p>
+<p class="look"><strong>Look first.</strong> Follow the figure down through the tall pedestal to the island edge, then outward across the water to the boats. How do height, water, and the base organize distance in this photographed setting?</p>
+<div class="scene natural" role="img" aria-label="The Statue of Liberty on its tall pedestal, seen from across the water with boats visible near the island.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/c6-object-viewer-site/loc-highsm-45295-statue-liberty-island-2017.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1024 683" aria-hidden="true"><path class="guide-zone" d="M292 72 C405 22 560 48 590 212 L557 474 L325 481 L262 312 Z"/><path class="guide-zone" d="M80 395 C330 355 690 390 1010 350 L1010 670 L80 670 Z"/><circle class="marker" cx="271" cy="90" r="36"/><text class="marker-text" x="271" y="90">1</text><circle class="marker" cx="142" cy="402" r="36"/><text class="marker-text" x="142" y="402">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> figure and tall pedestal.</p><p class="key-item"><strong>2</strong> island edge, water, and boats below and beyond the monument.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> the raised figure and tall pedestal sit above the island edge, while water and boats establish a broad space around the monument. <strong>What the record adds:</strong> the Library of Congress identifies this selected photograph as Carol M. Highsmith's 2017 view of the Statue of Liberty on Liberty Island. <strong>Site state:</strong> this page studies that documented 2017 island-and-harbor view.</p></div>
+</article>
+<article class="work" data-panel="flamingo" hidden data-desc-unmarked="Flamingo selected, 2017 photographed site state, unmarked. The open red steel form stands on broad pavement among tall building fronts in Federal Center Plaza." data-desc-guided="Flamingo selected, guided state. Locator 1 identifies the open red steel form against the building grid. Locator 2 identifies the broad pavement and bollard line.">
+<p class="work-meta">Selected photograph's setting · Federal Center Plaza · 2017</p><h4>Flamingo — Alexander Calder</h4><p class="object-meta">1974 · steel · Chicago Federal Center Plaza · U.S. General Services Administration</p>
+<p class="look"><strong>Look first.</strong> Follow the red steel's open legs and arch, then the pavement, bollards, and building fronts around it. How does the sculpture hold a place in this broad city plaza?</p>
+<div class="scene natural" role="img" aria-label="A large open red steel sculpture standing on a broad paved plaza among tall building fronts.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/c4-c6/c6-object-viewer-site/loc-highsm-63037-calder-flamingo-2017.jpg" alt="" />
+<svg class="gsvg" viewBox="0 0 1024 401" aria-hidden="true"><path class="guide-zone" d="M604 46 C732 14 960 30 1002 111 L1002 386 L570 386 L570 232 Z"/><path class="guide-zone" d="M18 276 L998 276 L998 390 L18 390 Z"/><circle class="marker" cx="594" cy="90" r="34"/><text class="marker-text" x="594" y="90">1</text><circle class="marker" cx="95" cy="258" r="34"/><text class="marker-text" x="95" y="258">2</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> open red steel form against the building grid.</p><p class="key-item"><strong>2</strong> broad pavement and bollard line that give the plaza a shared ground.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Look again</span><p><strong>Visible relation:</strong> the open red steel form meets a broad paved plaza and a field of tall building fronts rather than a separate pedestal or room. <strong>What the record adds:</strong> GSA records <em>Flamingo</em> as a 1974 steel work installed at Chicago Federal Center; the Library of Congress dates this photograph to 2017. <strong>Site state:</strong> this is a selected 2017 plaza view, with the sculpture and surrounding federal architecture visible together.</p></div>
+</article>
+<p class="sr-only" data-desc aria-live="polite">Temple of Dendur selected, unmarked state. A tall sandstone gateway frames a smaller opening, surrounded by a raised gallery floor, pool, and glass wall.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>A gallery setting, an island pedestal, and a city plaza make different relations available. Start with the frame, base, ground, water, or architecture you can see. Then name the particular site state the record identifies before making a claim about an encounter.</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p><em>The Temple of Dendur</em>, Roman Period, completed by 10 B.C., The Metropolitan Museum of Art, 68.154, public domain. <a href="https://www.metmuseum.org/art/collection/search/547802">Object record</a>.</p>
+<p>Frédéric Auguste Bartholdi, <em>Liberty Enlightening the World</em>, 1886. Photograph: Carol M. Highsmith, 24 August 2017, Library of Congress, LC-DIG-highsm-45295; no known restrictions on publication. <a href="https://www.loc.gov/pictures/item/2017882044/">Photograph record</a>.</p>
+<p>Alexander Calder, <em>Flamingo</em>, 1974, steel, Chicago Federal Center Plaza. Photograph: Carol M. Highsmith, 27 July 2017, Library of Congress, LC-DIG-highsm-63037; no known restrictions on publication. <a href="https://www.loc.gov/item/2020721899/">Photograph record</a>; <a href="https://art.gsa.gov/artworks/23671/flamingo">GSA artwork record</a>.<span class="rights-note">The Highsmith photograph documents the plaza and its surroundings. Reproduction of Calder's underlying 1974 sculpture for external publication has a separate, unresolved rights review; this page presents it only within that documented site photograph, consistent with the module's release status.</span></p>
+</details>
+</section>
+</section>
+</div>
+
+</div>
+
+</main>
+
+<footer>
+<div class="colophon">Of Imagination All Compact · AP Literature</div>
+<div><a href="/credits">Image Credits</a></div>
+<div>The Looking Studio / Cross-Period Comparison Lab</div>
+</footer>
+
+</div>
+
+</Layout>
+
+<script is:inline>
+(function(){
+ // simple guide-units (controlled studies, no work-selector)
+ document.querySelectorAll('.guide-unit[data-simple]').forEach(function(unit){
+  var btn=unit.querySelector('[data-role="guide"]');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+   var on=btn.getAttribute('aria-pressed')!=='true';
+   btn.setAttribute('aria-pressed',String(on));
+   btn.setAttribute('aria-expanded',String(on));
+   btn.querySelector('.gt-label').textContent=on?'Hide visual guide':'Show visual guide';
+   unit.classList.toggle('guided',on);
+   var cap=unit.querySelector(':scope > .caption,:scope > .study-body > .caption');
+   var key=unit.querySelector('.guide-key');
+   if(cap)cap.hidden=!on;
+   if(key)key.hidden=!on;
+   var sr=unit.querySelector('.sr-only[data-unmarked]');
+   if(sr){var guided=sr.getAttribute('data-guided'),unmarked=sr.getAttribute('data-unmarked');sr.textContent=on?guided:unmarked;}
+  });
+ });
+ // real-art sections with a mutually-exclusive work selector
+ document.querySelectorAll('.realart[data-selector]').forEach(function(section){
+  var buttons=[].slice.call(section.querySelectorAll('.work-select [data-work]'));
+  var panels=[].slice.call(section.querySelectorAll('[data-panel]'));
+  var guideBtn=section.querySelector('[data-role="guide"]');
+  var sr=section.querySelector('.sr-only[data-desc]');
+  var active=buttons.length?buttons[0].dataset.work:null;
+  function panelFor(name){return section.querySelector('[data-panel="'+name+'"]');}
+  function resetGuide(){
+   guideBtn.setAttribute('aria-pressed','false');
+   guideBtn.setAttribute('aria-expanded','false');
+   guideBtn.querySelector('.gt-label').textContent='Show visual guide';
+   panels.forEach(function(p){
+    p.classList.remove('guided');
+    var cap=p.querySelector('[data-caption]');if(cap)cap.hidden=true;
+    var key=p.querySelector('[data-guide-key]');if(key)key.hidden=true;
+    var gd=p.querySelector('[data-guided-detail]');if(gd)gd.hidden=true;
+   });
+  }
+  function selectWork(name){
+   active=name;
+   buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.work===name));});
+   panels.forEach(function(p){p.hidden=p.dataset.panel!==name;});
+   resetGuide();
+   if(sr){var p=panelFor(name);sr.textContent=p.getAttribute('data-desc-unmarked')||'';}
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){selectWork(b.dataset.work);});});
+  if(guideBtn){
+   guideBtn.addEventListener('click',function(){
+    var on=guideBtn.getAttribute('aria-pressed')!=='true';
+    var p=panelFor(active);
+    guideBtn.setAttribute('aria-pressed',String(on));
+    guideBtn.setAttribute('aria-expanded',String(on));
+    guideBtn.querySelector('.gt-label').textContent=on?'Hide visual guide':'Show visual guide';
+    p.classList.toggle('guided',on);
+    var cap=p.querySelector('[data-caption]');if(cap)cap.hidden=!on;
+    var key=p.querySelector('[data-guide-key]');if(key)key.hidden=!on;
+    var gd=p.querySelector('[data-guided-detail]');if(gd)gd.hidden=!on;
+    if(sr)sr.textContent=(on?p.getAttribute('data-desc-guided'):p.getAttribute('data-desc-unmarked'))||'';
+   });
+  }
+ });
+ // takeaway toggles (shared pattern, wording preserved by data-kind)
+ document.querySelectorAll('[data-role="takeaway"]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+   var wrap=btn.closest('.takeaway-wrap'),p=wrap.querySelector('.takeaway'),on=p.hidden;
+   p.hidden=!on;
+   btn.setAttribute('aria-expanded',String(on));
+   var kind=btn.dataset.kind||'concept';
+   btn.textContent=on?('Hide takeaway '+kind):('Show takeaway '+kind);
+  });
+ });
+ // module chooser: open/close detail panel, one open at a time
+ var detail=document.getElementById('lens-detail'),dThread=document.getElementById('dThread'),dClose=document.getElementById('dClose');
+ var cards=[].slice.call(document.querySelectorAll('.ocard')),wraps=[].slice.call(document.querySelectorAll('.lens-wrap'));
+ function soft(){return window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';}
+ function open(id){
+  cards.forEach(function(c){c.classList.toggle('on',c.dataset.lens===id);});
+  wraps.forEach(function(w){w.classList.toggle('is-hidden',w.dataset.lens!==id);});
+  detail.classList.remove('is-hidden');
+  var card=cards.find(function(c){return c.dataset.lens===id;});
+  if(dThread)dThread.textContent=card?card.querySelector('.othread').textContent:'';
+  var w=detail.querySelector('.lens-wrap:not(.is-hidden)');
+  var h=w?w.querySelector('.lens-title'):null;
+  if(h){h.tabIndex=-1;h.focus({preventScroll:true});}
+  if(w)window.scrollTo({top:w.getBoundingClientRect().top+window.scrollY-24,behavior:soft()});
+  if(card)detail.style.setProperty('--acc',getComputedStyle(card).getPropertyValue('--acc'));
+ }
+ function close(){
+  cards.forEach(function(c){c.classList.remove('on');});
+  wraps.forEach(function(w){w.classList.add('is-hidden');});
+  detail.classList.add('is-hidden');
+  detail.style.removeProperty('--acc');
+ }
+ cards.forEach(function(c){c.addEventListener('click',function(){c.classList.contains('on')?close():open(c.dataset.lens);});});
+ if(dClose)dClose.addEventListener('click',function(){
+  var on=cards.find(function(c){return c.classList.contains('on');});
+  close();
+  if(on){on.focus({preventScroll:true});window.scrollTo({top:on.getBoundingClientRect().top+window.scrollY-80,behavior:soft()});}
+ });
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&detail&&!detail.classList.contains('is-hidden'))dClose.click();});
+ // lightbox: click any scene to see a full, unmarked-guide-stripped enlargement
+ var lb=document.createElement('div');
+ lb.className='lightbox';lb.id='cpl-lightbox';lb.hidden=true;
+ lb.innerHTML='<button class="lightbox-close" type="button" aria-label="Close enlarged image">×</button><div id="cpl-lightboxContent"></div>';
+ document.body.appendChild(lb);
+ var lbContent=lb.querySelector('#cpl-lightboxContent'),lbClose=lb.querySelector('.lightbox-close');
+ function closeLightbox(){lb.hidden=true;lbContent.innerHTML='';}
+ function openLightboxImg(src,alt){
+  var img=document.createElement('img');img.src=src;img.alt=alt||'';
+  lbContent.innerHTML='';lbContent.appendChild(img);lb.hidden=false;
+ }
+ function openLightboxScene(scene){
+  var clone=scene.cloneNode(true);
+  clone.querySelectorAll('.gsvg').forEach(function(g){g.remove();});
+  var vw=window.innerWidth*0.92,vh=window.innerHeight*0.88;
+  var natImg=scene.querySelector('img');
+  var w=natImg?natImg.naturalWidth:0,h=natImg?natImg.naturalHeight:0;
+  if(w&&h){
+   var W=vw,H=vw*h/w;
+   if(H>vh){H=vh;W=vh*w/h;}
+   clone.style.width=W+'px';clone.style.height=H+'px';
+  } else {
+   clone.style.maxWidth=vw+'px';clone.style.maxHeight=vh+'px';clone.style.width='auto';clone.style.height='auto';
+  }
+  clone.style.margin='0';
+  lbContent.innerHTML='';lbContent.appendChild(clone);lb.hidden=false;
+ }
+ document.querySelectorAll('#lens-detail .scene').forEach(function(scene){
+  scene.addEventListener('click',function(e){e.stopPropagation();openLightboxScene(scene);});
+ });
+ document.querySelectorAll('#lens-detail .detail-crop').forEach(function(crop){
+  crop.addEventListener('click',function(e){
+   e.stopPropagation();
+   var img=crop.querySelector('img');
+   if(img)openLightboxImg(img.currentSrc||img.src,img.alt);
+  });
+ });
+ lb.addEventListener('click',closeLightbox);
+ lbClose.addEventListener('click',function(e){e.stopPropagation();closeLightbox();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)closeLightbox();});
+})();
+</script>
+
+<style>
+.cpl-page{--acc:#B07028;--acc-line:#B07028;--acc-soft:#F3E6D2;--guide:#5E9C79;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
+.cpl-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.cpl-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
+.cpl-crumb{padding:20px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cpl-crumb a{color:inherit;text-decoration:none}
+.cpl-crumb a:hover{color:var(--ink)}
+.cpl-crumb .sep{color:var(--rule-strong)}
+.cpl-crumb .here{color:var(--ink-mute)}
+.eyebrow-strip{display:flex;align-items:center;gap:14px;padding:22px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.eyebrow-strip .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex:0 0 6px}
+.page-head{padding:22px 0 44px;display:grid;grid-template-columns:88px 1fr;gap:32px;align-items:start;border-bottom:1px solid var(--rule)}
+@media (max-width:720px){.page-head{grid-template-columns:1fr;gap:18px;padding:22px 0 30px}}
+.sigil-lg{width:88px;height:88px;border:1px solid var(--rule-strong);background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sigil-lg svg{width:48px;height:48px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.page-head h1{font-family:var(--font-display);font-weight:300;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 6px;color:var(--ink)}
+.page-head .sub{font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--ink-mute);margin:0}
+.reading{max-width:var(--read-wide);margin:0 auto;padding:40px 0 8px}
+.lede{max-width:var(--measure);margin:0 auto 22px;font-family:var(--font-display);font-size:20px;line-height:1.55;color:var(--ink)}
+.reading em{font-style:italic;color:var(--ink)}
+.page-note{max-width:var(--measure);margin:0 auto 8px;padding:14px 18px;border:1px solid var(--rule);background:var(--bg-raised);font-family:var(--font-ui);font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+.overview{max-width:var(--read-wide);margin:34px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:16px}
+@media (max-width:860px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.overview{grid-template-columns:1fr}}
+.ocard{display:flex;flex-direction:column;align-items:stretch;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule-strong);padding:24px 26px 22px;cursor:pointer;transition:border-color 160ms,background 160ms,box-shadow 160ms}
+.ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
+.ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
+.ocard .ohead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--rule)}
+.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:32px;line-height:1;letter-spacing:-.01em;color:var(--acc)}
+.ocard .osig{flex:0 0 auto;width:30px;height:30px;color:var(--ink-soft);display:flex;align-items:center;justify-content:center}
+.ocard .osig svg{width:30px;height:30px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ocard .oq{order:2;font-family:var(--font-ui);font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin:10px 0 0;text-wrap:pretty}
+.ocard .ot{order:1;font-family:var(--font-display);font-weight:400;font-size:25px;line-height:1.22;letter-spacing:-.01em;color:var(--ink);margin:0;text-wrap:pretty}
+.ocard .othread{order:3;margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-line)}
+.ocard .othread svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:0 0 16px}
+.lens-detail{max-width:var(--measure);margin:30px auto 0}
+.lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
+.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.lens{scroll-margin-top:24px}
+.lens-head{display:grid;grid-template-columns:56px 1fr;column-gap:20px;align-items:center;margin:14px 0 4px}
+.lens-sig{width:56px;height:56px;border:1px solid color-mix(in oklab,var(--acc) 40%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--acc-line)}
+.lens-sig svg{width:32px;height:32px;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.lens-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;display:block}
+.lens-title{font-family:var(--font-display);font-weight:400;font-size:29px;line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:0}
+.lens-cue{font-size:16.5px;line-height:1.6;color:var(--ink-mute);margin:16px 0 24px}
+.study{border:1px solid var(--rule-strong);background:var(--bg-sunken);padding:0}
+.study-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--bg-raised)}
+.study-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:3px 8px;background:var(--acc-soft);white-space:nowrap}
+.study-head em{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+.study-body{padding:18px 18px 20px}
+.look{font-family:var(--font-ui);font-size:16px;line-height:1.6;color:var(--ink-mute);margin:0 0 16px}
+.look strong{color:var(--ink);font-weight:600}
+.comparison{display:grid;gap:12px}
+.comparison.cols-2{grid-template-columns:1fr 1fr}
+.comparison.cols-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){.comparison.cols-2,.comparison.cols-3{grid-template-columns:1fr}}
+.scene-label{margin:0 0 6px;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.scene{position:relative;overflow:hidden;background:#2b2620;border:1px solid var(--rule);isolation:isolate;cursor:zoom-in}
+.scene.landscape{aspect-ratio:3/2}
+.scene.wide{aspect-ratio:1672/941}
+.scene img{display:block;width:100%;height:100%;object-fit:cover}
+.scene.natural{max-width:900px;margin:0 auto}
+.scene.natural.portrait{max-width:520px}
+.scene.natural img{height:auto;object-fit:initial}
+.scene img.figure{position:absolute;z-index:3;display:block;width:auto;height:auto;object-fit:initial;filter:drop-shadow(0 4px 5px rgba(34,27,21,.17))}
+.construction{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.gsvg{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;transition:opacity .22s ease;z-index:5}
+.guided .gsvg{opacity:1}
+.gsvg *{vector-effect:non-scaling-stroke}
+.gsvg .guide-line{fill:none;stroke:var(--guide);stroke-width:2.8;stroke-dasharray:8 7;filter:drop-shadow(0 0 2px rgba(14,12,10,.9)) drop-shadow(0 0 1px rgba(14,12,10,.9))}
+.gsvg .guide-solid{fill:none;stroke:var(--guide);stroke-width:3.1;filter:drop-shadow(0 0 2px rgba(14,12,10,.9)) drop-shadow(0 0 1px rgba(14,12,10,.9))}
+.gsvg .guide-shape,.gsvg .guide-zone,.gsvg .guide-void{fill:rgba(94,156,121,.15);stroke:var(--guide);stroke-width:2.8;stroke-dasharray:8 7;filter:drop-shadow(0 0 2px rgba(14,12,10,.9)) drop-shadow(0 0 1px rgba(14,12,10,.9))}
+.gsvg .marker{fill:#FAF4E6;stroke:var(--acc);stroke-width:2.2}
+.gsvg .marker-text{fill:#2b2318;font:700 30px var(--font-ui);text-anchor:middle;dominant-baseline:central}
+.guide-key{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:14px}
+.guide-key.cols-1{grid-template-columns:1fr}
+@media (max-width:640px){.guide-key{grid-template-columns:1fr}}
+.guide-key[hidden]{display:none}
+.key-item{margin:0;padding:10px 0 0;border-top:1px solid var(--rule);font-family:var(--font-ui);font-size:13.5px;line-height:1.5;color:var(--ink-mute)}
+.key-item strong{color:var(--ink)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.guide-toggle,.takeaway-toggle,.wt-btn{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--rule-strong);background:var(--bg);font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms;min-height:44px}
+.guide-toggle:hover,.takeaway-toggle:hover,.wt-btn:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.guide-toggle[aria-pressed="true"],.takeaway-toggle[aria-expanded="true"],.wt-btn[aria-pressed="true"]{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.guide-toggle .gdot{width:9px;height:9px;flex:0 0 9px}
+.guide-toggle .gdot::before{content:'○';display:block;color:var(--acc);font-size:11px;line-height:1}
+.guide-toggle[aria-pressed="true"] .gdot::before{content:'●'}
+.caption{margin-top:14px;padding:14px 16px;border-left:3px solid var(--acc);background:var(--acc-soft)}
+.caption[hidden]{display:none}
+.cap-label{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:7px}
+.caption p{font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-mute);margin:0}
+.caption strong{color:var(--ink)}
+.takeaway-wrap{margin:22px 0 0}
+.takeaway{margin-top:12px;padding:16px 20px;border-left:3px solid var(--acc);background:var(--acc-soft)}
+.takeaway[hidden]{display:none}
+.takeaway .tk-lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.takeaway p{font-family:var(--font-display);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);margin:0}
+.arc-divider{display:flex;align-items:center;gap:14px;margin:26px 18px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.arc-divider::before,.arc-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+.realart{margin:0 18px 20px;border:1px solid var(--rule-strong);background:var(--bg-raised)}
+.ra-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 16px;padding:14px 18px;border-bottom:1px solid var(--rule)}
+.ra-kicker{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+.ra-head h3{font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.2;color:var(--ink);margin:0}
+.ra-body{padding:18px}
+.work-select{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px}
+.wt-btn{border-radius:0}
+.work[hidden]{display:none}
+.work-meta{margin:0 0 5px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.work h4{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:19px;line-height:1.25;margin:0 0 4px;color:var(--ink)}
+.object-meta{margin:0 0 16px;font-family:var(--font-ui);font-size:12.5px;color:var(--ink-soft)}
+.raemkai-pair{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(180px,.75fr);gap:14px;align-items:start}
+@media (max-width:640px){.raemkai-pair{grid-template-columns:1fr}}
+.raemkai-pair figure{margin:0;min-width:0}
+.image-label{margin:0 0 6px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.guided-detail{margin-top:14px;padding:14px;border:1px solid var(--rule);background:var(--bg-sunken)}
+.guided-detail[hidden]{display:none}
+.view-limit{margin-top:18px;padding:12px 15px;border:1px solid var(--rule);background:var(--bg-sunken);font-family:var(--font-ui);font-size:13px;line-height:1.55;color:var(--ink-soft)}
+.credit{margin:16px 18px 18px;padding-top:14px;border-top:1px solid var(--rule)}
+.credit summary{cursor:pointer;font-family:var(--font-ui);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.credit summary:hover{color:var(--acc)}
+.credit p{font-family:var(--font-ui);font-size:12px;line-height:1.6;color:var(--ink-soft);margin:.6em 0 0}
+.credit .rights-note{margin-top:8px;padding:10px 12px;border-left:3px solid var(--acc);background:var(--bg-sunken);font-size:12px;color:var(--ink-mute)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.detail-crop{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;background:rgba(18,15,11,.94);display:flex;align-items:center;justify-content:center;z-index:999;padding:44px;cursor:zoom-out}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lightbox .scene{box-shadow:0 24px 70px rgba(0,0,0,.55);cursor:default}
+.lightbox-close{position:absolute;top:18px;right:22px;width:40px;height:40px;border:1px solid rgba(244,237,223,.5);background:rgba(0,0,0,.3);color:#F4EDDF;font-size:22px;line-height:1;cursor:pointer;font-family:var(--font-ui)}
+.lightbox-close:hover{background:rgba(0,0,0,.55)}
+footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:64px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
+@media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gsvg{transition:none}}
+</style>

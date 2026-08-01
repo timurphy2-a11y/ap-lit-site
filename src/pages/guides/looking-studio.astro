@@ -502,6 +502,13 @@ import Layout from '../../layouts/Layout.astro';
 </div>
 
 </div>
+
+<a class="next-module" href="/guides/cross-period-comparison">
+<span class="nm-eyebrow">Continue · One Step Further</span>
+<span class="nm-title">The Cross-Period Comparison Lab →</span>
+<span class="nm-desc">Six comparative questions carried from a controlled study into real artworks from different places and periods — rank vs. distance, stillness and time, what light can mean, when surface speaks, how a sculpture was made, and how object, viewer, and site meet.</span>
+</a>
+
 </main>
 
 <footer>
@@ -778,6 +785,11 @@ import Layout from '../../layouts/Layout.astro';
 .arr svg{display:block;width:100%;height:auto}
 .arr .solid{fill:var(--acc-line);stroke:none}
 .arr .ink{fill:none;stroke:var(--ink-mute);stroke-width:3;stroke-linecap:round}
+.next-module{display:block;max-width:var(--read-wide);margin:56px auto 0;padding:26px 28px;border:1px solid var(--rule-strong);background:var(--bg-sunken);text-decoration:none;transition:border-color 160ms,background 160ms}
+.next-module:hover{border-color:var(--acc);background:var(--acc-soft)}
+.next-module .nm-eyebrow{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.next-module .nm-title{display:block;font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-.01em;color:var(--ink);margin:8px 0 6px}
+.next-module .nm-desc{display:block;font-family:var(--font-ui);font-size:14px;line-height:1.55;color:var(--ink-mute);text-decoration:none}
 footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:64px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
 #lens-detail .scene img,#lens-detail .detail-crop img{cursor:zoom-in}
