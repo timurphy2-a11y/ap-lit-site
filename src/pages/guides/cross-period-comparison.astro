@@ -21,6 +21,7 @@ import Layout from '../../layouts/Layout.astro';
 <p class="lede">Every module opens with one created, controlled study before it turns to real artworks from different places and periods. <span>Within a module, the controlled study always comes before its historical exploration — a small rule marks that shift, not a claim that one kind of evidence supersedes the other.</span></p>
 <p class="page-note">The controlled comparison images are original studies made with OpenAI GPT Image 2 through Codex, built to model one visual relation at a time — they are teaching illustrations, not historical evidence. Historical artworks are separately identified and credited where they appear.</p>
 
+<div class="chooser-group" data-group="visual-relations">
 <nav class="overview" aria-label="Six cross-period comparison modules">
 <button class="ocard" type="button" data-lens="c1" style="--acc:#75435B;--acc-line:#75435B;--acc-soft:color-mix(in oklab,#75435B 12%,white)"><span class="ohead"><span class="onum">01</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">When a figure is larger, is it nearer or more important?</p><p class="ot">Rank or Distance?</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="14" cy="11" r="3.2"/><path d="M14 15 L14 28 M8 34 L14 28 L20 34"/><circle cx="27" cy="13" r="3.2"/><path d="M27 17 L27 28 M21 34 L27 28 L33 34"/></svg>Figure &amp; Space</span></button>
 <button class="ocard" type="button" data-lens="c2" style="--acc:#4F6B4D;--acc-line:#4F6B4D;--acc-soft:color-mix(in oklab,#4F6B4D 12%,white)"><span class="ohead"><span class="onum">02</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">How can a physically still body imply a moment in time?</p><p class="ot">Aftermath, Attention, Action</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><circle cx="20" cy="9" r="4"/><path d="M20 13 L20 26 M20 26 L14 36 M20 26 L28 34"/></svg>Body &amp; Volume</span></button>
@@ -30,8 +31,8 @@ import Layout from '../../layouts/Layout.astro';
 <button class="ocard" type="button" data-lens="c6" style="--acc:#566F5D;--acc-line:#7B9883;--acc-soft:color-mix(in oklab,#7B9883 12%,white)"><span class="ohead"><span class="onum">06</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 8 L32 20 L20 32 L8 20 Z"/></svg></span></span><p class="oq">How can a documented placement organize encounters among object, viewer, and site?</p><p class="ot">Object, Viewer, Site</p><span class="othread"><svg aria-hidden="true" viewBox="0 0 40 40"><path d="M8 34 L32 34 M20 34 L20 10 M12 22 L28 22"/><circle cx="20" cy="16" r="3"/></svg>Space &amp; Setting</span></button>
 </nav>
 
-<div id="lens-detail" class="lens-detail is-hidden" aria-live="polite">
-<div class="detail-bar"><span class="dthread" id="dThread"></span><button class="detail-close" id="dClose" type="button">← All modules</button></div>
+<div class="lens-detail is-hidden" aria-live="polite">
+<div class="detail-bar"><span class="dthread"></span><button class="detail-close" type="button">← All modules</button></div>
 
 <div class="lens-wrap is-hidden" data-lens="c1" style="--acc:#75435B;--acc-line:#75435B;--acc-soft:color-mix(in oklab,#75435B 12%,white)">
 <section class="lens" id="lens-c1" data-screen-label="c1-rank-or-distance">
@@ -484,6 +485,333 @@ import Layout from '../../layouts/Layout.astro';
 </div>
 
 </div>
+</div>
+
+<div class="bank-divider">
+<div class="eyebrow-strip"><span class="dot" aria-hidden="true"></span>Recurring Subjects</div>
+<h2>Recurring Subjects</h2>
+<p>Some looking questions begin with a relation—scale, light, surface, making, or site. Others begin with a recurring subject: a place, a person, or an event. Choose any study; none is a survey or a required sequence.</p>
+</div>
+
+<div class="chooser-group wide" data-group="recurring-subjects">
+<nav class="overview" aria-label="Three recurring-subject comparison modules">
+<button class="ocard quiet" type="button" data-lens="landscape" style="--acc:#6B7C4E;--acc-line:#6B7C4E;--acc-soft:color-mix(in oklab,#6B7C4E 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M3 30 L13 19 L19 25 L27 15 L37 30"/><path d="M3 33 H37"/><path d="M11 6 L8 12 M20 4 L17 10 M29 6 L26 12"/></svg></span></span><p class="ot">Understanding Landscape</p><p class="oq">What relationship between people and the world does this landscape construct?</p></button>
+<button class="ocard quiet" type="button" data-lens="portraiture" style="--acc:#6B4F3A;--acc-line:#6B4F3A;--acc-soft:color-mix(in oklab,#6B4F3A 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="7" y="6" width="26" height="30"/><circle cx="20" cy="17" r="6"/><path d="M11 34 C11 25 29 25 29 34"/></svg></span></span><p class="ot">Understanding Portraiture</p><p class="oq">How does a portrait make a person matter?</p></button>
+<button class="ocard quiet" type="button" data-lens="narrative" style="--acc:#4A5C74;--acc-line:#4A5C74;--acc-soft:color-mix(in oklab,#4A5C74 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M14 6 V34 M26 6 V34"/><path d="M6 34 H34"/><circle cx="10" cy="28" r="2.4"/><circle cx="30" cy="28" r="2.4"/></svg></span></span><p class="ot">Understanding Narrative Images</p><p class="oq">How does an image make an event matter?</p></button>
+</nav>
+
+<div class="lens-detail is-hidden" aria-live="polite">
+<div class="detail-bar"><span class="dthread"></span><button class="detail-close" type="button">← All modules</button></div>
+
+<div class="lens-wrap is-hidden" data-lens="landscape" style="--acc:#6B7C4E;--acc-line:#6B7C4E;--acc-soft:color-mix(in oklab,#6B7C4E 12%,white)">
+<section class="lens" id="lens-landscape" data-screen-label="rs-understanding-landscape">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M3 30 L13 19 L19 25 L27 15 L37 30"/><path d="M3 33 H37"/><path d="M11 6 L8 12 M20 4 L17 10 M29 6 L26 12"/></svg></span><div><span class="lens-idx">Recurring Subjects · Understanding Landscape</span><h2 class="lens-title">What relationship between people and the world does this landscape construct?</h2></div></div>
+<p class="lens-cue">A landscape does more than show scenery. Visible choices about routes, structures, scale, weather, and visibility can make a place seem organized around human activity — or less responsive to human purposes.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>One invented valley · two visual arguments</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> In which view does the place seem more organized around human passage and use? In which does human activity seem less able to organize the place? What visible choices make you say so? Begin with paths, structures, scale, terrain, and visibility — not a mood or a story.</p>
+<div class="guide-unit" data-simple>
+<div class="scene diptych-scene diptych-desktop" role="img" aria-label="A created horizontal diptych of an invented river valley. In the first view, a path crosses a bridge toward a shelter and planted ground is visible. In the second view, mist partly screens a ridge and riverbank while river, ridge, and slope occupy most of the image.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r1/r1-landscape-one-place-two-arguments-v1.png" alt="">
+<svg class="gsvg" viewBox="0 0 1672 941" aria-hidden="true"><path class="guide-line" d="M54 930 C114 833 104 754 173 691 C229 641 199 565 263 529"/><path class="guide-zone" d="M205 710 L497 715 L548 632 L300 613 L194 654 Z"/><path class="guide-zone" d="M876 805 C1055 757 1227 677 1327 561 C1430 444 1506 351 1641 296 L1650 844 L1234 910 Z"/><path class="guide-line" d="M878 454 C1004 407 1120 431 1238 503"/><circle class="marker" cx="117" cy="786" r="28"/><text class="marker-text" x="117" y="786">1</text><circle class="marker" cx="419" cy="654" r="28"/><text class="marker-text" x="419" y="654">2</text><circle class="marker" cx="1377" cy="607" r="28"/><text class="marker-text" x="1377" y="607">3</text><circle class="marker" cx="1120" cy="450" r="28"/><text class="marker-text" x="1120" y="450">4</text></svg>
+</div>
+<div class="diptych-mobile" style="--diptych-img:url('/assets/cross-period/created-illustrations-v2/cross-period-r1/r1-landscape-one-place-two-arguments-v1.png')" aria-hidden="true">
+<div class="diptych-half a"><svg class="gsvg" viewBox="0 0 814 941"><path class="guide-line" d="M54 930 C114 833 104 754 173 691 C229 641 199 565 263 529"/><path class="guide-zone" d="M205 710 L497 715 L548 632 L300 613 L194 654 Z"/><circle class="marker" cx="117" cy="786" r="28"/><text class="marker-text" x="117" y="786">1</text><circle class="marker" cx="419" cy="654" r="28"/><text class="marker-text" x="419" y="654">2</text></svg></div>
+<div class="diptych-half b"><svg class="gsvg" viewBox="0 0 829 941"><path class="guide-zone" d="M33 805 C212 757 384 677 484 561 C587 444 663 351 798 296 L807 844 L391 910 Z"/><path class="guide-line" d="M35 454 C161 407 277 431 395 503"/><circle class="marker" cx="534" cy="607" r="28"/><text class="marker-text" x="534" y="607">3</text><circle class="marker" cx="277" cy="450" r="28"/><text class="marker-text" x="277" y="450">4</text></svg></div>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1 · Route</strong> — a continuous path crosses the bridge and leads toward the shelter in the first view.</p><p class="key-item"><strong>2 · Human traces</strong> — small planted divisions sit clearly within the first view's terrain.</p><p class="key-item"><strong>3 · Relative scale</strong> — a broad river and open slope take up most of the second view; the walkers and shelter are small.</p><p class="key-item"><strong>4 · Visibility</strong> — mist partly screens the far ridge and riverbank in the second view.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Look again</span><p><strong>Visible relations:</strong> a path, bridge, shelter, and planted divisions make a continuous set of human traces easy to follow in the first view; the second view gives much more of its field to river, ridge, slope, and cloud while mist interrupts the distance. <strong>Provisional interpretations:</strong> the first view can make the place seem legible for human movement and use; the second can make human activity seem less able to organize the place. <strong>Meaning boundary:</strong> neither view proves that a place is owned, safe, prosperous, untouched, hostile, sacred, or morally better.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 follows the first view's path across a bridge toward the shelter. Locator 2 marks its planted divisions. Locator 3 outlines the second view's broad river and open slope, while locator 4 follows mist that partly screens the far ridge and riverbank.">Unmarked state. A created diptych shows two related views of an invented river valley with a low rocky ridge, river, path, shelter, trees, and tiny walkers. In the first view, a path crosses a bridge toward a shelter and planted ground is visible. In the second, mist partly screens the ridge and riverbank while river, ridge, and slope occupy most of the image.</p>
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="concept" aria-expanded="false">Show takeaway concept</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway concept</div><p>A landscape is not a neutral transcript of a place. Start by asking what relationship the image builds between people and the world, then use a work's record to learn the historical idea or stake at issue.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three relations between people and place</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="hiroshige" aria-pressed="true">1 · Hiroshige</button><button class="wt-btn" type="button" data-work="bruegel" aria-pressed="false">2 · Bruegel</button><button class="wt-btn" type="button" data-work="durand" aria-pressed="false">3 · Durand</button></nav>
+
+<article class="work" data-panel="hiroshige" data-desc-unmarked="Hiroshige selected, unmarked state: rain falls in dense diagonal marks across a bridge crossed by travelers, above a river and distant shore." data-desc-guided="Hiroshige selected, guided state. Locator 1 follows rain marks crossing bridge, figures, river, and distance. Locator 2 follows the bridge and bodies that form the route. Locator 3 follows the partly veiled distant shore.">
+<p class="work-meta">1 · Weather and movement</p><h4>Landscape print — Utagawa Hiroshige</h4><p class="object-meta">Woodblock print; ink and color on paper · The Metropolitan Museum of Art, JP2522</p>
+<p class="look"><strong>Look first.</strong> Trace the rain marks across the bridge, people, river, and distant shore. What do those marks change about movement and visibility?</p>
+<div class="scene natural portrait" role="img" aria-label="A Japanese woodblock print. Rain falls in dense diagonal marks across a wooden bridge crossed by travelers, above a river and a distant tree-lined shore.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r1-landscape/met-jp2522-hiroshige-sudden-shower.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 2650 3860" aria-hidden="true"><path class="guide-line" d="M260 430 L950 1940 M780 260 L1460 1710 M1420 380 L2050 1640"/><path class="guide-zone" d="M200 2700 C650 2470 1080 2380 1500 2240 C1900 2100 2200 2000 2470 1950 L2490 2580 C2050 2690 1650 2800 1250 2930 C850 3080 500 3220 260 3350 Z"/><path class="guide-line" d="M120 1450 C730 1370 1330 1440 2120 1680"/><circle class="marker" cx="670" cy="800" r="45"/><text class="marker-text" x="670" y="800">1</text><circle class="marker" cx="1500" cy="2600" r="45"/><text class="marker-text" x="1500" y="2600">2</text><circle class="marker" cx="1730" cy="1550" r="45"/><text class="marker-text" x="1730" y="1550">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> rain marks cross image layers.</p><p class="key-item"><strong>2</strong> bridge and bodies form the route.</p><p class="key-item"><strong>3</strong> distant shore is partly veiled.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>Dense diagonal rain marks cross bridge, figures, river, and distance. <strong>Provisional interpretation:</strong> weather conditions movement and visibility rather than merely supplying a mood. <strong>Meaning boundary:</strong> the image alone does not name the site, establish a feeling, or make rain a weather record.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies this as <em>Sudden Shower over Shin-Ōhashi Bridge and Atake</em>, a 1857 print of the Great Bridge over the Sumida River from <em>One Hundred Famous Views of Edo</em>. Its record describes the crisscrossing rain lines as a difficult woodblock-printing technique and notes the shower's importance in Edo haiku and ukiyo-e. <a href="https://www.metmuseum.org/art/collection/search/55433">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="bruegel" hidden data-desc-unmarked="Bruegel selected, unmarked state: rest gathers under a tree; workers and wheat extend across a broad cultivated landscape." data-desc-guided="Bruegel selected, guided state. Locator 1 follows rest gathering beneath the tree. Locator 2 follows work and crop repeating across the field. Locator 3 follows the cultivated world extending beyond foreground activity.">
+<p class="work-meta">2 · Netherlandish · 1565 · work and cultivated land</p><h4><em>The Harvesters</em> — Pieter Bruegel the Elder</h4><p class="object-meta">Oil on oak · The Metropolitan Museum of Art, 19.164</p>
+<p class="look"><strong>Look first.</strong> Move from the resting group beneath the tree, to workers cutting and carrying wheat, to the larger spread of fields. How are work, rest, crops, and land distributed?</p>
+<div class="scene natural" role="img" aria-label="A resting group sits beneath a tree in a golden wheat field. Workers cut and carry wheat nearby, while fields, a village, and water extend into the distance.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r1-landscape/met-19.164-bruegel-harvesters.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 3811 2809" aria-hidden="true"><path class="guide-zone" d="M1710 1960 C2150 1870 2920 1980 3320 2390 L3180 2745 L1700 2735 Z"/><path class="guide-zone" d="M2550 820 L3740 930 L3690 2200 L2540 2020 Z"/><path class="guide-line" d="M100 1510 C840 1380 1420 1410 2140 1530"/><circle class="marker" cx="2670" cy="2290" r="45"/><text class="marker-text" x="2670" y="2290">1</text><circle class="marker" cx="3230" cy="1200" r="45"/><text class="marker-text" x="3230" y="1200">2</text><circle class="marker" cx="1130" cy="1430" r="45"/><text class="marker-text" x="1130" y="1430">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> rest gathers beneath the tree.</p><p class="key-item"><strong>2</strong> work and crop repeat across field.</p><p class="key-item"><strong>3</strong> cultivated world extends beyond foreground activity.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>Resting figures, workers, wheat, and fields form one continuous cultivated world. <strong>Provisional interpretation:</strong> work and rest can appear integrated into the landscape. <strong>Meaning boundary:</strong> the image alone does not establish labor conditions, property rights, worker feeling, or a universal rural life.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies July/August activity in a commissioned seasonal series. Its account calls the laborers sympathetic yet idealized, says the work emphasizes harmony and abundance for a wealthy urban patron, and calls the panorama an invented "fantasy of visibility," not a literal Flemish view. <a href="https://www.metmuseum.org/art/collection/search/435809">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="durand" hidden data-desc-unmarked="Durand selected, unmarked state: shore with cattle leads to water, bridge, tree masses, and distant terrain." data-desc-guided="Durand selected, guided state. Locator 1 follows the foreground shore gathering cattle, water, and land. Locator 2 follows water, bridge, and distance connecting. Locator 3 follows the tree wall framing the panorama.">
+<p class="work-meta">3 · United States · 1861 · observation and idealization</p><h4><em>Pastoral Landscape</em> — Asher Brown Durand</h4><p class="object-meta">Oil on canvas · National Gallery of Art, Washington, 1991.96.1</p>
+<p class="look"><strong>Look first.</strong> Follow foreground shore and cattle, water, bridge, tree masses, and distant terrain. How do these choices make the view continuous and ordered?</p>
+<div class="scene natural" role="img" aria-label="Cattle graze on a foreground shore beside calm water. A bridge crosses in the middle distance, framed by tree masses, with hazy mountains beyond.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r1-landscape/nga-1991.96.1-durand-pastoral-landscape.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 4096 2646" aria-hidden="true"><path class="guide-zone" d="M1560 1910 C2100 1810 2850 1830 3310 2180 L3060 2470 L1800 2420 Z"/><path class="guide-line" d="M1800 1770 C2100 1610 2300 1480 2600 1420"/><path class="guide-zone" d="M0 230 L1370 150 L1530 1870 L180 1910 Z"/><circle class="marker" cx="2470" cy="2150" r="45"/><text class="marker-text" x="2470" y="2150">1</text><circle class="marker" cx="2250" cy="1550" r="45"/><text class="marker-text" x="2250" y="1550">2</text><circle class="marker" cx="830" cy="740" r="45"/><text class="marker-text" x="830" y="740">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> foreground shore gathers cattle, water, land.</p><p class="key-item"><strong>2</strong> water, bridge, and distance connect.</p><p class="key-item"><strong>3</strong> tree wall frames panorama.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>Shore, cattle, water, bridge, tree masses, and distance form an ordered continuous panorama. <strong>Provisional interpretation:</strong> observed detail feels coherently arranged, not simply unfiltered. <strong>Meaning boundary:</strong> the image alone does not prove an exact site, untouched wilderness, or a neutral account of American land.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>NGA calls this an idealized, expressive American landscape based on close observation. It resembles Hudson River Valley scenery, but its exact site is unconfirmed; the painting's original title is speculative. <a href="https://www.nga.gov/artworks/72881-pastoral-landscape">Object record</a>.</p></div>
+</article>
+
+<p class="sr-only" data-desc aria-live="polite">Hiroshige selected, unmarked state: rain falls in dense diagonal marks across a bridge crossed by travelers, above a river and distant shore.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button><button class="guide-toggle" type="button" data-role="source" aria-expanded="false">Show source context</button></div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>Ask what relationship an image builds between people and place. Start with routes, work, weather, scale, visibility, and land/water distribution; then turn to a record for the historical stake.</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p>Utagawa Hiroshige, <em>Sudden Shower over Shin-Ōhashi Bridge and Atake</em>, 1857, The Metropolitan Museum of Art, JP2522, public domain. <a href="https://www.metmuseum.org/art/collection/search/55433">Object record</a>.</p>
+<p>Pieter Bruegel the Elder, <em>The Harvesters</em>, 1565, The Metropolitan Museum of Art, 19.164, public domain. <a href="https://www.metmuseum.org/art/collection/search/435809">Object record</a>.</p>
+<p>Asher Brown Durand, <em>Pastoral Landscape</em>, 1861, National Gallery of Art, Washington, 1991.96.1, public domain. <a href="https://www.nga.gov/artworks/72881-pastoral-landscape">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="portraiture" style="--acc:#6B4F3A;--acc-line:#6B4F3A;--acc-soft:color-mix(in oklab,#6B4F3A 12%,white)">
+<section class="lens" id="lens-portraiture" data-screen-label="rs-understanding-portraiture">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="7" y="6" width="26" height="30"/><circle cx="20" cy="17" r="6"/><path d="M11 34 C11 25 29 25 29 34"/></svg></span><div><span class="lens-idx">Recurring Subjects · Understanding Portraiture</span><h2 class="lens-title">How does a portrait make a person matter?</h2></div></div>
+<p class="lens-cue">A portrait can bring a person close, stage them formally, or let the world around them carry part of the meaning. Its visible choices shape how you are asked to meet the person.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>Three presentations of the same person</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> These are three independent created illustrations of one fictional person. Compare what each frame gives you to look at: the face, a formal pose, or the objects and room around her.</p>
+<div class="comparison cols-3">
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">A · Encounter</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">Face and frame</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> How close are you placed to the face? What does the frame leave out?</p>
+</div>
+<div class="scene crop-tall" data-crop-ratio="1/2" role="img" aria-label="Created illustration: a close head-and-shoulders view of a fictional woman facing the viewer against a plain warm background."><img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r2/r2-portrait-three-presentations-v1.png" alt="" style="object-position:0% 50%">
+<svg class="gsvg" viewBox="0 0 512 1024" aria-hidden="true"><ellipse class="guide-zone" cx="257" cy="306" rx="168" ry="220"/><path class="guide-line" d="M56 484 C165 440 350 440 455 485"/><circle class="marker" cx="258" cy="304" r="38"/><text class="marker-text" x="258" y="304">1</text><circle class="marker" cx="97" cy="480" r="38"/><text class="marker-text" x="97" y="480">2</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> face fills much of the field.</p><p class="key-item"><strong>2</strong> the frame cuts away room and body.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>The face occupies most of the image, while the room and body remain largely outside the frame. <strong>Presentational effect:</strong> close scale makes this an encounter with a face before it becomes an account of a setting.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the face filling much of the field. Locator 2 marks the frame cutting away room and body.">Unmarked state: close view of a face and shoulders against a plain ground.</p>
+</div>
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">B · Position</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">Body and setting</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> Follow the upright body, chair, table, and architectural edges. What shares the task of presenting the person?</p>
+</div>
+<div class="scene crop-tall" data-crop-ratio="1/2" role="img" aria-label="Created illustration: the same fictional woman stands in a formal interior beside a chair and table with a closed book."><img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r2/r2-portrait-three-presentations-v1.png" alt="" style="object-position:50% 50%">
+<svg class="gsvg" viewBox="0 0 512 1024" aria-hidden="true"><path class="guide-zone" d="M152 151 C192 95 306 96 346 156 L359 858 C318 917 193 915 149 856 Z"/><path class="guide-line" d="M42 54 L42 890 M468 46 L468 823"/><path class="guide-zone" d="M344 590 L500 585 L500 835 L340 836 Z"/><circle class="marker" cx="252" cy="520" r="38"/><text class="marker-text" x="252" y="520">1</text><circle class="marker" cx="60" cy="160" r="38"/><text class="marker-text" x="60" y="160">2</text><circle class="marker" cx="422" cy="705" r="38"/><text class="marker-text" x="422" y="705">3</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> upright, centered body.</p><p class="key-item"><strong>2</strong> room's vertical structure.</p><p class="key-item"><strong>3</strong> table and book beside the figure.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>The standing body, vertical room, chair, table, and book all remain visible at a measured distance. <strong>Presentational effect:</strong> pose and setting stage the person formally; the picture asks us to notice a position as well as a face.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the upright, centered body. Locator 2 marks the room's vertical structure. Locator 3 marks the table and book beside the figure.">Unmarked state: the woman stands upright in an interior beside a chair, table, and book.</p>
+</div>
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">C · World</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">Person and surroundings</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> Compare the seated figure with the worktable, papers, vase, and window. How much of the image belongs to the person, and how much to the room?</p>
+</div>
+<div class="scene crop-tall" data-crop-ratio="1/2" role="img" aria-label="Created illustration: the same fictional woman sits at a worktable in a room with papers, a vase, and a window."><img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r2/r2-portrait-three-presentations-v1.png" alt="" style="object-position:100% 50%">
+<svg class="gsvg" viewBox="0 0 512 1024" aria-hidden="true"><path class="guide-zone" d="M150 346 C250 300 357 350 370 704 L337 888 L169 888 L142 665 Z"/><path class="guide-zone" d="M0 592 C135 540 372 546 512 590 L512 850 L0 850 Z"/><path class="guide-zone" d="M384 18 L510 18 L510 420 L382 420 Z"/><circle class="marker" cx="262" cy="540" r="38"/><text class="marker-text" x="262" y="540">1</text><circle class="marker" cx="110" cy="672" r="38"/><text class="marker-text" x="110" y="672">2</text><circle class="marker" cx="430" cy="180" r="38"/><text class="marker-text" x="430" y="180">3</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> seated person becomes one field among several.</p><p class="key-item"><strong>2</strong> table, papers, and vase occupy the foreground.</p><p class="key-item"><strong>3</strong> window opens the room outward.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>Figure, worktable, papers, vase, and window all command sustained space in the frame. <strong>Presentational effect:</strong> the person is met through a selected world of things and room, rather than through the face alone.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the seated person becoming one field among several. Locator 2 marks the table, papers, and vase in the foreground. Locator 3 marks the window opening the room outward.">Unmarked state: the woman sits at a table in a room with papers, a vase, and a window.</p>
+</div>
+
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>When you meet a portrait, ask not only who is pictured but how the image asks you to see that person. Is the face held close, is the body staged formally, or does the surrounding world carry part of the meaning?</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three ways a portrait makes a person matter</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="eutyches" aria-pressed="true">1 · Eutyches</button><button class="wt-btn" type="button" data-work="nasir" aria-pressed="false">2 · Nasir al-Din Shah</button><button class="wt-btn" type="button" data-work="leyster" aria-pressed="false">3 · Leyster</button></nav>
+
+<article class="work" data-panel="eutyches" data-desc-unmarked="Eutyches selected, unmarked state: a face and shoulders fill a narrow painted wood panel." data-desc-guided="Eutyches selected, guided state. Locator 1 marks the face and eyes dominating the panel. Locator 2 marks the shoulders and tunic holding the lower field. Locator 3 marks the narrow painted edges keeping the view close.">
+<p class="work-meta">1 · Encounter</p><h4>Encaustic panel portrait</h4><p class="object-meta">Painted wood panel · The Metropolitan Museum of Art, 18.9.2</p>
+<p class="look"><strong>Look first.</strong> Begin with the eyes, face, shoulders, light ground, and narrow vertical panel. How does the field keep attention close to this person?</p>
+<div class="scene natural portrait" role="img" aria-label="A painted wood panel: a young person's face and shoulders fill a narrow, light-ground portrait.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r2-portraiture/met-18.9.2-eutyches.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 659 1200" aria-hidden="true"><ellipse class="guide-zone" cx="333" cy="420" rx="208" ry="250"/><path class="guide-line" d="M75 735 C190 680 470 675 582 742"/><path class="guide-line" d="M95 155 L95 1060 M566 155 L566 1060"/><circle class="marker" cx="335" cy="390" r="40"/><text class="marker-text" x="335" y="390">1</text><circle class="marker" cx="337" cy="720" r="40"/><text class="marker-text" x="337" y="720">2</text><circle class="marker" cx="110" cy="930" r="40"/><text class="marker-text" x="110" y="930">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> face and eyes dominate the panel.</p><p class="key-item"><strong>2</strong> shoulders and tunic hold the lower field.</p><p class="key-item"><strong>3</strong> narrow painted edges keep the view close.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>The face occupies most of the narrow painted field, while the shoulders and tunic close the lower portion. <strong>Presentational effect:</strong> scale and cropping make this first an encounter with a particular face.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies the panel as <em>Portrait of the Boy Eutyches</em>, made in Roman Egypt about A.D. 100–150. A Greek inscription gives the name Eutyches, while parts of its translation remain debated. The record explains that panels of this type were placed over a mummy's face after death, joining an individual image to Egyptian funerary practice in Roman Egypt. <a href="https://www.metmuseum.org/art/collection/search/547951">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="nasir" hidden data-desc-unmarked="Nasir al-Din Shah selected, unmarked state: a formally dressed standing figure appears beside a cannon on a painted page." data-desc-guided="Nasir al-Din Shah selected, guided state. Locator 1 marks the upright body and red coat. Locator 2 marks the cannon and touching hand. Locator 3 marks the jeweled dress and sabre remaining distinct.">
+<p class="work-meta">2 · Public position</p><h4>Portrait page with a standing figure</h4><p class="object-meta">Opaque watercolor, ink, and gold on paper · The Metropolitan Museum of Art, 2023.248</p>
+<p class="look"><strong>Look first.</strong> Trace the standing body, cannon, red coat, jeweled details, and sabre. Which visible elements make this presentation feel formal and public?</p>
+<div class="scene natural portrait" role="img" aria-label="A painted page: a formally dressed standing figure in a red, gold-trimmed coat and tall hat stands beside a cannon.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r2-portraiture/met-2023.248-nasir-al-din-shah-qajar.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 773 1200" aria-hidden="true"><path class="guide-zone" d="M292 140 C460 55 685 88 730 195 L735 1055 C670 1130 410 1125 292 1040 C310 875 325 740 294 622 C275 548 311 459 372 385 C388 292 360 205 292 140 Z"/><path class="guide-zone" d="M0 515 C114 465 290 455 473 548 L365 884 C235 807 98 765 0 748 Z"/><path class="guide-line" d="M463 405 C515 430 569 429 619 400 M498 621 C562 676 625 740 670 856"/><circle class="marker" cx="585" cy="545" r="40"/><text class="marker-text" x="585" y="545">1</text><circle class="marker" cx="225" cy="610" r="40"/><text class="marker-text" x="225" y="610">2</text><circle class="marker" cx="648" cy="735" r="40"/><text class="marker-text" x="648" y="735">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> upright body and red coat.</p><p class="key-item"><strong>2</strong> cannon and touching hand.</p><p class="key-item"><strong>3</strong> jeweled dress and sabre remain distinct.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>An upright figure stands beside a cannon, with coat, jewels, and sabre individually legible against a sparse field. <strong>Presentational effect:</strong> the person is staged through public objects and a deliberately formal body.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies the figure as Nasir al-Din Shah Qajar, shown shortly after he became shah. Its record connects the cannon to a documented presentation of the young ruler as a military modernizer and reformer, and identifies the red frockcoat, jewels, and sabre as part of the image. <a href="https://www.metmuseum.org/art/collection/search/898274">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="leyster" hidden data-desc-unmarked="Leyster selected, unmarked state: a woman turns from an easel holding brushes and a palette, beside a painted musician." data-desc-guided="Leyster selected, guided state. Locator 1 marks the turned face meeting the viewer. Locator 2 marks the brush, palette, and hand in the foreground. Locator 3 marks the easel and painted violinist in the right field.">
+<p class="work-meta">3 · Person and world</p><h4>Portrait painting with easel</h4><p class="object-meta">Oil on canvas · National Gallery of Art, Washington, 1949.6.1</p>
+<p class="look"><strong>Look first.</strong> Move among the turned face, paintbrushes, easel, chair, and painted violinist. Where does the frame ask you to hold a person and an artistic practice together?</p>
+<div class="scene natural" role="img" aria-label="A painter turns from her easel, holding a brush and palette, beside a painted figure playing a violin.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r2-portraiture/nga-1949.6.1-leyster-self-portrait.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 3588 4096" aria-hidden="true"><ellipse class="guide-zone" cx="1450" cy="1330" rx="590" ry="570"/><path class="guide-line" d="M1400 2410 C1770 2450 2060 2580 2300 2810"/><path class="guide-zone" d="M2230 600 L3580 670 L3580 3580 L2220 3440 Z"/><circle class="marker" cx="1440" cy="1320" r="220"/><text class="marker-text" x="1440" y="1320" style="font-size:260px">1</text><circle class="marker" cx="1920" cy="2530" r="220"/><text class="marker-text" x="1920" y="2530" style="font-size:260px">2</text><circle class="marker" cx="2910" cy="1860" r="220"/><text class="marker-text" x="2910" y="1860" style="font-size:260px">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> turned face meets the viewer.</p><p class="key-item"><strong>2</strong> brush, palette, and hand sit in the foreground.</p><p class="key-item"><strong>3</strong> easel and painted violinist occupy the right field.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>Face, tools, easel, chair, and painted musician all remain active in the same field. <strong>Presentational effect:</strong> the person is presented through the act and materials of painting, not through a face alone.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>NGA identifies this as Judith Leyster's <em>Self-Portrait</em>, made about 1630. Its record identifies the artist at her easel with a palette and brushes, and documents her public recognition in Haarlem's Saint Luke's Guild; it also records the painting's later history of attribution to Frans Hals. <a href="https://www.nga.gov/artworks/37003-self-portrait">Object record</a>.</p></div>
+</article>
+
+<p class="sr-only" data-desc aria-live="polite">Eutyches selected, unmarked state: a face and shoulders fill a narrow painted wood panel.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button><button class="guide-toggle" type="button" data-role="source" aria-expanded="false">Show source context</button></div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>When you meet a portrait, ask how the picture asks you to meet the person. A close face, a public arrangement of objects, or an artist's own tools can make a different answer matter.</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p><em>Portrait of the Boy Eutyches</em>, A.D. 100–150, The Metropolitan Museum of Art, 18.9.2, public domain. <a href="https://www.metmuseum.org/art/collection/search/547951">Object record</a>.</p>
+<p><em>Nasir al-Din Shah Qajar with a Cannon</em>, ca. 1850, The Metropolitan Museum of Art, 2023.248, public domain. <a href="https://www.metmuseum.org/art/collection/search/898274">Object record</a>.</p>
+<p>Judith Leyster, <em>Self-Portrait</em>, ca. 1630, National Gallery of Art, Washington, 1949.6.1, public domain. <a href="https://www.nga.gov/artworks/37003-self-portrait">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+
+<div class="lens-wrap is-hidden" data-lens="narrative" style="--acc:#4A5C74;--acc-line:#4A5C74;--acc-soft:color-mix(in oklab,#4A5C74 12%,white)">
+<section class="lens" id="lens-narrative" data-screen-label="rs-understanding-narrative-images">
+<div class="lens-head"><span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M14 6 V34 M26 6 V34"/><path d="M6 34 H34"/><circle cx="10" cy="28" r="2.4"/><circle cx="30" cy="28" r="2.4"/></svg></span><div><span class="lens-idx">Recurring Subjects · Understanding Narrative Images</span><h2 class="lens-title">How does an image make an event matter?</h2></div></div>
+<p class="lens-cue">A narrative image can make a public event matter by gathering people around a decision, holding responses apart, or giving a witness's position its own weight.</p>
+<div class="study">
+<div class="study-head"><span class="study-label">Controlled study</span><em>Three civic situations, three compositional arguments</em></div>
+<div class="study-body">
+<p class="look"><strong>Look first.</strong> These are three independent created canvases, not parts of one story. Each uses a civic situation to test how composition makes an event matter. Begin with how the image groups people, creates separation, or gives someone at the edge a place from which to see.</p>
+<div class="comparison cols-3">
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">A · Gathering</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">A decision at the center</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> Find the record box, table, and compact assembly. Which architectural and spatial choices make this public decision feel shared?</p>
+</div>
+<div class="scene landscape" role="img" aria-label="Created canvas: community members gather closely around a table and closed civic record box in an invented brick-and-timber meeting hall.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r3/r3-narrative-gathering-community-assembly-v3.png" alt="">
+<svg class="gsvg" viewBox="0 0 1536 1024" aria-hidden="true"><path class="guide-zone" d="M62 233 C275 140 1302 140 1450 292 L1436 834 C1112 964 373 945 61 807 Z"/><path class="guide-line" d="M105 834 C377 757 527 771 699 889 M1288 133 L1288 537"/><circle class="marker" cx="773" cy="569" r="55"/><text class="marker-text" x="773" y="569">1</text><circle class="marker" cx="397" cy="824" r="55"/><text class="marker-text" x="397" y="824">2</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> record box, table, and closely gathered assembly.</p><p class="key-item"><strong>2</strong> benches, doorways, and floorboards lead surrounding space inward.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>The record box and table sit inside a compact ring of people, while benches, doorways, and floorboards bring the room toward that group. <strong>Presentational effect:</strong> the composition makes the decision feel like a public event held in common.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the record box, table, and closely gathered assembly. Locator 2 marks benches, doorways, and floorboards leading surrounding space inward.">Unmarked state: community members gather around a table and closed civic record box in a brick-and-timber meeting hall.</p>
+</div>
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">B · Division</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">Responses held apart</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> Compare the two public groups, the empty interval, and the central notice frame. How does the image keep more than one response in view?</p>
+</div>
+<div class="scene landscape" role="img" aria-label="Created canvas: two community groups stand apart on either side of a blank wooden notice frame in an invented brick-and-plaster public square.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r3/r3-narrative-division-community-square-v3.png" alt="">
+<svg class="gsvg" viewBox="0 0 1536 1024" aria-hidden="true"><path class="guide-zone" d="M6 375 C144 273 512 279 637 415 L636 868 C463 932 172 918 8 808 Z"/><path class="guide-zone" d="M908 326 C1069 236 1444 263 1534 357 L1534 871 C1315 941 1064 918 904 806 Z"/><path class="guide-line" d="M764 311 L764 707"/><circle class="marker" cx="305" cy="568" r="55"/><text class="marker-text" x="305" y="568">1</text><circle class="marker" cx="1222" cy="568" r="55"/><text class="marker-text" x="1222" y="568">2</text><circle class="marker" cx="764" cy="413" r="55"/><text class="marker-text" x="764" y="413">3</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> public group on one side.</p><p class="key-item"><strong>2</strong> public group on the other.</p><p class="key-item"><strong>3</strong> notice frame and open ground hold the two fields apart.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>Two groups occupy comparable sides of the square, but the notice frame and broad open ground prevent them from becoming one crowd. <strong>Presentational effect:</strong> the composition gives different public responses weight together without merging them.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the public group on one side. Locator 2 marks the public group on the other. Locator 3 marks the notice frame and open ground holding the two fields apart.">Unmarked state: two public groups stand apart on opposite sides of a blank wooden notice frame in a community square.</p>
+</div>
+
+<div class="frame-panel guide-unit" data-simple>
+<div class="frame-intro">
+<p class="scene-label">C · Witness</p><h3 class="lens-title" style="font-size:19px;margin:0 0 8px">Seeing from the threshold</h3>
+<p class="look" style="font-size:14px"><strong>Look first.</strong> Compare the community meeting with the household held at the doorway. What does the near, shadowed edge add to the public scene?</p>
+</div>
+<div class="scene landscape" role="img" aria-label="Created canvas: community members meet around a civic record box while an adult and two children watch separately from a dark doorway at the right edge.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/created-illustrations-v2/cross-period-r3/r3-narrative-witness-community-hall-v3.png" alt="">
+<svg class="gsvg" viewBox="0 0 1536 1024" aria-hidden="true"><path class="guide-zone" d="M49 251 C262 148 1062 149 1146 313 L1125 765 C897 866 252 841 51 734 Z"/><path class="guide-zone" d="M1142 126 C1299 57 1517 84 1534 188 L1534 1009 L1160 1009 Z"/><path class="guide-line" d="M1132 5 L1132 833"/><circle class="marker" cx="770" cy="485" r="55"/><text class="marker-text" x="770" y="485">1</text><circle class="marker" cx="1341" cy="583" r="55"/><text class="marker-text" x="1341" y="583">2</text><circle class="marker" cx="1132" cy="151" r="55"/><text class="marker-text" x="1132" y="151">3</text></svg>
+</div>
+<div class="guide-key" hidden><p class="key-item"><strong>1</strong> meeting and record box hold the middle field.</p><p class="key-item"><strong>2</strong> household occupies the foreground edge.</p><p class="key-item"><strong>3</strong> doorway frames a separate position for seeing.</p></div>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button></div>
+<div class="caption" hidden><span class="cap-label">Visible relation</span><p>The meeting remains fully visible in the open hall, while the household stands close to us behind a dark doorway. <strong>Presentational effect:</strong> the composition makes watching — or being positioned to see — a public decision part of the event's meaning.</p></div>
+<p class="sr-only" data-unmarked aria-live="polite" data-guided="Guided state. Locator 1 marks the meeting and record box holding the middle field. Locator 2 marks the household occupying the foreground edge. Locator 3 marks the doorway framing a separate position for seeing.">Unmarked state: community members meet around a civic record box while an adult and two children watch from a shadowed doorway at the right edge.</p>
+</div>
+
+</div>
+</div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>When you meet a narrative image, ask where it gathers attention, who remains separate, and whose point of view the composition gives weight. Those choices can show what the story asks you to care about.</p></div></div>
+
+<div class="arc-divider">In Real Art</div>
+<section class="realart" data-selector>
+<div class="ra-head"><div><span class="ra-kicker">In Real Art</span><h3>Three ways an image makes an event matter</h3></div></div>
+<div class="ra-body">
+<nav class="work-select" aria-label="Choose an artwork"><button class="wt-btn" type="button" data-work="carpenter" aria-pressed="true">1 · Carpenter</button><button class="wt-btn" type="button" data-work="darbar" aria-pressed="false">2 · Darbar</button><button class="wt-btn" type="button" data-work="utamaro" aria-pressed="false">3 · Utamaro</button></nav>
+
+<article class="work" data-panel="carpenter" data-desc-unmarked="Carpenter selected, unmarked state: an open document is held among seated and standing men in a shadowed room." data-desc-guided="Carpenter selected, guided state. Locator 1 marks the open document at the middle. Locator 2 marks seated and standing bodies gathered around it. Locator 3 marks the right-hand chair and darker room edge closing the group in.">
+<p class="work-meta">1 · Gathering</p><h4>Cabinet painting with an open document</h4><p class="object-meta">Oil on canvas · U.S. Senate Collection</p>
+<p class="look"><strong>Look first.</strong> Start with the open paper, then compare the clustered heads, chairs, and standing bodies around it. Which choices make the document feel like the center of the room?</p>
+<div class="scene natural" role="img" aria-label="A shadowed room: seated and standing men gather around an open document held at the center of the group.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r3-narrative/carpenter-emancipation-proclamation.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 1500 915" aria-hidden="true"><path class="guide-zone" d="M588 500 C690 460 880 472 945 566 L891 677 C759 716 625 674 570 606 Z"/><path class="guide-zone" d="M107 194 C380 99 1144 134 1401 290 L1393 792 C1144 876 302 862 95 756 Z"/><path class="guide-line" d="M350 214 C492 315 579 419 660 522 M1340 700 C1160 670 1018 623 885 517"/><circle class="marker" cx="764" cy="590" r="34"/><text class="marker-text" x="764" y="590">1</text><circle class="marker" cx="481" cy="365" r="34"/><text class="marker-text" x="481" y="365">2</text><circle class="marker" cx="1292" cy="696" r="34"/><text class="marker-text" x="1292" y="696">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> open document at the middle.</p><p class="key-item"><strong>2</strong> seated and standing bodies gather around it.</p><p class="key-item"><strong>3</strong> right-hand chair and darker room edge close the group in.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>An open document sits within a tight ring of seated and standing bodies, while chairs and shadowed room edges keep the gathering compact. <strong>Presentational effect:</strong> the composition makes a document under discussion the shared center of an event.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The U.S. Senate identifies the painting as Francis Bicknell Carpenter's <em>First Reading of the Emancipation Proclamation by President Lincoln</em> (1864), representing a July 22, 1862 Cabinet meeting at the White House. Lincoln had already resolved to act before assembling the Cabinet; Carpenter arranged the figures to register differing positions around his reading of the draft. <a href="https://www.senate.gov/art-artifacts/fine-art/paintings/33_00005_000.htm">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="darbar" hidden data-desc-unmarked="Darbar selected, unmarked state: a crowded gathering under a canopy fills the upper portion of a gold-framed painting, while smaller groups occupy the lower portion." data-desc-guided="Darbar selected, guided state. Locator 1 marks the compact upper gathering under a canopy. Locator 2 marks separated lower groups across the broad field. Locator 3 marks the horizontal wall and threshold dividing the two spaces.">
+<p class="work-meta">2 · Division</p><h4>Court painting with an upper and lower field</h4><p class="object-meta">Pigments and gold on paper · The Metropolitan Museum of Art, 2018.203</p>
+<p class="look"><strong>Look first.</strong> Compare the crowded, canopied gathering above with the separated groups below. How do the horizontal boundary and open intervals let these fields remain distinct while belonging to one image?</p>
+<div class="scene natural portrait" role="img" aria-label="A gold-framed court painting: a dense, canopied gathering fills the upper field while smaller, separated groups occupy the lower field.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r3-narrative/met-2018.203-darbar-alivardi-khan.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 2848 4000" aria-hidden="true"><path class="guide-zone" d="M235 564 C770 374 2120 395 2590 660 L2590 2310 C2090 2544 722 2504 230 2252 Z"/><path class="guide-zone" d="M235 2505 C800 2388 2080 2410 2590 2572 L2572 3690 C2054 3824 761 3803 244 3647 Z"/><path class="guide-line" d="M224 2450 C893 2380 1971 2390 2603 2470"/><circle class="marker" cx="1440" cy="1330" r="78"/><text class="marker-text" x="1440" y="1330">1</text><circle class="marker" cx="1420" cy="3060" r="78"/><text class="marker-text" x="1420" y="3060">2</text><circle class="marker" cx="2185" cy="2440" r="78"/><text class="marker-text" x="2185" y="2440">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> compact upper gathering under a canopy.</p><p class="key-item"><strong>2</strong> separated lower groups across the broad field.</p><p class="key-item"><strong>3</strong> horizontal wall and threshold divide the two spaces.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>A dense, canopied group occupies the upper field while smaller groups remain separated below it. A horizontal wall and larger intervals prevent the image from becoming one undifferentiated crowd. <strong>Presentational effect:</strong> the built division lets two distinct social fields carry weight at once.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies this work as <em>Darbar of Alivardi Khan at Murshidabad's Court</em>, made in Murshidabad, India, about 1750–53. A <em>darbar</em> is a courtly gathering; the record identifies Alivardi Khan (r. 1740–56) under the canopy at center left among thirty-three court members and notes eleven further figures outside the courtyard wall. Most figures have nearby identifying inscriptions. <a href="https://www.metmuseum.org/art/collection/search/781858">Object record</a>.</p></div>
+</article>
+
+<article class="work" data-panel="utamaro" hidden data-desc-unmarked="Utamaro selected, unmarked state: figures, a small performance, and musicians appear across a pale horizontal woodblock print; figures at left are seen behind a screen." data-desc-guided="Utamaro selected, guided state. Locator 1 marks partly obscured figures behind the screen. Locator 2 marks the small central performance field. Locator 3 marks observers and musicians in a separate right-hand group.">
+<p class="work-meta">3 · Witness</p><h4>Color print with a screened viewing position</h4><p class="object-meta">Woodblock print · The Metropolitan Museum of Art, JP962</p>
+<p class="look"><strong>Look first.</strong> Find the partly screened figures at the left, the small action near the middle, and the observers and musicians at the right. How does the screen make one way of seeing distinct from the activity it reveals?</p>
+<div class="scene natural" role="img" aria-label="A pale woodblock print: figures behind a screen at left, a small central performance, and observers and musicians grouped at the right.">
+<img loading="lazy" decoding="async" src="/assets/cross-period/historical/r3-narrative/met-jp962-utamaro-seeing-a-performance.jpg" alt="">
+<svg class="gsvg" viewBox="0 0 3860 2434" aria-hidden="true"><path class="guide-zone" d="M85 310 C350 164 1128 204 1460 503 L1410 1420 C1000 1575 342 1514 93 1345 Z"/><path class="guide-zone" d="M1665 1190 C1930 1040 2455 1110 2665 1333 L2600 2050 C2320 2150 1890 2120 1663 1940 Z"/><path class="guide-zone" d="M2590 1238 C2965 1088 3703 1175 3800 1433 L3800 2128 C3340 2280 2870 2215 2580 2000 Z"/><circle class="marker" cx="740" cy="815" r="72"/><text class="marker-text" x="740" y="815">1</text><circle class="marker" cx="2168" cy="1562" r="72"/><text class="marker-text" x="2168" y="1562">2</text><circle class="marker" cx="3250" cy="1700" r="72"/><text class="marker-text" x="3250" y="1700">3</text></svg>
+</div>
+<div class="guide-key" data-guide-key hidden><p class="key-item"><strong>1</strong> partly obscured figures behind the screen.</p><p class="key-item"><strong>2</strong> small central performance field.</p><p class="key-item"><strong>3</strong> observers and musicians occupy a separate right-hand group.</p></div>
+<div class="caption" data-caption hidden><span class="cap-label">Visible relation</span><p>The screen holds a partly obscured group apart from a small action in the middle and a clearly visible gathering at the right. <strong>Presentational effect:</strong> the composition gives watching its own place in the event instead of treating it as mere background.</p></div>
+<div class="source-context" data-source hidden><span class="cap-label">Source context</span><p>The Met identifies the print as Kitagawa Utamaro's <em>Seeing a Performance</em> (1789), showing a New Year monkey performance at a samurai's home. The record identifies the women behind the <em>sudare byōbu</em> — a bamboo-slat screen — as the samurai's wife and attendant, able to see the festivities privately. It also notes Utamaro's contrast between their half-silhouette and softened facial features. <a href="https://www.metmuseum.org/art/collection/search/37270">Object record</a>.</p></div>
+</article>
+
+<p class="sr-only" data-desc aria-live="polite">Carpenter selected, unmarked state: an open document is held among seated and standing men in a shadowed room.</p>
+<div class="controls"><button class="guide-toggle" type="button" data-role="guide" aria-pressed="false" aria-expanded="false"><span class="gdot" aria-hidden="true"></span><span class="gt-label">Show visual guide</span></button><button class="guide-toggle" type="button" data-role="source" aria-expanded="false">Show source context</button></div>
+</div>
+<div class="takeaway-wrap"><div class="controls"><button class="takeaway-toggle" type="button" data-role="takeaway" data-kind="connection" aria-expanded="false">Show takeaway connection</button></div><div class="takeaway" hidden><div class="tk-lbl">Takeaway connection</div><p>When you meet a narrative image, ask what brings people together, what keeps groups apart, and where the work places a witness. Those visual choices can make an event matter before a title or source tells you its particular history.</p></div></div>
+<details class="credit"><summary>Image credits and sources</summary>
+<p>Francis Bicknell Carpenter, <em>First Reading of the Emancipation Proclamation by President Lincoln</em>, 1864, U.S. Senate Collection; faithful public-domain reproduction via Wikimedia Commons. <a href="https://www.senate.gov/art-artifacts/fine-art/paintings/33_00005_000.htm">Object record</a>.</p>
+<p><em>Darbar of Alivardi Khan at Murshidabad's Court</em>, ca. 1750–53, The Metropolitan Museum of Art, 2018.203, public domain. <a href="https://www.metmuseum.org/art/collection/search/781858">Object record</a>.</p>
+<p>Kitagawa Utamaro, <em>Seeing a Performance</em>, 1789, The Metropolitan Museum of Art, JP962, public domain. <a href="https://www.metmuseum.org/art/collection/search/37270">Object record</a>.</p>
+</details>
+</section>
+</section>
+</div>
+</div>
+</div>
 
 </main>
 
@@ -515,30 +843,38 @@ import Layout from '../../layouts/Layout.astro';
    if(sr){var guided=sr.getAttribute('data-guided'),unmarked=sr.getAttribute('data-unmarked');sr.textContent=on?guided:unmarked;}
   });
  });
- // real-art sections with a mutually-exclusive work selector
+ // real-art sections with a mutually-exclusive work selector (guide + independent source-context toggle)
  document.querySelectorAll('.realart[data-selector]').forEach(function(section){
   var buttons=[].slice.call(section.querySelectorAll('.work-select [data-work]'));
   var panels=[].slice.call(section.querySelectorAll('[data-panel]'));
   var guideBtn=section.querySelector('[data-role="guide"]');
+  var sourceBtn=section.querySelector('[data-role="source"]');
   var sr=section.querySelector('.sr-only[data-desc]');
   var active=buttons.length?buttons[0].dataset.work:null;
   function panelFor(name){return section.querySelector('[data-panel="'+name+'"]');}
-  function resetGuide(){
-   guideBtn.setAttribute('aria-pressed','false');
-   guideBtn.setAttribute('aria-expanded','false');
-   guideBtn.querySelector('.gt-label').textContent='Show visual guide';
+  function resetControls(){
+   if(guideBtn){
+    guideBtn.setAttribute('aria-pressed','false');
+    guideBtn.setAttribute('aria-expanded','false');
+    var gl=guideBtn.querySelector('.gt-label');if(gl)gl.textContent='Show visual guide';
+   }
+   if(sourceBtn){
+    sourceBtn.setAttribute('aria-expanded','false');
+    sourceBtn.textContent='Show source context';
+   }
    panels.forEach(function(p){
     p.classList.remove('guided');
     var cap=p.querySelector('[data-caption]');if(cap)cap.hidden=true;
     var key=p.querySelector('[data-guide-key]');if(key)key.hidden=true;
     var gd=p.querySelector('[data-guided-detail]');if(gd)gd.hidden=true;
+    var src=p.querySelector('[data-source]');if(src)src.hidden=true;
    });
   }
   function selectWork(name){
    active=name;
    buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.work===name));});
    panels.forEach(function(p){p.hidden=p.dataset.panel!==name;});
-   resetGuide();
+   resetControls();
    if(sr){var p=panelFor(name);sr.textContent=p.getAttribute('data-desc-unmarked')||'';}
   }
   buttons.forEach(function(b){b.addEventListener('click',function(){selectWork(b.dataset.work);});});
@@ -548,12 +884,22 @@ import Layout from '../../layouts/Layout.astro';
     var p=panelFor(active);
     guideBtn.setAttribute('aria-pressed',String(on));
     guideBtn.setAttribute('aria-expanded',String(on));
-    guideBtn.querySelector('.gt-label').textContent=on?'Hide visual guide':'Show visual guide';
+    var gl=guideBtn.querySelector('.gt-label');if(gl)gl.textContent=on?'Hide visual guide':'Show visual guide';
     p.classList.toggle('guided',on);
     var cap=p.querySelector('[data-caption]');if(cap)cap.hidden=!on;
     var key=p.querySelector('[data-guide-key]');if(key)key.hidden=!on;
     var gd=p.querySelector('[data-guided-detail]');if(gd)gd.hidden=!on;
     if(sr)sr.textContent=(on?p.getAttribute('data-desc-guided'):p.getAttribute('data-desc-unmarked'))||'';
+   });
+  }
+  if(sourceBtn){
+   sourceBtn.addEventListener('click',function(){
+    var on=sourceBtn.getAttribute('aria-expanded')!=='true';
+    var p=panelFor(active);
+    var src=p.querySelector('[data-source]');
+    sourceBtn.setAttribute('aria-expanded',String(on));
+    sourceBtn.textContent=on?'Hide source context':'Show source context';
+    if(src)src.hidden=!on;
    });
   }
  });
@@ -567,35 +913,39 @@ import Layout from '../../layouts/Layout.astro';
    btn.textContent=on?('Hide takeaway '+kind):('Show takeaway '+kind);
   });
  });
- // module chooser: open/close detail panel, one open at a time
- var detail=document.getElementById('lens-detail'),dThread=document.getElementById('dThread'),dClose=document.getElementById('dClose');
- var cards=[].slice.call(document.querySelectorAll('.ocard')),wraps=[].slice.call(document.querySelectorAll('.lens-wrap'));
+ // lens choosers: each .chooser-group manages its own detail panel; one open at a time, within that group
  function soft(){return window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';}
- function open(id){
-  cards.forEach(function(c){c.classList.toggle('on',c.dataset.lens===id);});
-  wraps.forEach(function(w){w.classList.toggle('is-hidden',w.dataset.lens!==id);});
-  detail.classList.remove('is-hidden');
-  var card=cards.find(function(c){return c.dataset.lens===id;});
-  if(dThread)dThread.textContent=card?card.querySelector('.othread').textContent:'';
-  var w=detail.querySelector('.lens-wrap:not(.is-hidden)');
-  var h=w?w.querySelector('.lens-title'):null;
-  if(h){h.tabIndex=-1;h.focus({preventScroll:true});}
-  if(w)window.scrollTo({top:w.getBoundingClientRect().top+window.scrollY-24,behavior:soft()});
-  if(card)detail.style.setProperty('--acc',getComputedStyle(card).getPropertyValue('--acc'));
- }
- function close(){
-  cards.forEach(function(c){c.classList.remove('on');});
-  wraps.forEach(function(w){w.classList.add('is-hidden');});
-  detail.classList.add('is-hidden');
-  detail.style.removeProperty('--acc');
- }
- cards.forEach(function(c){c.addEventListener('click',function(){c.classList.contains('on')?close():open(c.dataset.lens);});});
- if(dClose)dClose.addEventListener('click',function(){
-  var on=cards.find(function(c){return c.classList.contains('on');});
-  close();
-  if(on){on.focus({preventScroll:true});window.scrollTo({top:on.getBoundingClientRect().top+window.scrollY-80,behavior:soft()});}
+ document.querySelectorAll('.chooser-group').forEach(function(group){
+  var detail=group.querySelector('.lens-detail');
+  if(!detail)return;
+  var dThread=detail.querySelector('.dthread'),dClose=detail.querySelector('.detail-close');
+  var cards=[].slice.call(group.querySelectorAll('.ocard')),wraps=[].slice.call(detail.querySelectorAll('.lens-wrap'));
+  function open(id){
+   cards.forEach(function(c){c.classList.toggle('on',c.dataset.lens===id);});
+   wraps.forEach(function(w){w.classList.toggle('is-hidden',w.dataset.lens!==id);});
+   detail.classList.remove('is-hidden');
+   var card=cards.find(function(c){return c.dataset.lens===id;});
+   if(dThread){var thread=card?card.querySelector('.othread'):null;dThread.textContent=thread?thread.textContent:'';}
+   var w=detail.querySelector('.lens-wrap:not(.is-hidden)');
+   var h=w?w.querySelector('.lens-title'):null;
+   if(h){h.tabIndex=-1;h.focus({preventScroll:true});}
+   if(w)window.scrollTo({top:w.getBoundingClientRect().top+window.scrollY-24,behavior:soft()});
+   if(card)detail.style.setProperty('--acc',getComputedStyle(card).getPropertyValue('--acc'));
+  }
+  function close(){
+   cards.forEach(function(c){c.classList.remove('on');});
+   wraps.forEach(function(w){w.classList.add('is-hidden');});
+   detail.classList.add('is-hidden');
+   detail.style.removeProperty('--acc');
+  }
+  cards.forEach(function(c){c.addEventListener('click',function(){c.classList.contains('on')?close():open(c.dataset.lens);});});
+  if(dClose)dClose.addEventListener('click',function(){
+   var on=cards.find(function(c){return c.classList.contains('on');});
+   close();
+   if(on){on.focus({preventScroll:true});window.scrollTo({top:on.getBoundingClientRect().top+window.scrollY-80,behavior:soft()});}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!detail.classList.contains('is-hidden'))dClose&&dClose.click();});
  });
- document.addEventListener('keydown',function(e){if(e.key==='Escape'&&detail&&!detail.classList.contains('is-hidden'))dClose.click();});
  // lightbox: click any scene to see a full, unmarked-guide-stripped enlargement
  var lb=document.getElementById('cpl-lightbox');
  var lbContent=document.getElementById('cpl-lightboxContent'),lbClose=lb.querySelector('.lightbox-close');
@@ -637,7 +987,8 @@ import Layout from '../../layouts/Layout.astro';
   clone.style.margin='0';
   lbContent.innerHTML='';lbContent.appendChild(clone);
   revealAfter(clonedImgs,function(){
-   var ratio=parseRatio(getComputedStyle(scene).aspectRatio);
+   var ratio=parseRatio(scene.getAttribute('data-crop-ratio'));
+   if(!ratio)ratio=parseRatio(getComputedStyle(scene).aspectRatio);
    if(!ratio){
     var primary=clonedImgs[0];
     if(primary&&primary.naturalWidth&&primary.naturalHeight)ratio=primary.naturalWidth/primary.naturalHeight;
@@ -646,10 +997,10 @@ import Layout from '../../layouts/Layout.astro';
    lb.hidden=false;
   });
  }
- document.querySelectorAll('#lens-detail .scene').forEach(function(scene){
+ document.querySelectorAll('.lens-detail .scene').forEach(function(scene){
   scene.addEventListener('click',function(e){e.stopPropagation();openLightboxScene(scene);});
  });
- document.querySelectorAll('#lens-detail .detail-crop').forEach(function(crop){
+ document.querySelectorAll('.lens-detail .detail-crop').forEach(function(crop){
   crop.addEventListener('click',function(e){
    e.stopPropagation();
    var img=crop.querySelector('img');
@@ -803,4 +1154,41 @@ footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:64px;font
 .colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
 @media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gsvg{transition:none}}
+
+.bank-divider{max-width:var(--read-wide);margin:56px auto 28px;padding-top:30px;border-top:2px solid var(--rule-strong);text-align:center}
+.bank-divider .eyebrow-strip{padding:0 0 12px;justify-content:center}
+.bank-divider h2{font-family:var(--font-display);font-weight:400;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
+.bank-divider p{max-width:var(--measure);margin:0 auto;font-family:var(--font-display);font-size:17px;line-height:1.6;color:var(--ink-mute)}
+.chooser-group{max-width:var(--read-wide);margin:0 auto}
+.chooser-group .overview,.chooser-group .lens-detail{max-width:none}
+.chooser-group.wide .lens-detail{max-width:none}
+.chooser-group.wide{max-width:1140px}
+.frame-intro{display:flex;flex-direction:column;min-height:168px}
+@media (max-width:760px){.frame-intro{min-height:0}}
+
+.ocard.quiet .ohead{justify-content:flex-end;padding-bottom:14px;margin-bottom:16px}
+.chooser-group.wide .lens-detail .work-select{margin-bottom:16px}
+.ocard.quiet .oq{margin-top:8px}
+.ocard.quiet .ot{margin-top:0}
+
+.source-context{margin-top:14px;padding:14px 16px;border-left:3px solid var(--ink-soft);background:var(--bg-raised)}
+.source-context[hidden]{display:none}
+.source-context .cap-label{color:var(--ink-soft)}
+.source-context p{font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-mute);margin:0}
+.source-context a{color:var(--acc)}
+.scene.crop-tall{aspect-ratio:1/2}
+.scene.crop-tall img{object-fit:cover}
+@media (max-width:760px){.scene.crop-tall{aspect-ratio:auto;min-height:260px}}
+
+.diptych-scene{aspect-ratio:1672/941}
+.diptych-mobile{display:none}
+@media (max-width:700px){
+.diptych-desktop{display:none}
+.diptych-mobile{display:grid;gap:14px;max-width:420px;margin:0 auto}
+.diptych-half{position:relative;aspect-ratio:814/941;overflow:hidden;background-color:#65717b;background-repeat:no-repeat;background-size:205.5% 100%;background-image:var(--diptych-img)}
+.diptych-half.a{background-position:left top}
+.diptych-half.b{background-position:right top}
+.diptych-half .gsvg{opacity:0}
+.guide-unit.guided .diptych-half .gsvg{opacity:1}
+}
 </style>
