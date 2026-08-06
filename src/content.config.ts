@@ -21,6 +21,15 @@ const units = defineCollection({
     threads: z.array(threadSchema),
 
     // Philosophy
+    hero_plate: z.object({
+      image: z.string(),
+      alt: z.string(),
+      quote: z.string(),
+      citeAuthor: z.string(),
+      citeWork: z.string(),
+      citeDetail: z.string(),
+      gloss: z.string(),
+    }).optional(),
     readings: z.array(z.object({
       title: z.string(),
       author: z.string(),

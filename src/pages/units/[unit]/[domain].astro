@@ -174,8 +174,12 @@ const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
 const peopleJson   = JSON.stringify(PEOPLE);
 
 // ── Single-column reading layout (art / sculpture / music) ───────────────────
-// Philosophy keeps the original two-column sidebar layout untouched.
-const isRedesignedDomain = domain !== 'philosophy';
+// Philosophy keeps the original two-column sidebar layout untouched, except for
+// the Medieval unit's plate-illustrated redesign (see the design handoff).
+const isRedesignedDomain = domain !== 'philosophy' || unit === '00-medieval';
+// Medieval Philosophy's closing section uses the handout's boxed "Looking
+// forward:" callout instead of the default italic arc-head heading.
+const useForwardBox = domain === 'philosophy' && unit === '00-medieval';
 const entryData = entry.data as any;
 const threadIds: string[] = entry.data.threads.map((t: { id: string }) => t.id);
 const threadLabels: string[] = entry.data.threads.map((t: { label: string }) => t.label);
@@ -313,6 +317,23 @@ if (isRedesignedDomain) {
 <!-- ── Hero image (art / sculpture) ── -->
 {(() => {
   const d = entry.data as any;
+  if (domain === 'philosophy' && d.hero_plate) {
+    const hp = d.hero_plate;
+    return (
+      <figure class="hero-plate philosophy-hero work-figure">
+        <div class="img">
+          <img src={hp.image} alt={hp.alt} class="hero-img-full" />
+        </div>
+        <figcaption class="caption">
+          <blockquote>
+            {hp.quote}
+            <cite>{hp.citeAuthor} · <em>{hp.citeWork}</em>, {hp.citeDetail}</cite>
+          </blockquote>
+          <div class="gloss">{hp.gloss}</div>
+        </figcaption>
+      </figure>
+    );
+  }
   if (domain === 'art' && d.hero_painting) {
     const p = d.hero_painting;
     const metaLines = [p.date, p.medium, p.location].filter(Boolean).join('\n');
@@ -610,7 +631,7 @@ if (isRedesignedDomain) {
   });
 </script>
 
-<script define:vars={{ threadSigils, medallionSvg, threadIds, threadLabels }}>
+<script define:vars={{ threadSigils, medallionSvg, threadIds, threadLabels, useForwardBox }}>
   const CONN_SIG_SVG = '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5 C13.6 15.5 10.5 20.4 10.5 25.8 C10.5 31.2 14.8 35.5 20 35.5 C25.2 35.5 29.5 31.2 29.5 25.8 C29.5 20.4 26.4 15.5 20 15.5 Z"/><path d="M20 15.5 Q19 13 20.2 10.8"/><path d="M20.6 11 Q24.4 7.7 28.4 9.4 Q26 13.8 20.6 11 Z" fill="currentColor" stroke="none"/><path d="M9.6 24.6 C13.6 19 16.6 30 21 25.6 C24.3 22.1 27.8 24 30.4 21.6"/><circle cx="30.9" cy="21" r="1.7" fill="currentColor" stroke="none"/><path d="M32.4 20.3 L34.9 19.4 M32.4 21.2 L34.9 21.9"/></svg>';
 
   function decorateSubHead(h2, i) {
@@ -830,8 +851,31 @@ if (isRedesignedDomain) {
       }
     });
 
-    // Remaining headings (Looking Back / Looking Forward) become arc-blocks.
+    // Remaining headings (Looking Back / Looking Forward) become arc-blocks —
+    // except Medieval Philosophy, whose closing section becomes a boxed
+    // "Looking forward:" callout (see the design handoff).
     arcHeads.forEach((h2) => {
+      if (useForwardBox) {
+        const wrap = document.createElement('div');
+        wrap.className = 'looking-forward';
+        const box = document.createElement('div');
+        box.className = 'forward';
+        const lbl = document.createElement('div');
+        lbl.className = 'lbl';
+        lbl.textContent = 'Looking forward:';
+        box.appendChild(lbl);
+        h2.parentNode.insertBefore(wrap, h2);
+        wrap.appendChild(box);
+        let node = h2.nextSibling;
+        h2.remove();
+        while (node) {
+          const next = node.nextSibling;
+          if (node.nodeType === 1 && node.tagName === 'H2') break;
+          box.appendChild(node);
+          node = next;
+        }
+        return;
+      }
       h2.classList.add('arc-head');
       const block = document.createElement('div');
       block.className = 'arc-block';
@@ -1152,6 +1196,196 @@ if (isRedesignedDomain) {
     text-align: right;
     line-height: 1.5;
     white-space: pre-line;
+  }
+
+  /* ── Philosophy hero: blockquote-caption variant (Medieval plate redesign) ── */
+  figure.hero-plate.philosophy-hero {
+    margin: 34px auto 8px;
+    max-width: min(100%, 680px);
+  }
+  figure.hero-plate.philosophy-hero .hero-img-full { max-height: 470px; background: #F5E9CE; }
+  figure.hero-plate.philosophy-hero .caption { display: block; }
+  figure.hero-plate .caption blockquote {
+    margin: 0;
+    padding: 1px 0 1px 20px;
+    border-left: 2px solid var(--thread-acc);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  figure.hero-plate .caption blockquote cite {
+    display: block;
+    margin-top: 11px;
+    font-family: var(--font-ui);
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  figure.hero-plate.philosophy-hero .caption .gloss {
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+  }
+
+  /* ── Work-plate: illustrated figure (Medieval philosophy plates) ──
+     Distinct from Plate.astro's `.plate` (art/sculpture gallery works) — this
+     class supports the plate-pair / plate-notes / plate-key label system. */
+  figure.work-plate {
+    max-width: var(--read-wide);
+    margin: 36px auto 8px;
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    padding: 0;
+  }
+  figure.work-plate .img {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-sunken);
+  }
+  figure.work-plate .img img {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    cursor: zoom-in;
+  }
+  figure.work-plate .caption {
+    padding: 16px 24px 20px;
+    border-top: 1px solid var(--rule);
+  }
+  figure.work-plate .caption .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  figure.work-plate .caption .title strong { font-style: normal; font-weight: 500; }
+  figure.work-plate.plate-labeled .img { display: flex; justify-content: center; padding: 0; }
+  figure.hero-plate.philosophy-hero .img,
+  figure.work-plate .img { background: #F5E9CE; }
+  .plate-stage { position: relative; display: block; width: 100%; max-width: var(--stage, 100%); }
+  figure.work-plate.plate-labeled .plate-stage img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: fill;
+    cursor: zoom-in;
+  }
+  .plate-notes { position: absolute; inset: 0; pointer-events: none; }
+  .plate-note {
+    position: absolute;
+    top: var(--t);
+    right: var(--r, auto);
+    transform: translateY(-50%);
+    max-width: var(--w, 14ch);
+    margin: 0;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+  .plate-note.ta-r { text-align: right; }
+  .caption .plate-key { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--rule); }
+  .caption .plate-key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px 24px; }
+  .caption .plate-key.two ul,
+  .caption .plate-key.three ul { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .caption .plate-key li {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    padding-left: 13px;
+    border-left: 2px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 50%, var(--rule));
+  }
+  .caption .plate-key .k {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .caption .plate-key.braid { display: grid; gap: 13px; text-align: center; }
+  .caption .plate-key.braid .row { display: grid; gap: 6px; }
+  .caption .plate-key.braid .k { margin-bottom: 0; }
+  .caption .plate-key.braid .items {
+    display: grid;
+    gap: 5px 16px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink-mute);
+  }
+  .caption .plate-key.braid .items.four { grid-template-columns: repeat(4, 1fr); }
+  .caption .plate-key.braid .items.three { grid-template-columns: repeat(3, 1fr); }
+  .caption .plate-key.braid .row.mid .items { font-style: italic; color: var(--ink); }
+  .caption .plate-key.braid .row:not(:last-child)::after {
+    content: '';
+    width: 1px;
+    height: 10px;
+    background: var(--rule-strong);
+    justify-self: center;
+    margin-top: 1px;
+  }
+  @media (max-width: 760px) {
+    .plate-notes { position: static; display: grid; gap: 7px; padding: 16px 22px 2px; pointer-events: auto; }
+    .plate-notes .plate-note { position: static; transform: none; max-width: none; }
+    .plate-notes .plate-note.ta-r { text-align: left; }
+  }
+  .plate-pair {
+    max-width: var(--read-wide);
+    margin: 34px auto 32px;
+    display: grid;
+    gap: 26px 34px;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .plate-pair.vcenter { align-items: center; }
+  .plate-pair .pair-text { grid-column: 1; grid-row: 1; }
+  .plate-pair > figure { grid-column: 2; grid-row: 1; margin-top: 5px; }
+  .plate-pair.left { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .plate-pair.left .pair-text { grid-column: 2; }
+  .plate-pair.left > figure { grid-column: 1; }
+  .measure { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+  .reading p.measure { font-size: 18.5px; line-height: 1.65; margin: 0 auto 22px; color: var(--ink-mute); }
+  .plate-pair .measure { max-width: none; margin-left: 0; margin-right: 0; }
+  .plate-pair .pair-text > p:last-child { margin-bottom: 0; }
+  figure.work-plate.plate-inset { max-width: none; margin: 0; width: 100%; }
+  figure.work-plate.plate-inset .plate-stage { max-width: 100%; }
+  figure.work-plate.plate-inset .caption { padding: 13px 18px 15px; }
+  figure.work-plate.plate-inset .plate-note { font-size: 11px; letter-spacing: 0.05em; line-height: 1.35; }
+  figure.work-plate.plate-inset .caption .title { font-size: 14.5px; line-height: 1.45; }
+  figure.work-plate.plate-inset .caption .plate-key { margin-top: 11px; padding-top: 10px; }
+  figure.work-plate.plate-inset .caption .plate-key ul { gap: 9px; }
+  figure.work-plate.plate-inset .caption .plate-key.two ul,
+  figure.work-plate.plate-inset .caption .plate-key.three ul { grid-template-columns: 1fr; }
+  figure.work-plate.plate-inset .caption .plate-key li { font-size: 12px; }
+  @media (max-width: 880px) {
+    .plate-pair, .plate-pair.left { grid-template-columns: 1fr; }
+    .plate-pair .pair-text, .plate-pair.left .pair-text { grid-column: 1; grid-row: auto; }
+    .plate-pair > figure, .plate-pair.left > figure {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 0;
+      max-width: var(--measure);
+      justify-self: center;
+    }
   }
 
   /* ── Label naming the thread a group of plates belongs to ── */
@@ -1674,6 +1908,41 @@ if (isRedesignedDomain) {
     border-top: 1px solid var(--rule);
   }
   .arc-block > p { font-size: 18.5px; line-height: 1.65; color: var(--ink-mute); }
+
+  /* ── Boxed "Looking forward:" callout (Medieval Philosophy only) ── */
+  .looking-forward { max-width: var(--measure); margin: 60px auto 0; padding-top: 44px; border-top: 1px solid var(--rule); }
+  .forward {
+    margin: 36px auto 8px;
+    max-width: var(--measure);
+    padding: 22px 26px 24px;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .looking-forward .forward { margin: 0; }
+  .forward::before {
+    content: '';
+    position: absolute;
+    left: -1px; top: -1px; bottom: -1px;
+    width: 3px;
+    background: var(--sub-acc, var(--thread-acc));
+  }
+  .forward .lbl {
+    font-family: var(--font-ui);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sub-acc, var(--thread-acc));
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .forward .lbl::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .forward p { font-size: 16.5px; line-height: 1.6; color: var(--ink-mute); margin: 0 0 12px; }
+  .looking-forward .forward p + p { margin-top: 14px; }
+  .forward p:last-child { margin-bottom: 0; }
+  .forward p em { color: var(--ink); font-style: italic; }
 
   @media print {
     .analyze-hot, .conn-toggle-ind { display: none; }

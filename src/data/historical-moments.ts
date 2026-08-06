@@ -1,6 +1,15 @@
+export interface HistoricalMomentFigure {
+  image: string;
+  alt: string;
+  caption: string;
+  // 0-indexed: the figure renders immediately after paragraphs[afterParagraph].
+  afterParagraph: number;
+}
+
 export interface HistoricalMoment {
   subtitle: string;
   paragraphs: string[];
+  figure?: HistoricalMomentFigure;
 }
 
 // Paragraphs use *asterisks* for italic — rendered via mdItalics() in the template.
@@ -9,13 +18,21 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
   '00-medieval': {
     subtitle: 'The High Middle Ages, c. 1000–1400',
     paragraphs: [
-      'In the year 1000, the world does not end. Many in Europe had feared it would — the millennium seemed to demand some divine reckoning — but the fields continue to produce grain, the monasteries continue to copy manuscripts, and the Church continues to organize everything from the calendar to the conscience. Life is hard, often brutally short, and structured by forces no individual can control. But it is not chaotic. It holds.',
-      'The medieval order rests on interlocking certainties. God made the world and governs it. The Church mediates between the human and the divine. Kings rule by divine sanction. Scholars in the new universities of Bologna and Paris debate Aristotle and the Church Fathers, trying to reconcile reason with revelation. The Great Chain of Being assigns every creature its place, from God at the apex through angels, kings, nobles, clergy, and common people, down to animals and stones. The order feels not like a human invention but like a fact of nature — as permanent and as given as the seasons.',
-      'What makes this world interesting is not its rigidity but its richness. The cathedrals rising across France and England are engineering marvels and theological arguments in stone. The mystics — Hildegard of Bingen, Meister Eckhart, the anonymous author of *The Cloud of Unknowing* — explore the interior life with extraordinary sophistication. The scholastic philosophers are not credulous; they are rigorous, and their debates about faith and reason anticipate questions that will occupy thinkers for centuries.',
-      'But the order is not permanent. In 1347, a merchant ship docks in Sicily carrying rats infected with bubonic plague. Within four years, somewhere between a third and half of Europe\'s population is dead — entire villages emptied, priests abandoning their dying parishioners, the living too exhausted to bury the dead. The Black Death does not destroy the medieval order, but it cracks it. Survivors ask why God allowed this. The Church loses moral authority along with its clergy. Labor becomes scarce, and serfs begin to demand wages.',
-      'The Great Schism of 1378 cracks it further. For nearly forty years, there are two popes — one in Rome, one in Avignon — each excommunicating the other\'s followers. The institution that claimed to speak for God with a single voice is speaking with two, and both are calling the other a fraud.',
-      'The readings in this unit document the medieval world at its most coherent and most confident. As you move through the course, you will watch the certainties these readings assume — a divinely ordered universe, a trustworthy path to knowledge, a legitimate structure of authority — come under increasingly intense pressure. Everything that follows is, in some sense, a response to losing what this world had.',
+      'Around the year 1000, Latin Christian Europe was consolidating an order that joined theology, political authority, agricultural life, and the calendar. The Church marked the year through feasts and fasts, mediated the sacraments, preserved written learning, and defined the terms of salvation. Kings and lords governed locally; monasteries and parishes connected communities to institutions that extended across Europe. The order held because shared institutions gave conflict a common language.',
+      'Its intellectual structure joined inherited authority to sustained argument. Scholars in the growing universities debated Aristotle and the Church Fathers, testing how far reason could explain truths received through revelation. Cathedrals translated theology into stone, glass, ritual, and light. Mystics including Hildegard of Bingen, Meister Eckhart, and the anonymous author of *The Cloud of Unknowing* examined perception, desire, and the limits of language. Western Europe\'s revival of philosophy also depended on works transmitted and transformed through the Islamic world. Arabic translations, scientific treatises, and commentaries by Avicenna and Averroes helped return Aristotle to Latin readers; Maimonides shaped Christian thinkers including Aquinas.',
+      'Coherence carried costs. Christian institutions enforced religious boundaries, persecuted heresy, and subjected Jewish communities to legal restrictions and recurrent violence. Social rank often claimed divine sanction, even when peasants, towns, monarchs, and clergy contested who possessed legitimate authority. The order supplied a framework within which conflict occurred; it never eliminated conflict.',
+      'By the early fourteenth century, famine, war, declining agricultural yields, and pressure on village life had weakened that framework. The Great Famine of 1315–17 killed across northern Europe. The Hundred Years\' War began in 1337. When merchant ships carried plague into Sicily in 1347, the disease struck societies already under strain.',
+      'Within four years, between a third and half of Europe\'s population had died. The plague created a moral and institutional crisis as well as a demographic one. Clergy and monastic communities that remained to nurse the sick often died with them; flight and isolation offered better chances of survival than service. Processions, relics, penitential rituals, and special devotions failed to halt the disease. Jewish communities died in great numbers and also faced massacre as terrified Christians sought scapegoats. Labor scarcity gave surviving workers greater bargaining power, weakening forms of serfdom in parts of western Europe.',
+      'The **danse macabre**, or Dance of Death, gave the plague\'s social meaning a visible form. Poems and public performances imagined Death leading away pope, emperor, merchant, scholar, laborer, woman, and child. Fifteenth-century paintings extended the procession across entire walls. Rank organized the living world; death removed every distinction. When Hamlet holds Yorick\'s skull, compares Alexander and Caesar to dust, and watches a gravedigger toss bones from the earth, Shakespeare places him inside this tradition.',
+      'The Great Schism of 1378 exposed a second institutional fracture. Rival popes in Rome and Avignon each claimed legitimate authority and excommunicated the other\'s followers. A council called to resolve the conflict in 1409 elected another pope without securing the resignation of the existing claimants, producing three competing papal lines. The failure encouraged **conciliarism**, the argument that a general council representing the Church could exercise authority over a pope. An institution that claimed to speak with one divinely authorized voice now required another institution to determine which voice was legitimate.',
+      'The unit brings together sources that medieval thinkers inherited and sources they produced: Augustine\'s account of the divided will, mystical arguments about the limits of reason, natural philosophy shaped by Aristotle, and literary confrontations with death. The Renaissance inherits an order still powerful enough to command obedience and fractured enough to invite challenge.',
     ],
+    figure: {
+      image: '/images/philosophy/00-medieval/dance-of-death-frieze.png',
+      alt: 'Death leads a ruler, cleric, merchant, and laborer in a single restrained procession; a small gold hourglass marks time.',
+      caption: 'In the Dance of Death, status does not exempt anyone from the common end.',
+      afterParagraph: 5,
+    },
   },
 
   '01-renaissance': {

@@ -90,6 +90,7 @@ const momentJson = JSON.stringify({
   title: hubData.historicalMomentTitle,
   subtitle: moment.subtitle,
   paragraphs: moment.paragraphs,
+  figure: moment.figure ?? null,
 });
 ---
 
@@ -354,12 +355,20 @@ const momentJson = JSON.stringify({
     const bodyEl  = document.getElementById('moment-body');
 
     function mdItalics(text) {
-      return text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
     }
 
     function openModal() {
       titleEl.textContent = data.title;
-      bodyEl.innerHTML = data.paragraphs.map(p => `<p>${mdItalics(p)}</p>`).join('');
+      const blocks = data.paragraphs.map(p => `<p>${mdItalics(p)}</p>`);
+      if (data.figure) {
+        const f = data.figure;
+        const figureHtml = `<figure class="moment-figure"><img src="${f.image}" alt="${f.alt}" /><figcaption>${mdItalics(f.caption)}</figcaption></figure>`;
+        blocks.splice(f.afterParagraph + 1, 0, figureHtml);
+      }
+      bodyEl.innerHTML = blocks.join('');
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -951,6 +960,29 @@ const momentJson = JSON.stringify({
     margin: 0 0 16px;
   }
   .modal p em { font-style: italic; color: var(--ink); }
+  .modal p strong { font-weight: 600; color: var(--ink); }
+  .modal .moment-figure {
+    margin: 24px 0;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-sunken);
+  }
+  .modal .moment-figure img {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    background: #F5E9CE;
+  }
+  .modal .moment-figure figcaption {
+    padding: 12px 16px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .modal .moment-figure figcaption strong { font-style: normal; font-weight: 600; }
   .modal-close {
     position: absolute;
     top: 16px; right: 18px;
