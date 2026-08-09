@@ -24,10 +24,10 @@ const units = defineCollection({
     hero_plate: z.object({
       image: z.string(),
       alt: z.string(),
-      quote: z.string(),
-      citeAuthor: z.string(),
-      citeWork: z.string(),
-      citeDetail: z.string(),
+      quote: z.string().optional(),
+      citeAuthor: z.string().optional(),
+      citeWork: z.string().optional(),
+      citeDetail: z.string().optional(),
       gloss: z.string(),
     }).optional(),
     readings: z.array(z.object({

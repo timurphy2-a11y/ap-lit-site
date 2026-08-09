@@ -175,11 +175,13 @@ const peopleJson   = JSON.stringify(PEOPLE);
 
 // ── Single-column reading layout (art / sculpture / music) ───────────────────
 // Philosophy keeps the original two-column sidebar layout untouched, except for
-// the Medieval unit's plate-illustrated redesign (see the design handoff).
-const isRedesignedDomain = domain !== 'philosophy' || unit === '00-medieval';
-// Medieval Philosophy's closing section uses the handout's boxed "Looking
-// forward:" callout instead of the default italic arc-head heading.
-const useForwardBox = domain === 'philosophy' && unit === '00-medieval';
+// the Medieval and Renaissance units' plate-illustrated redesigns (see the
+// design handoffs).
+const PLATE_REDESIGNED_PHILOSOPHY_UNITS = ['00-medieval', '01-renaissance'];
+const isRedesignedDomain = domain !== 'philosophy' || PLATE_REDESIGNED_PHILOSOPHY_UNITS.includes(unit);
+// These units' closing sections use the handoff's boxed "Looking back /
+// Looking forward" callouts instead of the default italic arc-head heading.
+const useForwardBox = domain === 'philosophy' && PLATE_REDESIGNED_PHILOSOPHY_UNITS.includes(unit);
 const entryData = entry.data as any;
 const threadIds: string[] = entry.data.threads.map((t: { id: string }) => t.id);
 const threadLabels: string[] = entry.data.threads.map((t: { label: string }) => t.label);
@@ -325,11 +327,17 @@ if (isRedesignedDomain) {
           <img src={hp.image} alt={hp.alt} class="hero-img-full" />
         </div>
         <figcaption class="caption">
-          <blockquote>
-            {hp.quote}
-            <cite>{hp.citeAuthor} · <em>{hp.citeWork}</em>, {hp.citeDetail}</cite>
-          </blockquote>
-          <div class="gloss">{hp.gloss}</div>
+          {hp.quote ? (
+            <>
+              <blockquote>
+                {hp.quote}
+                <cite>{hp.citeAuthor} · <em>{hp.citeWork}</em>, {hp.citeDetail}</cite>
+              </blockquote>
+              <div class="gloss">{hp.gloss}</div>
+            </>
+          ) : (
+            <div class="title">{hp.gloss}</div>
+          )}
         </figcaption>
       </figure>
     );
@@ -852,20 +860,26 @@ if (isRedesignedDomain) {
     });
 
     // Remaining headings (Looking Back / Looking Forward) become arc-blocks —
-    // except Medieval Philosophy, whose closing section becomes a boxed
-    // "Looking forward:" callout (see the design handoff).
+    // except redesigned philosophy pages, whose closing section becomes one
+    // or more boxed callouts (see the design handoffs). A single arc heading
+    // (Medieval) keeps the legacy hardcoded "Looking forward:" label; two or
+    // more arc headings (Renaissance) each keep their own heading text as a
+    // distinct label inside one shared wrapper.
+    let forwardWrap = null;
     arcHeads.forEach((h2) => {
       if (useForwardBox) {
-        const wrap = document.createElement('div');
-        wrap.className = 'looking-forward';
+        if (!forwardWrap) {
+          forwardWrap = document.createElement('div');
+          forwardWrap.className = 'looking-forward';
+          h2.parentNode.insertBefore(forwardWrap, h2);
+        }
         const box = document.createElement('div');
         box.className = 'forward';
         const lbl = document.createElement('div');
         lbl.className = 'lbl';
-        lbl.textContent = 'Looking forward:';
+        lbl.textContent = arcHeads.length > 1 ? h2.textContent : 'Looking forward:';
         box.appendChild(lbl);
-        h2.parentNode.insertBefore(wrap, h2);
-        wrap.appendChild(box);
+        forwardWrap.appendChild(box);
         let node = h2.nextSibling;
         h2.remove();
         while (node) {
@@ -1273,6 +1287,27 @@ if (isRedesignedDomain) {
   }
   figure.work-plate .caption .title strong { font-style: normal; font-weight: 500; }
   figure.work-plate.plate-labeled .img { display: flex; justify-content: center; padding: 0; }
+  /* Two-label strip above a headed plate (e.g. a divided-composition figure
+     with one reading on each side) — labels sit outside the caption so they
+     line up with the halves of the image they describe. */
+  .plate-heads {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+    padding: 14px 22px 13px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    color: var(--thread-acc);
+  }
+  .plate-heads span:last-child { text-align: right; }
+  @media (max-width: 640px) {
+    .plate-heads { grid-template-columns: 1fr; }
+    .plate-heads span:last-child { text-align: left; }
+  }
   figure.hero-plate.philosophy-hero .img,
   figure.work-plate .img { background: #F5E9CE; }
   .plate-stage { position: relative; display: block; width: 100%; max-width: var(--stage, 100%); }
@@ -1305,6 +1340,10 @@ if (isRedesignedDomain) {
   .caption .plate-key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px 24px; }
   .caption .plate-key.two ul,
   .caption .plate-key.three ul { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .caption .plate-key.two.pairs ul { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 620px) {
+    .caption .plate-key.two.pairs ul { grid-template-columns: 1fr; }
+  }
   .caption .plate-key li {
     font-family: var(--font-ui);
     font-size: 13px;

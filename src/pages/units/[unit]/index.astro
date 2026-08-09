@@ -286,7 +286,7 @@ const momentJson = JSON.stringify({
 
   <div class="moment-timeline">
     <div class="axis" aria-hidden="true"></div>
-    <div class="row">
+    <div class="row" style={`grid-template-columns: repeat(${timelineEvents.length}, 1fr);`}>
       {timelineEvents.map((evt) => (
         <div class="node">
           <div class="yr">{evt.year}</div>

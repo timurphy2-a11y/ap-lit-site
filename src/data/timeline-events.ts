@@ -14,11 +14,13 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1378, title: 'The Great Schism divides the papacy', type: 'political' },
   ],
   '01-renaissance': [
-    { year: 1440, title: 'Gutenberg develops the printing press', type: 'cultural' },
-    { year: 1517, title: "Luther's Ninety-Five Theses", type: 'political' },
-    { year: 1543, title: 'Copernicus publishes De revolutionibus', type: 'cultural' },
-    { year: 1601, title: 'Hamlet first performed (c. 1601)', type: 'cultural' },
-    { year: 1633, title: "Galileo's trial", type: 'cultural' },
+    { year: 1440, title: 'Gutenberg develops movable-type printing in Europe, c. 1440', type: 'cultural' },
+    { year: 1486, title: 'Pico composes the <em>Oration on the Dignity of Man</em>', type: 'cultural' },
+    { year: 1497, title: "Savonarola's followers organize the Bonfire of the Vanities in Florence", type: 'political' },
+    { year: 1517, title: 'Luther circulates the Ninety-Five Theses', type: 'political' },
+    { year: 1543, title: 'Copernicus publishes <em>De revolutionibus</em>', type: 'cultural' },
+    { year: 1601, title: '<em>Hamlet</em> first performed, c. 1601', type: 'cultural' },
+    { year: 1633, title: 'Galileo is tried by the Roman Inquisition', type: 'political' },
   ],
   '02-baroque': [
     { year: 1563, title: 'Council of Trent concludes', type: 'political' },

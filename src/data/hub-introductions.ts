@@ -28,15 +28,15 @@ export const HUB_DATA: Record<string, HubIntro> = {
   },
 
   '01-renaissance': {
-    kicker: 'Anchor text: Hamlet — Shakespeare\'s prince at the hinge between medieval certainty and Renaissance doubt.',
-    intro: 'Something shifts in the fifteenth and sixteenth centuries \u2014 not all at once, and not without resistance. The stable certainties of the Medieval world come under pressure from every direction: Pico della Mirandola reimagines humanity as self-creating rather than divinely fixed; Copernicus displaces the earth from the center of the cosmos; Luther sets individual conscience against the authority of the Church; Galileo insists on seeing for himself rather than trusting inherited texts. By the time Shakespeare writes Hamlet at the turn of the seventeenth century, the old order is cracking open, and the play registers both the exhilaration and the vertigo of living in a world where the familiar certainties no longer hold.',
+    kicker: 'Transition unit: humanist recovery, religious division, and new forms of inquiry \u2014 anchored, with the Medieval unit, to Hamlet.',
+    intro: 'Fourteenth- and fifteenth-century Italian humanists described their culture as a recovery. Petrarch searched for neglected classical texts and treated the study of language, history, and moral philosophy as preparation for active life. Florentine writers contrasted their own ambitions with an intervening age of decline. Artists and architects studied ancient forms as evidence that achievements lost to time could be attempted again. Palmieri\u2019s \u201cdawn of better things\u201d records the period\u2019s energizing belief that renewal had already begun. The recovery remained deeply Christian. Petrarch measured his worldly ambitions against Augustine; Pico della Mirandola joined Christian theology to Plato, Jewish Kabbalah, and other philosophical traditions; Savonarola demanded the moral purification of Florence. Renaissance culture produced confidence in human ability alongside arguments for stricter religious discipline. Other upheavals widened the conflict. Print accelerated the circulation of texts and disputes. Luther placed Scripture above papal authority and refused to retract teachings he believed the Word of God required. Copernicus reorganized the heavens through mathematics; Galileo used telescopic observation to challenge the inherited division between a changeable earth and perfect celestial spheres. Each controversy raised the same questions: who may interpret an authoritative text, what counts as evidence, and which institution may compel belief?',
     epigraphs: [
       {
-        quote: 'The true work of art is but a shadow of the divine perfection.',
-        attribution: 'Michelangelo Buonarroti',
+        quote: 'It is but in our own day that men dare boast that they see the dawn of better things.',
+        attribution: 'Matteo Palmieri, \u2018Della vita civile\u2019, c. 1435',
       },
       {
-        quote: 'Therefore, Simplicius, come either with Arguments or Demonstrations and bring us no more Texts and Authorities, for our disputes are about the Sensible World, and not one of Paper.',
+        quote: 'Therefore, Simplicius, come either with arguments or demonstrations and bring us no more texts and authorities, for our disputes are about the sensible world, and not one of paper.',
         attribution: 'Galileo Galilei, \u2018Dialogue Concerning the Two Chief World Systems\u2019, 1632',
       },
     ],

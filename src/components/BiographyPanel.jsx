@@ -82,6 +82,15 @@ const PEOPLE = [
   },
   // ── RENAISSANCE ───────────────────────────────────────────────────────────
   {
+    id: "petrarch",
+    name: "Francesco Petrarch",
+    dates: "1304–1374",
+    field: "Poet & Humanist",
+    units: ["01-renaissance"],
+    bio: "An Italian scholar and poet who searched monastic libraries for neglected classical manuscripts — recovering letters of Cicero long thought lost — Petrarch helped establish the study of language, history, and moral philosophy as preparation for active life. He is often called the father of Renaissance humanism, though his Christian commitments remained central throughout his career.",
+    significance: "In the Secretum, Petrarch stages a dialogue between himself and 'Augustine,' who exposes his love of Laura, desire for literary fame, and attachment to worldly achievement as obstacles to spiritual freedom. Petrarch accepts the diagnosis without completing the conversion it demands — a divided self that anticipates Hamlet's own inability to act on what he knows he ought to do.",
+  },
+  {
     id: "pico",
     name: "Giovanni Pico della Mirandola",
     dates: "1463–1494",
@@ -90,6 +99,15 @@ const PEOPLE = [
     bio: "A child prodigy of the Italian Renaissance, Pico could read Hebrew, Aramaic, Greek, and Latin. At 23 he proposed to defend 900 theses in Rome — a project the Pope banned as heretical. His Oration on the Dignity of Man, written as a preface to that debate, was never delivered in his lifetime but became the Renaissance's most celebrated statement of human potential.",
     significance: "Pico's God gives Adam no fixed nature — only the freedom to become whatever he chooses. This single idea explodes the medieval framework that assigned every creature a fixed place. Hamlet's 'what a piece of work is a man' is its echo — and its dark revision.",
     portrait: "/images/portraits/portrait-pico-giovanni.jpg",
+  },
+  {
+    id: "castiglione",
+    name: "Baldassare Castiglione",
+    dates: "1478–1529",
+    field: "Courtier & Diplomat",
+    units: ["01-renaissance"],
+    bio: "A courtier at Urbino and later a papal diplomat, Castiglione set The Book of the Courtier (1528) as a series of evening conversations at the Urbino court, where the speakers define the ideal courtier through education, physical skill, conversation, artistic judgment, and the ability to advise a ruler.",
+    significance: "Castiglione calls the art of concealing effort sprezzatura — disciplined performance that must appear natural and unforced. The courtier creates a persuasive public self, but the performance depends entirely on rank, audience, and power. Hamlet's antic disposition, Claudius's public composure, and Osric's affectations all test what a performed identity can conceal and reveal.",
   },
   {
     id: "copernicus",
@@ -130,6 +148,15 @@ const PEOPLE = [
     bio: "An Augustinian friar and professor of theology at the University of Wittenberg, Luther's 1517 posting of his Ninety-Five Theses — challenging the Church's sale of indulgences — ignited the Reformation. Excommunicated by the Pope and condemned by the Holy Roman Emperor, he refused to recant at the Diet of Worms in 1521. He translated the Bible into German, shaping the German language while placing Scripture in the hands of ordinary readers.",
     significance: "'Here I stand' is the inversion of Augustine's surrender. Where Augustine submits his individual conscience to divine authority, Luther sets individual conscience against institutional authority — and survives. Once that move is made, the entire medieval framework of obedience shifts. The Protestant Reformation is the first act of a drama that runs through Locke's consent theory, Thoreau's civil disobedience, and Ellison's underground refusal.",
     portrait: "/images/portraits/portrait-luther-martin.jpg",
+  },
+  {
+    id: "machiavelli",
+    name: "Niccolò Machiavelli",
+    dates: "1469–1527",
+    field: "Political Thinker & Civil Servant",
+    units: ["01-renaissance"],
+    bio: "Second chancellor of the Florentine Republic for fourteen years, responsible for diplomacy and the citizen militia, Machiavelli was dismissed, imprisoned, and tortured after the Medici restoration in 1512. He wrote The Prince in political exile, asking not what virtues a ruler ought to possess but what actions actually preserve a state among people who do not consistently act well.",
+    significance: "Machiavelli evaluates cruelty and deception through political necessity rather than conventional moral reputation, and his image of Fortune as a flooding river — which preparation can channel but never abolish — revises Boethius's wheel of detachment into a doctrine of foresight. Claudius's competence in Hamlet's opening court scene, and the prayer scene's gap between effective action and moral legitimacy, belong to this same argument.",
   },
   {
     id: "shakespeare",
