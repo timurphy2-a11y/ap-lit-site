@@ -156,7 +156,7 @@ const momentJson = JSON.stringify({
 <section class="quotes">
   {hubData.epigraphs.map((epigraph) => (
     <div class="quote">
-      <blockquote>{epigraph.quote}</blockquote>
+      <blockquote>{epigraph.quote}{epigraph.gloss && <span class="gloss">{epigraph.gloss}</span>}</blockquote>
       <cite set:html={epigraph.attribution.replace(/‘(.*?)’/g, '<em>$1</em>').replace(/'(.*?)'/g, '<em>$1</em>')} />
     </div>
   ))}
@@ -576,6 +576,13 @@ const momentJson = JSON.stringify({
     line-height: 1.45;
     color: var(--ink);
     max-width: 42ch;
+  }
+  .quote blockquote .gloss {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 18px;
+    color: var(--ink-mute);
   }
   .quote cite {
     display: block;

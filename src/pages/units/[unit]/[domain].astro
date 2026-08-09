@@ -772,6 +772,9 @@ if (isRedesignedDomain) {
       const allH2 = Array.from(prose.querySelectorAll('h2'));
       const subHeads = allH2.slice(1, allH2.length - 1);
       subHeads.forEach(decorateSubHead);
+      // document, not prose: the hero figure lives outside article.prose.
+      wireWorkFigures(document);
+      wireConnectionToggles(prose);
       return;
     }
 

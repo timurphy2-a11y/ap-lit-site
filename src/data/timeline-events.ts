@@ -23,11 +23,12 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1633, title: 'Galileo is tried by the Roman Inquisition', type: 'political' },
   ],
   '02-baroque': [
-    { year: 1563, title: 'Council of Trent concludes', type: 'political' },
+    { year: 1618, title: "Defenestration of Prague; the Thirty Years' War begins", type: 'political' },
     { year: 1642, title: 'English Civil War begins', type: 'political' },
-    { year: 1649, title: 'Execution of Charles I', type: 'political' },
-    { year: 1651, title: 'Hobbes publishes Leviathan', type: 'cultural' },
-    { year: 1687, title: "Newton's Principia", type: 'cultural' },
+    { year: 1649, title: 'Charles I is tried and executed', type: 'political' },
+    { year: 1651, title: 'Hobbes publishes <em>Leviathan</em>', type: 'cultural' },
+    { year: 1667, title: 'Milton publishes <em>Paradise Lost</em>', type: 'cultural' },
+    { year: 1687, title: "Newton publishes <em>Principia</em>", type: 'cultural' },
   ],
   '03-enlightenment': [
     { year: 1748, title: 'Excavations begin at Pompeii', type: 'cultural' },

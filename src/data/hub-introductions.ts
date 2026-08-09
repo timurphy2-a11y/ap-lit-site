@@ -1,6 +1,7 @@
 export interface Epigraph {
   quote: string;
   attribution: string;
+  gloss?: string;
 }
 
 export interface HubIntro {
@@ -48,7 +49,8 @@ export const HUB_DATA: Record<string, HubIntro> = {
     intro: 'The Baroque inherits the Renaissance\u2019s daring and pays for it. The Reformation has torn Christendom apart, engendering the Thirty Years\u2019 War that devastates Central Europe. The English Civil War ends with the public beheading of a king. The universe revealed by the telescope turns out to be inconceivably vast, and the comfortable old picture of Earth at the center of a small, orderly cosmos has been permanently destroyed. Pascal places the human being between two infinities and asks whether we can bear the pressure of such a tenuous position. Hobbes surveys the wreckage of civil war and concludes that only absolute sovereign power can prevent the war of all against all. Lanyer defends Eve against the charge of responsibility for the Fall; Cavendish imagines a woman ruling a world she has reorganized from the ground up. This is the world in which Milton writes \u2018Paradise Lost\u2019: a world where freedom is real but dangerous, knowledge is powerful but insufficient, and the relationship between the individual and authority has become a matter of life and death.',
     epigraphs: [
       {
-        quote: '\u00c8 del poeta il fin la meraviglia. (\u201cThe aim of the poet is to astonish.\u201d)',
+        quote: '\u00c8 del poeta il fin la meraviglia.',
+        gloss: '\u201cThe aim of the poet is to astonish.\u201d',
         attribution: 'Giambattista Marino, \u2018Adone\u2019, 1623',
       },
       {
