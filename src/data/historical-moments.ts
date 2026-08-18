@@ -6,10 +6,25 @@ export interface HistoricalMomentFigure {
   afterParagraph: number;
 }
 
+export interface SystemMapStage {
+  title: string;
+  gloss: string;
+}
+
+export interface SystemMap {
+  header: string;
+  subheading: string;
+  stages: SystemMapStage[];
+  footnote: string;
+  // 0-indexed: the map renders immediately after paragraphs[afterParagraph].
+  afterParagraph: number;
+}
+
 export interface HistoricalMoment {
   subtitle: string;
   paragraphs: string[];
   figure?: HistoricalMomentFigure;
+  sysmap?: SystemMap;
 }
 
 // Paragraphs use *asterisks* for italic — rendered via mdItalics() in the template.
@@ -89,12 +104,32 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
   '04-romanticism': {
     subtitle: 'Romanticism, c. 1789–1900',
     paragraphs: [
-      'In 1830, a mill owner in Manchester could send a bolt of cloth to London faster than Julius Caesar could have sent a message across Rome. The steam engine has compressed distance and time in ways that feel almost supernatural. Textile mills in the north of England employ thousands of workers — many of them children — in conditions of noise, danger, and relentless repetition that would have been unimaginable to previous generations. Manchester grows from a market town of twenty thousand in 1750 to a metropolis of three hundred thousand by 1850. The world is remaking itself at a speed no one had anticipated and no one fully understands.',
-      'The Industrial Revolution is not only an economic transformation. The factory clock replaces the rhythm of seasons and daylight. The machine replaces the craftsman\'s judgment. Workers who once owned their tools and their time now sell their labor by the hour in a system they did not choose and cannot control. Marx, watching the mills of Manchester in the 1840s, sees not progress but a new kind of bondage: human beings reduced to units of production, their relationships stripped down to the "callous cash payment" of the wage.',
-      'Outside the factory walls, the world is also being remade by colonialism. The British Empire is at the height of its expansion, extracting raw materials from South Asia, West Africa, and the Caribbean with a system of labor that ranges from wage exploitation to outright slavery. The sugar in an English drawing room and the cotton in an English mill have human histories that the drawing room and the mill prefer not to examine.',
-      'And yet the Romantic period is also one of extraordinary intellectual daring and an extraordinary faith in individual experience as a source of truth. Turner paints the storms. Wordsworth walks the Lake District and finds in nature something the city cannot offer. The Romantic poets insist, against the factory and the ledger, that there are kinds of value that cannot be measured — the sublime, the beautiful, the depth of individual feeling. This insistence is both a protest and a consolation.',
-      'Melville writes *Moby-Dick* in 1851, when the American whaling industry is one of the most globally integrated businesses in the world. The *Pequod* is a floating factory, its crew a labor force from every corner of the earth, its captain a man in whom Romantic obsession and industrial will have fused into something magnificent and catastrophic. The ocean Melville puts them on is not Turner\'s picturesque sublime — it is a workplace, and it kills people in it.',
+      'On 15 September 1830, the Liverpool and Manchester Railway opened between a major Atlantic port and the center of Britain\'s textile industry. Within months, passengers and goods could travel between the two cities more quickly than before. Raw cotton arriving at Liverpool moved toward Manchester\'s mills; finished cloth moved outward into national and global markets. The railway did more than shorten a journey. It joined steam power, factory production, finance, and imperial trade within an accelerating system.',
+      'Manchester\'s population grew more than tenfold between the mid-eighteenth and mid-nineteenth centuries. Mills gathered hundreds of workers beneath one roof, including many women and children. Factory bells and clocks disciplined labor by the hour. Machinery increased production while noise, injury, crowding, polluted air, and insecure wages shaped daily life. Workers produced goods they did not own within institutions whose purposes they did not control. Marx would describe this separation of people from their labor, its products, and one another as alienation.',
+      'Industrial growth cannot be separated from slavery and empire. Manchester\'s cotton industry relied heavily on raw cotton cultivated by enslaved laborers in the Caribbean, South America, and, increasingly, the American South. Britain abolished its Atlantic slave trade in 1807 and slavery in most British colonies during the 1830s, but British manufacturers continued to profit from slave-grown American cotton. The commodity displayed in a shop or drawing room concealed the coercion, dispossession, and dangerous work that had carried it there.',
+      'Romantic writers responded to this remade world without offering a single program. Wordsworth sought forms of attention that commercial calculation could not measure. Turner painted steam, fire, storms, and speed rather than retreating from modern transformation. Mary Shelley imagined scientific ambition creating a life its maker would not accept responsibility for. De Staël made literature an expression of history, institutions, religion, and national culture. The sublime, the beautiful, inward feeling, and organic form became ways of asking what industrial and bureaucratic systems left out.',
+      'Melville published *Moby-Dick* in 1851, when American whaling was a dangerous, capital-intensive, globally connected industry. The *Pequod* is a workplace whose multinational crew hunts whales for owners and profit. Ahab turns that commercial voyage into a private metaphysical war. His quest depends upon the ship, labor, discipline, and global reach of the industry he commandeers. Melville\'s ocean is sublime, but it is also a place of work: crossed by ships, divided into commercial routes, and marked by the violence required to turn living bodies into commodities.',
     ],
+    figure: {
+      image: '/images/philosophy/04-romanticism/railway-cotton-world-remade.png',
+      alt: 'Atmospheric aquatint-style panorama with Liverpool docks at left, an early steam locomotive at center, and Manchester textile mills at right. Workers move three cotton bales whose dark-slate bands repeat from dock to train to mill, while a thin slate rail connects the sites.',
+      caption: '**Liverpool to Manchester, 1830.** The Liverpool and Manchester Railway connected Atlantic shipping at Liverpool with Manchester\'s mills. The repeated cotton bales make visible the commodity moving through a system that joined steam, factory labor, finance, empire, and slave-grown American cotton.',
+      afterParagraph: -1,
+    },
+    sysmap: {
+      header: 'The Railway and the Cotton System',
+      subheading: 'what the finished cloth does not show',
+      stages: [
+        { title: 'Cultivation', gloss: 'Cotton grown by enslaved laborers, chiefly in the American South.' },
+        { title: 'Atlantic shipping', gloss: 'Bales carried by sea to Liverpool, the port of a global trade.' },
+        { title: 'Dock and warehouse', gloss: 'Cargo unloaded, financed, insured, and held for sale.' },
+        { title: 'Rail acceleration', gloss: 'The 1830 line moves raw cotton inland and cloth outward faster than before.' },
+        { title: 'Factory labor', gloss: 'Mill workers, many of them women and children, work to the clock and the bell.' },
+        { title: 'Export markets', gloss: 'Finished cloth sold into national and imperial markets, its origins invisible.' },
+      ],
+      footnote: 'Each stage was a separate business with its own accounts. The system\'s coherence was economic rather than deliberate, and no participant had to see the whole of it for the whole to function.',
+      afterParagraph: 2,
+    },
   },
 
   '05-modernism': {

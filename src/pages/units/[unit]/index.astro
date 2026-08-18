@@ -91,6 +91,7 @@ const momentJson = JSON.stringify({
   subtitle: moment.subtitle,
   paragraphs: moment.paragraphs,
   figure: moment.figure ?? null,
+  sysmap: moment.sysmap ?? null,
 });
 ---
 
@@ -360,14 +361,28 @@ const momentJson = JSON.stringify({
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
     }
 
+    function sysmapHtml(s) {
+      const stages = s.stages.map((st, i) => `<div class="st"><div class="n">${String(i + 1).padStart(2, '0')}</div><div class="t">${st.title}</div><div class="g">${mdItalics(st.gloss)}</div></div>`).join('');
+      return `<div class="sysmap"><div class="hd"><span>${s.header}</span><span class="sub">${s.subheading}</span></div><div class="flow">${stages}</div><div class="ft">${mdItalics(s.footnote)}</div></div>`;
+    }
+
     function openModal() {
       titleEl.textContent = data.title;
       const blocks = data.paragraphs.map(p => `<p>${mdItalics(p)}</p>`);
+      const inserts = [];
       if (data.figure) {
         const f = data.figure;
-        const figureHtml = `<figure class="moment-figure"><img src="${f.image}" alt="${f.alt}" /><figcaption>${mdItalics(f.caption)}</figcaption></figure>`;
-        blocks.splice(f.afterParagraph + 1, 0, figureHtml);
+        inserts.push({ at: f.afterParagraph, html: `<figure class="moment-figure"><img src="${f.image}" alt="${f.alt}" /><figcaption>${mdItalics(f.caption)}</figcaption></figure>` });
       }
+      if (data.sysmap) {
+        inserts.push({ at: data.sysmap.afterParagraph, html: sysmapHtml(data.sysmap) });
+      }
+      inserts.sort((a, b) => a.at - b.at);
+      let offset = 1;
+      inserts.forEach(ins => {
+        blocks.splice(ins.at + offset, 0, ins.html);
+        offset++;
+      });
       bodyEl.innerHTML = blocks.join('');
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -901,7 +916,9 @@ const momentJson = JSON.stringify({
   @media (max-width: 900px) {
     .moment-timeline { padding: 24px 20px; }
     .moment-timeline .axis { display: none; }
-    .moment-timeline .row { grid-template-columns: 1fr; gap: 16px; }
+    /* !important overrides the per-unit inline grid-template-columns (repeat(N, 1fr)),
+       which otherwise wins over this media query at any viewport width. */
+    .moment-timeline .row { grid-template-columns: 1fr !important; gap: 16px; }
     .moment-timeline .node .marker { display: none; }
   }
   @media (max-width: 720px) {
@@ -990,6 +1007,74 @@ const momentJson = JSON.stringify({
     color: var(--ink);
   }
   .modal .moment-figure figcaption strong { font-style: normal; font-weight: 600; }
+
+  /* ── System map (six-stage flow inside the period modal) ────── */
+  .modal .sysmap {
+    border: 1px solid var(--rule);
+    background: var(--bg-raised);
+    margin: 30px 0 10px;
+  }
+  .modal .sysmap .hd {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acc-deep);
+  }
+  .modal .sysmap .hd .sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+  .modal .sysmap .flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+  }
+  @media (max-width: 640px) {
+    .modal .sysmap .flow { grid-template-columns: 1fr; }
+  }
+  .modal .sysmap .st {
+    background: var(--bg-sunken);
+    padding: 15px 16px 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .modal .sysmap .st .n {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--acc);
+  }
+  .modal .sysmap .st .t {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .modal .sysmap .st .g {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .modal .sysmap .ft {
+    padding: 12px 18px 15px;
+    border-top: 1px solid var(--rule);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+  }
+
   .modal-close {
     position: absolute;
     top: 16px; right: 18px;
