@@ -16,16 +16,13 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
   '01-renaissance': [
     { year: 1440, title: 'Gutenberg develops movable-type printing in Europe, c. 1440', type: 'cultural' },
     { year: 1486, title: 'Pico composes the <em>Oration on the Dignity of Man</em>', type: 'cultural' },
-    { year: 1497, title: "Savonarola's followers organize the Bonfire of the Vanities in Florence", type: 'political' },
     { year: 1517, title: 'Luther circulates the Ninety-Five Theses', type: 'political' },
     { year: 1543, title: 'Copernicus publishes <em>De revolutionibus</em>', type: 'cultural' },
     { year: 1601, title: '<em>Hamlet</em> first performed, c. 1601', type: 'cultural' },
-    { year: 1633, title: 'Galileo is tried by the Roman Inquisition', type: 'political' },
   ],
   '02-baroque': [
     { year: 1618, title: "Defenestration of Prague; the Thirty Years' War begins", type: 'political' },
-    { year: 1642, title: 'English Civil War begins', type: 'political' },
-    { year: 1649, title: 'Charles I is tried and executed', type: 'political' },
+    { year: 1649, title: 'Charles I is tried and executed, ending the English Civil War in regicide', type: 'political' },
     { year: 1651, title: 'Hobbes publishes <em>Leviathan</em>', type: 'cultural' },
     { year: 1667, title: 'Milton publishes <em>Paradise Lost</em>', type: 'cultural' },
     { year: 1687, title: "Newton publishes <em>Principia</em>", type: 'cultural' },
@@ -40,10 +37,7 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
   '04-romanticism': [
     { year: 1789, title: 'French Revolution begins', type: 'political' },
     { year: 1798, title: 'Wordsworth and Coleridge publish <em>Lyrical Ballads</em>', type: 'cultural' },
-    { year: 1813, title: 'Germaine de Staël publishes <em>On Germany</em>', type: 'cultural' },
     { year: 1818, title: "Mary Shelley publishes <em>Frankenstein</em>", type: 'cultural' },
-    { year: 1830, title: 'Liverpool and Manchester Railway opens', type: 'political' },
-    { year: 1848, title: 'European revolutions; Marx and Engels publish <em>The Communist Manifesto</em>', type: 'political' },
     { year: 1851, title: 'Great Exhibition opens; Melville publishes <em>Moby-Dick</em>', type: 'cultural' },
     { year: 1859, title: "Darwin publishes <em>On the Origin of Species</em>", type: 'cultural' },
   ],
