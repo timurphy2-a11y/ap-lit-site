@@ -67,8 +67,11 @@ src/
   data/
     hub-introductions.ts — epigraphs, intro paragraphs, historicalMomentTitle per unit
     historical-moments.ts — full essay text for the Historical Moment modal (6 units)
-    timeline-events.ts  — HUB_EVENTS (5 curated events per unit for hub strip)
-                          and full TimelineEvent[] for the /timeline page
+    timeline-events.ts  — HUB_EVENTS only: 5 curated events per unit, used
+                          by hub page timeline strips
+    timeline-entries.ts — ENTRIES: the richer dataset (unit, type:
+                          POL/phil/paint/sculp/music, AP anchor-text
+                          variant) that powers the full /timeline page
   pages/
     index.astro          — home page (unit card grid)
     people.astro         — biographical index (mounts BiographyDemo React island)
