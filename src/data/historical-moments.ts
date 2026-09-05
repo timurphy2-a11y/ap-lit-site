@@ -4,6 +4,15 @@ export interface HistoricalMomentFigure {
   caption: string;
   // 0-indexed: the figure renders immediately after paragraphs[afterParagraph].
   afterParagraph: number;
+  // Optional short labeled strip rendered under the caption (e.g. a 4-item figure key).
+  keyItems?: string[];
+}
+
+export interface HistoricalMomentXref {
+  // Markdown-lite: supports *italic*, **bold**, and [link text](href).
+  text: string;
+  // 0-indexed: the cross-reference renders immediately after paragraphs[afterParagraph].
+  afterParagraph: number;
 }
 
 export interface SystemMapStage {
@@ -25,6 +34,7 @@ export interface HistoricalMoment {
   paragraphs: string[];
   figure?: HistoricalMomentFigure;
   sysmap?: SystemMap;
+  xref?: HistoricalMomentXref;
 }
 
 // Paragraphs use *asterisks* for italic — rendered via mdItalics() in the template.
@@ -140,12 +150,25 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
   '05-modernism': {
     subtitle: 'Modernism, c. 1900–1950',
     paragraphs: [
-      'On July 1, 1916, British and Commonwealth forces go over the top at the Somme. In the first hour, twenty thousand men are killed. By the end of the day, the number reaches sixty thousand dead or wounded. The generals had expected the artillery bombardment to destroy the German defenses. It had not. The machine guns were intact, and they fired into the advancing men with industrial efficiency. The survivors describe walking through fields of bodies.',
-      'The First World War is not simply a large war. It is the application of nineteenth-century industrial technology to the task of killing human beings at a scale and with a mechanical indifference that shatters something fundamental in European civilization. The Enlightenment\'s faith that science and reason lead to progress — that civilization is the name for human improvement — does not survive the Somme, or Verdun, or Passchendaele, or poison gas. Eight million soldiers die. Twenty million more in the influenza pandemic that follows. The war to end all wars ends nothing. Twenty years later, it happens again, worse.',
-      'The Second World War introduces industrialized genocide. The Holocaust is not a pre-modern outbreak of violence; it is a modern administrative project, organized by bureaucracies, executed by railways and factories. Six million Jews, along with hundreds of thousands of Roma, disabled people, gay men, and political prisoners, are murdered with systematic efficiency. The civilization that produced Beethoven and Kant is proved to also be capable of producing this ultimate enormity.',
-      'In America, the story runs differently but not separately. Even before the First World War, Black Americans were fleeing the terror of Jim Crow in the rural South. The war accelerated the movement: as white workers left for the front, Northern factories recruited Black labor, and hundreds of thousands moved to Chicago, Detroit, and Harlem. By the time the war ended, a new Black urban culture had taken root — and returning Black veterans, who had fought for a democracy that still denied them basic rights, were unwilling to return to the old arrangements. The Great Migration ultimately moved six million people over six decades, and it produced, in those Northern cities, the jazz, blues, and literary culture that would define the twentieth century.',
-      'Ellison writes *Invisible Man* in the aftermath of the Second World War, publishing it in 1952. His narrator\'s journey from the South to Harlem, from innocence to experience, from belief in the available systems to a hard-won underground skepticism — this is the Modernist arc, told from within the Black American experience that European Modernism largely ignored. The world that broke in 1914 and again in 1939 had never been fully intact for the narrator\'s people. His invisibility is not a metaphor for alienation in general; it is the specific condition of living in a country that has not yet decided whether you are fully human.',
+      'On 1 July 1916, British troops climbed from their trenches and advanced along a fifteen-mile front beside the River Somme. By the end of the day, the British Army had suffered 57,470 casualties; 19,240 men were dead. The offensive continued for more than four months. Artillery, machine guns, barbed wire, railways, and mass conscription had turned scientific and industrial capacity toward attritional war.',
+      'World War I killed millions of soldiers and civilians. The influenza pandemic that followed killed at least fifty million more people worldwide. Political empires collapsed; revolution and civil war redrew borders. Confidence in inevitable progress survived in some forms, but the war made it impossible to identify technical development with moral advancement. A civilization that produced modern medicine, engineering, and mass education had also produced the machinery of the trenches.',
+      'Modern claims to scientific authority also entered law through **eugenics**, the discredited effort to improve society by controlling human reproduction. Eugenics flourished across Europe and the Americas. In the United States, state laws authorized the involuntary sterilization of people classified as “unfit,” disproportionately targeting disabled people, poor people, Indigenous people, Black people, and other minorities. In *Buck v. Bell* (1927), the Supreme Court upheld Virginia\'s sterilization law. American policies later influenced aspects of Nazi racial practice, although Nazi Germany expanded eugenic classification into a program of persecution and mass murder on a different scale.',
+      'World War II joined conquest and racial ideology to administrative power. The Holocaust was organized through ministries, census records, property seizures, deportation orders, rail schedules, camps, and factories of death. Six million Jews were murdered, along with hundreds of thousands of Roma, disabled people, gay men, political prisoners, and other victims. Hannah Arendt later used the phrase **the banality of evil** to examine how ordinary habits of career, procedure, and obedience could participate in murderous systems. Her argument did not excuse perpetrators as people who merely followed orders. It asked how the failure to think and judge could become politically catastrophic.',
+      'For Black Americans, the world before 1914 had never possessed the security that European accounts of a broken civilization sometimes assumed. Jim Crow law, racial terror, disfranchisement, exploitative labor, and segregation structured life after Reconstruction. Beginning during World War I, the Great Migration carried approximately six million Black Americans from the South to cities in the North and West over six decades. The movement changed American labor, electoral politics, music, art, and literature. Harlem became a center of Black cultural production and political struggle, shaped by reformers, nationalists, socialists, Communists, artists, churches, newspapers, and neighborhood organizations.',
+      'The American Communist Party and the broader left attracted writers and activists by organizing against unemployment, eviction, segregation, and racial violence. Their claims of interracial solidarity existed beside internal discipline, strategic reversals, and recurring efforts to subordinate Black political concerns to a theory of class. Ellison moved through this intellectual world before breaking with the Communist left during the 1940s. The Brotherhood in *Invisible Man* draws upon that history without functioning as a simple portrait of one organization.',
+      'Ellison published *Invisible Man* in 1952, during the early Cold War and two years before *Brown v. Board of Education*. The narrator travels from a Black college in the South to a paint factory, hospital, eviction protest, political organization, riot, and underground room in Harlem. Each institution explains his identity through a system it already possesses. His invisibility is therefore neither a universal mood nor a private failure of confidence. It is a specifically racial and political condition within a nation that repeatedly invokes equality while refusing to see a Black person beyond the uses assigned to him.',
     ],
+    figure: {
+      image: '/images/philosophy/05-modernism/somme-industrial-line.png',
+      alt: 'Wide modernist linocut of a British sector at the Somme in 1916. A narrow military railway delivers shell crates at left, artillery and telephone poles cross the middle ground, soldiers advance from a trench, and dense wire fills the right foreground. A thin brick-red line repeats through rail, crate bands, cable, and selected wire strands.',
+      caption: '**At the Somme,** military railways, standardized supply, artillery, telephone lines, mass infantry, and manufactured wire joined technical and industrial capacity to attritional war. Development in knowledge and production did not guarantee moral progress.',
+      keyItems: ['Rail supply', 'Artillery and communication', 'Mass infantry', 'Manufactured obstruction'],
+      afterParagraph: -1,
+    },
+    xref: {
+      text: 'Arendt\'s account of administrative participation, and the six-stage plate that accompanies it, appear in [Philosophy · The Individual and Authority](/units/05-modernism/philosophy#individual-authority).',
+      afterParagraph: 3,
+    },
   },
 
 };

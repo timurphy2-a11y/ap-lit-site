@@ -29,6 +29,10 @@ const units = defineCollection({
       citeWork: z.string().optional(),
       citeDetail: z.string().optional(),
       gloss: z.string(),
+      keyItems: z.array(z.object({
+        label: z.string(),
+        text: z.string(),
+      })).optional(),
     }).optional(),
     readings: z.array(z.object({
       title: z.string(),

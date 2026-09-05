@@ -94,7 +94,14 @@ const momentJson = JSON.stringify({
   paragraphs: moment.paragraphs,
   figure: moment.figure ?? null,
   sysmap: moment.sysmap ?? null,
+  xref: moment.xref ?? null,
 });
+
+// Timeline strip rows — chunk into rows of up to 5 nodes
+const timelineRows: typeof timelineEvents[number][][] = [];
+for (let i = 0; i < timelineEvents.length; i += 5) {
+  timelineRows.push(timelineEvents.slice(i, i + 5));
+}
 ---
 
 <!doctype html>
@@ -289,18 +296,19 @@ const momentJson = JSON.stringify({
   </button>
 
   <div class="moment-timeline">
-    <div class="axis" aria-hidden="true"></div>
-    <div class="row" style={`grid-template-columns: repeat(${timelineEvents.length}, 1fr);`}>
-      {timelineEvents.map((evt) => (
-        <div class="node">
-          <div class="yr">{evt.year}</div>
-          <div class="marker" aria-hidden="true">
-            <PeriodMotif unit={unit} role={3} />
+    {timelineRows.map((row) => (
+      <div class="row" style={`grid-template-columns: repeat(${row.length}, 1fr);`}>
+        {row.map((evt) => (
+          <div class="node">
+            <div class="yr">{evt.year}</div>
+            <div class="marker" aria-hidden="true">
+              <PeriodMotif unit={unit} role={3} />
+            </div>
+            <div class="ev" set:html={evt.title} />
           </div>
-          <div class="ev" set:html={evt.title} />
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    ))}
   </div>
 </div>
 
@@ -361,7 +369,8 @@ const momentJson = JSON.stringify({
     function mdItalics(text) {
       return text
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
     }
 
     function sysmapHtml(s) {
@@ -369,16 +378,23 @@ const momentJson = JSON.stringify({
       return `<div class="sysmap"><div class="hd"><span>${s.header}</span><span class="sub">${s.subheading}</span></div><div class="flow">${stages}</div><div class="ft">${mdItalics(s.footnote)}</div></div>`;
     }
 
+    function figureHtml(f) {
+      const key = f.keyItems ? `<span class="figkey">${f.keyItems.map(k => `<span>${k}</span>`).join('')}</span>` : '';
+      return `<figure class="moment-figure"><img src="${f.image}" alt="${f.alt}" /><figcaption>${mdItalics(f.caption)}${key}</figcaption></figure>`;
+    }
+
     function openModal() {
       titleEl.textContent = data.title;
       const blocks = data.paragraphs.map(p => `<p>${mdItalics(p)}</p>`);
       const inserts = [];
       if (data.figure) {
-        const f = data.figure;
-        inserts.push({ at: f.afterParagraph, html: `<figure class="moment-figure"><img src="${f.image}" alt="${f.alt}" /><figcaption>${mdItalics(f.caption)}</figcaption></figure>` });
+        inserts.push({ at: data.figure.afterParagraph, html: figureHtml(data.figure) });
       }
       if (data.sysmap) {
         inserts.push({ at: data.sysmap.afterParagraph, html: sysmapHtml(data.sysmap) });
+      }
+      if (data.xref) {
+        inserts.push({ at: data.xref.afterParagraph, html: `<div class="xref">${mdItalics(data.xref.text)}</div>` });
       }
       inserts.sort((a, b) => a.at - b.at);
       let offset = 1;
@@ -873,18 +889,20 @@ const momentJson = JSON.stringify({
     padding: 46px 36px 36px;
     background: var(--cream);
   }
-  .moment-timeline .axis {
-    position: absolute;
-    left: 36px; right: 36px;
-    top: 84px;
-    height: 1px;
-    background: var(--rule-strong);
-  }
   .moment-timeline .row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     position: relative;
   }
+  .moment-timeline .row::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 38px;
+    height: 1px;
+    background: var(--rule-strong);
+  }
+  .moment-timeline .row + .row { margin-top: 34px; }
   .moment-timeline .node {
     display: flex;
     flex-direction: column;
@@ -920,7 +938,8 @@ const momentJson = JSON.stringify({
 
   @media (max-width: 900px) {
     .moment-timeline { padding: 24px 20px; }
-    .moment-timeline .axis { display: none; }
+    .moment-timeline .row::before { display: none; }
+    .moment-timeline .row + .row { margin-top: 20px; }
     /* !important overrides the per-unit inline grid-template-columns (repeat(N, 1fr)),
        which otherwise wins over this media query at any viewport width. */
     .moment-timeline .row { grid-template-columns: 1fr !important; gap: 16px; }
@@ -1012,6 +1031,39 @@ const momentJson = JSON.stringify({
     color: var(--ink);
   }
   .modal .moment-figure figcaption strong { font-style: normal; font-weight: 600; }
+  .modal .figkey {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 14px;
+    margin-top: 11px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  @media (max-width: 560px) {
+    .modal .figkey { grid-template-columns: 1fr 1fr; }
+  }
+  .modal .xref {
+    margin: 22px 0 18px;
+    padding: 14px 18px 15px;
+    background: var(--bg-raised);
+    border-left: 3px solid var(--acc);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-mute);
+  }
+  .modal .xref a {
+    color: var(--acc-deep);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+  }
 
   /* ── System map (six-stage flow inside the period modal) ────── */
   .modal .sysmap {

@@ -42,10 +42,15 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
     { year: 1859, title: "Darwin publishes <em>On the Origin of Species</em>", type: 'cultural' },
   ],
   '05-modernism': [
-    { year: 1905, title: "Einstein's special relativity", type: 'cultural' },
+    { year: 1903, title: 'W. E. B. Du Bois publishes <em>The Souls of Black Folk</em>', type: 'cultural' },
+    { year: 1905, title: 'Albert Einstein publishes the special theory of relativity', type: 'cultural' },
     { year: 1914, title: 'World War I begins', type: 'political' },
-    { year: 1922, title: "Joyce's Ulysses & Eliot's The Waste Land", type: 'cultural' },
+    { year: 1916, title: 'The Great Migration accelerates; the Battle of the Somme begins', type: 'political' },
+    { year: 1922, title: 'James Joyce publishes <em>Ulysses</em>; T. S. Eliot publishes <em>The Waste Land</em>', type: 'cultural' },
+    { year: 1927, title: 'The Supreme Court decides <em>Buck v. Bell</em>', type: 'political' },
+    { year: 1931, title: 'Kurt Gödel publishes the first incompleteness theorem', type: 'cultural' },
     { year: 1939, title: 'World War II begins', type: 'political' },
-    { year: 1954, title: 'Brown v. Board of Education', type: 'political' },
+    { year: 1952, title: 'Ralph Ellison publishes <em>Invisible Man</em>', type: 'cultural' },
+    { year: 1954, title: 'The Supreme Court decides <em>Brown v. Board of Education</em>', type: 'political' },
   ],
 };
