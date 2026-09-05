@@ -81,9 +81,11 @@ const nextLabel = nextUnit
   ? (await getEntry('units', `${nextUnit}/philosophy`))?.data.period
   : null;
 
-// Drop cap for intro text
-const dropLetter = hubData.intro.charAt(0);
-const introRest  = hubData.intro.slice(1);
+// Drop cap for intro text — intro may hold multiple paragraphs separated by \n\n
+const introParagraphs = hubData.intro.split(/\n\n+/);
+const dropLetter = introParagraphs[0].charAt(0);
+const introFirstRest = introParagraphs[0].slice(1);
+const introRestParagraphs = introParagraphs.slice(1);
 
 // Pass moment data to client for modal
 const momentJson = JSON.stringify({
@@ -157,7 +159,7 @@ const momentJson = JSON.stringify({
 <section class="quotes">
   {hubData.epigraphs.map((epigraph) => (
     <div class="quote">
-      <blockquote>{epigraph.quote}{epigraph.gloss && <span class="gloss">{epigraph.gloss}</span>}</blockquote>
+      <blockquote set:html={`${epigraph.quote.replace(/\n/g, '<br />')}${epigraph.gloss ? `<span class="gloss">${epigraph.gloss}</span>` : ''}`} />
       <cite set:html={epigraph.attribution.replace(/‘(.*?)’/g, '<em>$1</em>').replace(/'(.*?)'/g, '<em>$1</em>')} />
     </div>
   ))}
@@ -165,7 +167,8 @@ const momentJson = JSON.stringify({
 
 <!-- ── About prose ── -->
 <div class="about">
-  <span class="drop">{dropLetter}</span>{introRest}
+  <p><span class="drop">{dropLetter}</span>{introFirstRest}</p>
+  {introRestParagraphs.map((p) => <p>{p}</p>)}
 </div>
 
 <!-- ── Thread buttons ── -->
@@ -643,6 +646,8 @@ const momentJson = JSON.stringify({
     padding: 56px 0 24px;
   }
   .about em { font-style: italic; color: var(--ink); }
+  .about p { margin: 0 0 20px; }
+  .about p:last-child { margin-bottom: 0; }
   .about .drop {
     float: left;
     font-family: var(--font-display);

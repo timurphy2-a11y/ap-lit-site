@@ -63,15 +63,15 @@ export const HUB_DATA: Record<string, HubIntro> = {
 
   '03-enlightenment': {
     kicker: 'Anchor text: Pride and Prejudice — Austen\'s laboratory for rational moral judgment and its limits.',
-    intro: 'The Enlightenment attempts to resolve the Baroque\u2019s tensions by doubling down on reason. Newton has revealed a universe governed by mathematical laws; Locke has argued that legitimate government rests on consent; Kant has issued his rallying cry: Sapere aude \u2014 dare to know. The battlefield gives way to the drawing room, and the dominant mood is one of confidence that rational inquiry can illuminate everything it touches. Until the century\u2019s last decade, when reason\u2019s own partisans discover how much violence a confident argument can license. The Enlightenment\u2019s most interesting thinkers, though, know that moral knowledge \u2014 knowledge of other people, knowledge of oneself \u2014 is trickier than physics. Rousseau diagnoses amour-propre, the corrosive need to see oneself through others\u2019 eyes. Adam Smith argues that moral judgment depends on sympathetic imagination, not calculation. Austen\u2019s Pride and Prejudice is a laboratory for testing these ideas: a novel in which intelligent people go wrong in their judgments and must learn, painfully, to see past the distortions of vanity and social performance.',
+    intro: 'Enlightenment thinkers increasingly required inherited beliefs and institutions to justify themselves through evidence, argument, and public criticism. Newtonian natural philosophy showed the explanatory power of mathematics; Locke made political authority conditional on consent and the protection of rights; Kant called on readers to use their understanding without depending on another\u2019s direction. Print, periodicals, salons, coffeehouses, academies, and correspondence widened intellectual exchange, although access remained shaped by class, gender, religion, and empire.\n\nThe period never agreed on what reason could accomplish. Hume argued that experience cannot prove the necessary causal connections on which prediction depends. Rousseau traced inequality and vanity to social development. Smith made sympathy and the imagined judgment of an impartial spectator central to moral life. Wollstonecraft exposed the contradiction between universal reason and an education designed to keep women dependent.',
     epigraphs: [
       {
-        quote: 'True Wit is Nature to advantage dress\u2019d, / What oft was thought, but ne\u2019er so well express\u2019d.',
-        attribution: 'Alexander Pope, \u2018An Essay on Criticism\u2019, 1709',
+        quote: 'True Wit is Nature to advantage dress\u2019d,\nWhat oft was thought, but ne\u2019er so well express\u2019d.',
+        attribution: 'Alexander Pope, \u2018An Essay on Criticism\u2019, 1711',
       },
       {
         quote: 'I came across the subject proposed by the Academy of Dijon as a prize essay for the following year: \u201cHas the progress of the sciences and arts done more to corrupt morals or improve them?\u201d The moment I read this I beheld another universe and became another man.',
-        attribution: 'Jean-Jacques Rousseau, \u2018The Confessions\u2019, 1769',
+        attribution: 'Jean-Jacques Rousseau, \u2018The Confessions\u2019, composed c. 1765\u20131770',
       },
     ],
     historicalMomentTitle: 'The World Shakes',

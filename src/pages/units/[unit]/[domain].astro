@@ -177,7 +177,7 @@ const peopleJson   = JSON.stringify(PEOPLE);
 // Philosophy keeps the original two-column sidebar layout untouched, except for
 // the Medieval and Renaissance units' plate-illustrated redesigns (see the
 // design handoffs).
-const PLATE_REDESIGNED_PHILOSOPHY_UNITS = ['00-medieval', '01-renaissance'];
+const PLATE_REDESIGNED_PHILOSOPHY_UNITS = ['00-medieval', '01-renaissance', '03-enlightenment'];
 const isRedesignedDomain = domain !== 'philosophy' || PLATE_REDESIGNED_PHILOSOPHY_UNITS.includes(unit);
 // These units' closing sections use the handoff's boxed "Looking back /
 // Looking forward" callouts instead of the default italic arc-head heading.
@@ -1316,9 +1316,12 @@ if (isRedesignedDomain) {
     color: var(--thread-acc);
   }
   .plate-heads span:last-child { text-align: right; }
+  .plate-heads.three { grid-template-columns: repeat(3, 1fr); }
+  .plate-heads.three span:nth-child(2) { text-align: center; }
   @media (max-width: 640px) {
-    .plate-heads { grid-template-columns: 1fr; }
-    .plate-heads span:last-child { text-align: left; }
+    .plate-heads, .plate-heads.three { grid-template-columns: 1fr; }
+    .plate-heads span:last-child,
+    .plate-heads.three span:nth-child(2) { text-align: left; }
   }
   figure.hero-plate.philosophy-hero .img,
   figure.work-plate .img { background: #F5E9CE; }

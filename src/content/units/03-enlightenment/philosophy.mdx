@@ -8,58 +8,54 @@ domain: philosophy
 threads:
   - id: human-position
     label: "The Human Position"
-    period_summary: "Social beings — rational, capable of moral improvement, but shaped and distorted by the gaze of others"
+    period_summary: "Rational and social: capable of independence, formed through recognition, and vulnerable to vanity and dependence."
   - id: knowledge-limits
     label: "Knowledge and Its Limits"
-    period_summary: "Dare to know — but moral knowledge requires sympathy and self-examination, not only reason"
+    period_summary: "Evidence extends inquiry, but causation, other minds, and moral character remain matters of fallible judgment."
   - id: individual-authority
     label: "The Individual and Authority"
-    period_summary: "Government by consent — legitimate authority rests on reason, law, and the social contract"
+    period_summary: "Legitimate authority must justify itself through rights, consent, law, and public purposes; universal claims expose their own exclusions."
+hero_plate:
+  image: "/images/philosophy/03-enlightenment/public-reason-hero.png"
+  alt: "Three adults sit at a long eighteenth-century reading-room table. An artisan demonstrates a small mechanism beside a technical plate, a woman presents a corrected blank folio, and another reader compares an earlier copy. Narrow slate-blue paper edges trace correction and circulation."
+  gloss: "Enlightenment criticism placed a new burden of proof on inherited claims. Practical knowledge, public comparison, correction, and print could redistribute authority, although access to those exchanges remained unequal."
 readings:
   - title: "Second Treatise on Government (excerpts)"
     author: "John Locke"
     date: 1690
     threads: [individual-authority]
-    role: "period-context"
-    note: "Essential for understanding the Enlightenment's political foundations; less directly connected to Austen than other readings in this unit"
   - title: "Discourse on the Origin of Inequality (excerpts)"
     author: "Jean-Jacques Rousseau"
     date: 1755
     threads: [human-position, knowledge-limits]
-    role: "text-context"
-    note: "Excerpts focused on amour-propre — the social self-consciousness born from comparison with others"
   - title: "The Theory of Moral Sentiments (excerpts)"
     author: "Adam Smith"
     date: 1759
     threads: [human-position, knowledge-limits]
-    role: "text-context"
-    note: "Excerpts on sympathy as imaginative projection and the impartial spectator as the basis of moral judgment"
   - title: "An Essay on Criticism (excerpt)"
     author: "Alexander Pope"
     date: 1709
     threads: [knowledge-limits]
-    role: "text-context"
   - title: "What is Enlightenment?"
     author: "Immanuel Kant"
     date: 1784
     threads: [knowledge-limits, individual-authority, human-position]
-    role: "text-context"
+  - title: "The Advancement of Learning (excerpt)"
+    author: "Francis Bacon"
+    date: 1605
+    threads: [knowledge-limits]
   - title: "Principia Mathematica (excerpt)"
     author: "Isaac Newton"
     date: 1687
     threads: [knowledge-limits]
-    role: "period-context"
   - title: "Candide (excerpts)"
     author: "Voltaire"
     date: 1759
     threads: [knowledge-limits, individual-authority]
-    role: "text-context"
-    note: "Excerpts focused on the satire of optimism and the Calas affair as a case study in institutional injustice"
   - title: "A Vindication of the Rights of Woman (excerpt)"
     author: "Mary Wollstonecraft"
     date: 1792
     threads: [individual-authority, human-position]
-    role: "text-context"
 compare_back: "baroque"
 compare_forward: "romanticism"
 ---
@@ -71,80 +67,184 @@ import PullQuote from '../../../components/PullQuote.astro';
 
 ## Introduction
 
-After the Baroque's drama — its wars, its vertigo, its agonized negotiations between faith and reason — the Enlightenment can feel like someone opening the curtains to dispel the darkness. Reason, which <BioLink id="pascal">Pascal</BioLink> declared insufficient and <BioLink id="hobbes">Hobbes</BioLink> yoked to the service of absolute power, is rehabilitated as the instrument of progress, freedom, and human flourishing. <BioLink id="kant">Kant</BioLink>'s motto for the age — *Sapere aude*, "dare to know" — captures its spirit: let go of what <BioLink id="kant">Kant</BioLink> would call an "immature" fear of the power of human intelligence.
+The Enlightenment was not a single doctrine or a unanimous celebration of reason. It included rationalists and empiricists, reformers and skeptics, Christians, deists, materialists, and atheists. Its participants disagreed about human nature, religion, political authority, and the limits of knowledge. They shared no complete program, but many placed a new burden of proof on claims protected by antiquity, office, revelation, or custom.
 
-This is the intellectual world in which <BioLink id="austen">Jane Austen</BioLink> matures as a writer. Her novels never celebrate extreme emotional intensity, visionary experience, or rebellion against social norms. They celebrate judgment: the capacity to see clearly, to weigh evidence, to correct one's errors, and to act well within social structures that are imperfect but navigable. Elizabeth Bennet is, in this sense, <BioLink id="kant">Kant</BioLink>'s ideal Enlightenment subject: a woman who dares to think for herself, who refuses to defer to the judgments of others simply because they hold positions of authority, but who also learns that her own judgment is not infallible.
-
-Two of the period's most penetrating thinkers — <BioLink id="rousseau">Rousseau</BioLink> and <BioLink id="smith">Adam Smith</BioLink> — turn the Enlightenment's analytical power onto social life itself, asking how the experience of living among others shapes and distorts who we are and how we judge. Their insights connect to <BioLink id="austen">Austen</BioLink>'s fiction more directly than almost anything else in the period.
-
-### A Note on the Readings
-
-Some of the readings in this unit illuminate the *period* — the political and scientific landscape of the eighteenth century. Others illuminate the *novel* — the specific dynamics of social perception, moral judgment, and self-knowledge that <BioLink id="austen">Austen</BioLink> dramatizes. Both are valuable, but they serve different purposes. <BioLink id="locke">Locke</BioLink> and <BioLink id="newton">Newton</BioLink> depict the Enlightenment's foundations; <BioLink id="rousseau">Rousseau</BioLink>, <BioLink id="smith">Smith</BioLink>, <BioLink id="kant">Kant</BioLink>, <BioLink id="pope">Pope</BioLink>, and <BioLink id="wollstonecraft">Wollstonecraft</BioLink> relate more directly to the social world of *Pride and Prejudice*.
+This change made criticism public and judgment revisable. A political institution had to explain its legitimacy; an account of nature had to answer to observation and argument; a moral judgment had to survive perspectives beyond the judge's own. *Pride and Prejudice* brings that demand into social life. Its central intelligence belongs to a woman who thinks for herself and discovers that independence without self-correction can harden into prejudice.
 
 ## The Human Position
 
-*What is a human being, and where do we stand in the order of things?*
+*What is a human being, and where do human beings stand in the order of things?*
 
-The Enlightenment's answer to this question is remarkably confident. Human beings are rational agents. We are capable of understanding the laws of nature, of governing ourselves through just institutions, and of moral progress through the exercise of reason. We are no longer <BioLink id="pascal">Pascal</BioLink>'s trembling reeds, suspended between abysses; we are thinking beings who can — if we have the courage — take charge of our own lives and our own societies.
+<BioLink id="kant">Kant</BioLink> defines enlightenment as emergence from **self-incurred immaturity**, dependence on another's direction when a person possesses the capacity to use reason independently. The obstacle is not a natural lack of intelligence. It is the failure of courage and resolve that allows a book, official, cleric, or guardian to assume responsibility for judgment.
 
-<BioLink id="kant">Kant</BioLink>'s answer is stirring: human beings are rational agents, capable of thinking for themselves if they find the courage to do so. "Immaturity," <BioLink id="kant">Kant</BioLink> argues, is not a condition imposed on us by nature; we impose it on ourselves through laziness and cowardice. We let others think for us because thinking for ourselves is difficult and frightening. Enlightenment is simply the decision to grow up: to use one's own reason, even when it is hard, even when it leads to conclusions that make one uncomfortable.
-
-<PullQuote attribution="Immanuel Kant, What is Enlightenment?, 1784">
-  Enlightenment is man's emergence from his self-imposed immaturity. Immaturity is the inability to use one's understanding without guidance from another.
+<PullQuote attribution="Immanuel Kant · 'An Answer to the Question: What Is Enlightenment?' · 1784">
+Enlightenment is man's emergence from his self-incurred immaturity. Immaturity is the inability to use one's own understanding without the guidance of another.
 </PullQuote>
 
-But the Enlightenment's portrait of the human being is richer and darker than <BioLink id="kant">Kant</BioLink>'s rallying cry alone suggests. <BioLink id="rousseau">Rousseau</BioLink>'s *Discourse on the Origin of Inequality* (1755) offers a devastating counter-narrative, asserting that human beings are naturally good, but tragically corrupted by civilization. The instrument of that corruption is something he calls *amour-propre*: the need to be esteemed by others, the compulsion to see ourselves through others' eyes.
+Kant's call does not describe an accomplished condition. Enlightenment is a practice through which people become capable of public reasoning. His essay also preserves institutional obedience: a person may have to follow commands while serving in an official role yet remain free, as a scholar addressing the reading public, to criticize that role and propose reform. Autonomy therefore develops within a social world rather than through escape from every structure.
 
-<BioLink id="rousseau">Rousseau</BioLink> distinguishes *amour-propre* from *amour de soi-même* — a natural, healthy self-regard that every creature possesses, the simple desire for self-preservation. *Amour de soi* is innocent; it asks nothing of other people. *Amour-propre* is social and comparative; it can only exist in a world where people observe and rank each other. It emerges, <BioLink id="rousseau">Rousseau</BioLink> argues, at the moment when human beings first gather together and begin to perform: "Each began to look at the others and to want to be looked at, and public esteem was valued." From that moment, "being and appearing became two entirely different things," and from that split emerged "imposing pomp, deceitful cunning, and all their attendant vices." Reason itself, far from being our salvation, is what produces this disease: "It is reason that gives rise to *amour-propre*, and it is reflection that strengthens it."
+<BioLink id="rousseau">Rousseau</BioLink> offers a different account of human development. In the *Discourse on the Origin and Foundations of Inequality Among Mankind* (1755), pre-social human beings possess **amour de soi**, a concern for their own preservation moderated by natural pity. They also possess **perfectibility**, the open-ended capacity to change in response to circumstance. Perfectibility makes language, cooperation, and reflection possible; it also makes new forms of dependence and inequality possible.
 
-<BioLink id="smith">Adam Smith</BioLink>, writing just four years after <BioLink id="rousseau">Rousseau</BioLink>, offers a portrait of social self-consciousness that is equally penetrating but less despairing. In *The Theory of Moral Sentiments* (1759), <BioLink id="smith">Smith</BioLink> argues that our capacity to imagine ourselves in another person's position is the foundation of all moral life. We understand others by imaginatively placing ourselves in their situation; we judge ourselves by imagining how a fair-minded observer would view our conduct, what <BioLink id="smith">Smith</BioLink> calls the "impartial spectator" — an internalized perspective that functions as the basis of conscience.
+Rousseau uses **amour-propre** for self-concern shaped by comparison and the desire for recognition. Once people measure themselves through the eyes of others, appearing can separate from being. Esteem becomes scarce because one person's superiority depends on another's inferiority. Amour-propre can produce achievement, sociability, and sensitivity to judgment, but it also feeds vanity, resentment, concealment, and domination. Rousseau's critique concerns a historically developed form of social selfhood rather than a simple claim that nature is good and society is evil.
 
-Where <BioLink id="rousseau">Rousseau</BioLink> sees the social gaze as primarily corrupting, <BioLink id="smith">Smith</BioLink> sees it as potentially ennobling, but only if we learn to care about *deserving* approval rather than merely *receiving* it. The person who simply craves praise is governed by vanity (<BioLink id="rousseau">Rousseau</BioLink>'s *amour-propre*). The person who wants to be genuinely worthy of praise — who consults the impartial spectator honestly — is on the path to moral maturity.
+<BioLink id="smith">Adam Smith</BioLink> places social judgment at the foundation of moral life. In *The Theory of Moral Sentiments* (1759), **sympathy** is an imaginative effort to enter another person's situation. It never gives direct access to another mind. Observers reconstruct what another person might feel, then compare those sentiments with what seems fitting to the circumstances.
 
-<BioLink id="wollstonecraft">Wollstonecraft</BioLink> extends this analysis to consider women's position in the social world. If *amour-propre* corrupts everyone, it is especially destructive for women, who are educated to value appearance over substance, charm over competence, and the approval of men over the development of their own rational faculties. Women kept in dependence and ignorance will inevitably become what their circumstances make them — not because of any deficiency in their nature, but because they have been denied the opportunity to develop the moral resources that genuine virtue requires.
+Self-judgment develops through the same process. Smith's **impartial spectator** is an imagined fair-minded observer whose perspective checks immediate self-interest. Moral maturity requires a person to distinguish the pleasure of receiving praise from the worthiness of deserving it. The social gaze that Rousseau treats as a source of comparison can, in Smith's account, become an instrument of conscience when it is disciplined by fairness.
+
+<div class="plate-pair left vcenter">
+<div class="pair-text">
+
+<BioLink id="wollstonecraft">Mary Wollstonecraft</BioLink> exposes the exclusions within accounts of rational agency. *A Vindication of the Rights of Woman* (1792) argues that virtue must rest on reason and independence for women as well as men. Women trained to value beauty, obedience, and male approval will develop the very vanity and cunning later used to justify their subordination. Dependence produces the conduct offered as evidence that dependence is natural.
+
+Wollstonecraft directs part of her argument against Rousseau's *Émile*. Rousseau designs Sophie's education around the needs of Émile: she should please, support, and moderate a man rather than cultivate equal intellectual and moral independence. Wollstonecraft accepts that education forms character and rejects the sex-specific limit Rousseau places upon that principle. A universal account of virtue cannot deny women the education required to practice it.
+
+</div>
+<figure class="work-plate plate-labeled plate-inset work-figure" style="--stage:440px">
+  <div class="img"><span class="plate-stage">
+    <img src="/images/philosophy/03-enlightenment/education-forms-dependence.png" alt="Two equally attentive young adults sit at matched desks while a tutor stands between them. The male student receives scientific instruments; the female student receives embroidery and a mirror. A matching slate-blue compass sits locked in a cabinet behind her, and the tutor holds its blue key." />
+  </span></div>
+  <figcaption class="caption">
+    <div class="title">Wollstonecraft argues that dependence produces the conduct later cited to justify dependence. Equal rational capacity cannot develop equally when education assigns intellectual instruments to one student and withholds them from another.</div>
+    <div class="plate-key three"><ul>
+      <li><span class="k">Capacity</span>Both students attend with equal seriousness, and the two compasses match.</li>
+      <li><span class="k">Assigned formation</span>Instruments go to one desk; embroidery and a mirror to the other.</li>
+      <li><span class="k">Controlled access</span>The second compass stays locked in the cabinet, and the tutor holds the key.</li>
+    </ul></div>
+  </figcaption>
+</figure>
+</div>
 
 ### Connection to *Pride and Prejudice*
 
-<BioLink id="austen">Austen</BioLink>'s novel is a laboratory for testing <BioLink id="rousseau">Rousseau</BioLink>'s diagnosis and <BioLink id="smith">Smith</BioLink>'s remedy. Every character in the book is somehow caught in the web of *amour-propre* — performing, comparing, judging, and being judged. Mrs. Bennet's obsession with advantageous marriages is *amour-propre* at its most anxious. Wickham's charm is a masterclass in managing appearances. In his character, being and appearing have split entirely apart; his polished social performance conceals a morally vacant core. Darcy's pride is *amour-propre* in its aristocratic form; his sense of his own worth is inseparable from his consciousness of his social rank relative to others, at least at the beginning of his arc as a character.
+Elizabeth Bennet begins with a Kantian strength: she refuses to let rank determine belief. Lady Catherine's title, Darcy's wealth, and Collins's clerical office do not compel her assent. Her independence becomes unreliable when injured pride begins selecting the evidence it will credit. Wickham's attention confirms the judgment she wants to make; Darcy's insult makes contrary evidence easier to dismiss.
 
-Elizabeth's journey is the novel's great test case. She prides herself on her perceptiveness, her ability to see through appearances and judge character accurately. Yet her judgment of Darcy in the first half of the novel is fundamentally shaped by *amour-propre*: she liked Wickham because he flattered her, and she disliked Darcy because he wounded her pride. The moment she recognizes this and consults her impartial spectator honestly is an Enlightenment awakening: the discovery that her own moral perception has been distorted by the very social self-consciousness <BioLink id="rousseau">Rousseau</BioLink> diagnosed.
+Rousseau and Smith provide complementary readings of the error. Elizabeth's delight in her own discernment turns judgment into a form of *amour-propre*. Darcy's letter then forces her to imagine conduct from perspectives beyond her own. "Till this moment I never knew myself" marks neither humiliation before authority nor sudden certainty. It marks the discovery that independent judgment remains answerable to evidence and revision.
+
+The novel extends the problem across gender and class. Mrs. Bennet's anxiety reflects the economic danger created by entail and limited female independence, even when her conduct makes that anxiety comic. Wickham makes social appearance an instrument of deception. Darcy's rank encourages him to confuse inherited position with deserved esteem. Austen's moral world is social in Smith's sense: character becomes visible through conduct observed over time, yet every observer must account for the distortions of interest, vanity, and incomplete knowledge.
 
 ## Knowledge and Its Limits
 
-*How do we know what we know, and how far can knowledge take us?*
+*How do human beings know what they know, and how far can knowledge take them?*
 
-The Enlightenment's answer: very far indeed — in the domain of nature. <BioLink id="newton">Newton</BioLink> has shown that the universe operates according to mathematical laws. <BioLink id="pope">Pope</BioLink>'s "Essay on Criticism" argues that the rules of good judgment are the rules of nature itself: "First follow Nature, and your judgment frame / By her just standard, which is still the same." Knowledge is not merely possible; it is a moral obligation.
+<BioLink id="bacon">Francis Bacon</BioLink> supplied an influential image for the new suspicion of inherited authority. People often assume that beliefs surviving from antiquity must have survived because they were best. Bacon argues that time resembles a river:
 
-But moral knowledge — knowledge of other people, knowledge of self — is a different and more treacherous enterprise than scientific knowledge. <BioLink id="kant">Kant</BioLink> distinguishes carefully between the *public* use of reason (which must always be free) and the *private* use of reason (which may legitimately be constrained by one's duties within institutions). Even within the Enlightenment's celebration of reason, there is an awareness that knowledge must be disciplined and that judgment requires humility.
+<PullQuote attribution="Francis Bacon · 'The Advancement of Learning' · 1605">
+Time seemeth to be of the nature of a river or stream, which carrieth down to us that which is light and blown up, and sinketh and drowneth that which is weighty and solid.
+</PullQuote>
 
-<BioLink id="smith">Smith</BioLink>'s account of sympathy makes this epistemological challenge vivid. We understand other people's feelings not through direct access but through an act of imagination: we construct, in our own minds, a version of what we think they feel. This means that our understanding of others is always partly a fiction, shaped by our own experiences, biases, and limitations. Sympathy is the best instrument we have for moral knowledge, but it is inherently imperfect. We can get other people wrong — and we will, especially when *amour-propre* is distorting our perception, when we are motivated by vanity or wounded pride to see what flatters us rather than what is true.
+The image does not prove that inherited knowledge is false. It reverses the presumption that survival establishes truth. Tradition becomes evidence to investigate rather than a verdict that ends investigation. Enlightenment writers inherit that polemical change while applying it to texts, institutions, natural philosophy, and histories of their own past.
 
-<BioLink id="rousseau">Rousseau</BioLink> pushes this point further: reason itself, the Enlightenment's proudest instrument, can become an obstacle to genuine understanding. "It is philosophy that isolates him," <BioLink id="rousseau">Rousseau</BioLink> writes of the civilized man. The very capacity for reflection that distinguishes us from animals also separates us from the natural sympathy that would otherwise connect us to others. The philosopher can rationalize his way out of compassion; the uneducated person, closer to natural feeling, rushes to help.
+<BioLink id="newton">Newton</BioLink>'s *Principia* offered a model of explanatory reach. Mathematical laws joined terrestrial and celestial motion within one account. The achievement depended on observation, calculation, inherited problems, and contributions from many investigators; it did not arise from reason operating without history or evidence. <BioLink id="pope">Pope</BioLink>'s instruction to "follow Nature" translates the period's admiration for order into an aesthetic claim: judgment should discover principles embodied in successful works and in the larger patterns they imitate.
 
-Voltaire makes a related argument through satire rather than philosophy. *Candide* (1759) follows an incurably optimistic young man through a cascade of disasters — the Lisbon earthquake, the Inquisition, slavery in Suriname — each of which his tutor Pangloss explains away with the Leibnizian formula that we live in the "best of all possible worlds." The joke is devastating: the system survives every refutation because it is designed to be irrefutable. *Candide* presents an argument about the limits of abstract reasoning when it insulates itself from experience; the rational system that explains everything explains nothing, because it cannot be falsified by anything that actually happens. Voltaire's remedy — "we must cultivate our garden" — is deliberately, stubbornly modest: not a new philosophical system, but the abandonment of system in favor of immediate, practical work to alleviate pain and instantiate happiness in the people around us.
+The *Encyclopédie*, edited by <BioLink id="diderot">Denis Diderot</BioLink> and Jean le Rond d'Alembert, made knowledge an institutional project. Its articles joined philosophy and natural inquiry to manufacturing, tools, and mechanical arts. Cross-references allowed an apparently neutral organization of subjects to expose contradictions and redirect readers toward controversial arguments. The work's publication under censorship also demonstrated that organizing knowledge redistributes authority: an encyclopedia decides which practices deserve preservation, which distinctions matter, and how one field connects to another.
+
+<BioLink id="hume">David Hume</BioLink> applies empiricism to the assumptions that make empirical knowledge possible. A billiard ball strikes another, and the second moves. Observation supplies sequence and repeated conjunction; it does not reveal a necessary power binding the events. The expectation that similar causes will produce similar effects comes from **custom or habit**. Repetition trains the imagination to anticipate what usually follows.
+
+Hume's argument does not prevent natural inquiry. It denies that reason can prove the uniformity of nature without circularity. Inductive practice continues because human beings are constituted to form expectations from experience. Hume's **mitigated skepticism** therefore joins intellectual modesty to ordinary confidence: conclusions remain corrigible and inquiry stays within the limits of experience.
+
+<figure class="work-plate plate-labeled work-figure" style="max-width:760px;margin-bottom:34px">
+  <div class="plate-heads three"><span>Observed impact</span><span>Repeated conjunction</span><span>Expectation formed by custom</span></div>
+  <div class="img"><span class="plate-stage">
+    <img src="/images/philosophy/03-enlightenment/hume-causation-custom.png" alt="Three billiard demonstrations progress across a cream technical plate. The first shows two neutral balls at impact, the second repeats their sequence in three small views, and the third shows an observer facing two actual balls plus one thin slate-blue outline marking the anticipated future position." />
+  </span></div>
+  <figcaption class="caption"><div class="title">Observation supplies impact and repeated sequence, not a necessary power binding events. Custom trains the mind to expect what usually follows; inquiry continues, but its conclusions remain corrigible.</div></figcaption>
+</figure>
+
+At the end of Book I of the *Treatise of Human Nature*, philosophical reflection leaves Hume unable to justify beliefs that ordinary life requires. His response is memorable:
+
+<PullQuote attribution="David Hume · 'A Treatise of Human Nature' · 1739–1740">
+I dine, I play a game of back-gammon, I converse, and am merry with my friends.
+</PullQuote>
+
+Conversation and play do not refute skepticism. They show that natural belief and social practice resume when abstract doubt reaches an impasse. Philosophy returns afterward with less claim to absolute certainty.
+
+The period's religious arguments also changed the standards of knowledge. **Deism** grounds belief in a creator upon reason and the observable order of nature rather than a particular revelation, church, or miracle. Nature appears public and universal in a way disputed scriptures do not. A perfect creator, some deists argued, would establish laws sufficient to govern creation rather than repeatedly suspend them through miraculous repair.
+
+Deism was neither traditional Christianity nor atheism, and it did not define the entire Enlightenment. Christian, Jewish, and other religious thinkers also used criticism, historical scholarship, and natural philosophy. The conflict concerned the authority of revelation, the interpretation of providence, and the kinds of evidence religious belief could require.
+
+<figure class="work-plate plate-labeled work-figure" style="max-width:700px;margin-bottom:34px">
+  <div class="plate-heads"><span>General providence / stable natural law</span><span>Miracle / particular intervention</span></div>
+  <div class="img"><span class="plate-stage">
+    <img src="/images/philosophy/03-enlightenment/two-clockmakers-deism.png" alt="Two identical eighteenth-century clocks stand at matched workbenches. At left, one clock runs while its maker stands back with open hands. At right, another maker adjusts the same blue-marked escapement with a blue-tipped tool." />
+  </span></div>
+  <figcaption class="caption">
+    <div class="plate-key two pairs" style="margin-top:0;padding-top:0;border-top:0"><ul>
+      <li><span class="k">Left panel</span>A perfect creator establishes an order capable of operating through its original design.</li>
+      <li><span class="k">Right panel</span>To the deist critic, repeated suspension of natural law can make creation resemble a mechanism requiring correction.</li>
+    </ul></div>
+  </figcaption>
+</figure>
+
+The Lisbon earthquake forced those questions into public view. <BioLink id="voltaire">Voltaire</BioLink>'s *Candide* attacks an optimism capable of preserving itself through every disaster. Pangloss does more than offer a bad explanation. His system can discourage intervention. When Jacques the Anabaptist falls into Lisbon harbor after saving a sailor, Candide prepares to follow him. Pangloss stops the rescue by proving that the harbor was formed expressly for Jacques to drown there. Explanation becomes a reason not to act.
+
+The command to cultivate the garden answers that fatalism. Voltaire does not replace one universal system with another. The survivors accept limited knowledge, shared labor, and responsibility for suffering close enough to address. Practical action matters precisely because no theory has converted every evil into a necessary good.
+
+Smith brings the limit back to moral perception. Sympathy depends on imaginative reconstruction rather than direct access to another consciousness. Bias, social rank, personal interest, and partial evidence can distort it. Moral knowledge remains possible, but its method requires repeated observation, comparison of perspectives, and correction.
 
 ### Connection to *Pride and Prejudice*
 
-The novel is a sustained exploration of how intelligent people go wrong in their judgments, and how they can learn to find their way back. Elizabeth trusts first impressions and the evidence of surfaces; Darcy trusts social categories and inherited assumptions. The novel insists that moral knowledge — real knowledge of other people and of yourself — requires not just intelligence but something closer to what <BioLink id="smith">Smith</BioLink> describes: the patient, honest exercise of sympathetic imagination, disciplined by the willingness to revise one's conclusions when the evidence demands it. Elizabeth is brilliant, but brilliance is not enough. She must learn to see past the distortions of her own *amour-propre* — and that requires not more reason but a different, more honest way of using it.
+The novel begins with confident causal stories. Elizabeth treats Darcy's manner as evidence of settled character; Darcy treats the behavior of several Bennets as evidence that connection with the family will produce degradation; the neighborhood converts fragments of conduct into reputations. Each inference moves beyond what has actually been observed.
+
+Darcy's letter does not provide mathematical proof. It supplies testimony, names, chronology, and claims that Elizabeth can compare with remembered conduct. She revises her judgment through a Humean and Smithian discipline: expectations remain necessary, but they must answer to fuller experience and competing perspectives. The result is neither skepticism about character nor confidence in first impressions. It is fallible knowledge earned over time.
+
+Hume's return to conversation after philosophical crisis offers a useful analogy. Elizabeth cannot solve the general problem of knowing another mind before continuing to dine, walk, converse, and choose. The drawing room remains a place of judgment after certainty has failed. Greater care, not withdrawal from social life, becomes the available virtue.
 
 ## The Individual and Authority
 
-*What is the relationship between the person and the structures that govern them?*
+*What is the relationship between the person and the structures that govern political and social life?*
 
-The Enlightenment produces the most influential theories of political legitimacy in Western history, and understanding them is essential to understanding the period even where they do not connect directly to <BioLink id="austen">Austen</BioLink>'s fiction. <BioLink id="locke">Locke</BioLink> argues that human beings possess natural rights — to life, liberty, and property — that no government may violate, and that political authority is legitimate only when it rests on the consent of the governed: a direct response to <BioLink id="hobbes">Hobbes</BioLink>'s powerful defense of monarchical authority. Where <BioLink id="hobbes">Hobbes</BioLink> argued that the only escape from the war of all against all is submission to an absolute sovereign, <BioLink id="locke">Locke</BioLink> insists that sovereign power is limited by natural law. A government that violates its citizens' rights may legitimately be overthrown. These ideas will fuel the American and French Revolutions and permanently reshape the political landscape of the modern world.
+<BioLink id="locke">Locke</BioLink>'s *Two Treatises of Government* attacks Robert Filmer's claim that political authority descends from Adam's paternal power into hereditary monarchy. Locke begins instead from natural equality. No person is born with a political title to rule another. The **law of nature**, accessible through reason, obliges people not to harm others in life, health, liberty, or possessions.
 
-The individual-authority thread in the Enlightenment is not only about political revolution. <BioLink id="kant">Kant</BioLink>'s distinction between public and private reason offers a more nuanced picture. As a citizen, one may be obligated to obey — the soldier must drill, the taxpayer must pay. But as a *scholar* — a thinking person addressing the public — one must always be free to criticize, to question, to propose reforms. The Enlightenment does not simply overthrow authority; it reimagines authority as something that must justify itself before the tribunal of reason.
+Political society supplies known laws, impartial judges, and power to enforce decisions. Individuals authorize government to secure rights that remain vulnerable in the state of nature. The transfer is conditional. A government that systematically violates its trust places itself in a state of war against the people and may be resisted or replaced.
 
-No one in the period prosecuted that case more relentlessly — or more publicly — than Voltaire. His decades-long campaign against the Church, religious persecution, and judicial fanaticism, which he condensed into the battle cry *Écrasez l'Infâme* ("crush the infamy"), is the period's most vivid example of an individual intellectual using reason as a weapon against institutional power. The Calas affair (1762) makes the principle concrete: when a Protestant merchant in Toulouse was broken on the wheel for a murder he almost certainly did not commit (the conviction fueled by anti-Protestant hysteria), Voltaire spent three years building a public case, writing pamphlets, recruiting allies across Europe, and ultimately forcing the French crown to overturn the verdict posthumously. This is <BioLink id="kant">Kant</BioLink>'s "public use of reason" in action, a decade before <BioLink id="kant">Kant</BioLink> named it.
+Locke develops concepts also used by <BioLink id="hobbes">Hobbes</BioLink>, including natural rights, the state of nature, and social authorization, but changes their operation. Hobbes makes undivided sovereignty the necessary condition of peace. Locke subjects political power to natural law, institutional division, and continuing public purposes. Hobbes's sovereign may be a monarch or an assembly; Locke's argument should not be reduced to an answer to monarchy alone.
 
-<BioLink id="wollstonecraft">Wollstonecraft</BioLink> applies this same logic to the authority of men over women. The subordination of women is not justified by nature, she argues, but sustained by artificial arrangements: lack of education, economic dependence, a culture that rewards women for being ornamental rather than rational. This is authority without legitimacy, and it corrupts both the rulers and the ruled. <BioLink id="wollstonecraft">Wollstonecraft</BioLink>'s analysis draws on both <BioLink id="rousseau">Rousseau</BioLink> and <BioLink id="smith">Smith</BioLink>. The system of male authority produces a world in which women are valued for their appearance rather than their character, trapped in the superficial world of *amour-propre* and denied the opportunity to develop the "impartial spectator" that would allow them to judge and act independently.
+<BioLink id="kant">Kant</BioLink>'s distinction between public and private reason offers a less revolutionary account of criticism. "Private" reason is the use of understanding within a role such as soldier, official, or cleric; institutions may require obedience for coordinated action. "Public" reason is the argument a scholar addresses to the reading world. Kant permits obedience and criticism to coexist, trusting publication and debate to make gradual reform possible.
+
+Voltaire demonstrates this public use of reason before Kant names it. When the Protestant merchant Jean Calas was executed in Toulouse in 1762 for the alleged murder of his son, Voltaire did not begin with certainty about Calas's innocence. He investigated testimony, procedure, and motive; the evidence changed his judgment. He then used pamphlets, correspondence, publicity, and elite networks to challenge the verdict. The conviction was overturned posthumously in 1765.
+
+Voltaire's campaign matters because self-correction precedes advocacy. He did not defend Calas by treating his first impression as moral insight. He made a public case strong enough to reverse an institution's judgment. The episode also exposes a limit within Voltaire himself: his defense of toleration coexisted with vicious generalizations about Jews and Judaism. Enlightenment criticism could identify prejudice in an institution without freeing the critic from prejudice.
+
+<BioLink id="wollstonecraft">Wollstonecraft</BioLink> applies the demand for legitimacy to male authority over women. Social arrangements deny women education and economic independence, then describe the resulting dependence as natural. Political and domestic authority must answer to the same standard: power cannot become legitimate merely through age, custom, or the interests of those who possess it.
+
+The Atlantic revolutions tested claims of universal freedom. The American Declaration drew on natural-rights language while political rights remained restricted and slavery endured. The French Declaration of the Rights of Man and of the Citizen announced equality before the law while legislators disputed the status of women, free people of color, enslaved people, and colonial subjects. Olympe de Gouges and Wollstonecraft exposed gendered exclusions through the language of rights itself.
+
+The Haitian Revolution forced the broadest claim. Beginning in 1791, enslaved people in Saint-Domingue acted on their own traditions of resistance as well as circulating revolutionary arguments. Their struggle compelled France to abolish slavery in its colonies in 1794 and culminated in Haitian independence in 1804. Universal rights acquired political force when people excluded from their announced scope claimed those rights without waiting for permission.
+
+<figure class="work-plate plate-labeled work-figure" style="max-width:700px;margin-bottom:34px">
+  <div class="img"><span class="plate-stage">
+    <img src="/images/philosophy/03-enlightenment/rights-and-their-claimants.png" alt="A woman writer and a Black revolutionary from Saint-Domingue stand at equal scale outside a neoclassical assembly hall, each carrying a blank blue-edged sheet while removing matching blue bolts from barriers at the doorway. Two distant delegates stand beside a blank declaration with a blue seal inside." />
+  </span></div>
+  <figcaption class="caption">
+    <div class="title">Rights acquired broader political force when people excluded from their announced scope claimed them without waiting for permission. The Haitian Revolution drew on African and Caribbean traditions of resistance as well as Atlantic revolutionary language.</div>
+    <div class="plate-key three"><ul>
+      <li><span class="k">Rights announced</span>Inside the hall, a blank declaration carries its blue seal between two distant delegates.</li>
+      <li><span class="k">Exclusions contested</span>Two claimants stand at equal scale outside the door, holding sheets of their own.</li>
+      <li><span class="k">Scope widened through action</span>Each draws a matching blue bolt from the barrier rather than waiting for it to open.</li>
+    </ul></div>
+  </figcaption>
+</figure>
+
+These revolutions did not follow a simple sequence from philosophical reason to political liberation. War, property, religion, race, empire, local organization, and competing interests shaped their courses. Revolutionary governments could extend rights and exercise coercion. The Terror emerged amid foreign war, civil conflict, counterrevolution, faction, and emergency government; it should not be treated as reason's inevitable conclusion.
 
 ### Connection to *Pride and Prejudice*
 
-<BioLink id="austen">Austen</BioLink>'s world is thick with structures of authority — class, gender, family, economic dependence — that her female characters especially struggle to navigate. Mr. Bennet represents the failure of paternal authority exercised without responsibility. Mr. Collins represents authority internalized as servility, a man who has made himself a mirror of his patroness's absurd *amour-propre*. Darcy ultimately escapes such failings by learning that his social authority means nothing without moral authority earned through good conduct.
+Austen's characters inhabit structures of class, gender, property, and family authority without reducing moral judgment to obedience. Lady Catherine treats rank and ancestry as self-justifying. Her demand that Elizabeth reject Darcy resembles Filmer's logic in miniature: inherited position should settle the future without the consent of those governed by it. Elizabeth refuses because Lady Catherine possesses social power but no moral title to make the decision.
 
-## Looking Back, Looking Forward
+Mr. Bennet shows the opposite failure. He possesses legal and paternal authority but retreats into amusement rather than using it responsibly. Mr. Collins converts dependence into servility, borrowing Lady Catherine's opinions because proximity to rank substitutes for judgment. Darcy begins with legitimate social power over an estate and dependents; the novel evaluates that authority through conduct rather than title alone.
 
-**From the Baroque:** The contrast is one of emotional temperature as much as intellectual content. <BioLink id="pascal">Pascal</BioLink>'s anguished human being, suspended between infinities, becomes <BioLink id="kant">Kant</BioLink>'s self-governing rational agent. <BioLink id="hobbes">Hobbes</BioLink>'s terrified subjects, surrendering their freedom to an absolute sovereign, become <BioLink id="locke">Locke</BioLink>'s citizens, consenting to government that protects their natural rights. The Baroque's sense that the universe is overwhelming and that reason alone cannot save us gives way to the Enlightenment's faith that reason, properly exercised, can illuminate everything it touches. The darkness seemingly lifts, but <BioLink id="rousseau">Rousseau</BioLink> is already diagnosing a new kind of darkness from within the Enlightenment itself: the social corruption that civilization produces, the gap between being and appearing that *amour-propre* opens up in every human heart.
+The marriage plot makes consent indispensable while exposing the pressures surrounding it. Charlotte Lucas's choice reflects limited economic alternatives; Lydia's vulnerability reveals failures of education and guardianship; Elizabeth can refuse Collins and Darcy because her family grants her more latitude than many women possessed. The novel does not imagine choice outside institutions. It asks when a decision made within unequal conditions remains thoughtful, responsible, and free.
 
-**Toward Romanticism:** The Romantics will take <BioLink id="rousseau">Rousseau</BioLink>'s diagnosis and run with it. If civilization corrupts, perhaps the answer is a return to nature, to feeling, to the truths that social life obscures. <BioLink id="rousseau">Rousseau</BioLink> himself, who appears in this unit as a social critic and moral psychologist, will reappear in the Romanticism unit as the man who wrote the *Confessions*, who insisted on radical emotional honesty, and who opened the door to an entirely new understanding of what it means to be human. The Enlightenment's faith in rational self-improvement will give way to the Romantic conviction that the deepest truths are accessed through imagination and passion, not analysis. But notice what bridges this gap: both periods are intensely interested in the problem of authenticity, the distance between what we truly are and what we appear to be. <BioLink id="austen">Austen</BioLink> and <BioLink id="melville">Melville</BioLink>, despite their vast differences, are both writers for whom that gap is a central moral problem.
+## Looking back: The Enlightenment constructs its past
+
+Enlightenment writers inherited the Renaissance practice of creating a usable history. Renaissance humanists had described an intervening Middle Age so that their own work could appear as recovery and rebirth. Voltaire and later writers selected a different Renaissance: rational, anticlerical, and already moving toward Enlightenment criticism.
+
+That construction illuminated real conflicts while distorting their setting. <BioLink id="pico">Pico</BioLink> was a Christian mystic as well as a defender of human freedom; <BioLink id="galileo">Galileo</BioLink>'s natural philosophy developed within institutions and arguments inherited from earlier centuries; Renaissance humanism included religious renewal as well as criticism of clerical authority. The Enlightenment invented the Renaissance it needed, just as Renaissance humanists had invented the Middle Ages they needed.
+
+The strongest continuity from the Baroque lies in the problem of authority. <BioLink id="hobbes">Hobbes</BioLink>, <BioLink id="pascal">Pascal</BioLink>, and <BioLink id="milton">Milton</BioLink> had asked how freedom, knowledge, and obedience could coexist. Locke, Hume, Rousseau, Smith, Kant, and Wollstonecraft alter the answers while retaining the conflict. Public reason expands; certainty does not.
+
+## Looking forward: Reason, feeling, and authenticity
+
+Romanticism inherits Enlightenment problems rather than simply rejecting reason for passion. Hume makes imagination and habit necessary to ordinary knowledge. Smith makes sympathetic imagination central to moral judgment. Rousseau joins social criticism to natural feeling, autobiographical self-examination, and suspicion of civilization. Kant will give imagination a larger role in aesthetic judgment.
+
+Rousseau provides the clearest bridge. His analysis of *amour-propre* asks whether social performance has separated appearance from an authentic self. His *Confessions* turns that question into autobiographical experiment; his educational and political works ask what institutions might form freer people. Romantic writers will intensify the claims of nature, feeling, imagination, and individual experience while remaining indebted to Enlightenment debates about freedom and self-knowledge.
