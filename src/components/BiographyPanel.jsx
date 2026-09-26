@@ -1613,7 +1613,7 @@ function BiographyPanel({ personId, onClose }) {
             {person.units.map((u) => (
               <span key={u} style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "9.5px",
+                fontSize: "11.5px",
                 padding: "3px 8px",
                 border: `1px solid ${UNIT_COLORS[u] || "var(--rule)"}55`,
                 color: UNIT_COLORS[u] || "var(--ink-soft)",
@@ -1630,7 +1630,7 @@ function BiographyPanel({ personId, onClose }) {
         <div style={{ padding: "24px 28px", flex: 1 }}>
           <div style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--ink-soft)",
@@ -1651,7 +1651,7 @@ function BiographyPanel({ personId, onClose }) {
           <div style={{ borderTop: "1px solid var(--rule)", paddingTop: "24px" }}>
             <div style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--ink-soft)",
@@ -1810,7 +1810,7 @@ function PersonCard({ person, onClick }) {
         </div>
         <div style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "10.5px",
+          fontSize: "12px",
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           color: "var(--ink-soft)",
@@ -1819,7 +1819,7 @@ function PersonCard({ person, onClick }) {
         </div>
         <div style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "10.5px",
+          fontSize: "12px",
           color: "var(--ink-soft)",
           marginTop: "2px",
           opacity: 0.75,
