@@ -751,7 +751,11 @@ if (isRedesignedDomain) {
         imgWrap.setAttribute('tabindex', '0');
         const titleText = fig.querySelector('.caption .title')?.textContent?.trim() || '';
         const bylineText = fig.querySelector('.caption .byline')?.textContent?.trim() || '';
-        const captionText = [titleText, bylineText].filter(Boolean).join(' — ');
+        let captionText = [titleText, bylineText].filter(Boolean).join(' — ');
+        if (fig.hasAttribute('data-lightbox-key')) {
+          const keyLines = [...fig.querySelectorAll('.caption .plate-key li')].map((li) => li.textContent.replace(/\s+/g, ' ').trim());
+          if (keyLines.length) captionText += '\n\n' + keyLines.join('\n');
+        }
         imgWrap.setAttribute('aria-label', titleText ? `View enlarged image: ${titleText}` : 'View enlarged image');
         const openThisLightbox = () => openLightbox(imgEl.currentSrc || imgEl.src, imgEl.alt, captionText);
         imgWrap.addEventListener('click', openThisLightbox);
@@ -1416,6 +1420,12 @@ if (isRedesignedDomain) {
     padding-left: 13px;
     border-left: 2px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 50%, var(--rule));
   }
+  .caption .plate-key ol.optics-key { margin: 0; padding-left: 1.3em; font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
+  .caption .key-question { margin: 12px 0 0; font-size: 14px; color: var(--ink-mute); }
+  .caption details.optics-why { margin-top: 12px; }
+  .caption details.optics-why summary { cursor: pointer; font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); }
+  .caption details.optics-why img { display: block; width: 100%; height: auto; margin-top: 10px; }
+  .caption details.optics-why p { margin: 8px 0 0; font-size: 14px; }
   .caption .plate-key .k {
     display: block;
     font-size: 10px;
@@ -2195,6 +2205,7 @@ if (isRedesignedDomain) {
     box-shadow: 0 24px 70px rgba(0,0,0,.55);
   }
   .lightbox-caption {
+    white-space: pre-line;
     font-family: var(--font-ui);
     font-size: 12px;
     letter-spacing: 0.04em;
