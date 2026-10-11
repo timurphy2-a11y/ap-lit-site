@@ -753,7 +753,11 @@ if (isRedesignedDomain) {
         const bylineText = fig.querySelector('.caption .byline')?.textContent?.trim() || '';
         let captionText = [titleText, bylineText].filter(Boolean).join(' — ');
         if (fig.hasAttribute('data-lightbox-key')) {
-          const keyLines = [...fig.querySelectorAll('.caption .plate-key li')].map((li) => li.textContent.replace(/\s+/g, ' ').trim());
+          const keyLines = [...fig.querySelectorAll('.plate-heads span, .caption .plate-key li, .caption .plate-qual')].map((el) => {
+            const c = el.cloneNode(true);
+            c.querySelectorAll('.k').forEach((k) => k.append(' — '));
+            return c.textContent.replace(/\s+/g, ' ').trim();
+          });
           if (keyLines.length) captionText += '\n\n' + keyLines.join('\n');
         }
         imgWrap.setAttribute('aria-label', titleText ? `View enlarged image: ${titleText}` : 'View enlarged image');
@@ -1420,7 +1424,6 @@ if (isRedesignedDomain) {
     padding-left: 13px;
     border-left: 2px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 50%, var(--rule));
   }
-  .caption .plate-key ol.optics-key { margin: 0; padding-left: 1.3em; font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
   .caption details.optics-why { margin-top: 12px; }
   .caption details.optics-why summary { cursor: pointer; font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); }
   .caption details.optics-why img { display: block; width: 100%; height: auto; margin-top: 10px; }
