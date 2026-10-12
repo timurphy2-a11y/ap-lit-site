@@ -93,6 +93,7 @@ const momentJson = JSON.stringify({
   subtitle: moment.subtitle,
   paragraphs: moment.paragraphs,
   figure: moment.figure ?? null,
+  extraFigures: moment.extraFigures ?? [],
   sysmap: moment.sysmap ?? null,
   xref: moment.xref ?? null,
 });
@@ -391,6 +392,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
       if (data.figure) {
         inserts.push({ at: data.figure.afterParagraph, html: figureHtml(data.figure) });
       }
+      (data.extraFigures || []).forEach(ef => inserts.push({ at: ef.afterParagraph, html: figureHtml(ef) }));
       if (data.sysmap) {
         inserts.push({ at: data.sysmap.afterParagraph, html: sysmapHtml(data.sysmap) });
       }

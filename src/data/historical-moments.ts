@@ -33,6 +33,8 @@ export interface HistoricalMoment {
   subtitle: string;
   paragraphs: string[];
   figure?: HistoricalMomentFigure;
+  // Additional figures rendered in the same way as `figure`, each at its own afterParagraph.
+  extraFigures?: HistoricalMomentFigure[];
   sysmap?: SystemMap;
   xref?: HistoricalMomentXref;
 }
@@ -153,7 +155,7 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'On 1 July 1916, British troops climbed from their trenches and advanced along a fifteen-mile front beside the River Somme. By the end of the day, the British Army had suffered 57,470 casualties; 19,240 men were dead. The offensive continued for more than four months. Artillery, machine guns, barbed wire, railways, and mass conscription had turned scientific and industrial capacity toward attritional war.',
       'World War I killed millions of soldiers and civilians. The influenza pandemic that followed killed at least fifty million more people worldwide. Political empires collapsed; revolution and civil war redrew borders. Confidence in inevitable progress survived in some forms, but the war made it impossible to identify technical development with moral advancement. A civilization that produced modern medicine, engineering, and mass education had also produced the machinery of the trenches.',
       'Modern claims to scientific authority also entered law through **eugenics**, the discredited effort to improve society by controlling human reproduction. Eugenics flourished across Europe and the Americas. In the United States, state laws authorized the involuntary sterilization of people classified as “unfit,” disproportionately targeting disabled people, poor people, Indigenous people, Black people, and other minorities. In *Buck v. Bell* (1927), the Supreme Court upheld Virginia\'s sterilization law. American policies later influenced aspects of Nazi racial practice, although Nazi Germany expanded eugenic classification into a program of persecution and mass murder on a different scale.',
-      'World War II joined conquest and racial ideology to administrative power. The Holocaust was organized through ministries, census records, property seizures, deportation orders, rail schedules, camps, and factories of death. Six million Jews were murdered, along with hundreds of thousands of Roma, disabled people, gay men, political prisoners, and other victims. Hannah Arendt later used the phrase **the banality of evil** to examine how ordinary habits of career, procedure, and obedience could participate in murderous systems. Her argument did not excuse perpetrators as people who merely followed orders. It asked how the failure to think and judge could become politically catastrophic.',
+      'World War II joined conquest and racial ideology to administrative power. Nazi Germany and its collaborators murdered six million Jews in the Holocaust. The killing included mass shootings, gassing, and lethal conditions of starvation, forced labor and imprisonment. Ministries, police, military units, transport systems, camps and killing centers participated through decisions and direct violence as well as paperwork. Nazi persecution also targeted Roma and Sinti, disabled people, Soviet prisoners of war, Polish civilians, political opponents, gay men and other groups; their distinct experiences should not be collapsed into one undifferentiated total. In 1963, Hannah Arendt\'s controversial account of Eichmann\'s trial examined failures of thought and judgment without excusing perpetrators.',
       'For Black Americans, the world before 1914 had never possessed the security that European accounts of a broken civilization sometimes assumed. Jim Crow law, racial terror, disfranchisement, exploitative labor, and segregation structured life after Reconstruction. Beginning during World War I, the Great Migration carried approximately six million Black Americans from the South to cities in the North and West over six decades. The movement changed American labor, electoral politics, music, art, and literature. Harlem became a center of Black cultural production and political struggle, shaped by reformers, nationalists, socialists, Communists, artists, churches, newspapers, and neighborhood organizations.',
       'The American Communist Party and the broader left attracted writers and activists by organizing against unemployment, eviction, segregation, and racial violence. Their claims of interracial solidarity existed beside internal discipline, strategic reversals, and recurring efforts to subordinate Black political concerns to a theory of class. Ellison moved through this intellectual world before breaking with the Communist left during the 1940s. The Brotherhood in *Invisible Man* draws upon that history without functioning as a simple portrait of one organization.',
       'Ellison published *Invisible Man* in 1952, during the early Cold War and two years before *Brown v. Board of Education*. The narrator travels from a Black college in the South to a paint factory, hospital, eviction protest, political organization, riot, and underground room in Harlem. Each institution explains his identity through a system it already possesses. His invisibility is therefore neither a universal mood nor a private failure of confidence. It is a specifically racial and political condition within a nation that repeatedly invokes equality while refusing to see a Black person beyond the uses assigned to him.',
@@ -165,10 +167,14 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       keyItems: ['Rail supply', 'Artillery and communication', 'Mass infantry', 'Manufactured obstruction'],
       afterParagraph: -1,
     },
-    xref: {
-      text: 'Arendt\'s account of administrative participation, and the six-stage plate that accompanies it, appear in [Philosophy · The Individual and Authority](/units/05-modernism/philosophy#individual-authority).',
-      afterParagraph: 3,
-    },
+    extraFigures: [
+      {
+        image: '/images/philosophy/05-modernism/migration-work-voice-tempera.png',
+        alt: 'Three flat tempera scenes show a Black family at a train, workers and closed doors in a northern city, and people making and reading print beside a musician.',
+        caption: 'Movement changed where Black Americans could work, organize and make themselves heard; it did not end racial exclusion.',
+        afterParagraph: 4,
+      },
+    ],
   },
 
 };
