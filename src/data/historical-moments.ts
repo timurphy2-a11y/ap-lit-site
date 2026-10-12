@@ -53,8 +53,8 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'The unit brings together sources that medieval thinkers inherited and sources they produced: Augustine\'s account of the divided will, mystical arguments about the limits of reason, natural philosophy shaped by Aristotle, and literary confrontations with death. The Renaissance inherits an order still powerful enough to command obedience and fractured enough to invite challenge.',
     ],
     figure: {
-      image: '/images/philosophy/00-medieval/dance-of-death-frieze.png',
-      alt: 'Death leads a ruler, cleric, merchant, and laborer in a single restrained procession; a small gold hourglass marks time.',
+      image: '/images/philosophy/00-medieval/dance-of-death-painted-frieze-v3.png',
+      alt: 'A skeletal Death holding a small gold hourglass leads a crowned ruler, cleric, merchant with a purse, and laborer with a working tool across a sober painted frieze.',
       caption: 'In the Dance of Death, status does not exempt anyone from the common end.',
       afterParagraph: 5,
     },
