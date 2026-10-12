@@ -126,9 +126,9 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'Melville published *Moby-Dick* in 1851, when American whaling was a dangerous, capital-intensive, globally connected industry. The *Pequod* is a workplace whose multinational crew hunts whales for owners and profit. Ahab turns that commercial voyage into a private metaphysical war. His quest depends upon the ship, labor, discipline, and global reach of the industry he commandeers. Melville\'s ocean is sublime, but it is also a place of work: crossed by ships, divided into commercial routes, and marked by the violence required to turn living bodies into commodities.',
     ],
     figure: {
-      image: '/images/philosophy/04-romanticism/railway-cotton-world-remade.png',
-      alt: 'Atmospheric aquatint-style panorama with Liverpool docks at left, an early steam locomotive at center, and Manchester textile mills at right. Workers move three cotton bales whose dark-slate bands repeat from dock to train to mill, while a thin slate rail connects the sites.',
-      caption: '**Liverpool to Manchester, 1830.** The Liverpool and Manchester Railway connected Atlantic shipping at Liverpool with Manchester\'s mills. The repeated cotton bales make visible the commodity moving through a system that joined steam, factory labor, finance, empire, and slave-grown American cotton.',
+      image: '/images/philosophy/04-romanticism/railway-cotton-world-remade-v2.png',
+      alt: 'An atmospheric watercolor links a dock where workers move cotton, a small early steam locomotive carrying a matching bale, and workers moving another bale at a textile mill.',
+      caption: 'A conceptual panorama of Liverpool and Manchester’s cotton economy around the opening of their railway in 1830. Docks, rail and mills are linked by cotton whose cultivation depended heavily on enslaved labor in the American South. The six-stage account supplies the wider Atlantic context that this British scene cannot show.',
       afterParagraph: -1,
     },
     sysmap: {
@@ -143,7 +143,7 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
         { title: 'Export markets', gloss: 'Finished cloth sold into national and imperial markets, its origins invisible.' },
       ],
       footnote: 'Each stage was a separate business with its own accounts. The system\'s coherence was economic rather than deliberate, and no participant had to see the whole of it for the whole to function.',
-      afterParagraph: 2,
+      afterParagraph: -1,
     },
   },
 
