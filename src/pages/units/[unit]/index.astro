@@ -365,6 +365,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     const close   = document.getElementById('moment-close');
     const titleEl = document.getElementById('moment-title');
     const bodyEl  = document.getElementById('moment-body');
+    let lastFocused = null;
 
     function mdItalics(text) {
       return text
@@ -403,18 +404,32 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
         offset++;
       });
       bodyEl.innerHTML = blocks.join('');
+      lastFocused = document.activeElement;
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      close.focus();
     }
     function closeModal() {
+      if (!modal.classList.contains('open')) return;
       modal.classList.remove('open');
       document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
 
     trigger.addEventListener('click', openModal);
     close.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key !== 'Tab' || !modal.classList.contains('open')) return;
+      // Keep Tab focus inside the open modal.
+      const items = [...modal.querySelectorAll('a[href], button:not([disabled])')];
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   })();
 </script>
 
