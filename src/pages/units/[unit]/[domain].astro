@@ -1428,6 +1428,45 @@ if (isRedesignedDomain) {
   .caption details.optics-why summary { cursor: pointer; font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); }
   .caption details.optics-why img { display: block; width: 100%; height: auto; margin-top: 10px; }
   .caption details.optics-why p { margin: 8px 0 0; font-size: 14px; }
+  /* ── Argument diagram / exercise (Baroque philosophy: foreknowledge, Lanyer) ── */
+  .argument-diagram, .argument-exercise {
+    max-width: 680px; margin: 30px auto 34px; padding: 22px 24px;
+    background: var(--bg-raised); border: 1px solid var(--rule-strong);
+    font-family: var(--font-text); color: var(--ink-mute);
+  }
+  .argument-diagram .arg-title, .argument-exercise .arg-title {
+    font-family: var(--font-display); font-weight: 500; font-size: 21px; line-height: 1.25;
+    margin: 0 0 14px; color: var(--ink);
+  }
+  .argument-diagram .arg-sub, .argument-exercise .arg-sub {
+    font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 500; margin: 0 0 8px; color: var(--ink-soft);
+  }
+  .argument-diagram p, .argument-exercise p { font-size: 16px; line-height: 1.55; margin: 0 0 10px; }
+  .argument-diagram .relations, .argument-exercise .relations { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 14px; }
+  .argument-diagram .relations > div, .argument-exercise .relations > div { border: 1px solid var(--rule-strong); padding: 14px 16px; background: var(--bg); }
+  .argument-diagram .relation { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .argument-diagram blockquote, .argument-exercise blockquote {
+    margin: 10px 0 4px; padding: 0 0 0 14px; border-left: 2px solid var(--rule-strong);
+    font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink);
+  }
+  .argument-diagram .small, .argument-exercise .small { font-family: var(--font-ui); font-size: 12px; color: var(--ink-soft); }
+  .argument-diagram details, .argument-exercise details { margin-top: 10px; }
+  .argument-diagram summary, .argument-exercise summary { cursor: pointer; font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); }
+  .prose:not(.reading) .argument-diagram p,
+  .prose:not(.reading) .argument-diagram p:first-of-type,
+  .prose:not(.reading) .argument-exercise p,
+  .prose:not(.reading) .argument-exercise p:first-of-type { font-size: 16px; line-height: 1.55; color: var(--ink-mute); margin: 0 0 10px; }
+  .prose:not(.reading) .argument-diagram p:first-of-type::first-letter,
+  .prose:not(.reading) .argument-exercise p:first-of-type::first-letter {
+    float: none; font: inherit; color: inherit; padding: 0; letter-spacing: inherit;
+  }
+  .prose:not(.reading) .argument-diagram p.small,
+  .prose:not(.reading) .argument-exercise p.small { font-family: var(--font-ui); font-size: 12px; color: var(--ink-soft); }
+  .arg-title { display: block; }
+  @media (max-width: 650px) {
+    .argument-diagram .relations, .argument-exercise .relations { grid-template-columns: 1fr; }
+  }
   .caption .plate-key .k {
     display: block;
     font-size: 10px;
