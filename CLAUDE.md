@@ -197,9 +197,20 @@ Each domain page (`/units/[unit]/[domain]`) is `[domain].astro` — one shared t
 - Sticky tab bar: Philosophy · Painting · Sculpture · Music (4 tabs)
 - Core Text badge in header
 - MDX body content rendered with `<Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed }} />`
-- **Philosophy** for units not yet redesigned keeps the original two-column layout: prose + sticky sidebar (Analytical Threads card + Readings card). Medieval, Renaissance, Enlightenment, and Modernism (`PLATE_REDESIGNED_PHILOSOPHY_UNITS` in `[domain].astro`) have been migrated to the single-column plate-illustrated layout described below instead; Baroque and Romanticism have not yet.
-- **Painting / Sculpture / Music, and redesigned Philosophy units** use a single-column reading layout (no sidebar): hero image/plate/embed with an expandable "Read the analysis" panel (Painting/Sculpture/Music) or a `hero_plate` frontmatter block with an optional `keyItems` label strip (Philosophy), a thread jump-nav, then three thread `<section>`s each with inline work-plate(s) and a collapsible "Connection to *[Text]*" panel. Philosophy's redesigned layout additionally supports hand-authored `plate-pair`/`plate-inset` (image beside prose), `plate-heads` (labeled strip above an image), `plate-stages` (a numbered 4- or 6-column stage strip below an image), and `plate-key`/`plate-qual` caption annotations — all raw HTML/CSS classes authored directly in the MDX body, not schema-driven. Fonts: Cormorant Garamond (`--font-display`, headings/hero/pull-quotes only) + EB Garamond (`--font-text`, body prose) — matches Layout.astro's Cormorant usage elsewhere on the site.
+- **Philosophy** (all six units, via `PLATE_REDESIGNED_PHILOSOPHY_UNITS` in `[domain].astro`) and **Painting / Sculpture / Music** use a single-column reading layout (no sidebar): hero image/plate/embed with an expandable "Read the analysis" panel (Painting/Sculpture/Music) or a `hero_plate` frontmatter block (Philosophy: `image`, `alt`, `gloss` = the italic caption; `keyItems` is no longer used), a thread jump-nav, then three thread `<section>`s each with inline work-plate(s) and a collapsible "Connection to *[Text]*" panel. The old two-column sidebar layout still exists in the template for non-listed units but no unit uses it.
+- Philosophy's single-column layout supports hand-authored raw HTML/CSS classes in the MDX body (not schema-driven): `plate-pair`/`plate-inset` (image beside prose), `plate-heads` (labeled strip above an image), `plate-stages` (numbered stage strip), `plate-key`/`plate-qual` caption annotations, `doc-pair` (two equal-height side-by-side boxes: matched figures, or figure + document card), `doc-card`/`doc-seq` (typeset document cards, used for Enlightenment's rights and Calas exhibits), and the Baroque `argument-diagram`/`argument-exercise` components (use `div role="heading"` for their titles: a real `<h3>` is wrapped into a collapsible Connection panel by the page script). Fonts: Cormorant Garamond (`--font-display`, headings/hero/pull-quotes only) + EB Garamond (`--font-text`, body prose).
 - Prev/next navigation links to same domain on adjacent units
+
+---
+
+## Figure Conventions (Philosophy pages and hub essays)
+
+- **Captions only.** Each figure shows one italic caption (`.caption .title`) and nothing below it: no `plate-key` lists, `plate-qual` notes, or reading questions (Tim removed these everywhere; a few figures keep a heading strip *above* the image). Exceptions Tim has kept: document-card text on Enlightenment, and the Medieval optics "Why is the image upside down?" disclosure.
+- **Enlargement.** Every `.work-figure .img` and the hero open a keyboard-accessible lightbox (Enter to open, Escape to close, focus returns). The lightbox caption is the figure's caption; if a figure has `plate-heads`, `plate-key`, or `plate-note` text and carries `data-lightbox-key`, that text is appended.
+- **Image files** are versioned by suffix (`-v2`, `-v3`, `-painted-v2`, etc.), never overwritten; the old file is `git rm`'d when a figure is replaced. Alt text lives only at the `<img>`/frontmatter/data entry and must be updated with the image.
+- **Typography in new prose:** straight quotes and apostrophes (the pages use `'` and `"`; avoid curly `’“”`), and no wrapping quotation marks inside `<PullQuote>`.
+- **Sizes:** insets sit beside prose at about 450px; standalone plates use `max-width` 560-780px, full width on phones.
+- **Hub essay modal** (`[unit]/index.astro`): content comes from `historical-moments.ts`; a moment can have `figure`, `extraFigures[]` (Modernism's migration painting), `sysmap` (Romanticism's cotton system sits directly under its figure), and `xref`, each with its own `afterParagraph`. The modal moves focus to its close button, traps Tab, and restores focus to the trigger on close.
 
 ---
 
@@ -247,7 +258,7 @@ Playwright is for exploratory self-QA during implementation — not for generati
 
 ---
 
-## Current Status (July 2026)
+## Current Status (October 2026)
 
 **Completed:**
 - Full site build: home, 6 hub pages, 24 domain pages (Philosophy/Painting/Sculpture/Music × 6 units), timeline, people index, compare, art/music/sculpture overviews
@@ -256,10 +267,12 @@ Playwright is for exploratory self-QA during implementation — not for generati
 - Portrait system: 54 images downloaded/cropped, BiographyPanel updated with portrait field
 - BioLink system wired up site-wide via Layout.astro
 - Site Audit (March 2026) — all Priority 1 and Priority 2 items implemented
-- Painting/Sculpture/Music domain pages redesigned to a single-column reading layout with inline work-plates, expandable analysis panels, and a thread jump-nav (Philosophy unchanged); Cormorant Garamond + EB Garamond replace Spectral on these pages
+- Painting/Sculpture/Music domain pages redesigned to a single-column reading layout with inline work-plates, expandable analysis panels, and a thread jump-nav; Cormorant Garamond + EB Garamond replace Spectral on these pages
+- All six Philosophy pages on the single-column plate layout, with new illustrated figures in varied period idioms (Oct 2026 handoffs: Medieval, Renaissance, Baroque, Enlightenment, Romanticism, Modernism), the Modernism prose revisions (Gödel removed from the philosophy prose; his timeline and people entries intentionally kept), and the Enlightenment document/paired exhibits
 
 **Pending / future work:**
 - Editorial pass content (the `0X_*.md` files in root) not yet merged into `.mdx` files
 - Analysis-panel text for the new expandable panels is drafted in `Analysis_Panel_Content_Review.md`, pending Tim's review before it's ported into `content.config.ts` frontmatter
 - Modernism painting images (Picasso, Kandinsky, Matisse) may need copyright review before public launch
+- The generated illustrations in the Oct 2026 handoffs are contemporary interpretive art, not historical works; consider whether any provenance note is wanted before public launch
 - Medieval: Aristotelian physics reading removed from frontmatter; replacement reading TBD
