@@ -95,7 +95,6 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       image: '/images/philosophy/02-baroque/defenestration-of-prague-painted-v2.png',
       alt: 'One man falls outside, another is forced over a high window sill, and a third is restrained inside.',
       caption: '**Prague, 1618.** Protestant nobles throw the imperial governors and their secretary from Prague Castle. All three survived; competing explanations of that survival became part of the confessional argument.',
-      keyItems: ['Sequence: the image compresses the episode involving two governors and their secretary; the figures are not authenticated portraits.'],
       afterParagraph: -1,
     },
   },
