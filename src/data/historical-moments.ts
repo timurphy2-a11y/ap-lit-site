@@ -72,8 +72,8 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'Shakespeare writes *Hamlet* around 1600, when these conflicts remain active. The ghost speaks from a Catholic purgatory to a prince educated at Protestant Wittenberg. Hamlet tests a supernatural command through theatrical evidence; Claudius uses ceremony, surveillance, and political competence to protect a throne acquired by murder. The play\'s world contains many authorities, and they no longer agree.',
     ],
     figure: {
-      image: '/images/philosophy/01-renaissance/florence-bonfire-painted-v2.png',
-      alt: 'In Florence\u2019s Piazza della Signoria, youths place books and other goods near a bonfire. Books, a folded garment, mirror, vessel, and small panel are visible among the objects. Townspeople and Dominican friars watch, with the Palazzo Vecchio behind them.',
+      image: '/images/philosophy/01-renaissance/florence-bonfire-fresco-v3.png',
+      alt: 'Youths collect and set books and other goods beside a moderate bonfire in Florence’s Piazza della Signoria. Dominican friars and citizens watch, with the Palazzo Vecchio behind the scene.',
       caption: 'Florence, 1497. In the Piazza della Signoria, Savonarola\'s program joined civic ceremony to moral enforcement; the objects gathered as "vanities" included books, fine clothing, cosmetics, mirrors, and art.',
       afterParagraph: 0,
     },
