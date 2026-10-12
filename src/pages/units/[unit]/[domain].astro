@@ -1467,6 +1467,32 @@ if (isRedesignedDomain) {
   @media (max-width: 650px) {
     .argument-diagram .relations, .argument-exercise .relations { grid-template-columns: 1fr; }
   }
+  /* ── Paired panels and document cards (Enlightenment: Kant, rights, Calas) ── */
+  .doc-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; max-width: var(--read-wide, 860px); margin: 30px auto 34px; }
+  .doc-pair > figure.work-plate, .doc-pair > .doc-card { margin: 0; min-width: 0; }
+  .doc-card { background: var(--bg-raised); border: 1px solid var(--rule); font-family: var(--font-text); color: var(--ink-mute); }
+  .doc-card figure.work-plate { margin: 0; border: 0; border-bottom: 1px solid var(--rule); }
+  .doc-card > :not(figure) { margin-left: 18px; margin-right: 18px; }
+  .doc-card .doc-date { margin-top: 16px; }
+  .doc-card > :last-child { margin-bottom: 18px; }
+  .doc-date { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 6px; }
+  .doc-title { font-family: var(--font-display); font-weight: 500; font-size: 19px; line-height: 1.25; color: var(--ink); margin: 0 0 8px; }
+  .doc-card p, .doc-card dd, .doc-card dt { font-size: 15px; line-height: 1.5; }
+  .doc-card p { margin-top: 0; margin-bottom: 9px; }
+  .doc-card .doc-small { font-family: var(--font-ui); font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
+  .doc-card blockquote { margin: 10px 18px; padding: 0 0 0 14px; border-left: 2px solid var(--rule-strong); font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink); }
+  .doc-card dl { margin: 10px 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; }
+  .doc-card dt { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; }
+  .doc-card dd { margin: 0; }
+  .doc-seq { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: var(--read-wide, 860px); margin: 0 auto 14px; }
+  .doc-seq .doc-card { padding-top: 2px; }
+  .doc-seq .doc-card > * { margin-left: 16px; margin-right: 16px; }
+  .doc-note { max-width: var(--read-wide, 860px); margin: 0 auto 34px; font-family: var(--font-ui); font-size: 12.5px; color: var(--ink-soft); }
+  details.enrichment { max-width: 700px; margin: 6px auto 30px; }
+  details.enrichment > summary { cursor: pointer; font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft); }
+  @media (max-width: 760px) {
+    .doc-pair, .doc-seq { grid-template-columns: 1fr; }
+  }
   .caption .plate-key .k {
     display: block;
     font-size: 10px;

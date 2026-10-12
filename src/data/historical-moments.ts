@@ -109,8 +109,8 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'Austen wrote *First Impressions* in 1796–1797 while Britain was at war with revolutionary France and feared invasion. She revised the manuscript before its publication as *Pride and Prejudice* in 1813, during the Napoleonic Wars. The novel does not make European conflict its subject, but militia officers, property, inheritance, and the economic stakes of marriage belong to a society shaped by war and insecurity. Its scale remains local because judgment begins there: in the difficult work of deciding what another person\'s words and actions deserve.',
     ],
     figure: {
-      image: '/images/philosophy/03-enlightenment/lisbon-world-shakes.png',
-      alt: 'A precise eighteenth-century-style engraving looks down a damaged Lisbon street toward the Tagus. A church has partly collapsed, small fires rise near the harbor, and a narrow slate-blue surge enters the street while five people rescue or warn one another.',
+      image: '/images/philosophy/03-enlightenment/lisbon-rescue-vernet-v2.png',
+      alt: 'People help one another through a damaged Lisbon street above harbor inundation. A ruined church stands at left and fires burn beside the Tagus.',
       caption: '**Lisbon, 1755.** The Lisbon earthquake joined collapsing buildings, fire, and harbor inundation in a disaster that appeared indifferent to guilt. The event became a public test of how suffering should be explained — and whether explanation could excuse inaction.',
       afterParagraph: 0,
     },
