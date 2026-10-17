@@ -12,6 +12,7 @@
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
+    "preview:remote": "npm run build && wrangler versions upload --preview-alias",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {

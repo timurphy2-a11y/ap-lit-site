@@ -452,7 +452,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
   }
   .tl-page .filter-row {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -499,6 +499,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
   /* ─── Timeline list ────────────────────────────────────────────────────── */
   .tl-page .timeline {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
     border-top: 1px solid var(--rule);
   }
@@ -786,5 +787,26 @@ const sorted = [...ENTRIES].sort((a, b) => {
     line-height: 1.55;
     color: var(--ink-mute);
     margin: 0;
+  }
+
+  /* Phone: year and chip share a line; the body drops beneath them. */
+  @media (max-width: 640px) {
+    .tl-page .row {
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 14px;
+      row-gap: 6px;
+      padding: 14px 14px 14px 18px;
+    }
+    .tl-page .row .body { grid-column: 1 / -1; min-width: 0; }
+    .tl-page .row .title { overflow-wrap: anywhere; }
+    .tl-page .row.ap-row { grid-template-columns: minmax(0, 1fr); }
+    .tl-page .row.ap-row .year { font-size: 36px; }
+    .tl-page .ap-row .anchor { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .tl-page .ap-row .anchor-meta {
+      border-right: 0;
+      padding-right: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid color-mix(in oklab, var(--p) 30%, var(--rule));
+    }
   }
 </style>
