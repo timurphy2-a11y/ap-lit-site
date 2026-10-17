@@ -1,0 +1,65 @@
+/* AP-site design tokens: the one source for the Layout pages and both unit
+   templates. Authority: AP Literature Design System Reference, as amended by
+   AP_Lit_Design_System_Amendments.md. There is no dark mode.
+   (summer-reading has its own tokens in tokens.css; do not merge them.) */
+
+:root {
+  /* Surfaces (warm cream paper) */
+  --bg:          #F4EDDF;
+  --bg-raised:   #EBE2D0;
+  --bg-sunken:   #FAF4E6;
+
+  /* Ink (warm dark brown). All three pass 4.5:1 on all three surfaces. */
+  --ink:         #1B1714;
+  --ink-mute:    #4a4138;
+  --ink-soft:    #6a6053;
+
+  /* Rules and borders (decorative; never the only boundary of a control) */
+  --rule:        #C9BDA5;
+  --rule-strong: #A89978;
+
+  /* Period accents: swatches, ticks, rules, emblems, tab underlines,
+     pull-quote borders, tinted fills. NOT for small text. */
+  --acc-medieval:       #C9A24B;
+  --acc-renaissance:    #B54C3A;
+  --acc-baroque:        #B07028;
+  --acc-enlightenment:  #698BA1;
+  --acc-romanticism:    #3D5A6D;
+  --acc-modernism:      #A03828;
+
+  /* Text-safe period accents (A5): hue-preserving darkenings, at least 4.6:1
+     on --bg-raised. Use for any text colored by a period accent. */
+  --acc-medieval-text:       #815D00;
+  --acc-renaissance-text:    #A94130;
+  --acc-baroque-text:        #935500;
+  --acc-enlightenment-text:  #47687D;
+  --acc-romanticism-text:    #3D5A6D;
+  --acc-modernism-text:      #A03828;
+
+  /* Default accent (gold), text-safe */
+  --acc:         #815D00;
+
+  /* Type */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-text:    'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Body: EB Garamond 18px / 1.65 / --ink-mute (spec section 4.1) */
+html, body {
+  background: var(--bg);
+  color: var(--ink-mute);
+  font-family: var(--font-text);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings: Cormorant Garamond 500 (600 for H4), upright. Italic inside a
+   heading is reserved for titles of works. */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; }
+h4 { font-family: var(--font-display); font-weight: 600; }

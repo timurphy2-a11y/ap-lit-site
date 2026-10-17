@@ -17,7 +17,7 @@
   line-height: 0.82;
   padding-right: 6px;
   padding-top: 5px;
-  font-family: var(--font-display, 'Spectral', Georgia, serif);
-  font-weight: 700;
-  color: var(--prose-drop-cap-color, #A07820);
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 600;
+  color: var(--prose-drop-cap-color, var(--acc, #815D00));
 }

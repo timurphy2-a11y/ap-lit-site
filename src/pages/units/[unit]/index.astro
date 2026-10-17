@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
+import '../../../styles/design-tokens.css';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
 import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
@@ -62,6 +63,12 @@ const ACCENTS: Record<string, { acc: string; philosophy: string; art: string; mu
   '05-modernism':     { acc: '#A03828', philosophy: '#A03828', art: '#A03828', music: '#A03828' },
 };
 const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
+// Text-safe variant of the period accent (any text colored by the accent)
+const ACCENT_TEXT: Record<string, string> = {
+  '00-medieval': '#815D00', '01-renaissance': '#A94130', '02-baroque': '#935500',
+  '03-enlightenment': '#47687D', '04-romanticism': '#3D5A6D', '05-modernism': '#A03828',
+};
+const accText = ACCENT_TEXT[unit] ?? ACCENT_TEXT['00-medieval'];
 
 // Per-unit Historical Moment bar tokens
 const MOMENT_COLORS: Record<string, { goldWash: string; goldWashHover: string; accDeep: string }> = {
@@ -116,10 +123,10 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{meta.period} — Of Imagination All Compact</title>
 </head>
-<body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355; --gold-wash:${momentColors.goldWash}; --gold-wash-hover:${momentColors.goldWashHover}; --acc-deep:${momentColors.accDeep};`}>
+<body style={`--acc:${colors.acc}; --acc-text:${accText}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355; --gold-wash:${momentColors.goldWash}; --gold-wash-hover:${momentColors.goldWashHover}; --acc-deep:${accText};`}>
 
 <!-- ── Top nav ── -->
 <SiteHeader flush />
@@ -142,7 +149,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 <section class="unit-head">
   <div>
     <div class="unit-num">{unitNumber}</div>
-    <div class="unit-meta">Unit · {meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
+    <div class="unit-meta">{meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
     <h1 class="unit-title">{meta.period}</h1>
     <div class="unit-dates">{meta.dates}</div>
   </div>
@@ -177,7 +184,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     <div class="frieze-band" aria-hidden="true">
       <PeriodMotif unit={unit} role={6} />
     </div>
-    <span class="frieze-label">Unit {unitNumber} · {meta.period}</span>
   </div>
   <div class="thread-buttons">
 
@@ -205,7 +211,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     <!-- Painting -->
     <a class="thread-btn" href={`/units/${unit}/art`}>
       <div class="btn-top">
-        <span class="btn-eyebrow">Visual Art</span>
         <div class="btn-sigil">
           <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/>
@@ -226,7 +231,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     <!-- Sculpture -->
     <a class="thread-btn" href={`/units/${unit}/sculpture`}>
       <div class="btn-top">
-        <span class="btn-eyebrow">Visual Art</span>
         <div class="btn-sigil">
           <svg viewBox="0 0 40 40" fill="none" stroke="#F6F1E8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z"/>
@@ -343,7 +347,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 <footer>
   <div class="colophon">Of Imagination All Compact · AP Literature</div>
   <div><a href="/credits">Image Credits</a></div>
-  <div>Unit {unitNumber} of 06</div>
+  <div>{unitNumber} of 06</div>
 </footer>
 
 </body>
@@ -429,19 +433,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 <style is:global>
   /* ── Design tokens ─────────────────────────────────────────── */
   :root {
-    --bg:          #F4EDDF;
-    --bg-raised:   #EBE2D0;
-    --bg-sunken:   #FAF4E6;
-    --ink:         #1B1714;
-    --ink-mute:    #4a4138;
-    --ink-soft:    #6a6053;
-    --rule:        #C9BDA5;
-    --rule-strong: #A89978;
-
-    --font-display: 'Spectral', Georgia, serif;
-    --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
-
     --gutter:  clamp(24px, 4vw, 72px);
     --measure: 62ch;
   }
@@ -450,14 +441,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   html, body { margin: 0; padding: 0; }
 
   body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-display);
-    font-size: 18px;
-    line-height: 1.55;
     padding: 0 var(--gutter);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -508,7 +492,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     font-weight: 300;
     font-size: clamp(60px, 9vw, 120px);
     line-height: 0.85;
-    color: var(--acc);
+    color: var(--acc-text);
     letter-spacing: -0.04em;
     margin: 0 0 8px;
   }
@@ -522,7 +506,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   }
   .unit-title {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(40px, 5.2vw, 72px);
     line-height: 1;
     letter-spacing: -0.02em;
@@ -549,8 +533,8 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   .page-sig svg { width: 100%; height: 100%; }
 
   .unit-kicker {
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     max-width: 48ch;
     margin: 0;
@@ -579,7 +563,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     font-family: var(--font-display);
     font-size: 90px;
     line-height: 1;
-    color: var(--acc);
+    color: var(--acc-text);
     opacity: 0.55;
   }
   .quote blockquote {
@@ -636,7 +620,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   .about {
     max-width: var(--measure);
     margin: 0 auto;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.65;
     color: var(--ink-mute);
     padding: 56px 0 24px;
@@ -650,7 +634,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     font-weight: 300;
     font-size: 78px;
     line-height: 0.85;
-    color: var(--acc);
+    color: var(--acc-text);
     padding: 8px 14px 0 0;
     letter-spacing: -0.02em;
   }
@@ -712,7 +696,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 
   .btn-top {
     flex: 0 0 62%;
-    background: var(--mark-primary);
+    background: var(--acc-text);
     padding: 22px 18px 18px;
     display: flex;
     flex-direction: column;
@@ -732,7 +716,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(246,241,232,0.65);
+    color: #F6F1E8;
   }
 
   .btn-sigil {
@@ -752,8 +736,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 
   .btn-label {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 30px;
     line-height: 1;
     color: #F6F1E8;
@@ -787,7 +770,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     color: var(--ink-soft);
   }
   .btn-arrow {
-    color: var(--mark-primary);
+    color: var(--acc-text);
     transition: transform 160ms ease;
   }
 
@@ -973,8 +956,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   }
   .modal h2 {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
+    font-weight: 500;
     font-size: clamp(34px, 4.2vw, 52px);
     line-height: 1;
     letter-spacing: -0.015em;
@@ -1092,7 +1074,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.16em;
-    color: var(--acc);
+    color: var(--acc-text);
   }
   .modal .sysmap .st .t {
     font-family: var(--font-display);
@@ -1155,8 +1137,8 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     color: var(--ink);
     letter-spacing: -0.01em;
   }
-  .pager a.prev .title::before { content: '← '; color: var(--acc); }
-  .pager a.next .title::after  { content: ' →'; color: var(--acc); }
+  .pager a.prev .title::before { content: '← '; color: var(--acc-text); }
+  .pager a.next .title::after  { content: ' →'; color: var(--acc-text); }
   .pager a.disabled { opacity: 0.3; pointer-events: none; }
 
   /* ── Footer ─────────────────────────────────────────────────── */

@@ -5,6 +5,7 @@ import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
+import '../../../styles/design-tokens.css';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
 import SlowDownCallout from '../../../components/SlowDownCallout.astro';
@@ -83,6 +84,11 @@ const ACCENTS: Record<string, {
   '05-modernism':     { philosophy: '#A03828', art: '#A03828', sculpture: '#A03828', music: '#A03828', subThreads: ['#A03828', '#802818', '#C04838'] },
 };
 
+const ACCENT_TEXT: Record<string, string> = {
+  '00-medieval': '#815D00', '01-renaissance': '#A94130', '02-baroque': '#935500',
+  '03-enlightenment': '#47687D', '04-romanticism': '#3D5A6D', '05-modernism': '#A03828',
+};
+const threadAccText = ACCENT_TEXT[unit] ?? ACCENT_TEXT['00-medieval'];
 const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
@@ -93,7 +99,17 @@ const DOMAIN_THREAD_COLORS: Record<string, [string, string, string]> = {
   sculpture:  ['#4F6B4D', '#5F8060', '#7B9883'],
   music:      ['#574878', '#6F5E95', '#8C80AE'],
 };
+// Text-safe steps (at least 4.6:1 on --bg-raised) for text colored by a domain
+// color. The steps above are for icons, stripes and tints only (A6). Interim
+// values: darkened from the live ones, pending the Reference's section 3.5.
+const DOMAIN_TEXT_COLORS: Record<string, [string, string, string]> = {
+  philosophy: ['#3A332B', '#5A5046', '#6A6155'],
+  art:        ['#75435B', '#8A5267', '#8B5266'],
+  sculpture:  ['#4F6B4D', '#4F6A50', '#516858'],
+  music:      ['#574878', '#6C5B90', '#695C90'],
+};
 const domainColors = DOMAIN_THREAD_COLORS[domain] ?? DOMAIN_THREAD_COLORS.philosophy;
+const domainTextColors = DOMAIN_TEXT_COLORS[domain] ?? DOMAIN_TEXT_COLORS.philosophy;
 
 // ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
@@ -126,27 +142,11 @@ const DOMAIN_LABELS: Record<string, string> = {
   music:      'Music',
 };
 
-const DOMAIN_THREAD_LABEL: Record<string, string> = {
-  philosophy: 'Thread I · Philosophy',
-  art:        'Thread II · Painting',
-  sculpture:  'Thread III · Sculpture',
-  music:      'Thread IV · Music',
-};
-
-// ── Domain sigil SVG content (injected via set:html to avoid multi-conditional parser issues) ──
-const DOMAIN_SIGIL_SVG: Record<string, string> = {
-  philosophy: `<circle cx="20" cy="20" r="14" fill="none"/><circle cx="20" cy="20" r="8" fill="none"/><circle cx="20" cy="20" r="1.8" fill="currentColor" stroke="none"/>`,
-  art:        `<rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)" fill="none"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/>`,
-  sculpture:  `<path d="M20 6 L34 14 L34 28 L20 36 L6 28 L6 14 Z" fill="none"/><path d="M6 14 L20 22 L34 14" fill="none"/><line x1="20" y1="22" x2="20" y2="36"/>`,
-  music:      `<path d="M6 24 A14 14 0 0 1 34 24" fill="none"/><circle cx="20" cy="24" r="2" fill="currentColor" stroke="none"/><line x1="6" y1="32" x2="34" y2="32"/>`,
-};
-const sigilSvg = DOMAIN_SIGIL_SVG[domain] ?? DOMAIN_SIGIL_SVG.philosophy;
-
 const threadSigils = entry.data.threads
   .map((t: { id: string; label: string }, i: number) => {
     const icon = THREAD_ICONS[t.id];
     const color = domainColors[i % domainColors.length];
-    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color } : null;
+    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color, textColor: domainTextColors[i % domainTextColors.length] } : null;
   })
   .filter(Boolean);
 
@@ -158,7 +158,6 @@ const DOMAIN_TITLES: Record<string, string> = {
 };
 
 const currentLabel = DOMAIN_LABELS[domain] ?? domain;
-const threadLabel  = DOMAIN_THREAD_LABEL[domain] ?? domain;
 
 // ── Within-unit thread navigation ─────────────────────────────────────────────
 
@@ -170,7 +169,7 @@ const prevDomainLabel = prevDomain ? (DOMAIN_LABELS[prevDomain] ?? prevDomain) :
 const nextDomainLabel = nextDomain ? (DOMAIN_LABELS[nextDomain] ?? nextDomain) : null;
 const domainTitle  = DOMAIN_TITLES[domain] ?? domain;
 const pageTitle    = `${meta.period}: ${currentLabel} — Of Imagination All Compact`;
-const crumbUnit    = `Unit ${unitNumber} · ${meta.period}`;
+const crumbUnit    = `${unitNumber} · ${meta.period}`;
 const peopleJson   = JSON.stringify(PEOPLE);
 
 // ── Single-column reading layout (art / sculpture / music) ───────────────────
@@ -212,10 +211,10 @@ if (isRedesignedDomain) {
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{pageTitle}</title>
 </head>
-<body style={`--thread-acc: ${threadAcc}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
+<body style={`--thread-acc: ${threadAcc}; --thread-acc-text: ${threadAccText}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
 
 <!-- ── Top nav ── -->
 <SiteHeader flush />
@@ -238,7 +237,7 @@ if (isRedesignedDomain) {
 <section class="unit-strip">
   <div class="num">{unitNumber}</div>
   <div class="title-block">
-    <div class="meta">Unit · {meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
+    <div class="meta">{meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
     <h2>{meta.period}</h2>
   </div>
   <div class="dates">{meta.dates}</div>
@@ -292,12 +291,8 @@ if (isRedesignedDomain) {
 
 <!-- ── Page head ── -->
 <section class="page-head">
-  <div class="sigil-lg" aria-hidden="true">
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" set:html={sigilSvg} />
-  </div>
   <div>
-    <div class="page-lbl">{threadLabel}</div>
-    <h1>{domainTitle}: <em>{meta.period}</em></h1>
+    <h1>{domainTitle}: {meta.period}</h1>
   </div>
 </section>
 
@@ -349,7 +344,6 @@ if (isRedesignedDomain) {
       <figure class="hero-plate work-figure">
         <div class="img">
           {p.image && <img src={p.image} alt={p.title} class="hero-img-full" />}
-          <div class="stamp">{p.artist}</div>
         </div>
         <figcaption class="caption">
           <div>
@@ -381,7 +375,6 @@ if (isRedesignedDomain) {
       <figure class="hero-plate work-figure">
         <div class="img">
           {s.image && <img src={s.image} alt={s.title} class="hero-img-full" />}
-          <div class="stamp">{s.artist}</div>
         </div>
         <figcaption class="caption">
           <div>
@@ -438,7 +431,7 @@ if (isRedesignedDomain) {
           const subAcc = domainColors[i % domainColors.length];
           const icon = THREAD_ICONS[t.id];
           return (
-            <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};`}>
+            <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};--sub-acc-text:${domainTextColors[i % domainTextColors.length]};`}>
               <span class="tn-sig" aria-hidden="true">
                 {icon && <svg viewBox={icon.viewBox} width="28" height="28" set:html={icon.content} />}
               </span>
@@ -499,7 +492,7 @@ if (isRedesignedDomain) {
           {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
             const subAcc = domainColors[i % domainColors.length];
             return (
-              <li style={`--sub-acc: ${subAcc};`}>
+              <li style={`--sub-acc: ${subAcc}; --sub-acc-text: ${domainTextColors[i % domainTextColors.length]};`}>
                 <span class="sig-xs">
                   <ThreadIcon thread={t.id} size={28} color={subAcc} />
                 </span>
@@ -538,18 +531,18 @@ if (isRedesignedDomain) {
 <nav class="pager">
   {prevDomain ? (
     <a class="pager-prev" href={`/units/${unit}/${prevDomain}`}>
-      <span class="pager-lbl">Previous thread</span>
+      <span class="pager-lbl">Previous domain</span>
       <span class="pager-title">{prevDomainLabel}</span>
     </a>
   ) : (
     <a class="pager-prev" href={`/units/${unit}`}>
       <span class="pager-lbl">Back</span>
-      <span class="pager-title">Unit {unitNumber} Overview</span>
+      <span class="pager-title">{meta.period} overview</span>
     </a>
   )}
   {nextDomain ? (
     <a class="pager-next" href={`/units/${unit}/${nextDomain}`}>
-      <span class="pager-lbl">Next thread</span>
+      <span class="pager-lbl">Next domain</span>
       <span class="pager-title">{nextDomainLabel}</span>
     </a>
   ) : nextUnit ? (
@@ -565,7 +558,7 @@ if (isRedesignedDomain) {
 <footer>
   <div class="colophon">Of Imagination All Compact · AP Literature</div>
   <div><a href="/credits">Image Credits</a></div>
-  <div>Unit {unitNumber} / {currentLabel}</div>
+  <div>{unitNumber} / {currentLabel}</div>
 </footer>
 
 <!-- ── Bio modal ── -->
@@ -666,7 +659,7 @@ if (isRedesignedDomain) {
     medallion.setAttribute('aria-hidden', 'true');
     if (medallionSvg) medallion.innerHTML = medallionSvg;
 
-    if (sigil) h2.style.setProperty('--sub-acc', sigil.color);
+    if (sigil) { h2.style.setProperty('--sub-acc', sigil.color); h2.style.setProperty('--sub-acc-text', sigil.textColor); }
 
     h2.appendChild(box);
     h2.appendChild(idx);
@@ -802,7 +795,7 @@ if (isRedesignedDomain) {
       const section = document.createElement('section');
       section.className = 'thread';
       section.id = threadIds[i];
-      if (threadSigils[i]) section.style.setProperty('--sub-acc', threadSigils[i].color);
+      if (threadSigils[i]) { section.style.setProperty('--sub-acc', threadSigils[i].color); section.style.setProperty('--sub-acc-text', threadSigils[i].textColor); }
       h2.parentNode.insertBefore(section, h2);
       let node = h2;
       while (node) {
@@ -930,35 +923,15 @@ if (isRedesignedDomain) {
 
 <style is:global>
   :root {
-    --bg: #F4EDDF;
-    --bg-raised: #EBE2D0;
-    --bg-sunken: #FAF4E6;
-    --ink: #1B1714;
-    --ink-mute: #4a4138;
-    --ink-soft: #6a6053;
-    --rule: #C9BDA5;
-    --rule-strong: #A89978;
-
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-text: 'EB Garamond', Georgia, serif;
-    --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-
     --gutter: clamp(24px, 4vw, 72px);
     --measure: 62ch;
     --read-wide: 1040px;
   }
 
-  * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-text);
-    font-size: 18px;
     line-height: 1.6;
     padding: 0 var(--gutter);
-    -webkit-font-smoothing: antialiased;
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
@@ -1004,7 +977,7 @@ if (isRedesignedDomain) {
     font-weight: 300;
     font-size: 72px;
     line-height: 0.85;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     letter-spacing: -0.03em;
   }
   .unit-strip .title-block .meta {
@@ -1017,7 +990,7 @@ if (isRedesignedDomain) {
   }
   .unit-strip .title-block h2 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 26px;
     line-height: 1.1;
     margin: 0;
@@ -1071,52 +1044,21 @@ if (isRedesignedDomain) {
   .mini svg { width: 100%; height: 100%; }
   .tab.active {
     background: var(--bg-raised);
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     box-shadow: inset 0 -2px 0 var(--thread-acc);
   }
 
   /* ── Page head ── */
   .page-head {
     padding: 80px 0 48px;
-    display: grid;
-    grid-template-columns: 88px 1fr;
-    gap: 32px;
-    align-items: start;
     border-bottom: 1px solid var(--rule);
   }
   @media (max-width: 720px) {
-    .page-head { grid-template-columns: 1fr; gap: 18px; padding: 48px 0 32px; }
-  }
-  .sigil-lg {
-    width: 88px;
-    height: 88px;
-    border: 1px solid var(--rule-strong);
-    background: var(--bg-sunken);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .sigil-lg svg {
-    width: 48px;
-    height: 48px;
-    stroke: var(--thread-acc);
-    stroke-width: 1.25;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
-  }
-  .page-lbl {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--thread-acc);
-    margin-bottom: 10px;
+    .page-head { padding: 48px 0 32px; }
   }
   .page-head h1 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(32px, 4.2vw, 64px);
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -1124,7 +1066,6 @@ if (isRedesignedDomain) {
     color: var(--ink);
     max-width: 44ch;
   }
-  .page-head h1 em { font-style: italic; color: var(--ink-mute); }
 
   /* ── Section terminator (role 3) ── */
   .section-terminator {
@@ -1160,16 +1101,6 @@ if (isRedesignedDomain) {
     max-height: 640px;
     object-fit: contain;
   }
-  figure.hero-plate .stamp {
-    position: absolute;
-    left: 18px;
-    bottom: 14px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--ink-mute);
-    z-index: 2;
-  }
   figure.hero-plate .caption {
     padding: 22px 28px;
     display: grid;
@@ -1189,7 +1120,7 @@ if (isRedesignedDomain) {
     font-family: var(--font-ui);
     font-size: 11.5px;
     letter-spacing: 0.08em;
-    color: var(--ink-soft);
+    color: var(--ink-mute);
     margin-top: 4px;
     text-transform: uppercase;
   }
@@ -1292,7 +1223,7 @@ if (isRedesignedDomain) {
     font-weight: 500;
     letter-spacing: 0.05em;
     line-height: 1.4;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
   }
   .plate-heads span:last-child { text-align: right; }
   .plate-heads.three { grid-template-columns: repeat(3, 1fr); }
@@ -1368,7 +1299,7 @@ if (isRedesignedDomain) {
     padding-left: 9px;
     border-left: 2px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 50%, var(--rule));
   }
-  .plate-stages .st .n { font-size: 9.5px; letter-spacing: 0.16em; color: var(--sub-acc, var(--thread-acc)); }
+  .plate-stages .st .n { font-size: 9.5px; letter-spacing: 0.16em; color: var(--sub-acc-text, var(--thread-acc-text)); }
   .plate-stages .st .t { font-size: 12px; font-weight: 500; letter-spacing: 0.03em; line-height: 1.35; color: var(--ink-mute); }
   .caption .plate-key { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--rule); }
   .caption .plate-key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px 24px; }
@@ -1517,7 +1448,7 @@ if (isRedesignedDomain) {
   .plate-pair.left .pair-text { grid-column: 2; }
   .plate-pair.left > figure { grid-column: 1; }
   .measure { max-width: var(--measure); margin-left: auto; margin-right: auto; }
-  .reading p.measure { font-size: 18.5px; line-height: 1.65; margin: 0 auto 22px; color: var(--ink-mute); }
+  .reading p.measure { font-size: 18px; line-height: 1.65; margin: 0 auto 22px; color: var(--ink-mute); }
   .plate-pair .measure { max-width: none; margin-left: 0; margin-right: 0; }
   .plate-pair .pair-text > p:last-child { margin-bottom: 0; }
   figure.work-plate.plate-inset { max-width: none; margin: 0; width: 100%; }
@@ -1579,7 +1510,7 @@ if (isRedesignedDomain) {
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sub-acc, var(--acc-deep));
+    color: var(--sub-acc-text, var(--ink-mute));
   }
   .dgm .dgm-hd .sub {
     font-family: var(--font-display);
@@ -1603,7 +1534,7 @@ if (isRedesignedDomain) {
   .seq.two { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 700px) { .seq, .seq.two { grid-template-columns: 1fr; } }
   .seq .stg { background: var(--bg-raised); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 7px; position: relative; }
-  .seq .stg .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; color: var(--sub-acc, var(--thread-acc)); }
+  .seq .stg .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; color: var(--sub-acc-text, var(--thread-acc-text)); }
   .seq .stg .t { font-family: var(--font-display); font-size: 18.5px; line-height: 1.2; color: var(--ink); }
   .seq .stg .g { font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
   .seq .stg + .stg::before {
@@ -1635,7 +1566,7 @@ if (isRedesignedDomain) {
     display: flex;
     align-items: center;
   }
-  .cmp .who { font-family: var(--font-display); font-size: 17px; line-height: 1.2; color: var(--sub-acc, var(--thread-acc)); }
+  .cmp .who { font-family: var(--font-display); font-size: 17px; line-height: 1.2; color: var(--sub-acc-text, var(--thread-acc-text)); }
   .cmp .who .sub { display: block; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); margin-top: 5px; }
   .cmp .cell { font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
 
@@ -1647,7 +1578,7 @@ if (isRedesignedDomain) {
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--sub-acc, var(--thread-acc));
+    color: var(--sub-acc-text, var(--thread-acc-text));
   }
 
   /* ── Lightbox affordance on clickable image plates ── */
@@ -1696,16 +1627,6 @@ if (isRedesignedDomain) {
     width: 100%;
     max-height: 560px;
     object-fit: contain;
-  }
-  .plate .img .stamp {
-    position: absolute;
-    left: 14px;
-    bottom: 12px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    color: rgba(232,223,208,.82);
-    z-index: 2;
   }
   .plate .caption {
     padding: 20px 26px;
@@ -1842,10 +1763,10 @@ if (isRedesignedDomain) {
   .reading > p:first-of-type {
     max-width: var(--measure);
     margin: 0 auto 30px;
-    font-family: var(--font-display);
-    font-size: 21px;
-    line-height: 1.55;
-    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink-mute);
   }
   .reading > p:first-of-type::first-letter {
     float: left;
@@ -1853,7 +1774,7 @@ if (isRedesignedDomain) {
     font-weight: 300;
     font-size: 78px;
     line-height: 0.85;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     padding: 8px 14px 0 0;
     letter-spacing: -0.02em;
   }
@@ -1934,7 +1855,7 @@ if (isRedesignedDomain) {
 
   /* ── Thread sections ── */
   .thread { scroll-margin-top: 24px; padding-top: 8px; }
-  .thread > p { max-width: var(--measure); margin: 0 auto 22px; font-size: 18.5px; line-height: 1.65; }
+  .thread > p { max-width: var(--measure); margin: 0 auto 22px; font-size: 18px; line-height: 1.65; }
   h2.thread-head {
     display: grid;
     grid-template-columns: 56px 1fr 64px;
@@ -1947,7 +1868,7 @@ if (isRedesignedDomain) {
     padding-top: 44px;
     border-top: 1px solid var(--rule);
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 32px;
     line-height: 1.1;
     letter-spacing: -0.015em;
@@ -1975,7 +1896,7 @@ if (isRedesignedDomain) {
     align-self: end;
     padding-bottom: 4px;
   }
-  h2.thread-head .sub-title { grid-column: 2; grid-row: 2; color: var(--sub-acc, var(--ink)); }
+  h2.thread-head .sub-title { grid-column: 2; grid-row: 2; color: var(--sub-acc-text, var(--ink)); }
   h2.thread-head .section-medallion {
     grid-column: 3; grid-row: 1 / 3;
     width: 64px; height: 64px;
@@ -1989,7 +1910,7 @@ if (isRedesignedDomain) {
     font-style: italic;
     font-size: 19px;
     line-height: 1.45;
-    color: var(--sub-acc, var(--thread-acc));
+    color: var(--sub-acc-text, var(--thread-acc-text));
     margin: 22px auto 26px;
     max-width: 52ch;
   }
@@ -2014,7 +1935,7 @@ if (isRedesignedDomain) {
     cursor: pointer;
     transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
   }
-  .analyze-hot:hover { background: var(--bg-raised); border-color: var(--thread-acc); color: var(--thread-acc); }
+  .analyze-hot:hover { background: var(--bg-raised); border-color: var(--thread-acc); color: var(--thread-acc-text); }
   .hot-dot {
     width: 9px; height: 9px;
     border-radius: 50%;
@@ -2047,7 +1968,7 @@ if (isRedesignedDomain) {
     font-size: 10.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     margin-bottom: 12px;
   }
   .analysis-panel p {
@@ -2094,7 +2015,7 @@ if (isRedesignedDomain) {
   .conn-sig {
     width: 40px; height: 40px;
     flex: 0 0 40px;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     border: 1px solid color-mix(in oklab, var(--thread-acc) 42%, var(--rule));
     background: var(--bg-sunken);
     display: flex; align-items: center; justify-content: center;
@@ -2107,7 +2028,7 @@ if (isRedesignedDomain) {
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
   }
   .conn-lbl em { font-family: var(--font-display); font-style: italic; text-transform: none; letter-spacing: 0.02em; font-size: 14px; }
   .conn-toggle-ind { flex: 0 0 auto; position: relative; width: 14px; height: 14px; }
@@ -2148,8 +2069,7 @@ if (isRedesignedDomain) {
   .arc-block { max-width: var(--measure); margin: 0 auto; }
   .arc-block > h2.arc-head {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
+    font-weight: 500;
     font-size: 34px;
     line-height: 1.1;
     letter-spacing: -0.015em;
@@ -2183,7 +2103,7 @@ if (isRedesignedDomain) {
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sub-acc, var(--thread-acc));
+    color: var(--sub-acc-text, var(--thread-acc-text));
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -2293,7 +2213,7 @@ if (isRedesignedDomain) {
   /* ── Prose: base ── */
   .prose {
     max-width: var(--measure);
-    font-size: 18.5px;
+    font-size: 18px;
     line-height: 1.65;
     color: var(--ink-mute);
     text-wrap: pretty;
@@ -2307,9 +2227,9 @@ if (isRedesignedDomain) {
   /* Lede: first paragraph is larger and brighter (Philosophy only — the
      redesigned reading layout has its own `.reading > p:first-of-type` rule) */
   .prose:not(.reading) p:first-of-type {
-    font-size: 21px;
-    line-height: 1.55;
-    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink-mute);
     margin-bottom: 36px;
   }
 
@@ -2320,7 +2240,7 @@ if (isRedesignedDomain) {
     font-weight: 300;
     font-size: 78px;
     line-height: 0.85;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     padding: 8px 14px 0 0;
     letter-spacing: -0.02em;
   }
@@ -2344,7 +2264,7 @@ if (isRedesignedDomain) {
     padding-top: 48px;
     border-top: 1px solid var(--rule);
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 32px;
     line-height: 1.1;
     letter-spacing: -0.015em;
@@ -2383,7 +2303,7 @@ if (isRedesignedDomain) {
   .prose:not(.reading) h2 .sub-title {
     grid-column: 2;
     grid-row: 2;
-    color: var(--sub-acc, var(--ink));
+    color: var(--sub-acc-text, var(--ink));
   }
   .prose:not(.reading) h2 .section-medallion {
     grid-column: 3;
@@ -2401,8 +2321,7 @@ if (isRedesignedDomain) {
   /* Arc (last h2): Looking Forward (Philosophy only) */
   .prose:not(.reading) h2:last-of-type {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
+    font-weight: 500;
     font-size: 36px;
     line-height: 1.1;
     letter-spacing: -0.015em;
@@ -2418,7 +2337,7 @@ if (isRedesignedDomain) {
     font-style: italic;
     font-size: 19px;
     line-height: 1.45;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     margin: 0 0 28px;
     max-width: 52ch;
   }
@@ -2430,7 +2349,7 @@ if (isRedesignedDomain) {
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     font-weight: 400;
     margin: 36px 0 0;
     padding: 16px 22px 0;
@@ -2514,7 +2433,7 @@ if (isRedesignedDomain) {
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--thread-acc);
+    color: var(--thread-acc-text);
     margin-bottom: 10px;
     font-weight: 500;
   }
@@ -2682,8 +2601,8 @@ if (isRedesignedDomain) {
     color: var(--ink);
     letter-spacing: -0.005em;
   }
-  .pager-prev .pager-title::before { content: '← '; color: var(--thread-acc); }
-  .pager-next .pager-title::after  { content: ' →'; color: var(--thread-acc); }
+  .pager-prev .pager-title::before { content: '← '; color: var(--thread-acc-text); }
+  .pager-next .pager-title::after  { content: ' →'; color: var(--thread-acc-text); }
 
   /* ── Footer ── */
   footer {
@@ -2775,13 +2694,13 @@ if (isRedesignedDomain) {
     font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--thread-acc, #C9A24B);
+    color: var(--thread-acc-text);
     margin-bottom: 4px;
   }
 
   .bio-name {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 22px;
     line-height: 1.15;
     color: var(--ink);
@@ -2819,7 +2738,7 @@ if (isRedesignedDomain) {
     border: none;
     padding: 0;
     font: inherit;
-    color: var(--thread-acc, #C9A24B);
+    color: var(--thread-acc-text);
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 3px;
