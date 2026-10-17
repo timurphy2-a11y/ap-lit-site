@@ -94,7 +94,7 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
       'Milton\'s imagination belongs to this enlarged geography. *Paradise Lost* moves among Heaven, Hell, Chaos, Eden, and a world described through place names reaching across Europe, Africa, Asia, and the Americas. Its scale is global and cosmic, but the poem repeatedly returns to the choices of two people. Milton composed the epic after losing his sight and his political cause. He had defended the Commonwealth and the regicide; after the Restoration, he lived under a government that could have punished him for both. His poem asks how authority can be just, how obedience can remain free, and why knowledge cannot prevent a creature from choosing what it knows will destroy it.',
     ],
     figure: {
-      image: '/images/philosophy/02-baroque/defenestration-of-prague-painted-v2.png',
+      image: '/images/philosophy/02-baroque/defenestration-of-prague-painted-v3.png',
       alt: 'One man falls outside, another is forced over a high window sill, and a third is restrained inside.',
       caption: '**Prague, 1618.** Protestant nobles throw the imperial governors and their secretary from Prague Castle. All three survived; competing explanations of that survival became part of the confessional argument.',
       afterParagraph: -1,
@@ -169,7 +169,7 @@ export const HISTORICAL_MOMENTS: Record<string, HistoricalMoment> = {
     },
     extraFigures: [
       {
-        image: '/images/philosophy/05-modernism/migration-work-voice-tempera.png',
+        image: '/images/philosophy/05-modernism/migration-work-voice-tempera-v2.png',
         alt: 'Three flat tempera scenes show a Black family at a train, workers and closed doors in a northern city, and people making and reading print beside a musician.',
         caption: 'Movement changed where Black Americans could work, organize and make themselves heard; it did not end racial exclusion.',
         afterParagraph: 4,
