@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import '../styles/site-focus.css';
 
 interface Props {
   /** Sticky to the top of the viewport (Layout pages). */
@@ -220,8 +221,6 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
   .sh-chev { transition: transform 150ms ease; }
   .sh-menu-btn[aria-expanded="true"] .sh-chev { transform: rotate(180deg); }
   @media (prefers-reduced-motion: reduce) { .sh-chev { transition: none; } }
-  .sh a:focus-visible,
-  .sh button:focus-visible { outline: 2px solid var(--sh-ink); outline-offset: 2px; }
 
   .sh-panel {
     position: absolute;
@@ -229,7 +228,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
     left: -10px;
     width: min(400px, 90vw);
     background: var(--sh-sunken);
-    border: 1px solid var(--sh-rule);
+    border: 1px solid var(--sh-soft);
     box-shadow: 0 8px 24px rgba(27, 23, 20, 0.12);
     padding: 14px 8px 8px;
     text-transform: none;

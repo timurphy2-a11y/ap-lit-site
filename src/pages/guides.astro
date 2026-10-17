@@ -84,6 +84,13 @@ const PERIOD_GUIDES = [
   <div class="section-label"><span class="n">§ I</span><span>The Studios</span><span class="rule-line"></span><span>Learn once, use everywhere</span></div>
   <p class="tier-note">Period-agnostic. These teach the vocabulary and the attention; everything else on the site assumes them.</p>
   <StudioDiptych />
+  <div class="gd-apps gd-apps--lab">
+    <a class="gd-app" href="/guides/cross-period-comparison/" style="--c: var(--acc-baroque)">
+      <span class="per">All periods</span>
+      <span class="nm">Cross-Period Comparison Lab<em>Practice comparing two particular artworks across periods.</em></span>
+      <span class="from">From The Looking Studio</span>
+    </a>
+  </div>
 
   <!-- § II — Cross-Period Surveys -->
   <div class="section-label"><span class="n">§ II</span><span>Cross-Period Surveys</span><span class="rule-line"></span></div>
@@ -294,6 +301,7 @@ const PERIOD_GUIDES = [
 
   /* ── § III period guide list ──────────────────────────────────────── */
   .gd-apps { border: 1px solid var(--rule); border-bottom: none; }
+  .gd-apps--lab { margin-top: 1px; border-bottom: 1px solid var(--rule); }
   .gd-app {
     --c: var(--acc-modernism);
     display: grid;

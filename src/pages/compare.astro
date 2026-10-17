@@ -15,6 +15,15 @@ const PERIOD_META = [
   { unit: '05-modernism',     num: '05', acc: '#A03828', tint: '#EFD4CC' },
 ] as const;
 
+// ── Short unit and subject names for the card links ───────────────────────
+const UNIT_SHORT: Record<string, string> = {
+  '00-medieval': 'Medieval', '01-renaissance': 'Renaissance', '02-baroque': 'Baroque',
+  '03-enlightenment': 'Enlightenment', '04-romanticism': 'Romanticism', '05-modernism': 'Modernism',
+};
+const SUBJECT_NAME: Record<string, string> = {
+  philosophy: 'Philosophy', painting: 'Painting', sculpture: 'Sculpture', music: 'Music',
+};
+
 // ── Thread family colors ──────────────────────────────────────────────────
 const FAMILIES: Record<string, { dark: string; mid: string; light: string }> = {
   philosophy: { dark: '#3A332B', mid: '#5A5046', light: '#857A6B' },
@@ -293,8 +302,9 @@ const ALL_THREADS = [
   <!-- ══ 3. Card grids (one per thread) ══════════════════════════════════ -->
   <div class="cmp-grids">
     {ALL_THREADS.map((t) => {
+      const openLabel = (unit) => `Open ${UNIT_SHORT[unit]} ${SUBJECT_NAME[t.subject]}`;
       const unitLink = (unit: string) =>
-        t.subject === 'philosophy' ? `/units/${unit}` :
+        t.subject === 'philosophy' ? `/units/${unit}/philosophy/` :
         t.subject === 'painting'   ? `/units/${unit}/art` :
         t.subject === 'sculpture'  ? `/units/${unit}/sculpture` :
         `/units/${unit}/music`;
@@ -398,8 +408,8 @@ const ALL_THREADS = [
                     <a
                       href={unitLink(pm.unit)}
                       class="unit-link"
-                      aria-label={`Read the full ${info?.name ?? ''} unit`}>
-                      Full unit →
+                      aria-label={openLabel(pm.unit)}>
+                      {openLabel(pm.unit)} →
                     </a>
                   </div>
 

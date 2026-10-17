@@ -7,7 +7,6 @@ import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
-import MusicPlate from '../../../components/MusicPlate.astro';
 import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 import { THREAD_ICONS } from '../../../components/threadIcons';
 import { PEOPLE } from '../../../components/BiographyPanel.jsx';
@@ -430,7 +429,7 @@ if (isRedesignedDomain) {
 {isRedesignedDomain ? (
   <!-- ── Single-column reading layout (art / sculpture / music) ── -->
   <article class="prose reading">
-    <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed, SlowDownCallout }} />
+    <Content components={{ BioLink, PullQuote, Plate, YouTubeEmbed, SlowDownCallout }} />
 
     <!-- Elements below are moved into position by the thread-wrap script, then this wrapper is discarded. -->
     <div id="pending-inserts" hidden>
@@ -482,7 +481,7 @@ if (isRedesignedDomain) {
   <div class="layout">
 
     <article class="prose">
-      <Content components={{ BioLink, PullQuote, Plate, MusicPlate, YouTubeEmbed, SlowDownCallout }} />
+      <Content components={{ BioLink, PullQuote, Plate, YouTubeEmbed, SlowDownCallout }} />
     </article>
 
     <!-- ── Column divider (role 2) ── -->
@@ -1775,7 +1774,7 @@ if (isRedesignedDomain) {
     margin-left: 3px;
   }
 
-  /* ── Music inline plate (MusicPlate component) ── */
+  /* ── Music inline plate (component removed; styles kept) ── */
   .music-plate .img {
     aspect-ratio: 16 / 9;
     background: linear-gradient(

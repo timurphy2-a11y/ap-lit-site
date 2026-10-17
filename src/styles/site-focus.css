@@ -1,0 +1,8 @@
+/* Global keyboard focus ring: solid --ink outline with an offset.
+   --ink #1B1714 against --bg #F4EDDF, --bg-raised #EBE2D0 and --bg-sunken #FAF4E6
+   measures 15.3, 13.8 and 16.2:1 (needs 3:1). Zero specificity so a component
+   can still override it. */
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--ink, #1B1714);
+  outline-offset: 3px;
+}
