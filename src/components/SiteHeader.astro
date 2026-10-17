@@ -1,0 +1,298 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  /** Sticky to the top of the viewport (Layout pages). */
+  sticky?: boolean;
+  /** Zero side padding, for pages whose body already supplies the gutter. */
+  flush?: boolean;
+}
+
+const { sticky = false, flush = false } = Astro.props;
+
+// The menu label lives in one constant so it can be switched to "Periods".
+const UNITS_LABEL = 'Units';
+
+const UNIT_IDS = [
+  '00-medieval',
+  '01-renaissance',
+  '02-baroque',
+  '03-enlightenment',
+  '04-romanticism',
+  '05-modernism',
+] as const;
+
+const PERIOD_VARS: Record<string, string> = {
+  '00-medieval': 'var(--acc-medieval, #C9A24B)',
+  '01-renaissance': 'var(--acc-renaissance, #B54C3A)',
+  '02-baroque': 'var(--acc-baroque, #B07028)',
+  '03-enlightenment': 'var(--acc-enlightenment, #698BA1)',
+  '04-romanticism': 'var(--acc-romanticism, #3D5A6D)',
+  '05-modernism': 'var(--acc-modernism, #A03828)',
+};
+
+// Tab labels for the four subject slugs (the painting slug is `art`).
+const SUBJECT_LABELS: Record<string, string> = {
+  philosophy: 'Philosophy',
+  art: 'Painting',
+  sculpture: 'Sculpture',
+  music: 'Music',
+};
+
+const units = await Promise.all(
+  UNIT_IDS.map(async (id) => {
+    const data = (await getEntry('units', `${id}/philosophy`))!.data;
+    return { id, numeral: id.slice(0, 2), name: data.period as string, dates: data.dates as string };
+  }),
+);
+
+// Derive context from the route: /units/{unit}[/{subject}]
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const currentUnit = segments[0] === 'units' && segments[1] ? segments[1] : null;
+const subjectSlug = currentUnit && segments[2] && SUBJECT_LABELS[segments[2]] ? segments[2] : null;
+const subjectLabel = subjectSlug ? SUBJECT_LABELS[subjectSlug] : null;
+const currentUnitData = units.find((u) => u.id === currentUnit) ?? null;
+
+const rowHref = (id: string) => (subjectSlug ? `/units/${id}/${subjectSlug}` : `/units/${id}`);
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const NAV = [
+  { href: '/timeline', label: 'Timeline' },
+  { href: '/people', label: 'People' },
+  { href: '/compare', label: 'Compare' },
+  { href: '/guides', label: 'Guides' },
+];
+const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class:list={['sh', sticky && 'sh--sticky', flush && 'sh--flush']}>
+  <a href="/" class="sh-brand">Of Imagination All Compact</a>
+  <nav class="sh-nav" aria-label="Site">
+    <div class="sh-menu">
+      <button
+        type="button"
+        class="sh-menu-btn"
+        id="sh-menu-btn"
+        aria-expanded="false"
+        aria-controls="sh-menu-panel"
+      >
+        <span>{UNITS_LABEL}</span>
+        <svg class="sh-chev" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" focusable="false">
+          <path d="M2 4.2 L6 8 L10 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div class="sh-panel" id="sh-menu-panel" hidden>
+        <p class="sh-panel-head">
+          {subjectLabel ? (
+            <>Open <strong>{subjectLabel}</strong> in another unit</>
+          ) : (
+            <>Go to a unit overview</>
+          )}
+        </p>
+        <ul class="sh-rows">
+          {units.map((u) => {
+            const here = u.id === currentUnit;
+            const inner = (
+              <>
+                <span class="sh-tick" aria-hidden="true" style={`background:${PERIOD_VARS[u.id]}`}></span>
+                <span class="sh-num">{u.numeral}</span>
+                <span class="sh-name">{u.name}</span>
+                <span class="sh-dates">{u.dates}</span>
+                {here && <span class="sh-here">You are here</span>}
+              </>
+            );
+            return (
+              <li>
+                {here ? (
+                  <span class="sh-row sh-row--here" aria-current="page">{inner}</span>
+                ) : (
+                  <a class="sh-row" href={rowHref(u.id)}>{inner}</a>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        {subjectSlug && currentUnitData && (
+          <a class="sh-foot" href={`/units/${currentUnitData.id}`}>{currentUnitData.name} overview</a>
+        )}
+      </div>
+    </div>
+    {NAV.map((n) => (
+      <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined} class:list={[isCurrent(n.href) && 'on']}>{n.label}</a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('sh-menu-btn') as HTMLButtonElement | null;
+  const panel = document.getElementById('sh-menu-panel') as HTMLElement | null;
+  if (btn && panel) {
+    const setOpen = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+    };
+    btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (e) => {
+      if (btn.getAttribute('aria-expanded') === 'true' && !(e.target as Node).closest('.sh-menu')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+  }
+</script>
+
+<style is:global>
+  .sh {
+    --sh-bg: var(--bg, #F4EDDF);
+    --sh-raised: var(--bg-raised, #EBE2D0);
+    --sh-sunken: var(--bg-sunken, #FAF4E6);
+    --sh-ink: var(--ink, #1B1714);
+    --sh-mute: var(--ink-mute, #4a4138);
+    --sh-soft: var(--ink-soft, #6a6053);
+    --sh-rule: var(--rule, #C9BDA5);
+    position: relative;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 24px;
+    padding: 12px var(--gutter, 24px);
+    border-bottom: 1px solid var(--sh-rule);
+    background: var(--sh-bg);
+    font-family: var(--font-ui, 'IBM Plex Sans', system-ui, sans-serif);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sh-mute);
+  }
+  .sh--sticky { position: sticky; top: 0; }
+  .sh--flush { padding-left: 0; padding-right: 0; }
+  .sh-brand {
+    font-family: var(--font-display, Georgia, serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--sh-ink);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .sh-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+  .sh-nav > a,
+  .sh-menu-btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+  .sh-nav > a:hover,
+  .sh-menu-btn:hover { color: var(--sh-ink); }
+  .sh-nav > a.on > * , .sh-nav > a.on { color: var(--sh-ink); }
+  .sh-nav > a.on { box-shadow: inset 0 -2px 0 var(--acc-modernism, #A03828); }
+  .sh-menu { position: relative; }
+  .sh-menu-btn {
+    gap: 7px;
+    padding: 0 10px;
+    margin: 0 -10px;
+    background: none;
+    border: 0;
+    border-radius: 2px;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+  .sh-menu-btn[aria-expanded="true"] {
+    color: var(--sh-ink);
+    background: var(--sh-raised);
+    box-shadow: inset 0 -2px 0 var(--sh-ink);
+  }
+  .sh-chev { transition: transform 150ms ease; }
+  .sh-menu-btn[aria-expanded="true"] .sh-chev { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .sh-chev { transition: none; } }
+  .sh a:focus-visible,
+  .sh button:focus-visible { outline: 2px solid var(--sh-ink); outline-offset: 2px; }
+
+  .sh-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: -10px;
+    width: min(400px, 90vw);
+    background: var(--sh-sunken);
+    border: 1px solid var(--sh-rule);
+    box-shadow: 0 8px 24px rgba(27, 23, 20, 0.12);
+    padding: 14px 8px 8px;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    text-align: left;
+  }
+  .sh-panel[hidden] { display: none; }
+  .sh-panel-head {
+    margin: 0 8px 10px;
+    font-size: 14px;
+    color: var(--sh-mute);
+  }
+  .sh-panel-head strong { font-weight: 500; color: var(--sh-ink); }
+  .sh-rows { list-style: none; margin: 0; padding: 0; }
+  .sh-row {
+    display: grid;
+    grid-template-columns: 4px 28px 1fr auto;
+    align-items: center;
+    column-gap: 10px;
+    min-height: 44px;
+    padding: 4px 8px;
+    font-size: 15px;
+    color: var(--sh-ink);
+    text-decoration: none;
+  }
+  a.sh-row:hover { background: var(--sh-raised); }
+  .sh-row--here { background: var(--sh-raised); font-weight: 500; }
+  .sh-tick { width: 4px; align-self: stretch; margin: 6px 0; border-radius: 1px; }
+  .sh-num { font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; color: var(--sh-mute); }
+  .sh-dates { font-size: 13px; color: var(--sh-soft); white-space: nowrap; }
+  .sh-row--here .sh-dates { color: var(--sh-mute); }
+  .sh-here {
+    grid-column: 3 / 5;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sh-ink);
+  }
+  .sh-foot {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 6px;
+    padding: 0 8px;
+    border-top: 1px solid var(--sh-rule);
+    font-size: 15px;
+    color: var(--sh-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .sh-foot:hover { background: var(--sh-raised); }
+
+  @media (max-width: 640px) {
+    .sh-menu { position: static; }
+    .sh-panel {
+      left: var(--gutter, 24px);
+      right: var(--gutter, 24px);
+      width: auto;
+      top: 100%;
+    }
+    .sh--flush .sh-panel { left: 0; right: 0; }
+    .sh { gap: 0 16px; padding-top: 4px; padding-bottom: 4px; }
+    .sh--sticky { position: relative; }
+    .sh-nav { gap: 0 12px; font-size: 13px; letter-spacing: 0.03em; }
+    .sh-menu-btn { padding: 0 6px; margin: 0 -6px; }
+  }
+</style>

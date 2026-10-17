@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
 import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
@@ -121,17 +122,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 <body style={`--acc:${colors.acc}; --acc-philosophy:${colors.philosophy}; --acc-art:${colors.art}; --acc-music:${colors.music}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355; --gold-wash:${momentColors.goldWash}; --gold-wash-hover:${momentColors.goldWashHover}; --acc-deep:${momentColors.accDeep};`}>
 
 <!-- ── Top nav ── -->
-<div class="topbar">
-  <a href="/" class="brand">Of Imagination All Compact</a>
-  <nav class="nav">
-    <a href="/timeline">Timeline</a>
-    <a href="/people">People</a>
-    <a href="/compare">Compare</a>
-    <a href="/seeing-through-paint">Painting</a>
-    <a href="/sculpting-through-time">Sculpture</a>
-    <a href="/hearing-through-form">Music</a>
-  </nav>
-</div>
+<SiteHeader flush />
 
 <!-- ── Header band (role 6) ── -->
 <div class="header-band" aria-hidden="true">
@@ -483,34 +474,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     width: 100%;
     height: auto;
   }
-
-  /* ── Topbar ─────────────────────────────────────────────────── */
-  .topbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px 24px;
-    padding: 28px 0 22px;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--font-ui);
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-  }
-  .brand {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--ink);
-    text-transform: none;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-  .nav { display: flex; gap: 28px; flex-wrap: wrap; }
-  .nav a:hover { color: var(--ink); }
 
   /* ── Breadcrumb ─────────────────────────────────────────────── */
   .crumb {
