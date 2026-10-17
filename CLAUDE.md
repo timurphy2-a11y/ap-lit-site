@@ -19,7 +19,7 @@ The site is content-rich and pedagogically serious. Prose quality matters. Don't
 - **Astro v6** — static site generator, Content Layer API, `.mdx` for domain pages
 - **Tailwind CSS** — utility classes throughout
 - **React** — used only for `BiographyPanel.jsx` (the biographical index and inline bio popups)
-- **Cloudflare Workers** — static deployment via Wrangler
+- **Cloudflare Workers** (not Pages) — static output with the Cloudflare adapter, deployed via Wrangler (assets binding `./dist`, KV `SESSION`)
 
 **Deploy command:**
 ```bash
@@ -48,6 +48,32 @@ Work on this site almost always happens inside a **git worktree** (a branch at a
    ```
 
 Never run `npm run deploy` from inside a worktree directory — the build will use the wrong source files. Always verify `git -C /Users/timothymurphy/ap-lit-site branch --show-current` returns `main` before deploying.
+
+---
+
+## Preview Workflow
+
+Production deploys always go through the Deploy Protocol above. To review a branch first, upload a **Worker version** (no production traffic):
+
+```bash
+npm run preview:remote -- <alias>     # builds, then wrangler versions upload --preview-alias <alias>
+```
+
+The result prints a Version Preview URL (`https://<alias>-ap-lit-site.tmurphy-ef9.workers.dev`, or `https://<version-id8>-ap-lit-site...` without an alias). `preview_urls` is set to `true` explicitly in `wrangler.jsonc`. Version URLs run against **production bindings**, so a page view must never write to the `SESSION` KV. Release aliases used so far: `nav`, `design`, `anchors`. Never merge to `main` or deploy on the strength of a preview alone; Tim approves each release first.
+
+---
+
+## Style Authority
+
+The design system is the style authority: `AP Literature Design System - Reference.md` (from Claude Design), as amended by `AP_Lit_Design_System_Amendments.md`. Where the live site and the spec differ, the spec wins unless a brief says otherwise. Key rules: domains (Philosophy, Painting, Sculpture, Music) each have three threads; a label appears only when it adds information the page does not already state; unit numerals 00-05 stay, other numbering only for real sequence; text colored by a period accent uses its text-safe variant.
+
+---
+
+## Other Site Sections and Routes
+
+- **`summer-reading/*`** (22 built pages: Pachinko and *Things Fall Apart* "Living Atlas" spokes, cultural-message pages) is a separate section with its own layouts (`SummerLayout.astro`, `ScrollyLayout.astro`), content collection (`src/content/summer-reading`) and tokens (`src/styles/tokens.css` and the `pachinko-*`/`tfa-*` CSS). Do not touch it when working on the AP-site header, tokens or labels.
+- **`/art` and `/music`** are meta-refresh redirect stubs to `/seeing-through-paint` and `/hearing-through-form` (static output, not HTTP 301s).
+- The AP site is 47 pages: home, 6 overviews, 24 subject pages, 3 surveys, Timeline/People/Compare/Credits, Guides index, 3 studio pages, the Comparison Lab and 4 period-guide pages. Reports are in `docs/reports/`.
 
 ---
 
@@ -147,7 +173,7 @@ Inline biographical links work via two layers:
 
 The **`/people` page** uses a self-contained React island (`BiographyDemo`) from `BiographyPanel.jsx` with its own modal. These are separate implementations — the Layout modal handles inline BioLinks site-wide; the React island is only on `/people`.
 
-**PEOPLE data** lives entirely in `BiographyPanel.jsx`. Each entry:
+**PEOPLE data** lives entirely in `BiographyPanel.jsx` (150 entries, each with a unique `id`). Each entry:
 ```js
 {
   id: "pascal",
@@ -170,7 +196,7 @@ Portrait field is optional — entries without it show a monogram avatar (initia
 - Location: `/public/images/portraits/`
 - Naming: `portrait-[lastname-firstname].jpg` (all lowercase, hyphenated)
 - Size: 120×120px JPEG, cropped upper-center (face-focused)
-- 54 portraits currently in place (48 downloaded from Wikimedia Commons + 6 provided by Tim)
+- 94 portraits currently in place (94 `portrait:` entries in `BiographyPanel.jsx`; originally 48 from Wikimedia Commons + 6 provided by Tim)
 - Entries with no portrait: Adelard of Bath, Aemilia Lanyer, and various secondary figures (Duccio, Martini, Perotinus, etc.)
 
 ---
@@ -264,7 +290,7 @@ Playwright is for exploratory self-QA during implementation — not for generati
 - Full site build: home, 6 hub pages, 24 domain pages (Philosophy/Painting/Sculpture/Music × 6 units), timeline, people index, compare, art/music/sculpture overviews
 - Hub page redesign with era accent colors, Historical Moment modal, timeline strip
 - Sculpture sub-domain (Phase 4c) fully shipped: content, thread icons, hub Visual Art split card, Sculpting Through Time shared resource
-- Portrait system: 54 images downloaded/cropped, BiographyPanel updated with portrait field
+- Portrait system: 94 images downloaded/cropped, BiographyPanel updated with portrait field
 - BioLink system wired up site-wide via Layout.astro
 - Site Audit (March 2026) — all Priority 1 and Priority 2 items implemented
 - Painting/Sculpture/Music domain pages redesigned to a single-column reading layout with inline work-plates, expandable analysis panels, and a thread jump-nav; Cormorant Garamond + EB Garamond replace Spectral on these pages

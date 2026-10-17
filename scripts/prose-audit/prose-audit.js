@@ -238,10 +238,56 @@ function stripInstructional(text) {
   return { text: out, zones, promptLines, headings, nearMisses, nearMissExample };
 }
 
+// Frontmatter string fields that hold site-authored prose. Everything else in
+// the frontmatter (ids, image paths, titles, dimensions) is blanked. The
+// analysis* fields surface behind "Read the analysis" and address a reader
+// looking at the work, so they are exempt from Rule 8 like the old
+// "### Gallery —" bodies; period_summary and gloss are ordinary prose.
+const FM_PROSE_KEYS = ['period_summary', 'gloss', 'analysis', 'analysisPrompt', 'analysisEyebrow'];
+const FM_EXEMPT_KEYS = ['analysis', 'analysisPrompt', 'analysisEyebrow'];
+
+function blank(str) { return str.replace(/[^\n]/g, ' '); }
+
+/**
+ * Returns { body, exemptBody }. Both keep every offset and newline of the
+ * original file. Frontmatter is blanked except for the prose fields above
+ * (their surrounding quotes are blanked too, so stripQuotes does not treat a
+ * whole field as a quotation). exemptBody additionally blanks the fields that
+ * are exempt from Rule 8.
+ */
 function stripFrontmatter(text) {
   const m = text.match(/^---\n[\s\S]*?\n---\n/);
-  if (!m) return { body: text, offset: 0 };
-  return { body: ' '.repeat(m[0].length) + text.slice(m[0].length), offset: 0 };
+  if (!m) return { body: text, exemptBody: text, exemptFields: 0, promptFields: 0 };
+  const keyRe = new RegExp('^(\\s*(?:-\\s+)?)(' + FM_PROSE_KEYS.join('|') + '):(\\s*)(["\'])(.*)\\4\\s*$');
+  const bodyLines = [], exemptLines = [];
+  let exemptFields = 0, promptFields = 0;
+  for (const line of m[0].split('\n')) {
+    const km = keyRe.exec(line);
+    if (km) {
+      const lead = blank(km[1] + km[2] + ':' + km[3] + km[4]);
+      const tail = blank(line.slice(km[0].length - 0 > line.length ? line.length : (km[1] + km[2] + ':' + km[3] + km[4] + km[5] + km[4]).length));
+      bodyLines.push(lead + km[5] + ' ' + tail);
+      if (FM_EXEMPT_KEYS.includes(km[2])) exemptFields++;
+      if (km[2] === 'analysisPrompt') promptFields++;
+      exemptLines.push(FM_EXEMPT_KEYS.includes(km[2]) ? blank(line) : lead + km[5] + ' ' + tail);
+    } else { bodyLines.push(blank(line)); exemptLines.push(blank(line)); }
+  }
+  const rest = text.slice(m[0].length);
+  return { body: bodyLines.join('\n') + rest, exemptBody: exemptLines.join('\n') + rest, exemptFields, promptFields };
+}
+
+/**
+ * Blank MDX/JSX/HTML/SVG markup, imports and exports, and HTML comments,
+ * keeping the text between tags. Offsets and newlines are preserved.
+ */
+function stripMarkup(text) {
+  return text
+    .replace(/<!--[\s\S]*?-->/g, blank)
+    // Quoted primary-source text: <PullQuote> bodies and blockquotes are not house prose.
+    .replace(/<PullQuote\b[\s\S]*?<\/PullQuote>/g, blank)
+    .replace(/<blockquote\b[\s\S]*?<\/blockquote>/g, blank)
+    .replace(/^\s*(import|export)\s.*$/gm, blank)
+    .replace(/<\/?[A-Za-z][^<>]*>/g, blank);
 }
 
 function lineOf(text, pos) { return text.slice(0, pos).split('\n').length; }
@@ -367,15 +413,19 @@ function findRedundancy(docs, n = 8) {
 
 function collect(targets) {
   const files = [];
+  const walk = (dir, root) => {
+    for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) { if (ent.name !== 'node_modules') walk(full, root); }
+      else if (/\.(md|mdx)$/.test(ent.name)) files.push({ full, label: path.relative(root, full) });
+    }
+  };
   for (const t of targets) {
     const st = fs.statSync(t);
-    if (st.isDirectory()) {
-      for (const f of fs.readdirSync(t)) {
-        if (/\.(md|mdx)$/.test(f)) files.push(path.join(t, f));
-      }
-    } else files.push(t);
+    if (st.isDirectory()) walk(t, t);
+    else files.push({ full: t, label: path.basename(t) });
   }
-  return files.sort();
+  return files.sort((a, b) => a.label.localeCompare(b.label));
 }
 
 /**
@@ -421,24 +471,25 @@ function runDetectors(clean, analytical) {
   return findings;
 }
 
-function auditFile(file) {
-  const raw = fs.readFileSync(file, 'utf8');
-  const { body } = stripFrontmatter(raw);
-  const q = stripQuotes(body);
+function auditFile(entry) {
+  const raw = fs.readFileSync(entry.full, 'utf8');
+  const fm = stripFrontmatter(raw);
+  const q = stripQuotes(stripMarkup(fm.body));
   const clean = q.text;                                  // all detectors
-  const zi = stripInstructional(clean);
+  const qe = stripQuotes(stripMarkup(fm.exemptBody));
+  const zi = stripInstructional(qe.text);
   const analytical = zi.text;                            // Rule 8 only
   const calibration = {
     quotations: q.count,
-    zones: zi.zones,
-    promptLines: zi.promptLines,
+    zones: zi.zones + fm.exemptFields,
+    promptLines: zi.promptLines + fm.promptFields,
     headings: zi.headings,
     nearMisses: zi.nearMisses,
     nearMissExample: zi.nearMissExample,
   };
   const words = (clean.match(/\S+/g) || []).length;
   const findings = runDetectors(clean, analytical);
-  return { file: path.basename(file), words, findings, clean, calibration };
+  return { file: entry.label, words, findings, clean, calibration };
 }
 
 /**

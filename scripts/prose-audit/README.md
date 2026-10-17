@@ -15,7 +15,7 @@ node prose-audit.js path/to/content --no-redundancy
 node prose-audit.js --data src/data/hub-introductions.ts --data src/data/historical-moments.ts --md
 ```
 
-No dependencies. Node 18+. Point it at the repo's content directory, not at
+No dependencies. Node 18+. Directories are searched recursively, so point it at `src/content/units`. Reported file names are paths relative to the directory given (`00-medieval/philosophy.mdx`). Point it at the repo's content directory, not at
 `/mnt/project/` — those copies drift behind the deployed site.
 
 This directory carries its own `package.json` (`"type": "commonjs"`) because
@@ -124,3 +124,16 @@ pattern and re-run rather than working through the report.
 span offsets. Paste that into `prose-audit-review.html` ("Load a fresh run") to
 walk the findings one at a time and mark each **Revise** / **Keep as written** /
 **Decide later**, then export a decision list as markdown.
+
+
+## MDX handling (Oct 2026)
+
+The domain pages are `.mdx`, so before any detector runs the tool blanks
+JSX/HTML/SVG tags, `import`/`export` lines, HTML comments, and the bodies of
+`<PullQuote>` and `<blockquote>` (quoted primary sources), keeping the text
+between tags. Frontmatter is blanked except for the prose fields
+`period_summary`, `gloss`, `analysis`, `analysisPrompt` and `analysisEyebrow`.
+The `analysis*` fields are the "Read the analysis" text and are exempt from
+Rule 8 like the old Gallery/Hero entries; the calibration line counts them as
+instructional zones and `analysisPrompt` fields as Prompt lines. Offsets and
+line numbers are preserved. The rules themselves are unchanged.
