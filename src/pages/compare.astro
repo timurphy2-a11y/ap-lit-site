@@ -24,12 +24,14 @@ const SUBJECT_NAME: Record<string, string> = {
   philosophy: 'Philosophy', painting: 'Painting', sculpture: 'Sculpture', music: 'Music',
 };
 
-// ── Thread family colors ──────────────────────────────────────────────────
+// ── Thread family colors (tokens; section 3.5, rows use Mid, Dark, Light) ─────
+// Key names are row positions: dark = row 1 = spec Mid, mid = row 2 = spec Dark, light = row 3 = spec Light.
+// Light is for stripes and tints only; text and icons use `dark` (Mid) or `mid` (Dark).
 const FAMILIES: Record<string, { dark: string; mid: string; light: string }> = {
-  philosophy: { dark: '#3A332C', mid: '#15120F', light: '#635C55' },
-  painting:   { dark: '#75435B', mid: '#4D293A', light: '#9F6B84' },
-  sculpture:  { dark: '#4F6B4D', mid: '#30472F', light: '#7A9178' },
-  music:      { dark: '#574878', mid: '#382D51', light: '#80729F' },
+  philosophy: { dark: 'var(--dom-philosophy-mid)', mid: 'var(--dom-philosophy-dark)', light: 'var(--dom-philosophy-light)' },
+  painting:   { dark: 'var(--dom-painting-mid)', mid: 'var(--dom-painting-dark)', light: 'var(--dom-painting-light)' },
+  sculpture:  { dark: 'var(--dom-sculpture-mid)', mid: 'var(--dom-sculpture-dark)', light: 'var(--dom-sculpture-light)' },
+  music:      { dark: 'var(--dom-music-mid)', mid: 'var(--dom-music-dark)', light: 'var(--dom-music-light)' },
 };
 const SEAL_COLOR = '#5A4022';
 
@@ -555,13 +557,13 @@ const ALL_THREADS = [
 .pill[aria-pressed="true"] {
   background: color-mix(in oklab, var(--pill-mid) 14%, var(--bg));
   border-color: var(--pill-mid);
-  color: color-mix(in oklab, var(--pill-mid) 50%, #1B1714);
+  color: var(--ink);
 }
 .pill[aria-pressed="true"]::before { opacity: 1; }
 .pill:hover:not([aria-pressed="true"]) { color: var(--ink); }
 
 .pill:focus-visible {
-  outline: 2px solid var(--pill-mid);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 
@@ -840,10 +842,10 @@ const SUBJECT_FIRST: Record<string, string> = {
 };
 
 const FAMILIES: Record<string, Record<string, string>> = {
-  philosophy: { dark: '#3A332C', mid: '#15120F', light: '#635C55' },
-  painting:   { dark: '#75435B', mid: '#4D293A', light: '#9F6B84' },
-  sculpture:  { dark: '#4F6B4D', mid: '#30472F', light: '#7A9178' },
-  music:      { dark: '#574878', mid: '#382D51', light: '#80729F' },
+  philosophy: { dark: 'var(--dom-philosophy-mid)', mid: 'var(--dom-philosophy-dark)', light: 'var(--dom-philosophy-light)' },
+  painting:   { dark: 'var(--dom-painting-mid)', mid: 'var(--dom-painting-dark)', light: 'var(--dom-painting-light)' },
+  sculpture:  { dark: 'var(--dom-sculpture-mid)', mid: 'var(--dom-sculpture-dark)', light: 'var(--dom-sculpture-light)' },
+  music:      { dark: 'var(--dom-music-mid)', mid: 'var(--dom-music-dark)', light: 'var(--dom-music-light)' },
 };
 
 const THREAD_WEIGHT: Record<string, string> = {
@@ -918,10 +920,9 @@ function updateUI() {
   // Sub-head
   const threadBtn = document.querySelector<HTMLButtonElement>(`.thread-pill[data-thread="${thread}"]`);
   const threadLabel = threadBtn?.querySelector('.pill-label')?.textContent ?? '';
-  const threadColor = family[THREAD_WEIGHT[thread]];
 
   subheadTitle.textContent = threadLabel;
-  (subheadTitle as HTMLElement).style.color = `color-mix(in oklab, ${threadColor} 50%, #1B1714)`;
+  (subheadTitle as HTMLElement).style.color = family.mid;
   subheadSub.textContent = SUBJECT_SUBTITLE[subject];
 
   // URL (no scroll)

@@ -95,22 +95,23 @@ const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
 
-// Design System section 3.5 domain colors, in row order Mid, Dark, Light. The Light step is for icons, stripes and tints only.
+// Section 3.5 domain colors (tokens in design-tokens.css), row order Mid, Dark, Light. Light is for decorative stripes and tints only.
 const DOMAIN_THREAD_COLORS: Record<string, [string, string, string]> = {
-  philosophy: ['#3A332C', '#15120F', '#635C55'],
-  art:        ['#75435B', '#4D293A', '#9F6B84'],
-  sculpture:  ['#4F6B4D', '#30472F', '#7A9178'],
-  music:      ['#574878', '#382D51', '#80729F'],
+  philosophy: ['var(--dom-philosophy-mid)', 'var(--dom-philosophy-dark)', 'var(--dom-philosophy-light)'],
+  art:        ['var(--dom-painting-mid)', 'var(--dom-painting-dark)', 'var(--dom-painting-light)'],
+  sculpture:  ['var(--dom-sculpture-mid)', 'var(--dom-sculpture-dark)', 'var(--dom-sculpture-light)'],
+  music:      ['var(--dom-music-mid)', 'var(--dom-music-dark)', 'var(--dom-music-light)'],
 };
-// Text colored by a domain color uses the Mid or Dark step (section 3.5, A6), never Light.
+// Text colored by a domain color uses the Dark step (Mid measures 4.4:1 on the 10% tint for sculpture; A6 allows Mid or Dark). Icons that carry meaning use Mid.
 const DOMAIN_TEXT_COLORS: Record<string, [string, string, string]> = {
-  philosophy: ['#3A332C', '#15120F', '#15120F'],
-  art:        ['#75435B', '#4D293A', '#4D293A'],
-  sculpture:  ['#4F6B4D', '#30472F', '#30472F'],
-  music:      ['#574878', '#382D51', '#382D51'],
+  philosophy: ['var(--dom-philosophy-dark)', 'var(--dom-philosophy-dark)', 'var(--dom-philosophy-dark)'],
+  art:        ['var(--dom-painting-dark)', 'var(--dom-painting-dark)', 'var(--dom-painting-dark)'],
+  sculpture:  ['var(--dom-sculpture-dark)', 'var(--dom-sculpture-dark)', 'var(--dom-sculpture-dark)'],
+  music:      ['var(--dom-music-dark)', 'var(--dom-music-dark)', 'var(--dom-music-dark)'],
 };
 const domainColors = DOMAIN_THREAD_COLORS[domain] ?? DOMAIN_THREAD_COLORS.philosophy;
 const domainTextColors = DOMAIN_TEXT_COLORS[domain] ?? DOMAIN_TEXT_COLORS.philosophy;
+const domainIconColor = domainColors[0];
 
 // ── Cross-unit labels (used for music → next unit) ─────────────────────────────
 
@@ -147,7 +148,7 @@ const threadSigils = entry.data.threads
   .map((t: { id: string; label: string }, i: number) => {
     const icon = THREAD_ICONS[t.id];
     const color = domainColors[i % domainColors.length];
-    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color, textColor: domainTextColors[i % domainTextColors.length] } : null;
+    return icon ? { label: t.label, viewBox: icon.viewBox, content: icon.content, color, textColor: domainTextColors[i % domainTextColors.length], iconColor: domainIconColor } : null;
   })
   .filter(Boolean);
 
@@ -429,7 +430,7 @@ if (isRedesignedDomain) {
         const subAcc = domainColors[i % domainColors.length];
         const icon = THREAD_ICONS[t.id];
         return (
-          <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};--sub-acc-text:${domainTextColors[i % domainTextColors.length]};`}>
+          <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};--sub-acc-text:${domainTextColors[i % domainTextColors.length]};--sub-icon:${domainIconColor};`}>
             <span class="tn-sig" aria-hidden="true">
               {icon && <svg viewBox={icon.viewBox} width="28" height="28" set:html={icon.content} />}
             </span>
@@ -494,9 +495,9 @@ if (isRedesignedDomain) {
           {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
             const subAcc = domainColors[i % domainColors.length];
             return (
-              <li style={`--sub-acc: ${subAcc}; --sub-acc-text: ${domainTextColors[i % domainTextColors.length]};`}>
+              <li style={`--sub-acc: ${subAcc}; --sub-acc-text: ${domainTextColors[i % domainTextColors.length]}; --sub-icon: ${domainIconColor};`}>
                 <span class="sig-xs">
-                  <ThreadIcon thread={t.id} size={28} color={subAcc} />
+                  <ThreadIcon thread={t.id} size={28} color={domainIconColor} />
                 </span>
                 <div class="tt">{t.label}</div>
                 <div class="gloss">{t.period_summary}</div>
@@ -644,7 +645,7 @@ if (isRedesignedDomain) {
     box.className = 'sigil-box';
     box.setAttribute('aria-hidden', 'true');
     if (sigil) {
-      box.innerHTML = `<svg viewBox="${sigil.viewBox}" width="32" height="32" aria-hidden="true" style="color:${sigil.color}">${sigil.content}</svg>`;
+      box.innerHTML = `<svg viewBox="${sigil.viewBox}" width="32" height="32" aria-hidden="true" style="color:${sigil.iconColor}">${sigil.content}</svg>`;
     }
 
     const idx = document.createElement('span');
@@ -661,7 +662,7 @@ if (isRedesignedDomain) {
     medallion.setAttribute('aria-hidden', 'true');
     if (medallionSvg) medallion.innerHTML = medallionSvg;
 
-    if (sigil) { h2.style.setProperty('--sub-acc', sigil.color); h2.style.setProperty('--sub-acc-text', sigil.textColor); }
+    if (sigil) { h2.style.setProperty('--sub-acc', sigil.color); h2.style.setProperty('--sub-acc-text', sigil.textColor); h2.style.setProperty('--sub-icon', sigil.iconColor); }
 
     h2.appendChild(box);
     h2.appendChild(idx);
@@ -796,7 +797,7 @@ if (isRedesignedDomain) {
       // Wrap h2 and every sibling up to (not including) the next h2 into a <section>.
       const section = document.createElement('section');
       section.className = 'thread';
-      if (threadSigils[i]) { section.style.setProperty('--sub-acc', threadSigils[i].color); section.style.setProperty('--sub-acc-text', threadSigils[i].textColor); }
+      if (threadSigils[i]) { section.style.setProperty('--sub-acc', threadSigils[i].color); section.style.setProperty('--sub-acc-text', threadSigils[i].textColor); section.style.setProperty('--sub-icon', threadSigils[i].iconColor); }
       h2.parentNode.insertBefore(section, h2);
       let node = h2;
       while (node) {
@@ -1803,8 +1804,8 @@ if (isRedesignedDomain) {
     row-gap: 6px;
     align-items: center;
     padding: 18px 18px 18px 20px;
-    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
-    background: color-mix(in oklab, var(--c) 5%, var(--bg));
+    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
+    background: color-mix(in oklab, var(--c) 10%, var(--bg));
     position: relative;
     transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
   }
@@ -1823,8 +1824,8 @@ if (isRedesignedDomain) {
   .tn-sig {
     grid-row: 1 / 3;
     width: 44px; height: 44px;
-    color: var(--c);
-    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
+    color: var(--sub-icon, var(--c));
+    border: 1px solid color-mix(in oklab, var(--sub-icon, var(--c)) 35%, var(--bg));
     background: var(--bg);
     display: flex; align-items: center; justify-content: center;
   }
@@ -1834,7 +1835,7 @@ if (isRedesignedDomain) {
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.18em;
-    color: var(--ink-soft);
+    color: var(--ink-mute);
   }
   .tn-title {
     grid-column: 2; grid-row: 2; align-self: start;
@@ -1879,9 +1880,9 @@ if (isRedesignedDomain) {
   h2.thread-head .sigil-box {
     grid-column: 1; grid-row: 1 / 3;
     width: 56px; height: 56px;
-    color: var(--sub-acc);
-    border: 1px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 40%, var(--rule-strong));
-    background: color-mix(in oklab, var(--sub-acc, var(--bg-sunken)) 5%, var(--bg-sunken));
+    color: var(--sub-icon, var(--sub-acc));
+    border: 1px solid color-mix(in oklab, var(--sub-icon, var(--rule-strong)) 35%, var(--bg));
+    background: color-mix(in oklab, var(--sub-icon, var(--bg-sunken)) 10%, var(--bg));
     display: flex; align-items: center; justify-content: center;
     align-self: center;
     flex-shrink: 0;
@@ -2277,8 +2278,8 @@ if (isRedesignedDomain) {
     grid-row: 1 / 3;
     width: 56px;
     height: 56px;
-    border: 1px solid color-mix(in oklab, var(--sub-acc, var(--rule-strong)) 40%, var(--rule-strong));
-    background: color-mix(in oklab, var(--sub-acc, var(--bg-sunken)) 5%, var(--bg-sunken));
+    border: 1px solid color-mix(in oklab, var(--sub-icon, var(--rule-strong)) 35%, var(--bg));
+    background: color-mix(in oklab, var(--sub-icon, var(--bg-sunken)) 10%, var(--bg));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2490,8 +2491,8 @@ if (isRedesignedDomain) {
   }
   aside .threads-list li {
     --c: var(--sub-acc, var(--thread-acc));
-    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
-    background: color-mix(in oklab, var(--c) 5%, var(--bg));
+    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
+    background: color-mix(in oklab, var(--c) 10%, var(--bg));
     padding: 14px 16px 14px 18px;
     position: relative;
     display: grid;
@@ -2513,7 +2514,7 @@ if (isRedesignedDomain) {
   aside .threads-list .sig-xs {
     width: 36px;
     height: 36px;
-    border: 1px solid color-mix(in oklab, var(--c) 32%, var(--rule));
+    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
     background: var(--bg);
     display: flex;
     align-items: center;
@@ -2531,7 +2532,7 @@ if (isRedesignedDomain) {
     font-weight: 600;
     font-size: 14.5px;
     line-height: 1.15;
-    color: var(--c);
+    color: var(--sub-acc-text, var(--ink));
     align-self: center;
   }
   aside .threads-list .gloss {

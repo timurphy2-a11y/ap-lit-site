@@ -183,12 +183,12 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
 <style>
   /* ── Page-level custom properties ────────────────────────────────────── */
   .stp-page {
-    --th-1: #75435B;   /* Figure & Space  · deep madder */
-    --th-2: #75435B;   /* Light & Shadow  · dusty rose  */
-    --th-3: #9F6B84;   /* Brushwork & Surface · muted pink */
-    --tt-1: #75435B;   /* text-safe steps */
-    --tt-2: #75435B;
-    --tt-3: #75435B;
+    --th-1: var(--dom-painting-mid);   /* Figure & Space  · deep madder */
+    --th-2: var(--dom-painting-mid);   /* Light & Shadow  · dusty rose  */
+    --th-3: var(--dom-painting-light);   /* Brushwork & Surface · muted pink */
+    --tt-1: var(--dom-painting-mid);   /* text-safe steps */
+    --tt-2: var(--dom-painting-mid);
+    --tt-3: var(--dom-painting-mid);
     --seal:  #5A4022;
     --gutter: clamp(24px, 4.5vw, 80px);
     --maxw: 1320px;

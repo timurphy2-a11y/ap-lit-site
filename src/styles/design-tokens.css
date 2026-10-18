@@ -42,12 +42,26 @@
   --acc:         #815D00;
   --acc-text:    #815D00;
 
-  /* Domain colors (section 3.5). Mid or Dark for text; Light for icons,
-     stripes and tints only. */
+  /* Domain colors (section 3.5, iron-gall ink / madder rose / moss green /
+     manuscript violet). Text: Mid or Dark only. Meaningful icons: Mid. Light:
+     decorative stripes and tints only (sculpture Light is 2.93:1 on --bg).
+     Rows use the steps in order Mid, Dark, Light. */
   --dom-philosophy: #3A332C;
-  --dom-painting:   #75435B;
-  --dom-sculpture:  #4F6B4D;
-  --dom-music:      #574878;
+  --dom-philosophy-mid: #3A332C;
+  --dom-philosophy-dark: #15120F;
+  --dom-philosophy-light: #635C55;
+  --dom-painting: #75435B;
+  --dom-painting-mid: #75435B;
+  --dom-painting-dark: #4D293A;
+  --dom-painting-light: #9F6B84;
+  --dom-sculpture: #4F6B4D;
+  --dom-sculpture-mid: #4F6B4D;
+  --dom-sculpture-dark: #30472F;
+  --dom-sculpture-light: #7A9178;
+  --dom-music: #574878;
+  --dom-music-mid: #574878;
+  --dom-music-dark: #382D51;
+  --dom-music-light: #80729F;
 
   /* Type */
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;

@@ -182,12 +182,12 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
 
 <style>
   .stp-page {
-    --th-1: #4F6B4D;   /* Body & Volume    · deep moss */
-    --th-2: #4F6B4D;   /* Material & Making · mid green */
-    --th-3: #7A9178;   /* Space & Setting  · stone sage */
-    --tt-1: #30472F;   /* text uses the Dark step (section 3.5) */
-    --tt-2: #30472F;
-    --tt-3: #30472F;
+    --th-1: var(--dom-sculpture-mid);   /* Body & Volume    · deep moss */
+    --th-2: var(--dom-sculpture-mid);   /* Material & Making · mid green */
+    --th-3: var(--dom-sculpture-light);   /* Space & Setting  · stone sage */
+    --tt-1: var(--dom-sculpture-dark);   /* text uses the Dark step (section 3.5) */
+    --tt-2: var(--dom-sculpture-dark);
+    --tt-3: var(--dom-sculpture-dark);
     --seal:  #5A4022;
     --gutter: clamp(24px, 4.5vw, 80px);
     --maxw: 1320px;
