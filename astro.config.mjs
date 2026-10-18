@@ -5,13 +5,14 @@ import { fileURLToPath, URL } from 'node:url';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeThreadIds from './plugins/rehype-thread-ids.mjs';
 
 import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  integrations: [react(), mdx()],
+  integrations: [react(), mdx({ rehypePlugins: [rehypeThreadIds] })],
 
   vite: {
     plugins: [tailwindcss()],

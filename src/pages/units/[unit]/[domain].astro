@@ -424,26 +424,27 @@ if (isRedesignedDomain) {
 {isRedesignedDomain ? (
   <!-- ── Single-column reading layout (art / sculpture / music) ── -->
   <article class="prose reading">
+    <!-- Rendered in place so the jump links work without JavaScript; the page script moves it below the introduction. -->
+    <nav class="thread-nav" id="thread-nav-el" aria-label="Jump to an analytical thread">
+      {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
+        const subAcc = domainColors[i % domainColors.length];
+        const icon = THREAD_ICONS[t.id];
+        return (
+          <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};--sub-acc-text:${domainTextColors[i % domainTextColors.length]};`}>
+            <span class="tn-sig" aria-hidden="true">
+              {icon && <svg viewBox={icon.viewBox} width="28" height="28" set:html={icon.content} />}
+            </span>
+            <span class="tn-idx">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tn-title">{t.label}</span>
+            <span class="tn-gloss">{t.period_summary}</span>
+          </a>
+        );
+      })}
+    </nav>
     <Content components={{ BioLink, PullQuote, Plate, YouTubeEmbed, SlowDownCallout }} />
 
     <!-- Elements below are moved into position by the thread-wrap script, then this wrapper is discarded. -->
     <div id="pending-inserts" hidden>
-      <nav class="thread-nav" id="thread-nav-el" aria-label="Jump to an analytical thread">
-        {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
-          const subAcc = domainColors[i % domainColors.length];
-          const icon = THREAD_ICONS[t.id];
-          return (
-            <a class="thread-box" href={`#${t.id}`} style={`--sub-acc:${subAcc};--sub-acc-text:${domainTextColors[i % domainTextColors.length]};`}>
-              <span class="tn-sig" aria-hidden="true">
-                {icon && <svg viewBox={icon.viewBox} width="28" height="28" set:html={icon.content} />}
-              </span>
-              <span class="tn-idx">{String(i + 1).padStart(2, '0')}</span>
-              <span class="tn-title">{t.label}</span>
-              <span class="tn-gloss">{t.period_summary}</span>
-            </a>
-          );
-        })}
-      </nav>
       {threadIds.map((tid) => galleryByThread[tid]?.map((item: any) => (
         domain === 'music' ? (
           <YouTubeEmbed
@@ -796,7 +797,6 @@ if (isRedesignedDomain) {
       // Wrap h2 and every sibling up to (not including) the next h2 into a <section>.
       const section = document.createElement('section');
       section.className = 'thread';
-      section.id = threadIds[i];
       if (threadSigils[i]) { section.style.setProperty('--sub-acc', threadSigils[i].color); section.style.setProperty('--sub-acc-text', threadSigils[i].textColor); }
       h2.parentNode.insertBefore(section, h2);
       let node = h2;
@@ -1856,7 +1856,8 @@ if (isRedesignedDomain) {
   }
 
   /* ── Thread sections ── */
-  .thread { scroll-margin-top: 24px; padding-top: 8px; }
+  .thread { padding-top: 8px; }
+  h2.thread-head { scroll-margin-top: 24px; }
   .thread > p { max-width: var(--measure); margin: 0 auto 22px; font-size: 18px; line-height: 1.65; }
   h2.thread-head {
     display: grid;
