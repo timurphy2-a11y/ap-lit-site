@@ -95,20 +95,19 @@ const colors = ACCENTS[unit] ?? ACCENTS['00-medieval'];
 const threadAcc = colors[domain as keyof typeof colors] as string ?? colors.philosophy;
 const subThreadColors = colors.subThreads;
 
+// Design System section 3.5 domain colors, in row order Mid, Dark, Light. The Light step is for icons, stripes and tints only.
 const DOMAIN_THREAD_COLORS: Record<string, [string, string, string]> = {
-  philosophy: ['#3A332B', '#5A5046', '#857A6B'],
-  art:        ['#75435B', '#94586E', '#B58193'],
-  sculpture:  ['#4F6B4D', '#5F8060', '#7B9883'],
-  music:      ['#574878', '#6F5E95', '#8C80AE'],
+  philosophy: ['#3A332C', '#15120F', '#635C55'],
+  art:        ['#75435B', '#4D293A', '#9F6B84'],
+  sculpture:  ['#4F6B4D', '#30472F', '#7A9178'],
+  music:      ['#574878', '#382D51', '#80729F'],
 };
-// Text-safe steps (at least 4.6:1 on --bg-raised) for text colored by a domain
-// color. The steps above are for icons, stripes and tints only (A6). Interim
-// values: darkened from the live ones, pending the Reference's section 3.5.
+// Text colored by a domain color uses the Mid or Dark step (section 3.5, A6), never Light.
 const DOMAIN_TEXT_COLORS: Record<string, [string, string, string]> = {
-  philosophy: ['#3A332B', '#5A5046', '#6A6155'],
-  art:        ['#75435B', '#8A5267', '#8B5266'],
-  sculpture:  ['#4F6B4D', '#4F6A50', '#516858'],
-  music:      ['#574878', '#6C5B90', '#695C90'],
+  philosophy: ['#3A332C', '#15120F', '#15120F'],
+  art:        ['#75435B', '#4D293A', '#4D293A'],
+  sculpture:  ['#4F6B4D', '#30472F', '#30472F'],
+  music:      ['#574878', '#382D51', '#382D51'],
 };
 const domainColors = DOMAIN_THREAD_COLORS[domain] ?? DOMAIN_THREAD_COLORS.philosophy;
 const domainTextColors = DOMAIN_TEXT_COLORS[domain] ?? DOMAIN_TEXT_COLORS.philosophy;
@@ -213,7 +212,7 @@ if (isRedesignedDomain) {
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>{pageTitle}</title>
 </head>
 <body style={`--thread-acc: ${threadAcc}; --thread-acc-text: ${threadAccText}; --mark-primary:${marks.primary}; --mark-highlight:${marks.highlight}; --mark-spot:${marks.spot}; --mark-ink:#2C2820; --mark-cream:#F6F1E8; --mark-tile:#EDE8DC; --mark-rule:#C8C0B0; --mark-muted:#6B6355;`}>
@@ -976,7 +975,7 @@ if (isRedesignedDomain) {
   .unit-strip .title-block { min-width: 0; }
   .unit-strip .num {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 72px;
     line-height: 0.85;
     color: var(--thread-acc-text);
@@ -1773,7 +1772,7 @@ if (isRedesignedDomain) {
   .reading > p:first-of-type::first-letter {
     float: left;
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 78px;
     line-height: 0.85;
     color: var(--thread-acc-text);
@@ -2240,7 +2239,7 @@ if (isRedesignedDomain) {
   .prose:not(.reading) p:first-of-type::first-letter {
     float: left;
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 78px;
     line-height: 0.85;
     color: var(--thread-acc-text);

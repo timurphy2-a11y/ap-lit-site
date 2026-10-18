@@ -240,3 +240,10 @@ Three of these tables were produced by the sub-agents that edited those files; I
 - `elements-hearing-music.html` exit link on Musical Forms is broken (existing; untouched).
 - Tiny 9-10px mono tags remain on some guide pages; the audit passes them but they are very small.
 - The "Visual Art" domain pill on Compare is kept to match the page structure.
+
+## Follow-up (after the Design System Reference v2 arrived)
+- Domain colors now follow section 3.5 exactly (Mid / Dark / Light): `DOMAIN_THREAD_COLORS` in `[domain].astro` uses rows Mid, Dark, Light; text uses Mid or Dark only (`DOMAIN_TEXT_COLORS` = Mid, Dark, Dark). Compare's `FAMILIES`, the survey, studio and Comparison Lab pages, and Timeline were mapped to the spec values; the interim values are gone.
+- `--dom-philosophy/-painting/-sculpture/-music` and `--acc-text` added to `design-tokens.css`.
+- Fonts link now matches section 12 (no Cormorant 300, no Plex Sans 300); the remaining weight-300 numerals and titles on the unit templates are weight 500.
+- Deliberate difference from section 12: `--acc` stays the text-safe gold (#815D00) rather than #C9A24B, because many pages use `--acc` as a text color; `--acc-text` exists alongside it.
+- Contrast re-audit on all 47 routes: one failure (Sculpting Through Time tab label, 4.33), fixed by using the Dark step.

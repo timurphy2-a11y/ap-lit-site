@@ -36,8 +36,18 @@
   --acc-romanticism-text:    #3D5A6D;
   --acc-modernism-text:      #A03828;
 
-  /* Default accent (gold), text-safe */
+  /* Default accent (gold). Deliberately the text-safe gold, unlike the
+     reference's section 12 block (--acc #C9A24B + --acc-text #815D00): many
+     pages use --acc as a text color. --acc-text is provided for the same use. */
   --acc:         #815D00;
+  --acc-text:    #815D00;
+
+  /* Domain colors (section 3.5). Mid or Dark for text; Light for icons,
+     stripes and tints only. */
+  --dom-philosophy: #3A332C;
+  --dom-painting:   #75435B;
+  --dom-sculpture:  #4F6B4D;
+  --dom-music:      #574878;
 
   /* Type */
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;

@@ -26,10 +26,10 @@ const SUBJECT_NAME: Record<string, string> = {
 
 // ── Thread family colors ──────────────────────────────────────────────────
 const FAMILIES: Record<string, { dark: string; mid: string; light: string }> = {
-  philosophy: { dark: '#3A332B', mid: '#5A5046', light: '#857A6B' },
-  painting:   { dark: '#75435B', mid: '#94586E', light: '#B58193' },
-  sculpture:  { dark: '#4F6B4D', mid: '#5F8060', light: '#7B9883' },
-  music:      { dark: '#574878', mid: '#6F5E95', light: '#8C80AE' },
+  philosophy: { dark: '#3A332C', mid: '#15120F', light: '#635C55' },
+  painting:   { dark: '#75435B', mid: '#4D293A', light: '#9F6B84' },
+  sculpture:  { dark: '#4F6B4D', mid: '#30472F', light: '#7A9178' },
+  music:      { dark: '#574878', mid: '#382D51', light: '#80729F' },
 };
 const SEAL_COLOR = '#5A4022';
 
@@ -59,9 +59,9 @@ const SUBJECT_THREADS: Record<string, Array<{ id: string; label: string; weight:
 
 // ── Domain pill family-mid colors ─────────────────────────────────────────
 const DOMAIN_MID: Record<string, string> = {
-  philosophy: FAMILIES.philosophy.mid,  // #5A5046
+  philosophy: FAMILIES.philosophy.mid,  // spec Mid (rows use Mid, Dark, Light)
   art:        SEAL_COLOR,               // #5A4022 (umbrella tone — splits to rose + moss)
-  music:      FAMILIES.music.mid,       // #6F5E95
+  music:      FAMILIES.music.mid,       // spec Mid
 };
 
 // ── Collected content data ────────────────────────────────────────────────
@@ -840,10 +840,10 @@ const SUBJECT_FIRST: Record<string, string> = {
 };
 
 const FAMILIES: Record<string, Record<string, string>> = {
-  philosophy: { dark: '#3A332B', mid: '#5A5046', light: '#857A6B' },
-  painting:   { dark: '#75435B', mid: '#94586E', light: '#B58193' },
-  sculpture:  { dark: '#4F6B4D', mid: '#5F8060', light: '#7B9883' },
-  music:      { dark: '#574878', mid: '#6F5E95', light: '#8C80AE' },
+  philosophy: { dark: '#3A332C', mid: '#15120F', light: '#635C55' },
+  painting:   { dark: '#75435B', mid: '#4D293A', light: '#9F6B84' },
+  sculpture:  { dark: '#4F6B4D', mid: '#30472F', light: '#7A9178' },
+  music:      { dark: '#574878', mid: '#382D51', light: '#80729F' },
 };
 
 const THREAD_WEIGHT: Record<string, string> = {
