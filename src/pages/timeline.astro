@@ -43,10 +43,10 @@ const sorted = [...ENTRIES].sort((a, b) => {
   <div class="tl-wrap">
 
     <div class="doc-head">
-      <div class="seal-tile" aria-hidden="true">
+      <div class="page-sigil" aria-hidden="true">
         <!-- Timeline sigil: tick-mark scale -->
-        <svg viewBox="0 0 40 40" width="46" height="46"
-             style="stroke:var(--bg);fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;"
+        <svg viewBox="0 0 40 40" width="38" height="38"
+             style="stroke:var(--ink-mute);fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;"
              aria-hidden="true">
           <line x1="4"  y1="20" x2="36" y2="20"/>
           <line x1="8"  y1="14" x2="8"  y2="26"/>
@@ -55,8 +55,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
           <line x1="32" y1="14" x2="32" y2="26"/>
         </svg>
       </div>
-      <p class="eyebrow"><strong>§ I</strong> · Shared Resource · Historical Context</p>
-      <h1>Historical <em>Timeline</em></h1>
+      <h1>Historical Timeline</h1>
       <p class="lede">
         Political upheaval, intellectual revolution, and literary landmark — placed
         in sequence from the medieval foundations to the Cold War. Filter by unit
@@ -124,7 +123,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
           return (
             <div
               class="row ap-row"
-              style={`--p: var(--acc-${unit})`}
+              style={`--p: var(--acc-${unit}); --pt: var(--acc-${unit}-text)`}
               data-unit={unit}
               data-type="AP"
             >
@@ -132,8 +131,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
               <div class="anchor">
                 <div class="anchor-meta">
                   <div class="label">Anchor text</div>
-                  <div class="badge">AP Lit</div>
-                  <div class="unit-label">Unit {unit} · {unitMeta.name}</div>
+                  <div class="unit-label">{unit} · {unitMeta.name}</div>
                 </div>
                 <div class="anchor-body">
                   <div class="ap-title">{entry.apTitle}</div>
@@ -150,7 +148,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
         return (
           <div
             class="row"
-            style={`--p: var(--acc-${unit}); --c: ${typeMeta.color}`}
+            style={`--p: var(--acc-${unit}); --pt: var(--acc-${unit}-text); --c: ${typeMeta.color}`}
             data-unit={unit}
             data-type={entry.type}
           >
@@ -172,7 +170,6 @@ const sorted = [...ENTRIES].sort((a, b) => {
 
     <!-- Legend ──────────────────────────────────────────── -->
     <div class="legend">
-      <span class="group-label">Period bar</span>
       <span class="item"><span class="bar" style="background: var(--acc-00)"></span>Medieval</span>
       <span class="item"><span class="bar" style="background: var(--acc-01)"></span>Renaissance</span>
       <span class="item"><span class="bar" style="background: var(--acc-02)"></span>Baroque</span>
@@ -356,6 +353,12 @@ const sorted = [...ENTRIES].sort((a, b) => {
     --acc-03: var(--acc-enlightenment);
     --acc-04: var(--acc-romanticism);
     --acc-05: var(--acc-modernism);
+    --acc-00-text: var(--acc-medieval-text);
+    --acc-01-text: var(--acc-renaissance-text);
+    --acc-02-text: var(--acc-baroque-text);
+    --acc-03-text: var(--acc-enlightenment-text);
+    --acc-04-text: var(--acc-romanticism-text);
+    --acc-05-text: var(--acc-modernism-text);
 
     /* Thread family heads (one per thread; sub-thread shades belong on unit pages) */
     --th-phil:  #3A332B;
@@ -404,40 +407,26 @@ const sorted = [...ENTRIES].sort((a, b) => {
     padding: 40px 0 0;
   }
 
-  .tl-page .seal-tile {
-    width: 88px; height: 88px;
-    background: var(--seal);
+  .tl-page .page-sigil {
+    width: 38px; height: 38px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
 
-  .tl-page .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11.5px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--ink-soft); margin: 0;
-  }
-  .tl-page .eyebrow strong { color: var(--ink-mute); font-weight: 500; }
-
   .tl-page .doc-head h1 {
     font-family: var(--font-cg);
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(46px, 6.2vw, 78px);
     line-height: 0.98;
     letter-spacing: -0.02em;
     margin: 0;
     color: var(--ink);
   }
-  .tl-page .doc-head h1 em {
-    font-style: italic;
-    color: var(--ink-mute);
-  }
-
   .tl-page .lede {
-    font-family: var(--font-cg);
-    font-style: italic;
+    font-family: var(--font-text);
     font-weight: 400;
-    font-size: 21px;
-    line-height: 1.45;
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     max-width: 58ch;
     margin: 0 0 42px;
@@ -531,11 +520,11 @@ const sorted = [...ENTRIES].sort((a, b) => {
 
   .tl-page .row .year {
     font-family: var(--font-cg);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 34px;
     line-height: 1;
     letter-spacing: -0.01em;
-    color: var(--p);
+    color: var(--pt, var(--ink-mute));
     align-self: center;
   }
 
@@ -572,9 +561,8 @@ const sorted = [...ENTRIES].sort((a, b) => {
     margin: 0;
   }
   .tl-page .row .note {
-    font-family: var(--font-cg);
-    font-style: italic;
-    font-size: 15.5px;
+    font-family: var(--font-text);
+    font-size: 16px;
     line-height: 1.5;
     color: var(--ink-mute);
     margin: 5px 0 0;
@@ -594,8 +582,8 @@ const sorted = [...ENTRIES].sort((a, b) => {
   }
   .tl-page .row.ap-row .year {
     font-size: 44px;
-    font-weight: 300;
-    color: var(--p);
+    font-weight: 500;
+    color: var(--pt, var(--ink-mute));
   }
   .tl-page .ap-row .anchor {
     display: grid;
@@ -612,7 +600,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: color-mix(in oklab, var(--p) 50%, var(--ink-soft));
+    color: color-mix(in oklab, var(--pt) 50%, var(--ink-soft));
     margin-bottom: 7px;
   }
   .tl-page .ap-row .anchor-meta .unit-label {
@@ -623,22 +611,12 @@ const sorted = [...ENTRIES].sort((a, b) => {
     color: var(--ink-soft);
     margin-top: 7px;
   }
-  .tl-page .ap-row .anchor-meta .badge {
-    display: inline-block;
-    padding: 4px 9px;
-    border: 1px solid var(--p);
-    color: var(--p);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
   .tl-page .ap-row .anchor-body {
     padding-right: 18px;
   }
   .tl-page .ap-row .anchor-body .ap-title {
     font-family: var(--font-cg);
-    font-weight: 400;
+    font-weight: 500;
     font-style: italic;
     font-size: 32px;
     line-height: 1.1;
@@ -655,10 +633,9 @@ const sorted = [...ENTRIES].sort((a, b) => {
     margin: 9px 0 11px;
   }
   .tl-page .ap-row .anchor-body .note {
-    font-family: var(--font-cg);
-    font-style: italic;
-    font-size: 17px;
-    line-height: 1.55;
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     max-width: 60ch;
     margin: 0;
@@ -672,7 +649,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--p);
+    color: var(--pt);
     cursor: pointer;
     text-decoration: none;
     transition: opacity 120ms;
@@ -706,22 +683,12 @@ const sorted = [...ENTRIES].sort((a, b) => {
     height: 14px;
     flex-shrink: 0;
   }
-  .tl-page .legend .group-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    margin-right: 6px;
-    align-self: center;
-  }
 
   /* ─── Empty state ──────────────────────────────────────────────────────── */
   .tl-page .empty {
     padding: 56px 22px;
     text-align: center;
-    font-family: var(--font-cg);
-    font-style: italic;
+    font-family: var(--font-text);
     font-size: 18px;
     color: var(--ink-soft);
     border-bottom: 1px solid var(--rule);
@@ -733,7 +700,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
     transition: color 120ms;
   }
   .tl-page .row .title.note-trigger:hover {
-    color: color-mix(in oklab, var(--p) 85%, var(--ink));
+    color: color-mix(in oklab, var(--pt) 85%, var(--ink));
     text-decoration: underline;
     text-decoration-style: dotted;
     text-decoration-color: color-mix(in oklab, var(--p) 50%, var(--rule));
@@ -781,9 +748,8 @@ const sorted = [...ENTRIES].sort((a, b) => {
     padding-right: 24px;
   }
   .tl-popover .pop-note {
-    font-family: var(--font-cg);
-    font-style: italic;
-    font-size: 17px;
+    font-family: var(--font-text);
+    font-size: 18px;
     line-height: 1.55;
     color: var(--ink-mute);
     margin: 0;

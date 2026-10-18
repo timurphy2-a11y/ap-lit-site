@@ -19,6 +19,8 @@ const { title, artist, date, image, alt, medium, location, analysisEyebrow, anal
 const metaParts = [date, medium, location].filter(Boolean);
 const metaText = metaParts.join('\n');
 const hasAnalysis = Boolean(analysis);
+const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·\s*/, '');
+
 ---
 
 <figure class="plate work-figure" data-plate-for={plateFor}>
@@ -39,7 +41,7 @@ const hasAnalysis = Boolean(analysis);
   </figcaption>
   {hasAnalysis && (
     <div class="analysis-panel" hidden>
-      {analysisEyebrow && <div class="analysis-eyebrow">{analysisEyebrow}</div>}
+      {analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(analysisEyebrow)}</div>}
       <p>{analysis}</p>
       {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
     </div>

@@ -231,8 +231,7 @@ const PORTRAITS: Credit[] = [
 
 <div class="cr-wrap">
   <header class="cr-head">
-    <p class="cr-eyebrow">Shared Resource</p>
-    <h1 class="cr-title">Image <em>Credits</em></h1>
+    <h1 class="cr-title">Image Credits</h1>
     <p class="cr-lede">
       Flat reproductions of public-domain paintings and prints are generally public domain
       themselves. Photographs of three-dimensional sculpture are different: the photograph
@@ -312,29 +311,20 @@ const PORTRAITS: Credit[] = [
     text-align: center;
     margin-bottom: 56px;
   }
-  .cr-eyebrow {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 10px;
-  }
   .cr-title {
     font-size: clamp(32px, 5vw, 44px);
     margin: 0 0 20px;
   }
-  .cr-title em { font-style: italic; color: var(--acc); }
   .cr-lede {
-    font-size: 17px;
-    line-height: 1.6;
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     max-width: 640px;
     margin: 0 auto 12px;
   }
   .cr-lede-small {
-    font-size: 14px;
-    font-style: italic;
+    font-size: 16px;
     color: var(--ink-soft);
   }
 
@@ -342,11 +332,10 @@ const PORTRAITS: Credit[] = [
     margin-bottom: 48px;
   }
   .cr-section h2 {
-    font-family: var(--font-ui);
-    font-size: 15px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--ink);
     border-bottom: 1px solid var(--rule);
     padding-bottom: 10px;
     margin: 0 0 24px;
@@ -375,8 +364,8 @@ const PORTRAITS: Credit[] = [
     padding: 14px 16px 16px;
   }
   .cr-work {
-    font-family: var(--font-display);
-    font-size: 15px;
+    font-family: var(--font-text);
+    font-size: 16px;
     font-weight: 500;
     color: var(--ink);
     margin-bottom: 8px;

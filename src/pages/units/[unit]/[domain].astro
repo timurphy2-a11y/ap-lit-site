@@ -53,6 +53,8 @@ export async function getStaticPaths() {
 
 // ── Load content ──────────────────────────────────────────────────────────────
 
+// The 'Close looking ·' / 'Listen for ·' prefix repeats on every panel; the part after it carries the information.
+const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·\s*/, '');
 const { unit, domain } = Astro.params;
 const { prevUnit, nextUnit } = Astro.props;
 
@@ -359,7 +361,7 @@ if (isRedesignedDomain) {
         </figcaption>
         {hasAnalysis && (
           <div class="analysis-panel" hidden>
-            {p.analysisEyebrow && <div class="analysis-eyebrow">{p.analysisEyebrow}</div>}
+            {p.analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(p.analysisEyebrow)}</div>}
             <p>{p.analysis}</p>
             {p.analysisPrompt && <p class="analysis-prompt">{p.analysisPrompt}</p>}
           </div>
@@ -390,7 +392,7 @@ if (isRedesignedDomain) {
         </figcaption>
         {hasAnalysis && (
           <div class="analysis-panel" hidden>
-            {s.analysisEyebrow && <div class="analysis-eyebrow">{s.analysisEyebrow}</div>}
+            {s.analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(s.analysisEyebrow)}</div>}
             <p>{s.analysis}</p>
             {s.analysisPrompt && <p class="analysis-prompt">{s.analysisPrompt}</p>}
           </div>
@@ -2715,7 +2717,7 @@ if (isRedesignedDomain) {
 
   .bio-body {
     font-family: var(--font-text);
-    font-size: 14.5px;
+    font-size: 18px;
     line-height: 1.65;
     color: var(--ink-mute);
     margin-bottom: 14px;
@@ -2723,10 +2725,9 @@ if (isRedesignedDomain) {
 
   .bio-sig {
     font-family: var(--font-text);
-    font-style: italic;
-    font-size: 14.5px;
+    font-size: 18px;
     line-height: 1.65;
-    color: var(--ink);
+    color: var(--ink-mute);
     padding-top: 14px;
     border-top: 1px solid var(--rule);
   }

@@ -12,8 +12,6 @@ import Layout from '../../layouts/Layout.astro';
 
 <script is:inline src="/guides/listening-studio/viz/visualization-playback.js"></script>
 
-<div class="eyebrow-strip"><span class="dot" aria-hidden="true"></span>An Element · Listening Fundamentals</div>
-
 <section class="page-head">
 <div class="sigil-lg" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 26 A14 14 0 0 1 34 26"/><circle cx="20" cy="26" r="2" style="fill:currentColor;stroke:none"/><path d="M6 32 Q13 27 20 32 T34 32"/></svg></div>
 <div>
@@ -26,20 +24,20 @@ import Layout from '../../layouts/Layout.astro';
 <p class="lede">This page walks through one short original theme six times, each time through a different lens — Melody, Harmony, Timbre, Texture, Rhythm, and Form. For each lens, listen once with no diagram, then replay with the simple visual guide.</p>
 <p class="measure">These six lenses are the listening skills behind three threads you'll meet throughout the music units: <strong>Texture &amp; Voices</strong>, <strong>Consonance &amp; Dissonance</strong>, and <strong>Structure &amp; Freedom</strong>.</p>
 <nav class="overview" aria-label="The six listening lenses">
-<button class="ocard" type="button" data-lens="melody" style="--acc:#6F5E95;--acc-soft:#EFE9F5"><span class="ohead"><span class="onum">01</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 A 14 14 0 0 1 34 26" fill="none" stroke="currentColor"/><circle cx="6" cy="26" r="1.4" fill="currentColor" stroke="none"/><circle cx="34" cy="26" r="1.4" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Melody</span><span class="ot">The shape of a line</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
-<button class="ocard" type="button" data-lens="harmony" style="--acc:#6F5E95;--acc-soft:#EFE9F5"><span class="ohead"><span class="onum">02</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Harmony</span><span class="ot">Tension, and where it lands</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
-<button class="ocard" type="button" data-lens="timbre" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="onum">03</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 Q 20 10, 34 24" fill="none" stroke="currentColor"/><circle cx="20" cy="14.3" r="1.3" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Timbre</span><span class="ot">The color of a sound</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
-<button class="ocard" type="button" data-lens="texture" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="onum">04</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Texture</span><span class="ot">How many voices, at once</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
-<button class="ocard" type="button" data-lens="rhythm" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="onum">05</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="30" x2="34" y2="30"/><line x1="13" y1="9" x2="13" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="27" y1="9" x2="27" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="7" y="18" width="5" height="12" style="fill:currentColor;stroke:none"/><rect x="16" y="24" width="5" height="6" style="fill:currentColor;stroke:none"/><rect x="25" y="14" width="5" height="16" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Rhythm</span><span class="ot">Sound and silence, grouped</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
-<button class="ocard" type="button" data-lens="form" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="onum">06</span><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="7" x2="12" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="22" y1="7" x2="22" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="5" y="16" width="6" height="12" style="fill:currentColor;stroke:none"/><rect x="14" y="16" width="6" height="12" style="fill:currentColor;stroke:none;opacity:.55"/><rect x="29" y="5" width="6" height="23" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Form</span><span class="ot">The whole shape of a piece</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
+<button class="ocard" type="button" data-lens="melody" style="--acc:#695C90;--acc-soft:#EFE9F5"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 A 14 14 0 0 1 34 26" fill="none" stroke="currentColor"/><circle cx="6" cy="26" r="1.4" fill="currentColor" stroke="none"/><circle cx="34" cy="26" r="1.4" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Melody</span><span class="ot">The shape of a line</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
+<button class="ocard" type="button" data-lens="harmony" style="--acc:#695C90;--acc-soft:#EFE9F5"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Harmony</span><span class="ot">Tension, and where it lands</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span><span class="othread">Consonance &amp; Dissonance</span></span></button>
+<button class="ocard" type="button" data-lens="timbre" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 Q 20 10, 34 24" fill="none" stroke="currentColor"/><circle cx="20" cy="14.3" r="1.3" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Timbre</span><span class="ot">The color of a sound</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
+<button class="ocard" type="button" data-lens="texture" style="--acc:#574878;--acc-soft:color-mix(in oklab,#574878 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span></span><span class="oname">Texture</span><span class="ot">How many voices, at once</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span><span class="othread">Texture &amp; Voices</span></span></button>
+<button class="ocard" type="button" data-lens="rhythm" style="--acc:#695C90;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="30" x2="34" y2="30"/><line x1="13" y1="9" x2="13" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="27" y1="9" x2="27" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="7" y="18" width="5" height="12" style="fill:currentColor;stroke:none"/><rect x="16" y="24" width="5" height="6" style="fill:currentColor;stroke:none"/><rect x="25" y="14" width="5" height="16" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Rhythm</span><span class="ot">Sound and silence, grouped</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
+<button class="ocard" type="button" data-lens="form" style="--acc:#695C90;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)"><span class="ohead"><span class="osig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="7" x2="12" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="22" y1="7" x2="22" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="5" y="16" width="6" height="12" style="fill:currentColor;stroke:none"/><rect x="14" y="16" width="6" height="12" style="fill:currentColor;stroke:none;opacity:.55"/><rect x="29" y="5" width="6" height="23" style="fill:currentColor;stroke:none"/></svg></span></span><span class="oname">Form</span><span class="ot">The whole shape of a piece</span><span class="ofoot"><span class="othread-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 9 14, 14 20 Q 19 26, 24 20 Q 29 14, 34 20" fill="none" stroke="currentColor"/><line x1="14" y1="10" x2="14" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><line x1="24" y1="10" x2="24" y2="30" stroke-dasharray="1.5 2.5" opacity=".6" stroke="currentColor"/><circle cx="9" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="19" cy="20" r=".9" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r=".9" fill="currentColor" stroke="none"/></svg></span><span class="othread">Structure &amp; Freedom</span></span></button>
 </nav>
 <div id="lens-detail" class="lens-detail is-hidden" aria-live="polite">
 <div class="detail-bar"><span class="dthread" id="dThread"></span><button class="detail-close" id="dClose" type="button">← All lenses</button></div>
-<div class="lens-wrap is-hidden" data-lens="rhythm" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
+<div class="lens-wrap is-hidden" data-lens="rhythm" style="--acc:#695C90;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
 <section class="lens" id="lens-rhythm">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="30" x2="34" y2="30"/><line x1="13" y1="9" x2="13" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="27" y1="9" x2="27" y2="30" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="7" y="18" width="5" height="12" style="fill:currentColor;stroke:none"/><rect x="16" y="24" width="5" height="6" style="fill:currentColor;stroke:none"/><rect x="25" y="14" width="5" height="16" style="fill:currentColor;stroke:none"/></svg></span>
-<div><span class="lens-idx">05 · Rhythm</span><h2 class="lens-title">Sound and silence, grouped</h2></div>
+<div><span class="lens-idx">Rhythm</span><h2 class="lens-title">Sound and silence, grouped</h2></div>
 </div>
 <p class="lens-q"><em>Are the note starts even, or grouped unevenly?</em></p>
 <p class="lens-cue">Rhythm is how a phrase divides time — which sounds are long, which are short, and where the silences fall. Listen for long sounds, quick turns, and spaces.</p>
@@ -273,11 +271,11 @@ import Layout from '../../layouts/Layout.astro';
 <div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Rhythm is the pattern of long and short sounds and the silences between them — the same pulse can be grouped evenly or unevenly, and the grouping is what gives a rhythm its character.</p></div>
 </section>
 </div>
-<div class="lens-wrap is-hidden" data-lens="form" style="--acc:#8C80AE;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
+<div class="lens-wrap is-hidden" data-lens="form" style="--acc:#695C90;--acc-soft:color-mix(in oklab,#8C80AE 12%,white)">
 <section class="lens" id="lens-form">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="7" x2="12" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><line x1="22" y1="7" x2="22" y2="31" stroke-dasharray="1.5 2.5" opacity=".6"/><rect x="5" y="16" width="6" height="12" style="fill:currentColor;stroke:none"/><rect x="14" y="16" width="6" height="12" style="fill:currentColor;stroke:none;opacity:.55"/><rect x="29" y="5" width="6" height="23" style="fill:currentColor;stroke:none"/></svg></span>
-<div><span class="lens-idx">06 · Form</span><h2 class="lens-title">The whole shape of a piece</h2></div>
+<div><span class="lens-idx">Form</span><h2 class="lens-title">The whole shape of a piece</h2></div>
 </div>
 <p class="lens-q"><em>What changes, and what returns?</em></p>
 <p class="lens-cue">Form is the large-scale plan — the order in which ideas are stated, varied, departed from, and brought back. Listen across the whole clip for what returns, and for what has changed when it does.</p>
@@ -674,7 +672,7 @@ import Layout from '../../layouts/Layout.astro';
 <section class="lens" id="lens-timbre">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 Q 20 10, 34 24" fill="none" stroke="currentColor"/><circle cx="20" cy="14.3" r="1.3" fill="currentColor" stroke="none"/></svg></span>
-<div><span class="lens-idx">03 · Timbre</span><h2 class="lens-title">The color of a sound</h2></div>
+<div><span class="lens-idx">Timbre</span><h2 class="lens-title">The color of a sound</h2></div>
 </div>
 <p class="lens-q"><em>Who — or what — is making the sound?</em></p>
 <p class="lens-cue">Timbre is tone color — the quality that lets you tell instruments apart even when they play the exact same line. The line stays the same; notice how each sound begins, holds, rings, and fades.</p>
@@ -1057,7 +1055,7 @@ import Layout from '../../layouts/Layout.astro';
 <section class="lens" id="lens-texture">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 Q 10 12, 16 20 T 28 20 T 40 20" fill="none" stroke="currentColor"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="22" cy="24" r="1" fill="currentColor" stroke="none"/><circle cx="34" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>
-<div><span class="lens-idx">04 · Texture</span><h2 class="lens-title">How many voices, at once</h2></div>
+<div><span class="lens-idx">Texture</span><h2 class="lens-title">How many voices, at once</h2></div>
 </div>
 <p class="lens-q"><em>How many independent layers are active, and what does each one do?</em></p>
 <p class="lens-cue">Texture describes how many layers are sounding together and how they relate. Watch for a new role entering, not just for the music getting louder: a main melody is joined by a low sustained foundation, a plucked repeating support, and finally a high responding line that moves independently around the melody.</p>
@@ -1100,10 +1098,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1111,8 +1108,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1126,10 +1123,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1137,8 +1133,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1194,11 +1190,11 @@ import Layout from '../../layouts/Layout.astro';
 <div class="takeaway"><div class="tk-lbl">Takeaway</div><p>Texture is how musical layers relate: one line, a line with support, or several independent lines together.</p></div>
 </section>
 </div>
-<div class="lens-wrap is-hidden" data-lens="melody" style="--acc:#6F5E95;--acc-soft:#EFE9F5">
+<div class="lens-wrap is-hidden" data-lens="melody" style="--acc:#695C90;--acc-soft:#EFE9F5">
 <section class="lens" id="lens-melody">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 A 14 14 0 0 1 34 26" fill="none" stroke="currentColor"/><circle cx="6" cy="26" r="1.4" fill="currentColor" stroke="none"/><circle cx="34" cy="26" r="1.4" fill="currentColor" stroke="none"/></svg></span>
-<div><span class="lens-idx">01 · Melody</span><h2 class="lens-title">The shape of a line</h2></div>
+<div><span class="lens-idx">Melody</span><h2 class="lens-title">The shape of a line</h2></div>
 </div>
 <p class="lens-q"><em>What can you keep following?</em></p>
 <p class="lens-cue">Melody is the up-and-down shape a line traces over time — its <em>contour</em>. Follow the rise, turn, and return; do not worry about the exact notes.</p>
@@ -1271,10 +1267,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1282,8 +1277,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1297,10 +1292,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1308,8 +1302,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1398,11 +1392,11 @@ import Layout from '../../layouts/Layout.astro';
 <div class="takeaway"><div class="tk-lbl">Takeaway</div><p>A melody is a connected musical line. Contour — its broad rise, fall, pause, and return — is often what makes it feel familiar.</p></div>
 </section>
 </div>
-<div class="lens-wrap is-hidden" data-lens="harmony" style="--acc:#6F5E95;--acc-soft:#EFE9F5">
+<div class="lens-wrap is-hidden" data-lens="harmony" style="--acc:#695C90;--acc-soft:#EFE9F5">
 <section class="lens" id="lens-harmony">
 <div class="lens-head">
 <span class="lens-sig" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor"/><path d="M6 20 A 14 14 0 0 1 34 20" fill="none" stroke="currentColor"/><line x1="12" y1="20" x2="28" y2="20" stroke-dasharray="2 2" stroke="currentColor"/><circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none"/></svg></span>
-<div><span class="lens-idx">02 · Harmony</span><h2 class="lens-title">Tension, and where it lands</h2></div>
+<div><span class="lens-idx">Harmony</span><h2 class="lens-title">Tension, and where it lands</h2></div>
 </div>
 <p class="lens-q"><em>Does the harmonic journey come home, or land somewhere else?</em></p>
 <p class="lens-cue">Harmony is a journey away from a home chord and (often) back to it. Both clips use the same melody and leave the same home — listen for whether the ending gets back there.</p>
@@ -1442,10 +1436,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1453,8 +1446,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1520,10 +1513,9 @@ import Layout from '../../layouts/Layout.astro';
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -1531,8 +1523,8 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}
@@ -1630,9 +1622,8 @@ import Layout from '../../layouts/Layout.astro';
 .continue-wrap{max-width:1080px;margin:64px auto 0}
 .continue{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;padding:34px 36px;background:var(--acc-soft);border-top:2px solid var(--acc);text-decoration:none}
 @media(max-width:760px){.continue{grid-template-columns:1fr}}
-.continue .c-lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
-.continue h3{font-family:var(--font-display);font-weight:300;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-.02em;margin:8px 0 0;color:var(--ink)}
-.continue p{font-family:var(--font-display);font-size:15.5px;line-height:1.55;color:var(--ink-mute);margin:10px 0 0;max-width:52ch;text-wrap:pretty}
+.continue h3{font-family:var(--font-display);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-.02em;margin:8px 0 0;color:var(--ink)}
+.continue p{font-family:var(--font-text);font-size:18px;line-height:1.55;color:var(--ink-mute);margin:10px 0 0;max-width:52ch;text-wrap:pretty}
 .continue .go{font-family:var(--font-ui);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule-strong);background:var(--bg);padding:14px 22px;white-space:nowrap;transition:border-color 160ms,color 160ms}
 .continue:hover .go{border-color:var(--acc);color:var(--acc)}
 .anchors{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:none}
@@ -1640,13 +1631,12 @@ import Layout from '../../layouts/Layout.astro';
 .anchor-cell{background:var(--bg-sunken);padding:16px 18px 18px;display:flex;flex-direction:column;gap:5px;text-decoration:none;transition:background 160ms}
 .anchor-cell:hover{background:var(--acc-soft)}
 .anchor-cell .per{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-.anchor-cell .frm{font-family:var(--font-display);font-size:16.5px;line-height:1.2;color:var(--ink)}
+.anchor-cell .frm{font-family:var(--font-text);font-size:17px;line-height:1.2;color:var(--ink)}
 .anchor-cell .frm::after{content:" ↗";font-size:12px;color:var(--ink-soft)}
 </style>
 <div class="continue-wrap">
 <a class="continue" href="/guides/listening-studio/musical-forms">
 <div>
-<div class="c-lbl">Room two · continue</div>
 <h3>Musical Forms</h3>
 <p>You can now hear what a moment sounds like. Forms is about shape over time — how a composer makes twenty minutes hold together, and why the answer changes every century.</p>
 </div>
@@ -1665,7 +1655,6 @@ import Layout from '../../layouts/Layout.astro';
 <footer>
 <div class="colophon">Of Imagination All Compact · AP Literature</div>
 <div><a href="/credits">Image Credits</a></div>
-<div>The Listening Studio / Hearing Music</div>
 </footer>
 
 <script is:inline>
@@ -2038,7 +2027,7 @@ document.querySelectorAll('.guide-toggle').forEach(btn=>{
 </div>
 
 <style is:global>
-.ls-page{--acc:#6F5E95;--acc-soft:#EFE9F5;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:18px;line-height:1.6}
+.ls-page{--acc:#695C90;--acc-soft:#EFE9F5;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-text);font-size:18px;line-height:1.65}
 .ls-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .ls-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
 .ls-crumb{padding:20px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -2046,18 +2035,16 @@ document.querySelectorAll('.guide-toggle').forEach(btn=>{
 .ls-crumb a:hover{color:var(--ink)}
 .ls-crumb .sep{color:var(--rule-strong)}
 .ls-crumb .here{color:var(--ink-mute)}
-.eyebrow-strip{display:flex;align-items:center;gap:14px;padding:22px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
-.eyebrow-strip .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex:0 0 6px}
-.page-head{padding:22px 0 44px;display:grid;grid-template-columns:88px 1fr;gap:32px;align-items:start;border-bottom:1px solid var(--rule)}
+.page-head{padding:22px 0 44px;display:grid;grid-template-columns:40px 1fr;gap:24px;align-items:start;border-bottom:1px solid var(--rule)}
 @media (max-width:720px){.page-head{grid-template-columns:1fr;gap:18px;padding:22px 0 30px}}
-.sigil-lg{width:88px;height:88px;border:1px solid var(--rule-strong);background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sigil-lg svg{width:48px;height:48px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.page-head h1{font-family:var(--font-display);font-weight:300;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 6px;color:var(--ink)}
-.page-head .sub{font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--ink-mute);margin:0}
+.sigil-lg{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sigil-lg svg{width:40px;height:40px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.page-head h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 6px;color:var(--ink)}
+.page-head .sub{font-family:var(--font-text);font-style:normal;font-size:18px;color:var(--ink-mute);margin:0}
 .reading{max-width:var(--read-wide);margin:0 auto;padding:40px 0 8px}
 .measure{max-width:var(--measure);margin-left:auto;margin-right:auto}
-.lede{max-width:var(--measure);margin:0 auto 22px;font-family:var(--font-display);font-size:20px;line-height:1.55;color:var(--ink)}
-.reading p.measure{font-size:17.5px;line-height:1.65;margin:0 auto 18px;color:var(--ink-mute)}
+.lede{max-width:var(--measure);margin:0 auto 22px;font-family:var(--font-text);font-size:18px;line-height:1.65;color:var(--ink)}
+.reading p.measure{font-size:18px;line-height:1.65;margin:0 auto 18px;color:var(--ink-mute)}
 .reading em{font-style:italic;color:var(--ink)}
 .thread-note{max-width:var(--measure);margin:0 auto 40px;padding:16px 20px;border:1px solid var(--rule);background:var(--bg-raised);font-family:var(--font-ui);font-size:14px;line-height:1.55;color:var(--ink-mute)}
 .thread-note strong{color:var(--ink);font-weight:600}
@@ -2068,16 +2055,16 @@ document.querySelectorAll('.guide-toggle').forEach(btn=>{
 .thread-sig{width:72px;height:72px;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .thread-sig svg{width:44px;height:44px;stroke:var(--acc);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
 .thread-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
-.thread-title{font-family:var(--font-display);font-weight:400;font-size:26px;letter-spacing:-.01em;color:var(--ink);margin:0 0 6px}
-.thread-desc{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--ink-mute);margin:0;max-width:56ch}
+.thread-title{font-family:var(--font-display);font-weight:500;font-size:26px;letter-spacing:-.01em;color:var(--ink);margin:0 0 6px}
+.thread-desc{font-family:var(--font-text);font-style:italic;font-size:18px;color:var(--ink-mute);margin:0;max-width:56ch}
 .thread-group .lens-head{margin-top:40px;padding-top:34px}
-.lens-head{display:grid;grid-template-columns:56px 1fr;column-gap:20px;align-items:center;margin:64px 0 4px;padding-top:44px;border-top:1px solid var(--rule)}
-.lens-sig{width:56px;height:56px;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 40%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.lens-sig svg{width:32px;height:32px}
+.lens-head{display:grid;grid-template-columns:40px 1fr;column-gap:20px;align-items:center;margin:64px 0 4px;padding-top:44px;border-top:1px solid var(--rule)}
+.lens-sig{width:40px;height:40px;color:var(--acc);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lens-sig svg{width:36px;height:36px}
 .lens-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;display:block}
-.lens-title{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);margin:0}
-.lens-q{font-family:var(--font-display);font-style:italic;font-size:18px;line-height:1.4;color:var(--acc);margin:18px 0 20px;max-width:54ch}
-.lens-cue{font-size:16.5px;line-height:1.6;color:var(--ink-mute);margin:0 0 24px}
+.lens-title{font-family:var(--font-display);font-weight:500;font-size:30px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);margin:0}
+.lens-q{font-family:var(--font-text);font-style:italic;font-size:18px;line-height:1.4;color:var(--acc);margin:18px 0 20px;max-width:54ch}
+.lens-cue{font-size:18px;line-height:1.6;color:var(--ink-mute);margin:0 0 24px}
 .variant-row{border:1px solid var(--rule);background:var(--bg-raised);padding:16px 20px;margin-bottom:12px}
 .variant-label{font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:.04em;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .variant-label .vtag{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:2px 7px;background:var(--acc-soft)}
@@ -2096,26 +2083,26 @@ audio{width:100%;display:block;height:38px}
 .event-announce{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;color:var(--acc);margin:8px 0 0;min-height:14px}
 .takeaway{max-width:56ch;margin:0 auto 8px;padding:18px 22px;border-left:3px solid var(--acc);background:var(--acc-soft)}
 .takeaway .tk-lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
-.takeaway p{font-family:var(--font-display);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);margin:0}
+.takeaway p{font-family:var(--font-text);font-style:italic;font-size:18px;line-height:1.5;color:var(--ink);margin:0}
 .seek-group{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
 .seek-btn{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:9px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .seek-btn:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .synth{max-width:var(--measure);margin:56px auto 0;padding-top:44px;border-top:1px solid var(--rule)}
-.synth h2{font-family:var(--font-display);font-weight:300;font-style:italic;font-size:30px;color:var(--ink);margin:0 0 14px}
-.synth p{font-size:16.5px;color:var(--ink-mute);line-height:1.6;margin:0 0 16px}
-.synth textarea{width:100%;min-height:120px;font-family:var(--font-display);font-size:16px;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule);padding:14px 16px;resize:vertical}
+.synth h2{font-family:var(--font-display);font-weight:500;font-style:normal;font-size:30px;color:var(--ink);margin:0 0 14px}
+.synth p{font-size:18px;color:var(--ink-mute);line-height:1.6;margin:0 0 16px}
+.synth textarea{width:100%;min-height:120px;font-family:var(--font-text);font-size:18px;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule);padding:14px 16px;resize:vertical}
 .synth textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
 footer{padding:40px 0 56px;border-top:1px solid var(--rule);margin-top:56px;font-family:var(--font-ui);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 footer a{color:var(--ink-soft)}
 footer a:hover{color:var(--ink)}
-.colophon{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--ink-mute)}
+.colophon{font-family:var(--font-text);font-style:italic;font-size:14px;color:var(--ink-mute)}
 @media (max-width:600px){.lens-head{grid-template-columns:44px 1fr;column-gap:14px}.lens-sig{width:44px;height:44px}.lens-sig svg{width:24px;height:24px}}
 
 /* --- Embedded authoritative listening modules (Codex reproduction) --- */
 .realmusic{max-width:var(--measure);margin:28px auto 6px;border:1px solid var(--rule-strong);background:var(--bg-sunken)}
 .realmusic-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--bg-raised)}
 .rm-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:3px 8px;background:var(--acc-soft);white-space:nowrap}
-.rm-work{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+.rm-work{font-family:var(--font-text);font-style:italic;font-size:17px;color:var(--ink)}
 .rm-intro{font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-mute);margin:0;padding:14px 18px 2px}
 .rm-intro em{font-style:italic;color:var(--ink)}
 .viz-embed{padding:8px 18px 16px;font-family:var(--font-ui);--foreground:var(--ink);--background:var(--bg-sunken);--border:var(--rule);--muted:color-mix(in oklab,var(--ink) 9%,transparent);--muted-foreground:var(--ink-soft);--card:var(--bg-raised);--accent:var(--acc-soft);--secondary:var(--bg-raised);--primary:var(--acc);--primary-foreground:#fff;--viz-series-1:var(--acc);--viz-series-2:#A6693F;--viz-series-3:#4E7C6B;--viz-series-4:#9C5A7D;--viz-series-5:#5A6BA8;--viz-series-6:#3F8079;--font-size-base:14px;--font-size-small:12px;--line-height-small:16px}
@@ -2136,10 +2123,9 @@ footer a:hover{color:var(--ink)}
 .ocard:hover{border-color:var(--acc);background:var(--acc-soft)}
 .ocard.on{border-color:var(--acc);background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .ocard .ohead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid color-mix(in oklab,var(--acc) 24%,var(--rule))}
-.ocard .onum{font-family:var(--font-display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--acc)}
 .ocard .osig{flex:0 0 auto;width:38px;height:38px;color:var(--acc);display:flex;align-items:center;justify-content:center}
 .ocard .osig svg{width:38px;height:38px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.ocard .oname{font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;width:100%;display:flex;align-items:center;gap:8px}
 .ocard .othread-sig{flex:0 0 auto;width:22px;height:22px;color:var(--acc);opacity:.85}
@@ -2147,8 +2133,8 @@ footer a:hover{color:var(--ink)}
 .ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
-.detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
+.detail-bar .dthread{display:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens-detail .lens-head{margin-top:14px;padding-top:6px;border-top:none}

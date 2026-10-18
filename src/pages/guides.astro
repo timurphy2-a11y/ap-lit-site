@@ -14,21 +14,18 @@ const PERIOD_ACCENT_VARS = [
 const SURVEYS = [
   {
     href: '/seeing-through-paint',
-    kind: 'Visual Art',
     title: 'Seeing Through Paint',
     desc: 'Gold-ground to fragmentation — the full cross-period visual survey.',
     sig: `<svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"></rect><circle class="dot" cx="20" cy="20" r="1.5"></circle></svg>`,
   },
   {
     href: '/hearing-through-form',
-    kind: 'Music',
     title: 'Hearing Through Form',
     desc: 'Plainchant monophony to Modernist atonality, with listening for every period.',
     sig: `<svg viewBox="0 0 40 40"><path d="M6 24 A 14 14 0 0 1 34 24"></path><circle class="dot" cx="20" cy="24" r="2"></circle><line x1="6" y1="32" x2="34" y2="32"></line></svg>`,
   },
   {
     href: '/sculpting-through-time',
-    kind: 'Sculpture',
     title: 'Sculpting Through Time',
     desc: 'Cathedral portals to Modernist abstraction — three threads across six periods.',
     sig: `<svg viewBox="0 0 40 40"><path d="M20 6 L 34 14 L 34 28 L 20 36 L 6 28 L 6 14 Z"></path><path d="M6 14 L 20 22 L 34 14"></path><line x1="20" y1="22" x2="20" y2="36"></line></svg>`,
@@ -39,6 +36,7 @@ const PERIOD_GUIDES = [
   {
     period: 'Modernism',
     accentVar: 'var(--acc-modernism)',
+    textVar: 'var(--acc-modernism-text)',
     name: 'Listening: Two Paths',
     gloss: 'concert music and blues / jazz, side by side',
     source: 'From Modernism · Music',
@@ -48,6 +46,7 @@ const PERIOD_GUIDES = [
   {
     period: 'Modernism',
     accentVar: 'var(--acc-modernism)',
+    textVar: 'var(--acc-modernism-text)',
     name: 'Looking at Modern Art',
     gloss: 'when the surface stops pretending to be a window',
     source: 'From Modernism · Painting',
@@ -75,31 +74,29 @@ const PERIOD_GUIDES = [
         <circle class="dot" cx="20" cy="25" r="1.7"></circle>
       </svg>
     </div>
-    <div class="gd-lbl">§ IV · Shared Resource · All Six Periods</div>
-    <h1>Guides to Seeing &amp; <em>Hearing</em></h1>
+    <h1>Guides to Seeing &amp; Hearing</h1>
     <p class="gd-sub">Three kinds of help, in the order you are likely to need them: how to perceive at all, what happened across nine centuries, and what one particular period demands of you.</p>
   </header>
 
-  <!-- § I — The Studios -->
-  <div class="section-label"><span class="n">§ I</span><span>The Studios</span><span class="rule-line"></span><span>Learn once, use everywhere</span></div>
+  <!-- The Studios -->
+  <h2 class="section-label"><span>The Studios</span><span class="rule-line"></span></h2>
   <p class="tier-note">Period-agnostic. These teach the vocabulary and the attention; everything else on the site assumes them.</p>
   <StudioDiptych />
   <div class="gd-apps gd-apps--lab">
-    <a class="gd-app" href="/guides/cross-period-comparison/" style="--c: var(--acc-baroque)">
+    <a class="gd-app" href="/guides/cross-period-comparison/" style="--c: var(--acc-baroque); --ct: var(--acc-baroque-text)">
       <span class="per">All periods</span>
       <span class="nm">Cross-Period Comparison Lab<em>Practice comparing two particular artworks across periods.</em></span>
       <span class="from">From The Looking Studio</span>
     </a>
   </div>
 
-  <!-- § II — Cross-Period Surveys -->
-  <div class="section-label"><span class="n">§ II</span><span>Cross-Period Surveys</span><span class="rule-line"></span></div>
+  <!-- Cross-Period Surveys -->
+  <h2 class="section-label"><span>Cross-Period Surveys</span><span class="rule-line"></span></h2>
   <p class="tier-note">One thread, six periods, in order. Use these when you want the arc rather than the technique.</p>
   <div class="gd-resgrid">
     {SURVEYS.map((s) => (
       <a class="gd-res" href={s.href}>
         <div class="gd-sigil" aria-hidden="true" set:html={s.sig} />
-        <div class="kind">{s.kind}</div>
         <h4>{s.title}</h4>
         <p>{s.desc}</p>
         <span class="periods" aria-hidden="true">
@@ -109,12 +106,12 @@ const PERIOD_GUIDES = [
     ))}
   </div>
 
-  <!-- § III — Period Guides -->
-  <div class="section-label"><span class="n">§ III</span><span>Period Guides</span><span class="rule-line"></span><span>One period, one problem</span></div>
+  <!-- Period Guides -->
+  <h2 class="section-label"><span>Period Guides</span><span class="rule-line"></span></h2>
   <p class="tier-note">Built for periods that break the ordinary rules badly enough to need their own instructions. Each one is also linked from the period page it belongs to.</p>
   <div class="gd-apps">
     {PERIOD_GUIDES.map((g) => (
-      <a class:list={['gd-app', g.soon && 'soon']} href={g.href} style={`--c: ${g.accentVar}`}>
+      <a class:list={['gd-app', g.soon && 'soon']} href={g.href} style={`--c: ${g.accentVar}; --ct: ${g.textVar}`}>
         <span class="per">{g.period}</span>
         <span class="nm">{g.name}<em>{g.gloss}</em></span>
         <span class="from">{g.source}</span>
@@ -173,47 +170,36 @@ const PERIOD_GUIDES = [
     border-bottom: 1px solid var(--rule);
   }
   .gd-sig {
-    width: 86px;
-    height: 86px;
-    margin: 0 auto 26px;
-    background: #5A4126;
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 16px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .gd-sig svg {
-    width: 46px;
-    height: 46px;
-    stroke: #F6F1E8;
+    width: 38px;
+    height: 38px;
+    stroke: var(--ink-mute);
     stroke-width: 1.15;
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
   }
-  .gd-sig svg .dot { fill: #F6F1E8; stroke: none; }
-  .gd-lbl {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 22px;
-  }
+  .gd-sig svg .dot { fill: var(--ink-mute); stroke: none; }
   .gd-head h1 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(34px, 5.4vw, 64px);
     line-height: 1.02;
     letter-spacing: -0.025em;
     margin: 0;
     color: var(--ink);
   }
-  .gd-head h1 em { font-style: italic; }
   .gd-sub {
-    font-family: var(--font-display);
-    font-style: italic;
+    font-family: var(--font-text);
     font-size: 18px;
-    line-height: 1.62;
+    line-height: 1.65;
     color: var(--ink-mute);
     margin: 22px auto 0;
     max-width: 52ch;
@@ -223,22 +209,22 @@ const PERIOD_GUIDES = [
   /* ── Section label / tier note (shared page vocabulary) ──────────── */
   .section-label {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 18px;
+    margin: 0;
     padding: 64px 0 28px;
-    font-family: var(--font-ui);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--ink);
   }
-  .section-label .n { font-family: var(--font-mono); color: var(--ink-mute); }
   .rule-line { flex: 1; height: 1px; background: var(--rule); }
   .tier-note {
     max-width: 60ch;
-    font-family: var(--font-display);
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     margin: -10px 0 30px;
     text-wrap: pretty;
@@ -259,7 +245,7 @@ const PERIOD_GUIDES = [
     padding: 24px 24px 26px;
     display: grid;
     grid-template-columns: 56px minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
     column-gap: 18px;
     row-gap: 4px;
     transition: background 160ms ease;
@@ -269,7 +255,7 @@ const PERIOD_GUIDES = [
   .gd-res:hover .gd-sigil :global(svg) { stroke: var(--ink); }
 
   .gd-sigil {
-    grid-row: 1 / 4;
+    grid-row: 1 / 3;
     width: 56px;
     height: 56px;
     border: 1px solid var(--rule-strong);
@@ -292,9 +278,8 @@ const PERIOD_GUIDES = [
   .gd-sigil :global(svg .dot) { fill: var(--ink-mute); stroke: none; transition: fill 200ms ease; }
   .gd-res:hover .gd-sigil :global(svg .dot) { fill: var(--ink); }
 
-  .gd-res .kind { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); align-self: start; }
-  .gd-res h4 { font-family: var(--font-display); font-weight: 400; font-size: 20px; line-height: 1.15; margin: 2px 0 0; color: var(--ink); }
-  .gd-res p { font-family: var(--font-display); font-size: 14.5px; line-height: 1.5; color: var(--ink-mute); margin: 4px 0 0; max-width: 42ch; }
+  .gd-res h4 { font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 1.15; margin: 2px 0 0; color: var(--ink); }
+  .gd-res p { font-family: var(--font-text); font-size: 16px; line-height: 1.5; color: var(--ink-mute); margin: 4px 0 0; max-width: 42ch; }
 
   .periods { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin-top: 18px; }
   .periods span { height: 5px; background: var(--p); }
@@ -315,11 +300,11 @@ const PERIOD_GUIDES = [
   }
   .gd-app:hover { background: var(--bg-raised); }
   @media (max-width: 760px) { .gd-app { grid-template-columns: 1fr; gap: 6px; } }
-  .gd-app .per { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c); border-left: 2px solid var(--c); padding-left: 12px; }
-  .gd-app .nm { font-family: var(--font-display); font-size: 21px; line-height: 1.2; color: var(--ink); }
-  .gd-app .nm em { font-style: italic; color: var(--ink-soft); font-size: 16px; margin-left: 10px; }
+  .gd-app .per { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct, var(--acc-modernism-text)); border-left: 2px solid var(--c); padding-left: 12px; }
+  .gd-app .nm { font-family: var(--font-display); font-weight: 500; font-size: 21px; line-height: 1.2; color: var(--ink); }
+  .gd-app .nm em { font-style: normal; font-family: var(--font-text); font-weight: 400; color: var(--ink-soft); font-size: 16px; margin-left: 10px; }
   .gd-app .from { font-family: var(--font-ui); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
-  .gd-app.soon .nm { color: var(--ink-soft); font-style: italic; }
+  .gd-app.soon .nm { color: var(--ink-soft); }
 
   /* ── Footer ───────────────────────────────────────────────────────── */
   .gd-footer {
@@ -335,7 +320,7 @@ const PERIOD_GUIDES = [
     gap: 20px;
     flex-wrap: wrap;
   }
-  .gd-footer .colophon { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--ink-mute); letter-spacing: 0; }
+  .gd-footer .colophon { font-family: var(--font-text); font-style: italic; font-size: 14px; color: var(--ink-mute); letter-spacing: 0; }
   .gd-footer a { color: var(--ink-soft); }
   .gd-footer a:hover { color: var(--ink); }
 </style>

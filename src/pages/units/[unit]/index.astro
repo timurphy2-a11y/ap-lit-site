@@ -284,7 +284,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     <span class="moment-glyph-box" aria-hidden="true">
       <PeriodMotif unit={unit} role={3} />
     </span>
-    <span class="moment-eyebrow">The Period</span>
     <span class="moment-phrase">{hubData.historicalMomentTitle}</span>
     <span class="moment-cta" aria-hidden="true">
       <span>Read the period</span><span class="moment-arrow"> →</span>
@@ -312,7 +311,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 <div class="modal-backdrop" id="moment-modal" role="dialog" aria-modal="true" aria-labelledby="moment-title">
   <div class="modal">
     <button class="modal-close" id="moment-close" aria-label="Close">×</button>
-    <div class="modal-label">The Period in One Phrase</div>
     <h2 id="moment-title"></h2>
     <div id="moment-body"></div>
   </div>
@@ -333,7 +331,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   )}
   {nextUnit ? (
     <a class="next" href={`/units/${nextUnit}`}>
-      <span class="lbl">Unit {nextUnit?.slice(0,2)}</span>
+      <span class="lbl">Next</span>
       <span class="title">{nextLabel}</span>
     </a>
   ) : (
@@ -786,7 +784,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   .moment-bar {
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 24px;
     padding: 26px 28px;
@@ -813,14 +811,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   }
   .moment-glyph-box svg { width: 22px; height: 22px; }
 
-  .moment-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    white-space: nowrap;
-  }
 
   .moment-phrase {
     font-family: var(--font-display);
@@ -909,7 +899,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     .moment-timeline .node .marker { display: none; }
   }
   @media (max-width: 720px) {
-    .moment-eyebrow { display: none; }
     .moment-bar {
       grid-template-columns: auto 1fr;
       grid-template-rows: auto auto;
@@ -945,14 +934,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     position: relative;
     max-height: 80vh;
     overflow-y: auto;
-  }
-  .modal .modal-label {
-    font-family: var(--font-ui);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
   }
   .modal h2 {
     font-family: var(--font-display);

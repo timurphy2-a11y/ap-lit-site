@@ -7,12 +7,12 @@ const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeComp
 
 // ── Period accent + tint table (canonical from handoff) ──────────────────
 const PERIOD_META = [
-  { unit: '00-medieval',      num: '00', acc: '#C9A24B', tint: '#F3E6BE' },
-  { unit: '01-renaissance',   num: '01', acc: '#B54C3A', tint: '#F1D8CF' },
-  { unit: '02-baroque',       num: '02', acc: '#B07028', tint: '#F1DDBC' },
-  { unit: '03-enlightenment', num: '03', acc: '#698BA1', tint: '#D9E2EA' },
-  { unit: '04-romanticism',   num: '04', acc: '#3D5A6D', tint: '#CCD6DD' },
-  { unit: '05-modernism',     num: '05', acc: '#A03828', tint: '#EFD4CC' },
+  { unit: '00-medieval',      num: '00', acc: '#C9A24B', tint: '#F3E6BE', txt: '#815D00' },
+  { unit: '01-renaissance',   num: '01', acc: '#B54C3A', tint: '#F1D8CF', txt: '#A94130' },
+  { unit: '02-baroque',       num: '02', acc: '#B07028', tint: '#F1DDBC', txt: '#935500' },
+  { unit: '03-enlightenment', num: '03', acc: '#698BA1', tint: '#D9E2EA', txt: '#47687D' },
+  { unit: '04-romanticism',   num: '04', acc: '#3D5A6D', tint: '#CCD6DD', txt: '#3D5A6D' },
+  { unit: '05-modernism',     num: '05', acc: '#A03828', tint: '#EFD4CC', txt: '#A03828' },
 ] as const;
 
 // ── Short unit and subject names for the card links ───────────────────────
@@ -170,7 +170,7 @@ const ALL_THREADS = [
 
   <!-- ══ 1. Page header ══════════════════════════════════════════════════ -->
   <header class="cmp-header">
-    <div class="seal-tile" aria-hidden="true">
+    <div class="page-sigil" aria-hidden="true">
       <!-- ThreadsSigil: three crossing wave strands (matches home page) -->
       <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 10 C 14 20, 26 20, 34 10"/>
@@ -178,8 +178,7 @@ const ALL_THREADS = [
         <path d="M6 30 C 14 20, 26 20, 34 30"/>
       </svg>
     </div>
-    <p class="cmp-eyebrow">§ III · Cross-Era Comparison</p>
-    <h1 class="cmp-title">Threads Across <em>Time</em></h1>
+    <h1 class="cmp-title">Threads Across Time</h1>
     <p class="cmp-lede">
       Three persistent questions run through all six periods of this course — about what it means
       to be human, what we can know, and how the individual relates to authority. Select a domain
@@ -324,7 +323,7 @@ const ALL_THREADS = [
             return (
               <article
                 class="period-card"
-                style={`--acc:${pm.acc};--tint:${pm.tint};${markStyle}`}>
+                style={`--acc:${pm.acc};--acct:color-mix(in oklab, ${pm.txt} 80%, #1B1714);--tint:${pm.tint};${markStyle}`}>
 
                 {/* Image slot — image mode only */}
                 {t.mode === 'image' && imgData?.image && (
@@ -345,7 +344,6 @@ const ALL_THREADS = [
                   <div class="card-header-row">
                     <div class="card-header-left">
                       <div class="card-num" aria-hidden="true">{pm.num}</div>
-                      <div class="card-unit-lbl" aria-hidden="true">UNIT</div>
                     </div>
                     {t.mode === 'text' && motifSvg && (
                       <div class="card-motif" aria-hidden="true" set:html={motifSvg}></div>
@@ -455,33 +453,23 @@ const ALL_THREADS = [
   text-align: center;
 }
 
-.seal-tile {
-  width: 88px;
-  height: 88px;
-  background: #5A4022;
+.page-sigil {
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg);
+  color: var(--ink-mute);
   flex-shrink: 0;
 }
-.seal-tile svg {
-  width: 40px;
-  height: 40px;
-}
-
-.cmp-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0;
+.page-sigil svg {
+  width: 38px;
+  height: 38px;
 }
 
 .cmp-title {
   font-family: 'Cormorant Garamond', var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -489,16 +477,11 @@ const ALL_THREADS = [
   max-width: 22ch;
   margin: 0;
 }
-.cmp-title em {
-  font-style: italic;
-  color: var(--ink-mute);
-}
 
 .cmp-lede {
-  font-family: 'Cormorant Garamond', var(--font-display);
-  font-style: italic;
-  font-size: 19px;
-  line-height: 1.55;
+  font-family: var(--font-text);
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--ink-mute);
   max-width: 62ch;
   margin: 0;
@@ -550,7 +533,6 @@ const ALL_THREADS = [
   color: var(--ink-mute);
   cursor: pointer;
   font-family: 'Cormorant Garamond', var(--font-display);
-  font-style: italic;
   font-weight: 500;
   line-height: 1;
   overflow: hidden;
@@ -573,7 +555,7 @@ const ALL_THREADS = [
 .pill[aria-pressed="true"] {
   background: color-mix(in oklab, var(--pill-mid) 14%, var(--bg));
   border-color: var(--pill-mid);
-  color: var(--pill-mid);
+  color: color-mix(in oklab, var(--pill-mid) 50%, #1B1714);
 }
 .pill[aria-pressed="true"]::before { opacity: 1; }
 .pill:hover:not([aria-pressed="true"]) { color: var(--ink); }
@@ -609,9 +591,8 @@ const ALL_THREADS = [
 }
 
 .subhead-sub {
-  font-family: 'Cormorant Garamond', var(--font-display);
-  font-style: italic;
-  font-size: 15px;
+  font-family: var(--font-text);
+  font-size: 16px;
   color: var(--ink-mute);
   margin-top: 6px;
 }
@@ -679,20 +660,11 @@ const ALL_THREADS = [
 
 .card-num {
   font-family: 'Cormorant Garamond', var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 32px;
   line-height: 0.9;
-  color: var(--acc);
+  color: var(--acct);
   letter-spacing: -0.02em;
-}
-
-.card-unit-lbl {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 4px;
 }
 
 /* Period motif (text mode, top-right slot) */
@@ -719,7 +691,7 @@ const ALL_THREADS = [
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--acc);
+  color: var(--acct);
   cursor: pointer;
   flex-shrink: 0;
   transition: background 160ms;
@@ -748,12 +720,12 @@ const ALL_THREADS = [
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--ink-soft);
+  color: var(--ink-mute);
 }
 
 .card-gloss {
-  font-family: var(--font-display);
-  font-size: 13.5px;
+  font-family: var(--font-text);
+  font-size: 16px;
   line-height: 1.5;
   color: var(--ink-mute);
   margin: 0;
@@ -781,7 +753,7 @@ const ALL_THREADS = [
   font-size: 11.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--ink-mute);
   margin-top: 4px;
 }
 
@@ -830,7 +802,7 @@ const ALL_THREADS = [
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--acc);
+  color: var(--acct);
   transition: opacity 150ms;
 }
 .unit-link:hover { opacity: 0.72; }
@@ -949,7 +921,7 @@ function updateUI() {
   const threadColor = family[THREAD_WEIGHT[thread]];
 
   subheadTitle.textContent = threadLabel;
-  (subheadTitle as HTMLElement).style.color = threadColor;
+  (subheadTitle as HTMLElement).style.color = `color-mix(in oklab, ${threadColor} 50%, #1B1714)`;
   subheadSub.textContent = SUBJECT_SUBTITLE[subject];
 
   // URL (no scroll)

@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { id, title = '', composer, note, analysisEyebrow, analysis, analysisPrompt, plateFor } = Astro.props;
+const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·\s*/, '');
 const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 const hasAnalysis = Boolean(analysis);
 ---
@@ -38,7 +39,7 @@ const hasAnalysis = Boolean(analysis);
   )}
   {hasAnalysis && (
     <div class="analysis-panel" hidden>
-      {analysisEyebrow && <div class="analysis-eyebrow">{analysisEyebrow}</div>}
+      {analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(analysisEyebrow)}</div>}
       <p>{analysis}</p>
       {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
     </div>

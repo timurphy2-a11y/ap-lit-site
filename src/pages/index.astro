@@ -7,13 +7,13 @@ import StudioDiptych from '../components/StudioDiptych.astro';
 const artEntries = (await getCollection('units', ({ id }) => id.endsWith('/art')))
   .sort((a, b) => a.id.localeCompare(b.id));
 
-const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: string }> = {
-  '00-medieval':      { accent: '#C9A24B', highlight: '#E0C387', tint: '#EFE2BD' },
-  '01-renaissance':   { accent: '#B54C3A', highlight: '#C68A7A', tint: '#EFD4CC' },
-  '02-baroque':       { accent: '#B07028', highlight: '#D49432', tint: '#EFDEBE' },
-  '03-enlightenment': { accent: '#698BA1', highlight: '#A2B7C8', tint: '#D8E0E7' },
-  '04-romanticism':   { accent: '#3D5A6D', highlight: '#8AA3B5', tint: '#CAD5DD' },
-  '05-modernism':     { accent: '#A03828', highlight: '#D49A8C', tint: '#EDD3CC' },
+const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: string; text: string }> = {
+  '00-medieval':      { accent: '#C9A24B', highlight: '#E0C387', tint: '#EFE2BD', text: '#815D00' },
+  '01-renaissance':   { accent: '#B54C3A', highlight: '#C68A7A', tint: '#EFD4CC', text: '#A94130' },
+  '02-baroque':       { accent: '#B07028', highlight: '#D49432', tint: '#EFDEBE', text: '#935500' },
+  '03-enlightenment': { accent: '#698BA1', highlight: '#A2B7C8', tint: '#D8E0E7', text: '#47687D' },
+  '04-romanticism':   { accent: '#3D5A6D', highlight: '#8AA3B5', tint: '#CAD5DD', text: '#3D5A6D' },
+  '05-modernism':     { accent: '#A03828', highlight: '#D49A8C', tint: '#EDD3CC', text: '#A03828' },
 };
 ---
 
@@ -71,12 +71,10 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   </nav>
 
   <!-- ── Section label ─────────────────────────────────────────────── -->
-  <div class="section-label">
-    <span class="n">§ I</span>
+  <h2 class="section-label">
     <span>The Six Units</span>
     <span class="rule-line"></span>
-    <span>1000 – 1950</span>
-  </div>
+  </h2>
 
   <!-- ── Card Codex ────────────────────────────────────────────────── -->
   <div class="codex">
@@ -84,16 +82,15 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
       const unitId   = entry.id.replace('/art', '');
       const num      = unitId.slice(0, 2);
       const pd       = PERIOD_DATA[unitId] ?? PERIOD_DATA['00-medieval'];
-      const { accent, highlight, tint } = pd;
+      const { accent, highlight, tint, text } = pd;
       const motifSvg = PERIOD_MOTIFS[unitId]?.[1] ?? '';
       const { period, dates, core_text, author } = entry.data;
       return (
         <a class="codex-card" href={`/units/${unitId}`}
-           style={`--acc:${accent}; --hl:${highlight}; --tint:${tint};`}>
+           style={`--acc:${accent}; --acct:color-mix(in oklab, ${text} 80%, #1B1714); --hl:${highlight}; --tint:${tint};`}>
 
           <div class="left-tile">
             <div class="numeral">{num}</div>
-            <div class="unit-label">UNIT</div>
           </div>
 
           <div class="card-body">
@@ -118,12 +115,10 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 
   <!-- ── Resources ─────────────────────────────────────────────────── -->
   <section class="resources">
-    <div class="section-label" style="padding-top: 0">
-      <span class="n">§ II</span>
+    <h2 class="section-label" style="padding-top: 0">
       <span>Cross-Cutting Guides</span>
       <span class="rule-line"></span>
-      <span>Read across, not down</span>
-    </div>
+    </h2>
     <div class="res-grid">
 
       <!-- Timeline — a tick-mark scale -->
@@ -137,7 +132,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <line x1="32" y1="14" x2="32" y2="26"/>
           </svg>
         </div>
-        <div class="kind">Timeline</div>
         <h4>Historical Timeline</h4>
         <p>Political and cultural landmarks from 1000 to 1950, with all five core texts placed in context.</p>
       </a>
@@ -150,7 +144,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <path d="M8 32 C 8 24, 32 24, 32 32"/>
           </svg>
         </div>
-        <div class="kind">Index</div>
         <h4>Biographical Index</h4>
         <p>Sixty-plus writers, philosophers, artists, and composers across all six units.</p>
       </a>
@@ -164,7 +157,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <path d="M6 30 C 14 20, 26 20, 34 30"/>
           </svg>
         </div>
-        <div class="kind">Method</div>
         <h4>Threads Across Time</h4>
         <p>Trace each analytical thread — philosophy, art, music — across all six periods side by side.</p>
       </a>
@@ -177,7 +169,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <circle class="dot" cx="20" cy="20" r="1.5"/>
           </svg>
         </div>
-        <div class="kind">Visual Art</div>
         <h4>Seeing Through Paint</h4>
         <p>Medieval gold-ground to Modernist fragmentation — the full cross-period visual guide.</p>
       </a>
@@ -191,7 +182,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <line x1="6" y1="32" x2="34" y2="32"/>
           </svg>
         </div>
-        <div class="kind">Music</div>
         <h4>Hearing Through Form</h4>
         <p>Plainchant monophony to Modernist atonality, with embedded listening for every period.</p>
       </a>
@@ -205,7 +195,6 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
             <line x1="20" y1="22" x2="20" y2="36"/>
           </svg>
         </div>
-        <div class="kind">Sculpture</div>
         <h4>Sculpting Through Time</h4>
         <p>Cathedral portals to Modernist abstraction — three analytical threads across six periods.</p>
       </a>
@@ -215,12 +204,10 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
 
   <!-- ── The Studios ───────────────────────────────────────────────── -->
   <section class="studios">
-    <div class="section-label">
-      <span class="n">§ III</span>
+    <h2 class="section-label">
       <span>The Studios</span>
       <span class="rule-line"></span>
-      <span>Learn once, use everywhere</span>
-    </div>
+    </h2>
     <StudioDiptych />
     <p class="crosslink">The two studios teach the same attention. <a href="/guides">Start with whichever sense you trust less.</a></p>
   </section>
@@ -255,7 +242,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   }
   .hero h1 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(30px, 6.3vw, 88px);
     line-height: 1.0;
     letter-spacing: -0.02em;
@@ -275,10 +262,10 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     justify-content: center;
   }
   .hero .epigraph .col {
-    font-family: var(--font-display);
+    font-family: var(--font-text);
     font-style: italic;
-    font-weight: 300;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 16px;
     line-height: 1.68;
     color: var(--ink-soft);
     text-wrap: nowrap;
@@ -297,14 +284,15 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     margin: 32px auto 0;
     padding-top: 26px;
     border-top: 1px solid var(--rule);
-    font-size: 19px;
-    line-height: 1.6;
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     text-wrap: balance;
   }
   @media (max-width: 680px) {
     .hero .epigraph .verse { grid-template-columns: 1fr; gap: 0; max-width: 42ch; margin: 0 auto; }
-    .hero .epigraph .col { font-size: 14.5px; }
+    .hero .epigraph .col { font-size: 16px; }
   }
   @media (max-width: 600px) {
     .hero { padding: 56px 0 40px; }
@@ -338,18 +326,15 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   /* ── Section label ───────────────────────────────────────────── */
   .section-label {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 18px;
+    margin: 0;
     padding: 72px 0 28px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .section-label .n {
-    font-family: var(--font-mono);
-    color: var(--ink-mute);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--ink);
   }
   .rule-line {
     flex: 1;
@@ -393,21 +378,12 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   }
   .numeral {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 56px;
     line-height: 0.9;
-    color: var(--acc);
+    color: var(--acct);
     letter-spacing: -0.02em;
   }
-  .unit-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    color: var(--acc);
-    opacity: 0.7;
-    margin-top: 10px;
-  }
-
   /* Right body column */
   .card-body {
     padding: 20px 80px 20px 22px;
@@ -424,7 +400,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   }
   .codex-card h3 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 24px;
     line-height: 1.1;
     letter-spacing: -0.01em;
@@ -440,9 +416,9 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     gap: 4px;
   }
   .card-body .anchor em {
-    font-family: var(--font-display);
+    font-family: var(--font-text);
     font-style: italic;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--ink);
   }
   .card-body .anchor .by {
@@ -454,8 +430,8 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     color: var(--ink-soft);
   }
   .card-body .anchor .no-anchor {
-    font-family: var(--font-display);
-    font-size: 14px;
+    font-family: var(--font-text);
+    font-size: 16px;
     color: var(--ink-soft);
   }
 
@@ -495,7 +471,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     padding: 24px 24px 26px;
     display: grid;
     grid-template-columns: 56px 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto;
     column-gap: 18px;
     row-gap: 4px;
     transition: background 160ms ease;
@@ -503,7 +479,7 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   .res:hover { background: var(--bg-raised); }
 
   .res .sigil {
-    grid-row: 1 / 4;
+    grid-row: 1 / 3;
     width: 56px;
     height: 56px;
     background: var(--seal);
@@ -523,17 +499,9 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     stroke: none;
   }
 
-  .res .kind {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--iron);
-    align-self: start;
-  }
   .res h4 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 20px;
     line-height: 1.15;
     letter-spacing: -0.005em;
@@ -541,8 +509,8 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
     color: var(--ink);
   }
   .res p {
-    font-family: var(--font-display);
-    font-size: 14px;
+    font-family: var(--font-text);
+    font-size: 16px;
     line-height: 1.5;
     color: var(--iron);
     margin: 4px 0 0;
@@ -553,9 +521,8 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   .studios { margin-top: 8px; padding: 0 0 8px; }
   .crosslink {
     text-align: center;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 15.5px;
+    font-family: var(--font-text);
+    font-size: 17px;
     color: var(--ink-soft);
     padding: 22px 0 0;
   }
@@ -578,9 +545,9 @@ const PERIOD_DATA: Record<string, { accent: string; highlight: string; tint: str
   .pg-footer a { color: var(--ink-soft); }
   .pg-footer a:hover { color: var(--ink); }
   .pg-footer .colophon {
-    font-family: var(--font-display);
+    font-family: var(--font-text);
     font-style: italic;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--ink-mute);
     letter-spacing: 0;
   }

@@ -1473,6 +1473,16 @@ const UNIT_COLORS = {
   "05-modernism":     "#A03828",
 };
 
+// Text-safe variants (at least 4.6:1 on --bg-raised) for text colored by a period accent
+const UNIT_TEXT_COLORS = {
+  "00-medieval":      "#815D00",
+  "01-renaissance":   "#A94130",
+  "02-baroque":       "#935500",
+  "03-enlightenment": "#47687D",
+  "04-romanticism":   "#3D5A6D",
+  "05-modernism":     "#A03828",
+};
+
 const UNIT_ORDER = [
   "00-medieval", "01-renaissance", "02-baroque",
   "03-enlightenment", "04-romanticism", "05-modernism",
@@ -1564,7 +1574,7 @@ function BiographyPanel({ personId, onClose }) {
                   fontSize: "10.5px",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: accent,
+                  color: UNIT_TEXT_COLORS[person.units[0]] || accent,
                   marginBottom: "8px",
                 }}>
                   {person.field}
@@ -1616,7 +1626,7 @@ function BiographyPanel({ personId, onClose }) {
                 fontSize: "11.5px",
                 padding: "3px 8px",
                 border: `1px solid ${UNIT_COLORS[u] || "var(--rule)"}55`,
-                color: UNIT_COLORS[u] || "var(--ink-soft)",
+                color: UNIT_TEXT_COLORS[u] || "var(--ink-soft)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
               }}>
@@ -1639,9 +1649,9 @@ function BiographyPanel({ personId, onClose }) {
             Life & Work
           </div>
           <p style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "15px",
-            lineHeight: 1.8,
+            fontFamily: "var(--font-text)",
+            fontSize: "18px",
+            lineHeight: 1.65,
             color: "var(--ink-mute)",
             margin: "0 0 28px",
           }}>
@@ -1660,10 +1670,9 @@ function BiographyPanel({ personId, onClose }) {
               Significance for This Course
             </div>
             <p style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontSize: "15px",
-              lineHeight: 1.8,
+              fontFamily: "var(--font-text)",
+              fontSize: "18px",
+              lineHeight: 1.65,
               color: "var(--ink-mute)",
               margin: 0,
             }}>
@@ -1712,7 +1721,7 @@ export function BioLink({ id, children, onOpen }) {
         cursor: "pointer",
         fontFamily: "inherit",
         fontSize: "inherit",
-        color: accent,
+        color: UNIT_TEXT_COLORS[person.units[0]] || accent,
         textDecoration: "underline",
         textDecorationStyle: "dotted",
         textDecorationColor: `${accent}88`,

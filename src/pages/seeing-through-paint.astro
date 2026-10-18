@@ -7,6 +7,15 @@ const UNIT_IDS = [
   '03-enlightenment', '04-romanticism', '05-modernism',
 ] as const;
 
+const PERIOD_ACCENT_TEXT: Record<string, string> = {
+  '00-medieval':      '#815D00',
+  '01-renaissance':   '#A94130',
+  '02-baroque':       '#935500',
+  '03-enlightenment': '#47687D',
+  '04-romanticism':   '#3D5A6D',
+  '05-modernism':     '#A03828',
+};
+
 const PERIOD_ACCENTS: Record<string, string> = {
   '00-medieval':      '#C9A24B',
   '01-renaissance':   '#B54C3A',
@@ -66,8 +75,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
         <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
       </svg>
     </div>
-    <p class="stp-eyebrow"><strong>§ IV</strong> · Shared Resource · Visual Art</p>
-    <h1 class="stp-title">Seeing Through <em>Paint</em></h1>
+    <h1 class="stp-title">Seeing Through Paint</h1>
     <p class="stp-lede">
       A complete guide to the visual art of each period, from the gold-ground certainties of medieval
       painting through Modernism's shattering of the picture plane. Three threads — Figure &amp; Space,
@@ -84,7 +92,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
           class:list={['stp-tbtn', i === 0 && 'active']}
           href={`#${t.id}`}
           data-target={t.id}
-          style={`--w: ${t.weight}`}
+          style={`--w: ${t.weight}; --wt: ${t.weight.replace('th-', 'tt-')}`}
         >
           <span class="stp-tbtn-sig" set:html={SIGS[t.id]}></span>
           <span class="stp-tbtn-label">{t.title}</span>
@@ -105,12 +113,11 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     <!-- Thread sections -->
     <main>
       {THREADS.map((thread) => (
-        <section class="stp-thread" id={thread.id} style={`--w: ${thread.weight}`}>
+        <section class="stp-thread" id={thread.id} style={`--w: ${thread.weight}; --wt: ${thread.weight.replace('th-', 'tt-')}`}>
 
           <div class="stp-thread-head">
             <div class="stp-thread-sigil" set:html={SIGS[thread.id]}></div>
             <div>
-              <div class="stp-thread-label">Thread · <strong>{thread.title}</strong></div>
               <h2>{thread.title}</h2>
             </div>
           </div>
@@ -125,11 +132,12 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
             {entries.map((entry) => {
               const unitId = entry.data.unit;
               const acc = PERIOD_ACCENTS[unitId] ?? '#A07820';
+              const accText = PERIOD_ACCENT_TEXT[unitId] ?? '#815D00';
               const num = unitId.slice(0, 2);
               const gloss = entry.data.threads.find((t) => t.id === thread.id)?.period_summary ?? '';
               const hero = entry.data.hero_painting;
               return (
-                <a class="stp-card" href={`/units/${unitId}/art`} style={`--acc: ${acc}`} aria-label={`Read the full ${entry.data.period} unit`}>
+                <a class="stp-card" href={`/units/${unitId}/art`} style={`--acc: ${acc}; --acc-t: ${accText}`} aria-label={`Read the full ${entry.data.period} unit`}>
                   {hero?.image && <div class="stp-card-img" style={`background-image:url('${hero.image}')`}></div>}
                   <div class="stp-card-body">
                     <div class="stp-card-top">
@@ -178,10 +186,12 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     --th-1: #75435B;   /* Figure & Space  · deep madder */
     --th-2: #94586E;   /* Light & Shadow  · dusty rose  */
     --th-3: #B58193;   /* Brushwork & Surface · muted pink */
+    --tt-1: #75435B;   /* text-safe steps */
+    --tt-2: #7F4A60;
+    --tt-3: #8B5266;
     --seal:  #5A4022;
     --gutter: clamp(24px, 4.5vw, 80px);
     --maxw: 1320px;
-    --display: 'Cormorant Garamond', Georgia, serif;
   }
 
   /* ── Full-bleed braid band ────────────────────────────────────────────── */
@@ -206,33 +216,19 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
   }
 
   .stp-seal {
-    width: 88px;
-    height: 88px;
-    background: var(--seal);
+    width: 40px;
+    height: 40px;
+    color: var(--seal);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .stp-seal svg {
-    width: 46px;
-    height: 46px;
-    color: var(--bg);
-  }
-
-  .stp-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-  .stp-eyebrow strong { color: var(--ink-mute); font-weight: 500; }
+  .stp-seal svg { width: 36px; height: 36px; }
 
   .stp-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-weight: 500;
     font-size: clamp(30px, 5.8vw, 74px);
     line-height: 1.05;
     letter-spacing: -.02em;
@@ -240,14 +236,11 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     color: var(--ink);
     white-space: nowrap;
   }
-  .stp-title em { font-style: italic; color: var(--ink-mute); }
 
   .stp-lede {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.5;
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     max-width: 60ch;
     margin: 0;
@@ -312,7 +305,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
   .stp-tbtn.active {
     background: color-mix(in oklab, var(--w) 12%, var(--bg));
     border-color: var(--w);
-    color: var(--w);
+    color: var(--wt);
   }
   .stp-tbtn.active::before {
     content: '';
@@ -321,7 +314,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     width: 3px;
     background: var(--w);
   }
-  .stp-tbtn.active .stp-tbtn-sig { color: var(--w); }
+  .stp-tbtn.active .stp-tbtn-sig { color: var(--wt); }
 
   @media (max-width: 720px) {
     .stp-tbtn { font-size: 0; gap: 0; padding: 13px; }
@@ -376,24 +369,14 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--w);
+    color: var(--wt);
     flex-shrink: 0;
   }
   .stp-thread-sigil svg { width: 36px; height: 36px; }
 
-  .stp-thread-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-  }
-  .stp-thread-label strong { color: var(--w); font-weight: 500; }
-
   .stp-thread-head h2 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 400;
+    font-family: var(--font-display);
+    font-weight: 500;
     font-size: clamp(34px, 4vw, 46px);
     line-height: 1;
     letter-spacing: -.015em;
@@ -402,11 +385,10 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
   }
 
   .stp-thread-q {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    font-size: 21px;
-    line-height: 1.4;
-    color: var(--w);
+    font-family: var(--font-text);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--wt);
     margin: 18px 0 24px;
     max-width: 60ch;
   }
@@ -420,13 +402,13 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     margin-bottom: 36px;
   }
   .stp-story p {
-    font-size: 16.5px;
-    line-height: 1.7;
+    font-size: 18px;
+    line-height: 1.65;
     color: var(--ink-mute);
     margin: 0;
     text-wrap: pretty;
   }
-  .stp-story p strong { color: var(--w); font-weight: 600; }
+  .stp-story p strong { color: var(--wt); font-weight: 600; }
 
   /* ── Card grid ────────────────────────────────────────────────────────── */
   .stp-cards {
@@ -470,11 +452,11 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     gap: 12px;
   }
   .stp-card-num {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 400;
+    font-family: var(--font-display);
+    font-weight: 500;
     font-size: 38px;
     line-height: .85;
-    color: var(--acc);
+    color: var(--acc-t);
     letter-spacing: -.02em;
     flex-shrink: 0;
   }
@@ -507,11 +489,11 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     border-top: 1px solid color-mix(in oklab, var(--acc) 26%, var(--rule));
   }
   .stp-card-work {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: var(--font-text);
     font-style: italic;
     font-weight: 500;
-    font-size: 15.5px;
-    line-height: 1.25;
+    font-size: 16px;
+    line-height: 1.3;
     color: var(--ink);
   }
   .stp-card-by {
@@ -531,7 +513,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     font-size: 10.5px;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--acc);
+    color: var(--acc-t);
   }
 
   /* ── Footer ───────────────────────────────────────────────────────────── */
@@ -558,8 +540,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
 
   .stp-siblings { display: flex; gap: 14px; }
   .stp-siblings a {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
+    font-family: var(--font-text);
     font-size: 18px;
     color: var(--ink-mute);
     padding: 8px 16px;
