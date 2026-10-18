@@ -1,7 +1,7 @@
 # Follow-ups changelog (Claude_Code_Brief_Followups.md)
 
 ## Item 1: domain colors from the spec (branch `domain-colors`, preview alias `colors`)
-Preview: https://colors-ap-lit-site.tmurphy-ef9.workers.dev. **Not merged; production unchanged.**
+Preview: https://colors-ap-lit-site.tmurphy-ef9.workers.dev. **Approved, merged into `main` and deployed: version 1263e2cc-8246-45f1-acd8-f6adbc43d52d (Oct 18, 2026).**
 
 - **Tokens.** `src/styles/design-tokens.css` now holds all sixteen section 3.5 values as `--dom-{philosophy,painting,sculpture,music}-{mid,dark,light}` (plus `--dom-*` = Mid). `DOMAIN_THREAD_COLORS`, the text steps, Compare's `FAMILIES` and every studio, survey, listening and Timeline page point at the tokens (in CSS and inline `style` attributes); the interim and old live hexes are gone. A full-listing search of `src/` (excluding summer-reading) finds none of the old or interim values, apart from `#6B7C4E` in the Comparison Lab, which is not a domain color.
 - **A6 rule.** Text colored by a domain color uses the Dark step (Mid measured 4.43:1 on the thread-box tint for sculpture, so Dark throughout; brief allows Mid or Dark). Meaningful icons (thread sigils, sigil boxes, Compare pills, the sidebar thread icon) use Mid via a new `--sub-icon`. Light is used only for the row stripe (`.thread-box::before`) and for tints and rules.
@@ -28,4 +28,4 @@ CLS 0 to 0.0006 on all three pages at 1440px and 375px; the item closes. See `FO
 No build step parses a BioLink markdown file; `BiographyPanel.jsx` is edited directly; there is no check for unknown ids (small to add). See `FOLLOWUP_ITEM3_BIOLINK_CHECK.md`.
 
 ## Item 4: export and bundle
-Regenerated from `main` (Item 1 was not yet merged, so the domain-color changes are **not** in the exported pages; the studio and survey page copies will change again when it merges). See `README.md` in the bundle and `export-table.md`.
+Regenerated from `main` at `3024c9d`, after Item 1 merged and deployed, so the domain-color changes are in the exported pages. `export-table.md` flags what changed versus the earlier Oct 18 bundle; `README.md` in the bundle marks replaced, new and obsolete project files.
