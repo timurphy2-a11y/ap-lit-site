@@ -232,4 +232,13 @@ When a sentence closes by announcing a second implication of what was just argue
 > ❌ "A sculpture that announces the autonomous individual also announces the autonomous city."
 > ✓ Let the *David*'s placement in the Piazza della Signoria carry that implication without announcing it.
 
+## VII. Typography
+
+### 33. Titles of works: italics for standalone publications, quotation marks for parts
+Italicize works published as standalone volumes, even short ones (*Nature*, *Existentialism Is a Humanism*). Book-length works stay italic even if first serialized (*Notes from Underground*, Schiller's *Letters on the Aesthetic Education of Man*). Put works published within a journal, collection or larger work in quotation marks ("An Answer to the Question: What Is Enlightenment?", "A Defence of Poetry", "Benito Cereno"). Italicize periodicals (*Rheinische Zeitung*). In music, italicize standalone compositions (motets, organa, masses, operas, symphonies); put songs and excerpts in quotation marks ("Erlkönig"; *Messiah*: "Hallelujah Chorus"). Numbered or generic titles stay roman (Symphony No. 9). Use double quotation marks, with commas and periods inside.
+
+> ✓ *The Rite of Spring*: "Augurs of Spring"
+> ✓ Shelley's "A Defence of Poetry," composed 1821
+> ✓ Symphony No. 40 in G Minor, K. 550, first movement
+
 *This guide should be updated as new patterns emerge during Phase 4 drafting. When a revision reveals a principle not captured here, add it.*
