@@ -23,7 +23,7 @@ Inventory of uppercase labels on the 12 baseline pages: **34 distinct (family, s
 The Medieval hub's nine styles collapse to these three. Sizes of 11px and above keep the tracked-uppercase voice. I can produce the complete row-by-row mapping (all 34 styles) once you choose the tokens.
 
 ## C4. Anchor paragraph in domain intros
-Checked all 24 domain pages. The 18.5px, 445px-left paragraph exists on **21 of 24**, with 18px at 452px for the first paragraph. Exceptions: Enlightenment Painting and Romanticism Painting have only the 18px paragraph. It is not only the Hamlet paragraph: it is the second intro paragraph everywhere (the template sets `.reading > p` to 18.5px and the first paragraph differs).
+Checked all 24 domain pages. The 18.5px, 445px-left paragraph exists on **22 of 24**, with 18px at 452px for the first paragraph. Exceptions: Enlightenment Painting and Romanticism Painting have only the 18px paragraph. It is not only the Hamlet paragraph: it is the second intro paragraph everywhere (the template sets `.reading > p` to 18.5px and the first paragraph differs).
 - **Reference:** silent. It defines the drop cap on the first paragraph but no anchor-paragraph component.
 - **Proposal (reference silent, so default):** align to the prose column at 18px, remove the 18.5px/445px rule. If you want the anchor paragraph distinct, the alternative is a labeled treatment (a left rule in the period accent plus the existing "Anchor: Hamlet" label), but that adds a component the reference does not describe.
 
