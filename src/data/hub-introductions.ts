@@ -18,11 +18,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
     epigraphs: [
       {
         quote: 'In all our actions and thoughts let us give greater weight to divine love than to learning and argument. For love delights the soul and sweetens the conscience, drawing it away from the attraction of lesser delights and the appetite for personal distinction.',
-        attribution: 'Richard Rolle, \u2018The Fire of Love\u2019, c.\u00a01343',
+        attribution: 'Richard Rolle, *The Fire of Love*, c.\u00a01343',
       },
       {
         quote: 'For the knowledge of any truth whatsoever man needs Divine help, that the intellect may be moved by God to its act.',
-        attribution: 'Thomas Aquinas, \u2018Summa Theologica\u2019, 1274',
+        attribution: 'Thomas Aquinas, *Summa Theologica*, 1274',
       },
     ],
     historicalMomentTitle: 'The World Holds',
@@ -34,11 +34,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
     epigraphs: [
       {
         quote: 'It is but in our own day that men dare boast that they see the dawn of better things.',
-        attribution: 'Matteo Palmieri, \u2018Della vita civile\u2019, c. 1435',
+        attribution: 'Matteo Palmieri, *Della vita civile*, c. 1435',
       },
       {
         quote: 'Therefore, Simplicius, come either with arguments or demonstrations and bring us no more texts and authorities, for our disputes are about the sensible world, and not one of paper.',
-        attribution: 'Galileo Galilei, \u2018Dialogue Concerning the Two Chief World Systems\u2019, 1632',
+        attribution: 'Galileo Galilei, *Dialogue Concerning the Two Chief World Systems*, 1632',
       },
     ],
     historicalMomentTitle: 'The World Splits',
@@ -51,11 +51,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
       {
         quote: '\u00c8 del poeta il fin la meraviglia.',
         gloss: '\u201cThe aim of the poet is to astonish.\u201d',
-        attribution: 'Giambattista Marino, \u2018Adone\u2019, 1623',
+        attribution: 'Giambattista Marino, *Adone*, 1623',
       },
       {
         quote: 'Man is but a reed, the most feeble thing in nature; but he is a thinking reed.',
-        attribution: 'Blaise Pascal, \u2018Pens\u00e9es\u2019, 1670',
+        attribution: 'Blaise Pascal, *Pens\u00e9es*, 1670',
       },
     ],
     historicalMomentTitle: 'The World in Crisis',
@@ -67,11 +67,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
     epigraphs: [
       {
         quote: 'True Wit is Nature to advantage dress\u2019d,\nWhat oft was thought, but ne\u2019er so well express\u2019d.',
-        attribution: 'Alexander Pope, \u2018An Essay on Criticism\u2019, 1711',
+        attribution: 'Alexander Pope, *An Essay on Criticism*, 1711',
       },
       {
         quote: 'I came across the subject proposed by the Academy of Dijon as a prize essay for the following year: \u201cHas the progress of the sciences and arts done more to corrupt morals or improve them?\u201d The moment I read this I beheld another universe and became another man.',
-        attribution: 'Jean-Jacques Rousseau, \u2018The Confessions\u2019, composed c. 1765\u20131770',
+        attribution: 'Jean-Jacques Rousseau, *The Confessions*, composed c. 1765\u20131770',
       },
     ],
     historicalMomentTitle: 'The World Shakes',
@@ -83,11 +83,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
     epigraphs: [
       {
         quote: 'For all good poetry is the spontaneous overflow of powerful feelings.',
-        attribution: 'William Wordsworth, \u201cA Preface to Lyrical Ballads,\u201d 1800',
+        attribution: 'William Wordsworth, \u201cA Preface to *Lyrical Ballads*,\u201d 1800',
       },
       {
         quote: 'God is a poet, not a geometer.',
-        attribution: 'Johann Georg Hamann, \u2018Aesthetics in a Nutshell\u2019, 1762',
+        attribution: 'Johann Georg Hamann, \u201cAesthetics in a Nutshell,\u201d 1762',
       },
     ],
     historicalMomentTitle: 'The World Remade',
@@ -99,11 +99,11 @@ export const HUB_DATA: Record<string, HubIntro> = {
     epigraphs: [
       {
         quote: 'Colour is the keyboard, the eyes are the hammers, the soul is the piano with its many strings. The artist is the hand which plays, touching one key or another, to cause vibrations in the soul.',
-        attribution: 'Vasily Kandinsky, \u2018Concerning the Spiritual in Art\u2019, 1912',
+        attribution: 'Vasily Kandinsky, *Concerning the Spiritual in Art*, 1912',
       },
       {
         quote: 'Ours is the first period when man has become completely and totally problematical to himself, when he no longer knows what he is, but at the same time knows that he knows nothing.',
-        attribution: 'Max Scheler, \u2018The Human Place in the Cosmos\u2019, 1928',
+        attribution: 'Max Scheler, *The Human Place in the Cosmos*, 1928',
       },
     ],
     historicalMomentTitle: 'The World Breaks',

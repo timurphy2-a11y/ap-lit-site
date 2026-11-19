@@ -167,7 +167,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   {hubData.epigraphs.map((epigraph) => (
     <div class="quote">
       <blockquote set:html={`${epigraph.quote.replace(/\n/g, '<br />')}${epigraph.gloss ? `<span class="gloss">${epigraph.gloss}</span>` : ''}`} />
-      <cite set:html={epigraph.attribution.replace(/‘(.*?)’/g, '<em>$1</em>').replace(/'(.*?)'/g, '<em>$1</em>')} />
+      <cite set:html={inlineMd(epigraph.attribution)} /><!-- *Title* = italic (standalone work); quoted titles stay roman -->
     </div>
   ))}
 </section>
