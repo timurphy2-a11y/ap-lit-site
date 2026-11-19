@@ -164,3 +164,33 @@ For you to decide:
 **5.** Phase 2 is on hold until the amendments file is on this machine.
 
 Re-verified after these changes: 0 console errors, no horizontal scroll at 375. Contrast is unchanged: only the decorative separators fail. The text diff is as before plus the eight quote changes above; the C6 poster text is gone.
+
+## Round 2 follow-ups
+
+**C6.** The rule between sigil and play button is removed, and the strip is rolled out to all 32 music embeds on the six music pages (3, 5, 6, 7, 7 and 4 per page; no YouTube thumbnails remain).
+- No other music entries needed it: the Listening Studio and the Modernism listening guides use native audio players, and Compare uses its own play disc, with no thumbnails.
+- Screenshots: `.polish/c6-rollout-02-baroque-featured-1440.png`, `c6-rollout-02-baroque-gallery-375.png`, `c6-rollout-05-modernism-featured-1440.png`, `c6-rollout-05-modernism-gallery-375.png`, plus the other widths.
+
+**B3, publication-based rule.** Changes:
+| Where | Now | Why |
+|---|---|---|
+| BioLink: Emerson | *Nature* | standalone volume |
+| BioLink: Sartre | *Existentialism Is a Humanism* | standalone volume |
+| Romanticism Philosophy prose | Shelley's "Defence of Poetry" (markup only) | published in a collection |
+| Hub epigraph, Romanticism | Hamann, "Aesthetics in a Nutshell," 1762, roman | published in a collection (comma moved inside, matching Wordsworth) |
+| Hub epigraph, Romanticism | "A Preface to *Lyrical Ballads*," | the volume title is italic inside the quoted preface |
+| BioLink: Melville (2×) | "Benito Cereno" | serialized in *Putnam's*, then collected; never a standalone volume |
+| BioLink: Marx | *Rheinische Zeitung* | periodical (it was left roman earlier as unsure) |
+Kept: Kant and Shelley in quotes; Ode to Joy in quotes (Schiller published it in his journal *Thalia*); Der Erlkönig in quotes (song); motets, organa, masses, operas and symphony titles italic; *Flowers of Evil* italic.
+Hub epigraphs now take `*Title*` markup for italics; the other ten attributions render exactly as before.
+
+Still for you to decide:
+- Schiller's *Letters on the Aesthetic Education of Man* first appeared in his journal *Die Horen*. It is conventionally italicized as a book, so I left it.
+- *Notes from Underground* first ran in a journal but was later issued as a standalone volume, so it stays italic.
+- "Ninth Symphony" (a numbered, generic title) stays roman.
+
+CLAUDE.md now states the convention.
+
+Noticed, not changed: music card titles that name an excerpt set the whole line in italics, quoted movement included (for example "The Rite of Spring: 'Augurs of Spring'", "L'Orfeo: … 'Tu se' morta'"). Under the rule the quoted excerpt would be roman. This needs the card-title markup to support mixed styles.
+
+Re-verified: 0 console errors, no horizontal scroll at 375. The text diff shows only approved categories plus the quote changes above.
