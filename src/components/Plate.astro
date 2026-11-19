@@ -20,12 +20,14 @@ const { title, artist, date, image, alt, medium, location, analysisEyebrow, anal
 const metaParts = [date, medium, location].filter(Boolean);
 const metaText = metaParts.join('\n');
 const hasAnalysis = Boolean(analysis);
+// Transparent cutouts (file name contains -cutout) get breathing room inside the mat.
+const isCutout = Boolean(image && /-cutout\./.test(image));
 const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·\s*/, '');
 
 ---
 
 <figure class="plate work-figure" data-plate-for={plateFor}>
-  <div class="img">
+  <div class:list={['img', isCutout && 'img--cutout']}>
     {image && <img src={image} alt={alt || title} loading="lazy" />}
   </div>
   <figcaption class="caption">
