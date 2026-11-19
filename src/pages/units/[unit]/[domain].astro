@@ -943,8 +943,8 @@ if (isRedesignedDomain) {
 
   /* ── Header band (role 6) ── */
   .header-band {
-    width: calc(100% + 2 * var(--gutter));
-    margin: 0 calc(-1 * var(--gutter));
+    width: 100%; /* C12: match the content container (was bled out by the gutter on both sides) */
+    margin: 0;
     overflow: hidden;
   }
 
