@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
+import { smartDeep } from "../lib/inline-md";
 
 // ─── PEOPLE DATA ────────────────────────────────────────────────────────────
 // Each entry: id, name, dates, field, unit(s), bio, significance
-const PEOPLE = [
+const RAW_PEOPLE = [
   // ── ANCIENT ───────────────────────────────────────────────────────────────
   {
     id: "aristotle",
@@ -1461,6 +1462,8 @@ const PEOPLE = [
 ];
 
 // ─── INDEX BY ID ─────────────────────────────────────────────────────────────
+// B2: smart punctuation for every biography string (modal, People page, BioLinks)
+const PEOPLE = smartDeep(RAW_PEOPLE);
 const PEOPLE_INDEX = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
 
 // ─── UNIT ACCENT COLORS ───────────────────────────────────────────────────────

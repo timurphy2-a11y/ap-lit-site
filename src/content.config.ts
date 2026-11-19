@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { smartDeep } from './lib/inline-md';
 
 const threadSchema = z.object({
   id: z.string(),
@@ -131,7 +132,7 @@ const units = defineCollection({
     // Navigation
     compare_back: z.string().nullable().optional(),
     compare_forward: z.string().nullable().optional(),
-  }),
+  }).transform(smartDeep), // B2: smart punctuation for every frontmatter string
 });
 
 const summerReading = defineCollection({

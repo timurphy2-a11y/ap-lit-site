@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import '../../../styles/design-tokens.css';
+import { smartDeep } from '../../../lib/inline-md';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
 import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
@@ -38,8 +39,8 @@ const [philosophy, art, music, sculpture] = await Promise.all([
 
 const meta = philosophy.data;
 const unitNumber = unit.slice(0, 2);
-const hubData = HUB_DATA[unit];
-const moment = HISTORICAL_MOMENTS[unit];
+const hubData = smartDeep(HUB_DATA[unit]);
+const moment = smartDeep(HISTORICAL_MOMENTS[unit]);
 const timelineEvents = HUB_EVENTS[unit] ?? [];
 
 // Per-unit mark palette (CSS-var parameterized motifs)
