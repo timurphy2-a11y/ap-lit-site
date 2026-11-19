@@ -130,3 +130,37 @@ Template is now `Full unit: {name} →`. Seeing Through Paint, Hearing Through F
 - Credits-page image thumbnails still point at the uncropped Pietà and af Klint files.
 - The brief's pixel figures for C12 and for the C2 logo shift (80px measured, brief says 72px) differ slightly from this build.
 - 'Hamlet' appears with the prince's meaning inside `hub-introductions.ts` prose; it is left roman on purpose.
+
+## Phase 1 review follow-ups (Tim, round 1)
+
+**1. B3: short works in quotes, full-length works in italics.** Changes:
+| Where | Was | Now |
+|---|---|---|
+| Enlightenment Philosophy pull-quote | *An Answer to the Question: What Is Enlightenment?* | “An Answer to the Question: What Is Enlightenment?” (essay) |
+| Romanticism Philosophy pull-quote | *A Defence of Poetry*, composed 1821 | “A Defence of Poetry,” composed 1821 (essay; comma moved inside the quotes, US style) |
+| BioLink: Shelley | *A Defence of Poetry* | “A Defence of Poetry” |
+| BioLink: Emerson | essay *Nature* | essay “Nature” |
+| BioLink: Sartre | *Existentialism Is a Humanism* | “Existentialism Is a Humanism” (lecture-essay) |
+| BioLink: Schubert | *Der Erlkönig* | “Der Erlkönig” (song) |
+| /timeline/ 1824 note | Schiller's Ode to Joy (roman) | Schiller’s “Ode to Joy” (poem) |
+| /timeline/ 1857 note | the Flowers of Evil (roman) | the *Flowers of Evil* (book) |
+
+Kept as italics: Bacon's *Advancement of Learning*, Hume's *Treatise*, Du Bois's *Souls of Black Folk*, Wittgenstein's *Tractatus* and the Baroque intro's *Paradise Lost* are all full-length works.
+For you to decide:
+- Motets and organa are italic in the BioLinks (*Sicut Cervus*, *Ave Maria...virgo serena*, *Spem in Alium*, *Viderunt omnes*, *Sederunt principes*). Your list (songs, arias, movements) doesn't clearly cover them.
+- Your own MDX body prose italicizes Emerson's *Nature* and Shelley's *Defence of Poetry* (Romanticism Philosophy, plus the readings title). Those predate this pass and I left them.
+- The hub epigraph pattern turns Hamann's ‘Aesthetics in a Nutshell’ (an essay) into italics. That pattern predates this pass too.
+
+**2. C6: compact listening strip.** It replaces the 16:9 poster and is a third of the height: 195px at 1440 (16:3) and a 92px minimum on phones. It holds the period sigil, a hairline and the play button, with no title or composer. Clicking swaps in the 16:9 player. An entry with a `poster` image gets the full 16:9 matted frame instead.
+- While testing I found the expanded player rendered at 300×150 on every music page, including the live site. The scoped `.yt-iframe` style never matched the script-created iframe. Fixed, since C6 depends on it; it's now 1038×584 at 1440.
+- Screenshots: `.polish/c6-strip-feat-1440.png`, `c6-strip-gal-1440.png`, `c6-strip-feat-375.png`, `c6-strip-gal-375.png`.
+- Poster-image variant: `.polish/c6-poster-image-test-1440.png`, built with a temporary stand-in image (Martini) that I removed afterwards.
+- Still Medieval Music only.
+
+**3. C7.** Images whose file name contains `-cutout` get 32px of top padding (24px sides, 20px bottom) inside the mat, so the Maestà's central spire clears the edge. Screenshots: `.polish/c7-maesta-1440.png` and `c7-maesta-375.png`.
+
+**4.** "Menu" in the text diff: approved.
+
+**5.** Phase 2 is on hold until the amendments file is on this machine.
+
+Re-verified after these changes: 0 console errors, no horizontal scroll at 375. Contrast is unchanged: only the decorative separators fail. The text diff is as before plus the eight quote changes above; the C6 poster text is gone.
