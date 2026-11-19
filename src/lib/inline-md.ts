@@ -9,6 +9,11 @@ export function smart(text: string | undefined | null): string {
   return text ? smartText(text) : '';
 }
 
+// Plain-text form of a markup string (for aria-labels, alt, iframe titles).
+export function plainMd(text: string | undefined | null): string {
+  return text ? smartText(text).replace(/\*/g, '') : '';
+}
+
 export function inlineMd(text: string | undefined | null): string {
   if (!text) return '';
   const html = esc(text)

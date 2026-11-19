@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { inlineMd, plainMd } from '../lib/inline-md';
 import { PERIOD_MOTIFS } from '../data/period-motifs';
 
 const allEntries = (await getCollection('units')).sort((a, b) => a.id.localeCompare(b.id));
@@ -353,7 +354,7 @@ const ALL_THREADS = [
                     {t.mode === 'audio' && musData?.youtubeId && (
                       <button
                         class="play-disc"
-                        aria-label={`Play ${musData.title ?? ''} — ${musData.composer ?? ''}`}
+                        aria-label={`Play ${plainMd(musData.title)} — ${musData.composer ?? ''}`}
                         aria-pressed="false"
                         data-youtube-id={musData.youtubeId}
                         type="button">
@@ -383,7 +384,7 @@ const ALL_THREADS = [
                   )}
                   {t.mode === 'audio' && musData?.title && (
                     <div class="card-caption">
-                      <em class="caption-title">{musData.title}</em>
+                      <span class="caption-title caption-title--music" set:html={inlineMd(musData.title)} />
                       <span class="caption-by">{musData.composer} · ▶ Listen</span>
                     </div>
                   )}
@@ -749,6 +750,9 @@ const ALL_THREADS = [
   color: var(--ink);
   display: block;
 }
+/* Music titles: roman by default, *markup* italicizes the work */
+.caption-title--music { font-style: normal; }
+.caption-title--music :global(em) { font-style: italic; }
 .caption-by {
   display: block;
   font-family: var(--font-mono);

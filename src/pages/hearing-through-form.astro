@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { inlineMd, plainMd } from '../lib/inline-md';
 
 const UNIT_IDS = [
   '00-medieval', '01-renaissance', '02-baroque',
@@ -161,7 +162,7 @@ function getFeatured(entry: typeof entries[0]) {
                     <div class="stp-card-cap">
                       {featured && (
                         <>
-                          <div class="stp-card-work">{featured.title}</div>
+                          <div class="stp-card-work" set:html={inlineMd(featured.title)} />
                           <div class="stp-card-by">{featured.composer}</div>
                         </>
                       )}
@@ -471,9 +472,10 @@ function getFeatured(entry: typeof entries[0]) {
     padding-top: 16px;
     border-top: 1px solid color-mix(in oklab, var(--acc) 26%, var(--rule));
   }
+  .stp-card-work :global(em) { font-style: italic; }
   .stp-card-work {
     font-family: var(--font-text);
-    font-style: italic;
+    font-style: normal; /* *markup* italicizes the work */
     font-weight: 500;
     font-size: 16px;
     line-height: 1.3;
