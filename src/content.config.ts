@@ -51,6 +51,7 @@ const units = defineCollection({
         duration: z.string(),
         listen_for: z.string(),
         youtube_id: z.string().optional(),
+        poster: z.string().optional(), // optional poster image shown in the standard mat instead of the typographic frame
         analysisEyebrow: z.string().optional(),
         analysis: z.string().optional(),
         analysisPrompt: z.string().optional(),
@@ -62,6 +63,7 @@ const units = defineCollection({
         duration: z.string(),
         listen_for: z.string(),
         youtube_id: z.string().optional(),
+        poster: z.string().optional(), // optional poster image shown in the standard mat instead of the typographic frame
         analysisEyebrow: z.string().optional(),
         analysis: z.string().optional(),
         analysisPrompt: z.string().optional(),
@@ -74,6 +76,7 @@ const units = defineCollection({
       duration: z.string(),
       threads: z.array(z.string()),
       youtube_id: z.string().optional(),
+      poster: z.string().optional(),
       analysisEyebrow: z.string().optional(),
       analysis: z.string().optional(),
       analysisPrompt: z.string().optional(),
