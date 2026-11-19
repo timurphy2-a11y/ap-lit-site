@@ -68,7 +68,13 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
 
 <header class:list={['sh', sticky && 'sh--sticky', flush && 'sh--flush']}>
   <a href="/" class="sh-brand">Of Imagination All Compact</a>
-  <nav class="sh-nav" aria-label="Site">
+  <button type="button" class="sh-burger" id="sh-burger" aria-expanded="false" aria-controls="sh-nav">
+    <span>Menu</span>
+    <svg class="sh-chev" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" focusable="false">
+      <path d="M2 4.2 L6 8 L10 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </button>
+  <nav class="sh-nav" id="sh-nav" aria-label="Site">
     <div class="sh-menu">
       <button
         type="button"
@@ -125,6 +131,24 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
 </header>
 
 <script>
+  // Narrow screens (<= 640px): the nav collapses behind a single Menu button.
+  const burger = document.getElementById('sh-burger') as HTMLButtonElement | null;
+  const shHeader = burger?.closest('.sh') as HTMLElement | null;
+  if (burger && shHeader) {
+    const setMenu = (open: boolean) => {
+      burger.setAttribute('aria-expanded', String(open));
+      shHeader.toggleAttribute('data-open', open);
+    };
+    burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || burger.getAttribute('aria-expanded') !== 'true') return;
+      // The Units submenu handles its own Escape first.
+      if (document.getElementById('sh-menu-btn')?.getAttribute('aria-expanded') === 'true') return;
+      setMenu(false);
+      burger.focus();
+    });
+    window.matchMedia('(min-width: 641px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
+  }
   const btn = document.getElementById('sh-menu-btn') as HTMLButtonElement | null;
   const panel = document.getElementById('sh-menu-panel') as HTMLElement | null;
   if (btn && panel) {
@@ -187,6 +211,24 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
     display: inline-flex;
     align-items: center;
   }
+  .sh-burger {
+    display: none;
+    min-height: 44px;
+    align-items: center;
+    gap: 7px;
+    padding: 0 10px;
+    margin: 0 -10px;
+    background: none;
+    border: 0;
+    border-radius: 2px;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .sh-burger[aria-expanded="true"] { color: var(--sh-ink); background: var(--sh-raised); box-shadow: inset 0 -2px 0 var(--sh-ink); }
+  .sh-burger[aria-expanded="true"] .sh-chev { transform: rotate(180deg); }
   .sh-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
   .sh-nav > a,
   .sh-menu-btn {
@@ -281,17 +323,15 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
   .sh-foot:hover { background: var(--sh-raised); }
 
   @media (max-width: 640px) {
-    .sh-menu { position: static; }
-    .sh-panel {
-      left: var(--gutter, 24px);
-      right: var(--gutter, 24px);
-      width: auto;
-      top: 100%;
-    }
-    .sh--flush .sh-panel { left: 0; right: 0; }
     .sh { gap: 0 16px; padding-top: 4px; padding-bottom: 4px; }
     .sh--sticky { position: relative; }
-    .sh-nav { gap: 0 6px; letter-spacing: 0.01em; }
-    .sh-menu-btn { padding: 0 6px; margin: 0 -6px; }
+    .sh-burger { display: inline-flex; }
+    /* Collapsed: links live in the nav, which opens as a stacked list under the header. */
+    .sh-nav { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0 8px; border-top: 1px solid var(--sh-rule); }
+    .sh[data-open] .sh-nav { display: flex; }
+    .sh-nav > a, .sh-menu-btn { width: 100%; }
+    .sh-menu-btn { margin: 0; padding: 0; justify-content: space-between; }
+    .sh-menu { position: static; }
+    .sh-panel { position: static; width: auto; margin: 0 0 6px; box-shadow: none; }
   }
 </style>
