@@ -1,5 +1,6 @@
 ---
 import { getEntry, render } from 'astro:content';
+import { inlineMd } from '../../../lib/inline-md';
 import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
 import BioLink from '../../../components/BioLink.astro';
 import PullQuote from '../../../components/PullQuote.astro';
@@ -362,8 +363,8 @@ if (isRedesignedDomain) {
         {hasAnalysis && (
           <div class="analysis-panel" hidden>
             {p.analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(p.analysisEyebrow)}</div>}
-            <p>{p.analysis}</p>
-            {p.analysisPrompt && <p class="analysis-prompt">{p.analysisPrompt}</p>}
+            <p set:html={inlineMd(p.analysis)} />
+            {p.analysisPrompt && <p class="analysis-prompt" set:html={inlineMd(p.analysisPrompt)} />}
           </div>
         )}
       </figure>
@@ -393,8 +394,8 @@ if (isRedesignedDomain) {
         {hasAnalysis && (
           <div class="analysis-panel" hidden>
             {s.analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(s.analysisEyebrow)}</div>}
-            <p>{s.analysis}</p>
-            {s.analysisPrompt && <p class="analysis-prompt">{s.analysisPrompt}</p>}
+            <p set:html={inlineMd(s.analysis)} />
+            {s.analysisPrompt && <p class="analysis-prompt" set:html={inlineMd(s.analysisPrompt)} />}
           </div>
         )}
       </figure>

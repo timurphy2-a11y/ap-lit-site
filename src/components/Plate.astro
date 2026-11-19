@@ -1,4 +1,5 @@
 ---
+import { inlineMd } from '../lib/inline-md';
 interface Props {
   title: string;
   artist: string;
@@ -42,8 +43,8 @@ const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·
   {hasAnalysis && (
     <div class="analysis-panel" hidden>
       {analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(analysisEyebrow)}</div>}
-      <p>{analysis}</p>
-      {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
+      <p set:html={inlineMd(analysis)} />
+      {analysisPrompt && <p class="analysis-prompt" set:html={inlineMd(analysisPrompt)} />}
     </div>
   )}
 </figure>

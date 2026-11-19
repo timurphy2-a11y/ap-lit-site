@@ -1,4 +1,5 @@
 ---
+import { inlineMd } from '../lib/inline-md';
 interface Props {
   id: string;
   title?: string;
@@ -40,8 +41,8 @@ const hasAnalysis = Boolean(analysis);
   {hasAnalysis && (
     <div class="analysis-panel" hidden>
       {analysisEyebrow && <div class="analysis-eyebrow">{trimEyebrow(analysisEyebrow)}</div>}
-      <p>{analysis}</p>
-      {analysisPrompt && <p class="analysis-prompt">{analysisPrompt}</p>}
+      <p set:html={inlineMd(analysis)} />
+      {analysisPrompt && <p class="analysis-prompt" set:html={inlineMd(analysisPrompt)} />}
     </div>
   )}
 </figure>
