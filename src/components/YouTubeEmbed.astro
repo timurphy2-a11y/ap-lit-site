@@ -12,13 +12,13 @@ interface Props {
   plateFor?: string;
   /** Unit id for the period sigil on the typographic poster. */
   unit?: string;
-  /** Use the compact listening strip instead of the YouTube thumbnail (rolled out per unit). */
+  /** Compact listening strip instead of the YouTube thumbnail (default). */
   typographic?: boolean;
   /** Optional poster image, shown in the standard mat instead of the typographic frame. */
   poster?: string;
 }
 
-const { id, title = '', composer, note, analysisEyebrow, analysis, analysisPrompt, plateFor, unit, typographic = false, poster } = Astro.props;
+const { id, title = '', composer, note, analysisEyebrow, analysis, analysisPrompt, plateFor, unit, typographic = true, poster } = Astro.props;
 const variant = poster ? 'is-poster' : typographic ? 'is-strip' : null;
 const trimEyebrow = (t?: string) => t?.replace(/^(Close looking|Listen for)\s*·\s*/, '');
 const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
@@ -32,7 +32,6 @@ const hasAnalysis = Boolean(analysis);
     ) : typographic ? (
       <div class="yt-strip" aria-hidden="true">
         {unit && <span class="yt-strip-sigil"><PeriodMotif unit={unit} role={1} /></span>}
-        <span class="yt-strip-rule"></span>
       </div>
     ) : (
       <img src={thumbnail} alt={title} class="yt-thumb" loading="lazy" />
@@ -137,7 +136,7 @@ const hasAnalysis = Boolean(analysis);
   /* C6: matted frames instead of commercial YouTube thumbnails.
      With a poster image: full 16:9 frame in the standard mat.
      Without one: a compact listening strip (about a third of the 16:9 height)
-     with the period sigil and the play button; the caption below carries
+     with the period sigil and the play button (no rule between them: it read as a scrubber); the caption below carries
      title and composer. Clicking swaps in the 16:9 player as before. */
   .yt-preview.is-poster,
   .yt-preview.is-strip {
@@ -166,7 +165,6 @@ const hasAnalysis = Boolean(analysis);
   }
   .yt-strip-sigil { flex: none; width: 44px; height: 44px; }
   .yt-strip-sigil :global(svg) { width: 100%; height: 100%; display: block; }
-  .yt-strip-rule { flex: 1; height: 1px; background: var(--rule); }
   .yt-preview.is-strip .yt-play { justify-content: flex-end; padding-right: 34px; }
   .yt-preview.is-strip:hover .yt-strip { background: color-mix(in oklab, var(--bg-raised) 94%, var(--ink)); }
   @media (prefers-reduced-motion: reduce) { .yt-strip { transition: none; } }
