@@ -1803,7 +1803,8 @@ if (isRedesignedDomain) {
     grid-template-rows: auto auto;
     column-gap: 14px;
     row-gap: 6px;
-    align-items: center;
+    align-items: start;
+    align-content: start; /* C5a: top-align card content so headers don't drift with description length */
     padding: 18px 18px 18px 20px;
     border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
     background: color-mix(in oklab, var(--c) 10%, var(--bg));
