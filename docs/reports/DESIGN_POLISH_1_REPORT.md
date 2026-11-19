@@ -1,4 +1,66 @@
-# Design Polish Pass 1: report
+# Design Polish Pass 1: final Phase 1 report
+
+**Status:** Phase 1 is complete and approved pending your phone check. Branch `claude/design-polish-1`, 25 commits on top of `main`. Preview: https://polish1-ap-lit-site.tmurphy-ef9.workers.dev. Nothing has been merged or deployed to production. Phase 2 is on hold until the amendments file is on this machine. The merge checklist is in `DESIGN_POLISH_1_MERGE_CHECKLIST.md`.
+
+## Final state by item
+| Item | Final state |
+|---|---|
+| B1 | Emphasis renders in analysis fields; 0 visible asterisks sitewide (18 instances on 11 pages) |
+| B2 | Smart punctuation on every AP-site route through four render paths; 0 straight quotes in visible text |
+| B3 | Titles follow the publication rule (standalone volume = italics, within a larger work = quotes; book-length serials italic; generic titles roman; music excerpts and songs in roman double quotes). Recorded in CLAUDE.md and the writing guide |
+| B4 | "Full unit: {name} →" on the three guide pages |
+| C1 | Menu button at 640px and below; Escape and focus behave; "Menu" approved in the text diff |
+| C5a | Thread cards top-aligned |
+| C6 | Compact listening strip (sigil and play button, no rule) on all 32 music embeds; clicking opens the 16:9 player; a `poster` image gets the full matted frame. Also fixes the player opening at 300×150, which affected the live site too |
+| C7 | Maestà transparent cutout with mat padding; Pietà and af Klint margins cropped; originals kept; ambiguous cases flagged |
+| C8 | Doubled rule removed |
+| C9 | Studio cards share rows (subgrid) |
+| C11 | Arrow gap, fixed-width toggles, empty pager sides hidden |
+| C12 | Frieze matches the container; pull-quote attributions centered |
+
+## Round 3 changes
+- **CLAUDE.md:** added that book-length works stay italic even if first serialized, numbered or generic titles are roman, the excerpt pattern, and that music card titles take `*...*` markup.
+- **Writing guide:** your rule added as **rule 33**, under a new "VII. Typography" heading. The repo's `Writing_and_Editing_Guide.md` ends at rule 32, and the Desktop copy (Summer Reading Site Materials) ends at 33, so I couldn't find the copy that ends at 41. Renumber to 42 when you merge it into your current guide. The text is yours, plus three ✓ examples in the guide's format.
+- **Music card titles.** These are now roman by default, with italics only where marked. Every title on the six music pages, Compare and Hearing Through Form:
+
+| Unit | Titles as rendered |
+|---|---|
+| Medieval | "Ave Maris Stella" · "Dies Irae" · *Viderunt Omnes* |
+| Renaissance | *Sicut Cervus* · *Ave Maria...virgo serena* · *Spem in Alium* · "Morir non può il mio core" · "As Vesta Was from Latmos Hill Descending" |
+| Baroque | Toccata and Fugue in D Minor, BWV 565 · *L'Orfeo*: the Messenger's scene and "Tu se' morta" · *Messiah*: "Hallelujah Chorus" · *The Four Seasons*: "Winter," first movement · "Lagrime mie" · *Dido and Aeneas*: "Dido's Lament" |
+| Enlightenment | *Eine kleine Nachtmusik*, K. 525, first movement · String Quartet in C Major, Op. 33 No. 3 ("The Bird"), first movement · *Le nozze di Figaro*: "Sull'aria" (the letter duet) · Keyboard Sonata, Piano Concerto No. 21, Symphony No. 40, Symphony No. 94 ("Surprise"): all roman |
+| Romanticism | Symphony No. 5 … (roman) · "Der Erlkönig" · Piano Trio … (roman) · *The Hebrides* (*Fingal's Cave*), Op. 26 · *Nabucco*: "Va, pensiero" · Prelude to *Tristan und Isolde* · *Symphonie fantastique*, V: "Songe d'une nuit du sabbat" |
+| Modernism | *The Rite of Spring*: "Augurs of Spring" · *Black, Brown and Beige*: "Black" section · *Pierrot Lunaire*, No. 8: "Nacht" (Night) · *The Rite of Spring*: Introduction to Part I |
+
+  Judgment calls for you to check:
+  - "Ave Maris Stella" (a hymn) and "Dies Irae" (a sequence from the Requiem Mass) are treated as songs/excerpts.
+  - The madrigals and Strozzi's "Lagrime mie" are treated as songs.
+  - Numbered works with nicknames keep the nickname in roman quotes ("The Bird", "Surprise").
+  - Eight card titles that were italic before are now roman under the generic-title rule: Toccata and Fugue, String Quartet Op. 33 No. 3, Keyboard Sonata, Piano Concerto No. 21, Symphonies No. 40, 94 and 5, and the Piano Trio.
+- **Guide pages:**
+  - *The Rite of Spring*: "Augurs of Spring" and "Farben" (Schoenberg, Op. 16 No. 3) are now in quotes and roman, in work labels, clip titles and source notes.
+  - "Five Pieces for Orchestra" stays roman as a generic title.
+  - The jazz recordings ("The Charleston", "St. Louis Blues", "Dippermouth Blues", "Gut Bucket Blues") were italic and are now in roman quotes.
+- Screen-reader labels, image alt text and player titles use the plain title, without asterisks.
+
+## Verification (final build)
+- Build passes; 0 console errors on the 12 pages at 1440 and 375.
+- Rendered-text diff against the original baseline: ignoring quote glyphs and asterisks, the only differences are the approved ones (B4 label, "Menu", hidden empty pager entries). The text inside the protected sections (What to Notice, What to Listen For, thread core arguments) is unchanged apart from quote glyphs and italics.
+- No horizontal scroll at 375px on the 12 pages.
+- Contrast unchanged: everything passes except the decorative breadcrumb `/` and People `·` separators (2.41:1). They failed before this pass and are listed as new issues.
+- Keyboard walk: focus ring visible on the desktop header, mobile menu, domain tabs and gallery toggles. The BioLink modal was not walked.
+
+## Not fixed, for later
+- The decorative separators' contrast (2.41:1).
+- Credits-page thumbnails still use the uncropped Pietà and af Klint files.
+- "Für Elise" is in quotes in the Listening Studio's work label but italic in the Modernist Concert prose. It's a short standalone piano piece, so you need to decide which.
+- Scheherazade (a standalone suite) is roman in the Listening Studio's work label.
+- The Romanticism Philosophy reading-list title "A Defence of Poetry (excerpts)" is plain text and does not render in the reading list.
+
+---
+
+# Working log (rounds 1–3)
+
 
 Branch `claude/design-polish-1` (one commit per item, prefixed by ID). Preview only; nothing merged to `main` or deployed to production.
 Baselines (rendered text for 49 routes, 24 screenshots) and after-shots are in `.polish/` (untracked): `baseline-text/`, `baseline-shots/`, `after-shots/`.
