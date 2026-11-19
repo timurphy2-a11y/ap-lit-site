@@ -69,14 +69,18 @@ const peopleJson = JSON.stringify(PEOPLE);
       const backdrop = document.getElementById('bio-backdrop');
       const closeBtn = document.getElementById('bio-close');
 
+      // Inline markdown (*italic* titles of works), escaped first.
+      const md = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
+
       function openModal(id) {
         const person = PEOPLE.find((p) => p.id === id);
         if (!person || !modal) return;
         document.getElementById('bio-field').textContent        = person.field ?? '';
         document.getElementById('bio-name').textContent         = person.name;
         document.getElementById('bio-dates').textContent        = person.dates ?? '';
-        document.getElementById('bio-bio').textContent          = person.bio ?? '';
-        document.getElementById('bio-significance').textContent = person.significance ?? '';
+        document.getElementById('bio-bio').innerHTML            = md(person.bio);
+        document.getElementById('bio-significance').innerHTML   = md(person.significance);
         const portrait = document.getElementById('bio-portrait');
         if (person.portrait) {
           portrait.src = person.portrait;

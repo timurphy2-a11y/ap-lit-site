@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { ENTRIES } from '../data/timeline-entries';
+import { inlineMd } from '../lib/inline-md';
 import type { RegularEntry } from '../data/timeline-entries';
 
 type UnitKey = '00' | '01' | '02' | '03' | '04' | '05';
@@ -136,7 +137,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
                 <div class="anchor-body">
                   <div class="ap-title">{entry.apTitle}</div>
                   <div class="author">{entry.apAuthor}</div>
-                  <p class="note">{entry.apNote}</p>
+                  <p class="note" set:html={inlineMd(entry.apNote)} />
                   <a class="read" href={unitMeta.url}>Read historical context · →</a>
                 </div>
               </div>
@@ -159,9 +160,10 @@ const sorted = [...ENTRIES].sort((a, b) => {
             <div class="body">
               <h3
                 class="title note-trigger"
-                data-note={(entry as RegularEntry).note}
+                data-note={inlineMd((entry as RegularEntry).note)}
                 tabindex="0"
-              >{entry.title}</h3>
+                set:html={inlineMd(entry.title)}
+              />
             </div>
           </div>
         );
@@ -239,7 +241,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
       const title = triggerEl.textContent.trim();
       const pVal  = getComputedStyle(rowEl).getPropertyValue('--p').trim();
 
-      popNote.textContent  = note;
+      popNote.innerHTML    = note; // pre-escaped by inlineMd at build time
       popEntry.textContent = title;
       pop.style.setProperty('--pop-accent', pVal);
 

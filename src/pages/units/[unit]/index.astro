@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import '../../../styles/design-tokens.css';
-import { smartDeep } from '../../../lib/inline-md';
+import { smartDeep, inlineMd } from '../../../lib/inline-md';
 import { HUB_DATA } from '../../../data/hub-introductions';
 import { HUB_EVENTS } from '../../../data/timeline-events';
 import { HISTORICAL_MOMENTS } from '../../../data/historical-moments';
@@ -158,7 +158,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     <span class="page-sig" aria-hidden="true">
       <PeriodMotif unit={unit} role={5} />
     </span>
-    <p class="unit-kicker">{hubData.kicker}</p>
+    <p class="unit-kicker" set:html={inlineMd(hubData.kicker)} />
   </div>
 </section>
 
@@ -174,8 +174,8 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
 
 <!-- ── About prose ── -->
 <div class="about">
-  <p><span class="drop">{dropLetter}</span>{introFirstRest}</p>
-  {introRestParagraphs.map((p) => <p>{p}</p>)}
+  <p><span class="drop">{dropLetter}</span><Fragment set:html={inlineMd(introFirstRest)} /></p>
+  {introRestParagraphs.map((p) => <p set:html={inlineMd(p)} />)}
 </div>
 
 <!-- ── Thread buttons ── -->

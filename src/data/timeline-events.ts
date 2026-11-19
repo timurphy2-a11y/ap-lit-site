@@ -8,8 +8,8 @@ export interface HubEvent {
 export const HUB_EVENTS: Record<string, HubEvent[]> = {
   '00-medieval': [
     { year: 1088, title: 'University of Bologna founded', type: 'cultural' },
-    { year: 1265, title: 'Aquinas begins the Summa Theologica', type: 'cultural' },
-    { year: 1321, title: 'Dante completes the Divine Comedy', type: 'cultural' },
+    { year: 1265, title: 'Aquinas begins the <em>Summa Theologica</em>', type: 'cultural' },
+    { year: 1321, title: 'Dante completes the <em>Divine Comedy</em>', type: 'cultural' },
     { year: 1347, title: 'The Black Death arrives in Europe', type: 'political' },
     { year: 1378, title: 'The Great Schism divides the papacy', type: 'political' },
   ],
@@ -29,7 +29,7 @@ export const HUB_EVENTS: Record<string, HubEvent[]> = {
   ],
   '03-enlightenment': [
     { year: 1748, title: 'Excavations begin at Pompeii', type: 'cultural' },
-    { year: 1762, title: "Rousseau's Social Contract", type: 'cultural' },
+    { year: 1762, title: "Rousseau's <em>Social Contract</em>", type: 'cultural' },
     { year: 1776, title: 'American Declaration of Independence', type: 'political' },
     { year: 1789, title: 'French Revolution begins', type: 'political' },
     { year: 1793, title: 'Reign of Terror', type: 'political' },
