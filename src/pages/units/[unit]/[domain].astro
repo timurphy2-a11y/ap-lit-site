@@ -1879,6 +1879,8 @@ if (isRedesignedDomain) {
     letter-spacing: -0.015em;
     color: var(--ink);
   }
+  /* C8: the thread-card row already closes with a hairline; don't open the first sub-thread with a second one */
+  .thread-nav + .thread > h2.thread-head:first-child { border-top: 0; padding-top: 0; }
   h2.thread-head .sigil-box {
     grid-column: 1; grid-row: 1 / 3;
     width: 56px; height: 56px;
