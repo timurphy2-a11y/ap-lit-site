@@ -287,7 +287,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
     </span>
     <span class="moment-phrase">{hubData.historicalMomentTitle}</span>
     <span class="moment-cta" aria-hidden="true">
-      <span>Read the period</span><span class="moment-arrow"> →</span>
+      <span>Read the period</span><span class="moment-arrow">→</span>
     </span>
   </button>
 
@@ -324,23 +324,13 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
       <span class="lbl">Previous</span>
       <span class="title">{prevLabel}</span>
     </a>
-  ) : (
-    <a class="prev disabled" aria-disabled="true">
-      <span class="lbl">Previous</span>
-      <span class="title">—</span>
-    </a>
-  )}
+  ) : null}
   {nextUnit ? (
     <a class="next" href={`/units/${nextUnit}`}>
       <span class="lbl">Next</span>
       <span class="title">{nextLabel}</span>
     </a>
-  ) : (
-    <a class="next disabled" aria-disabled="true">
-      <span class="lbl">Next</span>
-      <span class="title">—</span>
-    </a>
-  )}
+  ) : null}
 </nav>
 
 <footer>
@@ -826,6 +816,7 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   .moment-cta {
     display: flex;
     align-items: center;
+    gap: 0.5em; /* C11: space before the arrow, matching "Open domain →" */
     padding: 10px 18px;
     background: var(--acc-text);
     color: var(--cream);
@@ -1121,7 +1112,6 @@ for (let i = 0; i < timelineEvents.length; i += 5) {
   }
   .pager a.prev .title::before { content: '← '; color: var(--acc-text); }
   .pager a.next .title::after  { content: ' →'; color: var(--acc-text); }
-  .pager a.disabled { opacity: 0.3; pointer-events: none; }
 
   /* ── Footer ─────────────────────────────────────────────────── */
   footer {
