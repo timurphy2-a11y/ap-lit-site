@@ -792,7 +792,9 @@ const ALL_THREADS = [
 @media (max-width: 480px) {
   .card-grid { grid-template-columns: 1fr; }
   .cmp-lede  { max-width: 42ch; }
-  .r1 .pill  { gap: 8px; font-size: 17px; }
+  .r1 { gap: 6px; }
+  .r1 .pill  { flex-direction: column; gap: 5px; font-size: 15px; height: 64px; padding: 0 4px; }
+  .r1 .pill .pill-sigil :global(svg) { width: 20px; height: 20px; }
   .r3 .pill  { font-size: 14px; padding: 0 10px; gap: 6px; }
   .r3 .pill-label { display: none; }
 }
