@@ -1982,7 +1982,7 @@ export default function BiographyDemo() {
                     }}>
                       {UNIT_LABELS[unitId]}
                     </span>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--ink-soft)", opacity: 0.5 }}>·</span>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--ink-soft)" }}>·</span>
                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontStyle: "italic", color: "var(--ink-soft)" }}>
                       {UNIT_TEXTS[unitId]}
                     </span>
