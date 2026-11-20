@@ -6,7 +6,7 @@ Context file for Claude Code. Read this at the start of any new session.
 
 ## What This Is
 
-An AP Literature companion site built for a high school class. Six historical units — Medieval, Renaissance, Baroque, Enlightenment, Romanticism, Modernism — each with three domain sub-pages (Philosophy, Painting, Music). Each unit is organized around an anchor literary text (*Hamlet*, *Paradise Lost*, *Pride and Prejudice*, *Moby-Dick*, *Invisible Man*; Medieval has no anchor text — it's a foundation unit).
+An AP Literature companion site built for a high school class. Six historical units — Medieval, Renaissance, Baroque, Enlightenment, Romanticism, Modernism — each with three domain sub-pages (Philosophy, Painting, Music). Each unit is organized around an anchor literary text (*Hamlet*, *Paradise Lost*, *Pride and Prejudice*, *Moby-Dick*, *Invisible Man*; *Hamlet* is the core text for both Medieval and Renaissance).
 
 The site is content-rich and pedagogically serious. Prose quality matters. Don't oversimplify or dumb down copy.
 
@@ -151,8 +151,8 @@ Used consistently across domain pages (`ACCENTS` map in `[domain].astro`) and th
 All `.mdx` files under `src/content/units/` share one collection schema. Key fields:
 
 - `unit`, `period`, `dates`, `domain` (enum: philosophy/art/sculpture/music) — always present
-- `core_text`, `author` — null for Medieval (though inconsistently — some Medieval domain files still set a borrowed anchor text; check the specific file rather than assuming null)
-- `note` — optional string shown when no core_text (Medieval uses "Foundation unit")
+- `core_text`, `author` — set on every unit; Medieval and Renaissance both use *Hamlet*
+- `note` — optional string shown when no core_text (no unit currently omits it)
 - `threads[]` — array of `{id, label, period_summary}`
 - Philosophy: `readings[]`
 - Art: `hero_painting{}`, `gallery_paintings[]`
