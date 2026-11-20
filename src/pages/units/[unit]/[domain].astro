@@ -238,7 +238,7 @@ if (isRedesignedDomain) {
 <section class="unit-strip">
   <div class="num">{unitNumber}</div>
   <div class="title-block">
-    <div class="meta">{meta.core_text ? `Anchor: ${meta.core_text}` : 'Foundation'}</div>
+    <div class="meta">{meta.core_text ? <>Anchor: <em>{meta.core_text}</em></> : 'Foundation'}</div>
     <h2>{meta.period}</h2>
   </div>
   <div class="dates">{meta.dates}</div>
@@ -943,6 +943,14 @@ if (isRedesignedDomain) {
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-bottom: 4px;
+  }
+  /* Titles of works keep mixed-case italics inside the uppercase label (Rule 42; same pattern as the pull-quote attribution). */
+  .unit-strip .title-block .meta em {
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 15px;
+    text-transform: none;
+    letter-spacing: 0.02em;
   }
   .unit-strip .title-block h2 {
     font-family: var(--font-display);
