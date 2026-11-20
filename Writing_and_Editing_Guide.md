@@ -53,7 +53,7 @@ These formulate a point as a negative correction before making it positively. St
 > ✓ "Bernini was also an architect, stage designer, and theatrical impresario; he applied all of those varied skills to his sculpture."
 
 ### 8. Avoid second person in analytical prose
-Second person ("you," "your") is prohibited in analytical writing. It is either too informal or implies a direct address that doesn't belong. The exception is genuinely instructional contexts, where direct address is appropriate: "Notice the hands," "Look at the Virgin's face." On this site those contexts are exactly two: **"What to Notice" / "What to Listen For"** sections, and the **`**Prompt:**`** lines beneath Gallery and Hero entries. Body prose inside a Gallery entry is analytical, not instructional, and second person is prohibited there.
+Second person ("you," "your") is prohibited in analytical writing. It is either too informal or implies a direct address that doesn't belong. The exception is genuinely instructional contexts, where direct address is appropriate: "Notice the hands," "Look at the Virgin's face." On this site second person is permitted in exactly three places: **"What to Notice" / "What to Listen For"** sections, the **`**Prompt:**`** lines beneath Gallery and Hero entries, and the body prose of Gallery and Hero entries (behind "Read the analysis"). It is prohibited everywhere else. The Gallery and Hero exemption covers this rule only; every other rule still applies there.
 
 In analytical prose, replace second person with first person plural ("we," "our"), third person, or impersonal constructions:
 
@@ -296,5 +296,21 @@ This extends Rule 1 (whose ❌ example is itself a stacked negation) and Rule 26
 
 ## VII. Typography
 
-### 42. Titles of works
-Italicize works published as standalone volumes, even short ones (*Nature*, *Existentialism Is a Humanism*). Book-length works stay italic even if first serialized (*Notes from Underground*, Schiller's *Letters on the Aesthetic Education of Man*). Put works published within a journal, collection or larger work in quotation marks ("An Answer to the Question: What Is Enlightenment?", "A Defence of Poetry", "Benito Cereno"). Italicize periodicals (*Rheinische Zeitung*). In music, italicize standalone compositions (motets, organa, masses, operas, symphonies); put songs and excerpts in quotation marks ("Erlkönig"; *Messiah*: "Hallelujah Chorus"). Numbered or generic titles stay roman (Symphony No. 9). Use double quotation marks, with commas and periods inside.
+### 42. Format titles of works by how they were published, not by their length
+A work published as its own volume takes italics, however short. A work published inside something larger — a journal, a collection, a longer work — takes quotation marks.
+
+- **Italics:** standalone volumes (*Nature*, *Existentialism Is a Humanism*); book-length works, even if first serialized (*Notes from Underground*, *Letters on the Aesthetic Education of Man*); periodicals (*Rheinische Zeitung*); ships (the *Pequod*); paintings and sculptures (*Wilton Diptych*).
+- **Quotation marks:** essays, poems, stories, and lectures published within a journal or collection ("An Answer to the Question: What Is Enlightenment?", "A Defence of Poetry", "Benito Cereno").
+- **Shortened titles** keep the full title's formatting: the *Summa*, the *Demoiselles*, the *Ring* cycle.
+- **Roman, no marks:** documents (Magna Carta, the Ninety-Five Theses).
+
+Music follows genre rather than publication:
+
+- **Italics:** operas, oratorios, masses, named symphonies, suites, ballets, motets, and organa (*L'Orfeo*, *Spem in Alium*, *Symphonie fantastique*, *Scheherazade*).
+- **Quotation marks:** songs, hymns, chants, madrigals, jazz tunes, short instrumental pieces, and excerpts from larger works ("Erlkönig", "Für Elise", "St. Louis Blues"; *Messiah*: "Hallelujah Chorus").
+- **Roman, no marks:** numbered or generic titles (Symphony No. 40, Toccata and Fugue in D Minor). A nickname goes in parentheses and quotation marks: Symphony No. 94 ("Surprise").
+
+Use double quotation marks, with commas and periods inside.
+
+> ❌ Kant's *An Answer to the Question: What Is Enlightenment?* (an essay first published in a monthly journal)
+> ✓ Kant's "An Answer to the Question: What Is Enlightenment?"
