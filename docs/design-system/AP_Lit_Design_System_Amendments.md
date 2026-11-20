@@ -98,7 +98,7 @@ A page shows its sigil once in the page header, at modest size and unboxed. A si
 
 ## A10. To reconcile (no change made yet)
 
-- **Subject tabs.** §7 specifies domain tabs as IBM Plex Sans 13px uppercase with a bordered, raised selected state. §3.6 assigns the period accent to the "tab underline." The live site uses Cormorant tabs with a sigil and an accent underline. Tim to decide which description is authoritative. Until then, the live tabs stand.
+- **Subject tabs.** *Resolved by A13 (November 20, 2026).* §7 specified domain tabs as IBM Plex Sans 13px uppercase with a bordered, raised selected state. §3.6 assigned the period accent to the "tab underline." The live site uses Cormorant tabs with a sigil and an accent underline.
 - **Body text.** No change: EB Garamond 18px, line-height 1.65, `--ink-mute`, as specified. Recorded here because the live site currently renders body text in Cormorant Garamond 21px, contrary to §4.1, and is being brought into conformance.
 
 ---
@@ -112,3 +112,15 @@ At 640px and below, the five navigation links collapse into a single **Menu** bu
 ## A12. Titles of works (November 20, 2026) — *family*
 
 Replace §2 "Titles of works" and checklist item 9 with a pointer to Writing and Editing Guide Rule 42: works published as their own volume take italics, works published inside a larger work take quotation marks, and music follows genre.
+
+---
+
+## A13. Selected state for tab-like controls (November 20, 2026) — *supersedes §7 "Buttons and tabs" selected states; resolves A10's subject-tab item*
+
+Every tab-like control (subject tabs, Compare pills, the survey thread jump buttons, Timeline filters, and the artwork selector in the Comparison Lab) uses the live Cormorant tab with its sigil, where it has one.
+
+- **Selected:** `--bg-raised` fill, `--ink` text, weight 600, and a 3px bottom bar (`box-shadow: inset 0 -3px 0`) in the control's own accent (the period accent on subject tabs, the thread or domain color on Compare and the survey jump buttons, the unit or type color on Timeline filters, the page accent in the Lab).
+- **Resting:** unchanged (`--bg`, `--rule` border, `--ink-mute`). Hover: `--bg-raised`, `--ink`.
+- **Never color alone:** the fill, the bar and the weight change carry the state, and the control also exposes it: `aria-current="page"` for links to pages, `aria-current="true"` for in-page navigation (the survey jump buttons), `aria-pressed` for buttons that switch content in place (Compare, Timeline, Lab).
+- Left bars and accent-tinted fills are retired for selected states.
+- **§3.6:** the "thread sidebar rows" use of the domain color is retired along with the unused sidebar layout (Design Polish Pass 2, R1). Tab underlines keep the original accent.

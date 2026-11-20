@@ -90,6 +90,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
       {THREADS.map((t, i) => (
         <a
           class:list={['stp-tbtn', i === 0 && 'active']}
+          aria-current={i === 0 ? 'true' : undefined}
           href={`#${t.id}`}
           data-target={t.id}
           style={`--w: ${t.weight}; --wt: ${t.weight.replace('th-', 'tt-')}`}
@@ -297,16 +298,10 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
   .stp-tbtn:hover .stp-tbtn-sig { color: var(--ink-mute); }
 
   .stp-tbtn.active {
-    background: color-mix(in oklab, var(--w) 12%, var(--bg));
-    border-color: var(--w);
-    color: var(--wt);
-  }
-  .stp-tbtn.active::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--w);
+    background: var(--bg-raised);
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: inset 0 -3px 0 var(--w);
   }
   .stp-tbtn.active .stp-tbtn-sig { color: var(--wt); }
 
@@ -576,7 +571,11 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     entries.forEach(e => {
       if (e.isIntersecting) {
         const id = e.target.id;
-        btns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+        btns.forEach(b => {
+          const on = b.dataset.target === id;
+          b.classList.toggle('active', on);
+          if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        });
       }
     });
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });

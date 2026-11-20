@@ -525,24 +525,13 @@ const ALL_THREADS = [
   white-space: nowrap;
 }
 
-.pill::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--pill-mid);
-  opacity: 0;
-  transition: opacity 160ms;
-}
-
 .pill[aria-pressed="true"] {
-  background: color-mix(in oklab, var(--pill-mid) 14%, var(--bg));
-  border-color: var(--pill-mid);
+  background: var(--bg-raised);
+  border-color: var(--rule);
   color: var(--ink);
+  font-weight: 600;
+  box-shadow: inset 0 -3px 0 var(--pill-mid);
 }
-.pill[aria-pressed="true"]::before { opacity: 1; }
 .pill:hover:not([aria-pressed="true"]) { color: var(--ink); }
 
 .pill:focus-visible {

@@ -68,46 +68,46 @@ const sorted = [...ENTRIES].sort((a, b) => {
     <div class="filters">
 
       <div class="filter-row" id="filter-units">
-        <button class="pill all active" data-unit="all">
+        <button class="pill all active" aria-pressed="true" data-unit="all">
           <span class="dot" style="background: var(--ink-soft)"></span>All units
         </button>
-        <button class="pill" data-unit="00" style="--c: var(--acc-00)">
+        <button class="pill" aria-pressed="false" data-unit="00" style="--c: var(--acc-00)">
           <span class="dot"></span>Medieval
         </button>
-        <button class="pill" data-unit="01" style="--c: var(--acc-01)">
+        <button class="pill" aria-pressed="false" data-unit="01" style="--c: var(--acc-01)">
           <span class="dot"></span>Renaissance
         </button>
-        <button class="pill" data-unit="02" style="--c: var(--acc-02)">
+        <button class="pill" aria-pressed="false" data-unit="02" style="--c: var(--acc-02)">
           <span class="dot"></span>Baroque
         </button>
-        <button class="pill" data-unit="03" style="--c: var(--acc-03)">
+        <button class="pill" aria-pressed="false" data-unit="03" style="--c: var(--acc-03)">
           <span class="dot"></span>Enlightenment
         </button>
-        <button class="pill" data-unit="04" style="--c: var(--acc-04)">
+        <button class="pill" aria-pressed="false" data-unit="04" style="--c: var(--acc-04)">
           <span class="dot"></span>Romanticism
         </button>
-        <button class="pill" data-unit="05" style="--c: var(--acc-05)">
+        <button class="pill" aria-pressed="false" data-unit="05" style="--c: var(--acc-05)">
           <span class="dot"></span>Modernism
         </button>
       </div>
 
       <div class="filter-row" id="filter-types">
-        <button class="pill all active" data-type="all">
+        <button class="pill all active" aria-pressed="true" data-type="all">
           <span class="dot" style="background: var(--ink-soft)"></span>All events
         </button>
-        <button class="pill" data-type="POL" style="--c: var(--iron)">
+        <button class="pill" aria-pressed="false" data-type="POL" style="--c: var(--iron)">
           <span class="dot"></span>Political
         </button>
-        <button class="pill" data-type="phil" style="--c: var(--th-phil)">
+        <button class="pill" aria-pressed="false" data-type="phil" style="--c: var(--th-phil)">
           <span class="dot"></span>Philosophy
         </button>
-        <button class="pill" data-type="paint" style="--c: var(--th-paint)">
+        <button class="pill" aria-pressed="false" data-type="paint" style="--c: var(--th-paint)">
           <span class="dot"></span>Painting
         </button>
-        <button class="pill" data-type="sculp" style="--c: var(--th-sculp)">
+        <button class="pill" aria-pressed="false" data-type="sculp" style="--c: var(--th-sculp)">
           <span class="dot"></span>Sculpture
         </button>
-        <button class="pill" data-type="music" style="--c: var(--th-music)">
+        <button class="pill" aria-pressed="false" data-type="music" style="--c: var(--th-music)">
           <span class="dot"></span>Music
         </button>
       </div>
@@ -348,8 +348,9 @@ const sorted = [...ENTRIES].sort((a, b) => {
       if (!rowEl) return;
       rowEl.querySelectorAll('.pill').forEach(function(btn) {
         btn.addEventListener('click', function() {
-          rowEl.querySelectorAll('.pill').forEach(function(b) { b.classList.remove('active'); });
+          rowEl.querySelectorAll('.pill').forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
           btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
           state[key] = btn.dataset[key];
           apply();
         });
@@ -498,9 +499,11 @@ const sorted = [...ENTRIES].sort((a, b) => {
     flex-shrink: 0;
   }
   .tl-page .pill.active {
-    background: color-mix(in oklab, var(--c) 12%, var(--bg));
-    border-color: color-mix(in oklab, var(--c) 60%, var(--rule));
+    background: var(--bg-raised);
+    border-color: var(--rule);
     color: var(--ink);
+    font-weight: 600;
+    box-shadow: inset 0 -3px 0 var(--c);
   }
 
   /* ─── Timeline list ────────────────────────────────────────────────────── */
