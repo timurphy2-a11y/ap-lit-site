@@ -1,6 +1,6 @@
 # Design Polish Pass 1: final Phase 1 report
 
-**Status:** Phase 1 is complete and approved pending your phone check. Branch `claude/design-polish-1`, 34 commits on top of `main` (round 4 included). Preview: https://polish1-ap-lit-site.tmurphy-ef9.workers.dev. Nothing has been merged or deployed to production. Phase 2 is on hold until the amendments file is on this machine. The merge checklist is in `DESIGN_POLISH_1_MERGE_CHECKLIST.md`.
+**Status:** Phase 1 is complete and approved pending your phone check. Branch `claude/design-polish-1`, 38 commits on top of `main` (rounds 4 and 5 included). Preview: https://polish1-ap-lit-site.tmurphy-ef9.workers.dev. Nothing has been merged or deployed to production. Phase 2 is on hold until the amendments file is on this machine. The merge checklist is in `DESIGN_POLISH_1_MERGE_CHECKLIST.md`.
 
 ## Final state by item
 | Item | Final state |
@@ -18,6 +18,12 @@
 | C11 | Arrow gap, fixed-width toggles, empty pager sides hidden |
 | C12 | Frieze matches the container; pull-quote attributions centered |
 | Keyboard | BioLink popups: focus moves to Close, Tab stays inside, Escape closes and returns focus to the link; long bios scroll on phones |
+
+## Round 5 changes
+- **Writing guide:** your current file (`~/Downloads/Writing_and_Editing_Guide.md`, with the corrected Rule 8 and the final Rule 42) is installed unedited and byte-identical. It replaces my reconstruction.
+- **CLAUDE.md** titles rule re-synced to the final Rule 42: the publication rule; the italics, quotation-mark, shortened-title and roman lists; the music genre lists; and the nickname convention. A short note on site markup follows it.
+- **"Ring Cycle" → "Ring cycle"** (Wagner BioLink).
+- **Maestà original removed.** `duccio-maesta.jpg` is `git rm`'d; the cutout is the only version referenced.
 
 ## Round 4 changes
 - **Writing guide.** Your attached file didn't come through: the message had no attachment, and no 42-rule copy exists anywhere on this machine. I rebuilt it from the newest copy I could find, the 41-rule guide from August 28 on the external drive (`/Volumes/New Drive/Mac Migration/Downloads/Writing_and_Editing_Guide.md`). I then appended "## VII. Typography / ### 42. Titles of works" with your round-3 wording, verbatim apart from italic markup. The rule 33 version is gone. **If your file differs, put it in the repo root (or Downloads) and I'll swap it in before the merge.**
