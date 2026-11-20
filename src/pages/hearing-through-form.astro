@@ -179,13 +179,17 @@ function getFeatured(entry: typeof entries[0]) {
     </main>
 
     <!-- Footer -->
-    <footer class="stp-footer">
+    <nav class="stp-footer" aria-label="Related pages">
       <a class="stp-home" href="/">← Home</a>
       <div class="stp-siblings">
         <a href="/seeing-through-paint">Seeing Through Paint</a>
         <a href="/sculpting-through-time">Sculpting Through Time</a>
-        <a href="/credits">Image Credits</a>
       </div>
+    </nav>
+
+    <footer class="stp-colophon">
+      <div class="colophon">Of Imagination All Compact · AP Literature</div>
+      <div><a href="/credits">Image Credits</a></div>
     </footer>
 
   </div><!-- /.stp-wrap -->
@@ -504,8 +508,7 @@ function getFeatured(entry: typeof entries[0]) {
 
   .stp-footer {
     margin: 80px 0 0;
-    padding: 26px 0 64px;
-    border-top: 1px solid var(--rule);
+    padding: 0 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -533,6 +536,27 @@ function getFeatured(entry: typeof entries[0]) {
     transition: color 160ms, border-color 160ms;
   }
   .stp-siblings a:hover { color: var(--ink); border-color: var(--rule-strong); }
+  .stp-colophon {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .stp-colophon .colophon {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+  }
+  .stp-colophon a { color: var(--ink-soft); }
+  .stp-colophon a:hover { color: var(--ink); }
 </style>
 
 <script>

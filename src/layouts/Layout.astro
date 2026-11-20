@@ -36,7 +36,8 @@ const peopleJson = JSON.stringify(PEOPLE);
 
     {!hideFooter && (
       <footer class="site-footer">
-        <a href="/credits">Image Credits</a>
+        <div class="colophon">Of Imagination All Compact · AP Literature</div>
+        <div><a href="/credits">Image Credits</a></div>
       </footer>
     )}
 
@@ -140,14 +141,23 @@ const peopleJson = JSON.stringify(PEOPLE);
 
   /* ── Footer ──────────────────────────────────────────────────────── */
   .site-footer {
-    padding: 28px var(--gutter) 40px;
+    padding: 40px var(--gutter) 56px;
     border-top: 1px solid var(--rule);
     font-family: var(--font-ui);
     font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .site-footer .colophon {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    letter-spacing: 0;
   }
   .site-footer a {
     color: var(--ink-soft);
