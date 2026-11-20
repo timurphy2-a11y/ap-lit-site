@@ -7,7 +7,6 @@ import PullQuote from '../../../components/PullQuote.astro';
 import PeriodMotif from '../../../components/PeriodMotif.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import '../../../styles/design-tokens.css';
-import ThreadIcon from '../../../components/ThreadIcon.astro';
 import Plate from '../../../components/Plate.astro';
 import SlowDownCallout from '../../../components/SlowDownCallout.astro';
 import { THREAD_ICONS } from '../../../components/threadIcons';
@@ -423,7 +422,6 @@ if (isRedesignedDomain) {
   return null;
 })()}
 
-{isRedesignedDomain ? (
   <!-- ── Single-column reading layout (art / sculpture / music) ── -->
   <article class="prose reading">
     <!-- Rendered in place so the jump links work without JavaScript; the page script moves it below the introduction. -->
@@ -475,63 +473,6 @@ if (isRedesignedDomain) {
       )))}
     </div>
   </article>
-) : (
-  <!-- ── Two-column layout (Philosophy only) ── -->
-  <div class="layout">
-
-    <article class="prose">
-      <Content components={{ BioLink, PullQuote, Plate, YouTubeEmbed, SlowDownCallout }} />
-    </article>
-
-    <!-- ── Column divider (role 2) ── -->
-    <span class="motif-rule" aria-hidden="true">
-      <PeriodMotif unit={unit} role={2} />
-    </span>
-
-    <!-- ── Sidebar ── -->
-    <aside class="page-sidebar">
-
-      <!-- Analytical Threads -->
-      <div class="card">
-        <h4>Analytical Threads</h4>
-        <ul class="threads-list">
-          {entry.data.threads.map((t: { id: string; label: string; period_summary: string }, i: number) => {
-            const subAcc = domainColors[i % domainColors.length];
-            return (
-              <li style={`--sub-acc: ${subAcc}; --sub-acc-text: ${domainTextColors[i % domainTextColors.length]}; --sub-icon: ${domainIconColor};`}>
-                <span class="sig-xs">
-                  <ThreadIcon thread={t.id} size={28} color={domainIconColor} />
-                </span>
-                <div class="tt">{t.label}</div>
-                <div class="gloss">{t.period_summary}</div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <!-- Readings -->
-      {(() => {
-        const d = entry.data as any;
-        if (!d.readings) return null;
-        return (
-          <div class="card">
-            <h4>Readings</h4>
-            <ul class="readings">
-              {d.readings.map((r: any) => (
-                <li>
-                  <div class="r-title" set:html={inlineMd(r.title)} />
-                  <div class="r-by">{r.author}{r.date ? ` · ${r.date}` : ''}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
-      })()}
-
-    </aside>
-  </div>
-)}
 
 <!-- ── Pager ── -->
 <nav class="pager">
@@ -2182,36 +2123,6 @@ if (isRedesignedDomain) {
   }
   .lightbox-close:hover { background: rgba(0,0,0,.55); }
 
-  /* ── Two-column layout ── */
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 28px 300px;
-    gap: 48px 0;
-    column-gap: 0;
-    padding: 48px 0 32px;
-  }
-  .layout > .prose { padding-right: 48px; }
-  .layout > aside { padding-left: 0; }
-  @media (max-width: 1100px) {
-    .layout { grid-template-columns: 1fr; gap: 48px; }
-    .layout > .prose { padding-right: 0; }
-    .motif-rule { display: none; }
-  }
-
-  /* ── Column divider (role 2) ── */
-  .motif-rule {
-    width: 28px;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .motif-rule svg {
-    width: 100%;
-    height: auto;
-    max-height: 320px;
-  }
-
   /* ── Prose: base ── */
   .prose {
     max-width: var(--measure);
@@ -2438,130 +2349,6 @@ if (isRedesignedDomain) {
     padding-left: 0;
     margin: 0;
     font-style: italic;
-  }
-
-  /* ── Sidebar ── */
-  aside.page-sidebar {
-    position: sticky;
-    top: 24px;
-    align-self: start;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  @media (max-width: 1100px) { aside.page-sidebar { position: static; } }
-
-  .card {
-    border: 1px solid var(--rule);
-    background: var(--bg-raised);
-    padding: 22px 22px 20px;
-  }
-  .card h4 {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--rule);
-    font-weight: 500;
-  }
-
-  /* Analytical Threads list */
-  aside .threads-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  aside .threads-list li {
-    --c: var(--sub-acc, var(--thread-acc));
-    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
-    background: color-mix(in oklab, var(--c) 10%, var(--bg));
-    padding: 14px 16px 14px 18px;
-    position: relative;
-    display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 12px;
-    transition: background 160ms ease, border-color 160ms ease;
-  }
-  aside .threads-list li::before {
-    content: '';
-    position: absolute;
-    left: -1px; top: -1px; bottom: -1px;
-    width: 3px;
-    background: var(--c);
-  }
-  aside .threads-list li:hover {
-    background: color-mix(in oklab, var(--c) 9%, var(--bg));
-    border-color: color-mix(in oklab, var(--c) 50%, var(--rule));
-  }
-  aside .threads-list .sig-xs {
-    width: 36px;
-    height: 36px;
-    border: 1px solid color-mix(in oklab, var(--c) 35%, var(--bg));
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  aside .threads-list .sig-xs svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  aside .threads-list .tt {
-    font-family: var(--font-ui);
-    font-weight: 600;
-    font-size: 14.5px;
-    line-height: 1.15;
-    color: var(--sub-acc-text, var(--ink));
-    align-self: center;
-  }
-  aside .threads-list .gloss {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 13.5px;
-    line-height: 1.4;
-    color: var(--ink-mute);
-    margin-top: 0;
-    grid-column: 1 / -1;
-  }
-
-  /* Readings list */
-  .readings {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .readings li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .readings li:last-child { border-bottom: 0; }
-  .r-title {
-    display: block;
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 15px;
-    color: var(--ink);
-    line-height: 1.25;
-  }
-  .r-title :global(em) { font-style: italic; }
-  .r-by {
-    display: block;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    margin-top: 3px;
-    text-transform: uppercase;
-    font-weight: 500;
   }
 
   /* ── Pager ── */
