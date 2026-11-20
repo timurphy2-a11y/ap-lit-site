@@ -65,3 +65,25 @@ Everything is on the proposals page. For each: what the reference says, a before
 - CLAUDE.md still mentions the hub "Visual Art split card".
 - The survey thread jump buttons and Timeline filters need ARIA regardless of the item 18 choice.
 - The old `design-polish-2` report in this folder shares a name with this brief; this one is `DESIGN_POLISH_PASS2_BRIEF_REPORT.md`.
+
+---
+
+# Phase 2 applied (Tim's choices) — same branch, `claude/pass2-fix`
+Phase 1 and Phase 2 now merge together. Preview: https://pass2-ap-lit-site.tmurphy-ef9.workers.dev. `claude/pass2-proposals` is deleted (the `?p2=` switches and `/p2/` page are gone with it). Nothing merged or deployed.
+
+| Item | Choice | What changed |
+|---|---|---|
+| 15b | four tabs | `compare.astro`: Philosophy, Painting, Sculpture, Music; second row removed; `?d=art&m=sculpture` links still work; at 480px and below the sigil stacks over the label so four tabs fit at 375 |
+| 16 | A | Looking Studio, Listening Studio and Comparison Lab: instructional prose 18px and notes/subtitles 16px in EB Garamond (computed styles confirmed) |
+| 18 | B + A13 | Raised fill, `--ink`, weight 600, 3px bottom bar in the control's accent on subject tabs, Compare pills, the three survey jump buttons, Timeline filters and the Lab's artwork selector. Added `aria-current="true"` to the jump buttons (kept in step by the scroll spy) and `aria-pressed` to the 13 Timeline filters. A13 written; A10's subject-tab item marked resolved; §3.6 sidebar-rows use retired |
+| 20 | A | The 56 portrait-less people show their period sigil (aria-hidden) |
+| I1 | as proposed | `raphael-alba-madonna-cutout.webp` replaces the JPG; `many-centers-of-inquiry-manuscripts-v5.png` replaces v4; old files removed |
+| R1 | A | Sidebar markup, `.layout`, `.motif-rule` and sidebar CSS removed from `[domain].astro` (212 lines); readings data and schema kept |
+| 17 | footer cells | Removed on home, Guides and the Comparison Lab (each restated the page). **Kept on Musical Forms:** "simplified listening models, not scores" is the only place that caveat appears on the page |
+
+**Verification (final build).** Build passes, 0 console errors on 47 pages at 1440 and 375; 0 text contrast failures; no decorative glyph under 3:1; no horizontal scroll at 375. Rendered-text diff against production, beyond what was listed before: "Sculpture" now a top-level Compare tab; the 56 initials boxes are gone (20A); the three removed footer cells; Musical Forms caption timing noise. Keyboard: Compare tab order and Space on Sculpture; Timeline filter Enter, popover Enter/Escape with focus return; survey jump buttons and subject tabs show a 2px outline. Screenshots: `.polish/pass2-shots/final/` (16 pages × 2 widths).
+
+**Not done / notes**
+- A13 covers the five inventoried controls plus the Lab artwork selector. The Listening Studio lens cards (`.ocard.on`) are large cards that open a detail panel; I treated them as cards, not tabs, and left them.
+- At 320px the Compare "Philosophy" label is slightly clipped; 375 is fine.
+- `.prose:not(.reading)` rules in `[domain].astro` are now dead too; I left them because they sit among live rules.
