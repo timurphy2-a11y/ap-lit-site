@@ -522,7 +522,7 @@ if (isRedesignedDomain) {
             <ul class="readings">
               {d.readings.map((r: any) => (
                 <li>
-                  <div class="r-title">{r.title}</div>
+                  <div class="r-title" set:html={inlineMd(r.title)} />
                   <div class="r-by">{r.author}{r.date ? ` · ${r.date}` : ''}</div>
                 </li>
               ))}
@@ -2572,11 +2572,12 @@ if (isRedesignedDomain) {
   .r-title {
     display: block;
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 15px;
     color: var(--ink);
     line-height: 1.25;
   }
+  .r-title :global(em) { font-style: italic; }
   .r-by {
     display: block;
     font-family: var(--font-ui);
