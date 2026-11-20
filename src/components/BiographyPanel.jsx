@@ -1218,7 +1218,7 @@ const RAW_PEOPLE = [
     dates: "1813–1883",
     field: "Composer",
     units: ["04-romanticism"],
-    bio: "A German composer who wrote his own libretti and developed the concept of the Gesamtkunstwerk — total artwork — fusing music, text, drama, and visual spectacle into a unified experience. His *Ring* Cycle runs 15 hours across four operas. He was also a virulent antisemite whose writings influenced the Nazis, and the political history of his music remains contested. He died in Venice, having just completed *Parsifal*.",
+    bio: "A German composer who wrote his own libretti and developed the concept of the Gesamtkunstwerk — total artwork — fusing music, text, drama, and visual spectacle into a unified experience. His *Ring* cycle runs 15 hours across four operas. He was also a virulent antisemite whose writings influenced the Nazis, and the political history of his music remains contested. He died in Venice, having just completed *Parsifal*.",
     significance: "Wagner's Tristan chord — a dissonance that refuses to resolve for four hours — is the musical equivalent of the Romantic sublime: tension so extreme it exceeds the structures designed to contain it. The Prelude to *Tristan und Isolde* is the sound of yearning without resolution, the sound of Ahab's obsession, the sound of what the Romantic era does when feeling overwhelms form.",
     portrait: "/images/portraits/portrait-wagner-richard.jpg",
   },
