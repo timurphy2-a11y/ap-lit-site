@@ -653,7 +653,7 @@ import Layout from '../../layouts/Layout.astro';
 .lks-page{--acc:#815D00;--acc-line:#B07028;--acc-soft:#F3E6D2;--guide:#5E9C79;--measure:64ch;--read-wide:1040px;--gutter:clamp(20px,4vw,72px);padding:0 var(--gutter);max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink);font-family:var(--font-text);font-size:18px;line-height:1.65}
 .lks-page a{color:var(--acc);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .lks-page a:hover{color:color-mix(in oklab,var(--acc) 70%,black)}
-.lks-crumb{padding:20px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.lks-crumb{padding:20px 0 0;font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .lks-crumb a{color:inherit;text-decoration:none}
 .lks-crumb a:hover{color:var(--ink)}
 .lks-crumb .sep{color:var(--rule-strong)}
@@ -686,23 +686,23 @@ import Layout from '../../layouts/Layout.astro';
 .ocard .oname{font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
 .ocard .ot{font-family:var(--font-ui);font-size:13px;line-height:1.45;color:var(--ink-soft);margin:5px 0 0;text-wrap:pretty}
 .ocard .ofoot{margin-top:auto;padding-top:13px;display:flex;align-items:center;gap:8px}
-.ocard .othread{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.ocard .othread{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--acc)}
 .lens-detail{max-width:var(--measure);margin:30px auto 0}
 .lens-detail.is-hidden,.lens-wrap.is-hidden{display:none}
 .detail-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);margin-bottom:8px}
-.detail-bar .dthread{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.detail-bar .dthread{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--acc)}
 .detail-close{font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--ink);background:var(--bg-sunken);border:1px solid var(--rule-strong);padding:8px 14px;cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .detail-close:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .lens{scroll-margin-top:24px}
 .lens-head{display:grid;grid-template-columns:56px 1fr;column-gap:20px;align-items:center;margin:14px 0 4px}
 .lens-sig{width:56px;height:56px;border:1px solid color-mix(in oklab,var(--acc) 40%,var(--rule-strong));background:var(--acc-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--acc)}
 .lens-sig svg{width:32px;height:32px;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.lens-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;display:block}
+.lens-idx{font-family:var(--font-mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;display:block}
 .lens-title{font-family:var(--font-display);font-weight:500;font-size:30px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);margin:0}
 .lens-cue{font-size:18px;line-height:1.6;color:var(--ink-mute);margin:16px 0 24px}
 .study,.orient{border:1px solid var(--rule-strong);background:var(--bg-sunken);padding:0}
 .study-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--bg-raised)}
-.study-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:3px 8px;background:var(--acc-soft);white-space:nowrap}
+.study-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in oklab,var(--acc) 45%,var(--rule));padding:3px 8px;background:var(--acc-soft);white-space:nowrap}
 .study-head em{font-family:var(--font-text);font-style:normal;font-size:16px;color:var(--ink)}
 .study-body{padding:18px 18px 20px}
 .look{font-family:var(--font-ui);font-size:16px;line-height:1.6;color:var(--ink-mute);margin:0 0 16px}
@@ -727,7 +727,7 @@ import Layout from '../../layouts/Layout.astro';
 .details[hidden]{display:none}
 .detail-crop{position:relative;aspect-ratio:1.5;overflow:hidden;border:1px solid var(--rule);background:#2b2620}
 .detail-crop img{position:absolute;inset:0;width:150%;max-width:none;object-fit:cover}
-.detail-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
+.detail-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
 .detail-note{display:block;margin-top:8px;font-size:11.5px;color:var(--ink-soft);font-style:normal}
 .detail-text{font-family:var(--font-ui);font-size:13.5px;line-height:1.55;color:var(--ink-mute);margin:0}
 .crop-caption{margin-top:14px;padding:16px 18px;border:1px solid var(--rule);background:var(--bg-raised)}
@@ -735,7 +735,7 @@ import Layout from '../../layouts/Layout.astro';
 .crop-caption .detail-text strong{color:var(--ink);font-weight:600}
 .crop-caption .detail-note{display:block;margin:0}
 .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.guide-toggle,.takeaway-toggle,.wider-toggle{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--rule-strong);background:var(--bg);font-family:var(--font-ui);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
+.guide-toggle,.takeaway-toggle,.wider-toggle{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--rule-strong);background:var(--bg);font-family:var(--font-ui);font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:background 150ms,border-color 150ms,color 150ms}
 .guide-toggle:hover,.takeaway-toggle:hover,.wider-toggle:hover{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .guide-toggle[aria-pressed="true"],.takeaway-toggle[aria-expanded="true"],.wider-toggle[aria-expanded="true"]{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .guide-toggle .gdot{width:9px;height:9px;flex:0 0 9px}
@@ -743,7 +743,7 @@ import Layout from '../../layouts/Layout.astro';
 .guide-toggle[aria-pressed="true"] .gdot::before{content:'●'}
 .caption{margin-top:14px;padding:14px 16px;border-left:3px solid var(--acc);background:var(--acc-soft)}
 .caption[hidden]{display:none}
-.cap-label{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:7px}
+.cap-label{display:block;font-family:var(--font-mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--acc);margin-bottom:7px}
 .caption p{font-family:var(--font-ui);font-size:14px;line-height:1.6;color:var(--ink-mute);margin:0}
 .caption strong{color:var(--ink)}
 .takeaway-wrap{margin:22px 0 0}
@@ -771,7 +771,7 @@ import Layout from '../../layouts/Layout.astro';
 .orient-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:600px){.orient-pair{grid-template-columns:1fr}}
 .arr{border:1px solid var(--rule);background:var(--bg);padding:0;margin:0}
-.arr figcaption{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:9px 12px;border-bottom:1px solid var(--rule);margin:0}
+.arr figcaption{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);padding:9px 12px;border-bottom:1px solid var(--rule);margin:0}
 .arr svg{display:block;width:100%;height:auto}
 .arr .solid{fill:var(--acc-line);stroke:none}
 .arr .ink{fill:none;stroke:var(--ink-mute);stroke-width:3;stroke-linecap:round}

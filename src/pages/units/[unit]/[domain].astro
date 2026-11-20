@@ -964,8 +964,8 @@ if (isRedesignedDomain) {
   .crumb {
     padding: 20px 0 0;
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
     display: flex;
@@ -997,7 +997,7 @@ if (isRedesignedDomain) {
   }
   .unit-strip .title-block .meta {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -1133,11 +1133,12 @@ if (isRedesignedDomain) {
   }
   figure.hero-plate .caption .byline {
     font-family: var(--font-ui);
-    font-size: 11.5px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     color: var(--ink-mute);
     margin-top: 4px;
     text-transform: uppercase;
+    font-weight: 500;
   }
   figure.hero-plate .caption .meta {
     font-family: var(--font-mono);
@@ -1172,11 +1173,12 @@ if (isRedesignedDomain) {
     margin-top: 11px;
     font-family: var(--font-ui);
     font-style: normal;
-    font-size: 10.5px;
-    letter-spacing: 0.13em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-soft);
     line-height: 1.5;
+    font-weight: 500;
   }
   figure.hero-plate.philosophy-hero .caption .gloss {
     margin-top: 15px;
@@ -1269,8 +1271,8 @@ if (isRedesignedDomain) {
     margin: 0;
     font-family: var(--font-ui);
     font-weight: 500;
-    font-size: 11.5px;
-    letter-spacing: 0.09em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1.4;
     color: var(--ink-soft);
@@ -1347,7 +1349,7 @@ if (isRedesignedDomain) {
     margin: 0 0 14px; color: var(--ink);
   }
   .argument-diagram .arg-sub, .argument-exercise .arg-sub {
-    font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
     font-weight: 500; margin: 0 0 8px; color: var(--ink-soft);
   }
   .argument-diagram p, .argument-exercise p { font-size: 16px; line-height: 1.55; margin: 0 0 10px; }
@@ -1384,16 +1386,16 @@ if (isRedesignedDomain) {
   .doc-card { background: var(--bg-raised); border: 1px solid var(--rule); font-family: var(--font-text); color: var(--ink-mute); }
   .doc-card figure.work-plate { margin: 0; border: 0; border-bottom: 1px solid var(--rule); }
   .doc-card > :not(figure) { margin-left: 18px; margin-right: 18px; }
-  .doc-card .doc-date { margin-top: 16px; }
+  .doc-card .doc-date { margin-top: 16px; font-size: 13px; } /* C3: beats `.doc-card p` (15px) */
   .doc-card > :last-child { margin-bottom: 18px; }
-  .doc-date { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 6px; }
+  .doc-date { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 6px; font-weight: 500; }
   .doc-title { font-family: var(--font-display); font-weight: 500; font-size: 19px; line-height: 1.25; color: var(--ink); margin: 0 0 8px; }
   .doc-card p, .doc-card dd, .doc-card dt { font-size: 15px; line-height: 1.5; }
   .doc-card p { margin-top: 0; margin-bottom: 9px; }
   .doc-card .doc-small { font-family: var(--font-ui); font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
   .doc-card blockquote { margin: 10px 18px; padding: 0 0 0 14px; border-left: 2px solid var(--rule-strong); font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink); }
   .doc-card dl { margin: 10px 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; }
-  .doc-card dt { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; }
+  .doc-card dt { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; font-weight: 500; }
   .doc-card dd { margin: 0; }
   .doc-seq { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: var(--read-wide, 860px); margin: 0 auto 14px; }
   .doc-seq .doc-card { padding-top: 2px; }
@@ -1521,9 +1523,9 @@ if (isRedesignedDomain) {
     padding: 13px 20px;
     border-bottom: 1px solid var(--rule);
     font-family: var(--font-ui);
-    font-size: 10.5px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--sub-acc-text, var(--ink-mute));
   }
@@ -1573,8 +1575,8 @@ if (isRedesignedDomain) {
   .cmp > div { background: var(--bg-raised); padding: 12px 16px 14px; }
   .cmp .asp {
     font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.16em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
     background: var(--bg-sunken);
@@ -1582,7 +1584,7 @@ if (isRedesignedDomain) {
     align-items: center;
   }
   .cmp .who { font-family: var(--font-display); font-size: 17px; line-height: 1.2; color: var(--sub-acc-text, var(--thread-acc-text)); }
-  .cmp .who .sub { display: block; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); margin-top: 5px; }
+  .cmp .who .sub { display: block; font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 5px; font-weight: 500; }
   .cmp .cell { font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
 
   /* ── Label naming the thread a group of plates belongs to ── */
@@ -1654,11 +1656,12 @@ if (isRedesignedDomain) {
   }
   .plate .caption .byline {
     font-family: var(--font-ui);
-    font-size: 11.5px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
     margin-top: 6px;
     text-transform: uppercase;
+    font-weight: 500;
   }
   .plate .caption .meta {
     font-family: var(--font-mono);
@@ -1924,7 +1927,7 @@ if (isRedesignedDomain) {
     border: 1px solid var(--rule-strong);
     background: var(--bg-sunken);
     font-family: var(--font-ui);
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1962,8 +1965,8 @@ if (isRedesignedDomain) {
   .analysis-panel[hidden] { display: block; }
   .analysis-eyebrow {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.16em;
+    font-size: 13px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--thread-acc-text);
     margin-bottom: 12px;
@@ -2021,9 +2024,9 @@ if (isRedesignedDomain) {
   .conn-lbl {
     flex: 1;
     font-family: var(--font-ui);
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--thread-acc-text);
   }
@@ -2097,14 +2100,15 @@ if (isRedesignedDomain) {
   }
   .forward .lbl {
     font-family: var(--font-ui);
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--sub-acc-text, var(--thread-acc-text));
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 500;
   }
   .forward .lbl::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
   .forward p { font-size: 16.5px; line-height: 1.6; color: var(--ink-mute); margin: 0 0 12px; }
@@ -2330,11 +2334,11 @@ if (isRedesignedDomain) {
      the redesigned reading layout wraps h3 into a collapsible .connection instead) */
   .prose:not(.reading) h3 {
     font-family: var(--font-ui);
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--thread-acc-text);
-    font-weight: 400;
+    font-weight: 500;
     margin: 36px 0 0;
     padding: 16px 22px 0;
     background: var(--bg-raised);
@@ -2385,10 +2389,11 @@ if (isRedesignedDomain) {
     margin-top: 12px;
     font-family: var(--font-ui);
     font-style: normal;
-    font-size: 11.5px;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    font-weight: 500;
   }
 
   /* "Looking forward:" callout paragraphs (Philosophy only) */
@@ -2414,8 +2419,8 @@ if (isRedesignedDomain) {
   .prose:not(.reading) p:has(> strong:first-child) > strong:first-child {
     display: block;
     font-family: var(--font-ui);
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--thread-acc-text);
     margin-bottom: 10px;
@@ -2452,13 +2457,14 @@ if (isRedesignedDomain) {
   }
   .card h4 {
     font-family: var(--font-ui);
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-soft);
     margin: 0 0 16px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--rule);
+    font-weight: 500;
   }
 
   /* Analytical Threads list */
@@ -2549,11 +2555,12 @@ if (isRedesignedDomain) {
   .r-by {
     display: block;
     font-family: var(--font-ui);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     color: var(--ink-soft);
     margin-top: 3px;
     text-transform: uppercase;
+    font-weight: 500;
   }
 
   /* ── Pager ── */
@@ -2575,10 +2582,11 @@ if (isRedesignedDomain) {
   .pager-next { text-align: right; }
   .pager-lbl {
     font-family: var(--font-ui);
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    font-weight: 500;
   }
   .pager-title {
     font-size: 20px;
@@ -2680,7 +2688,7 @@ if (isRedesignedDomain) {
 
   .bio-field {
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--thread-acc-text);
