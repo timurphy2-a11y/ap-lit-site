@@ -135,7 +135,7 @@ const sorted = [...ENTRIES].sort((a, b) => {
                   <div class="unit-label">{unit} · {unitMeta.name}</div>
                 </div>
                 <div class="anchor-body">
-                  <div class="ap-title">{entry.apTitle}</div>
+                  <div class="ap-title" set:html={inlineMd(entry.apTitle)} />
                   <div class="author">{entry.apAuthor}</div>
                   <p class="note" set:html={inlineMd(entry.apNote)} />
                   <a class="read" href={unitMeta.url}>Read historical context · →</a>
@@ -619,13 +619,14 @@ const sorted = [...ENTRIES].sort((a, b) => {
   .tl-page .ap-row .anchor-body .ap-title {
     font-family: var(--font-cg);
     font-weight: 500;
-    font-style: italic;
+    font-style: normal;
     font-size: 32px;
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--ink);
     margin: 0;
   }
+  .tl-page .ap-row .anchor-body .ap-title :global(em) { font-style: italic; }
   .tl-page .ap-row .anchor-body .author {
     font-family: var(--font-mono);
     font-size: 12px;

@@ -41,7 +41,7 @@ const RAW_PEOPLE = [
     dates: "1225–1274",
     field: "Theologian & Philosopher",
     units: ["00-medieval"],
-    bio: "Born into a minor Italian noble family and educated at the University of Naples and then Paris, Aquinas joined the Dominican order against his family's wishes — his brothers kidnapped him and held him for a year to change his mind. He spent his career reconciling Aristotle's newly recovered philosophy with Christian theology, producing the *Summa Theologiae*, an enormous systematic account of Christian doctrine organized as a series of disputed questions. He died at 49, leaving the Summa unfinished.",
+    bio: "Born into a minor Italian noble family and educated at the University of Naples and then Paris, Aquinas joined the Dominican order against his family's wishes — his brothers kidnapped him and held him for a year to change his mind. He spent his career reconciling Aristotle's newly recovered philosophy with Christian theology, producing the *Summa Theologiae*, an enormous systematic account of Christian doctrine organized as a series of disputed questions. He died at 49, leaving the *Summa* unfinished.",
     significance: "Aquinas represents the medieval intellectual project at its most ambitious: reason and faith are not enemies but complementary paths to the same truth. His synthesis — the most confident integration of philosophy and theology the Western tradition ever attempted — is what the Reformation will fracture. The questions he thought resolved (the nature of God, the basis of authority, the relationship of the individual to the Church) will be reopened and never closed again.",
     portrait: "/images/portraits/portrait-aquinas-thomas.jpg",
   },
@@ -283,7 +283,7 @@ const RAW_PEOPLE = [
     dates: "1711–1776",
     field: "Philosopher and Historian",
     units: ["03-enlightenment"],
-    bio: "A Scottish philosopher, essayist, and historian whose *Treatise of Human Nature* (1739–1740) applied empirical method to the workings of the mind itself; it sold so poorly on publication that Hume said it 'fell dead-born from the press.' His multi-volume *History of England*, not the Treatise, made him famous and wealthy during his lifetime. He was denied a university chair twice, partly over suspicions of atheism, and spent years in Paris as a celebrated figure among the philosophes before dying, by his own account and Adam Smith's, with unusual serenity.",
+    bio: "A Scottish philosopher, essayist, and historian whose *Treatise of Human Nature* (1739–1740) applied empirical method to the workings of the mind itself; it sold so poorly on publication that Hume said it 'fell dead-born from the press.' His multi-volume *History of England*, not the *Treatise*, made him famous and wealthy during his lifetime. He was denied a university chair twice, partly over suspicions of atheism, and spent years in Paris as a celebrated figure among the philosophes before dying, by his own account and Adam Smith's, with unusual serenity.",
     significance: "Observation of one billiard ball striking another supplies sequence and repeated conjunction, not a necessary power binding the events; the expectation that similar causes produce similar effects comes from custom or habit, not from reason. This is mitigated skepticism rather than total doubt — inquiry continues, but its conclusions remain corrigible. The backgammon passage, in which Hume dines and plays games with friends after philosophy leaves him unable to justify his own beliefs, marks the return from abstract crisis to ordinary sociability, not a refutation of the doubt. His critical rigor did not prevent him from making racist claims in the essay 'Of National Characters,' a contradiction his admirers have had to reckon with rather than explain away.",
   },
   {
@@ -420,7 +420,7 @@ const RAW_PEOPLE = [
     field: "Philosopher & Political Economist",
     units: ["04-romanticism"],
     bio: "Trained in philosophy with a doctorate on ancient Greek thought, Marx was closed out of an academic career by Prussian politics and moved into journalism. Censorship of the *Rheinische Zeitung* was followed by exile in Paris, Brussels, and finally London, where he wrote *Capital*. *The Communist Manifesto*, written with Friedrich Engels, appeared in 1848.",
-    significance: "His path runs through Hegel and Feuerbach rather than through Romantic feeling converted into politics. Hegel located alienation in consciousness and social life; Feuerbach relocated it in religious projection; Marx relocates it materially, in labor and property — the worker is separated from the product, from the activity of production, from other people, and from human capacities. The Manifesto treats the bourgeoisie as revolutionary in its own right, remaking production and the globe, so \"callous cash payment\" and \"all that is solid melts into air\" describe a system's productivity and its exploitation together. Reading the Pequod as a workplace and commercial venture is an analytical parallel; Melville did not construct the novel as an illustration of Marx.",
+    significance: "His path runs through Hegel and Feuerbach rather than through Romantic feeling converted into politics. Hegel located alienation in consciousness and social life; Feuerbach relocated it in religious projection; Marx relocates it materially, in labor and property — the worker is separated from the product, from the activity of production, from other people, and from human capacities. The *Manifesto* treats the bourgeoisie as revolutionary in its own right, remaking production and the globe, so \"callous cash payment\" and \"all that is solid melts into air\" describe a system's productivity and its exploitation together. Reading the *Pequod* as a workplace and commercial venture is an analytical parallel; Melville did not construct the novel as an illustration of Marx.",
     portrait: "/images/portraits/portrait-marx-karl.jpg",
   },
   {
@@ -476,7 +476,7 @@ const RAW_PEOPLE = [
     dates: "1809–1882",
     field: "Naturalist",
     units: ["04-romanticism"],
-    bio: "An English naturalist whose voyage aboard the Beagle (1831–1836) supplied observations he worked over for decades. He developed natural selection privately in the late 1830s and accumulated evidence for twenty years. Alfred Russel Wallace independently formulated a theory of natural selection and sent Darwin a manuscript in 1858; their writings were presented jointly that year, and Darwin published *On the Origin of Species* in 1859.",
+    bio: "An English naturalist whose voyage aboard the *Beagle* (1831–1836) supplied observations he worked over for decades. He developed natural selection privately in the late 1830s and accumulated evidence for twenty years. Alfred Russel Wallace independently formulated a theory of natural selection and sent Darwin a manuscript in 1858; their writings were presented jointly that year, and Darwin published *On the Origin of Species* in 1859.",
     significance: "Natural selection works through heritable variation together with differential survival and reproduction — nature does not consciously choose. The mechanism challenged fixed species and the requirement that each adaptation result from a separately intended design, and it places human beings on one branch of a history rather than at its summit. Darwin did not prove the universe meaningless, disprove religious belief, or show that evolution is governed by chance alone. *Origin* belongs to *Moby-Dick*'s intellectual afterlife: it appeared eight years after the novel.",
   },
   {
@@ -680,7 +680,7 @@ const RAW_PEOPLE = [
     field: "Painter",
     units: ["01-renaissance"],
     bio: "Tommaso di Ser Giovanni, called Masaccio — roughly \"clumsy Tom,\" a nickname contemporaries seem to have meant affectionately, about a young man indifferent to everything except painting. Born in 1401, dead before he was twenty-seven. In that short career he painted the Brancacci Chapel frescoes and the *Holy Trinity* at Santa Maria Novella (c. 1427), the first painting known to use systematic linear perspective. Contemporary accounts describe the effect as something close to magic: depth where there had only been a flat wall.",
-    significance: "Masaccio is where Brunelleschi's geometry becomes a painter's instrument. In the Trinity, perspective is not a setting for the subject but the subject itself — the construction converges in the body of the crucified Christ, so the mathematics and the theology arrive at the same point. Every painting on the Renaissance page postdates him by seventy years or more. He is the moment at which the thing those paintings take for granted was invented.",
+    significance: "Masaccio is where Brunelleschi's geometry becomes a painter's instrument. In the *Trinity*, perspective is not a setting for the subject but the subject itself — the construction converges in the body of the crucified Christ, so the mathematics and the theology arrive at the same point. Every painting on the Renaissance page postdates him by seventy years or more. He is the moment at which the thing those paintings take for granted was invented.",
     portrait: "/images/portraits/portrait-masaccio.jpg",
   },
   {
@@ -830,7 +830,7 @@ const RAW_PEOPLE = [
     field: "Painter",
     units: ["03-enlightenment"],
     bio: "The dominant French painter of the Neoclassical and revolutionary period, David trained in the history-painting tradition before becoming an active political partisan of the Revolution — he sat in the National Convention and voted for the execution of Louis XVI. He later served Napoleon as an official painter, producing the coronation and battle scenes that defined the Empire's visual propaganda, and spent his final years in exile in Brussels after Napoleon's fall.",
-    significance: "*The Death of Marat* (1793), painted within months of the murder it depicts, converts a fellow revolutionary's assassination into a modern martyrdom: no allegory, no classical drapery, just a wound, a bare table, and a dedication signed like an epitaph. It is Neoclassicism's severe, moralizing style put directly in the service of revolutionary politics — the logical endpoint of everything Kauffman's Cornelia gestures toward, with the Rococo's decorative pleasure stripped away entirely.",
+    significance: "*The Death of Marat* (1793), painted within months of the murder it depicts, converts a fellow revolutionary's assassination into a modern martyrdom: no allegory, no classical drapery, just a wound, a bare table, and a dedication signed like an epitaph. It is Neoclassicism's severe, moralizing style put directly in the service of revolutionary politics — the logical endpoint of everything Kauffman's *Cornelia* gestures toward, with the Rococo's decorative pleasure stripped away entirely.",
     portrait: "/images/portraits/portrait-david-jacques-louis.jpg",
   },
   {
@@ -850,7 +850,7 @@ const RAW_PEOPLE = [
     field: "Painter",
     units: ["04-romanticism"],
     bio: "A German Romantic painter who spent most of his career in Dresden, Friedrich specialized in landscapes of extraordinary atmospheric intensity — lone figures contemplating vast mountain ranges, misty seas, or ruined abbeys under dramatic skies. His *Wanderer above the Sea of Fog* (c. 1818) — a solitary figure standing on a rocky peak, his back to the viewer, gazing out over cloud-filled valleys — is the defining image of the Romantic individual.",
-    significance: "Friedrich's Wanderer is the Romantic sublime in concentrated form: the solitary self confronting a nature so vast and unknowable that ordinary perception dissolves. The figure's back-turned posture invites the viewer to occupy his position — to experience the sublime vicariously, which is the Romantic artwork's primary function. His landscapes connect directly to Emerson's transparent eyeball and Turner's vortices of light.",
+    significance: "Friedrich's *Wanderer* is the Romantic sublime in concentrated form: the solitary self confronting a nature so vast and unknowable that ordinary perception dissolves. The figure's back-turned posture invites the viewer to occupy his position — to experience the sublime vicariously, which is the Romantic artwork's primary function. His landscapes connect directly to Emerson's transparent eyeball and Turner's vortices of light.",
     portrait: "/images/portraits/portrait-friedrich-caspar.jpg",
   },
   {
@@ -860,7 +860,7 @@ const RAW_PEOPLE = [
     field: "Painter",
     units: ["04-romanticism"],
     bio: "The leader of the French Romantic school, Delacroix was celebrated for his vivid color, dynamic composition, and emotional intensity — a direct challenge to the cool, linear neoclassicism of his rival Ingres. His *Liberty Leading the People* (1830), painted in response to the July Revolution, depicts an allegorical woman bearing the tricolor over a barricade strewn with corpses — one of the 19th century's most powerful images of political passion.",
-    significance: "Delacroix's Liberty connects the Romantic visual tradition to the political upheavals that define the period. His compositional energy — figures surging diagonally from lower right to upper left, color deployed for emotional rather than decorative effect — is the visual equivalent of Beethoven's Fifth: feeling overflowing inherited formal constraints. His work illustrates how the Romantic period transforms political engagement into aesthetic experience.",
+    significance: "Delacroix's *Liberty* connects the Romantic visual tradition to the political upheavals that define the period. His compositional energy — figures surging diagonally from lower right to upper left, color deployed for emotional rather than decorative effect — is the visual equivalent of Beethoven's Fifth: feeling overflowing inherited formal constraints. His work illustrates how the Romantic period transforms political engagement into aesthetic experience.",
     portrait: "/images/portraits/portrait-delacroix-eugene.jpg",
   },
   {
@@ -988,7 +988,7 @@ const RAW_PEOPLE = [
     field: "Painter",
     units: ["05-modernism"],
     bio: "Born in Aix-en-Provence to a wealthy banking family, Cézanne largely rejected Impressionism's interest in fleeting atmospheric effect in favor of a search for underlying structure — famously aiming to \"treat nature by the cylinder, the sphere, the cone.\" He painted the mountain near his home, Mont Sainte-Victoire, dozens of times over the last decade of his life, reworking the same view as a problem rather than a subject. He lived and worked largely in isolation, exhibited rarely, and died having sold relatively little; a major retrospective of his work in Paris in 1907, the year after his death, reshaped an entire generation of younger painters who saw it.",
-    significance: "Cézanne is the hinge the unit's own Figure & Space argument depends on. His late paintings replace a single fixed viewpoint with planes of color seen from several angles at once — the technical root of Cubism, which Picasso and Braque built directly out of his example after the 1907 retrospective. Without Cézanne's prior fracturing of form, Picasso's Demoiselles reads as an arrival with no departure point.",
+    significance: "Cézanne is the hinge the unit's own Figure & Space argument depends on. His late paintings replace a single fixed viewpoint with planes of color seen from several angles at once — the technical root of Cubism, which Picasso and Braque built directly out of his example after the 1907 retrospective. Without Cézanne's prior fracturing of form, Picasso's *Demoiselles* reads as an arrival with no departure point.",
   },
   {
     id: "vangogh",
@@ -1218,7 +1218,7 @@ const RAW_PEOPLE = [
     dates: "1813–1883",
     field: "Composer",
     units: ["04-romanticism"],
-    bio: "A German composer who wrote his own libretti and developed the concept of the Gesamtkunstwerk — total artwork — fusing music, text, drama, and visual spectacle into a unified experience. His Ring Cycle runs 15 hours across four operas. He was also a virulent antisemite whose writings influenced the Nazis, and the political history of his music remains contested. He died in Venice, having just completed *Parsifal*.",
+    bio: "A German composer who wrote his own libretti and developed the concept of the Gesamtkunstwerk — total artwork — fusing music, text, drama, and visual spectacle into a unified experience. His *Ring* Cycle runs 15 hours across four operas. He was also a virulent antisemite whose writings influenced the Nazis, and the political history of his music remains contested. He died in Venice, having just completed *Parsifal*.",
     significance: "Wagner's Tristan chord — a dissonance that refuses to resolve for four hours — is the musical equivalent of the Romantic sublime: tension so extreme it exceeds the structures designed to contain it. The Prelude to *Tristan und Isolde* is the sound of yearning without resolution, the sound of Ahab's obsession, the sound of what the Romantic era does when feeling overwhelms form.",
     portrait: "/images/portraits/portrait-wagner-richard.jpg",
   },
@@ -1264,7 +1264,7 @@ const RAW_PEOPLE = [
     dates: "1882–1971",
     field: "Composer",
     units: ["05-modernism"],
-    bio: "Born near St. Petersburg, Stravinsky became the most influential composer of the 20th century through his work for Diaghilev's Ballets Russes — *The Firebird*, *Petrushka*, and *The Rite of Spring*. The 1913 premiere of The Rite caused a near-riot. He lived through two world wars, the Russian Revolution, and the Holocaust, reinventing his style multiple times: primitivism, neoclassicism, serialism.",
+    bio: "Born near St. Petersburg, Stravinsky became the most influential composer of the 20th century through his work for Diaghilev's Ballets Russes — *The Firebird*, *Petrushka*, and *The Rite of Spring*. The 1913 premiere of *The Rite* caused a near-riot. He lived through two world wars, the Russian Revolution, and the Holocaust, reinventing his style multiple times: primitivism, neoclassicism, serialism.",
     significance: "*The Rite of Spring*'s pounding, irregularly accented chords are Modernism's musical declaration of independence: inherited formal structures shattered, replaced by something visceral, violent, and radically new. Its 1913 premiere provoked a riot — which is what Modernism often does when it arrives.",
     portrait: "/images/portraits/portrait-stravinsky-igor.jpg",
   },
