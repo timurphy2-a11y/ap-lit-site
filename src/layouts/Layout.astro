@@ -46,6 +46,7 @@ const peopleJson = JSON.stringify(PEOPLE);
       class="bio-modal"
       role="dialog"
       aria-modal="true"
+      aria-labelledby="bio-name"
     >
       <div id="bio-backdrop" class="bio-backdrop"></div>
       <div class="bio-panel">
@@ -68,6 +69,7 @@ const peopleJson = JSON.stringify(PEOPLE);
       const modal    = document.getElementById('bio-modal');
       const backdrop = document.getElementById('bio-backdrop');
       const closeBtn = document.getElementById('bio-close');
+      let lastTrigger = null;
 
       // Inline markdown (*italic* titles of works), escaped first.
       const md = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -89,13 +91,18 @@ const peopleJson = JSON.stringify(PEOPLE);
         } else {
           portrait.classList.add('hidden');
         }
+        lastTrigger = document.activeElement;
         modal.classList.remove('hidden');
         modal.classList.add('open');
+        closeBtn?.focus();
       }
 
       function closeModal() {
+        if (!modal.classList.contains('open')) return;
         modal.classList.add('hidden');
         modal.classList.remove('open');
+        if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
+        lastTrigger = null;
       }
 
       document.addEventListener('click', (e) => {
@@ -106,7 +113,18 @@ const peopleJson = JSON.stringify(PEOPLE);
       closeBtn?.addEventListener('click', closeModal);
       backdrop?.addEventListener('click', closeModal);
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+        if (!modal.classList.contains('open')) return;
+        if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+        if (e.key === 'Tab') {
+          // Keep focus inside the open dialog.
+          const f = [...modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')]
+            .filter((el) => el.offsetParent !== null);
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+          else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
       });
     </script>
   </body>
@@ -166,6 +184,10 @@ const peopleJson = JSON.stringify(PEOPLE);
     background: var(--bg-raised);
     padding: 28px;
     box-shadow: 0 24px 64px rgba(0,0,0,.6);
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .bio-close {
