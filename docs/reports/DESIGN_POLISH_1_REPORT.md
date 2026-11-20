@@ -1,22 +1,50 @@
 # Design Polish Pass 1: final Phase 1 report
 
-**Status:** Phase 1 is complete and approved pending your phone check. Branch `claude/design-polish-1`, 25 commits on top of `main`. Preview: https://polish1-ap-lit-site.tmurphy-ef9.workers.dev. Nothing has been merged or deployed to production. Phase 2 is on hold until the amendments file is on this machine. The merge checklist is in `DESIGN_POLISH_1_MERGE_CHECKLIST.md`.
+**Status:** Phase 1 is complete and approved pending your phone check. Branch `claude/design-polish-1`, 34 commits on top of `main` (round 4 included). Preview: https://polish1-ap-lit-site.tmurphy-ef9.workers.dev. Nothing has been merged or deployed to production. Phase 2 is on hold until the amendments file is on this machine. The merge checklist is in `DESIGN_POLISH_1_MERGE_CHECKLIST.md`.
 
 ## Final state by item
 | Item | Final state |
 |---|---|
-| B1 | Emphasis renders in analysis fields; 0 visible asterisks sitewide (18 instances on 11 pages) |
+| B1 | Emphasis renders in analysis fields and in both BioLink modals; 0 visible asterisks sitewide, popups included (all 320 BioLink popups opened and checked) |
 | B2 | Smart punctuation on every AP-site route through four render paths; 0 straight quotes in visible text |
-| B3 | Titles follow the publication rule (standalone volume = italics, within a larger work = quotes; book-length serials italic; generic titles roman; music excerpts and songs in roman double quotes). Recorded in CLAUDE.md and the writing guide |
+| B3 | Titles follow the publication rule (standalone volume = italics, within a larger work = quotes; book-length serials italic; generic titles roman; music excerpts and songs in roman double quotes). Shortened titles, ship names and the timeline anchor titles italic in markup. Recorded in CLAUDE.md and the writing guide's Rule 42 |
 | B4 | "Full unit: {name} →" on the three guide pages |
 | C1 | Menu button at 640px and below; Escape and focus behave; "Menu" approved in the text diff |
 | C5a | Thread cards top-aligned |
 | C6 | Compact listening strip (sigil and play button, no rule) on all 32 music embeds; clicking opens the 16:9 player; a `poster` image gets the full matted frame. Also fixes the player opening at 300×150, which affected the live site too |
-| C7 | Maestà transparent cutout with mat padding; Pietà and af Klint margins cropped; originals kept; ambiguous cases flagged |
+| C7 | Maestà transparent cutout with mat padding; Pietà and af Klint margins cropped, on the subject pages and on Credits (the uncropped originals are now unused and removed); ambiguous cases flagged |
 | C8 | Doubled rule removed |
 | C9 | Studio cards share rows (subgrid) |
 | C11 | Arrow gap, fixed-width toggles, empty pager sides hidden |
 | C12 | Frieze matches the container; pull-quote attributions centered |
+| Keyboard | BioLink popups: focus moves to Close, Tab stays inside, Escape closes and returns focus to the link; long bios scroll on phones |
+
+## Round 4 changes
+- **Writing guide.** Your attached file didn't come through: the message had no attachment, and no 42-rule copy exists anywhere on this machine. I rebuilt it from the newest copy I could find, the 41-rule guide from August 28 on the external drive (`/Volumes/New Drive/Mac Migration/Downloads/Writing_and_Editing_Guide.md`). I then appended "## VII. Typography / ### 42. Titles of works" with your round-3 wording, verbatim apart from italic markup. The rule 33 version is gone. **If your file differs, put it in the repo root (or Downloads) and I'll swap it in before the merge.**
+- **Rule-number references.**
+  - CLAUDE.md cites only Rule 42, which is correct.
+  - `scripts/prose-audit` cites R1–R3, R6–R10, R12, R14, R15, R17–R20, R22, R26, R28, R30, R31, R34 and R35. All of these already match the 41/42-rule numbering (for example R8 second person, R18 paragraph endings, R34 figurative language, R35 stacked questions), so nothing needed changing.
+  - Only the stale repo guide used the old numbers.
+- **CLAUDE.md titles rule** now restates Rule 42 word for word, including the music list (motets, organa, masses, operas, symphonies; "song cycles" removed), followed by site practice: shortened titles, ship names, excerpt pattern and markup.
+- **Shortened titles, italic where they name the work:** *Summa*, *Treatise*, *Manifesto*, *Trinity*, *Cornelia*, *Wanderer*, *Liberty*, *Demoiselles*, *The Rite* (all in BioLink text), and *Ring* in "Ring Cycle".
+  - Left roman as ordinary words or as the figures in the paintings: Cornelia "at center" and Liberty "herself", "Liberty's feet" (Romantic and Enlightenment Painting analysis); "the winged figure of Liberty" (Romantic Sculpture); the Liberty Paints factory; the Statue of Liberty and Liberty Island.
+  - "Origin" appears only inside full titles, which were already italic.
+  - "Ring Cycle" keeps its capital C. Lowercasing it would change the wording, so that's your call.
+- **Ship names:** the *Pequod* (Marx BioLink; Romantic Philosophy monkey-rope caption), the *Beagle* (Darwin BioLink), the *Mayflower* voyage (timeline). The Mayflower Compact stays roman as a document. The *Zong* was already italic.
+- **Timeline anchor titles.** My round-1 note was misleading: all five anchor titles on `/timeline/` already displayed in italics, because the stylesheet italicized the whole title line. The italics now come from `*Title*` markup with a roman default, the same pattern as the music cards. They look identical, but they no longer depend on the stylesheet.
+- **"Für Elise"** is in quotes everywhere: the Listening Studio prose and screen-reader text, and the Modernist Concert prose, with the comma moved inside. ***Scheherazade*** is italic in the Listening Studio work label.
+  - Rule 42 also made one more change: Chopin's *Prelude in E minor* (Listening Studio prose) is now roman as a generic title.
+  - Two screen-reader-only labels and an SVG title still say "Scheherazade" in plain text, where italics don't apply.
+- **Reading list.** "A Defence of Poetry" (excerpts) now renders in quotes and roman.
+  - **Note:** the reading list belongs to the old sidebar layout, which no unit uses, so it doesn't appear on any live page.
+  - So the list stays consistent if it comes back, I marked up all 38 titles under Rule 42 and set the template to render them. Roman, by judgment: Summary of Aristotelian Physics (descriptive), Against Catholicism (Luther; a descriptive label, not a published title), Atlanta Exposition Address.
+  - In quotes: "The Unquiet Grave" (ballad), "Moon Man" (Gopnik, a *New Yorker* essay), "What is Enlightenment?", "The Parable of the Madman" (from *The Gay Science*), "Without Foundation" (from *Time of the Magicians*), *The Souls of Black Folk*, Chapter 1 ("Of Our Spiritual Strivings").
+- **"Der Erlkönig" → "Erlkönig"** in all three places (music card, Romantic Music prose, Schubert BioLink). The prose had it italic; it's now in quotes, as a song.
+- **Credits** thumbnails use the cropped Pietà and af Klint files. Nothing referenced the uncropped originals after that, so they're `git rm`'d (per the image-versioning convention).
+- **BioLink modal, keyboard walk.** The walk found real problems, all fixed:
+  1. **Asterisks in the popups on the 24 subject pages.** Those pages carry their own copy of the modal, which inserted the bio as plain text, so every `*Title*` showed its asterisks. The last check missed it because popup text isn't in the static page. Both modals now render italics.
+  2. **Focus.** Opening a popup left focus on the link behind it, and Tab walked the page underneath. It now matches the hub essay modal: focus moves to Close, Tab and Shift+Tab stay inside, Escape closes, and focus returns to the link that opened it. The dialog is labelled by the person's name.
+  3. **Long bios on phones (already on the live site).** The panel had no height limit. On a phone a long bio (Marx, for example) ran off both ends of the screen with no way to scroll, so the name, the Close button and the end of the text were unreachable. The panel now fits the screen and scrolls; PageDown and the arrow keys scroll it from the keyboard.
 
 ## Round 3 changes
 - **CLAUDE.md:** added that book-length works stay italic even if first serialized, numbered or generic titles are roman, the excerpt pattern, and that music card titles take `*...*` markup.
@@ -44,22 +72,22 @@
 - Screen-reader labels, image alt text and player titles use the plain title, without asterisks.
 
 ## Verification (final build)
-- Build passes; 0 console errors on the 12 pages at 1440 and 375.
-- Rendered-text diff against the original baseline: ignoring quote glyphs and asterisks, the only differences are the approved ones (B4 label, "Menu", hidden empty pager entries). The text inside the protected sections (What to Notice, What to Listen For, thread core arguments) is unchanged apart from quote glyphs and italics.
-- No horizontal scroll at 375px on the 12 pages.
+- Re-run after round 4. Build passes; 0 console errors on 16 pages (the original 12 plus Romantic Music, Romantic Philosophy, Listening Studio and Credits) at 1440 and 375.
+- Rendered-text diff against the original baseline: ignoring quote glyphs and asterisks, the only differences are the approved ones (B4 label, "Menu", hidden empty pager entries, "Der Erlkönig" → "Erlkönig"). The text inside the protected sections (What to Notice, What to Listen For, thread core arguments) is unchanged apart from quote glyphs and italics.
+- No horizontal scroll at 375px on the 16 pages.
 - Contrast unchanged: everything passes except the decorative breadcrumb `/` and People `·` separators (2.41:1). They failed before this pass and are listed as new issues.
-- Keyboard walk: focus ring visible on the desktop header, mobile menu, domain tabs and gallery toggles. The BioLink modal was not walked.
+- Keyboard walk: focus ring visible on the desktop header, mobile menu, domain tabs and gallery toggles.
+- BioLink modal walk at 1440 and 375 (Baroque Philosophy, People): Enter opens; focus lands on Close with a visible ring; six Tabs and a Shift+Tab stay on Close; Escape closes and returns focus to the link; Enter reopens. PageDown scrolls a long bio at 375×700.
+- BioLink sweep: every popup on every AP page (320 popups on 23 pages) was opened. None shows an asterisk or a straight quote; each moves focus to Close and returns it to its link on Escape.
 
 ## Not fixed, for later
 - The decorative separators' contrast (2.41:1).
-- Credits-page thumbnails still use the uncropped Pietà and af Klint files.
-- "Für Elise" is in quotes in the Listening Studio's work label but italic in the Modernist Concert prose. It's a short standalone piano piece, so you need to decide which.
-- Scheherazade (a standalone suite) is roman in the Listening Studio's work label.
-- The Romanticism Philosophy reading-list title "A Defence of Poetry (excerpts)" is plain text and does not render in the reading list.
+- The reading lists (all six philosophy units) aren't shown on any page, because the layout that held them is retired. Whether to bring them back is a design question for Phase 2.
+- The subject pages still carry their own copy of the BioLink modal, alongside the shared one in `Layout.astro`. Both now behave the same, but merging them into one would stop them drifting apart again. That's a small refactor for later.
 
 ---
 
-# Working log (rounds 1–3)
+# Working log (rounds 1–4; round 4 is summarized above)
 
 
 Branch `claude/design-polish-1` (one commit per item, prefixed by ID). Preview only; nothing merged to `main` or deployed to production.
