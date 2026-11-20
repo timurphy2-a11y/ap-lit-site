@@ -245,20 +245,36 @@ const sorted = [...ENTRIES].sort((a, b) => {
       popEntry.textContent = title;
       pop.style.setProperty('--pop-accent', pVal);
 
-      const rect  = rowEl.getBoundingClientRect();
-      const POP_W = 380;
-      const POP_H = 150;
-      let left = rect.left + 100;
-      let top  = rect.bottom + 8;
-
-      left = Math.max(16, Math.min(left, window.innerWidth - POP_W - 16));
-      if (top + POP_H > window.innerHeight - 16) {
-        top = Math.max(16, rect.top - POP_H - 8);
+      // Anchor to the entry title: open to its right, flip left near the right
+      // edge, and fall back to below/above the title where neither side fits
+      // (phones). Measured after display so the real height is used.
+      pop.style.visibility = 'hidden';
+      pop.classList.add('open');
+      const GAP = 12, M = 16;
+      const vw = document.documentElement.clientWidth, vh = window.innerHeight;
+      const pw = pop.offsetWidth, ph = pop.offsetHeight;
+      const range = document.createRange();
+      range.selectNodeContents(triggerEl);
+      const lines = range.getClientRects();
+      const first = lines.length ? lines[0] : triggerEl.getBoundingClientRect();
+      let textRight = 0, textLeft = Infinity;
+      for (const r of lines) { textRight = Math.max(textRight, r.right); textLeft = Math.min(textLeft, r.left); }
+      if (!lines.length) { textRight = first.right; textLeft = first.left; }
+      const tBox = triggerEl.getBoundingClientRect();
+      let left, top = first.top - 8;
+      if (textRight + GAP + pw <= vw - M) {
+        left = textRight + GAP;
+      } else if (textLeft - GAP - pw >= M) {
+        left = textLeft - GAP - pw;
+      } else {
+        left = Math.max(M, Math.min(textLeft, vw - pw - M));
+        top = tBox.bottom + 8;
+        if (top + ph > vh - M) top = Math.max(M, tBox.top - ph - 8);
       }
-
+      top = Math.max(M, Math.min(top, vh - ph - M));
       pop.style.left = left + 'px';
       pop.style.top  = top + 'px';
-      pop.classList.add('open');
+      pop.style.visibility = '';
       activeRow = rowEl;
     }
 
