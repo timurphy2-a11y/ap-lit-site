@@ -960,7 +960,11 @@ if (isRedesignedDomain) {
   body {
     line-height: 1.6;
     padding: 0 var(--gutter);
-    max-width: 1280px;
+  }
+  /* C2: the site header spans the full gutter width, as on every other page;
+     the page content keeps its 1280px wrap (1280 minus the gutters). */
+  body > :is(.header-band, .crumb, .unit-strip, .tabs, .page-head, .section-terminator, .pager, footer) {
+    max-width: calc(1280px - 2 * var(--gutter));
     margin-left: auto;
     margin-right: auto;
   }
