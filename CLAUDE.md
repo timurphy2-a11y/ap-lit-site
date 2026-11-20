@@ -65,7 +65,7 @@ The result prints a Version Preview URL (`https://<alias>-ap-lit-site.tmurphy-ef
 
 ## Style Authority
 
-The design system is the style authority: `AP Literature Design System - Reference.md` (from Claude Design), as amended by `AP_Lit_Design_System_Amendments.md`. Where the live site and the spec differ, the spec wins unless a brief says otherwise. Key rules: domains (Philosophy, Painting, Sculpture, Music) each have three threads; a label appears only when it adds information the page does not already state; unit numerals 00-05 stay, other numbering only for real sequence; text colored by a period accent uses its text-safe variant.
+The design system is the style authority: `docs/design-system/AP Literature Design System - Reference v2.md` (from Claude Design; v2 already incorporates amendments A1–A9), as amended by `docs/design-system/AP_Lit_Design_System_Amendments.md` (A10–A12). Where the live site and the spec differ, the spec wins unless a brief says otherwise. Key rules: domains (Philosophy, Painting, Sculpture, Music) each have three threads; a label appears only when it adds information the page does not already state; unit numerals 00-05 stay, other numbering only for real sequence; text colored by a period accent uses its text-safe variant.
 
 ---
 
