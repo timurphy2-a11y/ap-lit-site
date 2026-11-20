@@ -159,9 +159,7 @@ PERIODS.forEach(p => {
                     height="64"
                   />
                 ) : (
-                  <div class="ppl-portrait ppl-portrait-mono" aria-hidden="true">
-                    {person.name.split(' ').slice(-2).map((w: string) => w[0]).join('')}
-                  </div>
+                  <div class="ppl-portrait ppl-portrait-mono" aria-hidden="true" style={`--mark-primary: ${period.txt}; --mark-ink: ${period.txt}; --mark-rule: ${period.txt}; --mark-highlight: ${period.txt}`} set:html={motifSvg} />
                 )}
                 <div class="ppl-who">
                   <p class="ppl-name">{person.name}</p>
@@ -372,11 +370,11 @@ PERIODS.forEach(p => {
   }
   .ppl-portrait-mono {
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.04em;
-    color: var(--ink-soft); filter: none;
+    filter: none;
     background: var(--bg-sunken);
     border: 1px solid color-mix(in oklab, var(--p) 32%, var(--rule));
   }
+  .ppl-portrait-mono :global(svg) { width: 34px; height: 34px; opacity: 0.85; }
 
   .ppl-who { min-width: 0; }
   .ppl-name {
