@@ -400,6 +400,7 @@ const entries = await Promise.all(UNIT_IDS.map((id) => getEntry('units', `${id}/
     border-left: 3px solid var(--w);
     padding: 26px 30px;
     margin-bottom: 36px;
+    max-width: calc(62ch + 63px); /* 14: text holds the prose measure; box = measure + padding + bar */
   }
   .stp-story p {
     font-size: 18px;
