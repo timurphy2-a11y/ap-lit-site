@@ -186,7 +186,6 @@ const isRedesignedDomain = domain !== 'philosophy' || PLATE_REDESIGNED_PHILOSOPH
 const useForwardBox = domain === 'philosophy' && PLATE_REDESIGNED_PHILOSOPHY_UNITS.includes(unit);
 const entryData = entry.data as any;
 const threadIds: string[] = entry.data.threads.map((t: { id: string }) => t.id);
-const threadLabels: string[] = entry.data.threads.map((t: { label: string }) => t.label);
 
 // Group each domain's gallery items into the one thread section matching their
 // first tag (matches the design handoff's placement — an item tagged
@@ -437,7 +436,6 @@ if (isRedesignedDomain) {
             <span class="tn-sig" aria-hidden="true">
               {icon && <svg viewBox={icon.viewBox} width="28" height="28" set:html={icon.content} />}
             </span>
-            <span class="tn-idx">{String(i + 1).padStart(2, '0')}</span>
             <span class="tn-title">{t.label}</span>
             <span class="tn-gloss">{t.period_summary}</span>
           </a>
@@ -660,11 +658,10 @@ if (isRedesignedDomain) {
   });
 </script>
 
-<script define:vars={{ threadSigils, medallionSvg, threadIds, threadLabels, useForwardBox }}>
+<script define:vars={{ threadSigils, medallionSvg, threadIds, useForwardBox }}>
   const CONN_SIG_SVG = '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5 C13.6 15.5 10.5 20.4 10.5 25.8 C10.5 31.2 14.8 35.5 20 35.5 C25.2 35.5 29.5 31.2 29.5 25.8 C29.5 20.4 26.4 15.5 20 15.5 Z"/><path d="M20 15.5 Q19 13 20.2 10.8"/><path d="M20.6 11 Q24.4 7.7 28.4 9.4 Q26 13.8 20.6 11 Z" fill="currentColor" stroke="none"/><path d="M9.6 24.6 C13.6 19 16.6 30 21 25.6 C24.3 22.1 27.8 24 30.4 21.6"/><circle cx="30.9" cy="21" r="1.7" fill="currentColor" stroke="none"/><path d="M32.4 20.3 L34.9 19.4 M32.4 21.2 L34.9 21.9"/></svg>';
 
   function decorateSubHead(h2, i) {
-    const n = String(i + 1).padStart(2, '0');
     const sigil = threadSigils[i];
 
     const box = document.createElement('span');
@@ -674,10 +671,6 @@ if (isRedesignedDomain) {
       box.innerHTML = `<svg viewBox="${sigil.viewBox}" width="32" height="32" aria-hidden="true" style="color:${sigil.iconColor}">${sigil.content}</svg>`;
     }
 
-    const idx = document.createElement('span');
-    idx.className = 'sub-idx';
-    idx.setAttribute('aria-hidden', 'true');
-    idx.textContent = n + ' — Sub-thread';
 
     const titleWrap = document.createElement('span');
     titleWrap.className = 'sub-title';
@@ -691,7 +684,6 @@ if (isRedesignedDomain) {
     if (sigil) { h2.style.setProperty('--sub-acc', sigil.color); h2.style.setProperty('--sub-acc-text', sigil.textColor); h2.style.setProperty('--sub-icon', sigil.iconColor); }
 
     h2.appendChild(box);
-    h2.appendChild(idx);
     h2.appendChild(titleWrap);
     h2.appendChild(medallion);
   }
@@ -872,19 +864,11 @@ if (isRedesignedDomain) {
         // preceded by a small label naming the thread the plates belong to.
         const groupPlates1 = pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`);
         if (groupPlates1 && groupPlates1.length) {
-          const groupLabel = document.createElement('div');
-          groupLabel.className = 'gallery-group-label';
-          groupLabel.textContent = threadLabels[i];
-          section.insertBefore(groupLabel, wrap);
           groupPlates1.forEach((plate) => section.insertBefore(plate, wrap));
         }
       } else {
         const groupPlates2 = pending?.querySelectorAll(`[data-plate-for="${threadIds[i]}"]`);
         if (groupPlates2 && groupPlates2.length) {
-          const groupLabel = document.createElement('div');
-          groupLabel.className = 'gallery-group-label';
-          groupLabel.textContent = threadLabels[i];
-          section.appendChild(groupLabel);
           groupPlates2.forEach((plate) => section.appendChild(plate));
         }
       }
@@ -1603,15 +1587,6 @@ if (isRedesignedDomain) {
   .cmp .cell { font-family: var(--font-ui); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
 
   /* ── Label naming the thread a group of plates belongs to ── */
-  .gallery-group-label {
-    max-width: var(--read-wide);
-    margin: 32px auto 0;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sub-acc-text, var(--thread-acc-text));
-  }
 
   /* ── Lightbox affordance on clickable image plates ── */
   .work-figure .img.lightbox-trigger { cursor: zoom-in; }
@@ -1863,15 +1838,8 @@ if (isRedesignedDomain) {
     display: flex; align-items: center; justify-content: center;
   }
   .tn-sig svg { width: 28px; height: 28px; }
-  .tn-idx {
-    grid-column: 2; grid-row: 1; align-self: end;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    color: var(--ink-mute);
-  }
   .tn-title {
-    grid-column: 2; grid-row: 2; align-self: start;
+    grid-column: 2; grid-row: 1 / 3; align-self: center;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 20px;
@@ -1923,18 +1891,7 @@ if (isRedesignedDomain) {
     flex-shrink: 0;
   }
   h2.thread-head .sigil-box svg { width: 32px; height: 32px; }
-  h2.thread-head .sub-idx {
-    grid-column: 2; grid-row: 1;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 400;
-    align-self: end;
-    padding-bottom: 4px;
-  }
-  h2.thread-head .sub-title { grid-column: 2; grid-row: 2; color: var(--sub-acc-text, var(--ink)); }
+  h2.thread-head .sub-title { grid-column: 2; grid-row: 1 / 3; align-self: center; color: var(--sub-acc-text, var(--ink)); }
   h2.thread-head .section-medallion {
     grid-column: 3; grid-row: 1 / 3;
     width: 64px; height: 64px;
@@ -2327,19 +2284,6 @@ if (isRedesignedDomain) {
   .prose:not(.reading) h2 .sigil-box svg {
     width: 32px;
     height: 32px;
-  }
-  .prose:not(.reading) h2 .sub-idx {
-    grid-column: 2;
-    grid-row: 1;
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 400;
-    align-self: end;
-    padding-bottom: 4px;
   }
   .prose:not(.reading) h2 .sub-title {
     grid-column: 2;
