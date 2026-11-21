@@ -1499,7 +1499,7 @@ const UNIT_LABELS = {
   "05-modernism":     "Modernism",
 };
 const UNIT_TEXTS = {
-  "00-medieval":      "Foundation",
+  "00-medieval":      "Hamlet",
   "01-renaissance":   "Hamlet",
   "02-baroque":       "Paradise Lost",
   "03-enlightenment": "Pride and Prejudice",

@@ -4,7 +4,7 @@ import { PEOPLE } from '../components/BiographyPanel.jsx';
 import { PERIOD_MOTIFS } from '../data/period-motifs';
 
 const PERIODS = [
-  { id: '00-medieval',      n: '00', name: 'The High Middle Ages',       anchor: 'Foundation',         acc: '#C9A24B', txt: '#815D00' },
+  { id: '00-medieval',      n: '00', name: 'The High Middle Ages',       anchor: 'Hamlet',             acc: '#C9A24B', txt: '#815D00' },
   { id: '01-renaissance',   n: '01', name: 'Renaissance & Reformation',  anchor: 'Hamlet',              acc: '#B54C3A', txt: '#A94130' },
   { id: '02-baroque',       n: '02', name: 'The Baroque',                anchor: 'Paradise Lost',       acc: '#B07028', txt: '#935500' },
   { id: '03-enlightenment', n: '03', name: 'The Enlightenment',          anchor: 'Pride and Prejudice', acc: '#698BA1', txt: '#47687D' },
@@ -131,7 +131,7 @@ PERIODS.forEach(p => {
           <div class="ppl-group-head" style={`--p: ${period.acc}; --pt: ${period.txt}; --mark-primary: ${period.acc}`}>
             <span class="ppl-group-name">{period.name}</span>
             <span class="ppl-group-sep" aria-hidden="true">·</span>
-            <span class="ppl-group-anchor">{period.anchor === 'Foundation' ? period.anchor : <em>{period.anchor}</em>}</span>
+            <span class="ppl-group-anchor"><em>{period.anchor}</em></span>
             {motifSvg && (
               <span class="ppl-medallion" aria-hidden="true" set:html={motifSvg}></span>
             )}
