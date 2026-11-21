@@ -32,3 +32,14 @@ Seven `SlowDownCallout` uses outside `summer-reading/` (six music pages, Moderni
 ## Deploy
 
 Preview version `32630a88-0c29-498d-bbb7-7bc8f28ce984`. Production version ID: `186b27d7-a0f8-46be-aeec-0a12ef7c4cf3`.
+
+## Follow-up: three factual corrections
+
+Production had the pre-correction file. Three replacements in `01-renaissance/music.mdx`:
+
+1. "the largest part Shakespeare wrote" → "the largest part in any Shakespeare play"
+2. "in answer to Alessandro Striggio, an Italian composer who brought his own forty-voice Mass to London in 1567" → "in answer to forty-voice music by Alessandro Striggio, an Italian composer who visited London in 1567"
+3. "Published in 1601" → "Published in a collection dated 1601"
+
+Preview `ren-music-fix`: version `b477632b-2434-426b-8034-aaf48d09ce93`.
+Production version ID: `e07e4784-e700-4880-ba54-586ab2cdf76a`.
