@@ -173,7 +173,7 @@ Inline biographical links work via two layers:
 
 The **`/people` page** uses a self-contained React island (`BiographyDemo`) from `BiographyPanel.jsx` with its own modal. These are separate implementations — the Layout modal handles inline BioLinks site-wide; the React island is only on `/people`.
 
-**PEOPLE data** lives entirely in `BiographyPanel.jsx` (150 entries, each with a unique `id`). Each entry:
+**PEOPLE data** lives entirely in `BiographyPanel.jsx` (154 entries, each with a unique `id`). Each entry:
 ```js
 {
   id: "pascal",
