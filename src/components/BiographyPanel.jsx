@@ -660,7 +660,7 @@ const RAW_PEOPLE = [
     field: "Composer",
     units: ["00-medieval"],
     bio: "A composer associated with the Notre Dame school in Paris — the first major center of written polyphonic music — Pérotin expanded the two-voice organum of his predecessor Léonin into three and four simultaneous voices. Almost nothing is known of his life; his name appears in a single 13th-century treatise. His surviving works include *Viderunt omnes* and *Sederunt principes*, massive four-voice works that were revolutionary in their time.",
-    significance: "Pérotin represents the birth of Western harmony: the moment when a single chant melody becomes the foundation for multiple independent voices moving simultaneously. His slow-moving tenor (the original chant) supporting faster, interweaving upper voices establishes the basic texture of Western polyphony — the template that Palestrina will refine and Bach will push to its ultimate complexity.",
+    significance: "Pérotin marks the point at which polyphony becomes ambitious, written down, and attached to a name. In his four-voice organa a chant melody, slowed to long held notes in the tenor, becomes the foundation for three faster voices moving above it. That layered texture is the template that Palestrina will refine and Bach will push to its greatest complexity.",
     portrait: "/images/portraits/portrait-perotinus.jpg",
   },
   {
@@ -890,7 +890,7 @@ const RAW_PEOPLE = [
     field: "Composer",
     units: ["05-modernism"],
     bio: "A French composer who studied at the Paris Conservatoire and developed a radically new musical language influenced by Symbolist poetry, Impressionist painting, and the gamelan music he heard at the 1889 Paris Exposition. He rejected the German symphonic tradition and the dense developmental logic of Brahms and Wagner in favor of atmosphere, color, and a static, shimmering harmonic language. He died of rectal cancer during the German bombardment of Paris in 1918.",
-    significance: "Debussy is the Modernism Music page's foundational figure. He treated the orchestra as a chamber ensemble of individual voices, raised timbre from surface color to a structural element, and established tonality by assertion rather than by harmonic function — innovations Stravinsky inherited and transformed. What Debussy did for timbre, Stravinsky did for rhythm. *La Mer* (1905) is Romantic in feeling and Modernist in method: it evokes the sea not by depicting it but by building a shimmering field in which no single line leads.",
+    significance: "Debussy is the Modernism Music page's foundational figure. He treated the orchestra as a chamber ensemble of individual voices, raised timbre from surface color to a structural element, and established tonality by assertion rather than by harmonic function — innovations Stravinsky inherited and transformed. *La Mer* (1905) is Romantic in feeling and Modernist in method: it evokes the sea not by depicting it but by building a shimmering field in which no single line leads.",
     portrait: "/images/portraits/portrait-debussy-claude.jpg",
   },
   {
@@ -920,7 +920,7 @@ const RAW_PEOPLE = [
     field: "Painter & Art Theorist",
     units: ["05-modernism"],
     bio: "A Russian painter who abandoned a promising legal career at 30 to study painting in Munich, Kandinsky is generally credited as the first painter to produce purely abstract works — compositions in which color and form refer to nothing in the visible world. His *Composition VII* (1913) was painted in a single day after months of preparatory studies. He taught at the Bauhaus until the Nazis closed it in 1933, then fled to Paris.",
-    significance: "Kandinsky's abstraction is the visual equivalent of Schoenberg's twelve-tone method: the inherited system of representation is abandoned entirely. Just as Schoenberg freed music from tonal hierarchy, Kandinsky freed painting from the requirement to depict the visible world. His theoretical writings argued that color and form could speak directly to the soul — bypassing representation and addressing emotion without mediation.",
+    significance: "Kandinsky's abstraction is a visual counterpart to Schoenberg's atonal music, which Kandinsky heard in 1911 and wrote to him about: the inherited system of representation is abandoned entirely. Just as Schoenberg freed music from tonal hierarchy, Kandinsky freed painting from the requirement to depict the visible world. His theoretical writings argued that color and form could speak directly to the soul — bypassing representation and addressing emotion without mediation.",
     portrait: "/images/portraits/portrait-kandinsky-wassily.jpg",
   },
   {
@@ -1061,7 +1061,7 @@ const RAW_PEOPLE = [
     field: "Abbess, Composer, Mystic & Polymath",
     units: ["00-medieval"],
     bio: "A German abbess who entered monastic life at age 8 and experienced visions throughout her life, Hildegard was one of the most remarkable figures of the twelfth century. She composed an extensive body of sacred music (the largest surviving body of plainchant attributed to a single composer), wrote on natural history and medicine, corresponded with popes and emperors, preached publicly across Germany, and produced the *Scivias*, a record of her visions. She was posthumously declared a Doctor of the Church in 2012.",
-    significance: "Hildegard is named in the Medieval Historical Moment and appears in the philosophy page as an example of the intellectual richness within Medieval culture. Her music represents the most sophisticated individual compositional voice within the plainchant tradition, demonstrating that the Medieval aesthetic of communal anonymity coexisted with genuine individual artistry. Her visions also model the Medieval epistemological claim that the deepest truths arrive through divine revelation rather than rational inquiry.",
+    significance: "Hildegard is named in the Medieval Historical Moment and appears in the philosophy page as an example of the intellectual richness within Medieval culture. On the Medieval Music page her sequence \"O virga ac diadema\" is heard beside the anonymous \"Ave Maris Stella\": two chants to the Virgin in the same single-line texture, one shaped by a tradition and one by an individual composer whose melodies range unusually widely. Her visions also model the Medieval epistemological claim that the deepest truths arrive through divine revelation rather than rational inquiry.",
   },
   {
     id: "machaut",
@@ -1264,8 +1264,8 @@ const RAW_PEOPLE = [
     dates: "1882–1971",
     field: "Composer",
     units: ["05-modernism"],
-    bio: "Born near St. Petersburg, Stravinsky became the most influential composer of the 20th century through his work for Diaghilev's Ballets Russes — *The Firebird*, *Petrushka*, and *The Rite of Spring*. The 1913 premiere of *The Rite* caused a near-riot. He lived through two world wars, the Russian Revolution, and the Holocaust, reinventing his style multiple times: primitivism, neoclassicism, serialism.",
-    significance: "*The Rite of Spring*'s pounding, irregularly accented chords are Modernism's musical declaration of independence: inherited formal structures shattered, replaced by something visceral, violent, and radically new. Its 1913 premiere provoked a riot — which is what Modernism often does when it arrives.",
+    bio: "Born near St. Petersburg, Stravinsky became the most influential composer of the 20th century through his work for Diaghilev's Ballets Russes — *The Firebird*, *Petrushka*, and *The Rite of Spring*. *The Rite* was a collaboration: Nicholas Roerich devised the scenario and designed the production, Vaslav Nijinsky created deliberately unballetic choreography, and Diaghilev commissioned it. At the premiere on May 29, 1913, the protests were loud enough that the dancers struggled to hear the orchestra; Stravinsky later recalled standing in the wings behind Nijinsky, who stood on a chair shouting the counts. He lived through two world wars, the Russian Revolution, and the Holocaust, reinventing his style multiple times: primitivism, neoclassicism, serialism.",
+    significance: "*The Rite of Spring*'s pounding, irregularly accented chords are Modernism's musical declaration of independence: inherited formal structures shattered, replaced by something visceral, violent, and radically new. The ballet belongs to the same pre-war Parisian primitivism as Picasso's *Les Demoiselles d'Avignon* (1907), on this unit's painting page: avant-garde artists borrowing from folk and non-European sources they called \"primitive.\" The word is the period's own, and it names an appropriation as much as a style.",
     portrait: "/images/portraits/portrait-stravinsky-igor.jpg",
   },
   {
@@ -1275,7 +1275,7 @@ const RAW_PEOPLE = [
     field: "Composer",
     units: ["05-modernism"],
     bio: "A Viennese composer who pushed the late Romantic chromatic style to its logical extreme and then, around 1908, abandoned tonality altogether — composing in a 'freely atonal' style before systematizing his approach into the twelve-tone method in the early 1920s. He fled Nazi Germany in 1933, settled in Los Angeles, and spent his final decades teaching at UCLA, where his students included John Cage.",
-    significance: "Schoenberg's twelve-tone method abolishes the tonal hierarchy — no home key, no consonance, no resolution. The effect is music that sounds permanently unanchored, which is the sonic equivalent of the narrator's condition in Invisible Man: an identity with no stable center, in a world that offers no reliable resolution.",
+    significance: "Schoenberg is the Modernism Music page's figure for the European break with tonality, heard in *Pierrot Lunaire* (1912), which is freely atonal, a decade before the twelve-tone method gave atonal music a system. He was also a serious painter. He exhibited with Kandinsky's Blaue Reiter group in 1911, and the two corresponded about atonal music and abstract painting as parallel projects, a link between this unit's music and painting pages.",
     portrait: "/images/portraits/portrait-schoenberg-arnold.jpg",
   },
   {
@@ -1287,6 +1287,42 @@ const RAW_PEOPLE = [
     bio: "Born Edward Kennedy Ellington in Washington, D.C., Ellington became the most important composer in the history of jazz — composing over 1,000 works ranging from three-minute dance numbers to extended concert pieces. His orchestra maintained a consistent identity for 50 years through the Depression, World War II, and the Civil Rights era. *Black, Brown and Beige*, premiered at Carnegie Hall in 1943, was his most ambitious attempt to tell the story of African American experience through music.",
     significance: "Ellington is the course's demonstration that Modernism cannot be represented by the European avant-garde alone. The jazz tradition — with its improvisatory freedom within structural constraints, its fluid relationship between soloist and ensemble, its roots in African American experience — is the direct formal model for Invisible Man. Ellison understood his narrator as a jazz soloist, and Ellington is the master of that form.",
     portrait: "/images/portraits/portrait-ellington-duke.jpg",
+  },
+  {
+    id: "berg",
+    name: "Alban Berg",
+    dates: "1885–1935",
+    field: "Composer",
+    units: ["05-modernism"],
+    bio: "An Austrian composer who studied with Schoenberg from 1904 and, with Anton Webern, formed the core of what came to be called the Second Viennese School. Berg used his teacher's twelve-tone method more freely and lyrically than anyone else, building rows that let familiar chords surface. His opera *Wozzeck* (1925) is one of the most performed operas of the twentieth century. He died at fifty of blood poisoning from an infected insect sting, leaving the opera *Lulu* unfinished.",
+    significance: "Berg is the Modernism Music page's example of the twelve-tone method in use. In the Violin Concerto the method makes room for music from the tonal past: a Carinthian folk song in the first movement and, near the close of the second, the Lutheran chorale \"Es ist genug\" (\"It is enough\") in Bach's harmonization, whose opening climbs by the same whole steps that end Berg's row.",
+  },
+  {
+    id: "armstrong",
+    name: "Louis Armstrong",
+    dates: "1901–1971",
+    field: "Trumpeter, Singer & Bandleader",
+    units: ["05-modernism"],
+    bio: "Born in New Orleans into deep poverty, Armstrong learned the cornet at the Colored Waif's Home for Boys and became the musician most responsible for turning jazz from a collective ensemble music into an art of individual solo expression. His Hot Five and Hot Seven recordings of the late 1920s made the improvised solo the central act of jazz. He was also an enormously influential singer, and later a global celebrity whose public geniality some younger Black musicians criticized as accommodation.",
+    significance: "Armstrong is the one musician *Invisible Man* names. In the prologue the narrator, living underground in a room lit by 1,369 light bulbs, wants to hear five recordings of \"What Did I Do to Be So Black and Blue\" playing at once, and says he likes Armstrong because he has \"made poetry out of being invisible.\" Listening, he hears the music open downward, level beneath level, into a spiritual and a sermon on \"the Blackness of Blackness.\"",
+  },
+  {
+    id: "bessie-smith",
+    name: "Bessie Smith",
+    dates: "1894–1937",
+    field: "Singer",
+    units: ["05-modernism"],
+    bio: "Born in Chattanooga and orphaned young, Smith became the highest-paid Black entertainer of the 1920s and the leading voice of the classic blues. She recorded about 160 sides for Columbia between 1923 and 1933, among them a 1925 \"St. Louis Blues\" with Louis Armstrong on cornet. The Depression and changing tastes ended her recording career, and she died at forty-three after a car accident in Mississippi.",
+    significance: "Smith is the Modernism Music page's example of the classic twelve-bar blues. In \"Richard Wright's Blues\" (1945), Ellison describes the blues as an impulse to keep the painful details of a brutal experience alive in consciousness and to transcend them through lyricism rather than philosophical consolation, which is close to a description of how *Invisible Man*'s narrator tells his own story.",
+  },
+  {
+    id: "price",
+    name: "Florence Price",
+    dates: "1887–1953",
+    field: "Composer, Pianist & Organist",
+    units: ["05-modernism"],
+    bio: "Born in Little Rock, Price studied organ and piano at the New England Conservatory, graduating in 1906, and taught in the South before moving to Chicago in 1927. She composed more than 300 works. Her Symphony No. 1 in E Minor won first prize in the 1932 Rodman Wanamaker competition and was performed by the Chicago Symphony Orchestra under Frederick Stock in 1933, the first symphony by a Black woman played by a major American orchestra; Maude Roberts George, president of the Chicago Music Association, paid for it to be included on the program. Much of her music was neglected after her death, and a large collection of manuscripts was found in 2009 in her abandoned summer house near St. Anne, Illinois.",
+    significance: "Price puts the page's two traditions into a single work: a symphony in the European four-movement plan, built on African American dance and song. In program notes for her *Three Little Negro Dances* she wrote that \"in all types of Negro music, rhythm is of preeminent importance,\" a claim this page makes about Modernism from both of its directions.",
   },
 
   // ── SCULPTORS ─────────────────────────────────────────────────────────────
